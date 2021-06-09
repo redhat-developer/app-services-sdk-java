@@ -1,0 +1,16 @@
+**/package.json
+**/tsconfig.json
+**/.npmignore
+**/.gitignore
+**/.travis.yml
+**/.openapi-generator-ignore
+**/.openapi-generator
+**/build.gradle
+**/build.sbt
+**/gradle.properties
+**/gradlew
+**/gradlew.bat
+**/settings.gradle
+**/git_push.sh
+**/gradlew.bat
+**/src/test/**
