@@ -3,22 +3,22 @@ lazy val root = (project in file(".")).
     organization := "cloud.redhat.com",
     name := "kafka-instance-sdk",
     version := "0.1.0",
-    scalaVersion := "2.11.4",
+    scalaVersion := "2.13.6",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),
     publishArtifact in (Compile, packageDoc) := false,
     resolvers += Resolver.mavenLocal,
     libraryDependencies ++= Seq(
-      "io.swagger" % "swagger-annotations" % "1.5.24",
+      "io.swagger" % "swagger-annotations" % "1.6.2",
       "com.squareup.okhttp3" % "okhttp" % "4.9.1",
       "com.squareup.okhttp3" % "logging-interceptor" % "4.9.1",
-      "com.google.code.gson" % "gson" % "2.8.6",
-      "org.apache.commons" % "commons-lang3" % "3.10",
-      "io.gsonfire" % "gson-fire" % "1.8.3" % "compile",
+      "com.google.code.gson" % "gson" % "2.8.7",
+      "org.apache.commons" % "commons-lang3" % "3.12.0",
+      "io.gsonfire" % "gson-fire" % "1.8.5" % "compile",
       "javax.annotation" % "javax.annotation-api" % "1.3.2" % "compile",
       "com.google.code.findbugs" % "jsr305" % "3.0.2" % "compile",
       "javax.annotation" % "javax.annotation-api" % "1.3.2" % "compile",
-      "junit" % "junit" % "4.13.1" % "test",
-      "com.novocode" % "junit-interface" % "0.10" % "test"
+      "junit" % "junit" % "4.13.2" % "test",
+      "com.novocode" % "junit-interface" % "0.11" % "test"
     )
   )
