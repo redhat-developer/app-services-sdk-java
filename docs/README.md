@@ -14,7 +14,6 @@
 
 ### Additional topics
 
-- [Authentication for Management SDK's](./authentication.md)
-- [Authentication for Instance SDK's](./instanceauth.md)
+- [Authentication](./authentication.md)
 - [Packaging and distribution](./packaging.md)
 - [API stability](./apilevels.md)
