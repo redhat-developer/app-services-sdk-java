@@ -1,16 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cloud.redhat.com</groupId>
-    <artifactId>registry-management-sdk</artifactId>
+    <groupId>{{groupId}}</groupId>
+    <artifactId>{{artifactId}}</artifactId>
     <packaging>jar</packaging>
-    <name>registry-management-sdk</name>
-    <version>0.0.1</version>
+    <name>{{artifactId}}</name>
+    <version>{{artifactVersion}}</version>
     <scm>
-        <connection>scm:git:git@github.com:openapitools/openapi-generator.git</connection>
-        <developerConnection>scm:git:git@github.com:openapitools/openapi-generator.git</developerConnection>
-        <url>https://github.com/openapitools/openapi-generator</url>
+        <connection>{{scmConnection}}</connection>
+        <developerConnection>{{scmDeveloperConnection}}</developerConnection>
+        <url>{{scmUrl}}</url>
     </scm>
+{{#parentOverridden}}
+    <parent>
+        <groupId>{{{parentGroupId}}}</groupId>
+        <artifactId>{{{parentArtifactId}}}</artifactId>
+        <version>{{{parentVersion}}}</version>
+    </parent>
+{{/parentOverridden}}
 
     <distributionManagement>
         <repository>
@@ -23,18 +30,18 @@
 
     <licenses>
         <license>
-            <name>Apache-2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <name>{{licenseName}}</name>
+            <url>{{licenseUrl}}</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
     <developers>
         <developer>
-            <name>OpenAPI-Generator Contributors</name>
-            <email>team@openapitools.org</email>
-            <organization>OpenAPITools.org</organization>
-            <organizationUrl>http://openapitools.org</organizationUrl>
+            <name>{{developerName}}</name>
+            <email>{{developerEmail}}</email>
+            <organization>{{developerOrganization}}</organization>
+            <organizationUrl>{{developerOrganizationUrl}}</organizationUrl>
         </developer>
     </developers>
 
@@ -204,11 +211,23 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind-version}</version>
         </dependency>
+        {{#openApiNullable}}
         <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>jackson-databind-nullable</artifactId>
             <version>${jackson-databind-nullable-version}</version>
         </dependency>
+        {{/openApiNullable}}
+        {{#withXml}}
+
+        <!-- XML processing: Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson-version}</version>
+        </dependency>
+
+        {{/withXml}}
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jackson2-provider</artifactId>

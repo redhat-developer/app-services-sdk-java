@@ -4,5 +4,6 @@
   "devDependencies": {},
   "scripts": {
     "generate": "./scripts/generate.sh"
-  }
+  },
+  "dependencies": {}
 }

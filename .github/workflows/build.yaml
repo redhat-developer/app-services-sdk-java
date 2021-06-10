@@ -1,0 +1,24 @@
+name: SDK build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        go-version: '1.16.3' # The Go version to download (if necessary) and use.
+    - run: GO111MODULE=on go get github.com/mikefarah/yq/v4
+    - name: Use Node.js 14
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - run: yarn install
+    - run: yarn generate
+  
