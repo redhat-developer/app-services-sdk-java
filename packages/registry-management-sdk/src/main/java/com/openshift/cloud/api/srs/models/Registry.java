@@ -15,40 +15,43 @@ package com.openshift.cloud.api.srs.models;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.openshift.cloud.api.srs.models.RegistryStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * Service Registry instance within a multi-tenant deployment.
  */
 @ApiModel(description = "Service Registry instance within a multi-tenant deployment.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-08T16:30:55.340479607-04:00[America/New_York]")
+@JsonPropertyOrder({
+  Registry.JSON_PROPERTY_ID,
+  Registry.JSON_PROPERTY_STATUS,
+  Registry.JSON_PROPERTY_REGISTRY_URL,
+  Registry.JSON_PROPERTY_NAME,
+  Registry.JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID
+})
+@JsonTypeName("Registry")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:37.542472544-04:00[America/New_York]")
 public class Registry {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
-  public static final String SERIALIZED_NAME_STATUS = "status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
+  public static final String JSON_PROPERTY_STATUS = "status";
   private RegistryStatus status;
 
-  public static final String SERIALIZED_NAME_REGISTRY_URL = "registryUrl";
-  @SerializedName(SERIALIZED_NAME_REGISTRY_URL)
+  public static final String JSON_PROPERTY_REGISTRY_URL = "registryUrl";
   private String registryUrl;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
-  public static final String SERIALIZED_NAME_REGISTRY_DEPLOYMENT_ID = "registryDeploymentId";
-  @SerializedName(SERIALIZED_NAME_REGISTRY_DEPLOYMENT_ID)
+  public static final String JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID = "registryDeploymentId";
   private Integer registryDeploymentId;
 
 
@@ -63,12 +66,16 @@ public class Registry {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getId() {
     return id;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
   }
@@ -85,12 +92,16 @@ public class Registry {
    * @return status
   **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public RegistryStatus getStatus() {
     return status;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStatus(RegistryStatus status) {
     this.status = status;
   }
@@ -107,12 +118,16 @@ public class Registry {
    * @return registryUrl
   **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_REGISTRY_URL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getRegistryUrl() {
     return registryUrl;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REGISTRY_URL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRegistryUrl(String registryUrl) {
     this.registryUrl = registryUrl;
   }
@@ -130,12 +145,16 @@ public class Registry {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "User-defined Registry name. Does not have to be unique.")
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getName() {
     return name;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -153,12 +172,16 @@ public class Registry {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "Identifier of a multi-tenant deployment, where this Service Registry instance resides.")
+  @JsonProperty(JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Integer getRegistryDeploymentId() {
     return registryDeploymentId;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegistryDeploymentId(Integer registryDeploymentId) {
     this.registryDeploymentId = registryDeploymentId;
   }

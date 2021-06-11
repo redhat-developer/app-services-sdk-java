@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.openshift.cloud.api.kas"},{"l":"com.openshift.cloud.api.kas.invoker"},{"l":"com.openshift.cloud.api.kas.invoker.auth"},{"l":"com.openshift.cloud.api.kas.models"}];updateSearchResults();

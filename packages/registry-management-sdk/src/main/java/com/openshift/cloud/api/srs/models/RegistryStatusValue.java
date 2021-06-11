@@ -15,18 +15,14 @@ package com.openshift.cloud.api.srs.models;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import java.io.IOException;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * Gets or Sets RegistryStatusValue
  */
-@JsonAdapter(RegistryStatusValue.Adapter.class)
 public enum RegistryStatusValue {
   
   PROVISIONING("PROVISIONING"),
@@ -41,6 +37,7 @@ public enum RegistryStatusValue {
     this.value = value;
   }
 
+  @JsonValue
   public String getValue() {
     return value;
   }
@@ -50,6 +47,7 @@ public enum RegistryStatusValue {
     return String.valueOf(value);
   }
 
+  @JsonCreator
   public static RegistryStatusValue fromValue(String value) {
     for (RegistryStatusValue b : RegistryStatusValue.values()) {
       if (b.value.equals(value)) {
@@ -57,19 +55,6 @@ public enum RegistryStatusValue {
       }
     }
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
-  }
-
-  public static class Adapter extends TypeAdapter<RegistryStatusValue> {
-    @Override
-    public void write(final JsonWriter jsonWriter, final RegistryStatusValue enumeration) throws IOException {
-      jsonWriter.value(enumeration.getValue());
-    }
-
-    @Override
-    public RegistryStatusValue read(final JsonReader jsonReader) throws IOException {
-      String value = jsonReader.nextString();
-      return RegistryStatusValue.fromValue(value);
-    }
   }
 }
 
