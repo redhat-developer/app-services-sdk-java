@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Service Registry Service - Fleet Manager - v0",
+    "title": "Service Registry Service - Fleet Manager - v1",
     "version": "0.0.1",
     "description": "Main entry point for the system, responsible for all sorts of management operations for the whole service of managed service registry.",
     "license": {
@@ -9,14 +9,29 @@
       "url": "https://www.apache.org/licenses/LICENSE-2.0"
     }
   },
+  "servers": [
+    {
+      "url": "https://api.openshift.com",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://api.stage.openshift.com",
+      "description": "Staging server"
+    },
+    {
+      "url": "http://localhost:8000",
+      "description": "localhost"
+    },
+    {
+      "url": "/",
+      "description": "current domain"
+    }
+  ],
   "paths": {
     "/api/serviceregistry_mgmt/v1/registries": {
       "summary": "Manage the list of all registries.",
       "description": "",
       "get": {
-        "tags": [
-          "Registries"
-        ],
         "responses": {
           "200": {
             "content": {
@@ -37,7 +52,12 @@
         },
         "operationId": "getRegistries",
         "summary": "Get the list of all registries.",
-        "description": ""
+        "description": "",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       },
       "post": {
         "requestBody": {
@@ -51,9 +71,6 @@
           },
           "required": true
         },
-        "tags": [
-          "Registries"
-        ],
         "responses": {
           "202": {
             "content": {
@@ -71,16 +88,18 @@
         },
         "operationId": "createRegistry",
         "summary": "Create a Registry.",
-        "description": ""
+        "description": "",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/api/serviceregistry_mgmt/v1/registries/{registryId}": {
       "summary": "Manage a specific Registry.",
       "description": "",
       "get": {
-        "tags": [
-          "Registries"
-        ],
         "responses": {
           "200": {
             "content": {
@@ -101,12 +120,14 @@
         },
         "operationId": "getRegistry",
         "summary": "Get a Registry",
-        "description": "Gets the details of a single instance of a `Registry`."
+        "description": "Gets the details of a single instance of a `Registry`.",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       },
       "delete": {
-        "tags": [
-          "Registries"
-        ],
         "responses": {
           "204": {
             "description": "Successful response."
@@ -120,37 +141,24 @@
         },
         "operationId": "deleteRegistry",
         "summary": "Delete a Registry",
-        "description": "Deletes an existing `Registry`."
+        "description": "Deletes an existing `Registry`.",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       },
       "parameters": [
         {
           "name": "registryId",
           "description": "A unique identifier for a `Registry`.",
           "schema": {
-            "type": "integer"
+            "type": "string"
           },
           "in": "path",
           "required": true
         }
       ]
-    },
-    "/api/serviceregistry_mgmt/v1": {
-      "summary": "Get the OpenAPI schema for version 1 of this REST API.",
-      "get": {
-        "tags": [
-          "Info"
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "A successful response."
-          }
-        },
-        "operationId": "getSchema",
-        "summary": "Get the OpenAPI schema for version 1 of this REST API."
-      }
     }
   },
   "components": {
@@ -158,15 +166,11 @@
       "Registry": {
         "title": "Root Type for Registry",
         "description": "Service Registry instance within a multi-tenant deployment.",
-        "required": [
-          "id",
-          "registryUrl",
-          "status"
-        ],
+        "required": ["id", "registryUrl", "status"],
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "string"
           },
           "status": {
             "$ref": "#/components/schemas/RegistryStatus",
@@ -185,7 +189,7 @@
           }
         },
         "example": {
-          "id": 42,
+          "id": "dsadas",
           "name": "my-registry",
           "registryUrl": "https://registry.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706",
           "status": {
@@ -197,10 +201,7 @@
       },
       "RegistryStatus": {
         "description": "",
-        "required": [
-          "value",
-          "lastUpdated"
-        ],
+        "required": ["value", "lastUpdated"],
         "type": "object",
         "properties": {
           "lastUpdated": {
@@ -234,15 +235,8 @@
       },
       "RegistryStatusValue": {
         "description": "",
-        "enum": [
-          "PROVISIONING",
-          "AVAILABLE",
-          "UNAVAILABLE"
-        ],
+        "enum": ["PROVISIONING", "AVAILABLE", "UNAVAILABLE"],
         "type": "string"
-      },
-      "ErrorInfo": {
-        "$ref": "#/components/schemas/ErrorInfo1"
       },
       "ErrorInfo1": {
         "title": "Root Type for ErrorInfo",
@@ -263,6 +257,13 @@
           "error_code": 500,
           "message": "An error occurred on the server."
         }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
       }
     },
     "responses": {
