@@ -1,0 +1,16 @@
+name: Validate
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  validate_comments:
+    name: 'Validate Conventional Commits'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v3

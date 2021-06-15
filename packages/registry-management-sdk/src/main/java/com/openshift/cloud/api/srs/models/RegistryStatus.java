@@ -15,28 +15,31 @@ package com.openshift.cloud.api.srs.models;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.openshift.cloud.api.srs.models.RegistryStatusValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
 import java.time.OffsetDateTime;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * RegistryStatus
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-08T16:30:55.340479607-04:00[America/New_York]")
+@JsonPropertyOrder({
+  RegistryStatus.JSON_PROPERTY_LAST_UPDATED,
+  RegistryStatus.JSON_PROPERTY_VALUE
+})
+@JsonTypeName("RegistryStatus")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:37.542472544-04:00[America/New_York]")
 public class RegistryStatus {
-  public static final String SERIALIZED_NAME_LAST_UPDATED = "lastUpdated";
-  @SerializedName(SERIALIZED_NAME_LAST_UPDATED)
+  public static final String JSON_PROPERTY_LAST_UPDATED = "lastUpdated";
   private OffsetDateTime lastUpdated;
 
-  public static final String SERIALIZED_NAME_VALUE = "value";
-  @SerializedName(SERIALIZED_NAME_VALUE)
+  public static final String JSON_PROPERTY_VALUE = "value";
   private RegistryStatusValue value;
 
 
@@ -51,12 +54,16 @@ public class RegistryStatus {
    * @return lastUpdated
   **/
   @ApiModelProperty(required = true, value = "ISO 8601 UTC timestamp.")
+  @JsonProperty(JSON_PROPERTY_LAST_UPDATED)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public OffsetDateTime getLastUpdated() {
     return lastUpdated;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LAST_UPDATED)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLastUpdated(OffsetDateTime lastUpdated) {
     this.lastUpdated = lastUpdated;
   }
@@ -73,12 +80,16 @@ public class RegistryStatus {
    * @return value
   **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_VALUE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public RegistryStatusValue getValue() {
     return value;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_VALUE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setValue(RegistryStatusValue value) {
     this.value = value;
   }

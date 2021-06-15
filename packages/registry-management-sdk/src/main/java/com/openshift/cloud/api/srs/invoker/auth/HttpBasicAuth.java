@@ -15,40 +15,40 @@ package com.openshift.cloud.api.srs.invoker.auth;
 
 import com.openshift.cloud.api.srs.invoker.Pair;
 
-import okhttp3.Credentials;
+import java.util.Base64;
+import java.nio.charset.StandardCharsets;
 
 import java.util.Map;
 import java.util.List;
 
-import java.io.UnsupportedEncodingException;
 
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:37.542472544-04:00[America/New_York]")
 public class HttpBasicAuth implements Authentication {
-    private String username;
-    private String password;
+  private String username;
+  private String password;
 
-    public String getUsername() {
-        return username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    @Override
-    public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams) {
-        if (username == null && password == null) {
-            return;
-        }
-        headerParams.put("Authorization", Credentials.basic(
-            username == null ? "" : username,
-            password == null ? "" : password));
+  @Override
+  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams) {
+    if (username == null && password == null) {
+      return;
     }
+    String str = (username == null ? "" : username) + ":" + (password == null ? "" : password);
+    headerParams.put("Authorization", "Basic " + Base64.getEncoder().encodeToString(str.getBytes(StandardCharsets.UTF_8)));
+  }
 }

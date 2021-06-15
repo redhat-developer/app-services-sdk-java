@@ -1,0 +1,38 @@
+name: Fetch API client for new changes
+on:
+  repository_dispatch:
+    types: [openapi-spec-change]
+
+jobs:
+  generate_client:
+    env:
+      APP_SERVICES_TOKEN: ${{ secrets.APP_SERVICES_TOKEN }}
+      BF2_TOKEN: ${{ secrets.BF2_TOKEN }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - name: Install jq
+        run: sudo apt-get install jq
+      - name: Fetch OpenAPI doc
+        run: ./scripts/fetch_api.sh ${{ github.event.client_payload.download_url }}
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          title: "Update API client"
+          token: "${{ env.APP_SERVICES_TOKEN }}"
+          commit-message: "chore: generate API client"
+          author: "app-services-ci <app-services-ci@users.noreply.github.com>"
+          delete-branch: true
+          reviewers: craicoverflow, wtrocki, secondsun
+          body: |
+            Auto-generated API client for ${{ github.event.client_payload.id }}
+            
+            ## SDK update procedure
+
+            1. Review changes on OpenAPI file and validate if they are correct
+            2. Perform manual changes if needed or apply local patches for the OpenAPI files 
+            3. Merge PR 
+            4. Regenerate API using `yarn generate` and verify if underlying clients and examples are functional
+            5. Create PR and merge changes to main
+            6. Perform release on github with new changes

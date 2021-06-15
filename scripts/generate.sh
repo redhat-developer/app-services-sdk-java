@@ -9,12 +9,14 @@ ARTIFACT_ID="kafka-management-sdk"
 OPENAPI_FILENAME=".openapi/kas-fleet-manager.yaml"
 PACKAGE_NAME="com.openshift.cloud.api.kas"
 OUTPUT_PATH="packages/kafka-management-sdk"
+TEMPLATES_DIR="$(dirname $0)/templates"
+
 
 echo "Generating based on ${OPENAPI_FILENAME}"
 yq e 'del(.. | select(has("deprecated")))' "${OPENAPI_FILENAME}" > "${OPENAPI_FILENAME}.processed"
 rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
 
-npx @openapitools/openapi-generator-cli generate -g java -i \
+npx @openapitools/openapi-generator-cli generate -g java --library resteasy -t "$TEMPLATES_DIR"  -i \
     "$OPENAPI_FILENAME.processed" -o "$OUTPUT_PATH" \
     --package-name="${PACKAGE_NAME}" \
     --additional-properties="apiTests=false,modelTests=false,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
@@ -31,7 +33,7 @@ echo "Generating based on ${OPENAPI_FILENAME}"
 yq e 'del(.. | select(has("deprecated")))' "${OPENAPI_FILENAME}" > "${OPENAPI_FILENAME}.processed"
 rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
 
-npx @openapitools/openapi-generator-cli generate -g java -i \
+npx @openapitools/openapi-generator-cli generate -g java --library resteasy -t "$TEMPLATES_DIR"  -i \
     "$OPENAPI_FILENAME.processed" -o "$OUTPUT_PATH" \
     --package-name="${PACKAGE_NAME}" \
     --additional-properties="apiTests=false,modelTests=false,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
@@ -47,7 +49,7 @@ rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
 
 echo "Generating based on ${OPENAPI_FILENAME}"
 
-npx @openapitools/openapi-generator-cli generate -g java -i \
+npx @openapitools/openapi-generator-cli generate -g java --library resteasy  -t "$TEMPLATES_DIR"  -i \
     "$OPENAPI_FILENAME.processed" -o "$OUTPUT_PATH" \
     --package-name="${PACKAGE_NAME}" \
     --additional-properties="apiTests=false,modelTests=false,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
