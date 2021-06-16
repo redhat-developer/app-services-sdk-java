@@ -4,7 +4,7 @@ Kafka Admin REST API
 
 - API version: 0.1.0
 
-- Build date: 2021-06-11T11:25:50.899282543-04:00[America/New_York]
+- Build date: 2021-06-15T20:20:39.562527308-04:00[America/New_York]
 
 An API to provide REST endpoints for query Kafka for admin operations
 

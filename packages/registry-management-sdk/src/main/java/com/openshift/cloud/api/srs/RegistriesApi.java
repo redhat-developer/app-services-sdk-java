@@ -16,15 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:37.542472544-04:00[America/New_York]")
-public class DefaultApi {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:22.661697619-04:00[America/New_York]")
+public class RegistriesApi {
   private ApiClient apiClient;
 
-  public DefaultApi() {
+  public RegistriesApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public DefaultApi(ApiClient apiClient) {
+  public RegistriesApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
@@ -74,7 +74,7 @@ public class DefaultApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] {  };
 
     GenericType<Registry> localVarReturnType = new GenericType<Registry>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -85,7 +85,7 @@ public class DefaultApi {
    * @param registryId A unique identifier for a &#x60;Registry&#x60;. (required)
    * @throws ApiException if fails to make API call
    */
-  public void deleteRegistry(String registryId) throws ApiException {
+  public void deleteRegistry(Integer registryId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'registryId' is set
@@ -117,7 +117,7 @@ public class DefaultApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] {  };
 
 
     apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
@@ -154,7 +154,7 @@ public class DefaultApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] {  };
 
     GenericType<List<Registry>> localVarReturnType = new GenericType<List<Registry>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -166,7 +166,7 @@ public class DefaultApi {
    * @return a {@code Registry}
    * @throws ApiException if fails to make API call
    */
-  public Registry getRegistry(String registryId) throws ApiException {
+  public Registry getRegistry(Integer registryId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'registryId' is set
@@ -198,7 +198,7 @@ public class DefaultApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] {  };
 
     GenericType<Registry> localVarReturnType = new GenericType<Registry>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);

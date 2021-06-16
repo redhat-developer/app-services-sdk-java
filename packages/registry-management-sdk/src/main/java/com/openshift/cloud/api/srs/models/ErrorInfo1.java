@@ -1,5 +1,5 @@
 /*
- * Service Registry Service - Fleet Manager - v1
+ * Service Registry Service - Fleet Manager - v0
  * Main entry point for the system, responsible for all sorts of management operations for the whole service of managed service registry.
  *
  * The version of the OpenAPI document: 0.0.1
@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ErrorInfo1.JSON_PROPERTY_MESSAGE
 })
 @JsonTypeName("ErrorInfo1")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:37.542472544-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:22.661697619-04:00[America/New_York]")
 public class ErrorInfo1 {
   public static final String JSON_PROPERTY_ERROR_CODE = "error_code";
   private Integer errorCode;

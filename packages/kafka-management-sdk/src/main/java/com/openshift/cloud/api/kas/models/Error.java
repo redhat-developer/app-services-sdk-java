@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Error.JSON_PROPERTY_OPERATION_ID
 })
 @JsonTypeName("Error")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:23.732610761-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:04.691345341-04:00[America/New_York]")
 public class Error {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;

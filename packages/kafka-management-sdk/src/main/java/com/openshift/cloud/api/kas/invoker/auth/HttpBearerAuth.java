@@ -18,7 +18,7 @@ import com.openshift.cloud.api.kas.invoker.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:23.732610761-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:04.691345341-04:00[America/New_York]")
 public class HttpBearerAuth implements Authentication {
   private final String scheme;
   private String bearerToken;

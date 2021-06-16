@@ -8,7 +8,7 @@ Service Registry instance within a multi-tenant deployment.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | 
+**id** | **Integer** |  | 
 **status** | [**RegistryStatus**](RegistryStatus.md) |  | 
 **registryUrl** | **String** |  | 
 **name** | **String** | User-defined Registry name. Does not have to be unique. |  [optional]

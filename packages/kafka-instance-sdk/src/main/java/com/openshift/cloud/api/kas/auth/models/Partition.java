@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Partition.JSON_PROPERTY_LEADER
 })
 @JsonTypeName("Partition")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:50.899282543-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:39.562527308-04:00[America/New_York]")
 public class Partition {
   public static final String JSON_PROPERTY_ID = "id";
   private Integer id;

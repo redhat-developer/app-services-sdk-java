@@ -1,10 +1,10 @@
 # registry-management-sdk
 
-Service Registry Service - Fleet Manager - v1
+Service Registry Service - Fleet Manager - v0
 
 - API version: 0.0.1
 
-- Build date: 2021-06-11T11:25:37.542472544-04:00[America/New_York]
+- Build date: 2021-06-15T20:20:22.661697619-04:00[America/New_York]
 
 Main entry point for the system, responsible for all sorts of management operations for the whole service of managed service registry.
 
@@ -77,25 +77,19 @@ Please follow the [installation](#installation) instruction and execute the foll
 import com.openshift.cloud.api.srs.invoker.*;
 import com.openshift.cloud.api.srs.invoker.auth.*;
 import com.openshift.cloud.api.srs.models.*;
-import com.openshift.cloud.api.srs.DefaultApi;
+import com.openshift.cloud.api.srs.InfoApi;
 
-public class DefaultApiExample {
+public class InfoApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.openshift.com");
+        defaultClient.setBasePath("http://localhost");
         
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
-
-        DefaultApi apiInstance = new DefaultApi(defaultClient);
-        RegistryCreate registryCreate = new RegistryCreate(); // RegistryCreate | A new `Registry` to be created.
+        InfoApi apiInstance = new InfoApi(defaultClient);
         try {
-            Registry result = apiInstance.createRegistry(registryCreate);
-            System.out.println(result);
+            apiInstance.getSchema();
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#createRegistry");
+            System.err.println("Exception when calling InfoApi#getSchema");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -108,14 +102,15 @@ public class DefaultApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.openshift.com*
+All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**createRegistry**](docs/DefaultApi.md#createRegistry) | **POST** /api/serviceregistry_mgmt/v1/registries | Create a Registry.
-*DefaultApi* | [**deleteRegistry**](docs/DefaultApi.md#deleteRegistry) | **DELETE** /api/serviceregistry_mgmt/v1/registries/{registryId} | Delete a Registry
-*DefaultApi* | [**getRegistries**](docs/DefaultApi.md#getRegistries) | **GET** /api/serviceregistry_mgmt/v1/registries | Get the list of all registries.
-*DefaultApi* | [**getRegistry**](docs/DefaultApi.md#getRegistry) | **GET** /api/serviceregistry_mgmt/v1/registries/{registryId} | Get a Registry
+*InfoApi* | [**getSchema**](docs/InfoApi.md#getSchema) | **GET** /api/serviceregistry_mgmt/v1 | Get the OpenAPI schema for version 1 of this REST API.
+*RegistriesApi* | [**createRegistry**](docs/RegistriesApi.md#createRegistry) | **POST** /api/serviceregistry_mgmt/v1/registries | Create a Registry.
+*RegistriesApi* | [**deleteRegistry**](docs/RegistriesApi.md#deleteRegistry) | **DELETE** /api/serviceregistry_mgmt/v1/registries/{registryId} | Delete a Registry
+*RegistriesApi* | [**getRegistries**](docs/RegistriesApi.md#getRegistries) | **GET** /api/serviceregistry_mgmt/v1/registries | Get the list of all registries.
+*RegistriesApi* | [**getRegistry**](docs/RegistriesApi.md#getRegistry) | **GET** /api/serviceregistry_mgmt/v1/registries/{registryId} | Get a Registry
 
 
 ## Documentation for Models
@@ -129,12 +124,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Authorization
 
+All endpoints do not require authorization.
 Authentication schemes defined for the API:
-### Bearer
-
-
-- **Type**: HTTP basic authentication
-
 
 ## Recommendation
 
