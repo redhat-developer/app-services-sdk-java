@@ -1,9 +1,14 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Service Registry Service - Fleet Manager - v1",
+    "title": "Service Registry Fleet Manager",
     "version": "0.0.1",
-    "description": "Main entry point for the system, responsible for all sorts of management operations for the whole service of managed service registry.",
+    "description": "Managed Service Registry cloud.redhat.com API Management API that lets you create new registry instances. Registry is a datastore for standard event schemas and API designs. Service Registry enables developers to manage and share the structure of their data using a REST interface. For example, client applications can dynamically push or pull the latest updates to or from the registry without needing to redeploy. Registry is an Managed version of upstream project called Apicurio Registry. Apicurio Registry also enables developers to create rules that govern how registry content can evolve over time. For example, this includes rules for content validation and version compatibility.",
+    "contact": {
+      "name": "Cloud Red Hat",
+      "url": "https://cloud.redhat.com/beta/application-services/streams/",
+      "email": "rhosak-eval-support@redhat.com"
+    },
     "license": {
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0"
@@ -32,24 +37,80 @@
       "summary": "Manage the list of all registries.",
       "description": "",
       "get": {
+        "tags": [
+          "Registries"
+        ],
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Registry"
-                  }
+                  "$ref": "#/components/schemas/RegistryRestList"
                 }
               }
             },
             "description": "A successful response."
           },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "401Example": {
+                    "$ref": "#/components/examples/401Example"
+                  }
+                }
+              }
+            },
+            "description": "Auth token is invalid"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "403Example": {
+                    "$ref": "#/components/examples/403Example"
+                  }
+                }
+              }
+            },
+            "description": "User not authorized to access the service."
+          },
           "500": {
-            "$ref": "#/components/responses/ServerError"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "500Example": {
+                    "$ref": "#/components/examples/500Example"
+                  }
+                }
+              }
+            },
+            "description": "Unexpected error occurred"
           }
         },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/size"
+          },
+          {
+            "$ref": "#/components/parameters/orderBy"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          }
+        ],
         "operationId": "getRegistries",
         "summary": "Get the list of all registries.",
         "description": "",
@@ -60,6 +121,9 @@
         ]
       },
       "post": {
+        "tags": [
+          "Registries"
+        ],
         "requestBody": {
           "description": "A new `Registry` to be created.",
           "content": {
@@ -82,12 +146,54 @@
             },
             "description": "A successful response. The full request to create a new `Registry` is processed asynchronously. User should verify the result of the operation by reading the `status` property of the created `Registry` entity."
           },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "401Example": {
+                    "$ref": "#/components/examples/401Example"
+                  }
+                }
+              }
+            },
+            "description": "Auth token is invalid"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "403Example": {
+                    "$ref": "#/components/examples/403Example"
+                  }
+                }
+              }
+            },
+            "description": "User not authorized to access the service."
+          },
           "500": {
-            "$ref": "#/components/responses/ServerError"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "500Example": {
+                    "$ref": "#/components/examples/500Example"
+                  }
+                }
+              }
+            },
+            "description": "Unexpected error occurred"
           }
         },
         "operationId": "createRegistry",
-        "summary": "Create a Registry.",
+        "summary": "Create a new Registry instance",
         "description": "",
         "security": [
           {
@@ -96,10 +202,13 @@
         ]
       }
     },
-    "/api/serviceregistry_mgmt/v1/registries/{registryId}": {
+    "/api/serviceregistry_mgmt/v1/{id}": {
       "summary": "Manage a specific Registry.",
       "description": "",
       "get": {
+        "tags": [
+          "Registries"
+        ],
         "responses": {
           "200": {
             "content": {
@@ -111,11 +220,50 @@
             },
             "description": "Successful response - returns a single `Registry`."
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "401Example": {
+                    "$ref": "#/components/examples/401Example"
+                  }
+                }
+              }
+            },
+            "description": "Auth token is invalid"
           },
-          "500": {
-            "$ref": "#/components/responses/ServerError"
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "403Example": {
+                    "$ref": "#/components/examples/403Example"
+                  }
+                }
+              }
+            },
+            "description": "User not authorized to access the service."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "404Example": {
+                    "$ref": "#/components/examples/404Example"
+                  }
+                }
+              }
+            },
+            "description": "No service registry with specified id exists"
           }
         },
         "operationId": "getRegistry",
@@ -128,15 +276,57 @@
         ]
       },
       "delete": {
+        "tags": [
+          "Registries"
+        ],
         "responses": {
           "204": {
             "description": "Successful response."
           },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "401Example": {
+                    "$ref": "#/components/examples/401Example"
+                  }
+                }
+              }
+            },
+            "description": "Auth token is invalid"
           },
-          "500": {
-            "$ref": "#/components/responses/ServerError"
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "403Example": {
+                    "$ref": "#/components/examples/403Example"
+                  }
+                }
+              }
+            },
+            "description": "User not authorized to access the service."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "404Example": {
+                    "$ref": "#/components/examples/404Example"
+                  }
+                }
+              }
+            },
+            "description": "No Service Registry with specified id exists"
           }
         },
         "operationId": "deleteRegistry",
@@ -150,7 +340,7 @@
       },
       "parameters": [
         {
-          "name": "registryId",
+          "name": "id",
           "description": "A unique identifier for a `Registry`.",
           "schema": {
             "type": "string"
@@ -163,61 +353,166 @@
   },
   "components": {
     "schemas": {
-      "Registry": {
-        "title": "Root Type for Registry",
-        "description": "Service Registry instance within a multi-tenant deployment.",
-        "required": ["id", "registryUrl", "status"],
+      "ObjectReference": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string"
           },
-          "status": {
-            "$ref": "#/components/schemas/RegistryStatus",
-            "description": ""
-          },
-          "registryUrl": {
+          "kind": {
             "type": "string"
           },
-          "name": {
-            "description": "User-defined Registry name. Does not have to be unique.",
+          "href": {
             "type": "string"
-          },
-          "registryDeploymentId": {
-            "description": "Identifier of a multi-tenant deployment, where this Service Registry instance resides.",
-            "type": "integer"
           }
-        },
-        "example": {
-          "id": "dsadas",
-          "name": "my-registry",
-          "registryUrl": "https://registry.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706",
-          "status": {
-            "status": "PROVISIONING",
-            "lastUpdated": "2021-05-04T12:34:56Z"
-          },
-          "registryDeploymentId": 1
         }
       },
-      "RegistryStatus": {
-        "description": "",
-        "required": ["value", "lastUpdated"],
+      "List": {
+        "required": [
+          "kind",
+          "page",
+          "size",
+          "total",
+          "items"
+        ],
         "type": "object",
         "properties": {
-          "lastUpdated": {
-            "format": "date-time",
-            "description": "ISO 8601 UTC timestamp.",
+          "kind": {
             "type": "string"
           },
-          "value": {
-            "$ref": "#/components/schemas/RegistryStatusValue",
-            "description": ""
+          "page": {
+            "type": "integer"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
           }
-        },
-        "example": {
-          "value": "AVAILABLE",
-          "lastUpdated": "2021-05-04T12:34:56Z"
         }
+      },
+      "Error": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ObjectReference"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "operation_id": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "ErrorList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/List"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "RegistryRestList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/List"
+          },
+          {
+            "type": "object",
+            "example": {
+              "kind": "RegistryRestList",
+              "page": "1",
+              "size": "1",
+              "total": "1",
+              "item": {
+                "id": "llmNteR4P7waRp5nJIReG",
+                "kind": "serviceregistry",
+                "href": "/api/serviceregistry_mgmt/v1/registries/llmNteR4P7waRp5nJIReG",
+                "name": "sample-registry",
+                "status": "ready",
+                "owner": "some_id",
+                "registryUrl": "https://somehost:433"
+              }
+            },
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Registry"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "Registry": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ObjectReference"
+          },{ 
+            "title": "Root Type for Registry",
+            "description": "Service Registry instance within a multi-tenant deployment.",
+            "required": [
+              "id",
+              "registryUrl",
+              "status"
+            ],
+            "type": "object",
+            "properties":
+            {
+              "id": {
+                "type": "integer"
+              },
+              "status": {
+                "$ref": "#/components/schemas/RegistryStatusValue",
+                "description": ""
+              },
+              "registryUrl": {
+                "type": "string"
+              },
+              "name": {
+                "description": "User-defined Registry name. Does not have to be unique.",
+                "type": "string"
+              },
+              "registryDeploymentId": {
+                "description": "Identifier of a multi-tenant deployment, where this Service Registry instance resides.",
+                "type": "integer"
+              }
+            },
+            "example": {
+              "id": 42,
+              "name": "my-registry",
+              "registryUrl": "https://registry.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706",
+              "status": {
+                "status": "PROVISIONING",
+                "lastUpdated": "2021-05-04T12:34:56Z"
+              },
+              "registryDeploymentId": 1
+            }
+          }
+          ]
       },
       "RegistryCreate": {
         "title": "Root Type for RegistryCreate",
@@ -235,27 +530,123 @@
       },
       "RegistryStatusValue": {
         "description": "",
-        "enum": ["PROVISIONING", "AVAILABLE", "UNAVAILABLE"],
-        "type": "string"
-      },
-      "ErrorInfo1": {
-        "title": "Root Type for ErrorInfo",
-        "description": "Details about a specific error returned by the server.",
-        "required": [
-          "error_code"
+        "enum": [
+          "PROVISIONING",
+          "AVAILABLE",
+          "UNAVAILABLE"
         ],
-        "type": "object",
-        "properties": {
-          "error_code": {
-            "type": "integer"
-          },
-          "message": {
-            "type": "string"
+        "type": "string"
+      }
+    },
+    "parameters": {
+      "id": {
+        "name": "id",
+        "description": "The id of record",
+        "schema": {
+          "type": "string"
+        },
+        "in": "path",
+        "required": true
+      },
+      "page": {
+        "name": "page",
+        "in": "query",
+        "description": "Page index",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "examples": {
+          "page": {
+            "value": "1"
+          }
+        }
+      },
+      "size": {
+        "name": "size",
+        "in": "query",
+        "description": "Number of items in each page",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "examples": {
+          "size": {
+            "value": "100"
+          }
+        }
+      },
+      "orderBy": {
+        "description": "Specifies the order by criteria. The syntax of this parameter is\nsimilar to the syntax of the _order by_ clause of an SQL statement.\nEach query can be ordered by any of the kafkaRequests fields.\nFor example, in order to retrieve all kafkas ordered by their name:\n\n```sql\nname asc\n```\n\nOr in order to retrieve all kafkas ordered by their name _and_ created date:\n\n```sql\nname asc, created_at asc\n```\n\nIf the parameter isn't provided, or if the value is empty, then\nthe results will be ordered by name.",
+        "explode": true,
+        "examples": {
+          "orderBy": {
+            "value": "name asc"
           }
         },
-        "example": {
-          "error_code": 500,
-          "message": "An error occurred on the server."
+        "in": "query",
+        "name": "orderBy",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "style": "form"
+      },
+      "search": {
+        "description": "Search criteria.\n\nThe syntax of this parameter is similar to the syntax of the _where_ clause of an\nSQL statement. Allowed fields in the search are: cloud_provider, name, owner, region and status. Allowed comparators are `<>`, `=` or `LIKE`.\nAllowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.\n\nExamples:\n\nTo retrieve kafka request with name equal `my-kafka` and region equal `aws`, the value should be:\n\n```\nname = my-kafka and cloud_provider = aws\n```\n\nTo retrieve kafka request with its name starting with `my`, the value should be:\n\n```\nname like my%25\n```\n\nIf the parameter isn't provided, or if the value is empty, then all the kafkas\nthat the user has permission to see will be returned.\n\nNote. If the query is invalid, an error will be returned\n",
+        "explode": true,
+        "name": "search",
+        "in": "query",
+        "required": false,
+        "examples": {
+          "search": {
+            "value": "name = my-kafka and cloud_provider = aws"
+          }
+        },
+        "schema": {
+          "type": "string"
+        },
+        "style": "form"
+      }
+    },
+    "examples": {
+      "404Example": {
+        "value": {
+          "id": "404",
+          "kind": "Error",
+          "href": "/api/managed-services-api/v1/errors/7",
+          "code": "MGD-SERV-API-7",
+          "reason": "The requested resource doesn't exist"
+        }
+      },
+      "401Example": {
+        "value": {
+          "id": "11",
+          "kind": "Error",
+          "href": "/api/serviceregistry_mgmt/v1/errors/11",
+          "code": "CLOUD-SERV-API-11",
+          "reason": "Unable to verify JWT token: Required authorization token not found",
+          "operation_id": "1iY3UhEhwmXBpWPfI2lNekpd4ZD"
+        }
+      },
+      "403Example": {
+        "value": {
+          "id": "4",
+          "kind": "Error",
+          "href": "/api/serviceregistry_mgmt/v1/errors/4",
+          "code": "MGD-SERV-API-4",
+          "reason": "User 'foo-bar' is not authorized to access the service.",
+          "operation_id": "1lY3UiEhznXBpWPfI2lNejpd4YC"
+        }
+      },
+      "500Example": {
+        "value": {
+          "id": "9",
+          "kind": "Error",
+          "href": "/api/serviceregistry_mgmt/v1/errors/9",
+          "code": "MGD-SERV-API-9",
+          "reason": "Unspecified error",
+          "operation_id": "1ieELvF9jMQY6YghfM9gGRsHvEW"
         }
       }
     },
@@ -264,34 +655,6 @@
         "scheme": "bearer",
         "bearerFormat": "JWT",
         "type": "http"
-      }
-    },
-    "responses": {
-      "NotFound": {
-        "$ref": "#/components/responses/NotFound1"
-      },
-      "ServerError": {
-        "$ref": "#/components/responses/ServerError1"
-      },
-      "NotFound1": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ErrorInfo1"
-            }
-          }
-        },
-        "description": "The response returned when something is requested but cannot be found."
-      },
-      "ServerError1": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ErrorInfo1"
-            }
-          }
-        },
-        "description": "The response sent from the server when an unexpected error occurs (for example \na database connection error)."
       }
     }
   }
