@@ -20,36 +20,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.srs.models.ObjectReference;
 import com.openshift.cloud.api.srs.models.RegistryStatusValue;
-import com.openshift.cloud.api.srs.models.RootTypeForRegistry;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * Registry
+ * Service Registry instance within a multi-tenant deployment.
  */
+@ApiModel(description = "Service Registry instance within a multi-tenant deployment.")
 @JsonPropertyOrder({
-  Registry.JSON_PROPERTY_ID,
-  Registry.JSON_PROPERTY_KIND,
-  Registry.JSON_PROPERTY_HREF,
-  Registry.JSON_PROPERTY_STATUS,
-  Registry.JSON_PROPERTY_REGISTRY_URL,
-  Registry.JSON_PROPERTY_NAME,
-  Registry.JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID
+  RootTypeForRegistry.JSON_PROPERTY_ID,
+  RootTypeForRegistry.JSON_PROPERTY_STATUS,
+  RootTypeForRegistry.JSON_PROPERTY_REGISTRY_URL,
+  RootTypeForRegistry.JSON_PROPERTY_NAME,
+  RootTypeForRegistry.JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID
 })
-@JsonTypeName("Registry")
+@JsonTypeName("Root_Type_for_Registry")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class Registry {
+public class RootTypeForRegistry {
   public static final String JSON_PROPERTY_ID = "id";
   private Integer id;
-
-  public static final String JSON_PROPERTY_KIND = "kind";
-  private String kind;
-
-  public static final String JSON_PROPERTY_HREF = "href";
-  private String href;
 
   public static final String JSON_PROPERTY_STATUS = "status";
   private RegistryStatusValue status;
@@ -64,7 +55,7 @@ public class Registry {
   private Integer registryDeploymentId;
 
 
-  public Registry id(Integer id) {
+  public RootTypeForRegistry id(Integer id) {
     
     this.id = id;
     return this;
@@ -90,61 +81,7 @@ public class Registry {
   }
 
 
-  public Registry kind(String kind) {
-    
-    this.kind = kind;
-    return this;
-  }
-
-   /**
-   * Get kind
-   * @return kind
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getKind() {
-    return kind;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKind(String kind) {
-    this.kind = kind;
-  }
-
-
-  public Registry href(String href) {
-    
-    this.href = href;
-    return this;
-  }
-
-   /**
-   * Get href
-   * @return href
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getHref() {
-    return href;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHref(String href) {
-    this.href = href;
-  }
-
-
-  public Registry status(RegistryStatusValue status) {
+  public RootTypeForRegistry status(RegistryStatusValue status) {
     
     this.status = status;
     return this;
@@ -170,7 +107,7 @@ public class Registry {
   }
 
 
-  public Registry registryUrl(String registryUrl) {
+  public RootTypeForRegistry registryUrl(String registryUrl) {
     
     this.registryUrl = registryUrl;
     return this;
@@ -196,7 +133,7 @@ public class Registry {
   }
 
 
-  public Registry name(String name) {
+  public RootTypeForRegistry name(String name) {
     
     this.name = name;
     return this;
@@ -223,7 +160,7 @@ public class Registry {
   }
 
 
-  public Registry registryDeploymentId(Integer registryDeploymentId) {
+  public RootTypeForRegistry registryDeploymentId(Integer registryDeploymentId) {
     
     this.registryDeploymentId = registryDeploymentId;
     return this;
@@ -258,28 +195,24 @@ public class Registry {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Registry registry = (Registry) o;
-    return Objects.equals(this.id, registry.id) &&
-        Objects.equals(this.kind, registry.kind) &&
-        Objects.equals(this.href, registry.href) &&
-        Objects.equals(this.status, registry.status) &&
-        Objects.equals(this.registryUrl, registry.registryUrl) &&
-        Objects.equals(this.name, registry.name) &&
-        Objects.equals(this.registryDeploymentId, registry.registryDeploymentId);
+    RootTypeForRegistry rootTypeForRegistry = (RootTypeForRegistry) o;
+    return Objects.equals(this.id, rootTypeForRegistry.id) &&
+        Objects.equals(this.status, rootTypeForRegistry.status) &&
+        Objects.equals(this.registryUrl, rootTypeForRegistry.registryUrl) &&
+        Objects.equals(this.name, rootTypeForRegistry.name) &&
+        Objects.equals(this.registryDeploymentId, rootTypeForRegistry.registryDeploymentId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, status, registryUrl, name, registryDeploymentId);
+    return Objects.hash(id, status, registryUrl, name, registryDeploymentId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Registry {\n");
+    sb.append("class RootTypeForRegistry {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
-    sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    registryUrl: ").append(toIndentedString(registryUrl)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

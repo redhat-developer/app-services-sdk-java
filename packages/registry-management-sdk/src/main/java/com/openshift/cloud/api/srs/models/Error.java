@@ -20,30 +20,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.srs.models.ErrorAllOf;
 import com.openshift.cloud.api.srs.models.ObjectReference;
-import com.openshift.cloud.api.srs.models.RegistryStatusValue;
-import com.openshift.cloud.api.srs.models.RootTypeForRegistry;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * Registry
+ * Error
  */
 @JsonPropertyOrder({
-  Registry.JSON_PROPERTY_ID,
-  Registry.JSON_PROPERTY_KIND,
-  Registry.JSON_PROPERTY_HREF,
-  Registry.JSON_PROPERTY_STATUS,
-  Registry.JSON_PROPERTY_REGISTRY_URL,
-  Registry.JSON_PROPERTY_NAME,
-  Registry.JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID
+  Error.JSON_PROPERTY_ID,
+  Error.JSON_PROPERTY_KIND,
+  Error.JSON_PROPERTY_HREF,
+  Error.JSON_PROPERTY_CODE,
+  Error.JSON_PROPERTY_REASON,
+  Error.JSON_PROPERTY_OPERATION_ID
 })
-@JsonTypeName("Registry")
+@JsonTypeName("Error")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class Registry {
+public class Error {
   public static final String JSON_PROPERTY_ID = "id";
-  private Integer id;
+  private String id;
 
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
@@ -51,20 +49,17 @@ public class Registry {
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
 
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private RegistryStatusValue status;
+  public static final String JSON_PROPERTY_CODE = "code";
+  private String code;
 
-  public static final String JSON_PROPERTY_REGISTRY_URL = "registryUrl";
-  private String registryUrl;
+  public static final String JSON_PROPERTY_REASON = "reason";
+  private String reason;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
-
-  public static final String JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID = "registryDeploymentId";
-  private Integer registryDeploymentId;
+  public static final String JSON_PROPERTY_OPERATION_ID = "operation_id";
+  private String operationId;
 
 
-  public Registry id(Integer id) {
+  public Error id(String id) {
     
     this.id = id;
     return this;
@@ -74,23 +69,24 @@ public class Registry {
    * Get id
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getId() {
+  public String getId() {
     return id;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(Integer id) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(String id) {
     this.id = id;
   }
 
 
-  public Registry kind(String kind) {
+  public Error kind(String kind) {
     
     this.kind = kind;
     return this;
@@ -117,7 +113,7 @@ public class Registry {
   }
 
 
-  public Registry href(String href) {
+  public Error href(String href) {
     
     this.href = href;
     return this;
@@ -144,109 +140,84 @@ public class Registry {
   }
 
 
-  public Registry status(RegistryStatusValue status) {
+  public Error code(String code) {
     
-    this.status = status;
+    this.code = code;
     return this;
   }
 
    /**
-   * Get status
-   * @return status
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public RegistryStatusValue getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(RegistryStatusValue status) {
-    this.status = status;
-  }
-
-
-  public Registry registryUrl(String registryUrl) {
-    
-    this.registryUrl = registryUrl;
-    return this;
-  }
-
-   /**
-   * Get registryUrl
-   * @return registryUrl
-  **/
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_REGISTRY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getRegistryUrl() {
-    return registryUrl;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REGISTRY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRegistryUrl(String registryUrl) {
-    this.registryUrl = registryUrl;
-  }
-
-
-  public Registry name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * User-defined Registry name. Does not have to be unique.
-   * @return name
+   * Get code
+   * @return code
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "User-defined Registry name. Does not have to be unique.")
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public String getCode() {
+    return code;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
+  public void setCode(String code) {
+    this.code = code;
   }
 
 
-  public Registry registryDeploymentId(Integer registryDeploymentId) {
+  public Error reason(String reason) {
     
-    this.registryDeploymentId = registryDeploymentId;
+    this.reason = reason;
     return this;
   }
 
    /**
-   * Identifier of a multi-tenant deployment, where this Service Registry instance resides.
-   * @return registryDeploymentId
+   * Get reason
+   * @return reason
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Identifier of a multi-tenant deployment, where this Service Registry instance resides.")
-  @JsonProperty(JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REASON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getRegistryDeploymentId() {
-    return registryDeploymentId;
+  public String getReason() {
+    return reason;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID)
+  @JsonProperty(JSON_PROPERTY_REASON)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegistryDeploymentId(Integer registryDeploymentId) {
-    this.registryDeploymentId = registryDeploymentId;
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
+
+  public Error operationId(String operationId) {
+    
+    this.operationId = operationId;
+    return this;
+  }
+
+   /**
+   * Get operationId
+   * @return operationId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_OPERATION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getOperationId() {
+    return operationId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_OPERATION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOperationId(String operationId) {
+    this.operationId = operationId;
   }
 
 
@@ -258,32 +229,30 @@ public class Registry {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Registry registry = (Registry) o;
-    return Objects.equals(this.id, registry.id) &&
-        Objects.equals(this.kind, registry.kind) &&
-        Objects.equals(this.href, registry.href) &&
-        Objects.equals(this.status, registry.status) &&
-        Objects.equals(this.registryUrl, registry.registryUrl) &&
-        Objects.equals(this.name, registry.name) &&
-        Objects.equals(this.registryDeploymentId, registry.registryDeploymentId);
+    Error error = (Error) o;
+    return Objects.equals(this.id, error.id) &&
+        Objects.equals(this.kind, error.kind) &&
+        Objects.equals(this.href, error.href) &&
+        Objects.equals(this.code, error.code) &&
+        Objects.equals(this.reason, error.reason) &&
+        Objects.equals(this.operationId, error.operationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, status, registryUrl, name, registryDeploymentId);
+    return Objects.hash(id, kind, href, code, reason, operationId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Registry {\n");
+    sb.append("class Error {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    registryUrl: ").append(toIndentedString(registryUrl)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    registryDeploymentId: ").append(toIndentedString(registryDeploymentId)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+    sb.append("    operationId: ").append(toIndentedString(operationId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -25,43 +25,104 @@ import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * Information used to create a new Service Registry instance within a multi-tenant deployment.
+ * ErrorAllOf
  */
-@ApiModel(description = "Information used to create a new Service Registry instance within a multi-tenant deployment.")
 @JsonPropertyOrder({
-  RegistryCreate.JSON_PROPERTY_NAME
+  ErrorAllOf.JSON_PROPERTY_CODE,
+  ErrorAllOf.JSON_PROPERTY_REASON,
+  ErrorAllOf.JSON_PROPERTY_OPERATION_ID
 })
-@JsonTypeName("RegistryCreate")
+@JsonTypeName("Error_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RegistryCreate {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+public class ErrorAllOf {
+  public static final String JSON_PROPERTY_CODE = "code";
+  private String code;
+
+  public static final String JSON_PROPERTY_REASON = "reason";
+  private String reason;
+
+  public static final String JSON_PROPERTY_OPERATION_ID = "operation_id";
+  private String operationId;
 
 
-  public RegistryCreate name(String name) {
+  public ErrorAllOf code(String code) {
     
-    this.name = name;
+    this.code = code;
     return this;
   }
 
    /**
-   * User-defined Registry name. Does not have to be unique.
-   * @return name
+   * Get code
+   * @return code
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "User-defined Registry name. Does not have to be unique.")
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public String getCode() {
+    return code;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+
+  public ErrorAllOf reason(String reason) {
+    
+    this.reason = reason;
+    return this;
+  }
+
+   /**
+   * Get reason
+   * @return reason
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REASON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getReason() {
+    return reason;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REASON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
+
+  public ErrorAllOf operationId(String operationId) {
+    
+    this.operationId = operationId;
+    return this;
+  }
+
+   /**
+   * Get operationId
+   * @return operationId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_OPERATION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getOperationId() {
+    return operationId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_OPERATION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOperationId(String operationId) {
+    this.operationId = operationId;
   }
 
 
@@ -73,20 +134,24 @@ public class RegistryCreate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegistryCreate registryCreate = (RegistryCreate) o;
-    return Objects.equals(this.name, registryCreate.name);
+    ErrorAllOf errorAllOf = (ErrorAllOf) o;
+    return Objects.equals(this.code, errorAllOf.code) &&
+        Objects.equals(this.reason, errorAllOf.reason) &&
+        Objects.equals(this.operationId, errorAllOf.operationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(code, reason, operationId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RegistryCreate {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class ErrorAllOf {\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+    sb.append("    operationId: ").append(toIndentedString(operationId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

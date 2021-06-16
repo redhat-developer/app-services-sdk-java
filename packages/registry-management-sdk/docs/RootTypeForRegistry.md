@@ -1,15 +1,14 @@
 
 
-# Registry
+# RootTypeForRegistry
 
+Service Registry instance within a multi-tenant deployment.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Integer** |  | 
-**kind** | **String** |  |  [optional]
-**href** | **String** |  |  [optional]
 **status** | **RegistryStatusValue** |  | 
 **registryUrl** | **String** |  | 
 **name** | **String** | User-defined Registry name. Does not have to be unique. |  [optional]

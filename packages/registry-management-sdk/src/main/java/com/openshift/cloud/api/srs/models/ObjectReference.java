@@ -25,43 +25,104 @@ import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * Information used to create a new Service Registry instance within a multi-tenant deployment.
+ * ObjectReference
  */
-@ApiModel(description = "Information used to create a new Service Registry instance within a multi-tenant deployment.")
 @JsonPropertyOrder({
-  RegistryCreate.JSON_PROPERTY_NAME
+  ObjectReference.JSON_PROPERTY_ID,
+  ObjectReference.JSON_PROPERTY_KIND,
+  ObjectReference.JSON_PROPERTY_HREF
 })
-@JsonTypeName("RegistryCreate")
+@JsonTypeName("ObjectReference")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RegistryCreate {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+public class ObjectReference {
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
+
+  public static final String JSON_PROPERTY_KIND = "kind";
+  private String kind;
+
+  public static final String JSON_PROPERTY_HREF = "href";
+  private String href;
 
 
-  public RegistryCreate name(String name) {
+  public ObjectReference id(String id) {
     
-    this.name = name;
+    this.id = id;
     return this;
   }
 
    /**
-   * User-defined Registry name. Does not have to be unique.
-   * @return name
+   * Get id
+   * @return id
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "User-defined Registry name. Does not have to be unique.")
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public String getId() {
+    return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
+  public ObjectReference kind(String kind) {
+    
+    this.kind = kind;
+    return this;
+  }
+
+   /**
+   * Get kind
+   * @return kind
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getKind() {
+    return kind;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setKind(String kind) {
+    this.kind = kind;
+  }
+
+
+  public ObjectReference href(String href) {
+    
+    this.href = href;
+    return this;
+  }
+
+   /**
+   * Get href
+   * @return href
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getHref() {
+    return href;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHref(String href) {
+    this.href = href;
   }
 
 
@@ -73,20 +134,24 @@ public class RegistryCreate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegistryCreate registryCreate = (RegistryCreate) o;
-    return Objects.equals(this.name, registryCreate.name);
+    ObjectReference objectReference = (ObjectReference) o;
+    return Objects.equals(this.id, objectReference.id) &&
+        Objects.equals(this.kind, objectReference.kind) &&
+        Objects.equals(this.href, objectReference.href);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(id, kind, href);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RegistryCreate {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class ObjectReference {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
+    sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,48 +20,58 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.srs.models.Error;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * Information used to create a new Service Registry instance within a multi-tenant deployment.
+ * ErrorListAllOf
  */
-@ApiModel(description = "Information used to create a new Service Registry instance within a multi-tenant deployment.")
 @JsonPropertyOrder({
-  RegistryCreate.JSON_PROPERTY_NAME
+  ErrorListAllOf.JSON_PROPERTY_ITEMS
 })
-@JsonTypeName("RegistryCreate")
+@JsonTypeName("ErrorList_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RegistryCreate {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+public class ErrorListAllOf {
+  public static final String JSON_PROPERTY_ITEMS = "items";
+  private List<Error> items = null;
 
 
-  public RegistryCreate name(String name) {
+  public ErrorListAllOf items(List<Error> items) {
     
-    this.name = name;
+    this.items = items;
+    return this;
+  }
+
+  public ErrorListAllOf addItemsItem(Error itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
+    this.items.add(itemsItem);
     return this;
   }
 
    /**
-   * User-defined Registry name. Does not have to be unique.
-   * @return name
+   * Get items
+   * @return items
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "User-defined Registry name. Does not have to be unique.")
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public List<Error> getItems() {
+    return items;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
+  public void setItems(List<Error> items) {
+    this.items = items;
   }
 
 
@@ -73,20 +83,20 @@ public class RegistryCreate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegistryCreate registryCreate = (RegistryCreate) o;
-    return Objects.equals(this.name, registryCreate.name);
+    ErrorListAllOf errorListAllOf = (ErrorListAllOf) o;
+    return Objects.equals(this.items, errorListAllOf.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(items);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RegistryCreate {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class ErrorListAllOf {\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }
