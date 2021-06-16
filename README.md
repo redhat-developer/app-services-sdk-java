@@ -2,8 +2,6 @@
 
 Java packages and API clients for RHOAS services
 
-> NOTE: SDK is under active development
-
 
 ## Prequisites
 
