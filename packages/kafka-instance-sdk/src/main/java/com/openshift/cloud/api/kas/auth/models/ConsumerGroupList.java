@@ -39,7 +39,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ConsumerGroupList.JSON_PROPERTY_OFFSET
 })
 @JsonTypeName("ConsumerGroupList")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:50.899282543-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:39.562527308-04:00[America/New_York]")
 public class ConsumerGroupList {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<ConsumerGroup> items = new ArrayList<>();

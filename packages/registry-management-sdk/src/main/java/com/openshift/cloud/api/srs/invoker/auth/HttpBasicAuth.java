@@ -1,5 +1,5 @@
 /*
- * Service Registry Service - Fleet Manager - v1
+ * Service Registry Service - Fleet Manager - v0
  * Main entry point for the system, responsible for all sorts of management operations for the whole service of managed service registry.
  *
  * The version of the OpenAPI document: 0.0.1
@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.List;
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:37.542472544-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:22.661697619-04:00[America/New_York]")
 public class HttpBasicAuth implements Authentication {
   private String username;
   private String password;

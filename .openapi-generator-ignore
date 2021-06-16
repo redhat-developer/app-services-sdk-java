@@ -14,3 +14,14 @@
 **/git_push.sh
 **/gradlew.bat
 **/src/test/**
+**/.gradle/*
+**/.project
+**/.settings/*
+**/build.gradle
+**/build.sbt
+**/gradle.properties
+**/gradle/*
+**/gradlew
+**/gradlew.bat
+**/settings.gradle
+**/.classpath

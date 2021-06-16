@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ConsumerGroup.JSON_PROPERTY_CONSUMERS
 })
 @JsonTypeName("ConsumerGroup")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:50.899282543-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:39.562527308-04:00[America/New_York]")
 public class ConsumerGroup {
   public static final String JSON_PROPERTY_GROUP_ID = "groupId";
   private String groupId;

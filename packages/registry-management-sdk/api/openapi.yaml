@@ -5,17 +5,10 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  title: Service Registry Service - Fleet Manager - v1
+  title: Service Registry Service - Fleet Manager - v0
   version: 0.0.1
 servers:
-- description: Main (production) server
-  url: https://api.openshift.com
-- description: Staging server
-  url: https://api.stage.openshift.com
-- description: localhost
-  url: http://localhost:8000
-- description: current domain
-  url: /
+- url: /
 paths:
   /api/serviceregistry_mgmt/v1/registries:
     get:
@@ -36,9 +29,9 @@ paths:
                 $ref: '#/components/schemas/ErrorInfo1'
           description: "The response sent from the server when an unexpected error\
             \ occurs (for example \na database connection error)."
-      security:
-      - Bearer: []
       summary: Get the list of all registries.
+      tags:
+      - Registries
       x-accepts: application/json
     post:
       operationId: createRegistry
@@ -65,9 +58,9 @@ paths:
                 $ref: '#/components/schemas/ErrorInfo1'
           description: "The response sent from the server when an unexpected error\
             \ occurs (for example \na database connection error)."
-      security:
-      - Bearer: []
       summary: Create a Registry.
+      tags:
+      - Registries
       x-contentType: application/json
       x-accepts: application/json
     summary: Manage the list of all registries.
@@ -82,7 +75,7 @@ paths:
         name: registryId
         required: true
         schema:
-          type: string
+          type: integer
         style: simple
       responses:
         "204":
@@ -101,9 +94,9 @@ paths:
                 $ref: '#/components/schemas/ErrorInfo1'
           description: "The response sent from the server when an unexpected error\
             \ occurs (for example \na database connection error)."
-      security:
-      - Bearer: []
       summary: Delete a Registry
+      tags:
+      - Registries
       x-accepts: application/json
     get:
       description: Gets the details of a single instance of a `Registry`.
@@ -115,7 +108,7 @@ paths:
         name: registryId
         required: true
         schema:
-          type: string
+          type: integer
         style: simple
       responses:
         "200":
@@ -138,11 +131,24 @@ paths:
                 $ref: '#/components/schemas/ErrorInfo1'
           description: "The response sent from the server when an unexpected error\
             \ occurs (for example \na database connection error)."
-      security:
-      - Bearer: []
       summary: Get a Registry
+      tags:
+      - Registries
       x-accepts: application/json
     summary: Manage a specific Registry.
+  /api/serviceregistry_mgmt/v1:
+    get:
+      operationId: getSchema
+      responses:
+        "200":
+          content:
+            application/json: {}
+          description: A successful response.
+      summary: Get the OpenAPI schema for version 1 of this REST API.
+      tags:
+      - Info
+      x-accepts: application/json
+    summary: Get the OpenAPI schema for version 1 of this REST API.
 components:
   responses:
     NotFound:
@@ -167,7 +173,7 @@ components:
     Registry:
       description: Service Registry instance within a multi-tenant deployment.
       example:
-        id: dsadas
+        id: 42
         name: my-registry
         registryUrl: https://registry.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706
         status:
@@ -176,7 +182,7 @@ components:
         registryDeploymentId: 1
       properties:
         id:
-          type: string
+          type: integer
         status:
           $ref: '#/components/schemas/RegistryStatus'
         registryUrl:
@@ -226,6 +232,8 @@ components:
       - AVAILABLE
       - UNAVAILABLE
       type: string
+    ErrorInfo:
+      $ref: '#/components/schemas/ErrorInfo1'
     ErrorInfo1:
       description: Details about a specific error returned by the server.
       example:
@@ -240,9 +248,4 @@ components:
       - error_code
       title: Root Type for ErrorInfo
       type: object
-  securitySchemes:
-    Bearer:
-      bearerFormat: JWT
-      scheme: bearer
-      type: http
 

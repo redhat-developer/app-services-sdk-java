@@ -1,5 +1,5 @@
 /*
- * Service Registry Service - Fleet Manager - v1
+ * Service Registry Service - Fleet Manager - v0
  * Main entry point for the system, responsible for all sorts of management operations for the whole service of managed service registry.
  *
  * The version of the OpenAPI document: 0.0.1
@@ -37,10 +37,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Registry.JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID
 })
 @JsonTypeName("Registry")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-11T11:25:37.542472544-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:22.661697619-04:00[America/New_York]")
 public class Registry {
   public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  private Integer id;
 
   public static final String JSON_PROPERTY_STATUS = "status";
   private RegistryStatus status;
@@ -55,7 +55,7 @@ public class Registry {
   private Integer registryDeploymentId;
 
 
-  public Registry id(String id) {
+  public Registry id(Integer id) {
     
     this.id = id;
     return this;
@@ -69,14 +69,14 @@ public class Registry {
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
