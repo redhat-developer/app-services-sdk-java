@@ -46,11 +46,11 @@ import com.openshift.cloud.api.srs.invoker.auth.HttpBasicAuth;
 import com.openshift.cloud.api.srs.invoker.auth.HttpBearerAuth;
 import com.openshift.cloud.api.srs.invoker.auth.ApiKeyAuth;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:22.661697619-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiClient extends JavaTimeFormatter {
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private Map<String, String> defaultCookieMap = new HashMap<String, String>();
-  private String basePath = "http://localhost";
+  private String basePath = "https://api.openshift.com";
   private boolean debugging = false;
 
   private Client httpClient;
@@ -80,6 +80,7 @@ public class ApiClient extends JavaTimeFormatter {
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<String, Authentication>();
+    authentications.put("Bearer", new HttpBearerAuth("bearer"));
     // Prevent the authentications from being modified.
     authentications = Collections.unmodifiableMap(authentications);
   }

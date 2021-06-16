@@ -15,5 +15,4 @@
 ### Additional topics
 
 - [Authentication](./authentication.md)
-- [Packaging and distribution](./packaging.md)
 - [API stability](./apilevels.md)

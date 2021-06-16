@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ServiceStatusKafkas.JSON_PROPERTY_MAX_CAPACITY_REACHED
 })
 @JsonTypeName("ServiceStatus_kafkas")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:04.691345341-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ServiceStatusKafkas {
   public static final String JSON_PROPERTY_MAX_CAPACITY_REACHED = "max_capacity_reached";
   private Boolean maxCapacityReached;

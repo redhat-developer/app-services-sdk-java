@@ -4,8 +4,6 @@ Kafka Service Fleet Manager
 
 - API version: 1.1.1
 
-- Build date: 2021-06-15T20:20:04.691345341-04:00[America/New_York]
-
 Kafka Service Fleet Manager is a Rest API to manage Kakfa instances and connectors.
 
 

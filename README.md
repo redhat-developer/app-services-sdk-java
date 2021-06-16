@@ -2,8 +2,6 @@
 
 Java packages and API clients for RHOAS services
 
-> NOTE: SDK is under active development
-
 
 ## Prequisites
 
@@ -42,10 +40,6 @@ You can view all SDK packages directly in [GitHub](https://github.com/orgs/redha
 ## Docs
 
 [Documentation](./docs) 
-
-## Examples
-
-[Examples](./examples) 
 
 
 ## Contributing

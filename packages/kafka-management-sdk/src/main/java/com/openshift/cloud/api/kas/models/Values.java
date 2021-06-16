@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Values.JSON_PROPERTY_VALUE
 })
 @JsonTypeName("values")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:04.691345341-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Values {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   private Long timestamp;
