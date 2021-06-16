@@ -45,3 +45,4 @@ yarn.lock
 **/target/*
 *.versionsBackup
 
+packages/**/gradle/wrapper/*

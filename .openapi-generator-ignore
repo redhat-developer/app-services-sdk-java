@@ -20,7 +20,7 @@
 **/build.gradle
 **/build.sbt
 **/gradle.properties
-**/gradle/*
+**/gradle/**/*
 **/gradlew
 **/gradlew.bat
 **/settings.gradle
