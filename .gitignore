@@ -44,3 +44,15 @@ yarn.lock
 *.processed
 **/target/*
 *.versionsBackup
+
+**/.gradle/*
+**/.project
+**/.settings/*
+**/build.gradle
+**/build.sbt
+**/gradle.properties
+**/gradle/*
+**/gradlew
+**/gradlew.bat
+**/settings.gradle
+**/.classpath
