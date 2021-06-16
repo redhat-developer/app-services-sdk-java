@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RangeQuery.JSON_PROPERTY_VALUES
 })
 @JsonTypeName("RangeQuery")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:04.691345341-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RangeQuery {
   public static final String JSON_PROPERTY_METRIC = "metric";
   private Map<String, String> metric = null;

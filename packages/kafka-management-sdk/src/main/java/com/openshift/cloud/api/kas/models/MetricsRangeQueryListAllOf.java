@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   MetricsRangeQueryListAllOf.JSON_PROPERTY_ITEMS
 })
 @JsonTypeName("MetricsRangeQueryList_allOf")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:04.691345341-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class MetricsRangeQueryListAllOf {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;

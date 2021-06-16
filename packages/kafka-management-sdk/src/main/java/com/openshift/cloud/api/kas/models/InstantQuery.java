@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   InstantQuery.JSON_PROPERTY_VALUE
 })
 @JsonTypeName("InstantQuery")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-15T20:20:04.691345341-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class InstantQuery {
   public static final String JSON_PROPERTY_METRIC = "metric";
   private Map<String, String> metric = null;
