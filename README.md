@@ -9,6 +9,7 @@ Java packages and API clients for RHOAS services
 
 - [NodeJS 14.x lts](https://nodejs.org/en/about/releases/) or above
 - [Maven 3.6.x](https://maven.apache.org) or above
+- [YQ 4.6.x](https://github.com/mikefarah/yq#install) or above
 
 ## Introduction
 
