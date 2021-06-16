@@ -40,10 +40,6 @@ You can view all SDK packages directly in [GitHub](https://github.com/orgs/redha
 
 [Documentation](./docs) 
 
-## Examples
-
-[Examples](./examples) 
-
 
 ## Contributing
 
