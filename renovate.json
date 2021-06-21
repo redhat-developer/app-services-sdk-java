@@ -1,5 +1,4 @@
 {
   "enabled": false,
-  "extends": ["config:base", ":pinAllExceptPeerDependencies"],
-  "groupName": "all"
+  "extends": [ "github>redhat-developer/app-services-renovate-config" ]
 }
