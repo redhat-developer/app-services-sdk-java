@@ -1,9 +1,0 @@
-{
-  "name": "app-services-sdk-java",
-  "private": true,
-  "devDependencies": {},
-  "scripts": {
-    "generate": "./scripts/generate.sh"
-  },
-  "dependencies": {}
-}
