@@ -1,0 +1,44 @@
+name: Generate API clients
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".openapi/**"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js  
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - name: Generate API clients
+        run: yarn generate
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          title: "chore(all): re-generate OpenAPI client(s)"
+          token: "${{ secrets.CI_USER_TOKEN }}"
+          commit-message: "chore(all): re-generate OpenAPI client(s)"
+          author: "app-services-ci <app-services-ci@users.noreply.github.com>"
+          branch: chore/generate-api-clients
+          branch-suffix: timestamp
+          reviewers: craicoverflow, wtrocki, CI_USER_TOKEN
+          delete-branch: suffix
+          body: |
+            _This pull request was auto-generated_
+
+            This PR adds the latest generated API clients.
+
+            **Actions**:
+
+              1. Review changes and validate against the examples.
+              2. Make changes where necessary.
+              3. Approve and merge with proper commit message tha represents change
+              4. Create a release.
