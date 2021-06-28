@@ -21,12 +21,15 @@ jobs:
         with:
           title: "Update API client"
           token: "${{ env.APP_SERVICES_TOKEN }}"
-          commit-message: "chore: generate API client"
+          commit-message: "chore(openapi): update ${{ github.event.client_payload.id }} OpenAPI document"
           author: "app-services-ci <app-services-ci@users.noreply.github.com>"
-          delete-branch: true
+          branch: chore/add-${{ github.event.client_payload.id }}-openapi
+          branch-suffix: timestamp
           reviewers: craicoverflow, wtrocki, secondsun
           body: |
-            Auto-generated API client for ${{ github.event.client_payload.id }}
+            _This pull request was auto-generated_
+            
+            This PR adds the latest version OpenAPI document version for **${{ github.event.client_payload.id }}**.
             
             ## SDK update procedure
 
