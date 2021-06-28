@@ -19,7 +19,7 @@ jobs:
         run: ./scripts/fetch_api.sh ${{ github.event.client_payload.download_url }}
       - uses: peter-evans/create-pull-request@v3
         with:
-          title: "Update API client"
+          title: "chore(openapi): update ${{ github.event.client_payload.id }} OpenAPI document"
           token: "${{ env.APP_SERVICES_TOKEN }}"
           commit-message: "chore(openapi): update ${{ github.event.client_payload.id }} OpenAPI document"
           author: "app-services-ci <app-services-ci@users.noreply.github.com>"
