@@ -11,10 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-go@v2
-      with:
-        go-version: '1.16.3' # The Go version to download (if necessary) and use.
-    - run: GO111MODULE=on go get github.com/mikefarah/yq/v4
+    - run: mkdir -p "$HOME/.local/bin"; echo "$HOME/.local/bin" >> $GITHUB_PATH
+    - run: wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O $HOME/.local/bin/yq && chmod +x $HOME/.local/bin/yq          
     - run: ./scripts/generate.sh
     - run: ./scripts/build.sh              
 
