@@ -19,8 +19,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
+      - run: GO111MODULE=on go get github.com/mikefarah/yq/v4
       - name: Generate API clients
-        run: yarn generate
+        run: ./scripts/generate.sh
       - uses: peter-evans/create-pull-request@v3
         with:
           title: "chore(all): re-generate OpenAPI client(s)"
