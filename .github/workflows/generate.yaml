@@ -10,16 +10,14 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-go@v2
-        with:
-          go-version: 1.16
       - name: Checkout
         uses: actions/checkout@v2
       - name: Use Node.js  
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-      - run: GO111MODULE=on go get github.com/mikefarah/yq/v4
+      - run: mkdir -p "$HOME/.local/bin"; echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - run: wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O $HOME/.local/bin/yq && chmod +x $HOME/.local/bin/yq          
       - name: Generate API clients
         run: ./scripts/generate.sh
       - uses: peter-evans/create-pull-request@v3
