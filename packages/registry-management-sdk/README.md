@@ -2,7 +2,7 @@
 
 Service Registry Fleet Manager
 
-- API version: 0.0.1
+- API version: 0.0.5
 
 Managed Service Registry cloud.redhat.com API Management API that lets you create new registry instances. Registry is a datastore for standard event schemas and API designs. Service Registry enables developers to manage and share the structure of their data using a REST interface. For example, client applications can dynamically push or pull the latest updates to or from the registry without needing to redeploy. Registry is an Managed version of upstream project called Apicurio Registry. Apicurio Registry also enables developers to create rules that govern how registry content can evolve over time. For example, this includes rules for content validation and version compatibility.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>cloud.redhat.com</groupId>
   <artifactId>registry-management-sdk</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.5</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.redhat.com:registry-management-sdk:0.0.1"
+compile "cloud.redhat.com:registry-management-sdk:0.0.5"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/registry-management-sdk-0.0.1.jar`
+- `target/registry-management-sdk-0.0.5.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -76,25 +76,20 @@ Please follow the [installation](#installation) instruction and execute the foll
 import com.openshift.cloud.api.srs.invoker.*;
 import com.openshift.cloud.api.srs.invoker.auth.*;
 import com.openshift.cloud.api.srs.models.*;
-import com.openshift.cloud.api.srs.RegistriesApi;
+import com.openshift.cloud.api.srs.DefaultApi;
 
-public class RegistriesApiExample {
+public class DefaultApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.openshift.com");
         
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
-
-        RegistriesApi apiInstance = new RegistriesApi(defaultClient);
-        RegistryCreate registryCreate = new RegistryCreate(); // RegistryCreate | A new `Registry` to be created.
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
         try {
-            Registry result = apiInstance.createRegistry(registryCreate);
+            String result = apiInstance.getSchema();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling RegistriesApi#createRegistry");
+            System.err.println("Exception when calling DefaultApi#getSchema");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -111,24 +106,26 @@ All URIs are relative to *https://api.openshift.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**getSchema**](docs/DefaultApi.md#getSchema) | **GET** /api/serviceregistry_mgmt/v1/openapi | Get an OpenAPI schema for this API.
 *RegistriesApi* | [**createRegistry**](docs/RegistriesApi.md#createRegistry) | **POST** /api/serviceregistry_mgmt/v1/registries | Create a new Registry instance
-*RegistriesApi* | [**deleteRegistry**](docs/RegistriesApi.md#deleteRegistry) | **DELETE** /api/serviceregistry_mgmt/v1/{id} | Delete a Registry
+*RegistriesApi* | [**deleteRegistry**](docs/RegistriesApi.md#deleteRegistry) | **DELETE** /api/serviceregistry_mgmt/v1/registries/{id} | Delete a Registry
 *RegistriesApi* | [**getRegistries**](docs/RegistriesApi.md#getRegistries) | **GET** /api/serviceregistry_mgmt/v1/registries | Get the list of all registries.
-*RegistriesApi* | [**getRegistry**](docs/RegistriesApi.md#getRegistry) | **GET** /api/serviceregistry_mgmt/v1/{id} | Get a Registry
+*RegistriesApi* | [**getRegistry**](docs/RegistriesApi.md#getRegistry) | **GET** /api/serviceregistry_mgmt/v1/registries/{id} | Get a Registry
 
 
 ## Documentation for Models
 
- - [Error](docs/Error.md)
- - [ErrorAllOf](docs/ErrorAllOf.md)
- - [ErrorList](docs/ErrorList.md)
- - [ErrorListAllOf](docs/ErrorListAllOf.md)
- - [ObjectReference](docs/ObjectReference.md)
- - [Registry](docs/Registry.md)
- - [RegistryCreate](docs/RegistryCreate.md)
- - [RegistryRestList](docs/RegistryRestList.md)
- - [RegistryRestListAllOf](docs/RegistryRestListAllOf.md)
- - [RegistryStatusValue](docs/RegistryStatusValue.md)
+ - [ErrorListRest](docs/ErrorListRest.md)
+ - [ErrorListRestAllOf](docs/ErrorListRestAllOf.md)
+ - [ErrorRest](docs/ErrorRest.md)
+ - [ErrorRestAllOf](docs/ErrorRestAllOf.md)
+ - [ListRest](docs/ListRest.md)
+ - [ObjectReferenceRest](docs/ObjectReferenceRest.md)
+ - [RegistryCreateRest](docs/RegistryCreateRest.md)
+ - [RegistryListRest](docs/RegistryListRest.md)
+ - [RegistryListRestAllOf](docs/RegistryListRestAllOf.md)
+ - [RegistryRest](docs/RegistryRest.md)
+ - [RegistryStatusValueRest](docs/RegistryStatusValueRest.md)
  - [RootTypeForRegistry](docs/RootTypeForRegistry.md)
 
 

@@ -17,7 +17,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Service Registry Fleet Manager
-  version: 0.0.1
+  version: 0.0.5
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -41,7 +41,7 @@ paths:
         name: page
         required: false
         schema:
-          type: string
+          type: integer
         style: form
       - description: Number of items in each page
         examples:
@@ -52,7 +52,7 @@ paths:
         name: size
         required: false
         schema:
-          type: string
+          type: integer
         style: form
       - description: |-
           Specifies the order by criteria. The syntax of this parameter is
@@ -82,34 +82,20 @@ paths:
         schema:
           type: string
         style: form
-      - description: |
-          Search criteria.
-
-          The syntax of this parameter is similar to the syntax of the _where_ clause of an
-          SQL statement. Allowed fields in the search are: cloud_provider, name, owner, region and status. Allowed comparators are `<>`, `=` or `LIKE`.
-          Allowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.
-
-          Examples:
-
-          To retrieve kafka request with name equal `my-kafka` and region equal `aws`, the value should be:
-
-          ```
-          name = my-kafka and cloud_provider = aws
-          ```
-
-          To retrieve kafka request with its name starting with `my`, the value should be:
-
-          ```
-          name like my%25
-          ```
-
-          If the parameter isn't provided, or if the value is empty, then all the kafkas
-          that the user has permission to see will be returned.
-
-          Note. If the query is invalid, an error will be returned
+      - description: "Search criteria.\n\nThe syntax of this parameter is similar\
+          \ to the syntax of the _where_ clause of an\nSQL statement. Allowed fields\
+          \ in the search are: name, status. Allowed comparators are `=` or `LIKE`.\n\
+          Allowed joins are `AND` and `OR`, however there is a limit of max 10 joins\
+          \ in the search query.\n\nExamples:\n\nTo retrieve request with name equal\
+          \ `my-registry`  the value should be:\n\n```\nname = my-registry \n```\n\
+          \nTo retrieve kafka request with its name starting with `my`, the value\
+          \ should be:\n\n```\nname like my%25\n```\n\nIf the parameter isn't provided,\
+          \ or if the value is empty, then all the kafkas\nthat the user has permission\
+          \ to see will be returned.\n\nNote. If the query is invalid, an error will\
+          \ be returned\n"
         examples:
           search:
-            value: name = my-kafka and cloud_provider = aws
+            value: name = my-registry and status = AVAILABLE
         explode: true
         in: query
         name: search
@@ -122,7 +108,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegistryRestList'
+                $ref: '#/components/schemas/RegistryListRest'
           description: A successful response.
         "401":
           content:
@@ -131,7 +117,7 @@ paths:
                 "401Example":
                   $ref: '#/components/examples/401Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: Auth token is invalid
         "403":
           content:
@@ -140,7 +126,7 @@ paths:
                 "403Example":
                   $ref: '#/components/examples/403Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: User not authorized to access the service.
         "500":
           content:
@@ -149,7 +135,7 @@ paths:
                 "500Example":
                   $ref: '#/components/examples/500Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: Unexpected error occurred
       security:
       - Bearer: []
@@ -163,15 +149,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegistryCreate'
+              $ref: '#/components/schemas/RegistryCreateRest'
         description: A new `Registry` to be created.
         required: true
       responses:
-        "202":
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Registry'
+                $ref: '#/components/schemas/RegistryRest'
           description: A successful response. The full request to create a new `Registry`
             is processed asynchronously. User should verify the result of the operation
             by reading the `status` property of the created `Registry` entity.
@@ -182,7 +168,7 @@ paths:
                 "401Example":
                   $ref: '#/components/examples/401Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: Auth token is invalid
         "403":
           content:
@@ -191,7 +177,7 @@ paths:
                 "403Example":
                   $ref: '#/components/examples/403Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: User not authorized to access the service.
         "500":
           content:
@@ -200,7 +186,7 @@ paths:
                 "500Example":
                   $ref: '#/components/examples/500Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: Unexpected error occurred
       security:
       - Bearer: []
@@ -210,7 +196,7 @@ paths:
       x-contentType: application/json
       x-accepts: application/json
     summary: Manage the list of all registries.
-  /api/serviceregistry_mgmt/v1/{id}:
+  /api/serviceregistry_mgmt/v1/registries/{id}:
     delete:
       description: Deletes an existing `Registry`.
       operationId: deleteRegistry
@@ -233,7 +219,7 @@ paths:
                 "401Example":
                   $ref: '#/components/examples/401Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: Auth token is invalid
         "403":
           content:
@@ -242,7 +228,7 @@ paths:
                 "403Example":
                   $ref: '#/components/examples/403Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: User not authorized to access the service.
         "404":
           content:
@@ -251,7 +237,7 @@ paths:
                 "404Example":
                   $ref: '#/components/examples/404Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: No Service Registry with specified id exists
       security:
       - Bearer: []
@@ -276,7 +262,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Registry'
+                $ref: '#/components/schemas/RegistryRest'
           description: Successful response - returns a single `Registry`.
         "401":
           content:
@@ -285,7 +271,7 @@ paths:
                 "401Example":
                   $ref: '#/components/examples/401Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: Auth token is invalid
         "403":
           content:
@@ -294,7 +280,7 @@ paths:
                 "403Example":
                   $ref: '#/components/examples/403Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: User not authorized to access the service.
         "404":
           content:
@@ -303,7 +289,7 @@ paths:
                 "404Example":
                   $ref: '#/components/examples/404Example'
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/ErrorRest'
           description: No service registry with specified id exists
       security:
       - Bearer: []
@@ -312,6 +298,25 @@ paths:
       - Registries
       x-accepts: application/json
     summary: Manage a specific Registry.
+  /api/serviceregistry_mgmt/v1/openapi:
+    description: Get an OpenAPI schema for this API.
+    get:
+      operationId: getSchema
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                OpenAPI Schema:
+                  value:
+                    openapi: 3.0.2
+                    info: {}
+              schema:
+                type: string
+          description: A successful response.
+      summary: Get an OpenAPI schema for this API.
+      x-accepts: application/json
+    summary: Get an OpenAPI schema for this API.
 components:
   examples:
     "404Example":
@@ -365,7 +370,7 @@ components:
       name: page
       required: false
       schema:
-        type: string
+        type: integer
       style: form
     size:
       description: Number of items in each page
@@ -377,7 +382,7 @@ components:
       name: size
       required: false
       schema:
-        type: string
+        type: integer
       style: form
     orderBy:
       description: |-
@@ -409,34 +414,19 @@ components:
         type: string
       style: form
     search:
-      description: |
-        Search criteria.
-
-        The syntax of this parameter is similar to the syntax of the _where_ clause of an
-        SQL statement. Allowed fields in the search are: cloud_provider, name, owner, region and status. Allowed comparators are `<>`, `=` or `LIKE`.
-        Allowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.
-
-        Examples:
-
-        To retrieve kafka request with name equal `my-kafka` and region equal `aws`, the value should be:
-
-        ```
-        name = my-kafka and cloud_provider = aws
-        ```
-
-        To retrieve kafka request with its name starting with `my`, the value should be:
-
-        ```
-        name like my%25
-        ```
-
-        If the parameter isn't provided, or if the value is empty, then all the kafkas
-        that the user has permission to see will be returned.
-
-        Note. If the query is invalid, an error will be returned
+      description: "Search criteria.\n\nThe syntax of this parameter is similar to\
+        \ the syntax of the _where_ clause of an\nSQL statement. Allowed fields in\
+        \ the search are: name, status. Allowed comparators are `=` or `LIKE`.\nAllowed\
+        \ joins are `AND` and `OR`, however there is a limit of max 10 joins in the\
+        \ search query.\n\nExamples:\n\nTo retrieve request with name equal `my-registry`\
+        \  the value should be:\n\n```\nname = my-registry \n```\n\nTo retrieve kafka\
+        \ request with its name starting with `my`, the value should be:\n\n```\n\
+        name like my%25\n```\n\nIf the parameter isn't provided, or if the value is\
+        \ empty, then all the kafkas\nthat the user has permission to see will be\
+        \ returned.\n\nNote. If the query is invalid, an error will be returned\n"
       examples:
         search:
-          value: name = my-kafka and cloud_provider = aws
+          value: name = my-registry and status = AVAILABLE
       explode: true
       in: query
       name: search
@@ -445,16 +435,15 @@ components:
         type: string
       style: form
   schemas:
-    ObjectReference:
-      properties:
-        id:
-          type: string
-        kind:
-          type: string
-        href:
-          type: string
-      type: object
-    List:
+    ErrorRest:
+      allOf:
+      - $ref: '#/components/schemas/ObjectReferenceRest'
+      - $ref: '#/components/schemas/ErrorRest_allOf'
+    ErrorListRest:
+      allOf:
+      - $ref: '#/components/schemas/ListRest'
+      - $ref: '#/components/schemas/ErrorListRest_allOf'
+    ListRest:
       properties:
         kind:
           type: string
@@ -471,23 +460,20 @@ components:
       - size
       - total
       type: object
-    Error:
+    ObjectReferenceRest:
+      properties:
+        id:
+          type: string
+        kind:
+          type: string
+        href:
+          type: string
+      type: object
+    RegistryRest:
       allOf:
-      - $ref: '#/components/schemas/ObjectReference'
-      - $ref: '#/components/schemas/Error_allOf'
-    ErrorList:
-      allOf:
-      - $ref: '#/components/schemas/List'
-      - $ref: '#/components/schemas/ErrorList_allOf'
-    RegistryRestList:
-      allOf:
-      - $ref: '#/components/schemas/List'
-      - $ref: '#/components/schemas/RegistryRestList_allOf'
-    Registry:
-      allOf:
-      - $ref: '#/components/schemas/ObjectReference'
+      - $ref: '#/components/schemas/ObjectReferenceRest'
       - $ref: '#/components/schemas/Root_Type_for_Registry'
-    RegistryCreate:
+    RegistryCreateRest:
       description: Information used to create a new Service Registry instance within
         a multi-tenant deployment.
       example:
@@ -498,13 +484,17 @@ components:
           type: string
       title: Root Type for RegistryCreate
       type: object
-    RegistryStatusValue:
+    RegistryListRest:
+      allOf:
+      - $ref: '#/components/schemas/ListRest'
+      - $ref: '#/components/schemas/RegistryListRest_allOf'
+    RegistryStatusValueRest:
       enum:
       - PROVISIONING
       - AVAILABLE
       - UNAVAILABLE
       type: string
-    Error_allOf:
+    ErrorRest_allOf:
       properties:
         code:
           type: string
@@ -513,14 +503,44 @@ components:
         operation_id:
           type: string
       type: object
-    ErrorList_allOf:
+    ErrorListRest_allOf:
       properties:
         items:
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/ErrorRest'
           type: array
       type: object
-    RegistryRestList_allOf:
+    Root_Type_for_Registry:
+      description: Service Registry instance within a multi-tenant deployment.
+      example:
+        id: "42"
+        name: my-registry
+        registryUrl: https://registry.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706
+        status:
+          status: PROVISIONING
+          lastUpdated: 2021-05-04T12:34:56Z
+        registryDeploymentId: 1
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/RegistryStatusValueRest'
+        registryUrl:
+          type: string
+        name:
+          description: User-defined Registry name. Does not have to be unique.
+          type: string
+        registryDeploymentId:
+          description: Identifier of a multi-tenant deployment, where this Service
+            Registry instance resides.
+          type: integer
+      required:
+      - id
+      - registryUrl
+      - status
+      title: Root Type for Registry
+      type: object
+    RegistryListRest_allOf:
       example:
         kind: RegistryRestList
         page: "1"
@@ -538,38 +558,8 @@ components:
         items:
           items:
             allOf:
-            - $ref: '#/components/schemas/Registry'
+            - $ref: '#/components/schemas/RegistryRest'
           type: array
-      type: object
-    Root_Type_for_Registry:
-      description: Service Registry instance within a multi-tenant deployment.
-      example:
-        id: 42
-        name: my-registry
-        registryUrl: https://registry.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706
-        status:
-          status: PROVISIONING
-          lastUpdated: 2021-05-04T12:34:56Z
-        registryDeploymentId: 1
-      properties:
-        id:
-          type: integer
-        status:
-          $ref: '#/components/schemas/RegistryStatusValue'
-        registryUrl:
-          type: string
-        name:
-          description: User-defined Registry name. Does not have to be unique.
-          type: string
-        registryDeploymentId:
-          description: Identifier of a multi-tenant deployment, where this Service
-            Registry instance resides.
-          type: integer
-      required:
-      - id
-      - registryUrl
-      - status
-      title: Root Type for Registry
       type: object
   securitySchemes:
     Bearer:

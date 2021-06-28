@@ -5,7 +5,7 @@
     <artifactId>registry-management-sdk</artifactId>
     <packaging>jar</packaging>
     <name>registry-management-sdk</name>
-    <version>0.0.1</version>
+    <version>0.0.5</version>
     <scm>
         <connection>scm:git:git@github.com:openapitools/openapi-generator.git</connection>
         <developerConnection>scm:git:git@github.com:openapitools/openapi-generator.git</developerConnection>
