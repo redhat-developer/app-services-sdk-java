@@ -16,4 +16,6 @@ jobs:
         go-version: '1.16.3' # The Go version to download (if necessary) and use.
     - run: GO111MODULE=on go get github.com/mikefarah/yq/v4
     - run: ./scripts/generate.sh
+    - run: ./scripts/build.sh              
+
   

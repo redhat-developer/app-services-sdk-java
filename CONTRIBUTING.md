@@ -3,7 +3,7 @@
 ### Building SDKs
 
 ```
-mvn clean install
+./scripts/build.sh
 ```
 
 ### Generating SDK's
