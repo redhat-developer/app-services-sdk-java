@@ -34,7 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RootTypeForRegistry.JSON_PROPERTY_STATUS,
   RootTypeForRegistry.JSON_PROPERTY_REGISTRY_URL,
   RootTypeForRegistry.JSON_PROPERTY_NAME,
-  RootTypeForRegistry.JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID
+  RootTypeForRegistry.JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID,
+  RootTypeForRegistry.JSON_PROPERTY_OWNER
 })
 @JsonTypeName("Root_Type_for_Registry")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -53,6 +54,9 @@ public class RootTypeForRegistry {
 
   public static final String JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID = "registryDeploymentId";
   private Integer registryDeploymentId;
+
+  public static final String JSON_PROPERTY_OWNER = "owner";
+  private String owner;
 
 
   public RootTypeForRegistry id(String id) {
@@ -187,6 +191,33 @@ public class RootTypeForRegistry {
   }
 
 
+  public RootTypeForRegistry owner(String owner) {
+    
+    this.owner = owner;
+    return this;
+  }
+
+   /**
+   * Registry instance owner
+   * @return owner
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Registry instance owner")
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getOwner() {
+    return owner;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOwner(String owner) {
+    this.owner = owner;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -200,12 +231,13 @@ public class RootTypeForRegistry {
         Objects.equals(this.status, rootTypeForRegistry.status) &&
         Objects.equals(this.registryUrl, rootTypeForRegistry.registryUrl) &&
         Objects.equals(this.name, rootTypeForRegistry.name) &&
-        Objects.equals(this.registryDeploymentId, rootTypeForRegistry.registryDeploymentId);
+        Objects.equals(this.registryDeploymentId, rootTypeForRegistry.registryDeploymentId) &&
+        Objects.equals(this.owner, rootTypeForRegistry.owner);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status, registryUrl, name, registryDeploymentId);
+    return Objects.hash(id, status, registryUrl, name, registryDeploymentId, owner);
   }
 
   @Override
@@ -217,6 +249,7 @@ public class RootTypeForRegistry {
     sb.append("    registryUrl: ").append(toIndentedString(registryUrl)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    registryDeploymentId: ").append(toIndentedString(registryDeploymentId)).append("\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("}");
     return sb.toString();
   }

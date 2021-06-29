@@ -520,6 +520,7 @@ components:
           status: PROVISIONING
           lastUpdated: 2021-05-04T12:34:56Z
         registryDeploymentId: 1
+        owner: ownername
       properties:
         id:
           type: string
@@ -534,6 +535,9 @@ components:
           description: Identifier of a multi-tenant deployment, where this Service
             Registry instance resides.
           type: integer
+        owner:
+          description: Registry instance owner
+          type: string
       required:
       - id
       - registryUrl
