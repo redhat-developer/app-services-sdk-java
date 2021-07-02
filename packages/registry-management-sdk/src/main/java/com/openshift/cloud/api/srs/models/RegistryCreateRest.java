@@ -29,13 +29,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "Information used to create a new Service Registry instance within a multi-tenant deployment.")
 @JsonPropertyOrder({
-  RegistryCreateRest.JSON_PROPERTY_NAME
+  RegistryCreateRest.JSON_PROPERTY_NAME,
+  RegistryCreateRest.JSON_PROPERTY_DESCRIPTION
 })
 @JsonTypeName("RegistryCreateRest")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RegistryCreateRest {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  private String description;
 
 
   public RegistryCreateRest name(String name) {
@@ -45,11 +49,11 @@ public class RegistryCreateRest {
   }
 
    /**
-   * User-defined Registry name. Does not have to be unique.
+   * User-defined Registry name. Required. Does not have to be unique.
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "User-defined Registry name. Does not have to be unique.")
+  @ApiModelProperty(value = "User-defined Registry name. Required. Does not have to be unique.")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -65,6 +69,33 @@ public class RegistryCreateRest {
   }
 
 
+  public RegistryCreateRest description(String description) {
+    
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * User-provided description of the new Registry instance. Not required.
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "User-provided description of the new Registry instance. Not required.")
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -74,12 +105,13 @@ public class RegistryCreateRest {
       return false;
     }
     RegistryCreateRest registryCreateRest = (RegistryCreateRest) o;
-    return Objects.equals(this.name, registryCreateRest.name);
+    return Objects.equals(this.name, registryCreateRest.name) &&
+        Objects.equals(this.description, registryCreateRest.description);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, description);
   }
 
   @Override
@@ -87,6 +119,7 @@ public class RegistryCreateRest {
     StringBuilder sb = new StringBuilder();
     sb.append("class RegistryCreateRest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }

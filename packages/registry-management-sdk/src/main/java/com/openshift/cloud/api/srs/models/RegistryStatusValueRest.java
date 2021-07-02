@@ -15,21 +15,28 @@ package com.openshift.cloud.api.srs.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import io.swagger.annotations.ApiModel;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Gets or Sets RegistryStatusValueRest
+ * \&quot;accepted\&quot;: Registry status when accepted for processing.  \&quot;provisioning\&quot;: Registry status when provisioning a new instance.  \&quot;ready\&quot;: Registry status when ready for use.  \&quot;failed\&quot;: Registry status when the provisioning failed. When removing a Registry in this state, the status transitions directly to \&quot;deleting\&quot;.   \&quot;deprovision\&quot;: Registry status when accepted for deprovisioning.  \&quot;deleting\&quot;: Registry status when deprovisioning. 
  */
 public enum RegistryStatusValueRest {
   
-  PROVISIONING("PROVISIONING"),
+  ACCEPTED("accepted"),
   
-  AVAILABLE("AVAILABLE"),
+  PROVISIONING("provisioning"),
   
-  UNAVAILABLE("UNAVAILABLE");
+  READY("ready"),
+  
+  FAILED("failed"),
+  
+  DEPROVISION("deprovision"),
+  
+  DELETING("deleting");
 
   private String value;
 

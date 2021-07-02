@@ -183,7 +183,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         RegistriesApi apiInstance = new RegistriesApi(defaultClient);
-        Integer page = 1; // Integer | Page index
+        Integer page = 0; // Integer | Page index
         Integer size = 100; // Integer | Number of items in each page
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the _order by_ clause of an SQL statement. Each query can be ordered by any of the kafkaRequests fields. For example, in order to retrieve all kafkas ordered by their name:  ```sql name asc ```  Or in order to retrieve all kafkas ordered by their name _and_ created date:  ```sql name asc, created_at asc ```  If the parameter isn't provided, or if the value is empty, then the results will be ordered by name.
         String search = "name = my-registry and status = AVAILABLE"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the _where_ clause of an SQL statement. Allowed fields in the search are: name, status. Allowed comparators are `=` or `LIKE`. Allowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.  Examples:  To retrieve request with name equal `my-registry`  the value should be:  ``` name = my-registry  ```  To retrieve kafka request with its name starting with `my`, the value should be:  ``` name like my%25 ```  If the parameter isn't provided, or if the value is empty, then all the kafkas that the user has permission to see will be returned.  Note. If the query is invalid, an error will be returned 

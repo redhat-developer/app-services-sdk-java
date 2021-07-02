@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RegistryListRestAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<RegistryRest> items = null;
+  private List<RegistryRest> items = new ArrayList<>();
 
 
   public RegistryListRestAllOf items(List<RegistryRest> items) {
@@ -47,9 +47,6 @@ public class RegistryListRestAllOf {
   }
 
   public RegistryListRestAllOf addItemsItem(RegistryRest itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
     this.items.add(itemsItem);
     return this;
   }
@@ -58,10 +55,9 @@ public class RegistryListRestAllOf {
    * Get items
    * @return items
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<RegistryRest> getItems() {
     return items;
@@ -69,7 +65,7 @@ public class RegistryListRestAllOf {
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setItems(List<RegistryRest> items) {
     this.items = items;
   }
