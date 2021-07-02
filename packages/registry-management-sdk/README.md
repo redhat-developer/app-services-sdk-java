@@ -76,20 +76,25 @@ Please follow the [installation](#installation) instruction and execute the foll
 import com.openshift.cloud.api.srs.invoker.*;
 import com.openshift.cloud.api.srs.invoker.auth.*;
 import com.openshift.cloud.api.srs.models.*;
-import com.openshift.cloud.api.srs.DefaultApi;
+import com.openshift.cloud.api.srs.RegistriesApi;
 
-public class DefaultApiExample {
+public class RegistriesApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.openshift.com");
         
-        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        RegistriesApi apiInstance = new RegistriesApi(defaultClient);
+        RegistryCreateRest registryCreateRest = new RegistryCreateRest(); // RegistryCreateRest | A new `Registry` to be created.
         try {
-            String result = apiInstance.getSchema();
+            RegistryRest result = apiInstance.createRegistry(registryCreateRest);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getSchema");
+            System.err.println("Exception when calling RegistriesApi#createRegistry");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -106,7 +111,6 @@ All URIs are relative to *https://api.openshift.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getSchema**](docs/DefaultApi.md#getSchema) | **GET** /api/serviceregistry_mgmt/v1/openapi | Get an OpenAPI schema for this API.
 *RegistriesApi* | [**createRegistry**](docs/RegistriesApi.md#createRegistry) | **POST** /api/serviceregistry_mgmt/v1/registries | Create a new Registry instance
 *RegistriesApi* | [**deleteRegistry**](docs/RegistriesApi.md#deleteRegistry) | **DELETE** /api/serviceregistry_mgmt/v1/registries/{id} | Delete a Registry
 *RegistriesApi* | [**getRegistries**](docs/RegistriesApi.md#getRegistries) | **GET** /api/serviceregistry_mgmt/v1/registries | Get the list of all registries.

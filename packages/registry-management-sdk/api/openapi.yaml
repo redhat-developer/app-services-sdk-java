@@ -35,12 +35,13 @@ paths:
       - description: Page index
         examples:
           page:
-            value: "1"
+            value: "0"
         explode: true
         in: query
         name: page
         required: false
         schema:
+          minimum: 0
           type: integer
         style: form
       - description: Number of items in each page
@@ -52,6 +53,8 @@ paths:
         name: size
         required: false
         schema:
+          maximum: 500
+          minimum: 1
           type: integer
         style: form
       - description: |-
@@ -298,25 +301,6 @@ paths:
       - Registries
       x-accepts: application/json
     summary: Manage a specific Registry.
-  /api/serviceregistry_mgmt/v1/openapi:
-    description: Get an OpenAPI schema for this API.
-    get:
-      operationId: getSchema
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                OpenAPI Schema:
-                  value:
-                    openapi: 3.0.2
-                    info: {}
-              schema:
-                type: string
-          description: A successful response.
-      summary: Get an OpenAPI schema for this API.
-      x-accepts: application/json
-    summary: Get an OpenAPI schema for this API.
 components:
   examples:
     "404Example":
@@ -364,12 +348,13 @@ components:
       description: Page index
       examples:
         page:
-          value: "1"
+          value: "0"
       explode: true
       in: query
       name: page
       required: false
       schema:
+        minimum: 0
         type: integer
       style: form
     size:
@@ -382,6 +367,8 @@ components:
       name: size
       required: false
       schema:
+        maximum: 500
+        minimum: 1
         type: integer
       style: form
     orderBy:
@@ -478,9 +465,18 @@ components:
         a multi-tenant deployment.
       example:
         name: my-registry
+        description: This instance is for development environment only.
       properties:
         name:
-          description: User-defined Registry name. Does not have to be unique.
+          description: User-defined Registry name. Required. Does not have to be unique.
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-z]([a-z0-9\-]*[a-z0-9])?'
+          type: string
+        description:
+          description: User-provided description of the new Registry instance. Not
+            required.
+          maxLength: 255
           type: string
       title: Root Type for RegistryCreate
       type: object
@@ -489,10 +485,27 @@ components:
       - $ref: '#/components/schemas/ListRest'
       - $ref: '#/components/schemas/RegistryListRest_allOf'
     RegistryStatusValueRest:
+      description: |
+        "accepted": Registry status when accepted for processing.
+
+        "provisioning": Registry status when provisioning a new instance.
+
+        "ready": Registry status when ready for use.
+
+        "failed": Registry status when the provisioning failed. When removing a Registry in this state,
+        the status transitions directly to "deleting".
+
+
+        "deprovision": Registry status when accepted for deprovisioning.
+
+        "deleting": Registry status when deprovisioning.
       enum:
-      - PROVISIONING
-      - AVAILABLE
-      - UNAVAILABLE
+      - accepted
+      - provisioning
+      - ready
+      - failed
+      - deprovision
+      - deleting
       type: string
     ErrorRest_allOf:
       properties:
@@ -538,10 +551,22 @@ components:
         owner:
           description: Registry instance owner
           type: string
+        description:
+          description: Description of the Registry instance.
+          type: string
+        created_at:
+          description: ISO 8601 UTC timestamp.
+          format: date-time
+          type: string
+        updated_at:
+          description: ISO 8601 UTC timestamp.
+          format: date-time
+          type: string
       required:
+      - created_at
       - id
-      - registryUrl
       - status
+      - updated_at
       title: Root Type for Registry
       type: object
     RegistryListRest_allOf:
@@ -561,9 +586,10 @@ components:
       properties:
         items:
           items:
-            allOf:
-            - $ref: '#/components/schemas/RegistryRest'
+            $ref: '#/components/schemas/RegistryRest'
           type: array
+      required:
+      - items
       type: object
   securitySchemes:
     Bearer:

@@ -25,6 +25,7 @@ import com.openshift.cloud.api.srs.models.RegistryStatusValueRest;
 import com.openshift.cloud.api.srs.models.RootTypeForRegistry;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
@@ -38,7 +39,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RegistryRest.JSON_PROPERTY_REGISTRY_URL,
   RegistryRest.JSON_PROPERTY_NAME,
   RegistryRest.JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID,
-  RegistryRest.JSON_PROPERTY_OWNER
+  RegistryRest.JSON_PROPERTY_OWNER,
+  RegistryRest.JSON_PROPERTY_DESCRIPTION,
+  RegistryRest.JSON_PROPERTY_CREATED_AT,
+  RegistryRest.JSON_PROPERTY_UPDATED_AT
 })
 @JsonTypeName("RegistryRest")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -66,6 +70,15 @@ public class RegistryRest {
 
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
+
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  private String description;
+
+  public static final String JSON_PROPERTY_CREATED_AT = "created_at";
+  private OffsetDateTime createdAt;
+
+  public static final String JSON_PROPERTY_UPDATED_AT = "updated_at";
+  private OffsetDateTime updatedAt;
 
 
   public RegistryRest id(String id) {
@@ -184,9 +197,10 @@ public class RegistryRest {
    * Get registryUrl
    * @return registryUrl
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_REGISTRY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getRegistryUrl() {
     return registryUrl;
@@ -194,7 +208,7 @@ public class RegistryRest {
 
 
   @JsonProperty(JSON_PROPERTY_REGISTRY_URL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegistryUrl(String registryUrl) {
     this.registryUrl = registryUrl;
   }
@@ -281,6 +295,85 @@ public class RegistryRest {
   }
 
 
+  public RegistryRest description(String description) {
+    
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Description of the Registry instance.
+   * @return description
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Description of the Registry instance.")
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
+  public RegistryRest createdAt(OffsetDateTime createdAt) {
+    
+    this.createdAt = createdAt;
+    return this;
+  }
+
+   /**
+   * ISO 8601 UTC timestamp.
+   * @return createdAt
+  **/
+  @ApiModelProperty(required = true, value = "ISO 8601 UTC timestamp.")
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCreatedAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+  }
+
+
+  public RegistryRest updatedAt(OffsetDateTime updatedAt) {
+    
+    this.updatedAt = updatedAt;
+    return this;
+  }
+
+   /**
+   * ISO 8601 UTC timestamp.
+   * @return updatedAt
+  **/
+  @ApiModelProperty(required = true, value = "ISO 8601 UTC timestamp.")
+  @JsonProperty(JSON_PROPERTY_UPDATED_AT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public OffsetDateTime getUpdatedAt() {
+    return updatedAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_UPDATED_AT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setUpdatedAt(OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -297,12 +390,15 @@ public class RegistryRest {
         Objects.equals(this.registryUrl, registryRest.registryUrl) &&
         Objects.equals(this.name, registryRest.name) &&
         Objects.equals(this.registryDeploymentId, registryRest.registryDeploymentId) &&
-        Objects.equals(this.owner, registryRest.owner);
+        Objects.equals(this.owner, registryRest.owner) &&
+        Objects.equals(this.description, registryRest.description) &&
+        Objects.equals(this.createdAt, registryRest.createdAt) &&
+        Objects.equals(this.updatedAt, registryRest.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, status, registryUrl, name, registryDeploymentId, owner);
+    return Objects.hash(id, kind, href, status, registryUrl, name, registryDeploymentId, owner, description, createdAt, updatedAt);
   }
 
   @Override
@@ -317,6 +413,9 @@ public class RegistryRest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    registryDeploymentId: ").append(toIndentedString(registryDeploymentId)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
