@@ -353,35 +353,6 @@
           "required": true
         }
       ]
-    },
-    "/api/serviceregistry_mgmt/v1/openapi": {
-      "summary": "Get an OpenAPI schema for this API.",
-      "description": "Get an OpenAPI schema for this API.",
-      "get": {
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {
-                  "OpenAPI Schema": {
-                    "value": {
-                      "openapi": "3.0.2",
-                      "info": {
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "description": "A successful response."
-          }
-        },
-        "operationId": "getSchema",
-        "summary": "Get an OpenAPI schema for this API."
-      }
     }
   },
   "components": {
@@ -473,8 +444,9 @@
             "description": "Service Registry instance within a multi-tenant deployment.",
             "required": [
               "id",
-              "registryUrl",
-              "status"
+              "status",
+              "created_at",
+              "updated_at"
             ],
             "type": "object",
             "properties": {
@@ -482,8 +454,7 @@
                 "type": "string"
               },
               "status": {
-                "$ref": "#/components/schemas/RegistryStatusValueRest",
-                "description": ""
+                "$ref": "#/components/schemas/RegistryStatusValueRest"
               },
               "registryUrl": {
                 "type": "string"
@@ -498,6 +469,20 @@
               },
               "owner": {
                 "description": "Registry instance owner",
+                "type": "string"
+              },
+              "description": {
+                "description": "Description of the Registry instance.",
+                "type": "string"
+              },
+              "created_at": {
+                "format": "date-time",
+                "description": "ISO 8601 UTC timestamp.",
+                "type": "string"
+              },
+              "updated_at": {
+                "format": "date-time",
+                "description": "ISO 8601 UTC timestamp.",
                 "type": "string"
               }
             },
@@ -521,12 +506,21 @@
         "type": "object",
         "properties": {
           "name": {
-            "description": "User-defined Registry name. Does not have to be unique.",
-            "type": "string"
+            "description": "User-defined Registry name. Required. Does not have to be unique.",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 32,
+            "pattern": "[a-z]([a-z0-9\\-]*[a-z0-9])?"
+          },
+          "description": {
+            "description": "User-provided description of the new Registry instance. Not required.",
+            "type": "string",
+            "maxLength": 255
           }
         },
         "example": {
-          "name": "my-registry"
+          "name": "my-registry",
+          "description": "This instance is for development environment only."
         }
       },
       "RegistryListRest": {
@@ -535,16 +529,15 @@
             "$ref": "#/components/schemas/ListRest"
           },
           {
+            "required": [
+              "items"
+            ],
             "type": "object",
             "properties": {
               "items": {
                 "type": "array",
                 "items": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/RegistryRest"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/RegistryRest"
                 }
               }
             },
@@ -567,11 +560,14 @@
         ]
       },
       "RegistryStatusValueRest": {
-        "description": "",
+        "description": "\"accepted\": Registry status when accepted for processing.\n\n\"provisioning\": Registry status when provisioning a new instance.\n\n\"ready\": Registry status when ready for use.\n\n\"failed\": Registry status when the provisioning failed. When removing a Registry in this state,\nthe status transitions directly to \"deleting\".\n\n\n\"deprovision\": Registry status when accepted for deprovisioning.\n\n\"deleting\": Registry status when deprovisioning.\n",
         "enum": [
-          "PROVISIONING",
-          "AVAILABLE",
-          "UNAVAILABLE"
+          "accepted",
+          "provisioning",
+          "ready",
+          "failed",
+          "deprovision",
+          "deleting"
         ],
         "type": "string"
       }
@@ -589,12 +585,13 @@
       "page": {
         "examples": {
           "page": {
-            "value": "1"
+            "value": "0"
           }
         },
         "name": "page",
         "description": "Page index",
         "schema": {
+          "minimum": 0,
           "type": "integer"
         },
         "in": "query",
@@ -609,6 +606,8 @@
         "name": "size",
         "description": "Number of items in each page",
         "schema": {
+          "maximum": 500,
+          "minimum": 1,
           "type": "integer"
         },
         "in": "query",
@@ -632,7 +631,6 @@
       },
       "search": {
         "style": "form",
-        "description": "Search criteria.\n\nThe syntax of this parameter is similar to the syntax of the _where_ clause of an\nSQL statement. Allowed fields in the search are: name, status. Allowed comparators are `=` or `LIKE`.\nAllowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.\n\nExamples:\n\nTo retrieve request with name equal `my-registry`  the value should be:\n\n```\nname = my-registry \n```\n\nTo retrieve kafka request with its name starting with `my`, the value should be:\n\n```\nname like my%25\n```\n\nIf the parameter isn't provided, or if the value is empty, then all the kafkas\nthat the user has permission to see will be returned.\n\nNote. If the query is invalid, an error will be returned\n",
         "explode": true,
         "examples": {
           "search": {
@@ -640,6 +638,7 @@
           }
         },
         "name": "search",
+        "description": "Search criteria.\n\nThe syntax of this parameter is similar to the syntax of the _where_ clause of an\nSQL statement. Allowed fields in the search are: name, status. Allowed comparators are `=` or `LIKE`.\nAllowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.\n\nExamples:\n\nTo retrieve request with name equal `my-registry`  the value should be:\n\n```\nname = my-registry \n```\n\nTo retrieve kafka request with its name starting with `my`, the value should be:\n\n```\nname like my%25\n```\n\nIf the parameter isn't provided, or if the value is empty, then all the kafkas\nthat the user has permission to see will be returned.\n\nNote. If the query is invalid, an error will be returned\n",
         "schema": {
           "type": "string"
         },
