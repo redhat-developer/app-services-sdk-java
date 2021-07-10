@@ -873,7 +873,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ConfigEntry'
-        partitions:
+        numPartitions:
           description: Number of partitions (only increasing supported)
           type: integer
       example:
