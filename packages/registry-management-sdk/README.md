@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>cloud.redhat.com</groupId>
+  <groupId>com.redhat.cloud</groupId>
   <artifactId>registry-management-sdk</artifactId>
   <version>0.0.5</version>
   <scope>compile</scope>
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.redhat.com:registry-management-sdk:0.0.5"
+compile "com.redhat.cloud:registry-management-sdk:0.0.5"
 ```
 
 ### Others
