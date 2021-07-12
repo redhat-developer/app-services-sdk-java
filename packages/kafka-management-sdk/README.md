@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>cloud.redhat.com</groupId>
+  <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-management-sdk</artifactId>
   <version>1.1.1</version>
   <scope>compile</scope>
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.redhat.com:kafka-management-sdk:1.1.1"
+compile "com.redhat.cloud:kafka-management-sdk:1.1.1"
 ```
 
 ### Others
