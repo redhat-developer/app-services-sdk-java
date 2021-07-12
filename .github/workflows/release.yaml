@@ -20,6 +20,11 @@ jobs:
               distribution: 'adopt'
               java-version: '15'
               check-latest: true
+      - id: install-secret-key
+        name: Install gpg secret key
+        run: |
+          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
+          gpg --list-secret-keys --keyid-format LONG              
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v3.x
       - name: Validate Tag
@@ -44,19 +49,22 @@ jobs:
         run : mvn package                
       - name: Publish kafka-management-sdk
         working-directory: ./packages/kafka-management-sdk
-        run: mvn --batch-mode deploy
+        run: mvn --batch-mode       -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
       - name: Publish kafka-instance-sdk
         working-directory: ./packages/kafka-instance-sdk
-        run: mvn --batch-mode deploy
+        run: mvn --batch-mode       -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
       - name: Publish registry-management-sdk
         working-directory: ./packages/registry-management-sdk
-        run: mvn --batch-mode deploy
+        run: mvn --batch-mode       -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
       - name: Install git-chglog
         uses: craicoverflow/install-git-chglog@v1
       - name: Generate changelog

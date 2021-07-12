@@ -4,7 +4,7 @@
 npx @openapitools/openapi-generator-cli version-manager set 5.1.1
 echo "Generating SDKs"
 
-GROUP_ID="cloud.redhat.com"
+GROUP_ID="com.redhat.cloud"
 ARTIFACT_ID="kafka-management-sdk"
 OPENAPI_FILENAME=".openapi/kas-fleet-manager.yaml"
 PACKAGE_NAME="com.openshift.cloud.api.kas"
@@ -22,7 +22,7 @@ npx @openapitools/openapi-generator-cli generate -g java --library resteasy -t "
     --additional-properties="apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
     --ignore-file-override=.openapi-generator-ignore
 
-GROUP_ID="cloud.redhat.com"
+GROUP_ID="com.redhat.cloud"
 ARTIFACT_ID="registry-management-sdk"
 OPENAPI_FILENAME=".openapi/srs-fleet-manager.json"
 PACKAGE_NAME="com.openshift.cloud.api.srs"
@@ -39,7 +39,7 @@ npx @openapitools/openapi-generator-cli generate -g java --library resteasy -t "
     --additional-properties="apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
     --ignore-file-override=.openapi-generator-ignore
 
-GROUP_ID="cloud.redhat.com"
+GROUP_ID="com.redhat.cloud"
 ARTIFACT_ID="kafka-instance-sdk"
 OPENAPI_FILENAME=".openapi/kafka-admin-rest.yml"
 PACKAGE_NAME="com.openshift.cloud.api.kas.auth"
