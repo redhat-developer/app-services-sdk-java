@@ -835,6 +835,10 @@ components:
           description: Maximum of returned topics
           deprecated: true
           type: integer
+        count:
+          description: The total number of consumer groups.
+          deprecated: true
+          type: number
       example:
         count: 1
         limit: 10
