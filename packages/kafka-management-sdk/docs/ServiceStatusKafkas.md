@@ -2,13 +2,13 @@
 
 # ServiceStatusKafkas
 
-The Kakfa resource api status
+The Kafka resource api status
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**maxCapacityReached** | **Boolean** | Indicates whether we have reached Kakfa maximum capacity | 
+**maxCapacityReached** | **Boolean** | Indicates whether we have reached Kafka maximum capacity | 
 
 
 
