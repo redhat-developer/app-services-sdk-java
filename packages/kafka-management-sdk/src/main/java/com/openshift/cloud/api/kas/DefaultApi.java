@@ -44,7 +44,7 @@ public class DefaultApi {
   }
 
   /**
-   * Creates a Kakfa request
+   * Creates a Kafka request
    * 
    * @param async Perform the action in an asynchronous manner (required)
    * @param kafkaRequestPayload Kafka data (required)
@@ -94,7 +94,7 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Deletes a Kakfa request by ID
+   * Deletes a Kafka request by ID
    * 
    * @param id The ID of record (required)
    * @param async Perform the action in an asynchronous manner (required)
@@ -234,7 +234,7 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns a Kakfa request by ID
+   * Returns a Kafka request by ID
    * 
    * @param id The ID of record (required)
    * @return a {@code KafkaRequest}
@@ -282,8 +282,8 @@ public class DefaultApi {
    * 
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
-   * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;kafkaRequests&#x60; fields. For example, to return all Kakfa instances ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Kakfa instances ordered by their name _and_ created date, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, created_at asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
-   * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of an SQL statement. Allowed fields in the search are &#x60;cloud_provider&#x60;, &#x60;name&#x60;, &#x60;owner&#x60;, &#x60;region&#x60;, and &#x60;status&#x60;. Allowed comparators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed joins are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 joins in a search query.  Examples:  To return a Kakfa instance with the name &#x60;my-kafka&#x60; and the region &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; my-kafka and cloud_provider &#x3D; aws &#x60;&#x60;&#x60;[p-]  To return a Kakfa instance with a name that starts with &#x60;my&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like my%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Kakfa instances that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
+   * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;kafkaRequests&#x60; fields. For example, to return all Kafka instances ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Kafka instances ordered by their name _and_ created date, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, created_at asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
+   * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of an SQL statement. Allowed fields in the search are &#x60;cloud_provider&#x60;, &#x60;name&#x60;, &#x60;owner&#x60;, &#x60;region&#x60;, and &#x60;status&#x60;. Allowed comparators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed joins are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 joins in a search query.  Examples:  To return a Kafka instance with the name &#x60;my-kafka&#x60; and the region &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; my-kafka and cloud_provider &#x3D; aws &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;my&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like my%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Kafka instances that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
    * @return a {@code KafkaRequestList}
    * @throws ApiException if fails to make API call
    */
@@ -323,10 +323,10 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns metrics with instant query by Kakfa ID
+   * Returns metrics with instant query by Kafka ID
    * 
    * @param id The ID of record (required)
-   * @param filters List of metrics to fetch. Fetch all metrics when empty. List entries are Kakfa internal metric names. (optional, default to [])
+   * @param filters List of metrics to fetch. Fetch all metrics when empty. List entries are Kafka internal metric names. (optional, default to [])
    * @return a {@code MetricsInstantQueryList}
    * @throws ApiException if fails to make API call
    */
@@ -369,12 +369,12 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns metrics with timeseries range query by Kakfa ID
+   * Returns metrics with timeseries range query by Kafka ID
    * 
    * @param id The ID of record (required)
    * @param duration The length of time in minutes for which to return the metrics (required)
    * @param interval The interval in seconds between data points (required)
-   * @param filters List of metrics to fetch. Fetch all metrics when empty. List entries are Kakfa internal metric names. (optional, default to [])
+   * @param filters List of metrics to fetch. Fetch all metrics when empty. List entries are Kafka internal metric names. (optional, default to [])
    * @return a {@code MetricsRangeQueryList}
    * @throws ApiException if fails to make API call
    */
