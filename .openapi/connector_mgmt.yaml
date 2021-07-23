@@ -512,6 +512,52 @@ paths:
         - Bearer: [ ]
       operationId: getConnectorCluster
       summary: Get a connector cluster
+
+    put:
+      tags:
+        - Connector Clusters
+      responses:
+        "204":
+          description: Cluster status is updated
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                401Example:
+                  $ref: "#/components/examples/401Example"
+          description: Auth token is invalid
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                404Example:
+                  $ref: "#/components/examples/404Example"
+          description: No matching connector cluster exists
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                500Example:
+                  $ref: "#/components/examples/500Example"
+          description: Unexpected error occurred
+      security:
+        - Bearer: [ ]
+      operationId: updateConnectorClusterById
+      summary: udpate a connector cluster
+      requestBody:
+        description: Data to updated connector with
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConnectorCluster"
+        required: true
+
     delete:
       tags:
         - Connector Clusters

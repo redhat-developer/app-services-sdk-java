@@ -1,9 +1,8 @@
 openapi: 3.0.0
 info:
-  description: Kafka Service Fleet Manager is a Rest API to manage Kakfa instances
-    and connectors.
+  description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
   title: Kafka Service Fleet Manager
-  version: 1.1.1
+  version: 1.1.2
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -112,7 +111,7 @@ paths:
                   $ref: '#/components/examples/404DeleteExample'
               schema:
                 $ref: '#/components/schemas/Error'
-          description: No Kakfa request with specified ID exists
+          description: No Kafka request with specified ID exists
         "500":
           content:
             application/json:
@@ -124,7 +123,7 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Deletes a Kakfa request by ID
+      summary: Deletes a Kafka request by ID
       x-accepts: application/json
     get:
       operationId: getKafkaById
@@ -175,7 +174,7 @@ paths:
                   $ref: '#/components/examples/404Example'
               schema:
                 $ref: '#/components/schemas/Error'
-          description: No Kakfa request with specified ID exists
+          description: No Kafka request with specified ID exists
         "500":
           content:
             application/json:
@@ -187,7 +186,7 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns a Kakfa request by ID
+      summary: Returns a Kafka request by ID
       x-accepts: application/json
   /api/kafkas_mgmt/v1/kafkas:
     get:
@@ -219,13 +218,13 @@ paths:
           Specifies the order by criteria. The syntax of this parameter is
           similar to the syntax of the `order by` clause of an SQL statement.
           Each query can be ordered by any of the `kafkaRequests` fields.
-          For example, to return all Kakfa instances ordered by their name, use the following syntax:
+          For example, to return all Kafka instances ordered by their name, use the following syntax:
 
           ```sql
           name asc
           ```
 
-          To return all Kakfa instances ordered by their name _and_ created date, use the following syntax:
+          To return all Kafka instances ordered by their name _and_ created date, use the following syntax:
 
           ```sql
           name asc, created_at asc
@@ -252,19 +251,19 @@ paths:
 
           Examples:
 
-          To return a Kakfa instance with the name `my-kafka` and the region `aws`, use the following syntax:
+          To return a Kafka instance with the name `my-kafka` and the region `aws`, use the following syntax:
 
           ```
           name = my-kafka and cloud_provider = aws
           ```[p-]
 
-          To return a Kakfa instance with a name that starts with `my`, use the following syntax:
+          To return a Kafka instance with a name that starts with `my`, use the following syntax:
 
           ```
           name like my%25
           ```
 
-          If the parameter isn't provided, or if the value is empty, then all the Kakfa instances
+          If the parameter isn't provided, or if the value is empty, then all the Kafka instances
           that the user has permission to see are returned.
 
           Note. If the query is invalid, an error is returned.
@@ -384,6 +383,8 @@ paths:
                   $ref: '#/components/examples/403Example'
                 "403MaxAllowedInstanceReachedExample":
                   $ref: '#/components/examples/403MaxAllowedInstanceReachedExample'
+                "403TermsNotAcceptedExample":
+                  $ref: '#/components/examples/403TermsNotAcceptedExample'
               schema:
                 $ref: '#/components/schemas/Error'
           description: User forbidden either because the user is not authorized to
@@ -418,7 +419,7 @@ paths:
           description: An unexpected error occurred while creating the Kafka request
       security:
       - Bearer: []
-      summary: Creates a Kakfa request
+      summary: Creates a Kafka request
       x-contentType: application/json
       x-accepts: application/json
   /api/kafkas_mgmt/v1/cloud_providers:
@@ -815,7 +816,7 @@ paths:
           type: integer
         style: form
       - description: List of metrics to fetch. Fetch all metrics when empty. List
-          entries are Kakfa internal metric names.
+          entries are Kafka internal metric names.
         explode: true
         in: query
         name: filters
@@ -853,7 +854,7 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns metrics with timeseries range query by Kakfa ID
+      summary: Returns metrics with timeseries range query by Kafka ID
       x-accepts: application/json
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query:
     get:
@@ -868,7 +869,7 @@ paths:
           type: string
         style: simple
       - description: List of metrics to fetch. Fetch all metrics when empty. List
-          entries are Kakfa internal metric names.
+          entries are Kafka internal metric names.
         explode: true
         in: query
         name: filters
@@ -906,7 +907,7 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns metrics with instant query by Kakfa ID
+      summary: Returns metrics with instant query by Kafka ID
       x-accepts: application/json
 components:
   examples:
@@ -949,7 +950,7 @@ components:
         bootstrap_server_host: serviceapi-1isy6rq3jki8q0otmjqfd3ocfrg.apps.mk-bttg0jn170hp.x5u8.s1.devshift.org
         created_at: 2020-10-05T12:51:24.053142Z
         updated_at: 2020-10-05T12:56:36.362208Z
-        failed_reason: a reason the Kakfa request creation failed
+        failed_reason: a reason the Kafka request creation failed
     CloudProviderExample:
       value:
         kind: CloudProvider
@@ -1041,7 +1042,7 @@ components:
         kind: Error
         href: /api/kafkas_mgmt/v1/errors/23
         code: KAFKAS-MGMT-23
-        reason: 'Failed to parse search query: Unable to list Kakfa requests for api_kafka_service:
+        reason: 'Failed to parse search query: Unable to list Kafka requests for api_kafka_service:
           KAFKAS-MGMT-23: Failed to parse search query: Unsupported column name for
           search: ''id''. Supported column names are: region, name, cloud_provider,
           name, status. Query invalid: id = 123'
@@ -1085,6 +1086,14 @@ components:
         code: KAFKAS-MGMT-5
         reason: User 'foo-bar' has reached a maximum number of 6 allowed instances.
         operation_id: 1lY3UiEkxnXBpVPeI2oNejd3XB
+    "403TermsNotAcceptedExample":
+      value:
+        id: "12"
+        kind: Error
+        href: /api/kafkas_mgmt/v1/errors/12
+        code: KAFKAS-MGMT-12
+        reason: Required terms have not been accepted
+        operation_id: kXCzWPeI2oXBpVPeI2LvF9jMQY
     "409NameConflictExample":
       value:
         id: "36"
@@ -1156,7 +1165,7 @@ components:
       style: form
     filters:
       description: List of metrics to fetch. Fetch all metrics when empty. List entries
-        are Kakfa internal metric names.
+        are Kafka internal metric names.
       explode: true
       in: query
       name: filters
@@ -1196,13 +1205,13 @@ components:
         Specifies the order by criteria. The syntax of this parameter is
         similar to the syntax of the `order by` clause of an SQL statement.
         Each query can be ordered by any of the `kafkaRequests` fields.
-        For example, to return all Kakfa instances ordered by their name, use the following syntax:
+        For example, to return all Kafka instances ordered by their name, use the following syntax:
 
         ```sql
         name asc
         ```
 
-        To return all Kakfa instances ordered by their name _and_ created date, use the following syntax:
+        To return all Kafka instances ordered by their name _and_ created date, use the following syntax:
 
         ```sql
         name asc, created_at asc
@@ -1230,19 +1239,19 @@ components:
 
         Examples:
 
-        To return a Kakfa instance with the name `my-kafka` and the region `aws`, use the following syntax:
+        To return a Kafka instance with the name `my-kafka` and the region `aws`, use the following syntax:
 
         ```
         name = my-kafka and cloud_provider = aws
         ```[p-]
 
-        To return a Kakfa instance with a name that starts with `my`, use the following syntax:
+        To return a Kafka instance with a name that starts with `my`, use the following syntax:
 
         ```
         name like my%25
         ```
 
-        If the parameter isn't provided, or if the value is empty, then all the Kakfa instances
+        If the parameter isn't provided, or if the value is empty, then all the Kafka instances
         that the user has permission to see are returned.
 
         Note. If the query is invalid, an error is returned.
@@ -1477,12 +1486,17 @@ components:
         $ref: '#/components/examples/KafkaRequestExample'
       properties:
         status:
+          description: 'Values: [accepted, preparing, provisioning, ready, failed,
+            deprovision, deleting] '
           type: string
         cloud_provider:
+          description: Name of Cloud used to deploy. For example AWS
           type: string
         multi_az:
           type: boolean
         region:
+          description: 'Values will be regions of specific cloud provider. For example:
+            us-east-1 for AWS'
           type: string
         owner:
           type: string
@@ -1533,10 +1547,10 @@ components:
           type: array
       type: object
     ServiceStatus_kafkas:
-      description: The Kakfa resource api status
+      description: The Kafka resource api status
       properties:
         max_capacity_reached:
-          description: Indicates whether we have reached Kakfa maximum capacity
+          description: Indicates whether we have reached Kafka maximum capacity
           type: boolean
       required:
       - max_capacity_reached

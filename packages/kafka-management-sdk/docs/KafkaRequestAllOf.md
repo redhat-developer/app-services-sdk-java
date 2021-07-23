@@ -7,10 +7,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **String** |  |  [optional]
-**cloudProvider** | **String** |  |  [optional]
+**status** | **String** | Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting]  |  [optional]
+**cloudProvider** | **String** | Name of Cloud used to deploy. For example AWS |  [optional]
 **multiAz** | **Boolean** |  |  [optional]
-**region** | **String** |  |  [optional]
+**region** | **String** | Values will be regions of specific cloud provider. For example: us-east-1 for AWS |  [optional]
 **owner** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
 **bootstrapServerHost** | **String** |  |  [optional]
