@@ -41,7 +41,7 @@ npx @openapitools/openapi-generator-cli generate -g java --library resteasy -t "
 
 GROUP_ID="com.redhat.cloud"
 ARTIFACT_ID="kafka-instance-sdk"
-OPENAPI_FILENAME=".openapi/kafka-admin-rest.yml"
+OPENAPI_FILENAME=".openapi/kafka-admin-rest.yaml"
 PACKAGE_NAME="com.openshift.cloud.api.kas.auth"
 OUTPUT_PATH="packages/kafka-instance-sdk/"
 yq e 'del(.. | select(has("deprecated")))' "${OPENAPI_FILENAME}" > "${OPENAPI_FILENAME}.processed"
@@ -54,7 +54,3 @@ npx @openapitools/openapi-generator-cli generate -g java --library resteasy  -t 
     --package-name="${PACKAGE_NAME}" \
     --additional-properties="apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
     --ignore-file-override=.openapi-generator-ignore
-
-
-
-
