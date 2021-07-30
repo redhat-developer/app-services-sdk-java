@@ -7,8 +7,7 @@ import com.openshift.cloud.api.kas.auth.invoker.Pair;
 
 import javax.ws.rs.core.GenericType;
 
-import com.openshift.cloud.api.kas.auth.models.ConsumerGroup;
-import com.openshift.cloud.api.kas.auth.models.ConsumerGroupList;
+import com.openshift.cloud.api.kas.auth.models.Error;
 import com.openshift.cloud.api.kas.auth.models.NewTopicInput;
 import com.openshift.cloud.api.kas.auth.models.Topic;
 import com.openshift.cloud.api.kas.auth.models.TopicsList;
@@ -20,14 +19,14 @@ import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class DefaultApi {
+public class TopicsApi {
   private ApiClient apiClient;
 
-  public DefaultApi() {
+  public TopicsApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public DefaultApi(ApiClient apiClient) {
+  public TopicsApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
@@ -77,54 +76,11 @@ public class DefaultApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] {  };
+    String[] localVarAuthNames = new String[] { "Bearer" };
 
     GenericType<Topic> localVarReturnType = new GenericType<Topic>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
-  /**
-   * Delete a consumer group.
-   * Delete a consumer group, along with its consumers.
-   * @param consumerGroupId The unique ID of the cobsumer group. (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void deleteConsumerGroupById(String consumerGroupId) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'consumerGroupId' is set
-    if (consumerGroupId == null) {
-      throw new ApiException(400, "Missing the required parameter 'consumerGroupId' when calling deleteConsumerGroupById");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "consumerGroupId" + "\\}", apiClient.escapeString(consumerGroupId.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] {  };
-
-
-    apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
-  }
   /**
    * Deletes a  topic
    * Deletes the topic with the specified name.
@@ -154,7 +110,7 @@ public class DefaultApi {
     
     
     final String[] localVarAccepts = {
-      
+      "application/json"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
@@ -163,102 +119,11 @@ public class DefaultApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] {  };
+    String[] localVarAuthNames = new String[] { "Bearer" };
 
 
     apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
-  /**
-   * Get a single consumer group by its unique ID.
-   * 
-   * @param consumerGroupId The unique ID of the consumer group (required)
-   * @param topic Filter consumer groups for a specific topic (optional)
-   * @return a {@code ConsumerGroup}
-   * @throws ApiException if fails to make API call
-   */
-  public ConsumerGroup getConsumerGroupById(String consumerGroupId, String topic) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'consumerGroupId' is set
-    if (consumerGroupId == null) {
-      throw new ApiException(400, "Missing the required parameter 'consumerGroupId' when calling getConsumerGroupById");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "consumerGroupId" + "\\}", apiClient.escapeString(consumerGroupId.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "topic", topic));
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] {  };
-
-    GenericType<ConsumerGroup> localVarReturnType = new GenericType<ConsumerGroup>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * List of consumer groups in the Kafka instance.
-   * Returns a list of all consumer groups for a particular Kafka instance.
-   * @param limit Maximum number of consumer groups to returnd (optional)
-   * @param offset The page offset when returning the list of consumer groups (optional)
-   * @param topic Return consumer groups for this topic (optional)
-   * @param groupIdFilter Return the consumer groups where the ID begins with this value (optional)
-   * @return a {@code ConsumerGroupList}
-   * @throws ApiException if fails to make API call
-   */
-  public ConsumerGroupList getConsumerGroups(Integer limit, Integer offset, String topic, String groupIdFilter) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // create path and map variables
-    String localVarPath = "/consumer-groups".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "offset", offset));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "topic", topic));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "group-id-filter", groupIdFilter));
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] {  };
-
-    GenericType<ConsumerGroupList> localVarReturnType = new GenericType<ConsumerGroupList>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
   /**
    * Retrieves the topic with the specified name.
    * Topic
@@ -298,7 +163,7 @@ public class DefaultApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] {  };
+    String[] localVarAuthNames = new String[] { "Bearer" };
 
     GenericType<Topic> localVarReturnType = new GenericType<Topic>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -306,14 +171,17 @@ public class DefaultApi {
   /**
    * List of topics
    * Returns a list of all of the available topics, or the list of topics that meet the users URL Query Parameters.
+   * @param offset The page offset (optional)
    * @param limit Maximum number of topics to return (optional)
+   * @param size Maximum number of topics to return on single page (optional)
    * @param filter Filter to apply when returning the list of topics (optional)
-   * @param offset The page offset when returning the limit of requested topics. (optional)
-   * @param order Order of the items sorting. If \&quot;asc\&quot; is set as a value, ascending order is used, descending otherwise. (optional)
+   * @param page The page when returning the limit of requested topics. (optional)
+   * @param order Order of the items sorting. Ascending order is used as default. (optional)
+   * @param orderKey Order key to sort the topics by. (optional)
    * @return a {@code TopicsList}
    * @throws ApiException if fails to make API call
    */
-  public TopicsList getTopics(Integer limit, String filter, Integer offset, String order) throws ApiException {
+  public TopicsList getTopics(Integer offset, Integer limit, Integer size, String filter, Integer page, String order, String orderKey) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -325,10 +193,13 @@ public class DefaultApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "filter", filter));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "offset", offset));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "filter", filter));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "order", order));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "orderKey", orderKey));
 
     
     
@@ -343,7 +214,7 @@ public class DefaultApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] {  };
+    String[] localVarAuthNames = new String[] { "Bearer" };
 
     GenericType<TopicsList> localVarReturnType = new GenericType<TopicsList>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -393,7 +264,7 @@ public class DefaultApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] {  };
+    String[] localVarAuthNames = new String[] { "Bearer" };
 
     GenericType<Topic> localVarReturnType = new GenericType<Topic>() {};
     return apiClient.invokeAPI(localVarPath, "PATCH", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
