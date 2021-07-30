@@ -45,12 +45,13 @@ import com.openshift.cloud.api.kas.auth.invoker.auth.Authentication;
 import com.openshift.cloud.api.kas.auth.invoker.auth.HttpBasicAuth;
 import com.openshift.cloud.api.kas.auth.invoker.auth.HttpBearerAuth;
 import com.openshift.cloud.api.kas.auth.invoker.auth.ApiKeyAuth;
+import com.openshift.cloud.api.kas.auth.invoker.auth.OAuth;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiClient extends JavaTimeFormatter {
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private Map<String, String> defaultCookieMap = new HashMap<String, String>();
-  private String basePath = "http://localhost";
+  private String basePath = "http://localhost/rest";
   private boolean debugging = false;
 
   private Client httpClient;
@@ -76,10 +77,11 @@ public class ApiClient extends JavaTimeFormatter {
     this.json.setDateFormat((DateFormat) dateFormat.clone());
 
     // Set default User-Agent.
-    setUserAgent("OpenAPI-Generator/0.1.0/java");
+    setUserAgent("OpenAPI-Generator/0.3.0/java");
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<String, Authentication>();
+    authentications.put("Bearer", new OAuth());
     // Prevent the authentications from being modified.
     authentications = Collections.unmodifiableMap(authentications);
   }
@@ -198,6 +200,20 @@ public class ApiClient extends JavaTimeFormatter {
       }
     }
     throw new RuntimeException("No API key authentication configured!");
+  }
+
+  /**
+   * Helper method to set access token for the first OAuth2 authentication.
+   * @param accessToken the access token
+   */
+  public void setAccessToken(String accessToken) {
+    for (Authentication auth : authentications.values()) {
+      if (auth instanceof OAuth) {
+        ((OAuth) auth).setAccessToken(accessToken);
+        return;
+      }
+    }
+    throw new RuntimeException("No OAuth2 authentication configured!");
   }
 
   /**

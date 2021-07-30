@@ -8,10 +8,10 @@ A list of topics.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**offset** | **Integer** | The page offset | 
-**limit** | **Integer** | number of entries per page | 
-**count** | **Integer** | Total number of topics | 
-**items** | [**List&lt;Topic&gt;**](Topic.md) | List of topics | 
+**page** | **Integer** | The page |  [optional]
+**size** | **Integer** | number of entries per page |  [optional]
+**total** | **Integer** | Total number of topics |  [optional]
+**items** | [**List&lt;Topic&gt;**](Topic.md) | List of topics |  [optional]
 
 
 

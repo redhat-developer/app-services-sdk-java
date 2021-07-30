@@ -2,7 +2,7 @@
 
 Kafka Admin REST API
 
-- API version: 0.1.0
+- API version: 0.3.0
 
 An API to provide REST endpoints for query Kafka for admin operations
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-instance-sdk</artifactId>
-  <version>0.1.0</version>
+  <version>0.3.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.redhat.cloud:kafka-instance-sdk:0.1.0"
+compile "com.redhat.cloud:kafka-instance-sdk:0.3.0"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-instance-sdk-0.1.0.jar`
+- `target/kafka-instance-sdk-0.3.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -75,21 +75,24 @@ Please follow the [installation](#installation) instruction and execute the foll
 import com.openshift.cloud.api.kas.auth.invoker.*;
 import com.openshift.cloud.api.kas.auth.invoker.auth.*;
 import com.openshift.cloud.api.kas.auth.models.*;
-import com.openshift.cloud.api.kas.auth.DefaultApi;
+import com.openshift.cloud.api.kas.auth.AclsApi;
 
-public class DefaultApiExample {
+public class AclsApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("http://localhost/rest");
         
-        DefaultApi apiInstance = new DefaultApi(defaultClient);
-        NewTopicInput newTopicInput = new NewTopicInput(); // NewTopicInput | Topic to create.
+        // Configure OAuth2 access token for authorization: Bearer
+        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+
+        AclsApi apiInstance = new AclsApi(defaultClient);
+        AclBinding aclBinding = new AclBinding(); // AclBinding | ACL to create.
         try {
-            Topic result = apiInstance.createTopic(newTopicInput);
-            System.out.println(result);
+            apiInstance.createAcl(aclBinding);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#createTopic");
+            System.err.println("Exception when calling AclsApi#createAcl");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -102,38 +105,67 @@ public class DefaultApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *http://localhost/rest*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**createTopic**](docs/DefaultApi.md#createTopic) | **POST** /topics | Creates a new topic
-*DefaultApi* | [**deleteConsumerGroupById**](docs/DefaultApi.md#deleteConsumerGroupById) | **DELETE** /consumer-groups/{consumerGroupId} | Delete a consumer group.
-*DefaultApi* | [**deleteTopic**](docs/DefaultApi.md#deleteTopic) | **DELETE** /topics/{topicName} | Deletes a  topic
-*DefaultApi* | [**getConsumerGroupById**](docs/DefaultApi.md#getConsumerGroupById) | **GET** /consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
-*DefaultApi* | [**getConsumerGroups**](docs/DefaultApi.md#getConsumerGroups) | **GET** /consumer-groups | List of consumer groups in the Kafka instance.
-*DefaultApi* | [**getTopic**](docs/DefaultApi.md#getTopic) | **GET** /topics/{topicName} | Retrieves the topic with the specified name.
-*DefaultApi* | [**getTopics**](docs/DefaultApi.md#getTopics) | **GET** /topics | List of topics
-*DefaultApi* | [**updateTopic**](docs/DefaultApi.md#updateTopic) | **PATCH** /topics/{topicName} | Updates the topic with the specified name.
+*AclsApi* | [**createAcl**](docs/AclsApi.md#createAcl) | **POST** /acls | Create ACL binding
+*AclsApi* | [**deleteAcls**](docs/AclsApi.md#deleteAcls) | **DELETE** /acls | Delete ACL bindings
+*AclsApi* | [**getAclResourceOperations**](docs/AclsApi.md#getAclResourceOperations) | **GET** /acls/resource-operations | Retrieve allowed ACL resources and operations
+*AclsApi* | [**getAcls**](docs/AclsApi.md#getAcls) | **GET** /acls | List ACL bindings
+*GroupsApi* | [**deleteConsumerGroupById**](docs/GroupsApi.md#deleteConsumerGroupById) | **DELETE** /consumer-groups/{consumerGroupId} | Delete a consumer group.
+*GroupsApi* | [**getConsumerGroupById**](docs/GroupsApi.md#getConsumerGroupById) | **GET** /consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
+*GroupsApi* | [**getConsumerGroups**](docs/GroupsApi.md#getConsumerGroups) | **GET** /consumer-groups | List of consumer groups in the Kafka instance.
+*GroupsApi* | [**resetConsumerGroupOffset**](docs/GroupsApi.md#resetConsumerGroupOffset) | **POST** /consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
+*TopicsApi* | [**createTopic**](docs/TopicsApi.md#createTopic) | **POST** /topics | Creates a new topic
+*TopicsApi* | [**deleteTopic**](docs/TopicsApi.md#deleteTopic) | **DELETE** /topics/{topicName} | Deletes a  topic
+*TopicsApi* | [**getTopic**](docs/TopicsApi.md#getTopic) | **GET** /topics/{topicName} | Retrieves the topic with the specified name.
+*TopicsApi* | [**getTopics**](docs/TopicsApi.md#getTopics) | **GET** /topics | List of topics
+*TopicsApi* | [**updateTopic**](docs/TopicsApi.md#updateTopic) | **PATCH** /topics/{topicName} | Updates the topic with the specified name.
 
 
 ## Documentation for Models
 
+ - [AclBinding](docs/AclBinding.md)
+ - [AclBindingListPage](docs/AclBindingListPage.md)
+ - [AclBindingListPageAllOf](docs/AclBindingListPageAllOf.md)
+ - [AclFilterAny](docs/AclFilterAny.md)
+ - [AclOperation](docs/AclOperation.md)
+ - [AclOperationFilter](docs/AclOperationFilter.md)
+ - [AclPatternType](docs/AclPatternType.md)
+ - [AclPatternTypeFilter](docs/AclPatternTypeFilter.md)
+ - [AclPatternTypeFilterOneOf](docs/AclPatternTypeFilterOneOf.md)
+ - [AclPermissionType](docs/AclPermissionType.md)
+ - [AclPermissionTypeFilter](docs/AclPermissionTypeFilter.md)
+ - [AclResourceType](docs/AclResourceType.md)
+ - [AclResourceTypeFilter](docs/AclResourceTypeFilter.md)
  - [ConfigEntry](docs/ConfigEntry.md)
  - [Consumer](docs/Consumer.md)
  - [ConsumerGroup](docs/ConsumerGroup.md)
  - [ConsumerGroupList](docs/ConsumerGroupList.md)
+ - [ConsumerGroupResetOffsetParameters](docs/ConsumerGroupResetOffsetParameters.md)
+ - [Error](docs/Error.md)
  - [NewTopicInput](docs/NewTopicInput.md)
  - [Partition](docs/Partition.md)
+ - [ResultListPage](docs/ResultListPage.md)
  - [Topic](docs/Topic.md)
  - [TopicSettings](docs/TopicSettings.md)
  - [TopicsList](docs/TopicsList.md)
+ - [TopicsToResetOffset](docs/TopicsToResetOffset.md)
  - [UpdateTopicInput](docs/UpdateTopicInput.md)
 
 
 ## Documentation for Authorization
 
-All endpoints do not require authorization.
 Authentication schemes defined for the API:
+### Bearer
+
+
+- **Type**: OAuth
+- **Flow**: application
+- **Authorization URL**: 
+- **Scopes**: N/A
+
 
 ## Recommendation
 
