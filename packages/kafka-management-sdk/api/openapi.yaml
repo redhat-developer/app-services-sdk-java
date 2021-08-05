@@ -1,7 +1,6 @@
 openapi: 3.0.0
 info:
-  description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances
-    and connectors.
+  description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
   title: Kafka Service Fleet Manager
   version: 1.1.2
 servers:
@@ -188,6 +187,69 @@ paths:
       security:
       - Bearer: []
       summary: Returns a Kafka request by ID
+      x-accepts: application/json
+    patch:
+      operationId: updateKafkaById
+      parameters:
+      - description: The ID of record
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KafkaUpdateRequest'
+        description: Update owner of kafka
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                KafkaRequestPostResponseExample:
+                  $ref: '#/components/examples/KafkaRequestExample'
+              schema:
+                $ref: '#/components/schemas/KafkaRequest'
+          description: Kafka updated by ID
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Auth token is invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorised to access the service
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: No Kafka found with the specified ID
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error occurred
+      security:
+      - Bearer: []
+      summary: Update a Kafka instance by id
+      x-contentType: application/json
       x-accepts: application/json
   /api/kafkas_mgmt/v1/kafkas:
     get:
@@ -1465,6 +1527,15 @@ components:
           type: number
       required:
       - value
+      type: object
+    KafkaUpdateRequest:
+      example:
+        owner: owner
+      properties:
+        owner:
+          type: string
+      required:
+      - owner
       type: object
     Error_allOf:
       properties:

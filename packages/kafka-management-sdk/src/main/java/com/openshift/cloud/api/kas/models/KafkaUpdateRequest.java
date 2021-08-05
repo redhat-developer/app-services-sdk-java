@@ -20,58 +20,46 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.models.KafkaRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * KafkaRequestListAllOf
+ * KafkaUpdateRequest
  */
 @JsonPropertyOrder({
-  KafkaRequestListAllOf.JSON_PROPERTY_ITEMS
+  KafkaUpdateRequest.JSON_PROPERTY_OWNER
 })
-@JsonTypeName("KafkaRequestList_allOf")
+@JsonTypeName("KafkaUpdateRequest")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class KafkaRequestListAllOf {
-  public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<KafkaRequest> items = null;
+public class KafkaUpdateRequest {
+  public static final String JSON_PROPERTY_OWNER = "owner";
+  private String owner;
 
 
-  public KafkaRequestListAllOf items(List<KafkaRequest> items) {
+  public KafkaUpdateRequest owner(String owner) {
     
-    this.items = items;
-    return this;
-  }
-
-  public KafkaRequestListAllOf addItemsItem(KafkaRequest itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
-    this.items.add(itemsItem);
+    this.owner = owner;
     return this;
   }
 
    /**
-   * Get items
-   * @return items
+   * Get owner
+   * @return owner
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<KafkaRequest> getItems() {
-    return items;
+  public String getOwner() {
+    return owner;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<KafkaRequest> items) {
-    this.items = items;
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setOwner(String owner) {
+    this.owner = owner;
   }
 
 
@@ -83,20 +71,20 @@ public class KafkaRequestListAllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    KafkaRequestListAllOf kafkaRequestListAllOf = (KafkaRequestListAllOf) o;
-    return Objects.equals(this.items, kafkaRequestListAllOf.items);
+    KafkaUpdateRequest kafkaUpdateRequest = (KafkaUpdateRequest) o;
+    return Objects.equals(this.owner, kafkaUpdateRequest.owner);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(owner);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class KafkaRequestListAllOf {\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("class KafkaUpdateRequest {\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("}");
     return sb.toString();
   }

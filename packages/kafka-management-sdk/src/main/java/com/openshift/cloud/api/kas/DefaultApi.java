@@ -13,6 +13,7 @@ import com.openshift.cloud.api.kas.models.Error;
 import com.openshift.cloud.api.kas.models.KafkaRequest;
 import com.openshift.cloud.api.kas.models.KafkaRequestList;
 import com.openshift.cloud.api.kas.models.KafkaRequestPayload;
+import com.openshift.cloud.api.kas.models.KafkaUpdateRequest;
 import com.openshift.cloud.api.kas.models.MetricsInstantQueryList;
 import com.openshift.cloud.api.kas.models.MetricsRangeQueryList;
 import com.openshift.cloud.api.kas.models.ServiceStatus;
@@ -501,5 +502,55 @@ public class DefaultApi {
 
     GenericType<VersionMetadata> localVarReturnType = new GenericType<VersionMetadata>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Update a Kafka instance by id
+   * 
+   * @param id The ID of record (required)
+   * @param kafkaUpdateRequest Update owner of kafka (required)
+   * @return a {@code KafkaRequest}
+   * @throws ApiException if fails to make API call
+   */
+  public KafkaRequest updateKafkaById(String id, KafkaUpdateRequest kafkaUpdateRequest) throws ApiException {
+    Object localVarPostBody = kafkaUpdateRequest;
+    
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling updateKafkaById");
+    }
+    
+    // verify the required parameter 'kafkaUpdateRequest' is set
+    if (kafkaUpdateRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'kafkaUpdateRequest' when calling updateKafkaById");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/kafkas_mgmt/v1/kafkas/{id}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "Bearer" };
+
+    GenericType<KafkaRequest> localVarReturnType = new GenericType<KafkaRequest>() {};
+    return apiClient.invokeAPI(localVarPath, "PATCH", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }
