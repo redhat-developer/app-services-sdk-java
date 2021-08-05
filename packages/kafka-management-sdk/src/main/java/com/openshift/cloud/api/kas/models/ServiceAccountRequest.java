@@ -1,6 +1,6 @@
 /*
  * Kafka Service Fleet Manager
- * Kafka Service Fleet Manager is a Rest API to manage Kafka instances and connectors.
+ * Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
  *
  * The version of the OpenAPI document: 1.1.2
  * 

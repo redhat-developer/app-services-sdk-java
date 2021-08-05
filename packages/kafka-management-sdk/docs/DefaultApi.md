@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**getMetricsByRangeQuery**](DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | Returns metrics with timeseries range query by Kafka ID
 [**getServiceStatus**](DefaultApi.md#getServiceStatus) | **GET** /api/kafkas_mgmt/v1/status | Returns the status of resources, such as whether maximum service capacity has been reached
 [**getVersionMetadata**](DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | Returns the version metadata
+[**updateKafkaById**](DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | Update a Kafka instance by id
 
 
 
@@ -744,4 +745,80 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Version metadata |  -  |
+
+
+## updateKafkaById
+
+> KafkaRequest updateKafkaById(id, kafkaUpdateRequest)
+
+Update a Kafka instance by id
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.kas.invoker.ApiClient;
+import com.openshift.cloud.api.kas.invoker.ApiException;
+import com.openshift.cloud.api.kas.invoker.Configuration;
+import com.openshift.cloud.api.kas.invoker.auth.*;
+import com.openshift.cloud.api.kas.invoker.models.*;
+import com.openshift.cloud.api.kas.DefaultApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+        
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        String id = "id_example"; // String | The ID of record
+        KafkaUpdateRequest kafkaUpdateRequest = new KafkaUpdateRequest(); // KafkaUpdateRequest | Update owner of kafka
+        try {
+            KafkaRequest result = apiInstance.updateKafkaById(id, kafkaUpdateRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#updateKafkaById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The ID of record |
+ **kafkaUpdateRequest** | [**KafkaUpdateRequest**](KafkaUpdateRequest.md)| Update owner of kafka |
+
+### Return type
+
+[**KafkaRequest**](KafkaRequest.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Kafka updated by ID |  -  |
+| **400** | Bad request |  -  |
+| **401** | Auth token is invalid |  -  |
+| **403** | User is not authorised to access the service |  -  |
+| **404** | No Kafka found with the specified ID |  -  |
+| **500** | Unexpected error occurred |  -  |
 
