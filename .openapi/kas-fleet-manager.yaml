@@ -3,7 +3,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 info:
   title: Kafka Service Fleet Manager
   version: 1.1.2
-  description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances and connectors.
+  description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
 servers:
   - url: https://api.openshift.com
     description: Main (production) server
@@ -167,6 +167,58 @@ paths:
       summary: Deletes a Kafka request by ID
       security:
         - Bearer: []
+    patch:
+      summary: Update a Kafka instance by id
+      security:
+        - Bearer: []
+      operationId: updateKafkaById
+      requestBody:
+        description: Update owner of kafka
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KafkaUpdateRequest'
+        required: true
+      responses:
+        "200":
+          description: Kafka updated by ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KafkaRequest'
+              examples:
+                KafkaRequestPostResponseExample:
+                  $ref: '#/components/examples/KafkaRequestExample'
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: 'kas-fleet-manager.yaml#/components/schemas/Error'
+        "401":
+          description: Auth token is invalid
+          content:
+            application/json:
+              schema:
+                $ref: 'kas-fleet-manager.yaml#/components/schemas/Error'
+        "403":
+          description: User is not authorised to access the service
+          content:
+            application/json:
+              schema:
+                $ref: 'kas-fleet-manager.yaml#/components/schemas/Error'
+        "404":
+          description: No Kafka found with the specified ID
+          content:
+            application/json:
+              schema:
+                $ref: 'kas-fleet-manager.yaml#/components/schemas/Error'
+        "500":
+          description: Unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: 'kas-fleet-manager.yaml#/components/schemas/Error'
     parameters:
       - $ref: "#/components/parameters/id"
   /api/kafkas_mgmt/v1/kafkas:
@@ -1045,7 +1097,14 @@ components:
           format: double
       required:
         - value
-
+    KafkaUpdateRequest:
+      required:
+        - owner
+      type: object
+      properties:
+        # for now owner is the only supported field for update
+        owner:
+          type: string
 
   parameters:
     id:
