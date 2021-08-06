@@ -532,9 +532,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ConsumerGroupResetOffsetResult'
+                $ref: '#/components/schemas/ConsumerGroupResetOffsetResult'
           description: The consumer group offsets have been reset.
         '400':
           description: The consumer group to reset the offset does have active consumers.
@@ -1227,36 +1225,54 @@ components:
     ConsumerGroupResetOffsetResult:
       title: Root Type for ConsumerGroupResetOffsetResult
       description: ''
-      type: array
-      items:
-        type: object
-        properties:
-          topic:
-            type: string
-          partition:
-            format: int32
-            type: integer
-          offset:
-            format: int32
-            type: integer
+      type: object
+      allOf:
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
+        - $ref: '#/components/schemas/ResultListPage'
       example:
-        - topic: your-topic
-          partition: 0
-          offset: 4
-        - topic: my-topic
-          partition: 0
-          offset: 0
+        total: 2
+        page: 1
+        size: 10
+        items:
+          - topic: your-topic
+            partition: 0
+            offset: 4
+          - topic: my-topic
+            partition: 0
+            offset: 0
+    ConsumerGroupResetOffsetResultItem:
+      type: object
+      properties:
+        topic:
+          type: string
+        partition:
+          format: int32
+          type: integer
+        offset:
+          format: int32
+          type: integer
+      example:
+        topic: your-topic
+        partition: 0
+        offset: 4
     ResultListPage:
       type: object
+      required:
+        - total
       properties:
         total:
           description: Total number of entries in the full result set
           type: number
         page:
-          description: Current page number
+          description: Current page number (returned for fetch requests)
           type: integer
         size:
-          description: Number of entries per page
+          description: Number of entries per page (returned for fetch requests)
           type: number
     Error:
       description: General error response
