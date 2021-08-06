@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **updatedAt** | **OffsetDateTime** |  |  [optional]
 **failedReason** | **String** |  |  [optional]
 **version** | **String** |  |  [optional]
+**instanceType** | **String** |  |  [optional]
 
 
 

@@ -39,7 +39,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   KafkaRequestAllOf.JSON_PROPERTY_CREATED_AT,
   KafkaRequestAllOf.JSON_PROPERTY_UPDATED_AT,
   KafkaRequestAllOf.JSON_PROPERTY_FAILED_REASON,
-  KafkaRequestAllOf.JSON_PROPERTY_VERSION
+  KafkaRequestAllOf.JSON_PROPERTY_VERSION,
+  KafkaRequestAllOf.JSON_PROPERTY_INSTANCE_TYPE
 })
 @JsonTypeName("KafkaRequest_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -76,6 +77,9 @@ public class KafkaRequestAllOf {
 
   public static final String JSON_PROPERTY_VERSION = "version";
   private String version;
+
+  public static final String JSON_PROPERTY_INSTANCE_TYPE = "instance_type";
+  private String instanceType;
 
 
   public KafkaRequestAllOf status(String status) {
@@ -375,6 +379,33 @@ public class KafkaRequestAllOf {
   }
 
 
+  public KafkaRequestAllOf instanceType(String instanceType) {
+    
+    this.instanceType = instanceType;
+    return this;
+  }
+
+   /**
+   * Get instanceType
+   * @return instanceType
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_INSTANCE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInstanceType() {
+    return instanceType;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INSTANCE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstanceType(String instanceType) {
+    this.instanceType = instanceType;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -394,12 +425,13 @@ public class KafkaRequestAllOf {
         Objects.equals(this.createdAt, kafkaRequestAllOf.createdAt) &&
         Objects.equals(this.updatedAt, kafkaRequestAllOf.updatedAt) &&
         Objects.equals(this.failedReason, kafkaRequestAllOf.failedReason) &&
-        Objects.equals(this.version, kafkaRequestAllOf.version);
+        Objects.equals(this.version, kafkaRequestAllOf.version) &&
+        Objects.equals(this.instanceType, kafkaRequestAllOf.instanceType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, cloudProvider, multiAz, region, owner, name, bootstrapServerHost, createdAt, updatedAt, failedReason, version);
+    return Objects.hash(status, cloudProvider, multiAz, region, owner, name, bootstrapServerHost, createdAt, updatedAt, failedReason, version, instanceType);
   }
 
   @Override
@@ -417,6 +449,7 @@ public class KafkaRequestAllOf {
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    failedReason: ").append(toIndentedString(failedReason)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    instanceType: ").append(toIndentedString(instanceType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
