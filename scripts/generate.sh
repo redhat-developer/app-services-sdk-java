@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ## OPENAPI_FILENAME=yourapi generate_js.sh 
 
-npx @openapitools/openapi-generator-cli version-manager set 5.1.1
+npx @openapitools/openapi-generator-cli version-manager set 5.2.0
 echo "Generating SDKs"
 
 GROUP_ID="com.redhat.cloud"
