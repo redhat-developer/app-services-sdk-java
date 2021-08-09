@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 
 ## resetConsumerGroupOffset
 
-> List&lt;List&lt;Object&gt;&gt; resetConsumerGroupOffset(consumerGroupId, consumerGroupResetOffsetParameters)
+> ConsumerGroupResetOffsetResult resetConsumerGroupOffset(consumerGroupId, consumerGroupResetOffsetParameters)
 
 Reset the offset for a consumer group.
 
@@ -291,7 +291,7 @@ public class Example {
         String consumerGroupId = "consumerGroupId_example"; // String | The ID of the consumer group.
         ConsumerGroupResetOffsetParameters consumerGroupResetOffsetParameters = new ConsumerGroupResetOffsetParameters(); // ConsumerGroupResetOffsetParameters | 
         try {
-            List<List<Object>> result = apiInstance.resetConsumerGroupOffset(consumerGroupId, consumerGroupResetOffsetParameters);
+            ConsumerGroupResetOffsetResult result = apiInstance.resetConsumerGroupOffset(consumerGroupId, consumerGroupResetOffsetParameters);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GroupsApi#resetConsumerGroupOffset");
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;List&lt;Object&gt;&gt;**](List.md)
+[**ConsumerGroupResetOffsetResult**](ConsumerGroupResetOffsetResult.md)
 
 ### Authorization
 

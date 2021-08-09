@@ -101,10 +101,9 @@ public class AclBindingListPage {
    * Total number of entries in the full result set
    * @return total
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Total number of entries in the full result set")
+  @ApiModelProperty(required = true, value = "Total number of entries in the full result set")
   @JsonProperty(JSON_PROPERTY_TOTAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public BigDecimal getTotal() {
     return total;
@@ -112,7 +111,7 @@ public class AclBindingListPage {
 
 
   @JsonProperty(JSON_PROPERTY_TOTAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTotal(BigDecimal total) {
     this.total = total;
   }
@@ -125,11 +124,11 @@ public class AclBindingListPage {
   }
 
    /**
-   * Current page number
+   * Current page number (returned for fetch requests)
    * @return page
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Current page number")
+  @ApiModelProperty(value = "Current page number (returned for fetch requests)")
   @JsonProperty(JSON_PROPERTY_PAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -152,11 +151,11 @@ public class AclBindingListPage {
   }
 
    /**
-   * Number of entries per page
+   * Number of entries per page (returned for fetch requests)
    * @return size
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of entries per page")
+  @ApiModelProperty(value = "Number of entries per page (returned for fetch requests)")
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
