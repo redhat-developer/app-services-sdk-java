@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 ## OPENAPI_FILENAME=yourapi generate_js.sh 
 
+set -e
+
 npx @openapitools/openapi-generator-cli version-manager set 5.2.0
 echo "Generating SDKs"
 
