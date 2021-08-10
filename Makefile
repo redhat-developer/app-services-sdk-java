@@ -1,13 +1,12 @@
 
 install:
-	./scripts/install.sh
+	mvn clean install
 .PHONY: install
 
 build:
-	./scripts/build.sh
+	mvn clean package
 .PHONE: build
 
 generate:
 	./scripts/generate.sh
-
 .PHONY: generate

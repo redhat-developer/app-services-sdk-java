@@ -19,7 +19,7 @@ import com.openshift.cloud.api.kas.auth.models.AclFilterAny;
 import com.openshift.cloud.api.kas.auth.models.AclPatternType;
 import com.openshift.cloud.api.kas.auth.models.AclPatternTypeFilterOneOf;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
+import com.fasterxml.jackson.annotation.JsonTypeName;
 /**
  * AclPatternTypeFilter
  */
