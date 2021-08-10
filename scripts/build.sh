@@ -2,12 +2,16 @@
 
 cd "$(dirname "$0")"
 cd ../packages/kafka-management-sdk
-mvn package
+mvn clean package
 
 cd "$(dirname "$0")"
 cd ../packages/kafka-instance-sdk
-mvn package
+mvn clean package
 
 cd "$(dirname "$0")"
 cd ../packages/registry-management-sdk
-mvn package  
+mvn clean package  
+
+cd "$(dirname "$0")"
+cd ../packages/connector-management-sdk
+mvn clean package  
