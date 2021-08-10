@@ -10,6 +10,7 @@ import javax.ws.rs.core.GenericType;
 import com.openshift.cloud.api.kas.auth.models.ConsumerGroup;
 import com.openshift.cloud.api.kas.auth.models.ConsumerGroupList;
 import com.openshift.cloud.api.kas.auth.models.ConsumerGroupResetOffsetParameters;
+import com.openshift.cloud.api.kas.auth.models.ConsumerGroupResetOffsetResult;
 import com.openshift.cloud.api.kas.auth.models.Error;
 
 import java.util.ArrayList;
@@ -190,10 +191,10 @@ public class GroupsApi {
    * Reset the offset for a particular consumer group.
    * @param consumerGroupId The ID of the consumer group. (required)
    * @param consumerGroupResetOffsetParameters  (required)
-   * @return a {@code List<List<Object>>}
+   * @return a {@code ConsumerGroupResetOffsetResult}
    * @throws ApiException if fails to make API call
    */
-  public List<List<Object>> resetConsumerGroupOffset(String consumerGroupId, ConsumerGroupResetOffsetParameters consumerGroupResetOffsetParameters) throws ApiException {
+  public ConsumerGroupResetOffsetResult resetConsumerGroupOffset(String consumerGroupId, ConsumerGroupResetOffsetParameters consumerGroupResetOffsetParameters) throws ApiException {
     Object localVarPostBody = consumerGroupResetOffsetParameters;
     
     // verify the required parameter 'consumerGroupId' is set
@@ -232,7 +233,7 @@ public class GroupsApi {
 
     String[] localVarAuthNames = new String[] { "Bearer" };
 
-    GenericType<List<List<Object>>> localVarReturnType = new GenericType<List<List<Object>>>() {};
+    GenericType<ConsumerGroupResetOffsetResult> localVarReturnType = new GenericType<ConsumerGroupResetOffsetResult>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }

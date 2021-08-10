@@ -697,9 +697,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/ConsumerGroupResetOffsetResult'
-                type: array
+                $ref: '#/components/schemas/ConsumerGroupResetOffsetResult'
           description: The consumer group offsets have been reset.
         "400":
           description: The consumer group to reset the offset does have active consumers.
@@ -1839,37 +1837,50 @@ components:
       title: Root Type for TopicsToResetOffset
       type: object
     ConsumerGroupResetOffsetResult:
+      allOf:
+      - $ref: '#/components/schemas/ConsumerGroupResetOffsetResult_allOf'
+      - $ref: '#/components/schemas/ResultListPage'
       example:
-      - topic: your-topic
+        total: 2
+        page: 1
+        size: 10
+        items:
+        - topic: your-topic
+          partition: 0
+          offset: 4
+        - topic: my-topic
+          partition: 0
+          offset: 0
+      title: Root Type for ConsumerGroupResetOffsetResult
+      type: object
+    ConsumerGroupResetOffsetResultItem:
+      example:
+        topic: your-topic
         partition: 0
         offset: 4
-      - topic: my-topic
-        partition: 0
-        offset: 0
-      items:
-        properties:
-          topic:
-            type: string
-          partition:
-            format: int32
-            type: integer
-          offset:
-            format: int32
-            type: integer
-        type: object
-      title: Root Type for ConsumerGroupResetOffsetResult
-      type: array
+      properties:
+        topic:
+          type: string
+        partition:
+          format: int32
+          type: integer
+        offset:
+          format: int32
+          type: integer
+      type: object
     ResultListPage:
       properties:
         total:
           description: Total number of entries in the full result set
           type: number
         page:
-          description: Current page number
+          description: Current page number (returned for fetch requests)
           type: integer
         size:
-          description: Number of entries per page
+          description: Number of entries per page (returned for fetch requests)
           type: number
+      required:
+      - total
       type: object
     Error:
       description: General error response
@@ -1894,6 +1905,13 @@ components:
       enum:
       - MATCH
       type: string
+    ConsumerGroupResetOffsetResult_allOf:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
+          type: array
+      type: object
   securitySchemes:
     Bearer:
       description: Access token used with OAuth 2.0
