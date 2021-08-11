@@ -712,24 +712,20 @@ components:
         principal: 'User:user123'
         operation: READ
         permission: ALLOW
+    AclBindingList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AclBinding'
     AclBindingListPage:
       title: ACL Binding List Page
       description: A page of ACL binding entries
       type: object
       allOf:
-        - type: object
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/AclBinding'
+        - $ref: '#/components/schemas/AclBindingList'
         - $ref: '#/components/schemas/ResultListPage'
-    AclFilterAny:
-      title: ACL ANY Filter
-      description: Filter any value for enumerated ACL properties
-      type: string
-      enum:
-      - 'ANY'
     AclResourceType:
       title: ACL Resource Type
       type: string
@@ -743,9 +739,12 @@ components:
       title: ACL Resource Type Filter
       type: string
       default: 'ANY'
-      oneOf:
-      - $ref: '#/components/schemas/AclResourceType'
-      - $ref: '#/components/schemas/AclFilterAny'
+      enum:
+      - 'ANY'
+      - 'GROUP'
+      - 'TOPIC'
+      - 'CLUSTER'
+      - 'TRANSACTIONAL_ID'
     AclPatternType:
       title: ACL Pattern Type
       type: string
@@ -755,15 +754,14 @@ components:
       - 'PREFIXED'
     AclPatternTypeFilter:
       title: ACL Pattern Type Filter
+      description: Use value 'MATCH' to perform pattern matching.
       type: string
       default: 'ANY'
-      oneOf:
-      - $ref: '#/components/schemas/AclPatternType'
-      - $ref: '#/components/schemas/AclFilterAny'
-      - type: string
-        description: Use value 'MATCH' to perform pattern matching.
-        enum:
-        - 'MATCH'
+      enum:
+      - 'LITERAL'
+      - 'PREFIXED'
+      - 'ANY'
+      - 'MATCH'
     AclOperation:
       title: ACL Operation
       type: string
@@ -782,9 +780,17 @@ components:
       title: ACL Operation Filter
       type: string
       default: 'ANY'
-      oneOf:
-      - $ref: '#/components/schemas/AclOperation'
-      - $ref: '#/components/schemas/AclFilterAny'
+      enum:
+      - 'ALL'
+      - 'READ'
+      - 'WRITE'
+      - 'CREATE'
+      - 'DELETE'
+      - 'ALTER'
+      - 'DESCRIBE'
+      - 'DESCRIBE_CONFIGS'
+      - 'ALTER_CONFIGS'
+      - 'ANY'
     AclPermissionType:
       title: ACL Permission Type
       type: string
@@ -796,9 +802,10 @@ components:
       title: ACL Permission Type Filter
       type: string
       default: 'ANY'
-      oneOf:
-      - $ref: '#/components/schemas/AclPermissionType'
-      - $ref: '#/components/schemas/AclFilterAny'
+      enum:
+      - 'ALLOW'
+      - 'DENY'
+      - 'ANY'
     AclPrincipal:
       title: ACL Principal
       nullable: false
@@ -1227,12 +1234,7 @@ components:
       description: ''
       type: object
       allOf:
-        - type: object
-          properties:
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
+        - $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItemList'
         - $ref: '#/components/schemas/ResultListPage'
       example:
         total: 2
@@ -1245,6 +1247,13 @@ components:
           - topic: my-topic
             partition: 0
             offset: 0
+    ConsumerGroupResetOffsetResultItemList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
     ConsumerGroupResetOffsetResultItem:
       type: object
       properties:
