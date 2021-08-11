@@ -1011,6 +1011,34 @@ paths:
           minimum: 1
           type: number
         style: form
+      - description: Order of the ACL binding sorting.
+        explode: true
+        in: query
+        name: order
+        required: false
+        schema:
+          default: desc
+          enum:
+          - asc
+          - desc
+          type: string
+        style: form
+      - description: Order key to sort the items by.
+        explode: true
+        in: query
+        name: orderKey
+        required: false
+        schema:
+          default: permission
+          enum:
+          - resourceType
+          - resourceName
+          - patternType
+          - principal
+          - operation
+          - permission
+          type: string
+        style: form
       responses:
         "200":
           content:

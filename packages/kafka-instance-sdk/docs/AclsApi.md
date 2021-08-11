@@ -244,7 +244,7 @@ This endpoint does not need any parameter.
 
 ## getAcls
 
-> AclBindingListPage getAcls(resourceType, resourceName, patternType, principal, operation, permission, page, size)
+> AclBindingListPage getAcls(resourceType, resourceName, patternType, principal, operation, permission, page, size, order, orderKey)
 
 List ACL bindings
 
@@ -279,8 +279,10 @@ public class Example {
         AclPermissionTypeFilter permission = AclPermissionTypeFilter.fromValue("ALLOW"); // AclPermissionTypeFilter | ACL Permission Type Filter
         BigDecimal page = new BigDecimal(78); // BigDecimal | Page number for result lists
         BigDecimal size = new BigDecimal(78); // BigDecimal | Page size for result lists
+        String order = "desc"; // String | Order of the ACL binding sorting.
+        String orderKey = "permission"; // String | Order key to sort the items by.
         try {
-            AclBindingListPage result = apiInstance.getAcls(resourceType, resourceName, patternType, principal, operation, permission, page, size);
+            AclBindingListPage result = apiInstance.getAcls(resourceType, resourceName, patternType, principal, operation, permission, page, size, order, orderKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AclsApi#getAcls");
@@ -306,6 +308,8 @@ Name | Type | Description  | Notes
  **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional] [enum: ALLOW, DENY, ANY]
  **page** | **BigDecimal**| Page number for result lists | [optional] [default to 1]
  **size** | **BigDecimal**| Page size for result lists | [optional] [default to 10]
+ **order** | **String**| Order of the ACL binding sorting. | [optional] [default to desc] [enum: asc, desc]
+ **orderKey** | **String**| Order key to sort the items by. | [optional] [default to permission] [enum: resourceType, resourceName, patternType, principal, operation, permission]
 
 ### Return type
 
