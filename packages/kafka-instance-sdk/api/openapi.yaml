@@ -1360,19 +1360,20 @@ components:
       - resourceType
       title: ACL Binding
       type: object
+    AclBindingList:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AclBinding'
+          type: array
+      type: object
     AclBindingListPage:
       allOf:
-      - $ref: '#/components/schemas/AclBindingListPage_allOf'
+      - $ref: '#/components/schemas/AclBindingList'
       - $ref: '#/components/schemas/ResultListPage'
       description: A page of ACL binding entries
       title: ACL Binding List Page
       type: object
-    AclFilterAny:
-      description: Filter any value for enumerated ACL properties
-      enum:
-      - ANY
-      title: ACL ANY Filter
-      type: string
     AclResourceType:
       enum:
       - GROUP
@@ -1384,9 +1385,12 @@ components:
       type: string
     AclResourceTypeFilter:
       default: ANY
-      oneOf:
-      - $ref: '#/components/schemas/AclResourceType'
-      - $ref: '#/components/schemas/AclFilterAny'
+      enum:
+      - ANY
+      - GROUP
+      - TOPIC
+      - CLUSTER
+      - TRANSACTIONAL_ID
       title: ACL Resource Type Filter
       type: string
     AclPatternType:
@@ -1398,10 +1402,12 @@ components:
       type: string
     AclPatternTypeFilter:
       default: ANY
-      oneOf:
-      - $ref: '#/components/schemas/AclPatternType'
-      - $ref: '#/components/schemas/AclFilterAny'
-      - $ref: '#/components/schemas/AclPatternTypeFilter_oneOf'
+      description: Use value 'MATCH' to perform pattern matching.
+      enum:
+      - LITERAL
+      - PREFIXED
+      - ANY
+      - MATCH
       title: ACL Pattern Type Filter
       type: string
     AclOperation:
@@ -1420,9 +1426,17 @@ components:
       type: string
     AclOperationFilter:
       default: ANY
-      oneOf:
-      - $ref: '#/components/schemas/AclOperation'
-      - $ref: '#/components/schemas/AclFilterAny'
+      enum:
+      - ALL
+      - READ
+      - WRITE
+      - CREATE
+      - DELETE
+      - ALTER
+      - DESCRIBE
+      - DESCRIBE_CONFIGS
+      - ALTER_CONFIGS
+      - ANY
       title: ACL Operation Filter
       type: string
     AclPermissionType:
@@ -1434,9 +1448,10 @@ components:
       type: string
     AclPermissionTypeFilter:
       default: ANY
-      oneOf:
-      - $ref: '#/components/schemas/AclPermissionType'
-      - $ref: '#/components/schemas/AclFilterAny'
+      enum:
+      - ALLOW
+      - DENY
+      - ANY
       title: ACL Permission Type Filter
       type: string
     AclPrincipal:
@@ -1838,7 +1853,7 @@ components:
       type: object
     ConsumerGroupResetOffsetResult:
       allOf:
-      - $ref: '#/components/schemas/ConsumerGroupResetOffsetResult_allOf'
+      - $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItemList'
       - $ref: '#/components/schemas/ResultListPage'
       example:
         total: 2
@@ -1852,6 +1867,13 @@ components:
           partition: 0
           offset: 0
       title: Root Type for ConsumerGroupResetOffsetResult
+      type: object
+    ConsumerGroupResetOffsetResultItemList:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
+          type: array
       type: object
     ConsumerGroupResetOffsetResultItem:
       example:
@@ -1892,25 +1914,6 @@ components:
           type: string
         class:
           type: string
-      type: object
-    AclBindingListPage_allOf:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/AclBinding'
-          type: array
-      type: object
-    AclPatternTypeFilter_oneOf:
-      description: Use value 'MATCH' to perform pattern matching.
-      enum:
-      - MATCH
-      type: string
-    ConsumerGroupResetOffsetResult_allOf:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
-          type: array
       type: object
   securitySchemes:
     Bearer:

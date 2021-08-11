@@ -2,11 +2,14 @@
 
 # AclPermissionTypeFilter
 
+## Enum
 
-## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+* `ALLOW` (value: `"ALLOW"`)
+
+* `DENY` (value: `"DENY"`)
+
+* `ANY` (value: `"ANY"`)
 
 
 

@@ -15,54 +15,50 @@ package com.openshift.cloud.api.kas.auth.models;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.openshift.cloud.api.kas.auth.models.AclFilterAny;
-import com.openshift.cloud.api.kas.auth.models.AclResourceType;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * AclResourceTypeFilter
+ * Gets or Sets AclResourceTypeFilter
  */
-@JsonPropertyOrder({
-})
-@JsonTypeName("AclResourceTypeFilter")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class AclResourceTypeFilter {
+public enum AclResourceTypeFilter {
+  
+  ANY("ANY"),
+  
+  GROUP("GROUP"),
+  
+  TOPIC("TOPIC"),
+  
+  CLUSTER("CLUSTER"),
+  
+  TRANSACTIONAL_ID("TRANSACTIONAL_ID");
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    return true;
+  private String value;
+
+  AclResourceTypeFilter(String value) {
+    this.value = value;
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash();
+  @JsonValue
+  public String getValue() {
+    return value;
   }
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AclResourceTypeFilter {\n");
-    sb.append("}");
-    return sb.toString();
+    return String.valueOf(value);
   }
 
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+  @JsonCreator
+  public static AclResourceTypeFilter fromValue(String value) {
+    for (AclResourceTypeFilter b : AclResourceTypeFilter.values()) {
+      if (b.value.equals(value)) {
+        return b;
+      }
     }
-    return o.toString().replace("\n", "\n    ");
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
-
 }
 

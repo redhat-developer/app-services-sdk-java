@@ -2,11 +2,16 @@
 
 # AclPatternTypeFilter
 
+## Enum
 
-## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+* `LITERAL` (value: `"LITERAL"`)
+
+* `PREFIXED` (value: `"PREFIXED"`)
+
+* `ANY` (value: `"ANY"`)
+
+* `MATCH` (value: `"MATCH"`)
 
 
 

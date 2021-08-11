@@ -2,11 +2,18 @@
 
 # AclResourceTypeFilter
 
+## Enum
 
-## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+* `ANY` (value: `"ANY"`)
+
+* `GROUP` (value: `"GROUP"`)
+
+* `TOPIC` (value: `"TOPIC"`)
+
+* `CLUSTER` (value: `"CLUSTER"`)
+
+* `TRANSACTIONAL_ID` (value: `"TRANSACTIONAL_ID"`)
 
 
 
