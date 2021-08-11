@@ -569,6 +569,32 @@ paths:
         - $ref: '#/components/parameters/AclPermissionTypeFilter'
         - $ref: '#/components/parameters/PageNumber'
         - $ref: '#/components/parameters/PageSize'
+        - name: order
+          description: >-
+            Order of the ACL binding sorting.
+          in: query
+          required: false
+          schema:
+            type: string
+            default: 'desc'
+            enum:
+              - 'asc'
+              - 'desc'
+        - name: orderKey
+          description: >-
+            Order key to sort the items by.
+          in: query
+          required: false
+          schema:
+            type: string
+            default: 'permission'
+            enum:
+              - 'resourceType'
+              - 'resourceName'
+              - 'patternType'
+              - 'principal'
+              - 'operation'
+              - 'permission'
       responses:
         '200':
           content:
