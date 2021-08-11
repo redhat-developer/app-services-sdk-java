@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openshift.cloud.api.kas.auth.models.AclBinding;
-import com.openshift.cloud.api.kas.auth.models.AclBindingListPageAllOf;
+import com.openshift.cloud.api.kas.auth.models.AclBindingList;
 import com.openshift.cloud.api.kas.auth.models.ResultListPage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
