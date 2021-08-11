@@ -25,9 +25,3 @@
 **/gradlew.bat
 **/settings.gradle
 **/.classpath
-
-## Temp workaround to make build pass
-**/**/AclPatternTypeFilter.java
-**/**/AclPermissionTypeFilter.java
-**/**/AclOperationFilter.java
-**/**/AclResourceTypeFilter.java
