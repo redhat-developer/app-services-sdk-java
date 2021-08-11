@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.auth.models.ConsumerGroupResetOffsetResultItem;
+import com.openshift.cloud.api.kas.auth.models.AclBinding;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -28,25 +28,25 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * ConsumerGroupResetOffsetResultAllOf
+ * AclBindingList
  */
 @JsonPropertyOrder({
-  ConsumerGroupResetOffsetResultAllOf.JSON_PROPERTY_ITEMS
+  AclBindingList.JSON_PROPERTY_ITEMS
 })
-@JsonTypeName("ConsumerGroupResetOffsetResult_allOf")
+@JsonTypeName("AclBindingList")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ConsumerGroupResetOffsetResultAllOf {
+public class AclBindingList {
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<ConsumerGroupResetOffsetResultItem> items = null;
+  private List<AclBinding> items = null;
 
 
-  public ConsumerGroupResetOffsetResultAllOf items(List<ConsumerGroupResetOffsetResultItem> items) {
+  public AclBindingList items(List<AclBinding> items) {
     
     this.items = items;
     return this;
   }
 
-  public ConsumerGroupResetOffsetResultAllOf addItemsItem(ConsumerGroupResetOffsetResultItem itemsItem) {
+  public AclBindingList addItemsItem(AclBinding itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -63,14 +63,14 @@ public class ConsumerGroupResetOffsetResultAllOf {
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ConsumerGroupResetOffsetResultItem> getItems() {
+  public List<AclBinding> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<ConsumerGroupResetOffsetResultItem> items) {
+  public void setItems(List<AclBinding> items) {
     this.items = items;
   }
 
@@ -83,8 +83,8 @@ public class ConsumerGroupResetOffsetResultAllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConsumerGroupResetOffsetResultAllOf consumerGroupResetOffsetResultAllOf = (ConsumerGroupResetOffsetResultAllOf) o;
-    return Objects.equals(this.items, consumerGroupResetOffsetResultAllOf.items);
+    AclBindingList aclBindingList = (AclBindingList) o;
+    return Objects.equals(this.items, aclBindingList.items);
   }
 
   @Override
@@ -95,7 +95,7 @@ public class ConsumerGroupResetOffsetResultAllOf {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConsumerGroupResetOffsetResultAllOf {\n");
+    sb.append("class AclBindingList {\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();

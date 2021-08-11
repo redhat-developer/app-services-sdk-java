@@ -115,12 +115,12 @@ public class Example {
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
-        AclResourceTypeFilter resourceType = new AclResourceTypeFilter(); // AclResourceTypeFilter | ACL Resource Type Filter
+        AclResourceTypeFilter resourceType = AclResourceTypeFilter.fromValue("ANY"); // AclResourceTypeFilter | ACL Resource Type Filter
         String resourceName = "resourceName_example"; // String | ACL Resource Name Filter
-        AclPatternTypeFilter patternType = new AclPatternTypeFilter(); // AclPatternTypeFilter | ACL Pattern Type Filter
+        AclPatternTypeFilter patternType = AclPatternTypeFilter.fromValue("LITERAL"); // AclPatternTypeFilter | ACL Pattern Type Filter
         String principal = "User:*"; // String | ACL Principal Filter. Either a specific user or the wildcard user `User:*` may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
-        AclOperationFilter operation = new AclOperationFilter(); // AclOperationFilter | ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not `ANY`.
-        AclPermissionTypeFilter permission = new AclPermissionTypeFilter(); // AclPermissionTypeFilter | ACL Permission Type Filter
+        AclOperationFilter operation = AclOperationFilter.fromValue("ALL"); // AclOperationFilter | ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not `ANY`.
+        AclPermissionTypeFilter permission = AclPermissionTypeFilter.fromValue("ALLOW"); // AclPermissionTypeFilter | ACL Permission Type Filter
         try {
             AclBindingListPage result = apiInstance.deleteAcls(resourceType, resourceName, patternType, principal, operation, permission);
             System.out.println(result);
@@ -140,12 +140,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional]
+ **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional] [enum: ANY, GROUP, TOPIC, CLUSTER, TRANSACTIONAL_ID]
  **resourceName** | **String**| ACL Resource Name Filter | [optional]
- **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional]
+ **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional] [enum: LITERAL, PREFIXED, ANY, MATCH]
  **principal** | **String**| ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. | [optional]
- **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional]
- **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional]
+ **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional] [enum: ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, DESCRIBE_CONFIGS, ALTER_CONFIGS, ANY]
+ **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional] [enum: ALLOW, DENY, ANY]
 
 ### Return type
 
@@ -271,12 +271,12 @@ public class Example {
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
-        AclResourceTypeFilter resourceType = new AclResourceTypeFilter(); // AclResourceTypeFilter | ACL Resource Type Filter
+        AclResourceTypeFilter resourceType = AclResourceTypeFilter.fromValue("ANY"); // AclResourceTypeFilter | ACL Resource Type Filter
         String resourceName = "resourceName_example"; // String | ACL Resource Name Filter
-        AclPatternTypeFilter patternType = new AclPatternTypeFilter(); // AclPatternTypeFilter | ACL Pattern Type Filter
+        AclPatternTypeFilter patternType = AclPatternTypeFilter.fromValue("LITERAL"); // AclPatternTypeFilter | ACL Pattern Type Filter
         String principal = "User:*"; // String | ACL Principal Filter. Either a specific user or the wildcard user `User:*` may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
-        AclOperationFilter operation = new AclOperationFilter(); // AclOperationFilter | ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not `ANY`.
-        AclPermissionTypeFilter permission = new AclPermissionTypeFilter(); // AclPermissionTypeFilter | ACL Permission Type Filter
+        AclOperationFilter operation = AclOperationFilter.fromValue("ALL"); // AclOperationFilter | ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not `ANY`.
+        AclPermissionTypeFilter permission = AclPermissionTypeFilter.fromValue("ALLOW"); // AclPermissionTypeFilter | ACL Permission Type Filter
         BigDecimal page = new BigDecimal(78); // BigDecimal | Page number for result lists
         BigDecimal size = new BigDecimal(78); // BigDecimal | Page size for result lists
         try {
@@ -298,12 +298,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional]
+ **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional] [enum: ANY, GROUP, TOPIC, CLUSTER, TRANSACTIONAL_ID]
  **resourceName** | **String**| ACL Resource Name Filter | [optional]
- **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional]
+ **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional] [enum: LITERAL, PREFIXED, ANY, MATCH]
  **principal** | **String**| ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. | [optional]
- **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional]
- **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional]
+ **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional] [enum: ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, DESCRIBE_CONFIGS, ALTER_CONFIGS, ANY]
+ **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional] [enum: ALLOW, DENY, ANY]
  **page** | **BigDecimal**| Page number for result lists | [optional] [default to 1]
  **size** | **BigDecimal**| Page size for result lists | [optional] [default to 10]
 
