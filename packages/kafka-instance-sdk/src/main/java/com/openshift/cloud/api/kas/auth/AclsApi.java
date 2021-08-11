@@ -180,10 +180,12 @@ public class AclsApi {
    * @param permission ACL Permission Type Filter (optional)
    * @param page Page number for result lists (optional, default to 1)
    * @param size Page size for result lists (optional, default to 10)
+   * @param order Order of the ACL binding sorting. (optional, default to desc)
+   * @param orderKey Order key to sort the items by. (optional, default to permission)
    * @return a {@code AclBindingListPage}
    * @throws ApiException if fails to make API call
    */
-  public AclBindingListPage getAcls(AclResourceTypeFilter resourceType, String resourceName, AclPatternTypeFilter patternType, String principal, AclOperationFilter operation, AclPermissionTypeFilter permission, BigDecimal page, BigDecimal size) throws ApiException {
+  public AclBindingListPage getAcls(AclResourceTypeFilter resourceType, String resourceName, AclPatternTypeFilter patternType, String principal, AclOperationFilter operation, AclPermissionTypeFilter permission, BigDecimal page, BigDecimal size, String order, String orderKey) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -203,6 +205,8 @@ public class AclsApi {
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "permission", permission));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "order", order));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "orderKey", orderKey));
 
     
     
