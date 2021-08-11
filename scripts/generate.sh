@@ -47,8 +47,7 @@ OPENAPI_FILENAME=".openapi/kafka-admin-rest.yaml"
 PACKAGE_NAME="com.openshift.cloud.api.kas.auth"
 OUTPUT_PATH="packages/kafka-instance-sdk/"
 yq e 'del(.. | select(has("deprecated")))' "${OPENAPI_FILENAME}" > "${OPENAPI_FILENAME}.processed"
-## Disabled temporairly
-##rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
+rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
 
 echo "Generating based on ${OPENAPI_FILENAME}"
 
