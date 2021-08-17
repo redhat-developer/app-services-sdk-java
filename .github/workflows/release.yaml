@@ -43,28 +43,28 @@ jobs:
         run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG                
       - name: Build kafka-management-sdk
         working-directory: ./packages/kafka-management-sdk
-        run : mvn package
+        run : mvn package -Prelease 
       - name: Build kafka-instance-sdk
         working-directory: ./packages/kafka-instance-sdk
-        run : mvn package
+        run : mvn package -Prelease 
       - name: Build registry-management-sdk
         working-directory: ./packages/registry-management-sdk
-        run : mvn package                
+        run : mvn package -Prelease                
       - name: Publish kafka-management-sdk
         working-directory: ./packages/kafka-management-sdk
-        run: mvn --batch-mode       -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
+        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
       - name: Publish kafka-instance-sdk
         working-directory: ./packages/kafka-instance-sdk
-        run: mvn --batch-mode       -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
+        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
       - name: Publish registry-management-sdk
         working-directory: ./packages/registry-management-sdk
-        run: mvn --batch-mode       -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
+        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
