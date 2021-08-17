@@ -5,7 +5,7 @@ install:
 
 build:
 	mvn clean package
-.PHONE: build
+.PHONY: build
 
 generate:
 	./scripts/generate.sh
