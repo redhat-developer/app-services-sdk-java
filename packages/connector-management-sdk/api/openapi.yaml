@@ -893,6 +893,71 @@ components:
       schema:
         type: string
       style: form
+    orderBy:
+      description: |-
+        Specifies the order by criteria. The syntax of this parameter is
+        similar to the syntax of the `order by` clause of an SQL statement.
+        Each query can be ordered by any of the `ConnectorType` fields.
+        For example, to return all Connector types ordered by their name, use the following syntax:
+
+        ```sql
+        name asc
+        ```
+
+        To return all Connector types ordered by their name _and_ version, use the following syntax:
+
+        ```sql
+        name asc, version asc
+        ```
+
+        If the parameter isn't provided, or if the value is empty, then
+        the results are ordered by name.
+      examples:
+        orderBy:
+          value: name asc
+      explode: true
+      in: query
+      name: orderBy
+      required: false
+      schema:
+        type: string
+      style: form
+    search:
+      description: |
+        Search criteria.
+
+        The syntax of this parameter is similar to the syntax of the `where` clause of a
+        SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`.
+        Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.
+
+        Examples:
+
+        To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:
+
+        ```
+        name = aws-sqs-source and channel = stable
+        ```[p-]
+
+        To return a Kafka instance with a name that starts with `aws`, use the following syntax:
+
+        ```
+        name like aws%25
+        ```
+
+        If the parameter isn't provided, or if the value is empty, then all the Connector Type
+        that the user has permission to see are returned.
+
+        Note. If the query is invalid, an error is returned.
+      examples:
+        search:
+          value: name = aws-sqs-source and channel = stable
+      explode: true
+      in: query
+      name: search
+      required: false
+      schema:
+        type: string
+      style: form
   schemas:
     ConnectorType:
       allOf:
@@ -1029,7 +1094,7 @@ components:
           description: Version of the connector type.
           type: string
         channels:
-          description: Version of the connector type.
+          description: Channels of the connector type.
           items:
             type: string
           type: array
@@ -1040,7 +1105,7 @@ components:
           description: URL to an icon of the connector.
           type: string
         labels:
-          description: labels used to categorize the connector
+          description: Labels used to categorize the connector
           items:
             enum:
             - sink
