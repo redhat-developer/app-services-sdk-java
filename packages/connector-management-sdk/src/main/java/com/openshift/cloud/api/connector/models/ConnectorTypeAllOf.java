@@ -167,11 +167,11 @@ public class ConnectorTypeAllOf {
   }
 
    /**
-   * Version of the connector type.
+   * Channels of the connector type.
    * @return channels
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Version of the connector type.")
+  @ApiModelProperty(value = "Channels of the connector type.")
   @JsonProperty(JSON_PROPERTY_CHANNELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -256,11 +256,11 @@ public class ConnectorTypeAllOf {
   }
 
    /**
-   * labels used to categorize the connector
+   * Labels used to categorize the connector
    * @return labels
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "labels used to categorize the connector")
+  @ApiModelProperty(value = "Labels used to categorize the connector")
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
