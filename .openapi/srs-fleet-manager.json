@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Service Registry Fleet Manager",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Managed Service Registry cloud.redhat.com API Management API that lets you create new registry instances. Registry is a datastore for standard event schemas and API designs. Service Registry enables developers to manage and share the structure of their data using a REST interface. For example, client applications can dynamically push or pull the latest updates to or from the registry without needing to redeploy. Registry is an Managed version of upstream project called Apicurio Registry. Apicurio Registry also enables developers to create rules that govern how registry content can evolve over time. For example, this includes rules for content validation and version compatibility.",
     "contact": {
       "name": "Cloud Red Hat",
@@ -59,7 +59,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistryListRest"
+                  "$ref": "#/components/schemas/RegistryList"
                 }
               }
             },
@@ -69,7 +69,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "401Example": {
@@ -84,7 +84,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "403Example": {
@@ -99,7 +99,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "500Example": {
@@ -127,7 +127,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistryCreateRest"
+                "$ref": "#/components/schemas/RegistryCreate"
               }
             }
           },
@@ -141,7 +141,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistryRest"
+                  "$ref": "#/components/schemas/Registry"
                 }
               }
             },
@@ -151,7 +151,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "401Example": {
@@ -166,7 +166,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "403Example": {
@@ -181,7 +181,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "500Example": {
@@ -216,7 +216,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistryRest"
+                  "$ref": "#/components/schemas/Registry"
                 }
               }
             },
@@ -226,7 +226,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "401Example": {
@@ -241,7 +241,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "403Example": {
@@ -256,7 +256,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "404Example": {
@@ -290,7 +290,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "401Example": {
@@ -305,7 +305,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "403Example": {
@@ -320,7 +320,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 },
                 "examples": {
                   "404Example": {
@@ -353,14 +353,181 @@
           "required": true
         }
       ]
+    },
+    "/api/serviceregistry_mgmt/v1/errors/{id}": {
+      "summary": "Get information about a specific error type.",
+      "get": {
+        "tags": [
+          "Errors"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Successful response - returns a single `Error`."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "401Example": {
+                    "$ref": "#/components/examples/401Example"
+                  }
+                }
+              }
+            },
+            "description": "Auth token is invalid"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "403Example": {
+                    "$ref": "#/components/examples/403Example"
+                  }
+                }
+              }
+            },
+            "description": "User not authorized to access the service."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "404Example": {
+                    "$ref": "#/components/examples/404Example"
+                  }
+                }
+              }
+            },
+            "description": "No service registry with specified id exists"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+            ]
+          }
+        ],
+        "operationId": "getError",
+        "summary": "Get information about a specific error type.",
+        "description": ""
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "description": "A unique identifier for an error type.",
+          "schema": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/api/serviceregistry_mgmt/v1/errors": {
+      "summary": "Get the list of all errors.",
+      "get": {
+        "tags": [
+          "Errors"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorList"
+                }
+              }
+            },
+            "description": "A successful response."
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "401Example": {
+                    "$ref": "#/components/examples/401Example"
+                  }
+                }
+              }
+            },
+            "description": "Auth token is invalid"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "403Example": {
+                    "$ref": "#/components/examples/403Example"
+                  }
+                }
+              }
+            },
+            "description": "User not authorized to access the service."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "500Example": {
+                    "$ref": "#/components/examples/500Example"
+                  }
+                }
+              }
+            },
+            "description": "Unexpected error occurred"
+          }
+        },
+        "security": [
+          {
+            "Bearer": [
+            ]
+          }
+        ],
+        "operationId": "getErrors",
+        "summary": "Get the list of all errors."
+      }
     }
   },
   "components": {
     "schemas": {
-      "ErrorRest": {
+      "Error": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/ObjectReferenceRest"
+            "$ref": "#/components/schemas/ObjectReference"
           },
           {
             "type": "object",
@@ -378,10 +545,10 @@
           }
         ]
       },
-      "ErrorListRest": {
+      "ErrorList": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/ListRest"
+            "$ref": "#/components/schemas/List"
           },
           {
             "type": "object",
@@ -389,14 +556,14 @@
               "items": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ErrorRest"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         ]
       },
-      "ListRest": {
+      "List": {
         "required": [
           "kind",
           "page",
@@ -420,7 +587,7 @@
           }
         }
       },
-      "ObjectReferenceRest": {
+      "ObjectReference": {
         "type": "object",
         "properties": {
           "id": {
@@ -434,10 +601,10 @@
           }
         }
       },
-      "RegistryRest": {
+      "Registry": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/ObjectReferenceRest"
+            "$ref": "#/components/schemas/ObjectReference"
           },
           {
             "title": "Root Type for Registry",
@@ -454,7 +621,7 @@
                 "type": "string"
               },
               "status": {
-                "$ref": "#/components/schemas/RegistryStatusValueRest"
+                "$ref": "#/components/schemas/RegistryStatusValue"
               },
               "registryUrl": {
                 "type": "string"
@@ -500,22 +667,22 @@
           }
         ]
       },
-      "RegistryCreateRest": {
+      "RegistryCreate": {
         "title": "Root Type for RegistryCreate",
         "description": "Information used to create a new Service Registry instance within a multi-tenant deployment.",
         "type": "object",
         "properties": {
           "name": {
             "description": "User-defined Registry name. Required. Does not have to be unique.",
-            "type": "string",
-            "minLength": 1,
             "maxLength": 32,
-            "pattern": "[a-z]([a-z0-9\\-]*[a-z0-9])?"
+            "minLength": 1,
+            "pattern": "[a-z]([a-z0-9\\-]*[a-z0-9])?",
+            "type": "string"
           },
           "description": {
             "description": "User-provided description of the new Registry instance. Not required.",
-            "type": "string",
-            "maxLength": 255
+            "maxLength": 255,
+            "type": "string"
           }
         },
         "example": {
@@ -523,10 +690,10 @@
           "description": "This instance is for development environment only."
         }
       },
-      "RegistryListRest": {
+      "RegistryList": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/ListRest"
+            "$ref": "#/components/schemas/List"
           },
           {
             "required": [
@@ -537,12 +704,12 @@
               "items": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/RegistryRest"
+                  "$ref": "#/components/schemas/Registry"
                 }
               }
             },
             "example": {
-              "kind": "RegistryRestList",
+              "kind": "RegistryList",
               "page": "1",
               "size": "1",
               "total": "1",
@@ -559,7 +726,7 @@
           }
         ]
       },
-      "RegistryStatusValueRest": {
+      "RegistryStatusValue": {
         "description": "\"accepted\": Registry status when accepted for processing.\n\n\"provisioning\": Registry status when provisioning a new instance.\n\n\"ready\": Registry status when ready for use.\n\n\"failed\": Registry status when the provisioning failed. When removing a Registry in this state,\nthe status transitions directly to \"deleting\".\n\n\n\"deprovision\": Registry status when accepted for deprovisioning.\n\n\"deleting\": Registry status when deprovisioning.\n",
         "enum": [
           "accepted",
