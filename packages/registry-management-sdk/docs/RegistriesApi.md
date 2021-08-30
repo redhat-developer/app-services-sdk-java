@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## createRegistry
 
-> RegistryRest createRegistry(registryCreateRest)
+> Registry createRegistry(registryCreate)
 
 Create a new Registry instance
 
@@ -38,9 +38,9 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         RegistriesApi apiInstance = new RegistriesApi(defaultClient);
-        RegistryCreateRest registryCreateRest = new RegistryCreateRest(); // RegistryCreateRest | A new `Registry` to be created.
+        RegistryCreate registryCreate = new RegistryCreate(); // RegistryCreate | A new `Registry` to be created.
         try {
-            RegistryRest result = apiInstance.createRegistry(registryCreateRest);
+            Registry result = apiInstance.createRegistry(registryCreate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling RegistriesApi#createRegistry");
@@ -58,11 +58,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **registryCreateRest** | [**RegistryCreateRest**](RegistryCreateRest.md)| A new &#x60;Registry&#x60; to be created. |
+ **registryCreate** | [**RegistryCreate**](RegistryCreate.md)| A new &#x60;Registry&#x60; to be created. |
 
 ### Return type
 
-[**RegistryRest**](RegistryRest.md)
+[**Registry**](Registry.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ null (empty response body)
 
 ## getRegistries
 
-> RegistryListRest getRegistries(page, size, orderBy, search)
+> RegistryList getRegistries(page, size, orderBy, search)
 
 Get the list of all registries.
 
@@ -188,7 +188,7 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the _order by_ clause of an SQL statement. Each query can be ordered by any of the kafkaRequests fields. For example, in order to retrieve all kafkas ordered by their name:  ```sql name asc ```  Or in order to retrieve all kafkas ordered by their name _and_ created date:  ```sql name asc, created_at asc ```  If the parameter isn't provided, or if the value is empty, then the results will be ordered by name.
         String search = "name = my-registry and status = AVAILABLE"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the _where_ clause of an SQL statement. Allowed fields in the search are: name, status. Allowed comparators are `=` or `LIKE`. Allowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.  Examples:  To retrieve request with name equal `my-registry`  the value should be:  ``` name = my-registry  ```  To retrieve kafka request with its name starting with `my`, the value should be:  ``` name like my%25 ```  If the parameter isn't provided, or if the value is empty, then all the kafkas that the user has permission to see will be returned.  Note. If the query is invalid, an error will be returned 
         try {
-            RegistryListRest result = apiInstance.getRegistries(page, size, orderBy, search);
+            RegistryList result = apiInstance.getRegistries(page, size, orderBy, search);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling RegistriesApi#getRegistries");
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RegistryListRest**](RegistryListRest.md)
+[**RegistryList**](RegistryList.md)
 
 ### Authorization
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ## getRegistry
 
-> RegistryRest getRegistry(id)
+> Registry getRegistry(id)
 
 Get a Registry
 
@@ -265,7 +265,7 @@ public class Example {
         RegistriesApi apiInstance = new RegistriesApi(defaultClient);
         String id = "id_example"; // String | A unique identifier for a `Registry`.
         try {
-            RegistryRest result = apiInstance.getRegistry(id);
+            Registry result = apiInstance.getRegistry(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling RegistriesApi#getRegistry");
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RegistryRest**](RegistryRest.md)
+[**Registry**](Registry.md)
 
 ### Authorization
 

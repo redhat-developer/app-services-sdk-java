@@ -17,7 +17,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Service Registry Fleet Manager
-  version: 0.0.5
+  version: 0.0.6
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -111,7 +111,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegistryListRest'
+                $ref: '#/components/schemas/RegistryList'
           description: A successful response.
         "401":
           content:
@@ -120,7 +120,7 @@ paths:
                 "401Example":
                   $ref: '#/components/examples/401Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: Auth token is invalid
         "403":
           content:
@@ -129,7 +129,7 @@ paths:
                 "403Example":
                   $ref: '#/components/examples/403Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: User not authorized to access the service.
         "500":
           content:
@@ -138,7 +138,7 @@ paths:
                 "500Example":
                   $ref: '#/components/examples/500Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: Unexpected error occurred
       security:
       - Bearer: []
@@ -152,7 +152,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegistryCreateRest'
+              $ref: '#/components/schemas/RegistryCreate'
         description: A new `Registry` to be created.
         required: true
       responses:
@@ -160,7 +160,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegistryRest'
+                $ref: '#/components/schemas/Registry'
           description: A successful response. The full request to create a new `Registry`
             is processed asynchronously. User should verify the result of the operation
             by reading the `status` property of the created `Registry` entity.
@@ -171,7 +171,7 @@ paths:
                 "401Example":
                   $ref: '#/components/examples/401Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: Auth token is invalid
         "403":
           content:
@@ -180,7 +180,7 @@ paths:
                 "403Example":
                   $ref: '#/components/examples/403Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: User not authorized to access the service.
         "500":
           content:
@@ -189,7 +189,7 @@ paths:
                 "500Example":
                   $ref: '#/components/examples/500Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: Unexpected error occurred
       security:
       - Bearer: []
@@ -222,7 +222,7 @@ paths:
                 "401Example":
                   $ref: '#/components/examples/401Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: Auth token is invalid
         "403":
           content:
@@ -231,7 +231,7 @@ paths:
                 "403Example":
                   $ref: '#/components/examples/403Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: User not authorized to access the service.
         "404":
           content:
@@ -240,7 +240,7 @@ paths:
                 "404Example":
                   $ref: '#/components/examples/404Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: No Service Registry with specified id exists
       security:
       - Bearer: []
@@ -265,7 +265,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegistryRest'
+                $ref: '#/components/schemas/Registry'
           description: Successful response - returns a single `Registry`.
         "401":
           content:
@@ -274,7 +274,7 @@ paths:
                 "401Example":
                   $ref: '#/components/examples/401Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: Auth token is invalid
         "403":
           content:
@@ -283,7 +283,7 @@ paths:
                 "403Example":
                   $ref: '#/components/examples/403Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: User not authorized to access the service.
         "404":
           content:
@@ -292,7 +292,7 @@ paths:
                 "404Example":
                   $ref: '#/components/examples/404Example'
               schema:
-                $ref: '#/components/schemas/ErrorRest'
+                $ref: '#/components/schemas/Error'
           description: No service registry with specified id exists
       security:
       - Bearer: []
@@ -301,6 +301,130 @@ paths:
       - Registries
       x-accepts: application/json
     summary: Manage a specific Registry.
+  /api/serviceregistry_mgmt/v1/errors/{id}:
+    get:
+      operationId: getError
+      parameters:
+      - description: A unique identifier for an error type.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Successful response - returns a single `Error`.
+        "401":
+          content:
+            application/json:
+              examples:
+                "401Example":
+                  $ref: '#/components/examples/401Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Auth token is invalid
+        "403":
+          content:
+            application/json:
+              examples:
+                "403Example":
+                  $ref: '#/components/examples/403Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User not authorized to access the service.
+        "404":
+          content:
+            application/json:
+              examples:
+                "404Example":
+                  $ref: '#/components/examples/404Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: No service registry with specified id exists
+      security:
+      - Bearer: []
+      summary: Get information about a specific error type.
+      tags:
+      - Errors
+      x-accepts: application/json
+    summary: Get information about a specific error type.
+  /api/serviceregistry_mgmt/v1/errors:
+    get:
+      operationId: getErrors
+      parameters:
+      - description: Page index
+        examples:
+          page:
+            value: "0"
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+        style: form
+      - description: Number of items in each page
+        examples:
+          size:
+            value: "100"
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+          description: A successful response.
+        "401":
+          content:
+            application/json:
+              examples:
+                "401Example":
+                  $ref: '#/components/examples/401Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Auth token is invalid
+        "403":
+          content:
+            application/json:
+              examples:
+                "403Example":
+                  $ref: '#/components/examples/403Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User not authorized to access the service.
+        "500":
+          content:
+            application/json:
+              examples:
+                "500Example":
+                  $ref: '#/components/examples/500Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error occurred
+      security:
+      - Bearer: []
+      summary: Get the list of all errors.
+      tags:
+      - Errors
+      x-accepts: application/json
+    summary: Get the list of all errors.
 components:
   examples:
     "404Example":
@@ -422,15 +546,15 @@ components:
         type: string
       style: form
   schemas:
-    ErrorRest:
+    Error:
       allOf:
-      - $ref: '#/components/schemas/ObjectReferenceRest'
-      - $ref: '#/components/schemas/ErrorRest_allOf'
-    ErrorListRest:
+      - $ref: '#/components/schemas/ObjectReference'
+      - $ref: '#/components/schemas/Error_allOf'
+    ErrorList:
       allOf:
-      - $ref: '#/components/schemas/ListRest'
-      - $ref: '#/components/schemas/ErrorListRest_allOf'
-    ListRest:
+      - $ref: '#/components/schemas/List'
+      - $ref: '#/components/schemas/ErrorList_allOf'
+    List:
       properties:
         kind:
           type: string
@@ -447,7 +571,7 @@ components:
       - size
       - total
       type: object
-    ObjectReferenceRest:
+    ObjectReference:
       properties:
         id:
           type: string
@@ -456,11 +580,11 @@ components:
         href:
           type: string
       type: object
-    RegistryRest:
+    Registry:
       allOf:
-      - $ref: '#/components/schemas/ObjectReferenceRest'
+      - $ref: '#/components/schemas/ObjectReference'
       - $ref: '#/components/schemas/Root_Type_for_Registry'
-    RegistryCreateRest:
+    RegistryCreate:
       description: Information used to create a new Service Registry instance within
         a multi-tenant deployment.
       example:
@@ -480,11 +604,11 @@ components:
           type: string
       title: Root Type for RegistryCreate
       type: object
-    RegistryListRest:
+    RegistryList:
       allOf:
-      - $ref: '#/components/schemas/ListRest'
-      - $ref: '#/components/schemas/RegistryListRest_allOf'
-    RegistryStatusValueRest:
+      - $ref: '#/components/schemas/List'
+      - $ref: '#/components/schemas/RegistryList_allOf'
+    RegistryStatusValue:
       description: |
         "accepted": Registry status when accepted for processing.
 
@@ -507,7 +631,7 @@ components:
       - deprovision
       - deleting
       type: string
-    ErrorRest_allOf:
+    Error_allOf:
       properties:
         code:
           type: string
@@ -516,11 +640,11 @@ components:
         operation_id:
           type: string
       type: object
-    ErrorListRest_allOf:
+    ErrorList_allOf:
       properties:
         items:
           items:
-            $ref: '#/components/schemas/ErrorRest'
+            $ref: '#/components/schemas/Error'
           type: array
       type: object
     Root_Type_for_Registry:
@@ -538,7 +662,7 @@ components:
         id:
           type: string
         status:
-          $ref: '#/components/schemas/RegistryStatusValueRest'
+          $ref: '#/components/schemas/RegistryStatusValue'
         registryUrl:
           type: string
         name:
@@ -569,9 +693,9 @@ components:
       - updated_at
       title: Root Type for Registry
       type: object
-    RegistryListRest_allOf:
+    RegistryList_allOf:
       example:
-        kind: RegistryRestList
+        kind: RegistryList
         page: "1"
         size: "1"
         total: "1"
@@ -586,7 +710,7 @@ components:
       properties:
         items:
           items:
-            $ref: '#/components/schemas/RegistryRest'
+            $ref: '#/components/schemas/Registry'
           type: array
       required:
       - items
