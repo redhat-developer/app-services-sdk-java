@@ -5,11 +5,17 @@
 ## Enum
 
 
-* `PROVISIONING` (value: `"PROVISIONING"`)
+* `ACCEPTED` (value: `"accepted"`)
 
-* `AVAILABLE` (value: `"AVAILABLE"`)
+* `PROVISIONING` (value: `"provisioning"`)
 
-* `UNAVAILABLE` (value: `"UNAVAILABLE"`)
+* `READY` (value: `"ready"`)
+
+* `FAILED` (value: `"failed"`)
+
+* `DEPROVISION` (value: `"deprovision"`)
+
+* `DELETING` (value: `"deleting"`)
 
 
 

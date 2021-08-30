@@ -7,10 +7,10 @@ import com.openshift.cloud.api.srs.invoker.Pair;
 
 import javax.ws.rs.core.GenericType;
 
-import com.openshift.cloud.api.srs.models.ErrorRest;
-import com.openshift.cloud.api.srs.models.RegistryCreateRest;
-import com.openshift.cloud.api.srs.models.RegistryListRest;
-import com.openshift.cloud.api.srs.models.RegistryRest;
+import com.openshift.cloud.api.srs.models.Error;
+import com.openshift.cloud.api.srs.models.Registry;
+import com.openshift.cloud.api.srs.models.RegistryCreate;
+import com.openshift.cloud.api.srs.models.RegistryList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,16 +40,16 @@ public class RegistriesApi {
   /**
    * Create a new Registry instance
    * 
-   * @param registryCreateRest A new &#x60;Registry&#x60; to be created. (required)
-   * @return a {@code RegistryRest}
+   * @param registryCreate A new &#x60;Registry&#x60; to be created. (required)
+   * @return a {@code Registry}
    * @throws ApiException if fails to make API call
    */
-  public RegistryRest createRegistry(RegistryCreateRest registryCreateRest) throws ApiException {
-    Object localVarPostBody = registryCreateRest;
+  public Registry createRegistry(RegistryCreate registryCreate) throws ApiException {
+    Object localVarPostBody = registryCreate;
     
-    // verify the required parameter 'registryCreateRest' is set
-    if (registryCreateRest == null) {
-      throw new ApiException(400, "Missing the required parameter 'registryCreateRest' when calling createRegistry");
+    // verify the required parameter 'registryCreate' is set
+    if (registryCreate == null) {
+      throw new ApiException(400, "Missing the required parameter 'registryCreate' when calling createRegistry");
     }
     
     // create path and map variables
@@ -77,7 +77,7 @@ public class RegistriesApi {
 
     String[] localVarAuthNames = new String[] { "Bearer" };
 
-    GenericType<RegistryRest> localVarReturnType = new GenericType<RegistryRest>() {};
+    GenericType<Registry> localVarReturnType = new GenericType<Registry>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
@@ -130,10 +130,10 @@ public class RegistriesApi {
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the _order by_ clause of an SQL statement. Each query can be ordered by any of the kafkaRequests fields. For example, in order to retrieve all kafkas ordered by their name:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  Or in order to retrieve all kafkas ordered by their name _and_ created date:  &#x60;&#x60;&#x60;sql name asc, created_at asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results will be ordered by name. (optional)
    * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the _where_ clause of an SQL statement. Allowed fields in the search are: name, status. Allowed comparators are &#x60;&#x3D;&#x60; or &#x60;LIKE&#x60;. Allowed joins are &#x60;AND&#x60; and &#x60;OR&#x60;, however there is a limit of max 10 joins in the search query.  Examples:  To retrieve request with name equal &#x60;my-registry&#x60;  the value should be:  &#x60;&#x60;&#x60; name &#x3D; my-registry  &#x60;&#x60;&#x60;  To retrieve kafka request with its name starting with &#x60;my&#x60;, the value should be:  &#x60;&#x60;&#x60; name like my%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the kafkas that the user has permission to see will be returned.  Note. If the query is invalid, an error will be returned  (optional)
-   * @return a {@code RegistryListRest}
+   * @return a {@code RegistryList}
    * @throws ApiException if fails to make API call
    */
-  public RegistryListRest getRegistries(Integer page, Integer size, String orderBy, String search) throws ApiException {
+  public RegistryList getRegistries(Integer page, Integer size, String orderBy, String search) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -165,17 +165,17 @@ public class RegistriesApi {
 
     String[] localVarAuthNames = new String[] { "Bearer" };
 
-    GenericType<RegistryListRest> localVarReturnType = new GenericType<RegistryListRest>() {};
+    GenericType<RegistryList> localVarReturnType = new GenericType<RegistryList>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * Get a Registry
    * Gets the details of a single instance of a &#x60;Registry&#x60;.
    * @param id A unique identifier for a &#x60;Registry&#x60;. (required)
-   * @return a {@code RegistryRest}
+   * @return a {@code Registry}
    * @throws ApiException if fails to make API call
    */
-  public RegistryRest getRegistry(String id) throws ApiException {
+  public Registry getRegistry(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -209,7 +209,7 @@ public class RegistriesApi {
 
     String[] localVarAuthNames = new String[] { "Bearer" };
 
-    GenericType<RegistryRest> localVarReturnType = new GenericType<RegistryRest>() {};
+    GenericType<Registry> localVarReturnType = new GenericType<Registry>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }
