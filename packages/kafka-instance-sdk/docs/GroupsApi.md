@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 
 List of consumer groups in the Kafka instance.
 
-Returns a list of all consumer groups for a particular Kafka instance.
+Returns a list of all consumer groups for a particular Kafka instance. The consumer groups returned are limited to those records the requestor is authorized to view.
 
 ### Example
 
@@ -251,10 +251,9 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | List of consumer groups matching the request parameters. |  -  |
+| **200** | List of consumer groups matching the request parameters. The consumer groups returned are limited to those records the requestor is authorized to view. |  -  |
 | **400** | The server cannot or will not process the request due to something that is perceived to be a client error such as malformed request syntax. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
-| **403** | User is forbidden to retrieve the list of consumer groups. |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
 
