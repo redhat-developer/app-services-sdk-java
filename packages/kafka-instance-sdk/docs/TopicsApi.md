@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 List of topics
 
-Returns a list of all of the available topics, or the list of topics that meet the users URL Query Parameters.
+Returns a list of all of the available topics, or the list of topics that meet the request query parameters. The topics returned are limited to those records the requestor is authorized to view.
 
 ### Example
 
@@ -317,7 +317,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | List of topics matching the users query paramters. |  -  |
+| **200** | List of topics matching the request query parameters. The topics returned are limited to those records the requestor is authorized to view. |  -  |
 | **400** | Unable to retrieve topics. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
 | **500** | Internal server error |  -  |

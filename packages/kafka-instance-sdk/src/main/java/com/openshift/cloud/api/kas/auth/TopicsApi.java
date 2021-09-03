@@ -170,7 +170,7 @@ public class TopicsApi {
       }
   /**
    * List of topics
-   * Returns a list of all of the available topics, or the list of topics that meet the users URL Query Parameters.
+   * Returns a list of all of the available topics, or the list of topics that meet the request query parameters. The topics returned are limited to those records the requestor is authorized to view.
    * @param offset The page offset (optional)
    * @param limit Maximum number of topics to return (optional)
    * @param size Maximum number of topics to return on single page (optional)

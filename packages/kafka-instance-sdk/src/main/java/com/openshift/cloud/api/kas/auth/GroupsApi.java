@@ -135,7 +135,7 @@ public class GroupsApi {
       }
   /**
    * List of consumer groups in the Kafka instance.
-   * Returns a list of all consumer groups for a particular Kafka instance.
+   * Returns a list of all consumer groups for a particular Kafka instance. The consumer groups returned are limited to those records the requestor is authorized to view.
    * @param offset The page offset (optional)
    * @param limit Maximum number of consumer groups to return (optional)
    * @param size Maximum number of consumer groups to return on single page (optional)

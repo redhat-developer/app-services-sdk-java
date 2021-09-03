@@ -22,7 +22,8 @@ paths:
   /topics:
     get:
       description: Returns a list of all of the available topics, or the list of topics
-        that meet the users URL Query Parameters.
+        that meet the request query parameters. The topics returned are limited to
+        those records the requestor is authorized to view.
       operationId: getTopics
       parameters:
       - description: The page offset
@@ -97,7 +98,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TopicsList'
-          description: List of topics matching the users query paramters.
+          description: List of topics matching the request query parameters. The topics
+            returned are limited to those records the requestor is authorized to view.
         "400":
           content:
             application/json:
@@ -518,6 +520,8 @@ paths:
   /consumer-groups:
     get:
       description: Returns a list of all consumer groups for a particular Kafka instance.
+        The consumer groups returned are limited to those records the requestor is
+        authorized to view.
       operationId: getConsumerGroups
       parameters:
       - description: The page offset
@@ -627,7 +631,9 @@ paths:
                         logEndOffset: 5
               schema:
                 $ref: '#/components/schemas/ConsumerGroupList'
-          description: List of consumer groups matching the request parameters.
+          description: List of consumer groups matching the request parameters. The
+            consumer groups returned are limited to those records the requestor is
+            authorized to view.
         "400":
           content:
             application/json:
@@ -641,12 +647,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Request authentication missing or invalid
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User is forbidden to retrieve the list of consumer groups.
         "500":
           content:
             application/json:
