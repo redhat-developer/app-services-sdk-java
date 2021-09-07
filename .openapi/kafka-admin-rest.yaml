@@ -417,12 +417,12 @@ paths:
             type: integer
           in: query
         - name: topic
-          description: Return consumer groups for this topic
+          description: Return consumer groups where the topic name contains with this value
           schema:
             type: string
           in: query
         - name: group-id-filter
-          description: Return the consumer groups where the ID begins with this value
+          description: Return the consumer groups where the ID contains with this value
           schema:
             type: string
           in: query
