@@ -202,8 +202,8 @@ public class Example {
         Integer limit = 56; // Integer | Maximum number of consumer groups to return
         Integer size = 56; // Integer | Maximum number of consumer groups to return on single page
         Integer page = 56; // Integer | The page when returning the list of consumer groups
-        String topic = "topic_example"; // String | Return consumer groups for this topic
-        String groupIdFilter = "groupIdFilter_example"; // String | Return the consumer groups where the ID begins with this value
+        String topic = "topic_example"; // String | Return consumer groups where the topic name contains with this value
+        String groupIdFilter = "groupIdFilter_example"; // String | Return the consumer groups where the ID contains with this value
         String order = "order_example"; // String | Order of the consumer groups sorting. Ascending order is used as default.
         String orderKey = "orderKey_example"; // String | Order key to sort the items by. Only the value 'name' is currently applicable.
         try {
@@ -229,8 +229,8 @@ Name | Type | Description  | Notes
  **limit** | **Integer**| Maximum number of consumer groups to return | [optional]
  **size** | **Integer**| Maximum number of consumer groups to return on single page | [optional]
  **page** | **Integer**| The page when returning the list of consumer groups | [optional]
- **topic** | **String**| Return consumer groups for this topic | [optional]
- **groupIdFilter** | **String**| Return the consumer groups where the ID begins with this value | [optional]
+ **topic** | **String**| Return consumer groups where the topic name contains with this value | [optional]
+ **groupIdFilter** | **String**| Return the consumer groups where the ID contains with this value | [optional]
  **order** | **String**| Order of the consumer groups sorting. Ascending order is used as default. | [optional] [enum: asc, desc]
  **orderKey** | **String**| Order key to sort the items by. Only the value &#39;name&#39; is currently applicable. | [optional] [enum: name]
 
