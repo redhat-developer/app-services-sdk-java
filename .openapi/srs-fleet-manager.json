@@ -613,7 +613,8 @@
               "id",
               "status",
               "created_at",
-              "updated_at"
+              "updated_at",
+              "instance_type"
             ],
             "type": "object",
             "properties": {
@@ -651,6 +652,10 @@
                 "format": "date-time",
                 "description": "ISO 8601 UTC timestamp.",
                 "type": "string"
+              },
+              "instance_type": {
+                "$ref": "#/components/schemas/RegistryInstanceTypeValue",
+                "description": "Type of the Registry instance. This will determine functional and/or non-functional features provided by the instance."
               }
             },
             "example": {
@@ -735,6 +740,14 @@
           "failed",
           "deprovision",
           "deleting"
+        ],
+        "type": "string"
+      },
+      "RegistryInstanceTypeValue": {
+        "description": "\"standard\": Standard, full-featured Registry instance\n\n\"eval\": Evaluation (Trial) instance, provided for a limited time\n",
+        "enum": [
+          "standard",
+          "eval"
         ],
         "type": "string"
       }
