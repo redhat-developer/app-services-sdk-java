@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openshift.cloud.api.srs.models.ObjectReference;
+import com.openshift.cloud.api.srs.models.RegistryInstanceTypeValue;
 import com.openshift.cloud.api.srs.models.RegistryStatusValue;
 import com.openshift.cloud.api.srs.models.RootTypeForRegistry;
 import io.swagger.annotations.ApiModel;
@@ -42,7 +43,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   Registry.JSON_PROPERTY_OWNER,
   Registry.JSON_PROPERTY_DESCRIPTION,
   Registry.JSON_PROPERTY_CREATED_AT,
-  Registry.JSON_PROPERTY_UPDATED_AT
+  Registry.JSON_PROPERTY_UPDATED_AT,
+  Registry.JSON_PROPERTY_INSTANCE_TYPE
 })
 @JsonTypeName("Registry")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -79,6 +81,9 @@ public class Registry {
 
   public static final String JSON_PROPERTY_UPDATED_AT = "updated_at";
   private OffsetDateTime updatedAt;
+
+  public static final String JSON_PROPERTY_INSTANCE_TYPE = "instance_type";
+  private RegistryInstanceTypeValue instanceType;
 
 
   public Registry id(String id) {
@@ -374,6 +379,32 @@ public class Registry {
   }
 
 
+  public Registry instanceType(RegistryInstanceTypeValue instanceType) {
+    
+    this.instanceType = instanceType;
+    return this;
+  }
+
+   /**
+   * Get instanceType
+   * @return instanceType
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_INSTANCE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public RegistryInstanceTypeValue getInstanceType() {
+    return instanceType;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_INSTANCE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setInstanceType(RegistryInstanceTypeValue instanceType) {
+    this.instanceType = instanceType;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -393,12 +424,13 @@ public class Registry {
         Objects.equals(this.owner, registry.owner) &&
         Objects.equals(this.description, registry.description) &&
         Objects.equals(this.createdAt, registry.createdAt) &&
-        Objects.equals(this.updatedAt, registry.updatedAt);
+        Objects.equals(this.updatedAt, registry.updatedAt) &&
+        Objects.equals(this.instanceType, registry.instanceType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, status, registryUrl, name, registryDeploymentId, owner, description, createdAt, updatedAt);
+    return Objects.hash(id, kind, href, status, registryUrl, name, registryDeploymentId, owner, description, createdAt, updatedAt, instanceType);
   }
 
   @Override
@@ -416,6 +448,7 @@ public class Registry {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    instanceType: ").append(toIndentedString(instanceType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **description** | **String** | Description of the Registry instance. |  [optional]
 **createdAt** | **OffsetDateTime** | ISO 8601 UTC timestamp. | 
 **updatedAt** | **OffsetDateTime** | ISO 8601 UTC timestamp. | 
+**instanceType** | **RegistryInstanceTypeValue** |  | 
 
 
 

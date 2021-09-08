@@ -631,6 +631,15 @@ components:
       - deprovision
       - deleting
       type: string
+    RegistryInstanceTypeValue:
+      description: |
+        "standard": Standard, full-featured Registry instance
+
+        "eval": Evaluation (Trial) instance, provided for a limited time
+      enum:
+      - standard
+      - eval
+      type: string
     Error_allOf:
       properties:
         code:
@@ -686,9 +695,12 @@ components:
           description: ISO 8601 UTC timestamp.
           format: date-time
           type: string
+        instance_type:
+          $ref: '#/components/schemas/RegistryInstanceTypeValue'
       required:
       - created_at
       - id
+      - instance_type
       - status
       - updated_at
       title: Root Type for Registry

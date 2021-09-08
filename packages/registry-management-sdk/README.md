@@ -128,6 +128,7 @@ Class | Method | HTTP request | Description
  - [ObjectReference](docs/ObjectReference.md)
  - [Registry](docs/Registry.md)
  - [RegistryCreate](docs/RegistryCreate.md)
+ - [RegistryInstanceTypeValue](docs/RegistryInstanceTypeValue.md)
  - [RegistryList](docs/RegistryList.md)
  - [RegistryListAllOf](docs/RegistryListAllOf.md)
  - [RegistryStatusValue](docs/RegistryStatusValue.md)
