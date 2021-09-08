@@ -556,7 +556,8 @@ paths:
         schema:
           type: integer
         style: form
-      - description: Return consumer groups for this topic
+      - description: Return consumer groups where the topic name contains with this
+          value
         explode: true
         in: query
         name: topic
@@ -564,7 +565,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Return the consumer groups where the ID begins with this value
+      - description: Return the consumer groups where the ID contains with this value
         explode: true
         in: query
         name: group-id-filter

@@ -140,8 +140,8 @@ public class GroupsApi {
    * @param limit Maximum number of consumer groups to return (optional)
    * @param size Maximum number of consumer groups to return on single page (optional)
    * @param page The page when returning the list of consumer groups (optional)
-   * @param topic Return consumer groups for this topic (optional)
-   * @param groupIdFilter Return the consumer groups where the ID begins with this value (optional)
+   * @param topic Return consumer groups where the topic name contains with this value (optional)
+   * @param groupIdFilter Return the consumer groups where the ID contains with this value (optional)
    * @param order Order of the consumer groups sorting. Ascending order is used as default. (optional)
    * @param orderKey Order key to sort the items by. Only the value &#39;name&#39; is currently applicable. (optional)
    * @return a {@code ConsumerGroupList}
