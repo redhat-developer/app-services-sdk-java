@@ -25,11 +25,13 @@ paths:
       parameters:
         - name: offset
           description: The page offset
+          deprecated: true
           schema:
             type: integer
           in: query
         - name: limit
           description: Maximum number of topics to return
+          deprecated: true
           schema:
             type: integer
           in: query
@@ -398,11 +400,13 @@ paths:
       parameters:
         - name: offset
           description: The page offset
+          deprecated: true
           schema:
             type: integer
           in: query
         - name: limit
           description: Maximum number of consumer groups to return
+          deprecated: true
           schema:
             type: integer
           in: query
