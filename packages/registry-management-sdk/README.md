@@ -76,9 +76,9 @@ Please follow the [installation](#installation) instruction and execute the foll
 import com.openshift.cloud.api.srs.invoker.*;
 import com.openshift.cloud.api.srs.invoker.auth.*;
 import com.openshift.cloud.api.srs.models.*;
-import com.openshift.cloud.api.srs.ErrorsApi;
+import com.openshift.cloud.api.srs.DefaultApi;
 
-public class ErrorsApiExample {
+public class DefaultApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
@@ -88,13 +88,12 @@ public class ErrorsApiExample {
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setBearerToken("BEARER TOKEN");
 
-        ErrorsApi apiInstance = new ErrorsApi(defaultClient);
-        Integer id = 56; // Integer | A unique identifier for an error type.
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
         try {
-            Error result = apiInstance.getError(id);
+            ServiceStatus result = apiInstance.getServiceStatus();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ErrorsApi#getError");
+            System.err.println("Exception when calling DefaultApi#getServiceStatus");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -111,6 +110,7 @@ All URIs are relative to *https://api.openshift.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**getServiceStatus**](docs/DefaultApi.md#getServiceStatus) | **GET** /api/serviceregistry_mgmt/v1/status | 
 *ErrorsApi* | [**getError**](docs/ErrorsApi.md#getError) | **GET** /api/serviceregistry_mgmt/v1/errors/{id} | Get information about a specific error type.
 *ErrorsApi* | [**getErrors**](docs/ErrorsApi.md#getErrors) | **GET** /api/serviceregistry_mgmt/v1/errors | Get the list of all errors.
 *RegistriesApi* | [**createRegistry**](docs/RegistriesApi.md#createRegistry) | **POST** /api/serviceregistry_mgmt/v1/registries | Create a new Registry instance
@@ -133,6 +133,7 @@ Class | Method | HTTP request | Description
  - [RegistryListAllOf](docs/RegistryListAllOf.md)
  - [RegistryStatusValue](docs/RegistryStatusValue.md)
  - [RootTypeForRegistry](docs/RootTypeForRegistry.md)
+ - [ServiceStatus](docs/ServiceStatus.md)
 
 
 ## Documentation for Authorization
