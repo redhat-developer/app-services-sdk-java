@@ -26,29 +26,13 @@ paths:
         those records the requestor is authorized to view.
       operationId: getTopics
       parameters:
-      - description: The page offset
-        explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: Maximum number of topics to return
+      - deprecated: true
+        description: Maximum number of topics to return
         explode: true
         in: query
         name: limit
         required: false
         schema:
-          type: integer
-        style: form
-      - description: Maximum number of topics to return on single page
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          format: int32
           type: integer
         style: form
       - description: Filter to apply when returning the list of topics
@@ -524,26 +508,11 @@ paths:
         authorized to view.
       operationId: getConsumerGroups
       parameters:
-      - description: The page offset
-        explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: Maximum number of consumer groups to return
+      - deprecated: true
+        description: Maximum number of consumer groups to return
         explode: true
         in: query
         name: limit
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: Maximum number of consumer groups to return on single page
-        explode: true
-        in: query
-        name: size
         required: false
         schema:
           type: integer
