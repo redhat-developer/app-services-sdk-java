@@ -4,15 +4,15 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getSchema**](DefaultApi.md#getSchema) | **GET** /api/serviceregistry_mgmt/v1/openapi | Get an OpenAPI schema for this API.
+[**getServiceStatus**](DefaultApi.md#getServiceStatus) | **GET** /api/serviceregistry_mgmt/v1/status | 
 
 
 
-## getSchema
+## getServiceStatus
 
-> String getSchema()
+> ServiceStatus getServiceStatus()
 
-Get an OpenAPI schema for this API.
+
 
 ### Example
 
@@ -21,6 +21,7 @@ Get an OpenAPI schema for this API.
 import com.openshift.cloud.api.srs.invoker.ApiClient;
 import com.openshift.cloud.api.srs.invoker.ApiException;
 import com.openshift.cloud.api.srs.invoker.Configuration;
+import com.openshift.cloud.api.srs.invoker.auth.*;
 import com.openshift.cloud.api.srs.invoker.models.*;
 import com.openshift.cloud.api.srs.DefaultApi;
 
@@ -28,13 +29,17 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.openshift.com");
+        
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
 
         DefaultApi apiInstance = new DefaultApi(defaultClient);
         try {
-            String result = apiInstance.getSchema();
+            ServiceStatus result = apiInstance.getServiceStatus();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#getSchema");
+            System.err.println("Exception when calling DefaultApi#getServiceStatus");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -50,11 +55,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**String**
+[**ServiceStatus**](ServiceStatus.md)
 
 ### Authorization
 
-No authorization required
+[Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -65,5 +70,6 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | A successful response. |  -  |
+| **200** | Successfully returned service status |  -  |
+| **500** | Internal error retrieving service status. |  -  |
 

@@ -425,6 +425,27 @@ paths:
       - Errors
       x-accepts: application/json
     summary: Get the list of all errors.
+  /api/serviceregistry_mgmt/v1/status:
+    get:
+      operationId: getServiceStatus
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceStatus'
+          description: Successfully returned service status
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal error retrieving service status.
+      security:
+      - Bearer: []
+      x-accepts: application/json
+    summary: Retrieves the status of resources e.g whether we have reached maximum
+      service capacity
 components:
   examples:
     "404Example":
@@ -640,6 +661,18 @@ components:
       - standard
       - eval
       type: string
+    ServiceStatus:
+      description: Schema for the service status response body
+      example:
+        max_eval_instances_reached: true
+      properties:
+        max_eval_instances_reached:
+          description: Boolean property indicating if the maximum number of Trial
+            instances have been reached, therefore creation of more eval instances
+            should not be allowed.
+          type: boolean
+      title: Root Type for ServiceStatus
+      type: object
     Error_allOf:
       properties:
         code:
