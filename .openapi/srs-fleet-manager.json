@@ -790,13 +790,13 @@
         "description": "Schema for the service status response body",
         "type": "object",
         "properties": {
-          "max_eval_instances_reached": {
-            "description": "Boolean property indicating if the maximum number of Trial instances have been reached, therefore creation of more eval instances should not be allowed.",
+          "max_instances_reached": {
+            "description": "Boolean property indicating if the maximum number of total instances have been reached, therefore creation of more instances should not be allowed.",
             "type": "boolean"
           }
         },
         "example": {
-          "max_eval_instances_reached": true
+          "max_instances_reached": true
         }
       }
     },
