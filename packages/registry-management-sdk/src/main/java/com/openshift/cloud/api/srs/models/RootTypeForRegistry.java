@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   RootTypeForRegistry.JSON_PROPERTY_ID,
   RootTypeForRegistry.JSON_PROPERTY_STATUS,
   RootTypeForRegistry.JSON_PROPERTY_REGISTRY_URL,
+  RootTypeForRegistry.JSON_PROPERTY_BROWSER_URL,
   RootTypeForRegistry.JSON_PROPERTY_NAME,
   RootTypeForRegistry.JSON_PROPERTY_REGISTRY_DEPLOYMENT_ID,
   RootTypeForRegistry.JSON_PROPERTY_OWNER,
@@ -54,6 +55,9 @@ public class RootTypeForRegistry {
 
   public static final String JSON_PROPERTY_REGISTRY_URL = "registryUrl";
   private String registryUrl;
+
+  public static final String JSON_PROPERTY_BROWSER_URL = "browserUrl";
+  private String browserUrl;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -153,6 +157,33 @@ public class RootTypeForRegistry {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegistryUrl(String registryUrl) {
     this.registryUrl = registryUrl;
+  }
+
+
+  public RootTypeForRegistry browserUrl(String browserUrl) {
+    
+    this.browserUrl = browserUrl;
+    return this;
+  }
+
+   /**
+   * Get browserUrl
+   * @return browserUrl
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_BROWSER_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getBrowserUrl() {
+    return browserUrl;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_BROWSER_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBrowserUrl(String browserUrl) {
+    this.browserUrl = browserUrl;
   }
 
 
@@ -354,6 +385,7 @@ public class RootTypeForRegistry {
     return Objects.equals(this.id, rootTypeForRegistry.id) &&
         Objects.equals(this.status, rootTypeForRegistry.status) &&
         Objects.equals(this.registryUrl, rootTypeForRegistry.registryUrl) &&
+        Objects.equals(this.browserUrl, rootTypeForRegistry.browserUrl) &&
         Objects.equals(this.name, rootTypeForRegistry.name) &&
         Objects.equals(this.registryDeploymentId, rootTypeForRegistry.registryDeploymentId) &&
         Objects.equals(this.owner, rootTypeForRegistry.owner) &&
@@ -365,7 +397,7 @@ public class RootTypeForRegistry {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status, registryUrl, name, registryDeploymentId, owner, description, createdAt, updatedAt, instanceType);
+    return Objects.hash(id, status, registryUrl, browserUrl, name, registryDeploymentId, owner, description, createdAt, updatedAt, instanceType);
   }
 
   @Override
@@ -375,6 +407,7 @@ public class RootTypeForRegistry {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    registryUrl: ").append(toIndentedString(registryUrl)).append("\n");
+    sb.append("    browserUrl: ").append(toIndentedString(browserUrl)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    registryDeploymentId: ").append(toIndentedString(registryDeploymentId)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");

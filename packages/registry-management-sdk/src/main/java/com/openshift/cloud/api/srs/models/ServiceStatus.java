@@ -29,39 +29,39 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "Schema for the service status response body")
 @JsonPropertyOrder({
-  ServiceStatus.JSON_PROPERTY_MAX_EVAL_INSTANCES_REACHED
+  ServiceStatus.JSON_PROPERTY_MAX_INSTANCES_REACHED
 })
 @JsonTypeName("ServiceStatus")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ServiceStatus {
-  public static final String JSON_PROPERTY_MAX_EVAL_INSTANCES_REACHED = "max_eval_instances_reached";
-  private Boolean maxEvalInstancesReached;
+  public static final String JSON_PROPERTY_MAX_INSTANCES_REACHED = "max_instances_reached";
+  private Boolean maxInstancesReached;
 
 
-  public ServiceStatus maxEvalInstancesReached(Boolean maxEvalInstancesReached) {
+  public ServiceStatus maxInstancesReached(Boolean maxInstancesReached) {
     
-    this.maxEvalInstancesReached = maxEvalInstancesReached;
+    this.maxInstancesReached = maxInstancesReached;
     return this;
   }
 
    /**
-   * Boolean property indicating if the maximum number of Trial instances have been reached, therefore creation of more eval instances should not be allowed.
-   * @return maxEvalInstancesReached
+   * Boolean property indicating if the maximum number of total instances have been reached, therefore creation of more instances should not be allowed.
+   * @return maxInstancesReached
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Boolean property indicating if the maximum number of Trial instances have been reached, therefore creation of more eval instances should not be allowed.")
-  @JsonProperty(JSON_PROPERTY_MAX_EVAL_INSTANCES_REACHED)
+  @ApiModelProperty(value = "Boolean property indicating if the maximum number of total instances have been reached, therefore creation of more instances should not be allowed.")
+  @JsonProperty(JSON_PROPERTY_MAX_INSTANCES_REACHED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Boolean getMaxEvalInstancesReached() {
-    return maxEvalInstancesReached;
+  public Boolean getMaxInstancesReached() {
+    return maxInstancesReached;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MAX_EVAL_INSTANCES_REACHED)
+  @JsonProperty(JSON_PROPERTY_MAX_INSTANCES_REACHED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxEvalInstancesReached(Boolean maxEvalInstancesReached) {
-    this.maxEvalInstancesReached = maxEvalInstancesReached;
+  public void setMaxInstancesReached(Boolean maxInstancesReached) {
+    this.maxInstancesReached = maxInstancesReached;
   }
 
 
@@ -74,19 +74,19 @@ public class ServiceStatus {
       return false;
     }
     ServiceStatus serviceStatus = (ServiceStatus) o;
-    return Objects.equals(this.maxEvalInstancesReached, serviceStatus.maxEvalInstancesReached);
+    return Objects.equals(this.maxInstancesReached, serviceStatus.maxInstancesReached);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(maxEvalInstancesReached);
+    return Objects.hash(maxInstancesReached);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ServiceStatus {\n");
-    sb.append("    maxEvalInstancesReached: ").append(toIndentedString(maxEvalInstancesReached)).append("\n");
+    sb.append("    maxInstancesReached: ").append(toIndentedString(maxInstancesReached)).append("\n");
     sb.append("}");
     return sb.toString();
   }

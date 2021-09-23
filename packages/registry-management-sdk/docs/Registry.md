@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **href** | **String** |  |  [optional]
 **status** | **RegistryStatusValue** |  | 
 **registryUrl** | **String** |  |  [optional]
+**browserUrl** | **String** |  |  [optional]
 **name** | **String** | User-defined Registry name. Does not have to be unique. |  [optional]
 **registryDeploymentId** | **Integer** | Identifier of a multi-tenant deployment, where this Service Registry instance resides. |  [optional]
 **owner** | **String** | Registry instance owner |  [optional]
