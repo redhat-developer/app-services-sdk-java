@@ -26,15 +26,15 @@ You can view all SDK packages directly in [GitHub](https://github.com/orgs/redha
 
 | Name             | Artifact Id                        | Status | Version           | Package            | Docs               |
 | ---------------- | :--------------------------------- | :----- | ----------------- | ------------------ | ------------------ |
-| kafka            | **kafka-management-sdk**           | beta   | TBA               | [info](./packages/kafka-management-sdk/README.md)                | [doc][kafkagit]    |
-| service registry | **registry-management-sdk**        | alpha  | TBA               | [info](./packages/registry-management-sdk/README.md)                | [doc][registrygit] |
-| service accounts | **kafka-management-sdk**           | alpha  | TBA               | [info](./packages/kafka-management-sdk/README.md)                | [doc][kafkagit]    |
+| kafka            | **kafka-management-sdk**           | beta   | 1.1.2             | [info](./packages/kafka-management-sdk/)                | [doc][kafkagit]    |
+| service registry | **registry-management-sdk**        | alpha  | 0.0.6             | [info](./packages/registry-management-sdk/)                | [doc][registrygit] |
+| service accounts | **kafka-management-sdk**           | alpha  | 1.1.2             | [info](./packages/kafka-management-sdk/)                | [doc][kafkagit]    |
 
 ## Instances SDK's
 
 | Name             | Package name                  | Status | Version            |  Package            | Docs                |
 | ---------------- | :---------------------------- | :----- | ------------------ | ------------------- | ------------------- |
-| kafka            | **kafka-instance-sdk**        | beta   | TBA                | [info](./packages/kafka-instance-sdk/README.md)                 | [doc][kinstancegit] |
+| kafka            | **kafka-instance-sdk**        | beta   | 1.1.2              | [info](./packages/kafka-instance-sdk/)                 | [doc][kinstancegit] |
 | service registry | TBA                           | TBA    | TBA                | TBA                 | TBA                 |
 
 ## Docs
