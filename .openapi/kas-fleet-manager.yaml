@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
   title: Kafka Service Fleet Manager
-  version: 1.1.2
+  version: 1.1.3
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
 servers:
   - url: https://api.openshift.com
@@ -25,6 +25,33 @@ paths:
                 $ref: '#/components/schemas/VersionMetadata'
           description: Version metadata
       summary: Returns the version metadata
+  
+  /api/kafkas_mgmt/v1/errors/{id}:
+    get:
+      operationId: getErrorById
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Get error by Id
+      summary: Returns the error by id    
+      parameters:
+      - $ref: "#/components/parameters/id"
+
+  /api/kafkas_mgmt/v1/errors:
+    get:
+      operationId: getErrors
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorList'
+          description: List of possible errors
+      summary: Returns the list of possible API errors
+      
   /api/kafkas_mgmt/v1/status:
     get:
       operationId: getServiceStatus
