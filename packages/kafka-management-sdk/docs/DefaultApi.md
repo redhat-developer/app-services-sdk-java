@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**deleteKafkaById**](DefaultApi.md#deleteKafkaById) | **DELETE** /api/kafkas_mgmt/v1/kafkas/{id} | Deletes a Kafka request by ID
 [**getCloudProviderRegions**](DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | Returns the list of supported regions of the supported cloud provider
 [**getCloudProviders**](DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | Returns the list of supported cloud providers
+[**getErrorById**](DefaultApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | Returns the error by id
+[**getErrors**](DefaultApi.md#getErrors) | **GET** /api/kafkas_mgmt/v1/errors | Returns the list of possible API errors
 [**getKafkaById**](DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | Returns a Kafka request by ID
 [**getKafkas**](DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | Returns a list of Kafka requests
 [**getMetricsByInstantQuery**](DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | Returns metrics with instant query by Kafka ID
@@ -317,6 +319,130 @@ Name | Type | Description  | Notes
 | **200** | Returned list of supported cloud providers |  -  |
 | **401** | Auth token is invalid |  -  |
 | **500** | Unexpected error occurred |  -  |
+
+
+## getErrorById
+
+> Error getErrorById(id)
+
+Returns the error by id
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.kas.invoker.ApiClient;
+import com.openshift.cloud.api.kas.invoker.ApiException;
+import com.openshift.cloud.api.kas.invoker.Configuration;
+import com.openshift.cloud.api.kas.invoker.models.*;
+import com.openshift.cloud.api.kas.DefaultApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        String id = "id_example"; // String | The ID of record
+        try {
+            Error result = apiInstance.getErrorById(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getErrorById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The ID of record |
+
+### Return type
+
+[**Error**](Error.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get error by Id |  -  |
+
+
+## getErrors
+
+> ErrorList getErrors()
+
+Returns the list of possible API errors
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.kas.invoker.ApiClient;
+import com.openshift.cloud.api.kas.invoker.ApiException;
+import com.openshift.cloud.api.kas.invoker.Configuration;
+import com.openshift.cloud.api.kas.invoker.models.*;
+import com.openshift.cloud.api.kas.DefaultApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        try {
+            ErrorList result = apiInstance.getErrors();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getErrors");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ErrorList**](ErrorList.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | List of possible errors |  -  |
 
 
 ## getKafkaById
