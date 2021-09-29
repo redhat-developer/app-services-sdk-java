@@ -2,7 +2,7 @@
 
 Kafka Service Fleet Manager
 
-- API version: 1.1.2
+- API version: 1.1.3
 
 Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-management-sdk</artifactId>
-  <version>1.1.2</version>
+  <version>1.1.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -50,7 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.redhat.cloud:kafka-management-sdk:1.1.2"
+compile "com.redhat.cloud:kafka-management-sdk:1.1.3"
 ```
 
 ### Others
@@ -63,7 +63,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-management-sdk-1.1.2.jar`
+- `target/kafka-management-sdk-1.1.3.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -115,6 +115,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**deleteKafkaById**](docs/DefaultApi.md#deleteKafkaById) | **DELETE** /api/kafkas_mgmt/v1/kafkas/{id} | Deletes a Kafka request by ID
 *DefaultApi* | [**getCloudProviderRegions**](docs/DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | Returns the list of supported regions of the supported cloud provider
 *DefaultApi* | [**getCloudProviders**](docs/DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | Returns the list of supported cloud providers
+*DefaultApi* | [**getErrorById**](docs/DefaultApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | Returns the error by id
+*DefaultApi* | [**getErrors**](docs/DefaultApi.md#getErrors) | **GET** /api/kafkas_mgmt/v1/errors | Returns the list of possible API errors
 *DefaultApi* | [**getKafkaById**](docs/DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | Returns a Kafka request by ID
 *DefaultApi* | [**getKafkas**](docs/DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | Returns a list of Kafka requests
 *DefaultApi* | [**getMetricsByInstantQuery**](docs/DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | Returns metrics with instant query by Kafka ID
