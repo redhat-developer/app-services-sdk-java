@@ -36,9 +36,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Get error by Id
-      summary: Returns the error by id    
+      summary: Returns the error by id
+      tags:
+        - errors    
       parameters:
-      - $ref: "#/components/parameters/id"
+       - $ref: "#/components/parameters/id"
 
   /api/kafkas_mgmt/v1/errors:
     get:
@@ -51,6 +53,8 @@ paths:
                 $ref: '#/components/schemas/ErrorList'
           description: List of possible errors
       summary: Returns the list of possible API errors
+      tags:
+        - errors
       
   /api/kafkas_mgmt/v1/status:
     get:
@@ -559,7 +563,7 @@ paths:
       tags:
         - security
       summary: Creates a service account
-  '/api/kafkas_mgmt/v1/service_accounts/{id}':
+  /api/kafkas_mgmt/v1/service_accounts/{id}:
     get:
       parameters:
         - $ref: "#/components/parameters/id"
@@ -623,7 +627,7 @@ paths:
       tags:
         - security
       summary: Deletes a service account by ID
-  '/api/kafkas_mgmt/v1/service_accounts/{id}/reset_credentials':
+  /api/kafkas_mgmt/v1/service_accounts/{id}/reset_credentials:
     post:
       parameters:
         - $ref: "#/components/parameters/id"
