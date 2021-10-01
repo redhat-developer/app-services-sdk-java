@@ -115,8 +115,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**deleteKafkaById**](docs/DefaultApi.md#deleteKafkaById) | **DELETE** /api/kafkas_mgmt/v1/kafkas/{id} | Deletes a Kafka request by ID
 *DefaultApi* | [**getCloudProviderRegions**](docs/DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | Returns the list of supported regions of the supported cloud provider
 *DefaultApi* | [**getCloudProviders**](docs/DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | Returns the list of supported cloud providers
-*DefaultApi* | [**getErrorById**](docs/DefaultApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | Returns the error by id
-*DefaultApi* | [**getErrors**](docs/DefaultApi.md#getErrors) | **GET** /api/kafkas_mgmt/v1/errors | Returns the list of possible API errors
 *DefaultApi* | [**getKafkaById**](docs/DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | Returns a Kafka request by ID
 *DefaultApi* | [**getKafkas**](docs/DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | Returns a list of Kafka requests
 *DefaultApi* | [**getMetricsByInstantQuery**](docs/DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | Returns metrics with instant query by Kafka ID
@@ -124,6 +122,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getServiceStatus**](docs/DefaultApi.md#getServiceStatus) | **GET** /api/kafkas_mgmt/v1/status | Returns the status of resources, such as whether maximum service capacity has been reached
 *DefaultApi* | [**getVersionMetadata**](docs/DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | Returns the version metadata
 *DefaultApi* | [**updateKafkaById**](docs/DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | Update a Kafka instance by id
+*ErrorsApi* | [**getErrorById**](docs/ErrorsApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | Returns the error by id
+*ErrorsApi* | [**getErrors**](docs/ErrorsApi.md#getErrors) | **GET** /api/kafkas_mgmt/v1/errors | Returns the list of possible API errors
 *SecurityApi* | [**createServiceAccount**](docs/SecurityApi.md#createServiceAccount) | **POST** /api/kafkas_mgmt/v1/service_accounts | Creates a service account
 *SecurityApi* | [**deleteServiceAccountById**](docs/SecurityApi.md#deleteServiceAccountById) | **DELETE** /api/kafkas_mgmt/v1/service_accounts/{id} | Deletes a service account by ID
 *SecurityApi* | [**getServiceAccountById**](docs/SecurityApi.md#getServiceAccountById) | **GET** /api/kafkas_mgmt/v1/service_accounts/{id} | Returned service account by ID
