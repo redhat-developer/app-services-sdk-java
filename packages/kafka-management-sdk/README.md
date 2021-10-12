@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**createKafka**](docs/DefaultApi.md#createKafka) | **POST** /api/kafkas_mgmt/v1/kafkas | Creates a Kafka request
 *DefaultApi* | [**deleteKafkaById**](docs/DefaultApi.md#deleteKafkaById) | **DELETE** /api/kafkas_mgmt/v1/kafkas/{id} | Deletes a Kafka request by ID
+*DefaultApi* | [**federateMetrics**](docs/DefaultApi.md#federateMetrics) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate | Returns all metrics in scrapeable format for a given kafka id
 *DefaultApi* | [**getCloudProviderRegions**](docs/DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | Returns the list of supported regions of the supported cloud provider
 *DefaultApi* | [**getCloudProviders**](docs/DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | Returns the list of supported cloud providers
 *DefaultApi* | [**getKafkaById**](docs/DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | Returns a Kafka request by ID
