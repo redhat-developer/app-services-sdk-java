@@ -1456,7 +1456,7 @@ components:
         operation_id: "1iWIimqGcrDuL61aUxIZqBTqNRa"
     400InvalidQueryExample:
       value:
-        id: "203"
+        id: "23"
         kind: "Error"
         href: "/api/kafkas_mgmt/v1/errors/23"
         code: "KAFKAS-MGMT-23"
@@ -1472,7 +1472,7 @@ components:
         operation_id: "1lWDGuybIrEnxrAem724gqkkiDv"
     404Example:
       value:
-        id: "404"
+        id: "7"
         kind: "Error"
         href: "/api/kafkas_mgmt/v1/errors/7"
         code: "KAFKAS-MGMT-7"
