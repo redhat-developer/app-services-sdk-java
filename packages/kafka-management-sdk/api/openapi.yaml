@@ -1009,6 +1009,65 @@ paths:
       - Bearer: []
       summary: Returns metrics with instant query by Kafka ID
       x-accepts: application/json
+  /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate:
+    get:
+      operationId: federateMetrics
+      parameters:
+      - description: The ID of record
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: Returned Kafka metrics in a Prometheus text format
+        "400":
+          content:
+            application/json:
+              examples:
+                MissingParameterExample:
+                  $ref: '#/components/examples/400MissingParameterExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              examples:
+                "401Example":
+                  $ref: '#/components/examples/401Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Auth token is invalid
+        "404":
+          content:
+            application/json:
+              examples:
+                "404Example":
+                  $ref: '#/components/examples/404Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka id not found
+        "500":
+          content:
+            application/json:
+              examples:
+                "500Example":
+                  $ref: '#/components/examples/500Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error occurred
+      security:
+      - Bearer: []
+      summary: Returns all metrics in scrapeable format for a given kafka id
+      x-accepts: application/json
 components:
   examples:
     USRegionExample:
@@ -1148,6 +1207,14 @@ components:
           KAFKAS-MGMT-23: Failed to parse search query: Unsupported column name for
           search: ''id''. Supported column names are: region, name, cloud_provider,
           name, status. Query invalid: id = 123'
+        operation_id: 1lWDGuybIrEnxrAem724gqkkiDv
+    "400MissingParameterExample":
+      value:
+        id: "21"
+        kind: Error
+        href: /api/kafkas_mgmt/v1/errors/21
+        code: KAFKAS-MGMT-21
+        reason: 'missing path parameter: kafka id'
         operation_id: 1lWDGuybIrEnxrAem724gqkkiDv
     "404Example":
       value:
@@ -1552,6 +1619,8 @@ components:
     MetricsInstantQueryList:
       allOf:
       - $ref: '#/components/schemas/MetricsInstantQueryList_allOf'
+    MetricsFederationResult:
+      type: string
     InstantQuery:
       properties:
         metric:

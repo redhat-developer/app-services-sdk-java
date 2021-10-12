@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createKafka**](DefaultApi.md#createKafka) | **POST** /api/kafkas_mgmt/v1/kafkas | Creates a Kafka request
 [**deleteKafkaById**](DefaultApi.md#deleteKafkaById) | **DELETE** /api/kafkas_mgmt/v1/kafkas/{id} | Deletes a Kafka request by ID
+[**federateMetrics**](DefaultApi.md#federateMetrics) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate | Returns all metrics in scrapeable format for a given kafka id
 [**getCloudProviderRegions**](DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | Returns the list of supported regions of the supported cloud provider
 [**getCloudProviders**](DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | Returns the list of supported cloud providers
 [**getKafkaById**](DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | Returns a Kafka request by ID
@@ -168,6 +169,79 @@ Name | Type | Description  | Notes
 | **401** | Auth token is invalid |  -  |
 | **403** | User not authorized to access the service |  -  |
 | **404** | No Kafka request with specified ID exists |  -  |
+| **500** | Unexpected error occurred |  -  |
+
+
+## federateMetrics
+
+> String federateMetrics(id)
+
+Returns all metrics in scrapeable format for a given kafka id
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.kas.invoker.ApiClient;
+import com.openshift.cloud.api.kas.invoker.ApiException;
+import com.openshift.cloud.api.kas.invoker.Configuration;
+import com.openshift.cloud.api.kas.invoker.auth.*;
+import com.openshift.cloud.api.kas.invoker.models.*;
+import com.openshift.cloud.api.kas.DefaultApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+        
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        String id = "id_example"; // String | The ID of record
+        try {
+            String result = apiInstance.federateMetrics(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#federateMetrics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The ID of record |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returned Kafka metrics in a Prometheus text format |  -  |
+| **400** | Bad request |  -  |
+| **401** | Auth token is invalid |  -  |
+| **404** | Kafka id not found |  -  |
 | **500** | Unexpected error occurred |  -  |
 
 
