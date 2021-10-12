@@ -25,7 +25,7 @@ paths:
                 $ref: '#/components/schemas/VersionMetadata'
           description: Version metadata
       summary: Returns the version metadata
-  
+
   /api/kafkas_mgmt/v1/errors/{id}:
     get:
       operationId: getErrorById
@@ -38,9 +38,9 @@ paths:
           description: Get error by Id
       summary: Returns the error by id
       tags:
-        - errors    
+        - errors
       parameters:
-       - $ref: "#/components/parameters/id"
+        - $ref: "#/components/parameters/id"
 
   /api/kafkas_mgmt/v1/errors:
     get:
@@ -55,7 +55,7 @@ paths:
       summary: Returns the list of possible API errors
       tags:
         - errors
-      
+
   /api/kafkas_mgmt/v1/status:
     get:
       operationId: getServiceStatus
@@ -77,7 +77,7 @@ paths:
                   $ref: '#/components/examples/500Example'
       summary: Returns the status of resources, such as whether maximum service capacity has been reached
       security:
-        - Bearer: []
+        - Bearer: [ ]
   /api/kafkas_mgmt/v1/kafkas/{id}:
     get:
       operationId: getKafkaById
@@ -130,7 +130,7 @@ paths:
                   $ref: '#/components/examples/500Example'
           description: Unexpected error occurred
       security:
-        - Bearer: []
+        - Bearer: [ ]
       summary: Returns a Kafka request by ID
     delete:
       operationId: deleteKafkaById
@@ -197,11 +197,11 @@ paths:
           description: Unexpected error occurred
       summary: Deletes a Kafka request by ID
       security:
-        - Bearer: []
+        - Bearer: [ ]
     patch:
       summary: Update a Kafka instance by id
       security:
-        - Bearer: []
+        - Bearer: [ ]
       operationId: updateKafkaById
       requestBody:
         description: Update owner of kafka
@@ -343,13 +343,13 @@ paths:
                   $ref: '#/components/examples/500Example'
           description: An unexpected error occurred while creating the Kafka request
       security:
-        - Bearer: []
+        - Bearer: [ ]
       summary: Creates a Kafka request
     get:
       summary: Returns a list of Kafka requests
       operationId: getKafkas
       security:
-        - Bearer: []
+        - Bearer: [ ]
       responses:
         "200":
           description: A list of Kafka requests
@@ -403,7 +403,7 @@ paths:
       summary: Returns the list of supported cloud providers
       operationId: getCloudProviders
       security:
-        - Bearer: []
+        - Bearer: [ ]
       responses:
         '200':
           description: Returned list of supported cloud providers
@@ -437,7 +437,7 @@ paths:
       summary: Returns the list of supported regions of the supported cloud provider
       operationId: getCloudProviderRegions
       security:
-        - Bearer: []
+        - Bearer: [ ]
       responses:
         '200':
           description: Returned list of supported cloud provider regions
@@ -504,7 +504,7 @@ paths:
                   $ref: '#/components/examples/500Example'
           description: Unexpected error occurred
       security:
-        - Bearer: []
+        - Bearer: [ ]
       tags:
         - security
       operationId: getServiceAccounts
@@ -558,7 +558,7 @@ paths:
                   $ref: '#/components/examples/500Example'
           description: Unexpected error occurred
       security:
-        - Bearer: []
+        - Bearer: [ ]
       operationId: createServiceAccount
       tags:
         - security
@@ -578,7 +578,7 @@ paths:
                   $ref: '#/components/examples/ServiceAccountByIdExample'
           description: Returns a service account by ID
       security:
-        - Bearer: []
+        - Bearer: [ ]
       operationId: getServiceAccountById
       tags:
         - security
@@ -616,13 +616,13 @@ paths:
         '500':
           content:
             application/json:
-              schema: {}
+              schema: { }
               examples:
                 500Example:
                   $ref: '#/components/examples/500Example'
           description: Unexpected error occurred
       security:
-        - Bearer: []
+        - Bearer: [ ]
       operationId: deleteServiceAccountById
       tags:
         - security
@@ -662,13 +662,13 @@ paths:
         '500':
           content:
             application/json:
-              schema: {}
+              schema: { }
               examples:
                 500Example:
                   $ref: '#/components/examples/500Example'
           description: Unexpected error occurred
       security:
-        - Bearer: []
+        - Bearer: [ ]
       operationId: resetServiceAccountCreds
       tags:
         - security
@@ -681,7 +681,7 @@ paths:
       summary: Returns metrics with timeseries range query by Kafka ID
       operationId: getMetricsByRangeQuery
       security:
-        - Bearer: []
+        - Bearer: [ ]
       responses:
         '200':
           description: Returned JSON array of Prometheus metrics objects from observatorium
@@ -717,7 +717,7 @@ paths:
       summary: Returns metrics with instant query by Kafka ID
       operationId: getMetricsByInstantQuery
       security:
-        - Bearer: []
+        - Bearer: [ ]
       responses:
         '200':
           description: Returned JSON array of Prometheus metrics objects from observatorium
@@ -746,7 +746,57 @@ paths:
       parameters:
         - $ref: "#/components/parameters/id"
         - $ref: "#/components/parameters/filters"
-
+  /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate:
+    get:
+      summary: Returns all metrics in scrapeable format for a given kafka id
+      operationId: federateMetrics
+      security:
+        - Bearer: [ ]
+      responses:
+        '200':
+          description: Returned Kafka metrics in a Prometheus text format
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                MissingParameterExample:
+                  $ref: '#/components/examples/400MissingParameterExample'
+        '401':
+          description: Auth token is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                401Example:
+                  $ref: '#/components/examples/401Example'
+        '404':
+          description: Kafka id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                404Example:
+                  $ref: '#/components/examples/404Example'
+        '500':
+          description: Unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                500Example:
+                  $ref: '#/components/examples/500Example'
+      parameters:
+        - $ref: "#/components/parameters/id"
 
 components:
   schemas:
@@ -1115,6 +1165,8 @@ components:
               items:
                 allOf:
                   - $ref: "#/components/schemas/InstantQuery"
+    MetricsFederationResult:
+      type: string
     InstantQuery:
       type: object
       properties:
@@ -1150,7 +1202,7 @@ components:
     duration:
       name: duration
       in: query
-      description:  The length of time in minutes for which to return the metrics
+      description: The length of time in minutes for which to return the metrics
       required: true
       schema:
         type: integer
@@ -1183,7 +1235,7 @@ components:
         type: array
         items:
           type: string
-        default: []
+        default: [ ]
     page:
       name: page
       in: query
@@ -1294,7 +1346,7 @@ components:
         cloud_provider: "aws"
         multi_az: true
         region: "us-east-1"
-        owner:  "api_kafka_service"
+        owner: "api_kafka_service"
         name: "serviceapi"
         bootstrap_server_host: "serviceapi-1isy6rq3jki8q0otmjqfd3ocfrg.apps.mk-bttg0jn170hp.x5u8.s1.devshift.org"
         created_at: "2020-10-05T12:51:24.053142Z"
@@ -1310,7 +1362,7 @@ components:
         cloud_provider: "aws"
         multi_az: true
         region: "us-east-1"
-        owner:  "api_kafka_service"
+        owner: "api_kafka_service"
         name: "serviceapi"
         bootstrap_server_host: "serviceapi-1isy6rq3jki8q0otmjqfd3ocfrg.apps.mk-bttg0jn170hp.x5u8.s1.devshift.org"
         created_at: "2020-10-05T12:51:24.053142Z"
@@ -1409,6 +1461,14 @@ components:
         href: "/api/kafkas_mgmt/v1/errors/23"
         code: "KAFKAS-MGMT-23"
         reason: "Failed to parse search query: Unable to list Kafka requests for api_kafka_service: KAFKAS-MGMT-23: Failed to parse search query: Unsupported column name for search: 'id'. Supported column names are: region, name, cloud_provider, name, status. Query invalid: id = 123"
+        operation_id: "1lWDGuybIrEnxrAem724gqkkiDv"
+    400MissingParameterExample:
+      value:
+        id: "21"
+        kind: "Error"
+        href: "/api/kafkas_mgmt/v1/errors/21"
+        code: "KAFKAS-MGMT-21"
+        reason: "missing path parameter: kafka id"
         operation_id: "1lWDGuybIrEnxrAem724gqkkiDv"
     404Example:
       value:
