@@ -848,7 +848,7 @@ components:
         The literal prefix value of `User:` is required. May be used to specify
         all users with value `User:*`.
       type: string
-      pattern: '^User:(\*|[a-zA-Z0-9_-]+)$'
+      pattern: '^User:(\*|[a-zA-Z0-9_@.-]+)$'
       example: 'User:user-123-abc'
     Topic:
       title: Root Type for NewTopicInput
