@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @ApiModel(description = "Kafka topic partition")
 @JsonPropertyOrder({
-  Partition.JSON_PROPERTY_ID,
+  Partition.JSON_PROPERTY_PARTITION,
   Partition.JSON_PROPERTY_REPLICAS,
   Partition.JSON_PROPERTY_ISR,
   Partition.JSON_PROPERTY_LEADER
@@ -39,8 +39,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonTypeName("Partition")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Partition {
-  public static final String JSON_PROPERTY_ID = "id";
-  private Integer id;
+  public static final String JSON_PROPERTY_PARTITION = "partition";
+  private Integer partition;
 
   public static final String JSON_PROPERTY_REPLICAS = "replicas";
   private List<Object> replicas = null;
@@ -52,29 +52,29 @@ public class Partition {
   private Object leader;
 
 
-  public Partition id(Integer id) {
+  public Partition partition(Integer partition) {
     
-    this.id = id;
+    this.partition = partition;
     return this;
   }
 
    /**
-   * Uniquie id for the partition
-   * @return id
+   * The partition id, unique among partitions of the same topic
+   * @return partition
   **/
-  @ApiModelProperty(required = true, value = "Uniquie id for the partition")
-  @JsonProperty(JSON_PROPERTY_ID)
+  @ApiModelProperty(required = true, value = "The partition id, unique among partitions of the same topic")
+  @JsonProperty(JSON_PROPERTY_PARTITION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Integer getId() {
-    return id;
+  public Integer getPartition() {
+    return partition;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_PARTITION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(Integer id) {
-    this.id = id;
+  public void setPartition(Integer partition) {
+    this.partition = partition;
   }
 
 
@@ -128,11 +128,11 @@ public class Partition {
   }
 
    /**
-   * List isync-replicas for this partition.
+   * List in-sync replicas for this partition.
    * @return isr
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "List isync-replicas for this partition.")
+  @ApiModelProperty(value = "List in-sync replicas for this partition.")
   @JsonProperty(JSON_PROPERTY_ISR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -184,7 +184,7 @@ public class Partition {
       return false;
     }
     Partition partition = (Partition) o;
-    return Objects.equals(this.id, partition.id) &&
+    return Objects.equals(this.partition, partition.partition) &&
         Objects.equals(this.replicas, partition.replicas) &&
         Objects.equals(this.isr, partition.isr) &&
         Objects.equals(this.leader, partition.leader);
@@ -192,14 +192,14 @@ public class Partition {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, replicas, isr, leader);
+    return Objects.hash(partition, replicas, isr, leader);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Partition {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    partition: ").append(toIndentedString(partition)).append("\n");
     sb.append("    replicas: ").append(toIndentedString(replicas)).append("\n");
     sb.append("    isr: ").append(toIndentedString(isr)).append("\n");
     sb.append("    leader: ").append(toIndentedString(leader)).append("\n");

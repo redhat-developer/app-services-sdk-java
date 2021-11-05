@@ -1518,8 +1518,8 @@ components:
         leader:
           id: 1
       properties:
-        id:
-          description: Uniquie id for the partition
+        partition:
+          description: The partition id, unique among partitions of the same topic
           type: integer
         replicas:
           description: List of replicas for the partition
@@ -1527,7 +1527,7 @@ components:
             $ref: '#/components/schemas/Node'
           type: array
         isr:
-          description: List isync-replicas for this partition.
+          description: List in-sync replicas for this partition.
           items:
             $ref: '#/components/schemas/Node'
           type: array
@@ -1535,7 +1535,7 @@ components:
           description: Kafka server / broker.
           type: object
       required:
-      - id
+      - partition
       type: object
     ConfigEntry:
       description: Key value pair indicating possible configuration options for a
