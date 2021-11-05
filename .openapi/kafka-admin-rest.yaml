@@ -897,19 +897,23 @@ components:
     Partition:
       description: Kafka topic partition
       required:
-        - id
+        - partition
       type: object
       properties:
-        id:
-          description: Uniquie id for the partition
+        partition:
+          description: The partition id, unique among partitions of the same topic
           type: integer
+        id:
+          description: Unique id for the partition (deprecated, use `partition` instead)
+          type: integer
+          deprecated: true
         replicas:
           description: List of replicas for the partition
           type: array
           items:
             $ref: '#/components/schemas/Node'
         isr:
-          description: List isync-replicas for this partition.
+          description: List in-sync replicas for this partition.
           type: array
           items:
             $ref: '#/components/schemas/Node'
