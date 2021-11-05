@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
   title: Kafka Service Fleet Manager
-  version: 1.1.3
+  version: 1.2.0
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -1096,6 +1096,7 @@ components:
         updated_at: 2020-10-05T12:56:36.362208Z
         version: 2.6.0
         instance_type: standard
+        reauthentication_enabled: true
     KafkaRequestFailedCreationStatusExample:
       value:
         id: 1iSY6RQ3JKI8Q0OTmjQFd3ocFRg
@@ -1112,6 +1113,7 @@ components:
         updated_at: 2020-10-05T12:56:36.362208Z
         failed_reason: a reason the Kafka request creation failed
         instance_type: standard
+        reauthentication_enabled: true
     CloudProviderExample:
       value:
         kind: CloudProvider
@@ -1493,6 +1495,7 @@ components:
     KafkaRequestPayload:
       description: Schema for the request body sent to /kafkas POST
       example:
+        reauthentication_enabled: true
         multi_az: true
         name: name
         cloud_provider: cloud_provider
@@ -1513,6 +1516,12 @@ components:
         region:
           description: The region where the Kafka cluster will be created in
           type: string
+        reauthentication_enabled:
+          description: Whether connection reauthentication is enabled or not. If set
+            to true, connection reauthentication on the Kafka instance will be required
+            every 5 minutes. The default value is true
+          nullable: true
+          type: boolean
       required:
       - name
       type: object
@@ -1639,11 +1648,17 @@ components:
     KafkaUpdateRequest:
       example:
         owner: owner
+        reauthentication_enabled: true
       properties:
         owner:
+          nullable: true
           type: string
-      required:
-      - owner
+        reauthentication_enabled:
+          description: Whether connection reauthentication is enabled or not. If set
+            to true, connection reauthentication on the Kafka instance will be required
+            every 5 minutes.
+          nullable: true
+          type: boolean
       type: object
     Error_allOf:
       properties:
@@ -1696,6 +1711,11 @@ components:
           type: string
         instance_type:
           type: string
+        reauthentication_enabled:
+          type: boolean
+      required:
+      - multi_az
+      - reauthentication_enabled
       type: object
     KafkaRequestList_allOf:
       example:

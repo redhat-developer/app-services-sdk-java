@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **href** | **String** |  |  [optional]
 **status** | **String** | Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting]  |  [optional]
 **cloudProvider** | **String** | Name of Cloud used to deploy. For example AWS |  [optional]
-**multiAz** | **Boolean** |  |  [optional]
+**multiAz** | **Boolean** |  | 
 **region** | **String** | Values will be regions of specific cloud provider. For example: us-east-1 for AWS |  [optional]
 **owner** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **failedReason** | **String** |  |  [optional]
 **version** | **String** |  |  [optional]
 **instanceType** | **String** |  |  [optional]
+**reauthenticationEnabled** | **Boolean** |  | 
 
 
 

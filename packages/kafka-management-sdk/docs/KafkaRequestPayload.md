@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **multiAz** | **Boolean** | Set this to true to configure the Kafka cluster to be multiAZ |  [optional]
 **name** | **String** | The name of the Kafka cluster. It must consist of lower-case alphanumeric characters or &#39;-&#39;, start with an alphabetic character, and end with an alphanumeric character, and can not be longer than 32 characters. | 
 **region** | **String** | The region where the Kafka cluster will be created in |  [optional]
+**reauthenticationEnabled** | **Boolean** | Whether connection reauthentication is enabled or not. If set to true, connection reauthentication on the Kafka instance will be required every 5 minutes. The default value is true |  [optional]
 
 
 
