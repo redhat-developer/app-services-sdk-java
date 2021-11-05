@@ -21,9 +21,9 @@ jobs:
         with:
           title: "chore(openapi): update ${{ github.event.client_payload.id }} OpenAPI document"
           token: "${{ env.APP_SERVICES_TOKEN }}"
-          commit-message: "chore(openapi): update ${{ github.event.client_payload.id }} OpenAPI document"
+          commit-message: "fix(openapi): update ${{ github.event.client_payload.id }} OpenAPI document"
           author: "app-services-ci <app-services-ci@users.noreply.github.com>"
-          branch: chore/add-${{ github.event.client_payload.id }}-openapi
+          branch: add-${{ github.event.client_payload.id }}-openapi
           branch-suffix: timestamp
           reviewers: craicoverflow, wtrocki, secondsun
           body: |
