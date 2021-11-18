@@ -5,6 +5,7 @@
 
 - [Kafka Management](../packages/kafka-management-sdk/README.md)
 - [Service Registry Management](../packages/registry-management-sdk/README.md)
+- [Connector Management](../packages/connector-management-sdk/README.md)
 - [Service Accounts Management](../packages/kafka-management-sdk/README.md)
 
 ###  Service SDK's
