@@ -611,6 +611,19 @@ paths:
         schema:
           type: string
         style: form
+      - description: The Kafka instance type to filter the results by
+        examples:
+          eval_instance_type:
+            value: eval
+          standard_instance_type:
+            value: standard
+        explode: true
+        in: query
+        name: instance_type
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1432,6 +1445,20 @@ components:
       explode: true
       in: query
       name: search
+      required: false
+      schema:
+        type: string
+      style: form
+    instance_type:
+      description: The Kafka instance type to filter the results by
+      examples:
+        eval_instance_type:
+          value: eval
+        standard_instance_type:
+          value: standard
+      explode: true
+      in: query
+      name: instance_type
       required: false
       schema:
         type: string
