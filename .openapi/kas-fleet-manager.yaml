@@ -1031,8 +1031,14 @@ components:
           description: 'Whether the region is enabled for deploying an OSD cluster.'
           type: boolean
           default: false
+        supported_instance_types:
+          description: 'The Kafka instance types supported by this region.'
+          type: array
+          items: 
+            type: string
       required:
         - enabled
+        - supported_instance_types
     ServiceAccount:
       description: 'Service Account created in MAS-SSO for the Kafka Cluster for authentication'
       allOf:
@@ -1409,6 +1415,7 @@ components:
         id: "us-east-1"
         display_name: "US East, N. Virginia"
         enabled: true
+        supported_instance_types: ["standard", "eval"]
     ServiceAccountRequestExample:
       value:
         name: "my-app-sa"
