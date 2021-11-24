@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 ## getTopics
 
-> TopicsList getTopics(size, filter, page, order, orderKey)
+> TopicsList getTopics(limit, filter, page, order, orderKey)
 
 List of topics
 
@@ -266,13 +266,13 @@ public class Example {
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         TopicsApi apiInstance = new TopicsApi(defaultClient);
-        Integer size = 56; // Integer | Maximum number of topics to return on single page
+        Integer limit = 56; // Integer | Maximum number of topics to return
         String filter = "filter_example"; // String | Filter to apply when returning the list of topics
         Integer page = 56; // Integer | The page when returning the limit of requested topics.
         String order = "order_example"; // String | Order of the items sorting. Ascending order is used as default.
         String orderKey = "orderKey_example"; // String | Order key to sort the topics by.
         try {
-            TopicsList result = apiInstance.getTopics(size, filter, page, order, orderKey);
+            TopicsList result = apiInstance.getTopics(limit, filter, page, order, orderKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TopicsApi#getTopics");
@@ -290,7 +290,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **size** | **Integer**| Maximum number of topics to return on single page | [optional]
+ **limit** | **Integer**| Maximum number of topics to return | [optional]
  **filter** | **String**| Filter to apply when returning the list of topics | [optional]
  **page** | **Integer**| The page when returning the limit of requested topics. | [optional]
  **order** | **String**| Order of the items sorting. Ascending order is used as default. | [optional] [enum: asc, desc]
