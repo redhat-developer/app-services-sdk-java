@@ -129,8 +129,10 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AddonClusterTarget](docs/AddonClusterTarget.md)
+ - [AddonClusterTargetAllOf](docs/AddonClusterTargetAllOf.md)
  - [AddonParameter](docs/AddonParameter.md)
  - [CloudProviderClusterTarget](docs/CloudProviderClusterTarget.md)
+ - [CloudProviderClusterTargetAllOf](docs/CloudProviderClusterTargetAllOf.md)
  - [ClusterTarget](docs/ClusterTarget.md)
  - [Connector](docs/Connector.md)
  - [ConnectorAllOf](docs/ConnectorAllOf.md)

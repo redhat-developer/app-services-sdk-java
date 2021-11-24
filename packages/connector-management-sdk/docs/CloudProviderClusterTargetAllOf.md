@@ -1,7 +1,8 @@
 
 
-# CloudProviderClusterTarget
+# CloudProviderClusterTargetAllOf
 
+Targets workloads to a cloud provider
 
 ## Properties
 

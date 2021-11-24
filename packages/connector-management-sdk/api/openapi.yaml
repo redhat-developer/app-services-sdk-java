@@ -995,32 +995,35 @@ components:
           addon: '#/components/schemas/AddonClusterTarget'
           cloud_provider: '#/components/schemas/CloudProviderClusterTarget'
         propertyName: kind
-      oneOf:
-      - $ref: '#/components/schemas/AddonClusterTarget'
-      - $ref: '#/components/schemas/CloudProviderClusterTarget'
-    AddonClusterTarget:
-      description: Targets workloads to an addon cluster
       properties:
         kind:
-          type: string
-        cluster_id:
           type: string
       required:
       - kind
       type: object
+    AddonClusterTarget:
+      allOf:
+      - $ref: '#/components/schemas/ClusterTarget'
+      - $ref: '#/components/schemas/AddonClusterTarget_allOf'
+    AddonClusterTarget_allOf:
+      description: Targets workloads to an addon cluster
+      properties:
+        cluster_id:
+          type: string
+      type: object
     CloudProviderClusterTarget:
+      allOf:
+      - $ref: '#/components/schemas/ClusterTarget'
+      - $ref: '#/components/schemas/CloudProviderClusterTarget_allOf'
+    CloudProviderClusterTarget_allOf:
       description: Targets workloads to a cloud provider
       properties:
-        kind:
-          type: string
         cloud_provider:
           type: string
         region:
           type: string
         multi_az:
           type: boolean
-      required:
-      - kind
       type: object
     AddonParameterList:
       description: A list of addon parameters

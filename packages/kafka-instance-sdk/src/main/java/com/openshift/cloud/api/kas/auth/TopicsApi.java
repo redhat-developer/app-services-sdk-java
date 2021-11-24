@@ -171,7 +171,7 @@ public class TopicsApi {
   /**
    * List of topics
    * Returns a list of all of the available topics, or the list of topics that meet the request query parameters. The topics returned are limited to those records the requestor is authorized to view.
-   * @param limit Maximum number of topics to return (optional)
+   * @param size Maximum number of topics to return on single page (optional)
    * @param filter Filter to apply when returning the list of topics (optional)
    * @param page The page when returning the limit of requested topics. (optional)
    * @param order Order of the items sorting. Ascending order is used as default. (optional)
@@ -179,7 +179,7 @@ public class TopicsApi {
    * @return a {@code TopicsList}
    * @throws ApiException if fails to make API call
    */
-  public TopicsList getTopics(Integer limit, String filter, Integer page, String order, String orderKey) throws ApiException {
+  public TopicsList getTopics(Integer size, String filter, Integer page, String order, String orderKey) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -191,7 +191,7 @@ public class TopicsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "filter", filter));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "order", order));
