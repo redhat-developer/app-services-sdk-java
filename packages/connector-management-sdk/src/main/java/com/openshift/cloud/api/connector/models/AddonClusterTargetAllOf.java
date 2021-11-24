@@ -18,38 +18,27 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.connector.models.AddonClusterTarget;
-import com.openshift.cloud.api.connector.models.AddonClusterTargetAllOf;
-import com.openshift.cloud.api.connector.models.CloudProviderClusterTarget;
-import com.openshift.cloud.api.connector.models.ClusterTarget;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * AddonClusterTarget
+ * Targets workloads to an addon cluster
  */
+@ApiModel(description = "Targets workloads to an addon cluster")
 @JsonPropertyOrder({
-  AddonClusterTarget.JSON_PROPERTY_CLUSTER_ID
+  AddonClusterTargetAllOf.JSON_PROPERTY_CLUSTER_ID
 })
-@JsonTypeName("AddonClusterTarget")
+@JsonTypeName("AddonClusterTarget_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "kind", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = AddonClusterTarget.class, name = "addon"),
-  @JsonSubTypes.Type(value = CloudProviderClusterTarget.class, name = "cloud_provider"),
-})
-
-public class AddonClusterTarget extends ClusterTarget {
+public class AddonClusterTargetAllOf {
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
 
 
-  public AddonClusterTarget clusterId(String clusterId) {
+  public AddonClusterTargetAllOf clusterId(String clusterId) {
     
     this.clusterId = clusterId;
     return this;
@@ -84,21 +73,19 @@ public class AddonClusterTarget extends ClusterTarget {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AddonClusterTarget addonClusterTarget = (AddonClusterTarget) o;
-    return Objects.equals(this.clusterId, addonClusterTarget.clusterId) &&
-        super.equals(o);
+    AddonClusterTargetAllOf addonClusterTargetAllOf = (AddonClusterTargetAllOf) o;
+    return Objects.equals(this.clusterId, addonClusterTargetAllOf.clusterId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clusterId, super.hashCode());
+    return Objects.hash(clusterId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddonClusterTarget {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("class AddonClusterTargetAllOf {\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("}");
     return sb.toString();

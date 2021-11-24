@@ -759,34 +759,38 @@ components:
             `GET /api/connector_mgmt/v1/kafka_connector_types/{connector_type_id}`.
 
     ClusterTarget:
+      required:
+        - kind
+      properties:
+        kind:
+          type: string
+      type: object
       discriminator:
         propertyName: kind
         mapping:
           addon: "#/components/schemas/AddonClusterTarget"
           cloud_provider: "#/components/schemas/CloudProviderClusterTarget"
-      oneOf:
-        - $ref: "#/components/schemas/AddonClusterTarget"
-        - $ref: "#/components/schemas/CloudProviderClusterTarget"
 
     AddonClusterTarget:
+      allOf:
+        - $ref: "#/components/schemas/ClusterTarget"
+        - $ref: "#/components/schemas/AddonClusterTarget_allOf"
+
+    AddonClusterTarget_allOf:
       description: "Targets workloads to an addon cluster"
       type: object
-      required:
-        - kind
       properties:
-        kind:
-          type: string
         cluster_id:
           type: string
 
     CloudProviderClusterTarget:
+      allOf:
+        - $ref: "#/components/schemas/ClusterTarget"
+        - $ref: "#/components/schemas/CloudProviderClusterTarget_allOf"
+    CloudProviderClusterTarget_allOf:
       description: "Targets workloads to a cloud provider"
       type: object
-      required:
-        - kind
       properties:
-        kind:
-          type: string
         cloud_provider:
           type: string
         region:

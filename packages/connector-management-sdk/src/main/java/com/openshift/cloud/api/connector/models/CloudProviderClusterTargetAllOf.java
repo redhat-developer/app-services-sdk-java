@@ -18,35 +18,24 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.connector.models.AddonClusterTarget;
-import com.openshift.cloud.api.connector.models.CloudProviderClusterTarget;
-import com.openshift.cloud.api.connector.models.CloudProviderClusterTargetAllOf;
-import com.openshift.cloud.api.connector.models.ClusterTarget;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * CloudProviderClusterTarget
+ * Targets workloads to a cloud provider
  */
+@ApiModel(description = "Targets workloads to a cloud provider")
 @JsonPropertyOrder({
-  CloudProviderClusterTarget.JSON_PROPERTY_CLOUD_PROVIDER,
-  CloudProviderClusterTarget.JSON_PROPERTY_REGION,
-  CloudProviderClusterTarget.JSON_PROPERTY_MULTI_AZ
+  CloudProviderClusterTargetAllOf.JSON_PROPERTY_CLOUD_PROVIDER,
+  CloudProviderClusterTargetAllOf.JSON_PROPERTY_REGION,
+  CloudProviderClusterTargetAllOf.JSON_PROPERTY_MULTI_AZ
 })
-@JsonTypeName("CloudProviderClusterTarget")
+@JsonTypeName("CloudProviderClusterTarget_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "kind", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = AddonClusterTarget.class, name = "addon"),
-  @JsonSubTypes.Type(value = CloudProviderClusterTarget.class, name = "cloud_provider"),
-})
-
-public class CloudProviderClusterTarget extends ClusterTarget {
+public class CloudProviderClusterTargetAllOf {
   public static final String JSON_PROPERTY_CLOUD_PROVIDER = "cloud_provider";
   private String cloudProvider;
 
@@ -57,7 +46,7 @@ public class CloudProviderClusterTarget extends ClusterTarget {
   private Boolean multiAz;
 
 
-  public CloudProviderClusterTarget cloudProvider(String cloudProvider) {
+  public CloudProviderClusterTargetAllOf cloudProvider(String cloudProvider) {
     
     this.cloudProvider = cloudProvider;
     return this;
@@ -84,7 +73,7 @@ public class CloudProviderClusterTarget extends ClusterTarget {
   }
 
 
-  public CloudProviderClusterTarget region(String region) {
+  public CloudProviderClusterTargetAllOf region(String region) {
     
     this.region = region;
     return this;
@@ -111,7 +100,7 @@ public class CloudProviderClusterTarget extends ClusterTarget {
   }
 
 
-  public CloudProviderClusterTarget multiAz(Boolean multiAz) {
+  public CloudProviderClusterTargetAllOf multiAz(Boolean multiAz) {
     
     this.multiAz = multiAz;
     return this;
@@ -146,23 +135,21 @@ public class CloudProviderClusterTarget extends ClusterTarget {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CloudProviderClusterTarget cloudProviderClusterTarget = (CloudProviderClusterTarget) o;
-    return Objects.equals(this.cloudProvider, cloudProviderClusterTarget.cloudProvider) &&
-        Objects.equals(this.region, cloudProviderClusterTarget.region) &&
-        Objects.equals(this.multiAz, cloudProviderClusterTarget.multiAz) &&
-        super.equals(o);
+    CloudProviderClusterTargetAllOf cloudProviderClusterTargetAllOf = (CloudProviderClusterTargetAllOf) o;
+    return Objects.equals(this.cloudProvider, cloudProviderClusterTargetAllOf.cloudProvider) &&
+        Objects.equals(this.region, cloudProviderClusterTargetAllOf.region) &&
+        Objects.equals(this.multiAz, cloudProviderClusterTargetAllOf.multiAz);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cloudProvider, region, multiAz, super.hashCode());
+    return Objects.hash(cloudProvider, region, multiAz);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CloudProviderClusterTarget {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("class CloudProviderClusterTargetAllOf {\n");
     sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
     sb.append("    multiAz: ").append(toIndentedString(multiAz)).append("\n");
