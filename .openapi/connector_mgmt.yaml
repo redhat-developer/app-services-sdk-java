@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "kas-fleet-manager-private.yaml" file
 info:
   title: Connector Service Fleet Manager
-  version: 0.0.3
+  version: 0.0.4
   description: Connector Service Fleet Manager is a Rest API to manage connectors.
 servers:
   - url: https://api.openshift.com
