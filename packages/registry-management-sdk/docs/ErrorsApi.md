@@ -22,7 +22,6 @@ Get information about a specific error type.
 import com.openshift.cloud.api.srs.invoker.ApiClient;
 import com.openshift.cloud.api.srs.invoker.ApiException;
 import com.openshift.cloud.api.srs.invoker.Configuration;
-import com.openshift.cloud.api.srs.invoker.auth.*;
 import com.openshift.cloud.api.srs.invoker.models.*;
 import com.openshift.cloud.api.srs.ErrorsApi;
 
@@ -30,10 +29,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.openshift.com");
-        
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
 
         ErrorsApi apiInstance = new ErrorsApi(defaultClient);
         Integer id = 56; // Integer | A unique identifier for an error type.
@@ -64,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -76,9 +71,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response - returns a single &#x60;Error&#x60;. |  -  |
-| **401** | Auth token is invalid |  -  |
-| **403** | User not authorized to access the service. |  -  |
 | **404** | No service registry with specified id exists |  -  |
+| **500** | Unexpected error occurred |  -  |
 
 
 ## getErrors
@@ -94,7 +88,6 @@ Get the list of all errors.
 import com.openshift.cloud.api.srs.invoker.ApiClient;
 import com.openshift.cloud.api.srs.invoker.ApiException;
 import com.openshift.cloud.api.srs.invoker.Configuration;
-import com.openshift.cloud.api.srs.invoker.auth.*;
 import com.openshift.cloud.api.srs.invoker.models.*;
 import com.openshift.cloud.api.srs.ErrorsApi;
 
@@ -102,10 +95,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.openshift.com");
-        
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
 
         ErrorsApi apiInstance = new ErrorsApi(defaultClient);
         Integer page = 0; // Integer | Page index
@@ -138,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -150,7 +139,5 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A successful response. |  -  |
-| **401** | Auth token is invalid |  -  |
-| **403** | User not authorized to access the service. |  -  |
 | **500** | Unexpected error occurred |  -  |
 

@@ -321,24 +321,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Successful response - returns a single `Error`.
-        "401":
-          content:
-            application/json:
-              examples:
-                "401Example":
-                  $ref: '#/components/examples/401Example'
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Auth token is invalid
-        "403":
-          content:
-            application/json:
-              examples:
-                "403Example":
-                  $ref: '#/components/examples/403Example'
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User not authorized to access the service.
         "404":
           content:
             application/json:
@@ -348,8 +330,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: No service registry with specified id exists
-      security:
-      - Bearer: []
+        "500":
+          content:
+            application/json:
+              examples:
+                "500Example":
+                  $ref: '#/components/examples/500Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error occurred
+      security: []
       summary: Get information about a specific error type.
       tags:
       - Errors
@@ -391,24 +381,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorList'
           description: A successful response.
-        "401":
-          content:
-            application/json:
-              examples:
-                "401Example":
-                  $ref: '#/components/examples/401Example'
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Auth token is invalid
-        "403":
-          content:
-            application/json:
-              examples:
-                "403Example":
-                  $ref: '#/components/examples/403Example'
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User not authorized to access the service.
         "500":
           content:
             application/json:
@@ -418,8 +390,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Unexpected error occurred
-      security:
-      - Bearer: []
+      security: []
       summary: Get the list of all errors.
       tags:
       - Errors
