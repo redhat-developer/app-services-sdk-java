@@ -371,36 +371,6 @@
             },
             "description": "Successful response - returns a single `Error`."
           },
-          "401": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "examples": {
-                  "401Example": {
-                    "$ref": "#/components/examples/401Example"
-                  }
-                }
-              }
-            },
-            "description": "Auth token is invalid"
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "examples": {
-                  "403Example": {
-                    "$ref": "#/components/examples/403Example"
-                  }
-                }
-              }
-            },
-            "description": "User not authorized to access the service."
-          },
           "404": {
             "content": {
               "application/json": {
@@ -415,14 +385,24 @@
               }
             },
             "description": "No service registry with specified id exists"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "500Example": {
+                    "$ref": "#/components/examples/500Example"
+                  }
+                }
+              }
+            },
+            "description": "Unexpected error occurred"
           }
         },
-        "security": [
-          {
-            "Bearer": [
-            ]
-          }
-        ],
+        "security": [],
         "operationId": "getError",
         "summary": "Get information about a specific error type.",
         "description": ""
@@ -465,36 +445,6 @@
             },
             "description": "A successful response."
           },
-          "401": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "examples": {
-                  "401Example": {
-                    "$ref": "#/components/examples/401Example"
-                  }
-                }
-              }
-            },
-            "description": "Auth token is invalid"
-          },
-          "403": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                },
-                "examples": {
-                  "403Example": {
-                    "$ref": "#/components/examples/403Example"
-                  }
-                }
-              }
-            },
-            "description": "User not authorized to access the service."
-          },
           "500": {
             "content": {
               "application/json": {
@@ -511,12 +461,7 @@
             "description": "Unexpected error occurred"
           }
         },
-        "security": [
-          {
-            "Bearer": [
-            ]
-          }
-        ],
+        "security": [],
         "operationId": "getErrors",
         "summary": "Get the list of all errors."
       }
