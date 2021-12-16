@@ -74,7 +74,7 @@ public class ErrorsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] {  };
 
     GenericType<Error> localVarReturnType = new GenericType<Error>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -115,7 +115,7 @@ public class ErrorsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] {  };
 
     GenericType<ErrorList> localVarReturnType = new GenericType<ErrorList>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
