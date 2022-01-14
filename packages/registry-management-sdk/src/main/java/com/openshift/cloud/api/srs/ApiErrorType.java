@@ -36,7 +36,9 @@ public enum ApiErrorType {
   ERROR_9("SRS-MGMT-9"), 
 
   /** Bad request format - unsupported media type*/
-  ERROR_10("SRS-MGMT-10");
+  ERROR_10("SRS-MGMT-10"); 
+
+
  
   private String value;
 

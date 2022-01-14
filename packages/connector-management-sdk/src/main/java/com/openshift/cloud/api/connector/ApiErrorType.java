@@ -126,7 +126,7 @@ public enum ApiErrorType {
   ERROR_429("KAFKAS-MGMT-429"), 
 
   /** An unexpected error happened, please check the log of the service for details*/
-  ERROR_1000("KAFKAS-MGMT-1000"), 
+  ERROR_1000("KAFKAS-MGMT-1000"); 
 
 
  

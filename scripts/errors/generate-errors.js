@@ -16,20 +16,22 @@ for (api in apis) {
 
   template = fs.readFileSync(__dirname + "/ApiErrorType.java", "utf8");
 
-  
   stringBuffer = ``;
 
-  apiJson.items.forEach(function (errorType) {
+  for (i = 0; i < apiJson.items.length - 1; i++) {
+    errorType = apiJson.items[i];
     stringBuffer += `  /** ${errorType.reason}*/\n`;
-    stringBuffer += `  ERROR_${errorType.id}("${errorType.code}"), \n\n`;``
+    stringBuffer += `  ERROR_${errorType.id}("${errorType.code}"), \n\n`;
+  }
+  errorType = apiJson.items[ apiJson.items.length - 1];
+  stringBuffer += `  /** ${errorType.reason}*/\n`;
+  stringBuffer += `  ERROR_${errorType.id}("${errorType.code}"); \n\n`;
+
+  stringBuffer = template.replace("PLACEHOLDER", stringBuffer);
+  stringBuffer = stringBuffer.replace("PACKAGE_REPLACE", api);
+
+  fs.writeFileSync(cwd() + "/" + apiFileLocation, stringBuffer, {
+    encoding: "utf8",
   });
- 
-  stringBuffer = template.replace("PLACEHOLDER",stringBuffer)
-  stringBuffer = stringBuffer.replace("PACKAGE_REPLACE",api)
-
-  
-
-  fs.writeFileSync(
-    cwd() + "/" + apiFileLocation, stringBuffer, { encoding: "utf8" });
   console.log(`Sucessfully generated ${api} error definitions`);
 }
