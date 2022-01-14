@@ -76,6 +76,7 @@ import com.openshift.cloud.api.connector.invoker.*;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import com.openshift.cloud.api.connector.ApiErrorType;
 
 public class ConnectorClustersApiExample {
 
@@ -98,6 +99,8 @@ public class ConnectorClustersApiExample {
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
+            // TODO
+            if(ApiErrorType.)
             e.printStackTrace();
         }
     }
