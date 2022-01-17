@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **description** | **String** | A description of the connector. |  [optional]
 **iconHref** | **String** | URL to an icon of the connector. |  [optional]
 **labels** | [**List&lt;LabelsEnum&gt;**](#List&lt;LabelsEnum&gt;) | Labels used to categorize the connector |  [optional]
+**schema** | **Object** | A json schema that can be used to validate a connectors connector_spec field. |  [optional]
 **jsonSchema** | **Object** | A json schema that can be used to validate a connectors connector_spec field. |  [optional]
 
 

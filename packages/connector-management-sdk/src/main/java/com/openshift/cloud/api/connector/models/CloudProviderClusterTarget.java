@@ -18,35 +18,28 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.connector.models.AddonClusterTarget;
-import com.openshift.cloud.api.connector.models.CloudProviderClusterTarget;
-import com.openshift.cloud.api.connector.models.CloudProviderClusterTargetAllOf;
-import com.openshift.cloud.api.connector.models.ClusterTarget;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * CloudProviderClusterTarget
+ * Targets workloads to a cloud provider
  */
+@ApiModel(description = "Targets workloads to a cloud provider")
 @JsonPropertyOrder({
+  CloudProviderClusterTarget.JSON_PROPERTY_KIND,
   CloudProviderClusterTarget.JSON_PROPERTY_CLOUD_PROVIDER,
   CloudProviderClusterTarget.JSON_PROPERTY_REGION,
   CloudProviderClusterTarget.JSON_PROPERTY_MULTI_AZ
 })
 @JsonTypeName("CloudProviderClusterTarget")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "kind", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = AddonClusterTarget.class, name = "addon"),
-  @JsonSubTypes.Type(value = CloudProviderClusterTarget.class, name = "cloud_provider"),
-})
+public class CloudProviderClusterTarget {
+  public static final String JSON_PROPERTY_KIND = "kind";
+  private String kind;
 
-public class CloudProviderClusterTarget extends ClusterTarget {
   public static final String JSON_PROPERTY_CLOUD_PROVIDER = "cloud_provider";
   private String cloudProvider;
 
@@ -55,6 +48,32 @@ public class CloudProviderClusterTarget extends ClusterTarget {
 
   public static final String JSON_PROPERTY_MULTI_AZ = "multi_az";
   private Boolean multiAz;
+
+
+  public CloudProviderClusterTarget kind(String kind) {
+    
+    this.kind = kind;
+    return this;
+  }
+
+   /**
+   * Get kind
+   * @return kind
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getKind() {
+    return kind;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setKind(String kind) {
+    this.kind = kind;
+  }
 
 
   public CloudProviderClusterTarget cloudProvider(String cloudProvider) {
@@ -147,22 +166,22 @@ public class CloudProviderClusterTarget extends ClusterTarget {
       return false;
     }
     CloudProviderClusterTarget cloudProviderClusterTarget = (CloudProviderClusterTarget) o;
-    return Objects.equals(this.cloudProvider, cloudProviderClusterTarget.cloudProvider) &&
+    return Objects.equals(this.kind, cloudProviderClusterTarget.kind) &&
+        Objects.equals(this.cloudProvider, cloudProviderClusterTarget.cloudProvider) &&
         Objects.equals(this.region, cloudProviderClusterTarget.region) &&
-        Objects.equals(this.multiAz, cloudProviderClusterTarget.multiAz) &&
-        super.equals(o);
+        Objects.equals(this.multiAz, cloudProviderClusterTarget.multiAz);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cloudProvider, region, multiAz, super.hashCode());
+    return Objects.hash(kind, cloudProvider, region, multiAz);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CloudProviderClusterTarget {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
     sb.append("    multiAz: ").append(toIndentedString(multiAz)).append("\n");

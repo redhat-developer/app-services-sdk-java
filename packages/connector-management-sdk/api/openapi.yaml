@@ -95,6 +95,69 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          Specifies the order by criteria. The syntax of this parameter is
+          similar to the syntax of the `order by` clause of an SQL statement.
+          Each query can be ordered by any of the `ConnectorType` fields.
+          For example, to return all Connector types ordered by their name, use the following syntax:
+
+          ```sql
+          name asc
+          ```
+
+          To return all Connector types ordered by their name _and_ version, use the following syntax:
+
+          ```sql
+          name asc, version asc
+          ```
+
+          If the parameter isn't provided, or if the value is empty, then
+          the results are ordered by name.
+        examples:
+          orderBy:
+            value: name asc
+        explode: true
+        in: query
+        name: orderBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          Search criteria.
+
+          The syntax of this parameter is similar to the syntax of the `where` clause of a
+          SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`.
+          Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.
+
+          Examples:
+
+          To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:
+
+          ```
+          name = aws-sqs-source and channel = stable
+          ```[p-]
+
+          To return a Kafka instance with a name that starts with `aws`, use the following syntax:
+
+          ```
+          name like aws%25
+          ```
+
+          If the parameter isn't provided, or if the value is empty, then all the Connector Type
+          that the user has permission to see are returned.
+
+          Note. If the query is invalid, an error is returned.
+        examples:
+          search:
+            value: name = aws-sqs-source and channel = stable
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -964,10 +1027,15 @@ components:
       - $ref: '#/components/schemas/ObjectReference'
       - $ref: '#/components/schemas/ConnectorType_allOf'
       description: Represents a connector type supported by the API
-      required:
-      - json_schema
-      - name
-      - version
+      oneOf:
+      - required:
+        - name
+        - schema
+        - version
+      - required:
+        - json_schema
+        - name
+        - version
     ConnectorTypeList:
       allOf:
       - $ref: '#/components/schemas/List'
@@ -995,35 +1063,32 @@ components:
           addon: '#/components/schemas/AddonClusterTarget'
           cloud_provider: '#/components/schemas/CloudProviderClusterTarget'
         propertyName: kind
+      oneOf:
+      - $ref: '#/components/schemas/AddonClusterTarget'
+      - $ref: '#/components/schemas/CloudProviderClusterTarget'
+    AddonClusterTarget:
+      description: Targets workloads to an addon cluster
       properties:
         kind:
+          type: string
+        cluster_id:
           type: string
       required:
       - kind
       type: object
-    AddonClusterTarget:
-      allOf:
-      - $ref: '#/components/schemas/ClusterTarget'
-      - $ref: '#/components/schemas/AddonClusterTarget_allOf'
-    AddonClusterTarget_allOf:
-      description: Targets workloads to an addon cluster
-      properties:
-        cluster_id:
-          type: string
-      type: object
     CloudProviderClusterTarget:
-      allOf:
-      - $ref: '#/components/schemas/ClusterTarget'
-      - $ref: '#/components/schemas/CloudProviderClusterTarget_allOf'
-    CloudProviderClusterTarget_allOf:
       description: Targets workloads to a cloud provider
       properties:
+        kind:
+          type: string
         cloud_provider:
           type: string
         region:
           type: string
         multi_az:
           type: boolean
+      required:
+      - kind
       type: object
     AddonParameterList:
       description: A list of addon parameters
@@ -1115,6 +1180,10 @@ components:
             - source
             type: string
           type: array
+        schema:
+          description: A json schema that can be used to validate a connectors connector_spec
+            field.
+          type: object
         json_schema:
           description: A json schema that can be used to validate a connectors connector_spec
             field.

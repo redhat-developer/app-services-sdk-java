@@ -317,7 +317,25 @@ paths:
       - description: |-
           Specifies the order by criteria. The syntax of this parameter is
           similar to the syntax of the `order by` clause of an SQL statement.
-          Each query can be ordered by any of the `kafkaRequests` fields.
+          Each query can be ordered by any of the following `kafkaRequests` fields:
+
+          * bootstrap_server_host
+          * cloud_provider
+          * cluster_id
+          * created_at
+          * href
+          * id
+          * instance_type
+          * multi_az
+          * name
+          * organisation_id
+          * owner
+          * reauthentication_enabled
+          * region
+          * status
+          * updated_at
+          * version
+
           For example, to return all Kafka instances ordered by their name, use the following syntax:
 
           ```sql
@@ -1391,7 +1409,25 @@ components:
       description: |-
         Specifies the order by criteria. The syntax of this parameter is
         similar to the syntax of the `order by` clause of an SQL statement.
-        Each query can be ordered by any of the `kafkaRequests` fields.
+        Each query can be ordered by any of the following `kafkaRequests` fields:
+
+        * bootstrap_server_host
+        * cloud_provider
+        * cluster_id
+        * created_at
+        * href
+        * id
+        * instance_type
+        * multi_az
+        * name
+        * organisation_id
+        * owner
+        * reauthentication_enabled
+        * region
+        * status
+        * updated_at
+        * version
+
         For example, to return all Kafka instances ordered by their name, use the following syntax:
 
         ```sql

@@ -18,35 +18,54 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.connector.models.AddonClusterTarget;
-import com.openshift.cloud.api.connector.models.AddonClusterTargetAllOf;
-import com.openshift.cloud.api.connector.models.CloudProviderClusterTarget;
-import com.openshift.cloud.api.connector.models.ClusterTarget;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * AddonClusterTarget
+ * Targets workloads to an addon cluster
  */
+@ApiModel(description = "Targets workloads to an addon cluster")
 @JsonPropertyOrder({
+  AddonClusterTarget.JSON_PROPERTY_KIND,
   AddonClusterTarget.JSON_PROPERTY_CLUSTER_ID
 })
 @JsonTypeName("AddonClusterTarget")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "kind", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = AddonClusterTarget.class, name = "addon"),
-  @JsonSubTypes.Type(value = CloudProviderClusterTarget.class, name = "cloud_provider"),
-})
+public class AddonClusterTarget {
+  public static final String JSON_PROPERTY_KIND = "kind";
+  private String kind;
 
-public class AddonClusterTarget extends ClusterTarget {
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
+
+
+  public AddonClusterTarget kind(String kind) {
+    
+    this.kind = kind;
+    return this;
+  }
+
+   /**
+   * Get kind
+   * @return kind
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getKind() {
+    return kind;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setKind(String kind) {
+    this.kind = kind;
+  }
 
 
   public AddonClusterTarget clusterId(String clusterId) {
@@ -85,20 +104,20 @@ public class AddonClusterTarget extends ClusterTarget {
       return false;
     }
     AddonClusterTarget addonClusterTarget = (AddonClusterTarget) o;
-    return Objects.equals(this.clusterId, addonClusterTarget.clusterId) &&
-        super.equals(o);
+    return Objects.equals(this.kind, addonClusterTarget.kind) &&
+        Objects.equals(this.clusterId, addonClusterTarget.clusterId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clusterId, super.hashCode());
+    return Objects.hash(kind, clusterId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AddonClusterTarget {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ConnectorTypeAllOf.JSON_PROPERTY_DESCRIPTION,
   ConnectorTypeAllOf.JSON_PROPERTY_ICON_HREF,
   ConnectorTypeAllOf.JSON_PROPERTY_LABELS,
+  ConnectorTypeAllOf.JSON_PROPERTY_SCHEMA,
   ConnectorTypeAllOf.JSON_PROPERTY_JSON_SCHEMA
 })
 @JsonTypeName("ConnectorType_allOf")
@@ -93,6 +94,9 @@ public class ConnectorTypeAllOf {
 
   public static final String JSON_PROPERTY_LABELS = "labels";
   private List<LabelsEnum> labels = null;
+
+  public static final String JSON_PROPERTY_SCHEMA = "schema";
+  private Object schema;
 
   public static final String JSON_PROPERTY_JSON_SCHEMA = "json_schema";
   private Object jsonSchema;
@@ -276,6 +280,33 @@ public class ConnectorTypeAllOf {
   }
 
 
+  public ConnectorTypeAllOf schema(Object schema) {
+    
+    this.schema = schema;
+    return this;
+  }
+
+   /**
+   * A json schema that can be used to validate a connectors connector_spec field.
+   * @return schema
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A json schema that can be used to validate a connectors connector_spec field.")
+  @JsonProperty(JSON_PROPERTY_SCHEMA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getSchema() {
+    return schema;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SCHEMA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSchema(Object schema) {
+    this.schema = schema;
+  }
+
+
   public ConnectorTypeAllOf jsonSchema(Object jsonSchema) {
     
     this.jsonSchema = jsonSchema;
@@ -318,12 +349,13 @@ public class ConnectorTypeAllOf {
         Objects.equals(this.description, connectorTypeAllOf.description) &&
         Objects.equals(this.iconHref, connectorTypeAllOf.iconHref) &&
         Objects.equals(this.labels, connectorTypeAllOf.labels) &&
+        Objects.equals(this.schema, connectorTypeAllOf.schema) &&
         Objects.equals(this.jsonSchema, connectorTypeAllOf.jsonSchema);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, version, channels, description, iconHref, labels, jsonSchema);
+    return Objects.hash(name, version, channels, description, iconHref, labels, schema, jsonSchema);
   }
 
   @Override
@@ -336,6 +368,7 @@ public class ConnectorTypeAllOf {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    iconHref: ").append(toIndentedString(iconHref)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
     sb.append("    jsonSchema: ").append(toIndentedString(jsonSchema)).append("\n");
     sb.append("}");
     return sb.toString();

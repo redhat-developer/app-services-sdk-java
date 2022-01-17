@@ -42,6 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
   ConnectorType.JSON_PROPERTY_DESCRIPTION,
   ConnectorType.JSON_PROPERTY_ICON_HREF,
   ConnectorType.JSON_PROPERTY_LABELS,
+  ConnectorType.JSON_PROPERTY_SCHEMA,
   ConnectorType.JSON_PROPERTY_JSON_SCHEMA
 })
 @JsonTypeName("ConnectorType")
@@ -108,6 +109,9 @@ public class ConnectorType {
 
   public static final String JSON_PROPERTY_LABELS = "labels";
   private List<LabelsEnum> labels = null;
+
+  public static final String JSON_PROPERTY_SCHEMA = "schema";
+  private Object schema;
 
   public static final String JSON_PROPERTY_JSON_SCHEMA = "json_schema";
   private Object jsonSchema;
@@ -204,9 +208,10 @@ public class ConnectorType {
    * Name of the connector type.
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "Name of the connector type.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name of the connector type.")
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getName() {
     return name;
@@ -214,7 +219,7 @@ public class ConnectorType {
 
 
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -230,9 +235,10 @@ public class ConnectorType {
    * Version of the connector type.
    * @return version
   **/
-  @ApiModelProperty(required = true, value = "Version of the connector type.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Version of the connector type.")
   @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getVersion() {
     return version;
@@ -240,7 +246,7 @@ public class ConnectorType {
 
 
   @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVersion(String version) {
     this.version = version;
   }
@@ -370,6 +376,33 @@ public class ConnectorType {
   }
 
 
+  public ConnectorType schema(Object schema) {
+    
+    this.schema = schema;
+    return this;
+  }
+
+   /**
+   * A json schema that can be used to validate a connectors connector_spec field.
+   * @return schema
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A json schema that can be used to validate a connectors connector_spec field.")
+  @JsonProperty(JSON_PROPERTY_SCHEMA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getSchema() {
+    return schema;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SCHEMA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSchema(Object schema) {
+    this.schema = schema;
+  }
+
+
   public ConnectorType jsonSchema(Object jsonSchema) {
     
     this.jsonSchema = jsonSchema;
@@ -380,9 +413,10 @@ public class ConnectorType {
    * A json schema that can be used to validate a connectors connector_spec field.
    * @return jsonSchema
   **/
-  @ApiModelProperty(required = true, value = "A json schema that can be used to validate a connectors connector_spec field.")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A json schema that can be used to validate a connectors connector_spec field.")
   @JsonProperty(JSON_PROPERTY_JSON_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Object getJsonSchema() {
     return jsonSchema;
@@ -390,7 +424,7 @@ public class ConnectorType {
 
 
   @JsonProperty(JSON_PROPERTY_JSON_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setJsonSchema(Object jsonSchema) {
     this.jsonSchema = jsonSchema;
   }
@@ -414,12 +448,13 @@ public class ConnectorType {
         Objects.equals(this.description, connectorType.description) &&
         Objects.equals(this.iconHref, connectorType.iconHref) &&
         Objects.equals(this.labels, connectorType.labels) &&
+        Objects.equals(this.schema, connectorType.schema) &&
         Objects.equals(this.jsonSchema, connectorType.jsonSchema);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, name, version, channels, description, iconHref, labels, jsonSchema);
+    return Objects.hash(id, kind, href, name, version, channels, description, iconHref, labels, schema, jsonSchema);
   }
 
   @Override
@@ -435,6 +470,7 @@ public class ConnectorType {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    iconHref: ").append(toIndentedString(iconHref)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
     sb.append("    jsonSchema: ").append(toIndentedString(jsonSchema)).append("\n");
     sb.append("}");
     return sb.toString();
