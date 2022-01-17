@@ -14,6 +14,7 @@
         <module>packages/kafka-management-sdk</module>
         <module>packages/registry-management-sdk</module>
         <module>packages/kafka-instance-sdk</module>
+        <module>examples</module>
     </modules>
 
     <dependencyManagement>
