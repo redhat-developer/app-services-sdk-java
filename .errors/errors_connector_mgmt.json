@@ -1,0 +1,288 @@
+{
+  "kind": "ErrorList",
+  "page": 1,
+  "size": 40,
+  "total": 40,
+  "items": [
+    {
+      "id": "4",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/4",
+      "code": "KAFKAS-MGMT-4",
+      "reason": "Forbidden to perform this action"
+    },
+    {
+      "id": "5",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/5",
+      "code": "KAFKAS-MGMT-5",
+      "reason": "Forbidden to create more instances than the maximum allowed"
+    },
+    {
+      "id": "6",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/6",
+      "code": "KAFKAS-MGMT-6",
+      "reason": "An entity with the specified unique values already exists"
+    },
+    {
+      "id": "7",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/7",
+      "code": "KAFKAS-MGMT-7",
+      "reason": "Resource not found"
+    },
+    {
+      "id": "8",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/8",
+      "code": "KAFKAS-MGMT-8",
+      "reason": "General validation failure"
+    },
+    {
+      "id": "9",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/9",
+      "code": "KAFKAS-MGMT-9",
+      "reason": "Unspecified error"
+    },
+    {
+      "id": "10",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/10",
+      "code": "KAFKAS-MGMT-10",
+      "reason": "HTTP Method not implemented for this endpoint"
+    },
+    {
+      "id": "11",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/11",
+      "code": "KAFKAS-MGMT-11",
+      "reason": "Account is unauthorized to perform this action"
+    },
+    {
+      "id": "12",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/12",
+      "code": "KAFKAS-MGMT-12",
+      "reason": "Required terms have not been accepted"
+    },
+    {
+      "id": "15",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/15",
+      "code": "KAFKAS-MGMT-15",
+      "reason": "Account authentication could not be verified"
+    },
+    {
+      "id": "17",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/17",
+      "code": "KAFKAS-MGMT-17",
+      "reason": "Unable to read request body"
+    },
+    {
+      "id": "21",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/21",
+      "code": "KAFKAS-MGMT-21",
+      "reason": "Bad request"
+    },
+    {
+      "id": "23",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/23",
+      "code": "KAFKAS-MGMT-23",
+      "reason": "Failed to parse search query"
+    },
+    {
+      "id": "24",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/24",
+      "code": "KAFKAS-MGMT-24",
+      "reason": "The maximum number of allowed kafka instances has been reached"
+    },
+    {
+      "id": "25",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/25",
+      "code": "KAFKAS-MGMT-25",
+      "reason": "Resource gone"
+    },
+    {
+      "id": "30",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/30",
+      "code": "KAFKAS-MGMT-30",
+      "reason": "Provider not supported"
+    },
+    {
+      "id": "31",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/31",
+      "code": "KAFKAS-MGMT-31",
+      "reason": "Region not supported"
+    },
+    {
+      "id": "32",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/32",
+      "code": "KAFKAS-MGMT-32",
+      "reason": "Kafka cluster name is invalid"
+    },
+    {
+      "id": "33",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/33",
+      "code": "KAFKAS-MGMT-33",
+      "reason": "Minimum field length not reached"
+    },
+    {
+      "id": "34",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/34",
+      "code": "KAFKAS-MGMT-34",
+      "reason": "Maximum field length has been depassed"
+    },
+    {
+      "id": "35",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/35",
+      "code": "KAFKAS-MGMT-35",
+      "reason": "Only multiAZ Kafkas are supported, use multi_az=true"
+    },
+    {
+      "id": "36",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/36",
+      "code": "KAFKAS-MGMT-36",
+      "reason": "Kafka cluster name is already used"
+    },
+    {
+      "id": "37",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/37",
+      "code": "KAFKAS-MGMT-37",
+      "reason": "Field validation failed"
+    },
+    {
+      "id": "38",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/38",
+      "code": "KAFKAS-MGMT-38",
+      "reason": "Service account name is invalid"
+    },
+    {
+      "id": "39",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/39",
+      "code": "KAFKAS-MGMT-39",
+      "reason": "Service account desc is invalid"
+    },
+    {
+      "id": "40",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/40",
+      "code": "KAFKAS-MGMT-40",
+      "reason": "Service account id is invalid"
+    },
+    {
+      "id": "41",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/41",
+      "code": "KAFKAS-MGMT-41",
+      "reason": "Instance Type not supported"
+    },
+    {
+      "id": "103",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/103",
+      "code": "KAFKAS-MGMT-103",
+      "reason": "Synchronous action is not supported, use async=true parameter"
+    },
+    {
+      "id": "106",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/106",
+      "code": "KAFKAS-MGMT-106",
+      "reason": "Failed to create kafka client in the mas sso"
+    },
+    {
+      "id": "107",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/107",
+      "code": "KAFKAS-MGMT-107",
+      "reason": "Failed to get kafka client secret from the mas sso"
+    },
+    {
+      "id": "108",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/108",
+      "code": "KAFKAS-MGMT-108",
+      "reason": "Failed to get kafka client from the mas sso"
+    },
+    {
+      "id": "109",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/109",
+      "code": "KAFKAS-MGMT-109",
+      "reason": "Failed to delete kafka client from the mas sso"
+    },
+    {
+      "id": "110",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/110",
+      "code": "KAFKAS-MGMT-110",
+      "reason": "Failed to create service account"
+    },
+    {
+      "id": "111",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/111",
+      "code": "KAFKAS-MGMT-111",
+      "reason": "Failed to get service account"
+    },
+    {
+      "id": "112",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/112",
+      "code": "KAFKAS-MGMT-112",
+      "reason": "Failed to delete service account"
+    },
+    {
+      "id": "113",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/113",
+      "code": "KAFKAS-MGMT-113",
+      "reason": "Failed to find service account"
+    },
+    {
+      "id": "120",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/120",
+      "code": "KAFKAS-MGMT-120",
+      "reason": "Insufficient quota"
+    },
+    {
+      "id": "121",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/121",
+      "code": "KAFKAS-MGMT-121",
+      "reason": "Failed to check quota"
+    },
+    {
+      "id": "429",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/429",
+      "code": "KAFKAS-MGMT-429",
+      "reason": "Too Many requests"
+    },
+    {
+      "id": "1000",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/1000",
+      "code": "KAFKAS-MGMT-1000",
+      "reason": "An unexpected error happened, please check the log of the service for details"
+    }
+  ]
+}
