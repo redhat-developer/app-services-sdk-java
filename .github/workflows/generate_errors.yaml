@@ -20,9 +20,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Fetch Errors JSON files
-        run: ./scripts/fetch-errors.sh
+        run: ./scripts/errors/fetch-errors.sh
       - name: Generate Errors SDK
-        run: ./scripts/generate-errors.sh
+        run: ./scripts/errors/generate-errors.sh
       - uses: peter-evans/create-pull-request@v3
         with:
           title: "fix(all): regenerated Error SDK(s)"
