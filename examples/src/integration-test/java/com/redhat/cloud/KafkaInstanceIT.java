@@ -2,10 +2,8 @@ package com.redhat.cloud;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.concurrent.TimeUnit;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
 
 import com.openshift.cloud.api.kas.auth.TopicsApi;
 import com.openshift.cloud.api.kas.auth.invoker.*;
@@ -18,7 +16,7 @@ public class KafkaInstanceIT {
     @Test
     public void testCreateExample() {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:8080/rest");
+        defaultClient.setBasePath("http://localhost:8000/data/kafka");
         
         OAuth oauth = (OAuth) defaultClient.getAuthentication("Bearer");
         oauth.setAccessToken("accessToken");
@@ -26,15 +24,16 @@ public class KafkaInstanceIT {
         TopicsApi apiInstance = new TopicsApi(defaultClient);
         
         try {
-            TopicsList result = apiInstance.getTopics(null, null, null, null, null, null, null);
+            TopicsList result = apiInstance.getTopics(null, null, null, null, null);
             assertNotNull(result);
-            assertEquals(1, result.getItems().size());
+            assertEquals(4, result.getItems().size());
+            assertEquals("topic-1", result.getItems().get(0).getName());
         } catch (ApiException e) {
             System.err.println("Exception when calling TopicsApi#getTopics");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+            Assertions.fail(e);    
+        } 
     }
 }

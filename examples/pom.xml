@@ -4,15 +4,11 @@
 
     <groupId>com.redhat.cloud</groupId>
     <artifactId>sdk-tests</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>sdk-tests</name>
     <url>http://console.redhat.com</url>
-    <parent>
-        <groupId>com.redhat.cloud</groupId>
-        <artifactId>rhoas-sdk-java</artifactId>
-        <version>0.1.0-SNAPSHOT</version>
-    </parent>
+    
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -24,17 +20,17 @@
         <dependency>
             <groupId>com.redhat.cloud</groupId>
             <artifactId>kafka-management-sdk</artifactId>
-            <version>1.1.2</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.redhat.cloud</groupId>
             <artifactId>registry-management-sdk</artifactId>
-            <version>0.5.1</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.redhat.cloud</groupId>
             <artifactId>kafka-instance-sdk</artifactId>
-            <version>0.3.0</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -73,7 +69,7 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.37.0</version>
+                <version>0.38.1</version>
                 <executions>
                     <execution>
                         <id>start</id>
@@ -95,10 +91,10 @@
                 <configuration>
                     <images>
                         <image>
-                            <name>quay.io/wtrocki/api-mock</name>
+                            <name>quay.io/rhosak/api-mock</name>
                             <run>
                                 <ports>
-                                    <port>8080:8000</port>
+                                    <port>8000:8000</port>
                                 </ports>
                             </run>
                         </image>
@@ -106,11 +102,34 @@
                     </images>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>add-integration-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/integration-test/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.22.2</version> 
+                <configuration>
+                    <includes>
+                        <include>**/*IT</include>
+                    </includes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

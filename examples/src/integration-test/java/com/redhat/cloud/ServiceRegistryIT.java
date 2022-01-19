@@ -2,6 +2,7 @@ package com.redhat.cloud;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.openshift.cloud.api.srs.*;
@@ -15,7 +16,7 @@ public class ServiceRegistryIT {
     @Test
     public void testListExample() {
         var defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:8080");
+        defaultClient.setBasePath("http://localhost:8000");
         
         var oauth = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
         oauth.setBearerToken("bearerToken");
@@ -23,15 +24,18 @@ public class ServiceRegistryIT {
         var apiInstance = new RegistriesApi(defaultClient);
         
         try {
-            RegistryListRest result = apiInstance.getRegistries(null, null, null, null);
+            RegistryList result = apiInstance.getRegistries(null, null, null, null);
             assertNotNull(result);
             assertEquals(1, result.getItems().size());
+            return;
         } catch (ApiException e) {
             System.err.println("Exception when calling RegistriesApi#getRegistries");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
+            Assertions.fail(e);    
         }
+        
     }
 }
