@@ -2,6 +2,7 @@ package com.redhat.cloud;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import com.openshift.cloud.api.kas.invoker.*;
 import com.openshift.cloud.api.kas.invoker.auth.*;
@@ -12,7 +13,7 @@ public class KafkaManagementIT {
     @Test
     public void testCreateExample() {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:8080");
+        defaultClient.setBasePath("http://localhost:8000");
         
         // Configure HTTP bearer authorization: Bearer
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
@@ -31,13 +32,14 @@ public class KafkaManagementIT {
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
+            Assertions.fail(e);    
         }
     }
 
     @Test
     public void testListExample() {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:8080");
+        defaultClient.setBasePath("http://localhost:8000");
         
         // Configure HTTP bearer authorization: Bearer
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
@@ -56,6 +58,7 @@ public class KafkaManagementIT {
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
+            Assertions.fail(e);    
         }
     }
 }

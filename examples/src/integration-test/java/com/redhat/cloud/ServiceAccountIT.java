@@ -2,6 +2,7 @@ package com.redhat.cloud;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.openshift.cloud.api.kas.SecurityApi;
@@ -17,7 +18,7 @@ public class ServiceAccountIT {
     @Test
     public void testCreateExample() {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:8080");
+        defaultClient.setBasePath("http://localhost:8000");
     
         // Configure HTTP bearer authorization: Bearer
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
@@ -29,15 +30,14 @@ public class ServiceAccountIT {
         serviceAccountRequest.setName("sa_name");
         try {
             ServiceAccount result = apiInstance.createServiceAccount(serviceAccountRequest);
-
             assertNotNull(result);
-            
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#createKafka");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
             e.printStackTrace();
+            Assertions.fail(e);    
         }
     }
 
