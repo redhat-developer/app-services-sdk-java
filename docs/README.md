@@ -17,3 +17,4 @@
 
 - [Authentication](./authentication.md)
 - [API stability](./apilevels.md)
+- [Contributing](./CONTRIBUTING.md)

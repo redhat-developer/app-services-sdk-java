@@ -32,7 +32,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * ClusterTarget
  */
 @JsonPropertyOrder({
-  ClusterTarget.JSON_PROPERTY_KIND
+  ClusterTarget.JSON_PROPERTY_KIND,
+  ClusterTarget.JSON_PROPERTY_CLUSTER_ID,
+  ClusterTarget.JSON_PROPERTY_CLOUD_PROVIDER,
+  ClusterTarget.JSON_PROPERTY_REGION,
+  ClusterTarget.JSON_PROPERTY_MULTI_AZ
 })
 @JsonTypeName("ClusterTarget")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -47,6 +51,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class ClusterTarget {
   public static final String JSON_PROPERTY_KIND = "kind";
   protected String kind;
+
+  public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
+  private String clusterId;
+
+  public static final String JSON_PROPERTY_CLOUD_PROVIDER = "cloud_provider";
+  private String cloudProvider;
+
+  public static final String JSON_PROPERTY_REGION = "region";
+  private String region;
+
+  public static final String JSON_PROPERTY_MULTI_AZ = "multi_az";
+  private Boolean multiAz;
 
 
   public ClusterTarget kind(String kind) {
@@ -75,6 +91,114 @@ public class ClusterTarget {
   }
 
 
+  public ClusterTarget clusterId(String clusterId) {
+    
+    this.clusterId = clusterId;
+    return this;
+  }
+
+   /**
+   * Get clusterId
+   * @return clusterId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getClusterId() {
+    return clusterId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClusterId(String clusterId) {
+    this.clusterId = clusterId;
+  }
+
+
+  public ClusterTarget cloudProvider(String cloudProvider) {
+    
+    this.cloudProvider = cloudProvider;
+    return this;
+  }
+
+   /**
+   * Get cloudProvider
+   * @return cloudProvider
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CLOUD_PROVIDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCloudProvider() {
+    return cloudProvider;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CLOUD_PROVIDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCloudProvider(String cloudProvider) {
+    this.cloudProvider = cloudProvider;
+  }
+
+
+  public ClusterTarget region(String region) {
+    
+    this.region = region;
+    return this;
+  }
+
+   /**
+   * Get region
+   * @return region
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REGION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRegion() {
+    return region;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegion(String region) {
+    this.region = region;
+  }
+
+
+  public ClusterTarget multiAz(Boolean multiAz) {
+    
+    this.multiAz = multiAz;
+    return this;
+  }
+
+   /**
+   * Get multiAz
+   * @return multiAz
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_MULTI_AZ)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getMultiAz() {
+    return multiAz;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_MULTI_AZ)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMultiAz(Boolean multiAz) {
+    this.multiAz = multiAz;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -84,12 +208,16 @@ public class ClusterTarget {
       return false;
     }
     ClusterTarget clusterTarget = (ClusterTarget) o;
-    return Objects.equals(this.kind, clusterTarget.kind);
+    return Objects.equals(this.kind, clusterTarget.kind) &&
+        Objects.equals(this.clusterId, clusterTarget.clusterId) &&
+        Objects.equals(this.cloudProvider, clusterTarget.cloudProvider) &&
+        Objects.equals(this.region, clusterTarget.region) &&
+        Objects.equals(this.multiAz, clusterTarget.multiAz);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind);
+    return Objects.hash(kind, clusterId, cloudProvider, region, multiAz);
   }
 
   @Override
@@ -97,6 +225,10 @@ public class ClusterTarget {
     StringBuilder sb = new StringBuilder();
     sb.append("class ClusterTarget {\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
+    sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
+    sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
+    sb.append("    region: ").append(toIndentedString(region)).append("\n");
+    sb.append("    multiAz: ").append(toIndentedString(multiAz)).append("\n");
     sb.append("}");
     return sb.toString();
   }
