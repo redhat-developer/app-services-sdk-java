@@ -3,7 +3,7 @@
 
 set -e
 
-npx @openapitools/openapi-generator-cli version-manager set 5.2.0
+npx @openapitools/openapi-generator-cli version-manager set 5.3.1
 echo "Generating SDKs"
 
 GROUP_ID="com.redhat.cloud"
