@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ServiceAccountAllOf
@@ -61,6 +62,8 @@ public class ServiceAccountAllOf {
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private OffsetDateTime createdAt;
 
+  public ServiceAccountAllOf() { 
+  }
 
   public ServiceAccountAllOf id(String id) {
     

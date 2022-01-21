@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RangeQuery
@@ -45,6 +46,8 @@ public class RangeQuery {
   public static final String JSON_PROPERTY_VALUES = "values";
   private List<Values> values = null;
 
+  public RangeQuery() { 
+  }
 
   public RangeQuery metric(Map<String, String> metric) {
     

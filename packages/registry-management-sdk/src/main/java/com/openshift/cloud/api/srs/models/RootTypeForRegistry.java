@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Service Registry instance within a multi-tenant deployment.
@@ -80,6 +81,8 @@ public class RootTypeForRegistry {
   public static final String JSON_PROPERTY_INSTANCE_TYPE = "instance_type";
   private RegistryInstanceTypeValue instanceType;
 
+  public RootTypeForRegistry() { 
+  }
 
   public RootTypeForRegistry id(String id) {
     
@@ -91,6 +94,7 @@ public class RootTypeForRegistry {
    * Get id
    * @return id
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -117,6 +121,7 @@ public class RootTypeForRegistry {
    * Get status
    * @return status
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -305,6 +310,7 @@ public class RootTypeForRegistry {
    * ISO 8601 UTC timestamp.
    * @return createdAt
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "ISO 8601 UTC timestamp.")
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -331,6 +337,7 @@ public class RootTypeForRegistry {
    * ISO 8601 UTC timestamp.
    * @return updatedAt
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "ISO 8601 UTC timestamp.")
   @JsonProperty(JSON_PROPERTY_UPDATED_AT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -357,6 +364,7 @@ public class RootTypeForRegistry {
    * Get instanceType
    * @return instanceType
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_INSTANCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

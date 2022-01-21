@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Targets workloads to a cloud provider
@@ -49,6 +50,8 @@ public class CloudProviderClusterTarget {
   public static final String JSON_PROPERTY_MULTI_AZ = "multi_az";
   private Boolean multiAz;
 
+  public CloudProviderClusterTarget() { 
+  }
 
   public CloudProviderClusterTarget kind(String kind) {
     
@@ -60,6 +63,7 @@ public class CloudProviderClusterTarget {
    * Get kind
    * @return kind
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

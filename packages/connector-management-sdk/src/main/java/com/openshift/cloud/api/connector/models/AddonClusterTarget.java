@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Targets workloads to an addon cluster
@@ -41,6 +42,8 @@ public class AddonClusterTarget {
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
 
+  public AddonClusterTarget() { 
+  }
 
   public AddonClusterTarget kind(String kind) {
     
@@ -52,6 +55,7 @@ public class AddonClusterTarget {
    * Get kind
    * @return kind
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

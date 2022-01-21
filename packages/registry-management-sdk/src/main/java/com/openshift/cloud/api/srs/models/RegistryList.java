@@ -27,6 +27,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RegistryList
@@ -56,6 +57,8 @@ public class RegistryList {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<Registry> items = new ArrayList<>();
 
+  public RegistryList() { 
+  }
 
   public RegistryList kind(String kind) {
     
@@ -67,6 +70,7 @@ public class RegistryList {
    * Get kind
    * @return kind
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -93,6 +97,7 @@ public class RegistryList {
    * Get page
    * @return page
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_PAGE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -119,6 +124,7 @@ public class RegistryList {
    * Get size
    * @return size
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -145,6 +151,7 @@ public class RegistryList {
    * Get total
    * @return total
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_TOTAL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -176,6 +183,7 @@ public class RegistryList {
    * Get items
    * @return items
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.Arrays;
 import io.swagger.annotations.ApiModel;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

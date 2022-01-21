@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A list of topics.
@@ -52,6 +53,8 @@ public class TopicsList {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<Topic> items = null;
 
+  public TopicsList() { 
+  }
 
   public TopicsList page(Integer page) {
     

@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ConsumerGroupResetOffsetResultItem
@@ -44,6 +45,8 @@ public class ConsumerGroupResetOffsetResultItem {
   public static final String JSON_PROPERTY_OFFSET = "offset";
   private Integer offset;
 
+  public ConsumerGroupResetOffsetResultItem() { 
+  }
 
   public ConsumerGroupResetOffsetResultItem topic(String topic) {
     

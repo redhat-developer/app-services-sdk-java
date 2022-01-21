@@ -26,6 +26,7 @@ import com.openshift.cloud.api.connector.models.KafkaConnectionSettings;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ConnectorAllOf
@@ -67,6 +68,8 @@ public class ConnectorAllOf {
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;
 
+  public ConnectorAllOf() { 
+  }
 
   public ConnectorAllOf metadata(ConnectorAllOfMetadata metadata) {
     

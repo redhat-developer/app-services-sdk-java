@@ -50,7 +50,14 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.redhat.cloud:kafka-management-sdk:1.2.0"
+  repositories {
+    mavenCentral()     // Needed if the 'kafka-management-sdk' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'kafka-management-sdk' jar has been published to the local maven repo.
+  }
+
+  dependencies {
+     implementation "com.redhat.cloud:kafka-management-sdk:1.2.0"
+  }
 ```
 
 ### Others

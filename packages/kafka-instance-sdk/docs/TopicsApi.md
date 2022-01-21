@@ -1,6 +1,6 @@
 # TopicsApi
 
-All URIs are relative to *http://localhost/rest*
+All URIs are relative to */rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -34,7 +34,7 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -110,7 +110,7 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -184,7 +184,7 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -259,7 +259,7 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -269,8 +269,8 @@ public class Example {
         Integer size = 56; // Integer | Maximum number of topics to return on single page
         String filter = "filter_example"; // String | Filter to apply when returning the list of topics
         Integer page = 56; // Integer | The page when returning the limit of requested topics.
-        String order = "order_example"; // String | Order of the items sorting. Ascending order is used as default.
-        String orderKey = "orderKey_example"; // String | Order key to sort the topics by.
+        String order = "asc"; // String | Order of the items sorting. Ascending order is used as default.
+        String orderKey = "name"; // String | Order key to sort the topics by.
         try {
             TopicsList result = apiInstance.getTopics(size, filter, page, order, orderKey);
             System.out.println(result);
@@ -342,7 +342,7 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");

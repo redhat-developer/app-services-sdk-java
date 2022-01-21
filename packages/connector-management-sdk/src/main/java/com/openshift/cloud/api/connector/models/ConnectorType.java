@@ -27,6 +27,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Represents a connector type supported by the API
@@ -116,6 +117,8 @@ public class ConnectorType {
   public static final String JSON_PROPERTY_JSON_SCHEMA = "json_schema";
   private Object jsonSchema;
 
+  public ConnectorType() { 
+  }
 
   public ConnectorType id(String id) {
     

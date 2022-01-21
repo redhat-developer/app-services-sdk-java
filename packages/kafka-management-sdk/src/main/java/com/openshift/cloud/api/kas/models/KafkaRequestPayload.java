@@ -22,10 +22,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Schema for the request body sent to /kafkas POST
@@ -56,6 +58,8 @@ public class KafkaRequestPayload {
   public static final String JSON_PROPERTY_REAUTHENTICATION_ENABLED = "reauthentication_enabled";
   private JsonNullable<Boolean> reauthenticationEnabled = JsonNullable.<Boolean>undefined();
 
+  public KafkaRequestPayload() { 
+  }
 
   public KafkaRequestPayload cloudProvider(String cloudProvider) {
     
@@ -121,6 +125,7 @@ public class KafkaRequestPayload {
    * The name of the Kafka cluster. It must consist of lower-case alphanumeric characters or &#39;-&#39;, start with an alphabetic character, and end with an alphanumeric character, and can not be longer than 32 characters.
    * @return name
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The name of the Kafka cluster. It must consist of lower-case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character, and can not be longer than 32 characters.")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -212,12 +217,23 @@ public class KafkaRequestPayload {
         Objects.equals(this.multiAz, kafkaRequestPayload.multiAz) &&
         Objects.equals(this.name, kafkaRequestPayload.name) &&
         Objects.equals(this.region, kafkaRequestPayload.region) &&
-        Objects.equals(this.reauthenticationEnabled, kafkaRequestPayload.reauthenticationEnabled);
+        equalsNullable(this.reauthenticationEnabled, kafkaRequestPayload.reauthenticationEnabled);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cloudProvider, multiAz, name, region, reauthenticationEnabled);
+    return Objects.hash(cloudProvider, multiAz, name, region, hashCodeNullable(reauthenticationEnabled));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

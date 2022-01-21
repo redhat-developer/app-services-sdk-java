@@ -29,6 +29,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ConsumerGroupResetOffsetResult
@@ -54,6 +55,8 @@ public class ConsumerGroupResetOffsetResult {
   public static final String JSON_PROPERTY_SIZE = "size";
   private BigDecimal size;
 
+  public ConsumerGroupResetOffsetResult() { 
+  }
 
   public ConsumerGroupResetOffsetResult items(List<ConsumerGroupResetOffsetResultItem> items) {
     
@@ -100,6 +103,7 @@ public class ConsumerGroupResetOffsetResult {
    * Total number of entries in the full result set
    * @return total
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Total number of entries in the full result set")
   @JsonProperty(JSON_PROPERTY_TOTAL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

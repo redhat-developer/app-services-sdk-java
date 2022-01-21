@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A group of Kafka consumers
@@ -91,6 +92,8 @@ public class ConsumerGroup {
   public static final String JSON_PROPERTY_CONSUMERS = "consumers";
   private List<Consumer> consumers = new ArrayList<>();
 
+  public ConsumerGroup() { 
+  }
 
   public ConsumerGroup groupId(String groupId) {
     
@@ -102,6 +105,7 @@ public class ConsumerGroup {
    * Unique identifier for the consumer group
    * @return groupId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Unique identifier for the consumer group")
   @JsonProperty(JSON_PROPERTY_GROUP_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -160,6 +164,7 @@ public class ConsumerGroup {
    * The list of consumers associated with this consumer group
    * @return consumers
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The list of consumers associated with this consumer group")
   @JsonProperty(JSON_PROPERTY_CONSUMERS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

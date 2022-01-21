@@ -50,7 +50,14 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.redhat.cloud:connector-management-sdk:0.0.3"
+  repositories {
+    mavenCentral()     // Needed if the 'connector-management-sdk' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'connector-management-sdk' jar has been published to the local maven repo.
+  }
+
+  dependencies {
+     implementation "com.redhat.cloud:connector-management-sdk:0.0.3"
+  }
 ```
 
 ### Others

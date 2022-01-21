@@ -1,6 +1,6 @@
 # AclsApi
 
-All URIs are relative to *http://localhost/rest*
+All URIs are relative to */rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -33,7 +33,7 @@ import com.openshift.cloud.api.kas.auth.AclsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -108,7 +108,7 @@ import com.openshift.cloud.api.kas.auth.AclsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -140,12 +140,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional] [enum: ANY, GROUP, TOPIC, CLUSTER, TRANSACTIONAL_ID]
+ **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional] [default to ANY] [enum: ANY, GROUP, TOPIC, CLUSTER, TRANSACTIONAL_ID]
  **resourceName** | **String**| ACL Resource Name Filter | [optional]
- **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional] [enum: LITERAL, PREFIXED, ANY, MATCH]
+ **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional] [default to ANY] [enum: LITERAL, PREFIXED, ANY, MATCH]
  **principal** | **String**| ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. | [optional]
- **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional] [enum: ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, DESCRIBE_CONFIGS, ALTER_CONFIGS, ANY]
- **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional] [enum: ALLOW, DENY, ANY]
+ **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional] [default to ANY] [enum: ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, DESCRIBE_CONFIGS, ALTER_CONFIGS, ANY]
+ **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional] [default to ANY] [enum: ALLOW, DENY, ANY]
 
 ### Return type
 
@@ -194,7 +194,7 @@ import com.openshift.cloud.api.kas.auth.AclsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -264,7 +264,7 @@ import com.openshift.cloud.api.kas.auth.AclsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -277,10 +277,10 @@ public class Example {
         String principal = "User:*"; // String | ACL Principal Filter. Either a specific user or the wildcard user `User:*` may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
         AclOperationFilter operation = AclOperationFilter.fromValue("ALL"); // AclOperationFilter | ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not `ANY`.
         AclPermissionTypeFilter permission = AclPermissionTypeFilter.fromValue("ALLOW"); // AclPermissionTypeFilter | ACL Permission Type Filter
-        BigDecimal page = new BigDecimal(78); // BigDecimal | Page number for result lists
-        BigDecimal size = new BigDecimal(78); // BigDecimal | Page size for result lists
-        String order = "desc"; // String | Order of the ACL binding sorting.
-        String orderKey = "permission"; // String | Order key to sort the items by.
+        BigDecimal page = new BigDecimal("1"); // BigDecimal | Page number for result lists
+        BigDecimal size = new BigDecimal("10"); // BigDecimal | Page size for result lists
+        String order = "asc"; // String | Order of the ACL binding sorting.
+        String orderKey = "resourceType"; // String | Order key to sort the items by.
         try {
             AclBindingListPage result = apiInstance.getAcls(resourceType, resourceName, patternType, principal, operation, permission, page, size, order, orderKey);
             System.out.println(result);
@@ -300,12 +300,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional] [enum: ANY, GROUP, TOPIC, CLUSTER, TRANSACTIONAL_ID]
+ **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional] [default to ANY] [enum: ANY, GROUP, TOPIC, CLUSTER, TRANSACTIONAL_ID]
  **resourceName** | **String**| ACL Resource Name Filter | [optional]
- **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional] [enum: LITERAL, PREFIXED, ANY, MATCH]
+ **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional] [default to ANY] [enum: LITERAL, PREFIXED, ANY, MATCH]
  **principal** | **String**| ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. | [optional]
- **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional] [enum: ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, DESCRIBE_CONFIGS, ALTER_CONFIGS, ANY]
- **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional] [enum: ALLOW, DENY, ANY]
+ **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional] [default to ANY] [enum: ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, DESCRIBE_CONFIGS, ALTER_CONFIGS, ANY]
+ **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional] [default to ANY] [enum: ALLOW, DENY, ANY]
  **page** | **BigDecimal**| Page number for result lists | [optional] [default to 1]
  **size** | **BigDecimal**| Page size for result lists | [optional] [default to 10]
  **order** | **String**| Order of the ACL binding sorting. | [optional] [default to desc] [enum: asc, desc]

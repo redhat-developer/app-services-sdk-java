@@ -5,7 +5,7 @@ import com.openshift.cloud.api.connector.invoker.ApiClient;
 import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.Pair;
 
-import javax.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.connector.models.ConnectorType;
 import com.openshift.cloud.api.connector.models.ConnectorTypeList;

@@ -26,6 +26,7 @@ import com.openshift.cloud.api.connector.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Schema for the request to update a data plane cluster&#39;s status
@@ -56,6 +57,8 @@ public class ConnectorCluster {
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;
 
+  public ConnectorCluster() { 
+  }
 
   public ConnectorCluster id(String id) {
     

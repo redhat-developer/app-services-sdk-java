@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RegistryListAllOf
@@ -39,6 +40,8 @@ public class RegistryListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<Registry> items = new ArrayList<>();
 
+  public RegistryListAllOf() { 
+  }
 
   public RegistryListAllOf items(List<Registry> items) {
     
@@ -55,6 +58,7 @@ public class RegistryListAllOf {
    * Get items
    * @return items
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Kafka Topic (A feed where records are stored and published)
@@ -44,6 +45,8 @@ public class TopicSettings {
   public static final String JSON_PROPERTY_CONFIG = "config";
   private List<ConfigEntry> config = null;
 
+  public TopicSettings() { 
+  }
 
   public TopicSettings numPartitions(Integer numPartitions) {
     
@@ -55,6 +58,7 @@ public class TopicSettings {
    * Number of partitions for this topic.
    * @return numPartitions
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Number of partitions for this topic.")
   @JsonProperty(JSON_PROPERTY_NUM_PARTITIONS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

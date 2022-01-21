@@ -27,6 +27,7 @@ import com.openshift.cloud.api.kas.auth.models.AclResourceType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Represents a binding between a resource pattern and an access control entry
@@ -61,6 +62,8 @@ public class AclBinding {
   public static final String JSON_PROPERTY_PERMISSION = "permission";
   private AclPermissionType permission;
 
+  public AclBinding() { 
+  }
 
   public AclBinding resourceType(AclResourceType resourceType) {
     
@@ -72,6 +75,7 @@ public class AclBinding {
    * Get resourceType
    * @return resourceType
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -98,6 +102,7 @@ public class AclBinding {
    * Get resourceName
    * @return resourceName
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_RESOURCE_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -124,6 +129,7 @@ public class AclBinding {
    * Get patternType
    * @return patternType
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_PATTERN_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -150,6 +156,7 @@ public class AclBinding {
    * Identifies the user or service account to which an ACL entry is bound. The literal prefix value of &#x60;User:&#x60; is required. May be used to specify all users with value &#x60;User:*&#x60;.
    * @return principal
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(example = "User:user-123-abc", required = true, value = "Identifies the user or service account to which an ACL entry is bound. The literal prefix value of `User:` is required. May be used to specify all users with value `User:*`.")
   @JsonProperty(JSON_PROPERTY_PRINCIPAL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -176,6 +183,7 @@ public class AclBinding {
    * Get operation
    * @return operation
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_OPERATION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -202,6 +210,7 @@ public class AclBinding {
    * Get permission
    * @return permission
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_PERMISSION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

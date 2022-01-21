@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ConsumerGroupResetOffsetResultItemList
@@ -39,6 +40,8 @@ public class ConsumerGroupResetOffsetResultItemList {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<ConsumerGroupResetOffsetResultItem> items = null;
 
+  public ConsumerGroupResetOffsetResultItemList() { 
+  }
 
   public ConsumerGroupResetOffsetResultItemList items(List<ConsumerGroupResetOffsetResultItem> items) {
     

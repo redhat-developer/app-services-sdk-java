@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Values
@@ -40,6 +41,8 @@ public class Values {
   public static final String JSON_PROPERTY_VALUE = "value";
   private Double value;
 
+  public Values() { 
+  }
 
   public Values timestamp(Long timestamp) {
     
@@ -78,6 +81,7 @@ public class Values {
    * Get value
    * @return value
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

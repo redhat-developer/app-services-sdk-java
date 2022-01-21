@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ConnectorClusterListAllOf
@@ -39,6 +40,8 @@ public class ConnectorClusterListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<ConnectorCluster> items = null;
 
+  public ConnectorClusterListAllOf() { 
+  }
 
   public ConnectorClusterListAllOf items(List<ConnectorCluster> items) {
     

@@ -5,7 +5,7 @@ import com.openshift.cloud.api.kas.auth.invoker.ApiClient;
 import com.openshift.cloud.api.kas.auth.invoker.Configuration;
 import com.openshift.cloud.api.kas.auth.invoker.Pair;
 
-import javax.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.kas.auth.models.ConsumerGroup;
 import com.openshift.cloud.api.kas.auth.models.ConsumerGroupList;

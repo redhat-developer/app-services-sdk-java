@@ -5,7 +5,7 @@ import com.openshift.cloud.api.kas.auth.invoker.ApiClient;
 import com.openshift.cloud.api.kas.auth.invoker.Configuration;
 import com.openshift.cloud.api.kas.auth.invoker.Pair;
 
-import javax.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.kas.auth.models.AclBinding;
 import com.openshift.cloud.api.kas.auth.models.AclBindingListPage;
@@ -86,12 +86,12 @@ public class AclsApi {
   /**
    * Delete ACL bindings
    * Deletes ACL bindings that match the query parameters.
-   * @param resourceType ACL Resource Type Filter (optional)
+   * @param resourceType ACL Resource Type Filter (optional, default to ANY)
    * @param resourceName ACL Resource Name Filter (optional)
-   * @param patternType ACL Pattern Type Filter (optional)
+   * @param patternType ACL Pattern Type Filter (optional, default to ANY)
    * @param principal ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. (optional)
-   * @param operation ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. (optional)
-   * @param permission ACL Permission Type Filter (optional)
+   * @param operation ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. (optional, default to ANY)
+   * @param permission ACL Permission Type Filter (optional, default to ANY)
    * @return a {@code AclBindingListPage}
    * @throws ApiException if fails to make API call
    */
@@ -172,12 +172,12 @@ public class AclsApi {
   /**
    * List ACL bindings
    * Returns a list of all of the available ACL bindings, or the list of bindings that meet the users URL Query Parameters. If no parameters are specified, all ACL bindings known to the system will be returned (with paging).
-   * @param resourceType ACL Resource Type Filter (optional)
+   * @param resourceType ACL Resource Type Filter (optional, default to ANY)
    * @param resourceName ACL Resource Name Filter (optional)
-   * @param patternType ACL Pattern Type Filter (optional)
+   * @param patternType ACL Pattern Type Filter (optional, default to ANY)
    * @param principal ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. (optional)
-   * @param operation ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. (optional)
-   * @param permission ACL Permission Type Filter (optional)
+   * @param operation ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. (optional, default to ANY)
+   * @param permission ACL Permission Type Filter (optional, default to ANY)
    * @param page Page number for result lists (optional, default to 1)
    * @param size Page size for result lists (optional, default to 10)
    * @param order Order of the ACL binding sorting. (optional, default to desc)

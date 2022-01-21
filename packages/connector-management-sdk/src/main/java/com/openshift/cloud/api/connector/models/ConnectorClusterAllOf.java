@@ -24,6 +24,7 @@ import com.openshift.cloud.api.connector.models.ConnectorClusterAllOfMetadata;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ConnectorClusterAllOf
@@ -41,6 +42,8 @@ public class ConnectorClusterAllOf {
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;
 
+  public ConnectorClusterAllOf() { 
+  }
 
   public ConnectorClusterAllOf metadata(ConnectorClusterAllOfMetadata metadata) {
     

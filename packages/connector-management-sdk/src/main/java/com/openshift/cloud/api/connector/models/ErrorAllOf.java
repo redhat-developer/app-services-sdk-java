@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ErrorAllOf
@@ -44,6 +45,8 @@ public class ErrorAllOf {
   public static final String JSON_PROPERTY_OPERATION_ID = "operation_id";
   private String operationId;
 
+  public ErrorAllOf() { 
+  }
 
   public ErrorAllOf code(String code) {
     

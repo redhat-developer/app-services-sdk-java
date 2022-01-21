@@ -27,6 +27,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * MetricsRangeQueryList
@@ -48,6 +49,8 @@ public class MetricsRangeQueryList {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<RangeQuery> items = null;
 
+  public MetricsRangeQueryList() { 
+  }
 
   public MetricsRangeQueryList kind(String kind) {
     

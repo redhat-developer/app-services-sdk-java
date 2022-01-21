@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Kafka topic partition
@@ -51,6 +52,8 @@ public class Partition {
   public static final String JSON_PROPERTY_LEADER = "leader";
   private Object leader;
 
+  public Partition() { 
+  }
 
   public Partition partition(Integer partition) {
     
@@ -62,6 +65,7 @@ public class Partition {
    * The partition id, unique among partitions of the same topic
    * @return partition
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The partition id, unique among partitions of the same topic")
   @JsonProperty(JSON_PROPERTY_PARTITION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

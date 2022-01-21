@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Schema for the service status response body
@@ -37,6 +38,8 @@ public class ServiceStatus {
   public static final String JSON_PROPERTY_MAX_INSTANCES_REACHED = "max_instances_reached";
   private Boolean maxInstancesReached;
 
+  public ServiceStatus() { 
+  }
 
   public ServiceStatus maxInstancesReached(Boolean maxInstancesReached) {
     

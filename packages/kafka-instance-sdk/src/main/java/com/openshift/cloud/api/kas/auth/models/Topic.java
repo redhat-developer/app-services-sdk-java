@@ -27,6 +27,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Kafka Topic (A feed where records are stored and published)
@@ -49,6 +50,8 @@ public class Topic {
   public static final String JSON_PROPERTY_PARTITIONS = "partitions";
   private List<Partition> partitions = null;
 
+  public Topic() { 
+  }
 
   public Topic name(String name) {
     

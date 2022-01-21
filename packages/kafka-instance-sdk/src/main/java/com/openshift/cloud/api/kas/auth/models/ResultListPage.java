@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ResultListPage
@@ -45,6 +46,8 @@ public class ResultListPage {
   public static final String JSON_PROPERTY_SIZE = "size";
   private BigDecimal size;
 
+  public ResultListPage() { 
+  }
 
   public ResultListPage total(BigDecimal total) {
     
@@ -56,6 +59,7 @@ public class ResultListPage {
    * Total number of entries in the full result set
    * @return total
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Total number of entries in the full result set")
   @JsonProperty(JSON_PROPERTY_TOTAL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

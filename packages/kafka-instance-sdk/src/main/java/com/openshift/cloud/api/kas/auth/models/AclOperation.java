@@ -16,6 +16,7 @@ package com.openshift.cloud.api.kas.auth.models;
 import java.util.Objects;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

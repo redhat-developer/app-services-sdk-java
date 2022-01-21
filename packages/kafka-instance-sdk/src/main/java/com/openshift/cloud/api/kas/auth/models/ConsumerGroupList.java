@@ -27,6 +27,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A list of consumer groups
@@ -53,6 +54,8 @@ public class ConsumerGroupList {
   public static final String JSON_PROPERTY_PAGE = "page";
   private Integer page;
 
+  public ConsumerGroupList() { 
+  }
 
   public ConsumerGroupList items(List<ConsumerGroup> items) {
     

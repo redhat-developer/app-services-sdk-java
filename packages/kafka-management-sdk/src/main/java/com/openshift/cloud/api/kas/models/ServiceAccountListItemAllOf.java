@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ServiceAccountListItemAllOf
@@ -57,6 +58,8 @@ public class ServiceAccountListItemAllOf {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;
 
+  public ServiceAccountListItemAllOf() { 
+  }
 
   public ServiceAccountListItemAllOf id(String id) {
     

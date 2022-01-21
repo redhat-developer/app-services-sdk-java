@@ -22,10 +22,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * KafkaUpdateRequest
@@ -43,6 +45,8 @@ public class KafkaUpdateRequest {
   public static final String JSON_PROPERTY_REAUTHENTICATION_ENABLED = "reauthentication_enabled";
   private JsonNullable<Boolean> reauthenticationEnabled = JsonNullable.<Boolean>undefined();
 
+  public KafkaUpdateRequest() { 
+  }
 
   public KafkaUpdateRequest owner(String owner) {
     this.owner = JsonNullable.<String>of(owner);
@@ -123,13 +127,24 @@ public class KafkaUpdateRequest {
       return false;
     }
     KafkaUpdateRequest kafkaUpdateRequest = (KafkaUpdateRequest) o;
-    return Objects.equals(this.owner, kafkaUpdateRequest.owner) &&
-        Objects.equals(this.reauthenticationEnabled, kafkaUpdateRequest.reauthenticationEnabled);
+    return equalsNullable(this.owner, kafkaUpdateRequest.owner) &&
+        equalsNullable(this.reauthenticationEnabled, kafkaUpdateRequest.reauthenticationEnabled);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(owner, reauthenticationEnabled);
+    return Objects.hash(hashCodeNullable(owner), hashCodeNullable(reauthenticationEnabled));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

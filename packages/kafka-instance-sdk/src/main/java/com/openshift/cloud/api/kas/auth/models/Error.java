@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * General error response
@@ -45,6 +46,8 @@ public class Error {
   public static final String JSON_PROPERTY_PROPERTY_CLASS = "class";
   private String propertyClass;
 
+  public Error() { 
+  }
 
   public Error code(Integer code) {
     

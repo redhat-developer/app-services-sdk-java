@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The Kafka resource api status
@@ -37,6 +38,8 @@ public class ServiceStatusKafkas {
   public static final String JSON_PROPERTY_MAX_CAPACITY_REACHED = "max_capacity_reached";
   private Boolean maxCapacityReached;
 
+  public ServiceStatusKafkas() { 
+  }
 
   public ServiceStatusKafkas maxCapacityReached(Boolean maxCapacityReached) {
     
@@ -48,6 +51,7 @@ public class ServiceStatusKafkas {
    * Indicates whether we have reached Kafka maximum capacity
    * @return maxCapacityReached
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Indicates whether we have reached Kafka maximum capacity")
   @JsonProperty(JSON_PROPERTY_MAX_CAPACITY_REACHED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Kafka Topic (A feed where records are stored and published)
@@ -44,6 +45,8 @@ public class UpdateTopicInput {
   public static final String JSON_PROPERTY_NUM_PARTITIONS = "numPartitions";
   private Integer numPartitions;
 
+  public UpdateTopicInput() { 
+  }
 
   public UpdateTopicInput config(List<ConfigEntry> config) {
     

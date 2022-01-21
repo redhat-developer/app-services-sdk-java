@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Description of a region of a cloud provider.
@@ -55,6 +56,8 @@ public class CloudRegion {
   public static final String JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES = "supported_instance_types";
   private List<String> supportedInstanceTypes = new ArrayList<>();
 
+  public CloudRegion() { 
+  }
 
   public CloudRegion kind(String kind) {
     
@@ -147,6 +150,7 @@ public class CloudRegion {
    * Whether the region is enabled for deploying an OSD cluster.
    * @return enabled
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Whether the region is enabled for deploying an OSD cluster.")
   @JsonProperty(JSON_PROPERTY_ENABLED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -178,6 +182,7 @@ public class CloudRegion {
    * The Kafka instance types supported by this region.
    * @return supportedInstanceTypes
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The Kafka instance types supported by this region.")
   @JsonProperty(JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Cloud provider.
@@ -53,6 +54,8 @@ public class CloudProvider {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   private Boolean enabled;
 
+  public CloudProvider() { 
+  }
 
   public CloudProvider kind(String kind) {
     
@@ -172,6 +175,7 @@ public class CloudProvider {
    * Whether the cloud provider is enabled for deploying an OSD cluster.
    * @return enabled
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Whether the cloud provider is enabled for deploying an OSD cluster.")
   @JsonProperty(JSON_PROPERTY_ENABLED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
