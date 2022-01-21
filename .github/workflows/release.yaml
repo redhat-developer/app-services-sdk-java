@@ -29,7 +29,7 @@ jobs:
           cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
           gpg --list-secret-keys --keyid-format LONG              
       - name: Inject slug/short variables
-        uses: rlespinasse/github-slug-action@v3.x
+        uses: rlespinasse/github-slug-action@v4
       - name: Validate Tag
         run: npx semver $GITHUB_REF_SLUG
       - name: Version kafka-management-sdk
