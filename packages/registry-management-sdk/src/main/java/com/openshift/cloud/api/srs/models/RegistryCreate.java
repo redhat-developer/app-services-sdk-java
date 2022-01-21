@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Information used to create a new Service Registry instance within a multi-tenant deployment.
@@ -41,6 +42,8 @@ public class RegistryCreate {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;
 
+  public RegistryCreate() { 
+  }
 
   public RegistryCreate name(String name) {
     

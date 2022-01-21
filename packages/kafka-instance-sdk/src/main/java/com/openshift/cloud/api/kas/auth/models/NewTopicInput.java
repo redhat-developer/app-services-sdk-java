@@ -24,6 +24,7 @@ import com.openshift.cloud.api.kas.auth.models.TopicSettings;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Input object to create a new topic.
@@ -42,6 +43,8 @@ public class NewTopicInput {
   public static final String JSON_PROPERTY_SETTINGS = "settings";
   private TopicSettings settings;
 
+  public NewTopicInput() { 
+  }
 
   public NewTopicInput name(String name) {
     
@@ -53,6 +56,7 @@ public class NewTopicInput {
    * The topic name, this value must be unique.
    * @return name
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The topic name, this value must be unique.")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -79,6 +83,7 @@ public class NewTopicInput {
    * Get settings
    * @return settings
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SETTINGS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

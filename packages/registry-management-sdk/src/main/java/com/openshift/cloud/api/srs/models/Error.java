@@ -25,6 +25,7 @@ import com.openshift.cloud.api.srs.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Error
@@ -58,6 +59,8 @@ public class Error {
   public static final String JSON_PROPERTY_OPERATION_ID = "operation_id";
   private String operationId;
 
+  public Error() { 
+  }
 
   public Error id(String id) {
     

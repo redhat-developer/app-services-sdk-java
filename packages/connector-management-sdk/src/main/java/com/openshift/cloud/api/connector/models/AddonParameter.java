@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A addon parameter
@@ -41,6 +42,8 @@ public class AddonParameter {
   public static final String JSON_PROPERTY_VALUE = "value";
   private String value;
 
+  public AddonParameter() { 
+  }
 
   public AddonParameter id(String id) {
     

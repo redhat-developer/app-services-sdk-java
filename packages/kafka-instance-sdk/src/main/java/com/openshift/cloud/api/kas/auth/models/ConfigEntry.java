@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Key value pair indicating possible configuration options for a topic.
@@ -41,6 +42,8 @@ public class ConfigEntry {
   public static final String JSON_PROPERTY_VALUE = "value";
   private String value;
 
+  public ConfigEntry() { 
+  }
 
   public ConfigEntry key(String key) {
     

@@ -5,7 +5,7 @@ import com.openshift.cloud.api.srs.invoker.ApiClient;
 import com.openshift.cloud.api.srs.invoker.Configuration;
 import com.openshift.cloud.api.srs.invoker.Pair;
 
-import javax.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.srs.models.Error;
 import com.openshift.cloud.api.srs.models.ServiceStatus;

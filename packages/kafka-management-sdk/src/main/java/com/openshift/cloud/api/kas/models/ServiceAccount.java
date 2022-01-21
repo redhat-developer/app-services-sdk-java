@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Service Account created in MAS-SSO for the Kafka Cluster for authentication
@@ -72,6 +73,8 @@ public class ServiceAccount {
   public static final String JSON_PROPERTY_CREATED_AT = "created_at";
   private OffsetDateTime createdAt;
 
+  public ServiceAccount() { 
+  }
 
   public ServiceAccount id(String id) {
     

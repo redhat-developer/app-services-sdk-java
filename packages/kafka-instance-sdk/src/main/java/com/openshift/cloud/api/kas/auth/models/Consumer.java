@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A Kafka consumer is responsible for reading records from one or more topics and one or more partitions of a topic.
@@ -62,6 +63,8 @@ public class Consumer {
   public static final String JSON_PROPERTY_MEMBER_ID = "memberId";
   private String memberId;
 
+  public Consumer() { 
+  }
 
   public Consumer groupId(String groupId) {
     
@@ -73,6 +76,7 @@ public class Consumer {
    * Unique identifier for the consumer group to which this consumer belongs.
    * @return groupId
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Unique identifier for the consumer group to which this consumer belongs.")
   @JsonProperty(JSON_PROPERTY_GROUP_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -99,6 +103,7 @@ public class Consumer {
    * The unique topic name to which this consumer belongs
    * @return topic
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The unique topic name to which this consumer belongs")
   @JsonProperty(JSON_PROPERTY_TOPIC)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -125,6 +130,7 @@ public class Consumer {
    * The partition number to which this consumer group is assigned to.
    * @return partition
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The partition number to which this consumer group is assigned to.")
   @JsonProperty(JSON_PROPERTY_PARTITION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -151,6 +157,7 @@ public class Consumer {
    * Offset denotes the position of the consumer in a partition.
    * @return offset
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Offset denotes the position of the consumer in a partition.")
   @JsonProperty(JSON_PROPERTY_OFFSET)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -204,6 +211,7 @@ public class Consumer {
    * Offset Lag is the delta between the last produced message and the last consumer&#39;s committed offset.
    * @return lag
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "Offset Lag is the delta between the last produced message and the last consumer's committed offset.")
   @JsonProperty(JSON_PROPERTY_LAG)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

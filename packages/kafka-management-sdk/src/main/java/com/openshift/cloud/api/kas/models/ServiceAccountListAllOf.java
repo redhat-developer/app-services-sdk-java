@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ServiceAccountListAllOf
@@ -43,6 +44,8 @@ public class ServiceAccountListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<ServiceAccountListItem> items = new ArrayList<>();
 
+  public ServiceAccountListAllOf() { 
+  }
 
   public ServiceAccountListAllOf kind(String kind) {
     
@@ -54,6 +57,7 @@ public class ServiceAccountListAllOf {
    * Get kind
    * @return kind
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -85,6 +89,7 @@ public class ServiceAccountListAllOf {
    * Get items
    * @return items
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

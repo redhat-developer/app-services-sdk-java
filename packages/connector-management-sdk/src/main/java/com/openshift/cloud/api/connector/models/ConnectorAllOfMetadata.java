@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ConnectorAllOfMetadata
@@ -57,6 +58,8 @@ public class ConnectorAllOfMetadata {
   public static final String JSON_PROPERTY_RESOURCE_VERSION = "resource_version";
   private Long resourceVersion;
 
+  public ConnectorAllOfMetadata() { 
+  }
 
   public ConnectorAllOfMetadata kafkaId(String kafkaId) {
     

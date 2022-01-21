@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * TopicsToResetOffset
@@ -42,6 +43,8 @@ public class TopicsToResetOffset {
   public static final String JSON_PROPERTY_PARTITIONS = "partitions";
   private List<Integer> partitions = null;
 
+  public TopicsToResetOffset() { 
+  }
 
   public TopicsToResetOffset topic(String topic) {
     
@@ -53,6 +56,7 @@ public class TopicsToResetOffset {
    * Get topic
    * @return topic
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_TOPIC)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

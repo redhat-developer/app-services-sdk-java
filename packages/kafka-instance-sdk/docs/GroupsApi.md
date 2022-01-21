@@ -1,6 +1,6 @@
 # GroupsApi
 
-All URIs are relative to *http://localhost/rest*
+All URIs are relative to */rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -33,7 +33,7 @@ import com.openshift.cloud.api.kas.auth.GroupsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -107,7 +107,7 @@ import com.openshift.cloud.api.kas.auth.GroupsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -115,8 +115,8 @@ public class Example {
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
         String consumerGroupId = "consumerGroupId_example"; // String | The unique ID of the consumer group
-        String order = "order_example"; // String | Order of the items sorting. Ascending order is used as default.
-        String orderKey = "orderKey_example"; // String | Order key to sort the topics by.
+        String order = "asc"; // String | Order of the items sorting. Ascending order is used as default.
+        String orderKey = "offset"; // String | Order key to sort the topics by.
         Integer partitionFilter = 56; // Integer | Value of partition to include. Value -1 means filter is not active.
         String topic = "{\"groupId\":\"consumer_group_1\",\"consumers\":[{\"groupId\":\"consumer_group_1\",\"topic\":\"topic-1\",\"partition\":0,\"memberId\":\"consumer_group_member1\",\"offset\":5,\"lag\":0,\"logEndOffset\":5},{\"groupId\":\"consumer_group_1\",\"topic\":\"topic-1\",\"partition\":1,\"memberId\":\"consumer_group_member2\",\"offset\":3,\"lag\":0,\"logEndOffset\":3},{\"groupId\":\"consumer_group_1\",\"topic\":\"topic-1\",\"partition\":2,\"memberId\":\"consumer_group_member3\",\"offset\":6,\"lag\":1,\"logEndOffset\":5}]}"; // String | Filter consumer groups for a specific topic
         try {
@@ -191,7 +191,7 @@ import com.openshift.cloud.api.kas.auth.GroupsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -202,8 +202,8 @@ public class Example {
         Integer page = 56; // Integer | The page when returning the list of consumer groups
         String topic = "topic_example"; // String | Return consumer groups where the topic name contains with this value
         String groupIdFilter = "groupIdFilter_example"; // String | Return the consumer groups where the ID contains with this value
-        String order = "order_example"; // String | Order of the consumer groups sorting. Ascending order is used as default.
-        String orderKey = "orderKey_example"; // String | Order key to sort the items by. Only the value 'name' is currently applicable.
+        String order = "asc"; // String | Order of the consumer groups sorting. Ascending order is used as default.
+        String orderKey = "name"; // String | Order key to sort the items by. Only the value 'name' is currently applicable.
         try {
             ConsumerGroupList result = apiInstance.getConsumerGroups(size, page, topic, groupIdFilter, order, orderKey);
             System.out.println(result);
@@ -276,7 +276,7 @@ import com.openshift.cloud.api.kas.auth.GroupsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");

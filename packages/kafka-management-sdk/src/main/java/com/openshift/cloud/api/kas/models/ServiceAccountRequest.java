@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Schema for the request to create a service account
@@ -41,6 +42,8 @@ public class ServiceAccountRequest {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;
 
+  public ServiceAccountRequest() { 
+  }
 
   public ServiceAccountRequest name(String name) {
     
@@ -52,6 +55,7 @@ public class ServiceAccountRequest {
    * The name of the service account
    * @return name
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "The name of the service account")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

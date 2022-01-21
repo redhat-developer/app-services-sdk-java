@@ -24,6 +24,7 @@ import com.openshift.cloud.api.kas.models.ServiceStatusKafkas;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Schema for the service status response body
@@ -38,6 +39,8 @@ public class ServiceStatus {
   public static final String JSON_PROPERTY_KAFKAS = "kafkas";
   private ServiceStatusKafkas kafkas;
 
+  public ServiceStatus() { 
+  }
 
   public ServiceStatus kafkas(ServiceStatusKafkas kafkas) {
     

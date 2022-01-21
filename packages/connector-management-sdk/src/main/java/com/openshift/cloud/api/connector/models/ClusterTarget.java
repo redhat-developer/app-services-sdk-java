@@ -27,6 +27,7 @@ import com.openshift.cloud.api.connector.models.CloudProviderClusterTarget;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ClusterTarget
@@ -64,6 +65,8 @@ public class ClusterTarget {
   public static final String JSON_PROPERTY_MULTI_AZ = "multi_az";
   private Boolean multiAz;
 
+  public ClusterTarget() { 
+  }
 
   public ClusterTarget kind(String kind) {
     
@@ -75,6 +78,7 @@ public class ClusterTarget {
    * Get kind
    * @return kind
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

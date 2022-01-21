@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * KafkaRequest
@@ -99,6 +100,8 @@ public class KafkaRequest {
   public static final String JSON_PROPERTY_REAUTHENTICATION_ENABLED = "reauthentication_enabled";
   private Boolean reauthenticationEnabled;
 
+  public KafkaRequest() { 
+  }
 
   public KafkaRequest id(String id) {
     
@@ -245,6 +248,7 @@ public class KafkaRequest {
    * Get multiAz
    * @return multiAz
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_MULTI_AZ)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -514,6 +518,7 @@ public class KafkaRequest {
    * Get reauthenticationEnabled
    * @return reauthenticationEnabled
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_REAUTHENTICATION_ENABLED)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

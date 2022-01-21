@@ -50,7 +50,14 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.redhat.cloud:kafka-instance-sdk:0.3.0"
+  repositories {
+    mavenCentral()     // Needed if the 'kafka-instance-sdk' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'kafka-instance-sdk' jar has been published to the local maven repo.
+  }
+
+  dependencies {
+     implementation "com.redhat.cloud:kafka-instance-sdk:0.3.0"
+  }
 ```
 
 ### Others
@@ -81,7 +88,7 @@ public class AclsApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost/rest");
+        defaultClient.setBasePath("/rest");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -105,7 +112,7 @@ public class AclsApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost/rest*
+All URIs are relative to */rest*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

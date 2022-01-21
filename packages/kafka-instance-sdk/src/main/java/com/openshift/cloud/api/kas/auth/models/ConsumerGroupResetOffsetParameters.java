@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ConsumerGroupResetOffsetParameters
@@ -86,6 +87,8 @@ public class ConsumerGroupResetOffsetParameters {
   public static final String JSON_PROPERTY_TOPICS = "topics";
   private List<TopicsToResetOffset> topics = null;
 
+  public ConsumerGroupResetOffsetParameters() { 
+  }
 
   public ConsumerGroupResetOffsetParameters value(String value) {
     
@@ -124,6 +127,7 @@ public class ConsumerGroupResetOffsetParameters {
    * Get offset
    * @return offset
   **/
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_OFFSET)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)

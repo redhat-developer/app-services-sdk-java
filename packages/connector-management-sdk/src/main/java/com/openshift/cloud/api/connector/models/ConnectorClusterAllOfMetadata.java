@@ -24,6 +24,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * ConnectorClusterAllOfMetadata
@@ -49,6 +50,8 @@ public class ConnectorClusterAllOfMetadata {
   public static final String JSON_PROPERTY_UPDATED_AT = "updated_at";
   private OffsetDateTime updatedAt;
 
+  public ConnectorClusterAllOfMetadata() { 
+  }
 
   public ConnectorClusterAllOfMetadata owner(String owner) {
     

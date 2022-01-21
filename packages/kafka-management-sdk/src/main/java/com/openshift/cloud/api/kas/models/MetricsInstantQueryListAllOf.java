@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * MetricsInstantQueryListAllOf
@@ -47,6 +48,8 @@ public class MetricsInstantQueryListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<InstantQuery> items = null;
 
+  public MetricsInstantQueryListAllOf() { 
+  }
 
   public MetricsInstantQueryListAllOf kind(String kind) {
     

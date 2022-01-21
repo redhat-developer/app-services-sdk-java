@@ -28,6 +28,7 @@ import com.openshift.cloud.api.connector.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A connector holds the configuration to connect a Kafka topic to another system.
@@ -82,6 +83,8 @@ public class Connector {
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;
 
+  public Connector() { 
+  }
 
   public Connector id(String id) {
     

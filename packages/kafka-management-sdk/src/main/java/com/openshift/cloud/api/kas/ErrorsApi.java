@@ -5,7 +5,7 @@ import com.openshift.cloud.api.kas.invoker.ApiClient;
 import com.openshift.cloud.api.kas.invoker.Configuration;
 import com.openshift.cloud.api.kas.invoker.Pair;
 
-import javax.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.kas.models.Error;
 import com.openshift.cloud.api.kas.models.ErrorList;

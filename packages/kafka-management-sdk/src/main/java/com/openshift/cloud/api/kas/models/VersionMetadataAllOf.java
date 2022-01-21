@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * VersionMetadataAllOf
@@ -39,6 +40,8 @@ public class VersionMetadataAllOf {
   public static final String JSON_PROPERTY_COLLECTIONS = "collections";
   private List<ObjectReference> collections = null;
 
+  public VersionMetadataAllOf() { 
+  }
 
   public VersionMetadataAllOf collections(List<ObjectReference> collections) {
     
