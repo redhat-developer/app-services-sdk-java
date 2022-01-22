@@ -15,7 +15,9 @@ Method | HTTP request | Description
 
 ## createConnectorCluster
 
-> ConnectorCluster createConnectorCluster(async, connectorCluster)
+> ConnectorCluster createConnectorCluster(async, connectorClusterRequest)
+
+Create a new connector cluster
 
 Create a new connector cluster
 
@@ -41,9 +43,9 @@ public class Example {
 
         ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
-        ConnectorCluster connectorCluster = new ConnectorCluster(); // ConnectorCluster | Connector cluster data
+        ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Connector cluster data
         try {
-            ConnectorCluster result = apiInstance.createConnectorCluster(async, connectorCluster);
+            ConnectorCluster result = apiInstance.createConnectorCluster(async, connectorClusterRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#createConnectorCluster");
@@ -62,7 +64,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **async** | **Boolean**| Perform the action in an asynchronous manner |
- **connectorCluster** | [**ConnectorCluster**](ConnectorCluster.md)| Connector cluster data |
+ **connectorClusterRequest** | [**ConnectorClusterRequest**](ConnectorClusterRequest.md)| Connector cluster data |
 
 ### Return type
 
@@ -91,6 +93,8 @@ Name | Type | Description  | Notes
 ## deleteConnectorCluster
 
 > Error deleteConnectorCluster(connectorClusterId)
+
+Delete a connector cluster
 
 Delete a connector cluster
 
@@ -166,6 +170,8 @@ Name | Type | Description  | Notes
 
 Get a connector cluster
 
+Get a connector cluster
+
 ### Example
 
 ```java
@@ -235,6 +241,8 @@ Name | Type | Description  | Notes
 ## getConnectorClusterAddonParameters
 
 > List&lt;AddonParameter&gt; getConnectorClusterAddonParameters(connectorClusterId)
+
+Get a connector cluster&#39;s addon parameters
 
 Get a connector cluster&#39;s addon parameters
 
@@ -310,6 +318,8 @@ Name | Type | Description  | Notes
 
 Returns a list of connector clusters
 
+Returns a list of connector clusters
+
 ### Example
 
 ```java
@@ -379,7 +389,9 @@ Name | Type | Description  | Notes
 
 ## updateConnectorClusterById
 
-> updateConnectorClusterById(connectorClusterId, connectorCluster)
+> updateConnectorClusterById(connectorClusterId, connectorClusterRequest)
+
+udpate a connector cluster
 
 udpate a connector cluster
 
@@ -405,9 +417,9 @@ public class Example {
 
         ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
-        ConnectorCluster connectorCluster = new ConnectorCluster(); // ConnectorCluster | Data to updated connector with
+        ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Data to updated connector with
         try {
-            apiInstance.updateConnectorClusterById(connectorClusterId, connectorCluster);
+            apiInstance.updateConnectorClusterById(connectorClusterId, connectorClusterRequest);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#updateConnectorClusterById");
             System.err.println("Status code: " + e.getCode());
@@ -425,7 +437,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectorClusterId** | **String**| The id of the connector cluster |
- **connectorCluster** | [**ConnectorCluster**](ConnectorCluster.md)| Data to updated connector with |
+ **connectorClusterRequest** | [**ConnectorClusterRequest**](ConnectorClusterRequest.md)| Data to updated connector with |
 
 ### Return type
 

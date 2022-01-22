@@ -10,6 +10,7 @@ import jakarta.ws.rs.core.GenericType;
 import com.openshift.cloud.api.connector.models.AddonParameter;
 import com.openshift.cloud.api.connector.models.ConnectorCluster;
 import com.openshift.cloud.api.connector.models.ConnectorClusterList;
+import com.openshift.cloud.api.connector.models.ConnectorClusterRequest;
 import com.openshift.cloud.api.connector.models.Error;
 
 import java.util.ArrayList;
@@ -39,23 +40,23 @@ public class ConnectorClustersApi {
 
   /**
    * Create a new connector cluster
-   * 
+   * Create a new connector cluster
    * @param async Perform the action in an asynchronous manner (required)
-   * @param connectorCluster Connector cluster data (required)
+   * @param connectorClusterRequest Connector cluster data (required)
    * @return a {@code ConnectorCluster}
    * @throws ApiException if fails to make API call
    */
-  public ConnectorCluster createConnectorCluster(Boolean async, ConnectorCluster connectorCluster) throws ApiException {
-    Object localVarPostBody = connectorCluster;
+  public ConnectorCluster createConnectorCluster(Boolean async, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
+    Object localVarPostBody = connectorClusterRequest;
     
     // verify the required parameter 'async' is set
     if (async == null) {
       throw new ApiException(400, "Missing the required parameter 'async' when calling createConnectorCluster");
     }
     
-    // verify the required parameter 'connectorCluster' is set
-    if (connectorCluster == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorCluster' when calling createConnectorCluster");
+    // verify the required parameter 'connectorClusterRequest' is set
+    if (connectorClusterRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorClusterRequest' when calling createConnectorCluster");
     }
     
     // create path and map variables
@@ -89,7 +90,7 @@ public class ConnectorClustersApi {
       }
   /**
    * Delete a connector cluster
-   * 
+   * Delete a connector cluster
    * @param connectorClusterId The id of the connector cluster (required)
    * @return a {@code Error}
    * @throws ApiException if fails to make API call
@@ -133,7 +134,7 @@ public class ConnectorClustersApi {
       }
   /**
    * Get a connector cluster
-   * 
+   * Get a connector cluster
    * @param connectorClusterId The id of the connector cluster (required)
    * @return a {@code ConnectorCluster}
    * @throws ApiException if fails to make API call
@@ -177,7 +178,7 @@ public class ConnectorClustersApi {
       }
   /**
    * Get a connector cluster&#39;s addon parameters
-   * 
+   * Get a connector cluster&#39;s addon parameters
    * @param connectorClusterId The id of the connector cluster (required)
    * @return a {@code List<AddonParameter>}
    * @throws ApiException if fails to make API call
@@ -221,7 +222,7 @@ public class ConnectorClustersApi {
       }
   /**
    * Returns a list of connector clusters
-   * 
+   * Returns a list of connector clusters
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
    * @return a {@code ConnectorClusterList}
@@ -262,22 +263,22 @@ public class ConnectorClustersApi {
       }
   /**
    * udpate a connector cluster
-   * 
+   * udpate a connector cluster
    * @param connectorClusterId The id of the connector cluster (required)
-   * @param connectorCluster Data to updated connector with (required)
+   * @param connectorClusterRequest Data to updated connector with (required)
    * @throws ApiException if fails to make API call
    */
-  public void updateConnectorClusterById(String connectorClusterId, ConnectorCluster connectorCluster) throws ApiException {
-    Object localVarPostBody = connectorCluster;
+  public void updateConnectorClusterById(String connectorClusterId, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
+    Object localVarPostBody = connectorClusterRequest;
     
     // verify the required parameter 'connectorClusterId' is set
     if (connectorClusterId == null) {
       throw new ApiException(400, "Missing the required parameter 'connectorClusterId' when calling updateConnectorClusterById");
     }
     
-    // verify the required parameter 'connectorCluster' is set
-    if (connectorCluster == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorCluster' when calling updateConnectorClusterById");
+    // verify the required parameter 'connectorClusterRequest' is set
+    if (connectorClusterRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorClusterRequest' when calling updateConnectorClusterById");
     }
     
     // create path and map variables
