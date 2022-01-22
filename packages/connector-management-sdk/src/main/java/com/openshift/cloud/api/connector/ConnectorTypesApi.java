@@ -38,7 +38,7 @@ public class ConnectorTypesApi {
 
   /**
    * Get a connector type by id
-   * 
+   * Get a connector type by id
    * @param connectorTypeId The id of the connector type (required)
    * @return a {@code ConnectorType}
    * @throws ApiException if fails to make API call
@@ -82,7 +82,7 @@ public class ConnectorTypesApi {
       }
   /**
    * Returns a list of connector types
-   * 
+   * Returns a list of connector types
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;ConnectorType&#x60; fields. For example, to return all Connector types ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Connector types ordered by their name _and_ version, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, version asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
@@ -90,7 +90,7 @@ public class ConnectorTypesApi {
    * @return a {@code ConnectorTypeList}
    * @throws ApiException if fails to make API call
    */
-  public ConnectorTypeList listConnectorTypes(String page, String size, String orderBy, String search) throws ApiException {
+  public ConnectorTypeList getConnectorTypes(String page, String size, String orderBy, String search) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables

@@ -9,6 +9,7 @@ import jakarta.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.connector.models.Connector;
 import com.openshift.cloud.api.connector.models.ConnectorList;
+import com.openshift.cloud.api.connector.models.ConnectorRequest;
 import com.openshift.cloud.api.connector.models.Error;
 
 import java.util.ArrayList;
@@ -38,23 +39,23 @@ public class ConnectorsApi {
 
   /**
    * Create a new connector
-   * 
+   * Create a new connector
    * @param async Perform the action in an asynchronous manner (required)
-   * @param connector Connector data (required)
+   * @param connectorRequest Connector data (required)
    * @return a {@code Connector}
    * @throws ApiException if fails to make API call
    */
-  public Connector createConnector(Boolean async, Connector connector) throws ApiException {
-    Object localVarPostBody = connector;
+  public Connector createConnector(Boolean async, ConnectorRequest connectorRequest) throws ApiException {
+    Object localVarPostBody = connectorRequest;
     
     // verify the required parameter 'async' is set
     if (async == null) {
       throw new ApiException(400, "Missing the required parameter 'async' when calling createConnector");
     }
     
-    // verify the required parameter 'connector' is set
-    if (connector == null) {
-      throw new ApiException(400, "Missing the required parameter 'connector' when calling createConnector");
+    // verify the required parameter 'connectorRequest' is set
+    if (connectorRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorRequest' when calling createConnector");
     }
     
     // create path and map variables
@@ -88,7 +89,7 @@ public class ConnectorsApi {
       }
   /**
    * Delete a connector
-   * 
+   * Delete a connector
    * @param id The ID of record (required)
    * @param kafkaId The kafka cluster id (optional)
    * @return a {@code Error}
@@ -134,7 +135,7 @@ public class ConnectorsApi {
       }
   /**
    * Get a connector
-   * 
+   * Get a connector
    * @param id The ID of record (required)
    * @param kafkaId The kafka cluster id (optional)
    * @return a {@code Connector}
@@ -180,7 +181,7 @@ public class ConnectorsApi {
       }
   /**
    * Returns a list of connector types
-   * 
+   * Returns a list of connector types
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
    * @param kafkaId The kafka cluster id (optional)
@@ -222,25 +223,25 @@ public class ConnectorsApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * patch a connector
-   * 
+   * Patch a connector
+   * Patch a connector
    * @param id The ID of record (required)
-   * @param connector Data to patch the connector with (required)
+   * @param connectorRequest Data to patch the connector with (required)
    * @param kafkaId The kafka cluster id (optional)
    * @return a {@code Connector}
    * @throws ApiException if fails to make API call
    */
-  public Connector patchConnector(String id, Connector connector, String kafkaId) throws ApiException {
-    Object localVarPostBody = connector;
+  public Connector patchConnector(String id, ConnectorRequest connectorRequest, String kafkaId) throws ApiException {
+    Object localVarPostBody = connectorRequest;
     
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling patchConnector");
     }
     
-    // verify the required parameter 'connector' is set
-    if (connector == null) {
-      throw new ApiException(400, "Missing the required parameter 'connector' when calling patchConnector");
+    // verify the required parameter 'connectorRequest' is set
+    if (connectorRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorRequest' when calling patchConnector");
     }
     
     // create path and map variables

@@ -8,13 +8,15 @@ Method | HTTP request | Description
 [**deleteConnector**](ConnectorsApi.md#deleteConnector) | **DELETE** /api/connector_mgmt/v1/kafka_connectors/{id} | Delete a connector
 [**getConnector**](ConnectorsApi.md#getConnector) | **GET** /api/connector_mgmt/v1/kafka_connectors/{id} | Get a connector
 [**listConnectors**](ConnectorsApi.md#listConnectors) | **GET** /api/connector_mgmt/v1/kafka_connectors | Returns a list of connector types
-[**patchConnector**](ConnectorsApi.md#patchConnector) | **PATCH** /api/connector_mgmt/v1/kafka_connectors/{id} | patch a connector
+[**patchConnector**](ConnectorsApi.md#patchConnector) | **PATCH** /api/connector_mgmt/v1/kafka_connectors/{id} | Patch a connector
 
 
 
 ## createConnector
 
-> Connector createConnector(async, connector)
+> Connector createConnector(async, connectorRequest)
+
+Create a new connector
 
 Create a new connector
 
@@ -40,9 +42,9 @@ public class Example {
 
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
-        Connector connector = new Connector(); // Connector | Connector data
+        ConnectorRequest connectorRequest = new ConnectorRequest(); // ConnectorRequest | Connector data
         try {
-            Connector result = apiInstance.createConnector(async, connector);
+            Connector result = apiInstance.createConnector(async, connectorRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#createConnector");
@@ -61,7 +63,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **async** | **Boolean**| Perform the action in an asynchronous manner |
- **connector** | [**Connector**](Connector.md)| Connector data |
+ **connectorRequest** | [**ConnectorRequest**](ConnectorRequest.md)| Connector data |
 
 ### Return type
 
@@ -90,6 +92,8 @@ Name | Type | Description  | Notes
 ## deleteConnector
 
 > Error deleteConnector(id, kafkaId)
+
+Delete a connector
 
 Delete a connector
 
@@ -167,6 +171,8 @@ Name | Type | Description  | Notes
 
 Get a connector
 
+Get a connector
+
 ### Example
 
 ```java
@@ -241,6 +247,8 @@ Name | Type | Description  | Notes
 
 Returns a list of connector types
 
+Returns a list of connector types
+
 ### Example
 
 ```java
@@ -312,9 +320,11 @@ Name | Type | Description  | Notes
 
 ## patchConnector
 
-> Connector patchConnector(id, connector, kafkaId)
+> Connector patchConnector(id, connectorRequest, kafkaId)
 
-patch a connector
+Patch a connector
+
+Patch a connector
 
 ### Example
 
@@ -338,10 +348,10 @@ public class Example {
 
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         String id = "id_example"; // String | The ID of record
-        Connector connector = new Connector(); // Connector | Data to patch the connector with
+        ConnectorRequest connectorRequest = new ConnectorRequest(); // ConnectorRequest | Data to patch the connector with
         String kafkaId = "kafkaId_example"; // String | The kafka cluster id
         try {
-            Connector result = apiInstance.patchConnector(id, connector, kafkaId);
+            Connector result = apiInstance.patchConnector(id, connectorRequest, kafkaId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#patchConnector");
@@ -360,7 +370,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The ID of record |
- **connector** | [**Connector**](Connector.md)| Data to patch the connector with |
+ **connectorRequest** | [**ConnectorRequest**](ConnectorRequest.md)| Data to patch the connector with |
  **kafkaId** | **String**| The kafka cluster id | [optional]
 
 ### Return type

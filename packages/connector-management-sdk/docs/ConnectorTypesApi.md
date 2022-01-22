@@ -5,13 +5,15 @@ All URIs are relative to *https://api.openshift.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getConnectorTypeByID**](ConnectorTypesApi.md#getConnectorTypeByID) | **GET** /api/connector_mgmt/v1/kafka_connector_types/{connector_type_id} | Get a connector type by id
-[**listConnectorTypes**](ConnectorTypesApi.md#listConnectorTypes) | **GET** /api/connector_mgmt/v1/kafka_connector_types | Returns a list of connector types
+[**getConnectorTypes**](ConnectorTypesApi.md#getConnectorTypes) | **GET** /api/connector_mgmt/v1/kafka_connector_types | Returns a list of connector types
 
 
 
 ## getConnectorTypeByID
 
 > ConnectorType getConnectorTypeByID(connectorTypeId)
+
+Get a connector type by id
 
 Get a connector type by id
 
@@ -81,9 +83,11 @@ Name | Type | Description  | Notes
 | **500** | Unexpected error occurred |  -  |
 
 
-## listConnectorTypes
+## getConnectorTypes
 
-> ConnectorTypeList listConnectorTypes(page, size, orderBy, search)
+> ConnectorTypeList getConnectorTypes(page, size, orderBy, search)
+
+Returns a list of connector types
 
 Returns a list of connector types
 
@@ -113,10 +117,10 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ConnectorTypeList result = apiInstance.listConnectorTypes(page, size, orderBy, search);
+            ConnectorTypeList result = apiInstance.getConnectorTypes(page, size, orderBy, search);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ConnectorTypesApi#listConnectorTypes");
+            System.err.println("Exception when calling ConnectorTypesApi#getConnectorTypes");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());

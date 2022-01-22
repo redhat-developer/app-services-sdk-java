@@ -2,7 +2,7 @@
 
 Connector Service Fleet Manager
 
-- API version: 0.0.3
+- API version: 0.1.0
 
 Connector Service Fleet Manager is a Rest API to manage connectors.
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>connector-management-sdk</artifactId>
-  <version>0.0.3</version>
+  <version>0.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:connector-management-sdk:0.0.3"
+     implementation "com.redhat.cloud:connector-management-sdk:0.1.0"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/connector-management-sdk-0.0.3.jar`
+- `target/connector-management-sdk-0.1.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -96,9 +96,9 @@ public class ConnectorClustersApiExample {
 
         ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
-        ConnectorCluster connectorCluster = new ConnectorCluster(); // ConnectorCluster | Connector cluster data
+        ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Connector cluster data
         try {
-            ConnectorCluster result = apiInstance.createConnectorCluster(async, connectorCluster);
+            ConnectorCluster result = apiInstance.createConnectorCluster(async, connectorClusterRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#createConnectorCluster");
@@ -124,39 +124,58 @@ Class | Method | HTTP request | Description
 *ConnectorClustersApi* | [**getConnectorClusterAddonParameters**](docs/ConnectorClustersApi.md#getConnectorClusterAddonParameters) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}/addon_parameters | Get a connector cluster&#39;s addon parameters
 *ConnectorClustersApi* | [**listConnectorClusters**](docs/ConnectorClustersApi.md#listConnectorClusters) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters | Returns a list of connector clusters
 *ConnectorClustersApi* | [**updateConnectorClusterById**](docs/ConnectorClustersApi.md#updateConnectorClusterById) | **PUT** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | udpate a connector cluster
+*ConnectorServiceApi* | [**getVersionMetadata**](docs/ConnectorServiceApi.md#getVersionMetadata) | **GET** /api/connector_mgmt/v1 | Returns the version metadata
 *ConnectorTypesApi* | [**getConnectorTypeByID**](docs/ConnectorTypesApi.md#getConnectorTypeByID) | **GET** /api/connector_mgmt/v1/kafka_connector_types/{connector_type_id} | Get a connector type by id
-*ConnectorTypesApi* | [**listConnectorTypes**](docs/ConnectorTypesApi.md#listConnectorTypes) | **GET** /api/connector_mgmt/v1/kafka_connector_types | Returns a list of connector types
+*ConnectorTypesApi* | [**getConnectorTypes**](docs/ConnectorTypesApi.md#getConnectorTypes) | **GET** /api/connector_mgmt/v1/kafka_connector_types | Returns a list of connector types
 *ConnectorsApi* | [**createConnector**](docs/ConnectorsApi.md#createConnector) | **POST** /api/connector_mgmt/v1/kafka_connectors | Create a new connector
 *ConnectorsApi* | [**deleteConnector**](docs/ConnectorsApi.md#deleteConnector) | **DELETE** /api/connector_mgmt/v1/kafka_connectors/{id} | Delete a connector
 *ConnectorsApi* | [**getConnector**](docs/ConnectorsApi.md#getConnector) | **GET** /api/connector_mgmt/v1/kafka_connectors/{id} | Get a connector
 *ConnectorsApi* | [**listConnectors**](docs/ConnectorsApi.md#listConnectors) | **GET** /api/connector_mgmt/v1/kafka_connectors | Returns a list of connector types
-*ConnectorsApi* | [**patchConnector**](docs/ConnectorsApi.md#patchConnector) | **PATCH** /api/connector_mgmt/v1/kafka_connectors/{id} | patch a connector
+*ConnectorsApi* | [**patchConnector**](docs/ConnectorsApi.md#patchConnector) | **PATCH** /api/connector_mgmt/v1/kafka_connectors/{id} | Patch a connector
 
 
 ## Documentation for Models
 
- - [AddonClusterTarget](docs/AddonClusterTarget.md)
  - [AddonParameter](docs/AddonParameter.md)
- - [CloudProviderClusterTarget](docs/CloudProviderClusterTarget.md)
- - [ClusterTarget](docs/ClusterTarget.md)
+ - [Channel](docs/Channel.md)
  - [Connector](docs/Connector.md)
- - [ConnectorAllOf](docs/ConnectorAllOf.md)
- - [ConnectorAllOfMetadata](docs/ConnectorAllOfMetadata.md)
  - [ConnectorCluster](docs/ConnectorCluster.md)
- - [ConnectorClusterAllOf](docs/ConnectorClusterAllOf.md)
- - [ConnectorClusterAllOfMetadata](docs/ConnectorClusterAllOfMetadata.md)
  - [ConnectorClusterList](docs/ConnectorClusterList.md)
  - [ConnectorClusterListAllOf](docs/ConnectorClusterListAllOf.md)
+ - [ConnectorClusterMeta](docs/ConnectorClusterMeta.md)
+ - [ConnectorClusterRequest](docs/ConnectorClusterRequest.md)
+ - [ConnectorClusterRequestMeta](docs/ConnectorClusterRequestMeta.md)
+ - [ConnectorClusterState](docs/ConnectorClusterState.md)
+ - [ConnectorClusterStatus](docs/ConnectorClusterStatus.md)
+ - [ConnectorClusterStatusStatus](docs/ConnectorClusterStatusStatus.md)
+ - [ConnectorClusterTarget](docs/ConnectorClusterTarget.md)
+ - [ConnectorConfiguration](docs/ConnectorConfiguration.md)
+ - [ConnectorDesiredState](docs/ConnectorDesiredState.md)
  - [ConnectorList](docs/ConnectorList.md)
  - [ConnectorListAllOf](docs/ConnectorListAllOf.md)
+ - [ConnectorMeta](docs/ConnectorMeta.md)
+ - [ConnectorMetaAllOf](docs/ConnectorMetaAllOf.md)
+ - [ConnectorRequest](docs/ConnectorRequest.md)
+ - [ConnectorRequestMeta](docs/ConnectorRequestMeta.md)
+ - [ConnectorState](docs/ConnectorState.md)
+ - [ConnectorStatus](docs/ConnectorStatus.md)
+ - [ConnectorStatusStatus](docs/ConnectorStatusStatus.md)
  - [ConnectorType](docs/ConnectorType.md)
  - [ConnectorTypeAllOf](docs/ConnectorTypeAllOf.md)
  - [ConnectorTypeList](docs/ConnectorTypeList.md)
  - [ConnectorTypeListAllOf](docs/ConnectorTypeListAllOf.md)
+ - [DeploymentLocation](docs/DeploymentLocation.md)
  - [Error](docs/Error.md)
  - [ErrorAllOf](docs/ErrorAllOf.md)
  - [KafkaConnectionSettings](docs/KafkaConnectionSettings.md)
+ - [ObjectMeta](docs/ObjectMeta.md)
  - [ObjectReference](docs/ObjectReference.md)
+ - [SchemaRegistryConnectionSettings](docs/SchemaRegistryConnectionSettings.md)
+ - [ServiceAccount](docs/ServiceAccount.md)
+ - [ServiceConnectionSettings](docs/ServiceConnectionSettings.md)
+ - [ServiceStatus](docs/ServiceStatus.md)
+ - [VersionMetadata](docs/VersionMetadata.md)
+ - [VersionMetadataAllOf](docs/VersionMetadataAllOf.md)
 
 
 ## Documentation for Authorization

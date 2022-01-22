@@ -2,14 +2,14 @@
 
 # KafkaConnectionSettings
 
+Holds the configuration to connect to a Kafka Instance.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bootstrapServer** | **String** |  |  [optional]
-**clientId** | **String** |  |  [optional]
-**clientSecret** | **String** |  |  [optional]
+**id** | **String** |  | 
+**url** | **String** |  | 
 
 
 
