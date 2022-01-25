@@ -58,7 +58,9 @@ paths:
 
   /api/kafkas_mgmt/v1/status:
     get:
+      deprecated: true
       operationId: getServiceStatus
+      description: "[DEPRECATED] The service capacity status is now reported per cloud provider region and Kafka instance type in the /api/kafkas_mgmt/v1/cloud_providers/{id}/regions endpoint. Please use this endpoint instead."
       responses:
         "200":
           content:
@@ -1036,9 +1038,16 @@ components:
           type: array
           items: 
             type: string
+        capacity:
+          description: 'Indicates whether there is capacity left per instance type'
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/RegionCapacityListItem"
       required:
         - enabled
         - supported_instance_types
+        - capacity
     ServiceAccount:
       description: 'Service Account created in MAS-SSO for the Kafka Cluster for authentication'
       allOf:
@@ -1079,6 +1088,18 @@ components:
           type: string
       example:
         $ref: "#/components/examples/ServiceAccountRequestExample"
+    RegionCapacityListItem:
+      description: 'schema for a kafka instance type capacity in region'
+      type: object
+      properties:
+        instance_type:
+          description: 'kafka instance type'
+          type: string
+        max_capacity_reached:
+          description: 'flag indicating whether the capacity for the instance type in the region is reached'
+          type: boolean
+      required:
+        - max_capacity_reached
     ServiceAccountListItem:
       description: ''
       allOf:
@@ -1433,7 +1454,13 @@ components:
         id: "us-east-1"
         display_name: "US East, N. Virginia"
         enabled: true
-        supported_instance_types: ["standard", "eval"]
+        supported_instance_types: ["standard"]
+        capacity: [
+          {
+              instance_type: "standard",
+              max_capacity_reached: true
+          }
+        ]
     ServiceAccountRequestExample:
       value:
         name: "my-app-sa"
