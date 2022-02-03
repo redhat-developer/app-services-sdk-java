@@ -226,11 +226,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/size"
-        - in: query
-          name: kafka_id
-          description: The kafka cluster id
-          schema:
-            type: string
+
       responses:
         "200":
           content:
@@ -260,11 +256,6 @@ paths:
   "/api/connector_mgmt/v1/kafka_connectors/{id}":
     parameters:
       - $ref: "#/components/parameters/id"
-      - in: query
-        name: kafka_id
-        description: The kafka cluster id
-        schema:
-          type: string
     get:
       tags:
         - Connectors
@@ -362,7 +353,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ConnectorRequest"
+              anyOf:
+                - $ref: "#/components/schemas/ConnectorRequest"
+                - type: object
           application/merge-patch+json:
             schema:
               $ref: "#/components/schemas/ConnectorRequest"
@@ -821,18 +814,6 @@ components:
               items:
                 allOf:
                   - $ref: "#/components/schemas/ObjectReference"
-
-    ServiceStatus:
-      description: Schema for the service status response body
-      example:
-        kafkas:
-          max_capacity_reached: true
-      type: object
-      properties:
-        # TODO: what to show here ?
-        clusters:
-          description: The connector to upgrade
-          type: string
 
     #
     # Services
