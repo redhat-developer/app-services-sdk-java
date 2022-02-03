@@ -127,7 +127,6 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getKafkas**](docs/DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | Returns a list of Kafka requests
 *DefaultApi* | [**getMetricsByInstantQuery**](docs/DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | Returns metrics with instant query by Kafka ID
 *DefaultApi* | [**getMetricsByRangeQuery**](docs/DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | Returns metrics with timeseries range query by Kafka ID
-*DefaultApi* | [**getServiceStatus**](docs/DefaultApi.md#getServiceStatus) | **GET** /api/kafkas_mgmt/v1/status | Returns the status of resources, such as whether maximum service capacity has been reached
 *DefaultApi* | [**getVersionMetadata**](docs/DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | Returns the version metadata
 *DefaultApi* | [**updateKafkaById**](docs/DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | Update a Kafka instance by id
 *ErrorsApi* | [**getErrorById**](docs/ErrorsApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | Returns the error by id
@@ -164,6 +163,7 @@ Class | Method | HTTP request | Description
  - [MetricsRangeQueryListAllOf](docs/MetricsRangeQueryListAllOf.md)
  - [ObjectReference](docs/ObjectReference.md)
  - [RangeQuery](docs/RangeQuery.md)
+ - [RegionCapacityListItem](docs/RegionCapacityListItem.md)
  - [ServiceAccount](docs/ServiceAccount.md)
  - [ServiceAccountAllOf](docs/ServiceAccountAllOf.md)
  - [ServiceAccountList](docs/ServiceAccountList.md)
