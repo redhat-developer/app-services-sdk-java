@@ -62,30 +62,7 @@ paths:
       tags:
       - errors
       x-accepts: application/json
-  /api/kafkas_mgmt/v1/status:
-    get:
-      operationId: getServiceStatus
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServiceStatus'
-          description: Ok
-        "500":
-          content:
-            application/json:
-              examples:
-                "500Example":
-                  $ref: '#/components/examples/500Example'
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unexpected error occurred
-      security:
-      - Bearer: []
-      summary: Returns the status of resources, such as whether maximum service capacity
-        has been reached
-      x-accepts: application/json
+  /api/kafkas_mgmt/v1/status: {}
   /api/kafkas_mgmt/v1/kafkas/{id}:
     delete:
       operationId: deleteKafkaById
@@ -1160,7 +1137,9 @@ components:
         enabled: true
         supported_instance_types:
         - standard
-        - eval
+        capacity:
+        - instance_type: standard
+          max_capacity_reached: true
     ServiceAccountRequestExample:
       value:
         name: my-app-sa
@@ -1643,7 +1622,14 @@ components:
           items:
             type: string
           type: array
+        capacity:
+          description: Indicates whether there is capacity left per instance type
+          items:
+            allOf:
+            - $ref: '#/components/schemas/RegionCapacityListItem'
+          type: array
       required:
+      - capacity
       - enabled
       - supported_instance_types
     ServiceAccount:
@@ -1664,6 +1650,19 @@ components:
           type: string
       required:
       - name
+      type: object
+    RegionCapacityListItem:
+      description: schema for a kafka instance type capacity in region
+      properties:
+        instance_type:
+          description: kafka instance type
+          type: string
+        max_capacity_reached:
+          description: flag indicating whether the capacity for the instance type
+            in the region is reached
+          type: boolean
+      required:
+      - max_capacity_reached
       type: object
     ServiceAccountListItem:
       allOf:

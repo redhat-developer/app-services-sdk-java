@@ -16,7 +16,6 @@ import com.openshift.cloud.api.kas.models.KafkaRequestPayload;
 import com.openshift.cloud.api.kas.models.KafkaUpdateRequest;
 import com.openshift.cloud.api.kas.models.MetricsInstantQueryList;
 import com.openshift.cloud.api.kas.models.MetricsRangeQueryList;
-import com.openshift.cloud.api.kas.models.ServiceStatus;
 import com.openshift.cloud.api.kas.models.VersionMetadata;
 
 import java.util.ArrayList;
@@ -473,43 +472,6 @@ public class DefaultApi {
     String[] localVarAuthNames = new String[] { "Bearer" };
 
     GenericType<MetricsRangeQueryList> localVarReturnType = new GenericType<MetricsRangeQueryList>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * Returns the status of resources, such as whether maximum service capacity has been reached
-   * 
-   * @return a {@code ServiceStatus}
-   * @throws ApiException if fails to make API call
-   */
-  public ServiceStatus getServiceStatus() throws ApiException {
-    Object localVarPostBody = null;
-    
-    // create path and map variables
-    String localVarPath = "/api/kafkas_mgmt/v1/status".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] { "Bearer" };
-
-    GenericType<ServiceStatus> localVarReturnType = new GenericType<ServiceStatus>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
