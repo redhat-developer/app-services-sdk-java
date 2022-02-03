@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.kas.models.RegionCapacityListItem;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -36,7 +37,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   CloudRegion.JSON_PROPERTY_ID,
   CloudRegion.JSON_PROPERTY_DISPLAY_NAME,
   CloudRegion.JSON_PROPERTY_ENABLED,
-  CloudRegion.JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES
+  CloudRegion.JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES,
+  CloudRegion.JSON_PROPERTY_CAPACITY
 })
 @JsonTypeName("CloudRegion")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -55,6 +57,9 @@ public class CloudRegion {
 
   public static final String JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES = "supported_instance_types";
   private List<String> supportedInstanceTypes = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CAPACITY = "capacity";
+  private List<RegionCapacityListItem> capacity = new ArrayList<>();
 
   public CloudRegion() { 
   }
@@ -199,6 +204,38 @@ public class CloudRegion {
   }
 
 
+  public CloudRegion capacity(List<RegionCapacityListItem> capacity) {
+    
+    this.capacity = capacity;
+    return this;
+  }
+
+  public CloudRegion addCapacityItem(RegionCapacityListItem capacityItem) {
+    this.capacity.add(capacityItem);
+    return this;
+  }
+
+   /**
+   * Indicates whether there is capacity left per instance type
+   * @return capacity
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Indicates whether there is capacity left per instance type")
+  @JsonProperty(JSON_PROPERTY_CAPACITY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public List<RegionCapacityListItem> getCapacity() {
+    return capacity;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CAPACITY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCapacity(List<RegionCapacityListItem> capacity) {
+    this.capacity = capacity;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -212,12 +249,13 @@ public class CloudRegion {
         Objects.equals(this.id, cloudRegion.id) &&
         Objects.equals(this.displayName, cloudRegion.displayName) &&
         Objects.equals(this.enabled, cloudRegion.enabled) &&
-        Objects.equals(this.supportedInstanceTypes, cloudRegion.supportedInstanceTypes);
+        Objects.equals(this.supportedInstanceTypes, cloudRegion.supportedInstanceTypes) &&
+        Objects.equals(this.capacity, cloudRegion.capacity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, displayName, enabled, supportedInstanceTypes);
+    return Objects.hash(kind, id, displayName, enabled, supportedInstanceTypes, capacity);
   }
 
   @Override
@@ -229,6 +267,7 @@ public class CloudRegion {
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
     sb.append("    supportedInstanceTypes: ").append(toIndentedString(supportedInstanceTypes)).append("\n");
+    sb.append("    capacity: ").append(toIndentedString(capacity)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **displayName** | **String** | Name of the region for display purposes, for example &#x60;N. Virginia&#x60;. |  [optional]
 **enabled** | **Boolean** | Whether the region is enabled for deploying an OSD cluster. | 
 **supportedInstanceTypes** | **List&lt;String&gt;** | The Kafka instance types supported by this region. | 
+**capacity** | [**List&lt;RegionCapacityListItem&gt;**](RegionCapacityListItem.md) | Indicates whether there is capacity left per instance type | 
 
 
 

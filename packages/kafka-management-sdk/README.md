@@ -164,6 +164,7 @@ Class | Method | HTTP request | Description
  - [MetricsRangeQueryListAllOf](docs/MetricsRangeQueryListAllOf.md)
  - [ObjectReference](docs/ObjectReference.md)
  - [RangeQuery](docs/RangeQuery.md)
+ - [RegionCapacityListItem](docs/RegionCapacityListItem.md)
  - [ServiceAccount](docs/ServiceAccount.md)
  - [ServiceAccountAllOf](docs/ServiceAccountAllOf.md)
  - [ServiceAccountList](docs/ServiceAccountList.md)
