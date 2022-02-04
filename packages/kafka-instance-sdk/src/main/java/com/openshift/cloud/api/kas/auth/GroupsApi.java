@@ -136,7 +136,7 @@ public class GroupsApi {
   /**
    * List of consumer groups in the Kafka instance.
    * Returns a list of all consumer groups for a particular Kafka instance. The consumer groups returned are limited to those records the requestor is authorized to view.
-   * @param size Maximum number of consumer groups to return on single page (optional)
+   * @param limit Maximum number of consumer groups to return (optional)
    * @param page The page when returning the list of consumer groups (optional)
    * @param topic Return consumer groups where the topic name contains with this value (optional)
    * @param groupIdFilter Return the consumer groups where the ID contains with this value (optional)
@@ -145,7 +145,7 @@ public class GroupsApi {
    * @return a {@code ConsumerGroupList}
    * @throws ApiException if fails to make API call
    */
-  public ConsumerGroupList getConsumerGroups(Integer size, Integer page, String topic, String groupIdFilter, String order, String orderKey) throws ApiException {
+  public ConsumerGroupList getConsumerGroups(Integer limit, Integer page, String topic, String groupIdFilter, String order, String orderKey) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -157,7 +157,7 @@ public class GroupsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "topic", topic));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "group-id-filter", groupIdFilter));
