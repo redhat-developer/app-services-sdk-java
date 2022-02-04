@@ -89,6 +89,7 @@
 
 
                 <configuration>
+                    <imagePullPolicy>Always</imagePullPolicy>
                     <images>
                         <image>
                             <name>quay.io/rhosak/api-mock</name>
