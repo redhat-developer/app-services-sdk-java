@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## deleteConnector
 
-> Error deleteConnector(id, kafkaId)
+> Error deleteConnector(id)
 
 Delete a connector
 
@@ -119,9 +119,8 @@ public class Example {
 
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         String id = "id_example"; // String | The ID of record
-        String kafkaId = "kafkaId_example"; // String | The kafka cluster id
         try {
-            Error result = apiInstance.deleteConnector(id, kafkaId);
+            Error result = apiInstance.deleteConnector(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#deleteConnector");
@@ -140,7 +139,6 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The ID of record |
- **kafkaId** | **String**| The kafka cluster id | [optional]
 
 ### Return type
 
@@ -167,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## getConnector
 
-> Connector getConnector(id, kafkaId)
+> Connector getConnector(id)
 
 Get a connector
 
@@ -195,9 +193,8 @@ public class Example {
 
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         String id = "id_example"; // String | The ID of record
-        String kafkaId = "kafkaId_example"; // String | The kafka cluster id
         try {
-            Connector result = apiInstance.getConnector(id, kafkaId);
+            Connector result = apiInstance.getConnector(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#getConnector");
@@ -216,7 +213,6 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The ID of record |
- **kafkaId** | **String**| The kafka cluster id | [optional]
 
 ### Return type
 
@@ -243,7 +239,7 @@ Name | Type | Description  | Notes
 
 ## listConnectors
 
-> ConnectorList listConnectors(page, size, kafkaId)
+> ConnectorList listConnectors(page, size)
 
 Returns a list of connector types
 
@@ -272,9 +268,8 @@ public class Example {
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         String page = "1"; // String | Page index
         String size = "100"; // String | Number of items in each page
-        String kafkaId = "kafkaId_example"; // String | The kafka cluster id
         try {
-            ConnectorList result = apiInstance.listConnectors(page, size, kafkaId);
+            ConnectorList result = apiInstance.listConnectors(page, size);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#listConnectors");
@@ -294,7 +289,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **String**| Page index | [optional]
  **size** | **String**| Number of items in each page | [optional]
- **kafkaId** | **String**| The kafka cluster id | [optional]
 
 ### Return type
 
@@ -320,7 +314,7 @@ Name | Type | Description  | Notes
 
 ## patchConnector
 
-> Connector patchConnector(id, connectorRequest, kafkaId)
+> Connector patchConnector(id, body)
 
 Patch a connector
 
@@ -348,10 +342,9 @@ public class Example {
 
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         String id = "id_example"; // String | The ID of record
-        ConnectorRequest connectorRequest = new ConnectorRequest(); // ConnectorRequest | Data to patch the connector with
-        String kafkaId = "kafkaId_example"; // String | The kafka cluster id
+        Object body = null; // Object | Data to patch the connector with
         try {
-            Connector result = apiInstance.patchConnector(id, connectorRequest, kafkaId);
+            Connector result = apiInstance.patchConnector(id, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#patchConnector");
@@ -370,8 +363,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| The ID of record |
- **connectorRequest** | [**ConnectorRequest**](ConnectorRequest.md)| Data to patch the connector with |
- **kafkaId** | **String**| The kafka cluster id | [optional]
+ **body** | **Object**| Data to patch the connector with |
 
 ### Return type
 
@@ -383,7 +375,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/merge-patch+json, application/json-patch+json
+- **Content-Type**: application/merge-patch+json, application/json-patch+json, application/json
 - **Accept**: application/json
 
 

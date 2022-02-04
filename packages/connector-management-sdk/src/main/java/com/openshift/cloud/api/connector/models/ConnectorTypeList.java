@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openshift.cloud.api.connector.models.ConnectorType;
 import com.openshift.cloud.api.connector.models.ConnectorTypeListAllOf;
+import com.openshift.cloud.api.connector.models.ModelList;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;

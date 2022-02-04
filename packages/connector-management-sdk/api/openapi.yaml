@@ -238,14 +238,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: The kafka cluster id
-        explode: true
-        in: query
-        name: kafka_id
-        required: false
-        schema:
-          type: string
-        style: form
       responses:
         "200":
           content:
@@ -362,14 +354,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The kafka cluster id
-        explode: true
-        in: query
-        name: kafka_id
-        required: false
-        schema:
-          type: string
-        style: form
       responses:
         "204":
           content:
@@ -422,14 +406,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The kafka cluster id
-        explode: true
-        in: query
-        name: kafka_id
-        required: false
-        schema:
-          type: string
-        style: form
       responses:
         "200":
           content:
@@ -482,26 +458,18 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The kafka cluster id
-        explode: true
-        in: query
-        name: kafka_id
-        required: false
-        schema:
-          type: string
-        style: form
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ConnectorRequest'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/ConnectorRequest'
+              type: object
           application/json-patch+json:
             schema:
               description: A JSON Patch, RFC 6902 - https://tools.ietf.org/html/rfc6902
               type: object
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectorRequest'
         description: Data to patch the connector with
         required: true
       responses:
@@ -543,7 +511,7 @@ paths:
       summary: Patch a connector
       tags:
       - Connectors
-      x-contentType: application/json
+      x-contentType: application/merge-patch+json
       x-accepts: application/json
   /api/connector_mgmt/v1/kafka_connector_clusters:
     get:
@@ -1278,16 +1246,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
       - $ref: '#/components/schemas/VersionMetadata_allOf'
-    ServiceStatus:
-      description: Schema for the service status response body
-      example:
-        kafkas:
-          max_capacity_reached: true
-      properties:
-        clusters:
-          description: The connector to upgrade
-          type: string
-      type: object
     KafkaConnectionSettings:
       allOf:
       - $ref: '#/components/schemas/ServiceConnectionSettings'

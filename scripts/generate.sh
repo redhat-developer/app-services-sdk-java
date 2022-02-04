@@ -3,7 +3,7 @@
 
 set -e
 
-npx @openapitools/openapi-generator-cli version-manager set 5.3.1
+npx @openapitools/openapi-generator-cli version-manager set 5.4.0
 echo "Generating SDKs"
 
 GROUP_ID="com.redhat.cloud"
@@ -62,6 +62,7 @@ ARTIFACT_ID="connector-management-sdk"
 OPENAPI_FILENAME=".openapi/connector_mgmt.yaml"
 PACKAGE_NAME="com.openshift.cloud.api.connector"
 OUTPUT_PATH="packages/connector-management-sdk/"
+yq e 'del(.. | select(has("deprecated")))' "${OPENAPI_FILENAME}" > "${OPENAPI_FILENAME}.processed"
 yq e 'del(.. | select(has("deprecated")))' "${OPENAPI_FILENAME}" > "${OPENAPI_FILENAME}.processed"
 rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
 

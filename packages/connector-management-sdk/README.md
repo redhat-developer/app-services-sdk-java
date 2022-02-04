@@ -168,12 +168,12 @@ Class | Method | HTTP request | Description
  - [Error](docs/Error.md)
  - [ErrorAllOf](docs/ErrorAllOf.md)
  - [KafkaConnectionSettings](docs/KafkaConnectionSettings.md)
+ - [ModelList](docs/ModelList.md)
  - [ObjectMeta](docs/ObjectMeta.md)
  - [ObjectReference](docs/ObjectReference.md)
  - [SchemaRegistryConnectionSettings](docs/SchemaRegistryConnectionSettings.md)
  - [ServiceAccount](docs/ServiceAccount.md)
  - [ServiceConnectionSettings](docs/ServiceConnectionSettings.md)
- - [ServiceStatus](docs/ServiceStatus.md)
  - [VersionMetadata](docs/VersionMetadata.md)
  - [VersionMetadataAllOf](docs/VersionMetadataAllOf.md)
 
