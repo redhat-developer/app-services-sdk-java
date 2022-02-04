@@ -91,11 +91,10 @@ public class ConnectorsApi {
    * Delete a connector
    * Delete a connector
    * @param id The ID of record (required)
-   * @param kafkaId The kafka cluster id (optional)
    * @return a {@code Error}
    * @throws ApiException if fails to make API call
    */
-  public Error deleteConnector(String id, String kafkaId) throws ApiException {
+  public Error deleteConnector(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -113,7 +112,6 @@ public class ConnectorsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "kafka_id", kafkaId));
 
     
     
@@ -137,11 +135,10 @@ public class ConnectorsApi {
    * Get a connector
    * Get a connector
    * @param id The ID of record (required)
-   * @param kafkaId The kafka cluster id (optional)
    * @return a {@code Connector}
    * @throws ApiException if fails to make API call
    */
-  public Connector getConnector(String id, String kafkaId) throws ApiException {
+  public Connector getConnector(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -159,7 +156,6 @@ public class ConnectorsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "kafka_id", kafkaId));
 
     
     
@@ -184,11 +180,10 @@ public class ConnectorsApi {
    * Returns a list of connector types
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
-   * @param kafkaId The kafka cluster id (optional)
    * @return a {@code ConnectorList}
    * @throws ApiException if fails to make API call
    */
-  public ConnectorList listConnectors(String page, String size, String kafkaId) throws ApiException {
+  public ConnectorList listConnectors(String page, String size) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -202,7 +197,6 @@ public class ConnectorsApi {
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "kafka_id", kafkaId));
 
     
     
@@ -226,22 +220,21 @@ public class ConnectorsApi {
    * Patch a connector
    * Patch a connector
    * @param id The ID of record (required)
-   * @param connectorRequest Data to patch the connector with (required)
-   * @param kafkaId The kafka cluster id (optional)
+   * @param body Data to patch the connector with (required)
    * @return a {@code Connector}
    * @throws ApiException if fails to make API call
    */
-  public Connector patchConnector(String id, ConnectorRequest connectorRequest, String kafkaId) throws ApiException {
-    Object localVarPostBody = connectorRequest;
+  public Connector patchConnector(String id, Object body) throws ApiException {
+    Object localVarPostBody = body;
     
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling patchConnector");
     }
     
-    // verify the required parameter 'connectorRequest' is set
-    if (connectorRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorRequest' when calling patchConnector");
+    // verify the required parameter 'body' is set
+    if (body == null) {
+      throw new ApiException(400, "Missing the required parameter 'body' when calling patchConnector");
     }
     
     // create path and map variables
@@ -254,7 +247,6 @@ public class ConnectorsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "kafka_id", kafkaId));
 
     
     
@@ -265,7 +257,7 @@ public class ConnectorsApi {
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
     final String[] localVarContentTypes = {
-      "application/json", "application/merge-patch+json", "application/json-patch+json"
+      "application/merge-patch+json", "application/json-patch+json", "application/json"
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 

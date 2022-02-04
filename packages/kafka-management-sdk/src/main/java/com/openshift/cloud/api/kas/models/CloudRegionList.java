@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.openshift.cloud.api.kas.models.CloudRegion;
 import com.openshift.cloud.api.kas.models.CloudRegionListAllOf;
+import com.openshift.cloud.api.kas.models.ModelList;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;

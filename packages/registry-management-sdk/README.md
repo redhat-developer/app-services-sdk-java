@@ -132,6 +132,7 @@ Class | Method | HTTP request | Description
  - [ErrorAllOf](docs/ErrorAllOf.md)
  - [ErrorList](docs/ErrorList.md)
  - [ErrorListAllOf](docs/ErrorListAllOf.md)
+ - [ModelList](docs/ModelList.md)
  - [ObjectReference](docs/ObjectReference.md)
  - [Registry](docs/Registry.md)
  - [RegistryCreate](docs/RegistryCreate.md)

@@ -161,6 +161,7 @@ Class | Method | HTTP request | Description
  - [MetricsInstantQueryListAllOf](docs/MetricsInstantQueryListAllOf.md)
  - [MetricsRangeQueryList](docs/MetricsRangeQueryList.md)
  - [MetricsRangeQueryListAllOf](docs/MetricsRangeQueryListAllOf.md)
+ - [ModelList](docs/ModelList.md)
  - [ObjectReference](docs/ObjectReference.md)
  - [RangeQuery](docs/RangeQuery.md)
  - [RegionCapacityListItem](docs/RegionCapacityListItem.md)
