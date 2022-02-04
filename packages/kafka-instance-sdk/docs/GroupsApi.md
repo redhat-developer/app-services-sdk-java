@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## getConsumerGroups
 
-> ConsumerGroupList getConsumerGroups(size, page, topic, groupIdFilter, order, orderKey)
+> ConsumerGroupList getConsumerGroups(limit, page, topic, groupIdFilter, order, orderKey)
 
 List of consumer groups in the Kafka instance.
 
@@ -198,14 +198,14 @@ public class Example {
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
-        Integer size = 56; // Integer | Maximum number of consumer groups to return on single page
+        Integer limit = 56; // Integer | Maximum number of consumer groups to return
         Integer page = 56; // Integer | The page when returning the list of consumer groups
         String topic = "topic_example"; // String | Return consumer groups where the topic name contains with this value
         String groupIdFilter = "groupIdFilter_example"; // String | Return the consumer groups where the ID contains with this value
         String order = "asc"; // String | Order of the consumer groups sorting. Ascending order is used as default.
         String orderKey = "name"; // String | Order key to sort the items by. Only the value 'name' is currently applicable.
         try {
-            ConsumerGroupList result = apiInstance.getConsumerGroups(size, page, topic, groupIdFilter, order, orderKey);
+            ConsumerGroupList result = apiInstance.getConsumerGroups(limit, page, topic, groupIdFilter, order, orderKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GroupsApi#getConsumerGroups");
@@ -223,7 +223,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **size** | **Integer**| Maximum number of consumer groups to return on single page | [optional]
+ **limit** | **Integer**| Maximum number of consumer groups to return | [optional]
  **page** | **Integer**| The page when returning the list of consumer groups | [optional]
  **topic** | **String**| Return consumer groups where the topic name contains with this value | [optional]
  **groupIdFilter** | **String**| Return the consumer groups where the ID contains with this value | [optional]

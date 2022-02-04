@@ -20,6 +20,8 @@ jobs:
       - run: wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O $HOME/.local/bin/yq && chmod +x $HOME/.local/bin/yq          
       - name: Generate API clients
         run: ./scripts/generate.sh
+      - name: Generate Errors SDK
+        run: ./scripts/errors/generate-errors.sh
       - uses: peter-evans/create-pull-request@v3
         with:
           title: "chore(all): re-generate OpenAPI client(s)"
