@@ -250,6 +250,13 @@
             <version>${javax-annotation-version}</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Temporary change until bug with generator is resolved -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
         <!-- test dependencies -->
         <dependency>
             <groupId>junit</groupId>
