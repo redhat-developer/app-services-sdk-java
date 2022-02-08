@@ -1313,8 +1313,13 @@ components:
       type: string
     ConnectorState:
       enum:
+      - assigning
+      - assigned
+      - updating
       - ready
       - stopped
+      - failed
+      - deleting
       - deleted
       - provisioning
       - deprovisioning
