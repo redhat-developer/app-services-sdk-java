@@ -26,9 +26,19 @@ import com.fasterxml.jackson.annotation.JsonValue;
  */
 public enum ConnectorState {
   
+  ASSIGNING("assigning"),
+  
+  ASSIGNED("assigned"),
+  
+  UPDATING("updating"),
+  
   READY("ready"),
   
   STOPPED("stopped"),
+  
+  FAILED("failed"),
+  
+  DELETING("deleting"),
   
   DELETED("deleted"),
   
