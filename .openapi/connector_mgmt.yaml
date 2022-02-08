@@ -924,8 +924,12 @@ components:
       type: string
       enum:
         - assigning
+        - assigned
+        - updating
         - ready
         - stopped
+        - failed
+        - deleting
         - deleted
         - provisioning
         - deprovisioning
