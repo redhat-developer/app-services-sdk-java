@@ -923,6 +923,7 @@ components:
     ConnectorState:
       type: string
       enum:
+        - assigning
         - ready
         - stopped
         - deleted
