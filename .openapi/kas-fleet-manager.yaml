@@ -888,6 +888,8 @@ components:
               type: string
             reauthentication_enabled:
               type: boolean  
+            kafka_storage_size:
+              type: string
           example:
             $ref: "#/components/examples/KafkaRequestExample"
     KafkaRequestList:
