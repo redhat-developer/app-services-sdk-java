@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
   title: Kafka Service Fleet Manager
-  version: 1.2.0
+  version: 1.3.0
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -1154,6 +1154,7 @@ components:
         client_id: SA-121212
         client_secret: secret
         owner: test-user
+        created_by: test-user
         created_at: 2021-04-07T16:24:01+05:30
     ServiceAccountByIdExample:
       value:
@@ -1164,6 +1165,7 @@ components:
         description: service account for my app
         client_id: SA-121212
         owner: test-user
+        created_by: test-user
         created_at: 2021-04-07T16:24:01+05:30
     ServiceAccountListItemExample:
       value:
@@ -1174,6 +1176,7 @@ components:
         description: service account for my app
         client_id: SA-121212
         owner: test-user
+        created_by: test-user
         created_at: 2021-04-07T16:24:01+05:30
     MetricsRangeQueryExample:
       value:
@@ -1873,7 +1876,7 @@ components:
           type: string
         client_secret:
           type: string
-        owner:
+        created_by:
           type: string
         created_at:
           format: date-time
@@ -1890,8 +1893,8 @@ components:
         name:
           description: name of the service account
           type: string
-        owner:
-          description: owner of the service account
+        created_by:
+          description: service account created by the user
           type: string
         created_at:
           description: service account creation timestamp

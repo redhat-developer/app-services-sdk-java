@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **description** | **String** |  |  [optional]
 **clientId** | **String** |  |  [optional]
 **clientSecret** | **String** |  |  [optional]
-**owner** | **String** |  |  [optional]
+**createdBy** | **String** |  |  [optional]
 **createdAt** | **OffsetDateTime** |  |  [optional]
 
 
