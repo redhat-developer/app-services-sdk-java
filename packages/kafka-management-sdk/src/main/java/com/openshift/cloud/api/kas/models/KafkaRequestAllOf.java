@@ -42,7 +42,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   KafkaRequestAllOf.JSON_PROPERTY_FAILED_REASON,
   KafkaRequestAllOf.JSON_PROPERTY_VERSION,
   KafkaRequestAllOf.JSON_PROPERTY_INSTANCE_TYPE,
-  KafkaRequestAllOf.JSON_PROPERTY_REAUTHENTICATION_ENABLED
+  KafkaRequestAllOf.JSON_PROPERTY_REAUTHENTICATION_ENABLED,
+  KafkaRequestAllOf.JSON_PROPERTY_KAFKA_STORAGE_SIZE
 })
 @JsonTypeName("KafkaRequest_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -85,6 +86,9 @@ public class KafkaRequestAllOf {
 
   public static final String JSON_PROPERTY_REAUTHENTICATION_ENABLED = "reauthentication_enabled";
   private Boolean reauthenticationEnabled;
+
+  public static final String JSON_PROPERTY_KAFKA_STORAGE_SIZE = "kafka_storage_size";
+  private String kafkaStorageSize;
 
   public KafkaRequestAllOf() { 
   }
@@ -440,6 +444,33 @@ public class KafkaRequestAllOf {
   }
 
 
+  public KafkaRequestAllOf kafkaStorageSize(String kafkaStorageSize) {
+    
+    this.kafkaStorageSize = kafkaStorageSize;
+    return this;
+  }
+
+   /**
+   * Get kafkaStorageSize
+   * @return kafkaStorageSize
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_KAFKA_STORAGE_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getKafkaStorageSize() {
+    return kafkaStorageSize;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_KAFKA_STORAGE_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setKafkaStorageSize(String kafkaStorageSize) {
+    this.kafkaStorageSize = kafkaStorageSize;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -461,12 +492,13 @@ public class KafkaRequestAllOf {
         Objects.equals(this.failedReason, kafkaRequestAllOf.failedReason) &&
         Objects.equals(this.version, kafkaRequestAllOf.version) &&
         Objects.equals(this.instanceType, kafkaRequestAllOf.instanceType) &&
-        Objects.equals(this.reauthenticationEnabled, kafkaRequestAllOf.reauthenticationEnabled);
+        Objects.equals(this.reauthenticationEnabled, kafkaRequestAllOf.reauthenticationEnabled) &&
+        Objects.equals(this.kafkaStorageSize, kafkaRequestAllOf.kafkaStorageSize);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, cloudProvider, multiAz, region, owner, name, bootstrapServerHost, createdAt, updatedAt, failedReason, version, instanceType, reauthenticationEnabled);
+    return Objects.hash(status, cloudProvider, multiAz, region, owner, name, bootstrapServerHost, createdAt, updatedAt, failedReason, version, instanceType, reauthenticationEnabled, kafkaStorageSize);
   }
 
   @Override
@@ -486,6 +518,7 @@ public class KafkaRequestAllOf {
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    instanceType: ").append(toIndentedString(instanceType)).append("\n");
     sb.append("    reauthenticationEnabled: ").append(toIndentedString(reauthenticationEnabled)).append("\n");
+    sb.append("    kafkaStorageSize: ").append(toIndentedString(kafkaStorageSize)).append("\n");
     sb.append("}");
     return sb.toString();
   }

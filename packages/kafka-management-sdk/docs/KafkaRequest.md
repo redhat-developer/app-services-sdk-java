@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **version** | **String** |  |  [optional]
 **instanceType** | **String** |  |  [optional]
 **reauthenticationEnabled** | **Boolean** |  | 
+**kafkaStorageSize** | **String** |  |  [optional]
 
 
 
