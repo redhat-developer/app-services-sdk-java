@@ -829,6 +829,10 @@ components:
           type: integer
         total:
           type: integer
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ObjectReference"
     Error:
       allOf:
         - $ref: "#/components/schemas/ObjectReference"
