@@ -228,30 +228,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              examples:
+                MissingParameterExample:
+                  $ref: '#/components/examples/400MissingParameterExample'
         "401":
           description: Auth token is invalid
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              examples:
+                401Example:
+                  $ref : '#/components/examples/401Example'
         "403":
           description: User is not authorised to access the service
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              examples:
+                403Example:
+                  $ref: '#/components/examples/403Example'
         "404":
           description: No Kafka found with the specified ID
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              examples:
+                404Example:
+                  $ref: '#/components/examples/404Example'
         "500":
           description: Unexpected error occurred
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              examples:
+                500Example:
+                  $ref: '#/components/examples/500Example'
     parameters:
       - $ref: "#/components/parameters/id"
   /api/kafkas_mgmt/v1/kafkas:
