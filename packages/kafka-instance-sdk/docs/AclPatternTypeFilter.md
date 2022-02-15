@@ -5,13 +5,13 @@
 ## Enum
 
 
-* `LITERAL` (value: `"LITERAL"`)
-
-* `PREFIXED` (value: `"PREFIXED"`)
-
 * `ANY` (value: `"ANY"`)
 
+* `LITERAL` (value: `"LITERAL"`)
+
 * `MATCH` (value: `"MATCH"`)
+
+* `PREFIXED` (value: `"PREFIXED"`)
 
 
 

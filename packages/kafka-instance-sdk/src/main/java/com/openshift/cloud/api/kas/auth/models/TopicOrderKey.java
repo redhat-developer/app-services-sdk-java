@@ -22,17 +22,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Gets or Sets AclPermissionType
+ * Gets or Sets TopicOrderKey
  */
-public enum AclPermissionType {
+public enum TopicOrderKey {
   
-  ALLOW("ALLOW"),
+  NAME("name"),
   
-  DENY("DENY");
+  PARTITIONS("partitions"),
+  
+  RETENTION_MS("retention.ms"),
+  
+  RETENTION_BYTES("retention.bytes");
 
   private String value;
 
-  AclPermissionType(String value) {
+  TopicOrderKey(String value) {
     this.value = value;
   }
 
@@ -47,8 +51,8 @@ public enum AclPermissionType {
   }
 
   @JsonCreator
-  public static AclPermissionType fromValue(String value) {
-    for (AclPermissionType b : AclPermissionType.values()) {
+  public static TopicOrderKey fromValue(String value) {
+    for (TopicOrderKey b : TopicOrderKey.values()) {
       if (b.value.equals(value)) {
         return b;
       }

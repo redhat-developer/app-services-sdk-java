@@ -7,23 +7,23 @@
 
 * `ALL` (value: `"ALL"`)
 
-* `READ` (value: `"READ"`)
+* `ALTER` (value: `"ALTER"`)
 
-* `WRITE` (value: `"WRITE"`)
+* `ALTER_CONFIGS` (value: `"ALTER_CONFIGS"`)
+
+* `ANY` (value: `"ANY"`)
 
 * `CREATE` (value: `"CREATE"`)
 
 * `DELETE` (value: `"DELETE"`)
 
-* `ALTER` (value: `"ALTER"`)
-
 * `DESCRIBE` (value: `"DESCRIBE"`)
 
 * `DESCRIBE_CONFIGS` (value: `"DESCRIBE_CONFIGS"`)
 
-* `ALTER_CONFIGS` (value: `"ALTER_CONFIGS"`)
+* `READ` (value: `"READ"`)
 
-* `ANY` (value: `"ANY"`)
+* `WRITE` (value: `"WRITE"`)
 
 
 

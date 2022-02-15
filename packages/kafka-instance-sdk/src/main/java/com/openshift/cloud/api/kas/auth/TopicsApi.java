@@ -9,9 +9,11 @@ import jakarta.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.kas.auth.models.Error;
 import com.openshift.cloud.api.kas.auth.models.NewTopicInput;
+import com.openshift.cloud.api.kas.auth.models.SortDirection;
 import com.openshift.cloud.api.kas.auth.models.Topic;
+import com.openshift.cloud.api.kas.auth.models.TopicOrderKey;
+import com.openshift.cloud.api.kas.auth.models.TopicSettings;
 import com.openshift.cloud.api.kas.auth.models.TopicsList;
-import com.openshift.cloud.api.kas.auth.models.UpdateTopicInput;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,7 +56,7 @@ public class TopicsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/topics".replaceAll("\\{format\\}","json");
+    String localVarPath = "/rest/topics".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -76,18 +78,19 @@ public class TopicsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<Topic> localVarReturnType = new GenericType<Topic>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Deletes a  topic
+   * Deletes a topic
    * Deletes the topic with the specified name.
-   * @param topicName The topic name to delete. (required)
+   * @param topicName Name of the topic to delete (required)
+   * @return a {@code List<String>}
    * @throws ApiException if fails to make API call
    */
-  public void deleteTopic(String topicName) throws ApiException {
+  public List<String> deleteTopic(String topicName) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'topicName' is set
@@ -96,7 +99,7 @@ public class TopicsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/topics/{topicName}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/rest/topics/{topicName}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "topicName" + "\\}", apiClient.escapeString(topicName.toString()));
 
     // query params
@@ -119,15 +122,15 @@ public class TopicsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
-
-    apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
-  }
+    GenericType<List<String>> localVarReturnType = new GenericType<List<String>>() {};
+    return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
   /**
-   * Retrieves the topic with the specified name.
+   * Retrieves a single topic
    * Topic
-   * @param topicName The topic name to retrieve. (required)
+   * @param topicName Name of the topic to describe (required)
    * @return a {@code Topic}
    * @throws ApiException if fails to make API call
    */
@@ -140,7 +143,7 @@ public class TopicsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/topics/{topicName}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/rest/topics/{topicName}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "topicName" + "\\}", apiClient.escapeString(topicName.toString()));
 
     // query params
@@ -163,27 +166,27 @@ public class TopicsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<Topic> localVarReturnType = new GenericType<Topic>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * List of topics
+   * Retrieves a list of topics
    * Returns a list of all of the available topics, or the list of topics that meet the request query parameters. The topics returned are limited to those records the requestor is authorized to view.
-   * @param limit Maximum number of topics to return (optional)
+   * @param size Number of records per page (optional)
    * @param filter Filter to apply when returning the list of topics (optional)
-   * @param page The page when returning the limit of requested topics. (optional)
-   * @param order Order of the items sorting. Ascending order is used as default. (optional)
+   * @param page Page number (optional)
+   * @param order Order items are sorted (optional)
    * @param orderKey Order key to sort the topics by. (optional)
    * @return a {@code TopicsList}
    * @throws ApiException if fails to make API call
    */
-  public TopicsList getTopics(Integer limit, String filter, Integer page, String order, String orderKey) throws ApiException {
+  public TopicsList getTopics(Integer size, String filter, Integer page, SortDirection order, TopicOrderKey orderKey) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/topics".replaceAll("\\{format\\}","json");
+    String localVarPath = "/rest/topics".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -191,7 +194,7 @@ public class TopicsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "filter", filter));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "order", order));
@@ -210,34 +213,34 @@ public class TopicsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<TopicsList> localVarReturnType = new GenericType<TopicsList>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Updates the topic with the specified name.
-   * updates the topic with the new data.
-   * @param topicName The topic name which is its unique id. (required)
-   * @param updateTopicInput  (required)
+   * Updates a single topic
+   * Update a the configuration settings for a topic.
+   * @param topicName Name of the topic to update (required)
+   * @param topicSettings  (required)
    * @return a {@code Topic}
    * @throws ApiException if fails to make API call
    */
-  public Topic updateTopic(String topicName, UpdateTopicInput updateTopicInput) throws ApiException {
-    Object localVarPostBody = updateTopicInput;
+  public Topic updateTopic(String topicName, TopicSettings topicSettings) throws ApiException {
+    Object localVarPostBody = topicSettings;
     
     // verify the required parameter 'topicName' is set
     if (topicName == null) {
       throw new ApiException(400, "Missing the required parameter 'topicName' when calling updateTopic");
     }
     
-    // verify the required parameter 'updateTopicInput' is set
-    if (updateTopicInput == null) {
-      throw new ApiException(400, "Missing the required parameter 'updateTopicInput' when calling updateTopic");
+    // verify the required parameter 'topicSettings' is set
+    if (topicSettings == null) {
+      throw new ApiException(400, "Missing the required parameter 'topicSettings' when calling updateTopic");
     }
     
     // create path and map variables
-    String localVarPath = "/topics/{topicName}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/rest/topics/{topicName}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "topicName" + "\\}", apiClient.escapeString(topicName.toString()));
 
     // query params
@@ -260,7 +263,7 @@ public class TopicsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<Topic> localVarReturnType = new GenericType<Topic>() {};
     return apiClient.invokeAPI(localVarPath, "PATCH", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);

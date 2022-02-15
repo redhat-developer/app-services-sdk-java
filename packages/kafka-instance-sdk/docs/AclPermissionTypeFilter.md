@@ -7,9 +7,9 @@
 
 * `ALLOW` (value: `"ALLOW"`)
 
-* `DENY` (value: `"DENY"`)
-
 * `ANY` (value: `"ANY"`)
+
+* `DENY` (value: `"DENY"`)
 
 
 

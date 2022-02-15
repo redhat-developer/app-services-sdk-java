@@ -8,8 +8,9 @@ Kafka Topic (A feed where records are stored and published)
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **String** | The name of the topic. |  [optional]
 **config** | [**List&lt;ConfigEntry&gt;**](ConfigEntry.md) | Topic configuration entry. |  [optional]
+**isInternal** | **Boolean** |  |  [optional]
+**name** | **String** | The name of the topic. |  [optional]
 **partitions** | [**List&lt;Partition&gt;**](Partition.md) | Partitions for this topic. |  [optional]
 
 

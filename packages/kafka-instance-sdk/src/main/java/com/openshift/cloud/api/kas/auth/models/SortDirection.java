@@ -22,17 +22,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Gets or Sets AclPermissionType
+ * Gets or Sets SortDirection
  */
-public enum AclPermissionType {
+public enum SortDirection {
   
-  ALLOW("ALLOW"),
+  ASC("asc"),
   
-  DENY("DENY");
+  DESC("desc");
 
   private String value;
 
-  AclPermissionType(String value) {
+  SortDirection(String value) {
     this.value = value;
   }
 
@@ -47,8 +47,8 @@ public enum AclPermissionType {
   }
 
   @JsonCreator
-  public static AclPermissionType fromValue(String value) {
-    for (AclPermissionType b : AclPermissionType.values()) {
+  public static SortDirection fromValue(String value) {
+    for (SortDirection b : SortDirection.values()) {
       if (b.value.equals(value)) {
         return b;
       }

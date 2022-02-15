@@ -9,12 +9,13 @@ import jakarta.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.kas.auth.models.AclBinding;
 import com.openshift.cloud.api.kas.auth.models.AclBindingListPage;
+import com.openshift.cloud.api.kas.auth.models.AclBindingOrderKey;
 import com.openshift.cloud.api.kas.auth.models.AclOperationFilter;
 import com.openshift.cloud.api.kas.auth.models.AclPatternTypeFilter;
 import com.openshift.cloud.api.kas.auth.models.AclPermissionTypeFilter;
 import com.openshift.cloud.api.kas.auth.models.AclResourceTypeFilter;
-import java.math.BigDecimal;
 import com.openshift.cloud.api.kas.auth.models.Error;
+import com.openshift.cloud.api.kas.auth.models.SortDirection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,7 +57,7 @@ public class AclsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/acls".replaceAll("\\{format\\}","json");
+    String localVarPath = "/rest/acls".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -78,7 +79,7 @@ public class AclsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
 
     apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
@@ -86,20 +87,20 @@ public class AclsApi {
   /**
    * Delete ACL bindings
    * Deletes ACL bindings that match the query parameters.
-   * @param resourceType ACL Resource Type Filter (optional, default to ANY)
+   * @param operation ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. (optional)
+   * @param patternType ACL Pattern Type Filter (optional)
+   * @param permission ACL Permission Type Filter (optional)
+   * @param principal ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. (optional, default to )
    * @param resourceName ACL Resource Name Filter (optional)
-   * @param patternType ACL Pattern Type Filter (optional, default to ANY)
-   * @param principal ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. (optional)
-   * @param operation ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. (optional, default to ANY)
-   * @param permission ACL Permission Type Filter (optional, default to ANY)
+   * @param resourceType ACL Resource Type Filter (optional)
    * @return a {@code AclBindingListPage}
    * @throws ApiException if fails to make API call
    */
-  public AclBindingListPage deleteAcls(AclResourceTypeFilter resourceType, String resourceName, AclPatternTypeFilter patternType, String principal, AclOperationFilter operation, AclPermissionTypeFilter permission) throws ApiException {
+  public AclBindingListPage deleteAcls(AclOperationFilter operation, AclPatternTypeFilter patternType, AclPermissionTypeFilter permission, String principal, String resourceName, AclResourceTypeFilter resourceType) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/acls".replaceAll("\\{format\\}","json");
+    String localVarPath = "/rest/acls".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -107,12 +108,12 @@ public class AclsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "resourceType", resourceType));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "resourceName", resourceName));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "patternType", patternType));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "principal", principal));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "operation", operation));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "patternType", patternType));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "permission", permission));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "principal", principal));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "resourceName", resourceName));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "resourceType", resourceType));
 
     
     
@@ -127,7 +128,7 @@ public class AclsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<AclBindingListPage> localVarReturnType = new GenericType<AclBindingListPage>() {};
     return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -142,7 +143,7 @@ public class AclsApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/acls/resource-operations".replaceAll("\\{format\\}","json");
+    String localVarPath = "/rest/acls/resource-operations".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -164,32 +165,33 @@ public class AclsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<Map<String, List<String>>> localVarReturnType = new GenericType<Map<String, List<String>>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * List ACL bindings
-   * Returns a list of all of the available ACL bindings, or the list of bindings that meet the users URL Query Parameters. If no parameters are specified, all ACL bindings known to the system will be returned (with paging).
-   * @param resourceType ACL Resource Type Filter (optional, default to ANY)
+   * Returns a list of all of the available ACL bindings, or the list of bindings that meet the users URL query parameters. If no parameters are specified, all ACL bindings known to the system will be returned (with paging).
+   * @param resourceType ACL Resource Type Filter (optional)
    * @param resourceName ACL Resource Name Filter (optional)
-   * @param patternType ACL Pattern Type Filter (optional, default to ANY)
-   * @param principal ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. (optional)
-   * @param operation ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. (optional, default to ANY)
-   * @param permission ACL Permission Type Filter (optional, default to ANY)
-   * @param page Page number for result lists (optional, default to 1)
-   * @param size Page size for result lists (optional, default to 10)
-   * @param order Order of the ACL binding sorting. (optional, default to desc)
-   * @param orderKey Order key to sort the items by. (optional, default to permission)
+   * @param patternType ACL Pattern Type Filter (optional)
+   * @param principal ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. (optional, default to )
+   * @param operation ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. (optional)
+   * @param permissionType  (optional)
+   * @param page Page number (optional)
+   * @param size Number of records per page (optional)
+   * @param order Order items are sorted (optional)
+   * @param orderKey  (optional)
+   * @param permission ACL Permission Type Filter (optional)
    * @return a {@code AclBindingListPage}
    * @throws ApiException if fails to make API call
    */
-  public AclBindingListPage getAcls(AclResourceTypeFilter resourceType, String resourceName, AclPatternTypeFilter patternType, String principal, AclOperationFilter operation, AclPermissionTypeFilter permission, BigDecimal page, BigDecimal size, String order, String orderKey) throws ApiException {
+  public AclBindingListPage getAcls(AclResourceTypeFilter resourceType, String resourceName, AclPatternTypeFilter patternType, String principal, AclOperationFilter operation, Object permissionType, Integer page, Integer size, SortDirection order, AclBindingOrderKey orderKey, AclPermissionTypeFilter permission) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/acls".replaceAll("\\{format\\}","json");
+    String localVarPath = "/rest/acls".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -202,11 +204,12 @@ public class AclsApi {
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "patternType", patternType));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "principal", principal));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "operation", operation));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "permission", permission));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "permissionType", permissionType));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "order", order));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "orderKey", orderKey));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "permission", permission));
 
     
     
@@ -221,7 +224,7 @@ public class AclsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<AclBindingListPage> localVarReturnType = new GenericType<AclBindingListPage>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);

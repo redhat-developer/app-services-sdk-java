@@ -5,12 +5,12 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Admin REST API
-  version: 0.3.0
+  version: 0.7.1-SNAPSHOT
 servers:
 - description: Kafka Admin REST API
-  url: /rest
+  url: /
 security:
-- Bearer: []
+- BasicAuth: []
 tags:
 - description: Topic Management
   name: topics
@@ -19,83 +19,353 @@ tags:
 - description: Access Control Management (ACLs)
   name: acls
 paths:
-  /topics:
-    get:
-      description: Returns a list of all of the available topics, or the list of topics
-        that meet the request query parameters. The topics returned are limited to
-        those records the requestor is authorized to view.
-      operationId: getTopics
+  /rest/acls:
+    delete:
+      description: Deletes ACL bindings that match the query parameters.
+      operationId: deleteAcls
       parameters:
-      - deprecated: true
-        description: Maximum number of topics to return
+      - description: ACL Operation Filter. The ACL binding operation provided should
+          be valid for the resource type in the request, if not `ANY`.
+        examples:
+          anything:
+            summary: Match any ACL binding operation
+            value: ANY
         explode: true
         in: query
-        name: limit
+        name: operation
         required: false
         schema:
-          type: integer
+          allOf:
+          - $ref: '#/components/schemas/AclOperationFilter'
+          - {}
         style: form
-      - description: Filter to apply when returning the list of topics
+      - description: ACL Pattern Type Filter
+        examples:
+          anything:
+            summary: Match any ACL binding pattern type
+            value: ANY
+          literal:
+            summary: Match a literal resource name or `*`
+            value: LITERAL
+          prefixed:
+            summary: Match a prefixed resource name
+            value: PREFIXED
         explode: true
         in: query
-        name: filter
+        name: patternType
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/AclPatternTypeFilter'
+          - {}
+        style: form
+      - description: ACL Permission Type Filter
+        examples:
+          anything:
+            summary: Match any ACL binding permission type
+            value: ANY
+          allow:
+            summary: Match only ACL bindings allowing access
+            value: ALLOW
+          deny:
+            summary: Match only ACL bindings denying access
+            value: DENY
+        explode: true
+        in: query
+        name: permission
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/AclPermissionTypeFilter'
+          - {}
+        style: form
+      - description: |-
+          ACL Principal Filter. Either a specific user or the wildcard user `User:*` may be provided.
+          - When fetching by a specific user, the results will also include ACL bindings that apply to all users.
+          - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
+        examples:
+          wildcard:
+            summary: Match ACL entries that apply to all users
+            value: User:*
+          specific:
+            summary: Match ACL entries for a specific user
+            value: User:admin-5a1-0c1
+        explode: true
+        in: query
+        name: principal
+        required: false
+        schema:
+          default: ""
+          type: string
+        style: form
+      - description: ACL Resource Name Filter
+        explode: true
+        in: query
+        name: resourceName
         required: false
         schema:
           type: string
         style: form
-      - description: The page when returning the limit of requested topics.
+      - description: ACL Resource Type Filter
+        examples:
+          anything:
+            summary: Match any ACL binding resource type
+            value: ANY
+          group:
+            summary: Match ACL bindings for consumer groups
+            value: GROUP
+          topic:
+            summary: Match ACL bindings for topics
+            value: TOPIC
+          cluster:
+            summary: Match ACL bindings for the cluster
+            value: CLUSTER
+          transactional_id:
+            summary: Match ACL bindings for transactional IDs
+            value: TRANSACTIONAL_ID
+        explode: true
+        in: query
+        name: resourceType
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/AclResourceTypeFilter'
+          - {}
+        style: form
+      responses:
+        "400":
+          content:
+            application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AclBindingListPage'
+          description: List of all ACL bindings matching the query parameters that
+            were deleted.
+      summary: Delete ACL bindings
+      tags:
+      - acls
+      x-accepts: application/json
+    get:
+      description: Returns a list of all of the available ACL bindings, or the list
+        of bindings that meet the users URL query parameters. If no parameters are
+        specified, all ACL bindings known to the system will be returned (with paging).
+      operationId: getAcls
+      parameters:
+      - description: ACL Resource Type Filter
+        examples:
+          anything:
+            summary: Match any ACL binding resource type
+            value: ANY
+          group:
+            summary: Match ACL bindings for consumer groups
+            value: GROUP
+          topic:
+            summary: Match ACL bindings for topics
+            value: TOPIC
+          cluster:
+            summary: Match ACL bindings for the cluster
+            value: CLUSTER
+          transactional_id:
+            summary: Match ACL bindings for transactional IDs
+            value: TRANSACTIONAL_ID
+        explode: true
+        in: query
+        name: resourceType
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/AclResourceTypeFilter'
+          - {}
+        style: form
+      - description: ACL Resource Name Filter
+        explode: true
+        in: query
+        name: resourceName
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ACL Pattern Type Filter
+        examples:
+          anything:
+            summary: Match any ACL binding pattern type
+            value: ANY
+          literal:
+            summary: Match a literal resource name or `*`
+            value: LITERAL
+          prefixed:
+            summary: Match a prefixed resource name
+            value: PREFIXED
+        explode: true
+        in: query
+        name: patternType
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/AclPatternTypeFilter'
+          - {}
+        style: form
+      - description: |-
+          ACL Principal Filter. Either a specific user or the wildcard user `User:*` may be provided.
+          - When fetching by a specific user, the results will also include ACL bindings that apply to all users.
+          - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
+        examples:
+          wildcard:
+            summary: Match ACL entries that apply to all users
+            value: User:*
+          specific:
+            summary: Match ACL entries for a specific user
+            value: User:admin-5a1-0c1
+        explode: true
+        in: query
+        name: principal
+        required: false
+        schema:
+          default: ""
+          type: string
+        style: form
+      - description: ACL Operation Filter. The ACL binding operation provided should
+          be valid for the resource type in the request, if not `ANY`.
+        examples:
+          anything:
+            summary: Match any ACL binding operation
+            value: ANY
+        explode: true
+        in: query
+        name: operation
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/AclOperationFilter'
+          - {}
+        style: form
+      - explode: true
+        in: query
+        name: permissionType
+        required: false
+        schema: {}
+        style: form
+      - description: Page number
         explode: true
         in: query
         name: page
         required: false
         schema:
           format: int32
+          minimum: 1
           type: integer
         style: form
-      - description: Order of the items sorting. Ascending order is used as default.
+      - description: Number of records per page
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
+      - description: Order items are sorted
         explode: true
         in: query
         name: order
         required: false
         schema:
-          enum:
-          - asc
-          - desc
-          type: string
+          $ref: '#/components/schemas/SortDirection'
         style: form
-      - description: Order key to sort the topics by.
-        explode: true
+      - explode: true
         in: query
         name: orderKey
         required: false
         schema:
-          enum:
-          - name
-          - partitions
-          - retention.ms
-          - retention.bytes
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/AclBindingOrderKey'
+          - {}
+        style: form
+      - description: ACL Permission Type Filter
+        examples:
+          anything:
+            summary: Match any ACL binding permission type
+            value: ANY
+          allow:
+            summary: Match only ACL bindings allowing access
+            value: ALLOW
+          deny:
+            summary: Match only ACL bindings denying access
+            value: DENY
+        explode: true
+        in: query
+        name: permission
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/AclPermissionTypeFilter'
+          - {}
         style: form
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TopicsList'
-          description: List of topics matching the request query parameters. The topics
-            returned are limited to those records the requestor is authorized to view.
         "400":
           content:
             application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Unable to retrieve topics.
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
         "401":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
         "500":
           content:
             application/json:
@@ -108,241 +378,43 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Kafka service unavailable
-      summary: List of topics
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AclBindingListPage'
+          description: List of ACL bindings matching the query parameters.
+      summary: List ACL bindings
       tags:
-      - topics
+      - acls
       x-accepts: application/json
     post:
-      description: Creates a new topic for Kafka.
-      operationId: createTopic
+      description: Creates a new ACL binding for a Kafka instance.
+      operationId: createAcl
       requestBody:
         content:
           application/json:
-            examples:
-              NewTopicInput:
-                value:
-                  name: my-topic
-                  settings:
-                    numPartitions: 3
-                    replicationFactor: 4
-                    config:
-                    - key: min.insync.replicas
-                      value: "1"
-                    - key: max.message.bytes
-                      value: "1050000"
             schema:
-              $ref: '#/components/schemas/NewTopicInput'
-        description: Topic to create.
+              $ref: '#/components/schemas/AclBinding'
+        description: ACL to create.
         required: true
       responses:
         "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Topic'
-          description: Topic created successfully.
+          description: ACL created successfully.
         "400":
           content:
             application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
               schema:
                 $ref: '#/components/schemas/Error'
-          description: The client request was invalid
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Request authentication missing or invalid
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: The resource already exists.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal server error
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Kafka service unavailable
-      summary: Creates a new topic
-      tags:
-      - topics
-      x-contentType: application/json
-      x-accepts: application/json
-  /topics/{topicName}:
-    delete:
-      description: Deletes the topic with the specified name.
-      operationId: deleteTopic
-      parameters:
-      - description: The topic name to delete.
-        explode: false
-        in: path
-        name: topicName
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          description: Topic deleted successfully.
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Request authentication missing or invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Topic not found.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal server error
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Kafka service unavailable
-      summary: Deletes a  topic
-      tags:
-      - topics
-      x-accepts: application/json
-    get:
-      description: Topic
-      operationId: getTopic
-      parameters:
-      - description: The topic name to retrieve.
-        explode: false
-        in: path
-        name: topicName
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Topic'
-          description: Kafka topic details.
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Request authentication missing or invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Topic not found.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal server error
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Kafka service unavailable
-      summary: Retrieves the topic with the specified name.
-      tags:
-      - topics
-      x-accepts: application/json
-    patch:
-      description: updates the topic with the new data.
-      operationId: updateTopic
-      parameters:
-      - description: The topic name which is its unique id.
-        explode: false
-        in: path
-        name: topicName
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateTopicInput'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Topic'
-          description: Topic updated successfully.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: The client request was invalid
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Request authentication missing or invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Topic not found.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal server error
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Kafka service unavailable
-      summary: Updates the topic with the specified name.
-      tags:
-      - topics
-      x-contentType: application/json
-      x-accepts: application/json
-  /consumer-groups/{consumerGroupId}:
-    delete:
-      description: Delete a consumer group, along with its consumers.
-      operationId: deleteConsumerGroupById
-      parameters:
-      - description: The unique ID of the cobsumer group.
-        explode: false
-        in: path
-        name: consumerGroupId
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "204":
-          description: The consumer group was deleted successfully.
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
         "401":
           content:
             application/json:
@@ -354,19 +426,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Forbidden to delete this consumer group.
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: The consumer group does not exist.
-        "423":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User cannot delete consumer group with active members.
+          description: User is not authorized to access requested resource
         "500":
           content:
             application/json:
@@ -379,150 +439,81 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Kafka service unavailable
-      summary: Delete a consumer group.
+      summary: Create ACL binding
       tags:
-      - groups
+      - acls
+      x-contentType: application/json
       x-accepts: application/json
+  /rest/acls/resource-operations:
     get:
-      operationId: getConsumerGroupById
-      parameters:
-      - description: The unique ID of the consumer group
-        explode: false
-        in: path
-        name: consumerGroupId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Order of the items sorting. Ascending order is used as default.
-        explode: true
-        in: query
-        name: order
-        required: false
-        schema:
-          enum:
-          - asc
-          - desc
-          type: string
-        style: form
-      - description: Order key to sort the topics by.
-        explode: true
-        in: query
-        name: orderKey
-        required: false
-        schema:
-          enum:
-          - offset
-          - endOffset
-          - lag
-          - partition
-          type: string
-        style: form
-      - description: Value of partition to include. Value -1 means filter is not active.
-        explode: true
-        in: query
-        name: partitionFilter
-        required: false
-        schema:
-          type: integer
-        style: form
-      - description: Filter consumer groups for a specific topic
-        examples:
-          Consumer group:
-            value:
-              groupId: consumer_group_1
-              consumers:
-              - groupId: consumer_group_1
-                topic: topic-1
-                partition: 0
-                memberId: consumer_group_member1
-                offset: 5
-                lag: 0
-                logEndOffset: 5
-              - groupId: consumer_group_1
-                topic: topic-1
-                partition: 1
-                memberId: consumer_group_member2
-                offset: 3
-                lag: 0
-                logEndOffset: 3
-              - groupId: consumer_group_1
-                topic: topic-1
-                partition: 2
-                memberId: consumer_group_member3
-                offset: 6
-                lag: 1
-                logEndOffset: 5
-        explode: true
-        in: query
-        name: topic
-        required: false
-        schema:
-          type: string
-        style: form
+      description: Retrieve the resources and associated operations that may have
+        ACLs configured.
+      operationId: getAclResourceOperations
       responses:
         "200":
           content:
             application/json:
+              examples:
+                success:
+                  summary: Map of resources to allowed ACL operations
+                  value: |-
+                    {
+                        "cluster": [ "describe", "alter" ],
+                        "group": [ "all", "delete", "describe", "read" ],
+                        "topic": [ "all", "alter", "alter_configs", "create", "delete", "describe", "describe_configs", "read", "write" ],
+                        "transactional_id": [ "all", "describe", "write" ]
+                    }
+                disabled:
+                  summary: No configuration of ACL bindings is allowed
+                  value: '{}'
               schema:
-                $ref: '#/components/schemas/ConsumerGroup'
-          description: Consumer group details.
+                additionalProperties:
+                  items:
+                    type: string
+                  type: array
+                type: object
+          description: Map of allowed resources and operations for ACL creation
         "401":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Request authentication missing or invalid
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User is forbidden this view this consumer group.
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Consumer group not found.
         "500":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Kafka service unavailable
-      summary: Get a single consumer group by its unique ID.
+      summary: Retrieve allowed ACL resources and operations
       tags:
-      - groups
+      - acls
       x-accepts: application/json
-  /consumer-groups:
+  /rest/consumer-groups:
     get:
       description: Returns a list of all consumer groups for a particular Kafka instance.
         The consumer groups returned are limited to those records the requestor is
         authorized to view.
       operationId: getConsumerGroups
       parameters:
-      - deprecated: true
-        description: Maximum number of consumer groups to return
+      - description: Number of records per page
         explode: true
         in: query
-        name: limit
+        name: size
         required: false
         schema:
+          format: int32
+          minimum: 1
           type: integer
         style: form
-      - description: The page when returning the list of consumer groups
+      - description: Page number
         explode: true
         in: query
         name: page
         required: false
         schema:
+          format: int32
+          minimum: 1
           type: integer
         style: form
       - description: Return consumer groups where the topic name contains with this
@@ -542,28 +533,22 @@ paths:
         schema:
           type: string
         style: form
-      - description: Order of the consumer groups sorting. Ascending order is used
-          as default.
+      - description: Order items are sorted
         explode: true
         in: query
         name: order
         required: false
         schema:
-          enum:
-          - asc
-          - desc
-          type: string
+          $ref: '#/components/schemas/SortDirection'
         style: form
-      - description: Order key to sort the items by. Only the value 'name' is currently
-          applicable.
-        explode: true
+      - explode: true
         in: query
         name: orderKey
         required: false
         schema:
-          enum:
-          - name
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/ConsumerGroupOrderKey'
+          - {}
         style: form
       responses:
         "200":
@@ -607,10 +592,17 @@ paths:
         "400":
           content:
             application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
               schema:
                 $ref: '#/components/schemas/Error'
-          description: The server cannot or will not process the request due to something
-            that is perceived to be a client error such as malformed request syntax.
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
         "401":
           content:
             application/json:
@@ -633,13 +625,155 @@ paths:
       tags:
       - groups
       x-accepts: application/json
-    summary: API endpoints for consumer groups under a Kafka topic
-  /consumer-groups/{consumerGroupId}/reset-offset:
+  /rest/consumer-groups/{consumerGroupId}:
+    delete:
+      description: Delete a consumer group, along with its consumers.
+      operationId: deleteConsumerGroupById
+      parameters:
+      - description: Consumer group identifier
+        explode: false
+        in: path
+        name: consumerGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: The consumer group was deleted successfully.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource could not be found.
+        "423":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User cannot delete consumer group with active members.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+      summary: Delete a consumer group.
+      tags:
+      - groups
+      x-accepts: application/json
+    get:
+      operationId: getConsumerGroupById
+      parameters:
+      - description: Consumer group identifier
+        explode: false
+        in: path
+        name: consumerGroupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Order items are sorted
+        explode: true
+        in: query
+        name: order
+        required: false
+        schema:
+          $ref: '#/components/schemas/SortDirection'
+        style: form
+      - explode: true
+        in: query
+        name: orderKey
+        required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/ConsumerGroupDescriptionOrderKey'
+          - {}
+        style: form
+      - description: Value of partition to include. Value -1 means filter is not active.
+        explode: true
+        in: query
+        name: partitionFilter
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: topic
+        required: false
+        schema: {}
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ConsumerGroupExample:
+                  $ref: '#/components/examples/ConsumerGroupExample'
+              schema:
+                $ref: '#/components/schemas/ConsumerGroup'
+          description: Consumer group details.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource could not be found.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+      summary: Get a single consumer group by its unique ID.
+      tags:
+      - groups
+      x-accepts: application/json
+  /rest/consumer-groups/{consumerGroupId}/reset-offset:
     post:
       description: Reset the offset for a particular consumer group.
       operationId: resetConsumerGroupOffset
       parameters:
-      - description: The ID of the consumer group.
+      - description: Consumer group identifier
         explode: false
         in: path
         name: consumerGroupId
@@ -652,388 +786,140 @@ paths:
           application/json:
             examples:
               ConsumerGroupOffsetResetExample:
-                value:
-                  topics:
-                  - topic: my-topic
-                    partitions:
-                    - 0
-                  offset: absolute
-                  value: "4"
+                $ref: '#/components/examples/ConsumerGroupOffsetResetExample'
             schema:
               $ref: '#/components/schemas/ConsumerGroupResetOffsetParameters'
         required: true
       responses:
+        "400":
+          content:
+            application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource could not be found.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
         "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConsumerGroupResetOffsetResult'
           description: The consumer group offsets have been reset.
-        "400":
-          description: The consumer group to reset the offset does have active consumers.
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Request authentication missing or invalid
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Forbidden to delete this consumer group.
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Specified topic or its partition does not exist.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal server error
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Kafka service unavailable
       summary: Reset the offset for a consumer group.
       tags:
       - groups
       x-contentType: application/json
       x-accepts: application/json
-  /acls:
-    delete:
-      description: Deletes ACL bindings that match the query parameters.
-      operationId: deleteAcls
-      parameters:
-      - description: ACL Resource Type Filter
-        examples:
-          anything:
-            summary: Match any ACL binding resource type
-            value: ANY
-          group:
-            summary: Match ACL bindings for consumer groups
-            value: GROUP
-          topic:
-            summary: Match ACL bindings for topics
-            value: GROUP
-          cluster:
-            summary: Match ACL bindings for the cluster
-            value: CLUSTER
-          transactional_id:
-            summary: Match ACL bindings for transactional IDs
-            value: TRANSACTIONAL_ID
-        explode: true
-        in: query
-        name: resourceType
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclResourceTypeFilter'
-        style: form
-      - description: ACL Resource Name Filter
-        explode: true
-        in: query
-        name: resourceName
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: ACL Pattern Type Filter
-        examples:
-          anything:
-            summary: Match any ACL binding pattern type
-            value: ANY
-          literal:
-            summary: Match a literal resource name or `*`
-            value: LITERAL
-          prefixed:
-            summary: Match a prefixed resource name
-            value: PREFIXED
-        explode: true
-        in: query
-        name: patternType
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclPatternTypeFilter'
-        style: form
-      - description: |-
-          ACL Principal Filter. Either a specific user or the wildcard user `User:*`
-          may be provided.
-          - When fetching by a specific user, the results will also include ACL bindings that apply to all users.
-          - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
-        examples:
-          wildcard:
-            summary: Match ACL entries that apply to all users
-            value: User:*
-          specific:
-            summary: Match ACL entries for a specific user
-            value: User:admin-5a1-0c1
-        explode: true
-        in: query
-        name: principal
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclPrincipal'
-        style: form
-      - description: |-
-          ACL Operation Filter. The ACL binding operation provided should be valid
-          for the resource type in the request, if not `ANY`.
-        examples:
-          anything:
-            summary: Match any ACL binding operation
-            value: ANY
-        explode: true
-        in: query
-        name: operation
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclOperationFilter'
-        style: form
-      - description: ACL Permission Type Filter
-        examples:
-          anything:
-            summary: Match any ACL binding permission type
-            value: ANY
-          allow:
-            summary: Match only ACL bindings allowing access
-            value: ALLOW
-          deny:
-            summary: Match only ACL bindings denying access
-            value: DENY
-        explode: true
-        in: query
-        name: permission
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclPermissionTypeFilter'
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AclBindingListPage'
-          description: List of all ACL bindings matching the query parameters that
-            were deleted.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: The client request was invalid
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Request authentication missing or invalid
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User is not authorized to access requested resource
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal server error
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Kafka service unavailable
-      summary: Delete ACL bindings
-      tags:
-      - acls
-      x-accepts: application/json
+  /rest/topics:
     get:
-      description: Returns a list of all of the available ACL bindings, or the list
-        of bindings that meet the users URL Query Parameters. If no parameters are
-        specified, all ACL bindings known to the system will be returned (with paging).
-      operationId: getAcls
+      description: Returns a list of all of the available topics, or the list of topics
+        that meet the request query parameters. The topics returned are limited to
+        those records the requestor is authorized to view.
+      operationId: getTopics
       parameters:
-      - description: ACL Resource Type Filter
-        examples:
-          anything:
-            summary: Match any ACL binding resource type
-            value: ANY
-          group:
-            summary: Match ACL bindings for consumer groups
-            value: GROUP
-          topic:
-            summary: Match ACL bindings for topics
-            value: GROUP
-          cluster:
-            summary: Match ACL bindings for the cluster
-            value: CLUSTER
-          transactional_id:
-            summary: Match ACL bindings for transactional IDs
-            value: TRANSACTIONAL_ID
-        explode: true
-        in: query
-        name: resourceType
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclResourceTypeFilter'
-        style: form
-      - description: ACL Resource Name Filter
-        explode: true
-        in: query
-        name: resourceName
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: ACL Pattern Type Filter
-        examples:
-          anything:
-            summary: Match any ACL binding pattern type
-            value: ANY
-          literal:
-            summary: Match a literal resource name or `*`
-            value: LITERAL
-          prefixed:
-            summary: Match a prefixed resource name
-            value: PREFIXED
-        explode: true
-        in: query
-        name: patternType
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclPatternTypeFilter'
-        style: form
-      - description: |-
-          ACL Principal Filter. Either a specific user or the wildcard user `User:*`
-          may be provided.
-          - When fetching by a specific user, the results will also include ACL bindings that apply to all users.
-          - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
-        examples:
-          wildcard:
-            summary: Match ACL entries that apply to all users
-            value: User:*
-          specific:
-            summary: Match ACL entries for a specific user
-            value: User:admin-5a1-0c1
-        explode: true
-        in: query
-        name: principal
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclPrincipal'
-        style: form
-      - description: |-
-          ACL Operation Filter. The ACL binding operation provided should be valid
-          for the resource type in the request, if not `ANY`.
-        examples:
-          anything:
-            summary: Match any ACL binding operation
-            value: ANY
-        explode: true
-        in: query
-        name: operation
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclOperationFilter'
-        style: form
-      - description: ACL Permission Type Filter
-        examples:
-          anything:
-            summary: Match any ACL binding permission type
-            value: ANY
-          allow:
-            summary: Match only ACL bindings allowing access
-            value: ALLOW
-          deny:
-            summary: Match only ACL bindings denying access
-            value: DENY
-        explode: true
-        in: query
-        name: permission
-        required: false
-        schema:
-          $ref: '#/components/schemas/AclPermissionTypeFilter'
-        style: form
-      - description: Page number for result lists
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-          type: number
-        style: form
-      - description: Page size for result lists
+      - description: Number of records per page
         explode: true
         in: query
         name: size
         required: false
         schema:
-          default: 10
+          format: int32
           minimum: 1
-          type: number
+          type: integer
         style: form
-      - description: Order of the ACL binding sorting.
+      - description: Filter to apply when returning the list of topics
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Page number
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
+      - description: Order items are sorted
         explode: true
         in: query
         name: order
         required: false
         schema:
-          default: desc
-          enum:
-          - asc
-          - desc
-          type: string
+          $ref: '#/components/schemas/SortDirection'
         style: form
-      - description: Order key to sort the items by.
+      - description: Order key to sort the topics by.
         explode: true
         in: query
         name: orderKey
         required: false
         schema:
-          default: permission
-          enum:
-          - resourceType
-          - resourceName
-          - patternType
-          - principal
-          - operation
-          - permission
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/TopicOrderKey'
+          - {}
         style: form
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AclBindingListPage'
-          description: List of ACL bindings matching the query parameters.
         "400":
           content:
             application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
               schema:
                 $ref: '#/components/schemas/Error'
-          description: The client request was invalid
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
         "401":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Request authentication missing or invalid
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User is not authorized to access requested resource
         "500":
           content:
             application/json:
@@ -1046,29 +932,222 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Kafka service unavailable
-      summary: List ACL bindings
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopicsList'
+          description: List of topics matching the request query parameters. The topics
+            returned are limited to those records the requestor is authorized to view.
+      summary: Retrieves a list of topics
       tags:
-      - acls
+      - topics
       x-accepts: application/json
     post:
-      description: Creates a new ACL binding for a Kafka instance.
-      operationId: createAcl
+      description: Creates a new topic for Kafka.
+      operationId: createTopic
+      requestBody:
+        content:
+          application/json:
+            examples:
+              NewTopicExample:
+                $ref: '#/components/examples/NewTopicExample'
+            schema:
+              $ref: '#/components/schemas/NewTopicInput'
+        description: Topic to create.
+        required: true
+      responses:
+        "400":
+          content:
+            application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The resource already exists.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+          description: Topic created successfully.
+      summary: Creates a new topic
+      tags:
+      - topics
+      x-contentType: application/json
+      x-accepts: application/json
+  /rest/topics/{topicName}:
+    delete:
+      description: Deletes the topic with the specified name.
+      operationId: deleteTopic
+      parameters:
+      - description: Name of the topic to delete
+        explode: false
+        in: path
+        name: topicName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource could not be found.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Topic deleted successfully.
+      summary: Deletes a topic
+      tags:
+      - topics
+      x-accepts: application/json
+    get:
+      description: Topic
+      operationId: getTopic
+      parameters:
+      - description: Name of the topic to describe
+        explode: false
+        in: path
+        name: topicName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource could not be found.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+          description: Kafka topic details
+      summary: Retrieves a single topic
+      tags:
+      - topics
+      x-accepts: application/json
+    patch:
+      description: Update a the configuration settings for a topic.
+      operationId: updateTopic
+      parameters:
+      - description: Name of the topic to update
+        explode: false
+        in: path
+        name: topicName
+        required: true
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AclBinding'
-        description: ACL to create.
+              $ref: '#/components/schemas/TopicSettings'
         required: true
       responses:
-        "201":
-          description: ACL created successfully.
         "400":
           content:
             application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
               schema:
                 $ref: '#/components/schemas/Error'
-          description: The client request was invalid
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
         "401":
           content:
             application/json:
@@ -1081,6 +1160,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: User is not authorized to access requested resource
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource could not be found.
         "500":
           content:
             application/json:
@@ -1093,201 +1178,82 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Kafka service unavailable
-      summary: Create ACL binding
-      tags:
-      - acls
-      x-contentType: application/json
-      x-accepts: application/json
-  /acls/resource-operations:
-    get:
-      description: Retrieve the resources and associated operations that may have
-        ACLs configured.
-      operationId: getAclResourceOperations
-      responses:
         "200":
           content:
             application/json:
-              examples:
-                success:
-                  summary: Map of resources to allowed ACL operations
-                  value: |-
-                    {
-                        "cluster": [ "describe", "alter" ],
-                        "group": [ "all", "delete", "describe", "read" ],
-                        "topic": [ "all", "alter", "alter_configs", "create", "delete", "describe", "describe_configs", "read", "write" ],
-                        "transactional_id": [ "all", "describe", "write" ]
-                    }
-                disabled:
-                  summary: No configuration of ACL bindings is allowed
-                  value: '{}'
               schema:
-                additionalProperties:
-                  items:
-                    type: string
-                  type: array
-                type: object
-          description: Map of allowed resources and operations for ACL creation
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Request authentication missing or invalid
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User is not authorized to access requested resource
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal server error
-      summary: Retrieve allowed ACL resources and operations
+                $ref: '#/components/schemas/Topic'
+          description: Topic updated successfully.
+      summary: Updates a single topic
       tags:
-      - acls
+      - topics
+      x-contentType: application/json
       x-accepts: application/json
-  /: {}
 components:
-  parameters:
-    AclResourceTypeFilter:
-      description: ACL Resource Type Filter
-      examples:
-        anything:
-          summary: Match any ACL binding resource type
-          value: ANY
-        group:
-          summary: Match ACL bindings for consumer groups
-          value: GROUP
-        topic:
-          summary: Match ACL bindings for topics
-          value: GROUP
-        cluster:
-          summary: Match ACL bindings for the cluster
-          value: CLUSTER
-        transactional_id:
-          summary: Match ACL bindings for transactional IDs
-          value: TRANSACTIONAL_ID
-      explode: true
-      in: query
-      name: resourceType
-      required: false
-      schema:
-        $ref: '#/components/schemas/AclResourceTypeFilter'
-      style: form
-    AclResourceName:
-      description: ACL Resource Name Filter
-      explode: true
-      in: query
-      name: resourceName
-      required: false
-      schema:
-        type: string
-      style: form
-    AclPatternTypeFilter:
-      description: ACL Pattern Type Filter
-      examples:
-        anything:
-          summary: Match any ACL binding pattern type
-          value: ANY
-        literal:
-          summary: Match a literal resource name or `*`
-          value: LITERAL
-        prefixed:
-          summary: Match a prefixed resource name
-          value: PREFIXED
-      explode: true
-      in: query
-      name: patternType
-      required: false
-      schema:
-        $ref: '#/components/schemas/AclPatternTypeFilter'
-      style: form
-    AclPrincipal:
-      description: |-
-        ACL Principal Filter. Either a specific user or the wildcard user `User:*`
-        may be provided.
-        - When fetching by a specific user, the results will also include ACL bindings that apply to all users.
-        - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
-      examples:
-        wildcard:
-          summary: Match ACL entries that apply to all users
-          value: User:*
-        specific:
-          summary: Match ACL entries for a specific user
-          value: User:admin-5a1-0c1
-      explode: true
-      in: query
-      name: principal
-      required: false
-      schema:
-        $ref: '#/components/schemas/AclPrincipal'
-      style: form
-    AclOperationFilter:
-      description: |-
-        ACL Operation Filter. The ACL binding operation provided should be valid
-        for the resource type in the request, if not `ANY`.
-      examples:
-        anything:
-          summary: Match any ACL binding operation
-          value: ANY
-      explode: true
-      in: query
-      name: operation
-      required: false
-      schema:
-        $ref: '#/components/schemas/AclOperationFilter'
-      style: form
-    AclPermissionTypeFilter:
-      description: ACL Permission Type Filter
-      examples:
-        anything:
-          summary: Match any ACL binding permission type
-          value: ANY
-        allow:
-          summary: Match only ACL bindings allowing access
-          value: ALLOW
-        deny:
-          summary: Match only ACL bindings denying access
-          value: DENY
-      explode: true
-      in: query
-      name: permission
-      required: false
-      schema:
-        $ref: '#/components/schemas/AclPermissionTypeFilter'
-      style: form
-    PageNumber:
-      description: Page number for result lists
-      explode: true
-      in: query
-      name: page
-      required: false
-      schema:
-        default: 1
-        minimum: 1
-        type: number
-      style: form
-    PageSize:
-      description: Page size for result lists
-      explode: true
-      in: query
-      name: size
-      required: false
-      schema:
-        default: 10
-        minimum: 1
-        type: number
-      style: form
+  examples:
+    ConsumerGroupOffsetResetExample:
+      description: Sample request to reset partition `0` of topic `my-topic` to offset
+        `4`
+      value:
+        offset: absolute
+        value: "4"
+        topics:
+        - topic: my-topic
+          partitions:
+          - 0
+    NewTopicExample:
+      description: Sample new topic with 3 partitions
+      value:
+        name: my-topic
+        settings:
+          numPartitions: 3
+          config:
+          - key: min.insync.replicas
+            value: "1"
+          - key: max.message.bytes
+            value: "1050000"
+    ConsumerGroupExample:
+      description: Sample consumer group with 3 partitions and consumers
+      value:
+        groupId: consumer_group_1
+        consumers:
+        - memberId: consumer_group_member1
+          groupId: consumer_group_1
+          topic: topic-1
+          partition: 0
+          offset: 5
+          lag: 0
+          logEndOffset: 5
+        - memberId: consumer_group_member2
+          groupId: consumer_group_1
+          topic: topic-1
+          partition: 1
+          offset: 3
+          lag: 0
+          logEndOffset: 3
+        - memberId: consumer_group_member3
+          groupId: consumer_group_1
+          topic: topic-1
+          partition: 2
+          offset: 5
+          lag: 1
+          logEndOffset: 6
+        state: STABLE
   responses:
     BadRequest:
       content:
         application/json:
+          examples:
+            badrequest:
+              summary: Invalid query parameter
+              value:
+                code: 400
+                error_message: Invalid parameter value
           schema:
             $ref: '#/components/schemas/Error'
-      description: The client request was invalid
+      description: |-
+        The client request was invalid. One or more request parameters or the request
+        body was rejected. Additional information may be found in the response.
     NotAuthorized:
       content:
         application/json:
@@ -1300,6 +1266,12 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
       description: User is not authorized to access requested resource
+    NotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: The requested resource could not be found.
     Conflict:
       content:
         application/json:
@@ -1330,25 +1302,35 @@ components:
         operation: READ
         permission: ALLOW
       properties:
-        resourceType:
-          $ref: '#/components/schemas/AclResourceType'
-        resourceName:
-          type: string
+        operation:
+          allOf:
+          - $ref: '#/components/schemas/AclOperation'
+          - nullable: false
         patternType:
-          $ref: '#/components/schemas/AclPatternType'
+          allOf:
+          - $ref: '#/components/schemas/AclPatternType'
+          - nullable: false
+        permission:
+          allOf:
+          - $ref: '#/components/schemas/AclPermissionType'
+          - nullable: false
         principal:
           description: Identifies the user or service account to which an ACL entry
             is bound. The literal prefix value of `User:` is required. May be used
             to specify all users with value `User:*`.
           example: User:user-123-abc
           nullable: false
-          pattern: ^User:(\*|[a-zA-Z0-9_@.-]+)$
+          pattern: \S
           title: ACL Principal
           type: string
-        operation:
-          $ref: '#/components/schemas/AclOperation'
-        permission:
-          $ref: '#/components/schemas/AclPermissionType'
+        resourceName:
+          nullable: false
+          pattern: \S
+          type: string
+        resourceType:
+          allOf:
+          - $ref: '#/components/schemas/AclResourceType'
+          - nullable: false
       required:
       - operation
       - patternType
@@ -1358,108 +1340,485 @@ components:
       - resourceType
       title: ACL Binding
       type: object
-    AclBindingList:
+    AclBindingListPage:
+      description: A page of ACL binding entries
+      example:
+        total: 1
+        size: 6
+        page: 0
+        items:
+        - resourceType: TOPIC
+          resourceName: '*'
+          patternType: LITERAL
+          principal: User:user123
+          operation: READ
+          permission: ALLOW
+        - resourceType: TOPIC
+          resourceName: '*'
+          patternType: LITERAL
+          principal: User:user123
+          operation: READ
+          permission: ALLOW
       properties:
         items:
           items:
             $ref: '#/components/schemas/AclBinding'
+          nullable: false
           type: array
-      type: object
-    AclBindingListPage:
-      allOf:
-      - $ref: '#/components/schemas/AclBindingList'
-      - $ref: '#/components/schemas/ResultListPage'
-      description: A page of ACL binding entries
+        page:
+          description: Current page number (returned for fetch requests)
+          format: int32
+          type: integer
+        size:
+          description: Number of entries per page (returned for fetch requests)
+          format: int32
+          type: integer
+        total:
+          description: Total number of entries in the full result set
+          format: int32
+          nullable: false
+          type: integer
+      required:
+      - items
+      - total
       title: ACL Binding List Page
       type: object
-    AclResourceType:
+    AclBindingOrderKey:
       enum:
-      - GROUP
-      - TOPIC
-      - CLUSTER
-      - TRANSACTIONAL_ID
-      nullable: false
-      title: ACL Resource Type
+      - resourceType
+      - resourceName
+      - patternType
+      - principal
+      - operation
+      - permission
       type: string
-    AclResourceTypeFilter:
-      default: ANY
+    AclOperation:
       enum:
+      - ALL
+      - ALTER
+      - ALTER_CONFIGS
+      - CREATE
+      - DELETE
+      - DESCRIBE
+      - DESCRIBE_CONFIGS
+      - READ
+      - WRITE
+      title: ACL Operation
+      type: string
+    AclOperationFilter:
+      enum:
+      - ALL
+      - ALTER
+      - ALTER_CONFIGS
       - ANY
-      - GROUP
-      - TOPIC
-      - CLUSTER
-      - TRANSACTIONAL_ID
-      title: ACL Resource Type Filter
+      - CREATE
+      - DELETE
+      - DESCRIBE
+      - DESCRIBE_CONFIGS
+      - READ
+      - WRITE
+      title: ACL Operation Filter
       type: string
     AclPatternType:
       enum:
       - LITERAL
       - PREFIXED
-      nullable: false
       title: ACL Pattern Type
       type: string
     AclPatternTypeFilter:
-      default: ANY
       description: Use value 'MATCH' to perform pattern matching.
       enum:
+      - ANY
       - LITERAL
-      - PREFIXED
-      - ANY
       - MATCH
+      - PREFIXED
       title: ACL Pattern Type Filter
-      type: string
-    AclOperation:
-      enum:
-      - ALL
-      - READ
-      - WRITE
-      - CREATE
-      - DELETE
-      - ALTER
-      - DESCRIBE
-      - DESCRIBE_CONFIGS
-      - ALTER_CONFIGS
-      nullable: false
-      title: ACL Operation
-      type: string
-    AclOperationFilter:
-      default: ANY
-      enum:
-      - ALL
-      - READ
-      - WRITE
-      - CREATE
-      - DELETE
-      - ALTER
-      - DESCRIBE
-      - DESCRIBE_CONFIGS
-      - ALTER_CONFIGS
-      - ANY
-      title: ACL Operation Filter
       type: string
     AclPermissionType:
       enum:
       - ALLOW
       - DENY
-      nullable: false
       title: ACL Permission Type
       type: string
     AclPermissionTypeFilter:
-      default: ANY
       enum:
       - ALLOW
-      - DENY
       - ANY
+      - DENY
       title: ACL Permission Type Filter
       type: string
-    AclPrincipal:
-      description: Identifies the user or service account to which an ACL entry is
-        bound. The literal prefix value of `User:` is required. May be used to specify
-        all users with value `User:*`.
-      example: User:user-123-abc
-      nullable: false
-      pattern: ^User:(\*|[a-zA-Z0-9_@.-]+)$
-      title: ACL Principal
+    AclResourceType:
+      enum:
+      - CLUSTER
+      - GROUP
+      - TOPIC
+      - TRANSACTIONAL_ID
+      title: ACL Resource Type
+      type: string
+    AclResourceTypeFilter:
+      enum:
+      - ANY
+      - CLUSTER
+      - GROUP
+      - TOPIC
+      - TRANSACTIONAL_ID
+      title: ACL Resource Type Filter
+      type: string
+    ConfigEntry:
+      description: Key value pair indicating possible configuration options for a
+        topic.
+      example:
+        key: min.insync.replicas
+        value: "1"
+      properties:
+        key:
+          description: The key indicating what configuration entry you would like
+            to set for the topic.
+          nullable: false
+          pattern: \S
+          type: string
+        value:
+          description: Value to indicate the setting on the topic configuration entry.
+          nullable: false
+          pattern: \S
+          type: string
+      required:
+      - key
+      - value
+      type: object
+    Consumer:
+      description: A Kafka consumer is responsible for reading records from one or
+        more topics and one or more partitions of a topic.
+      example:
+        groupId: consumer_group_1
+        topic: topic-1
+        partition: 0
+        memberId: consumer_group_1-0
+        offset: 5
+        lag: 0
+        logEndOffset: 5
+      properties:
+        groupId:
+          description: Unique identifier for the consumer group to which this consumer
+            belongs.
+          nullable: false
+          type: string
+        lag:
+          description: Offset Lag is the delta between the last produced message and
+            the last consumer's committed offset.
+          format: int64
+          type: integer
+        logEndOffset:
+          description: The log end offset is the offset of the last message written
+            to a log.
+          format: int64
+          type: integer
+        memberId:
+          description: The member ID is a unique identifier given to a consumer by
+            the coordinator upon initially joining the group.
+          type: string
+        offset:
+          description: Offset denotes the position of the consumer in a partition.
+          format: int64
+          type: integer
+        partition:
+          description: The partition number to which this consumer group is assigned
+            to.
+          format: int32
+          nullable: false
+          type: integer
+        topic:
+          description: The unique topic name to which this consumer belongs
+          nullable: false
+          type: string
+      required:
+      - groupId
+      - lag
+      - offset
+      - partition
+      - topic
+      type: object
+    ConsumerGroup:
+      description: A group of Kafka consumers
+      example:
+        groupId: groupId
+        consumers:
+        - groupId: consumer_group_1
+          topic: topic-1
+          partition: 0
+          memberId: consumer_group_1-0
+          offset: 5
+          lag: 0
+          logEndOffset: 5
+        - groupId: consumer_group_1
+          topic: topic-1
+          partition: 0
+          memberId: consumer_group_1-0
+          offset: 5
+          lag: 0
+          logEndOffset: 5
+      properties:
+        consumers:
+          description: The list of consumers associated with this consumer group
+          items:
+            $ref: '#/components/schemas/Consumer'
+          nullable: false
+          type: array
+        groupId:
+          description: Unique identifier for the consumer group
+          nullable: false
+          pattern: \S
+          type: string
+        state:
+          $ref: '#/components/schemas/ConsumerGroupState'
+      required:
+      - consumers
+      - groupId
+      type: object
+    ConsumerGroupDescriptionOrderKey:
+      enum:
+      - offset
+      - endOffset
+      - lag
+      - partition
+      type: string
+    ConsumerGroupList:
+      description: A list of consumer groups
+      example:
+        count: 1
+        limit: 10
+        offset: 0
+        items:
+        - groupId: consumer_group_1
+          consumers:
+          - groupId: consumer_group_1
+            topic: topic-1
+            partition: 0
+            memberId: consumer_group_member1
+            offset: 5
+            lag: 0
+            logEndOffset: 5
+          - groupId: consumer_group_1
+            topic: topic-1
+            partition: 1
+            memberId: consumer_group_member2
+            offset: 3
+            lag: 0
+            logEndOffset: 3
+          - groupId: consumer_group_1
+            topic: topic-1
+            partition: 2
+            memberId: consumer_group_member3
+            offset: 6
+            lag: 1
+            logEndOffset: 5
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ConsumerGroup'
+          nullable: false
+          type: array
+        page:
+          description: Current page number (returned for fetch requests)
+          format: int32
+          type: integer
+        size:
+          description: Number of entries per page (returned for fetch requests)
+          format: int32
+          type: integer
+        total:
+          description: Total number of entries in the full result set
+          format: int32
+          nullable: false
+          type: integer
+      required:
+      - items
+      - total
+      type: object
+    ConsumerGroupOrderKey:
+      enum:
+      - name
+      type: string
+    ConsumerGroupResetOffsetParameters:
+      example:
+        offset: ""
+        topics:
+        - partitions:
+          - 0
+          - 0
+          topic: topic
+        - partitions:
+          - 0
+          - 0
+          topic: topic
+        value: value
+      properties:
+        offset:
+          allOf:
+          - $ref: '#/components/schemas/ResetOffsetType'
+          - nullable: false
+        topics:
+          items:
+            $ref: '#/components/schemas/TopicsToResetOffset'
+          type: array
+        value:
+          description: Value associated with the given `offset`. Not used for `offset`
+            values `earliest` and `latest`. When `offset` is `timestamp` then `value`
+            must be a valid timestamp representing the point in time to reset the
+            consumer group. When `offset` is `absolute` then `value` must be the integer
+            offset to which the consumer group will be reset.
+          type: string
+      required:
+      - offset
+      title: Root Type for ConsumerGroupResetOffsetParameters
+      type: object
+    ConsumerGroupResetOffsetResult:
+      example:
+        total: 2
+        page: 1
+        size: 10
+        items:
+        - topic: your-topic
+          partition: 0
+          offset: 4
+        - topic: my-topic
+          partition: 0
+          offset: 0
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
+          nullable: false
+          type: array
+        page:
+          description: Current page number (returned for fetch requests)
+          format: int32
+          type: integer
+        size:
+          description: Number of entries per page (returned for fetch requests)
+          format: int32
+          type: integer
+        total:
+          description: Total number of entries in the full result set
+          format: int32
+          nullable: false
+          type: integer
+      required:
+      - items
+      - total
+      title: Root Type for ConsumerGroupResetOffsetResult
+      type: object
+    ConsumerGroupResetOffsetResultItem:
+      example:
+        topic: your-topic
+        partition: 0
+        offset: 4
+      properties:
+        offset:
+          format: int64
+          type: integer
+        partition:
+          format: int32
+          type: integer
+        topic:
+          type: string
+      type: object
+    ConsumerGroupState:
+      enum:
+      - COMPLETING_REBALANCE
+      - DEAD
+      - EMPTY
+      - PREPARING_REBALANCE
+      - STABLE
+      - UNKNOWN
+      type: string
+    Error:
+      description: General error response
+      properties:
+        code:
+          format: int32
+          type: integer
+        error_message:
+          type: string
+      type: object
+    NewTopicInput:
+      description: Input object to create a new topic.
+      example:
+        name: my-topic
+        settings:
+          numPartitions: 3
+          config:
+          - key: min.insync.replicas
+            value: "1"
+          - key: max.message.bytes
+            value: "1050000"
+      properties:
+        name:
+          description: The topic name, this value must be unique.
+          nullable: false
+          pattern: \S
+          type: string
+        settings:
+          allOf:
+          - $ref: '#/components/schemas/TopicSettings'
+          - nullable: false
+      required:
+      - name
+      - settings
+      type: object
+    Node:
+      description: Identifier for a Kafka server / broker.
+      properties:
+        id:
+          format: int32
+          type: integer
+      type: object
+    Partition:
+      description: Kafka topic partition
+      example:
+        id: 0
+        replicas:
+        - id: 0
+        - id: 1
+        isr:
+        - id: 0
+        - id: 1
+        leader:
+          id: 1
+      properties:
+        isr:
+          description: List in-sync replicas for this partition.
+          items:
+            $ref: '#/components/schemas/Node'
+          type: array
+        leader:
+          allOf:
+          - $ref: '#/components/schemas/Node'
+          - description: Node that is the leader for this partition.
+        partition:
+          description: The partition id, unique among partitions of the same topic
+          format: int32
+          nullable: false
+          type: integer
+        replicas:
+          description: List of replicas for the partition
+          items:
+            $ref: '#/components/schemas/Node'
+          type: array
+      required:
+      - partition
+      type: object
+    ResetOffsetType:
+      enum:
+      - timestamp
+      - absolute
+      - latest
+      - earliest
+      type: string
+    SortDirection:
+      enum:
+      - asc
+      - desc
       type: string
     Topic:
       description: Kafka Topic (A feed where records are stored and published)
@@ -1490,14 +1849,16 @@ components:
           leader:
             id: 1
       properties:
-        name:
-          description: The name of the topic.
-          type: string
         config:
           description: Topic configuration entry.
           items:
             $ref: '#/components/schemas/ConfigEntry'
           type: array
+        isInternal:
+          type: boolean
+        name:
+          description: The name of the topic.
+          type: string
         partitions:
           description: Partitions for this topic.
           items:
@@ -1505,52 +1866,41 @@ components:
           type: array
       title: Root Type for NewTopicInput
       type: object
-    Partition:
-      description: Kafka topic partition
+    TopicOrderKey:
+      enum:
+      - name
+      - partitions
+      - retention.ms
+      - retention.bytes
+      type: string
+    TopicSettings:
+      description: The settings that are applicable to this topic. This includes partitions,
+        configuration information, and number of replicas.
       example:
-        id: 0
-        replicas:
-        - id: 0
-        - id: 1
-        isr:
-        - id: 0
-        - id: 1
-        leader:
-          id: 1
+        numPartitions: 2
+        config:
+        - key: min.insync.replicas
+          value: "1"
+        - key: max.message.bytes
+          value: "1050000"
       properties:
-        partition:
-          description: The partition id, unique among partitions of the same topic
+        config:
+          description: Topic configuration entries.
+          items:
+            $ref: '#/components/schemas/ConfigEntry'
+          nullable: false
+          type: array
+        numPartitions:
+          description: Number of partitions for this topic. If not specified, the
+            default for new topics is `1`. Number of partitions may not be reduced
+            when updating existing topics
+          format: int32
+          maximum: 100
+          minimum: 1
           type: integer
-        replicas:
-          description: List of replicas for the partition
-          items:
-            $ref: '#/components/schemas/Node'
-          type: array
-        isr:
-          description: List in-sync replicas for this partition.
-          items:
-            $ref: '#/components/schemas/Node'
-          type: array
-        leader:
-          description: Kafka server / broker.
-          type: object
       required:
-      - partition
-      type: object
-    ConfigEntry:
-      description: Key value pair indicating possible configuration options for a
-        topic.
-      example:
-        key: min.insync.replicas
-        value: "1"
-      properties:
-        key:
-          description: The key indicating what configuration entry you would like
-            to set for the topic.
-          type: string
-        value:
-          description: Value to indicate the setting on the topic configuration entry.
-          type: string
+      - config
+      title: Topic Settings
       type: object
     TopicsList:
       description: A list of topics.
@@ -1585,340 +1935,49 @@ components:
         limit: 90
         count: 94
       properties:
-        page:
-          description: The page
-          type: integer
-        size:
-          description: number of entries per page
-          type: integer
-        total:
-          description: Total number of topics
-          type: integer
         items:
-          description: List of topics
           items:
             $ref: '#/components/schemas/Topic'
+          nullable: false
           type: array
-      type: object
-    TopicSettings:
-      description: Kafka Topic (A feed where records are stored and published)
-      example:
-        numPartitions: 2
-        config:
-        - key: min.insync.replicas
-          value: "1"
-        - key: max.message.bytes
-          value: "1050000"
-      properties:
-        numPartitions:
-          description: Number of partitions for this topic.
-          type: integer
-        config:
-          description: Topic configuration entry.
-          items:
-            $ref: '#/components/schemas/ConfigEntry'
-          type: array
-      required:
-      - numPartitions
-      title: Root Type for NewTopicInput
-      type: object
-    Node:
-      description: Kafka server / broker.
-      type: object
-    NewTopicInput:
-      description: Input object to create a new topic.
-      example:
-        name: my-topic
-        settings:
-          numPartitions: 3
-          config:
-          - key: min.insync.replicas
-            value: "1"
-          - key: max.message.bytes
-            value: "1050000"
-      properties:
-        name:
-          description: The topic name, this value must be unique.
-          type: string
-        settings:
-          $ref: '#/components/schemas/TopicSettings'
-      required:
-      - name
-      - settings
-      type: object
-    ConsumerGroup:
-      description: A group of Kafka consumers
-      example:
-        id: consumer_group_1
-        consumers:
-        - groupId: consumer_group_1
-          topic: topic-1
-          partition: 0
-          memberId: consumer_group_member1
-          offset: 5
-          lag: 0
-          logEndOffset: 5
-        - groupId: consumer_group_1
-          topic: topic-1
-          partition: 1
-          memberId: consumer_group_member2
-          offset: 3
-          lag: 0
-          logEndOffset: 3
-        - groupId: consumer_group_1
-          topic: topic-1
-          partition: 2
-          memberId: consumer_group_member3
-          offset: 6
-          lag: 1
-          logEndOffset: 5
-      properties:
-        groupId:
-          description: Unique identifier for the consumer group
-          type: string
-        state:
-          enum:
-          - STABLE
-          - DEAD
-          - EMPTY
-          - COMPLETING_REBALANCE
-          - PREPARING_REBALANCE
-          - UNKNOWN
-          type: string
-        consumers:
-          description: The list of consumers associated with this consumer group
-          items:
-            $ref: '#/components/schemas/Consumer'
-          type: array
-      required:
-      - consumers
-      - groupId
-      type: object
-    Consumer:
-      description: A Kafka consumer is responsible for reading records from one or
-        more topics and one or more partitions of a topic.
-      example:
-        groupId: consumer_group_1
-        topic: topic-1
-        partition: 0
-        memberId: consumer_group_1-0
-        offset: 5
-        lag: 0
-        logEndOffset: 5
-      properties:
-        groupId:
-          description: Unique identifier for the consumer group to which this consumer
-            belongs.
-          type: string
-        topic:
-          description: The unique topic name to which this consumer belongs
-          type: string
-        partition:
-          description: The partition number to which this consumer group is assigned
-            to.
-          type: integer
-        offset:
-          description: Offset denotes the position of the consumer in a partition.
-          type: number
-        logEndOffset:
-          description: The log end offset is the offset of the last message written
-            to a log.
-          type: number
-        lag:
-          description: Offset Lag is the delta between the last produced message and
-            the last consumer's committed offset.
-          type: integer
-        memberId:
-          description: The member ID is a unique identifier given to a consumer by
-            the coordinator upon initially joining the group.
-          type: string
-      required:
-      - groupId
-      - lag
-      - offset
-      - partition
-      - topic
-      type: object
-    ConsumerGroupList:
-      description: A list of consumer groups
-      example:
-        count: 1
-        limit: 10
-        offset: 0
-        items:
-        - groupId: consumer_group_1
-          consumers:
-          - groupId: consumer_group_1
-            topic: topic-1
-            partition: 0
-            memberId: consumer_group_member1
-            offset: 5
-            lag: 0
-            logEndOffset: 5
-          - groupId: consumer_group_1
-            topic: topic-1
-            partition: 1
-            memberId: consumer_group_member2
-            offset: 3
-            lag: 0
-            logEndOffset: 3
-          - groupId: consumer_group_1
-            topic: topic-1
-            partition: 2
-            memberId: consumer_group_member3
-            offset: 6
-            lag: 1
-            logEndOffset: 5
-      properties:
-        items:
-          description: Consumer group list items
-          items:
-            $ref: '#/components/schemas/ConsumerGroup'
-          type: array
-        total:
-          description: The total number of consumer groups.
-          type: number
-        size:
-          description: The number of consumer groups per page.
-          type: number
         page:
-          description: The page
+          description: Current page number (returned for fetch requests)
+          format: int32
           type: integer
-      type: object
-    UpdateTopicInput:
-      description: Kafka Topic (A feed where records are stored and published)
-      example:
-        config:
-        - key: min.insync.replicas
-          value: "1"
-        - key: max.message.bytes
-          value: "1050000"
-      properties:
-        config:
-          description: Topic configuration entries.
-          items:
-            $ref: '#/components/schemas/ConfigEntry'
-          type: array
-        numPartitions:
-          description: Number of partitions (only increasing supported)
+        size:
+          description: Number of entries per page (returned for fetch requests)
+          format: int32
           type: integer
-      title: Root Type for UpdateTopicInput
-      type: object
-    ConsumerGroupResetOffsetParameters:
-      example:
-        topics:
-        - topic: my-topic
-          partitions:
-          - 0
-        offset: absolute
-        value: "4"
-      properties:
-        value:
-          type: string
-        offset:
-          enum:
-          - timestamp
-          - absolute
-          - latest
-          - earliest
-          type: string
-        topics:
-          items:
-            $ref: '#/components/schemas/TopicsToResetOffset'
-          type: array
+        total:
+          description: Total number of entries in the full result set
+          format: int32
+          nullable: false
+          type: integer
       required:
-      - offset
-      title: Root Type for ConsumerGroupResetOffsetParameters
+      - items
+      - total
       type: object
     TopicsToResetOffset:
       example:
-        topic: foo
         partitions:
         - 0
-        - 1
-        - 2
+        - 0
+        topic: topic
       properties:
-        topic:
-          type: string
         partitions:
           items:
             format: int32
             type: integer
           type: array
+        topic:
+          nullable: false
+          type: string
       required:
       - topic
       title: Root Type for TopicsToResetOffset
       type: object
-    ConsumerGroupResetOffsetResult:
-      allOf:
-      - $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItemList'
-      - $ref: '#/components/schemas/ResultListPage'
-      example:
-        total: 2
-        page: 1
-        size: 10
-        items:
-        - topic: your-topic
-          partition: 0
-          offset: 4
-        - topic: my-topic
-          partition: 0
-          offset: 0
-      title: Root Type for ConsumerGroupResetOffsetResult
-      type: object
-    ConsumerGroupResetOffsetResultItemList:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
-          type: array
-      type: object
-    ConsumerGroupResetOffsetResultItem:
-      example:
-        topic: your-topic
-        partition: 0
-        offset: 4
-      properties:
-        topic:
-          type: string
-        partition:
-          format: int32
-          type: integer
-        offset:
-          format: int32
-          type: integer
-      type: object
-    ResultListPage:
-      properties:
-        total:
-          description: Total number of entries in the full result set
-          type: number
-        page:
-          description: Current page number (returned for fetch requests)
-          type: integer
-        size:
-          description: Number of entries per page (returned for fetch requests)
-          type: number
-      required:
-      - total
-      type: object
-    Error:
-      description: General error response
-      properties:
-        code:
-          format: int32
-          type: integer
-        error_message:
-          type: string
-        class:
-          type: string
-      type: object
   securitySchemes:
-    Bearer:
-      description: Access token used with OAuth 2.0
-      flows:
-        clientCredentials:
-          scopes: {}
-          tokenUrl: /token
-      type: oauth2
+    BasicAuth:
+      scheme: basic
+      type: http
 

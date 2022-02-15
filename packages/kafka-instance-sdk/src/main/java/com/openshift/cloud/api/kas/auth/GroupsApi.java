@@ -8,10 +8,13 @@ import com.openshift.cloud.api.kas.auth.invoker.Pair;
 import jakarta.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.kas.auth.models.ConsumerGroup;
+import com.openshift.cloud.api.kas.auth.models.ConsumerGroupDescriptionOrderKey;
 import com.openshift.cloud.api.kas.auth.models.ConsumerGroupList;
+import com.openshift.cloud.api.kas.auth.models.ConsumerGroupOrderKey;
 import com.openshift.cloud.api.kas.auth.models.ConsumerGroupResetOffsetParameters;
 import com.openshift.cloud.api.kas.auth.models.ConsumerGroupResetOffsetResult;
 import com.openshift.cloud.api.kas.auth.models.Error;
+import com.openshift.cloud.api.kas.auth.models.SortDirection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +44,7 @@ public class GroupsApi {
   /**
    * Delete a consumer group.
    * Delete a consumer group, along with its consumers.
-   * @param consumerGroupId The unique ID of the cobsumer group. (required)
+   * @param consumerGroupId Consumer group identifier (required)
    * @throws ApiException if fails to make API call
    */
   public void deleteConsumerGroupById(String consumerGroupId) throws ApiException {
@@ -53,7 +56,7 @@ public class GroupsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/rest/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "consumerGroupId" + "\\}", apiClient.escapeString(consumerGroupId.toString()));
 
     // query params
@@ -76,7 +79,7 @@ public class GroupsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
 
     apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
@@ -84,15 +87,15 @@ public class GroupsApi {
   /**
    * Get a single consumer group by its unique ID.
    * 
-   * @param consumerGroupId The unique ID of the consumer group (required)
-   * @param order Order of the items sorting. Ascending order is used as default. (optional)
-   * @param orderKey Order key to sort the topics by. (optional)
+   * @param consumerGroupId Consumer group identifier (required)
+   * @param order Order items are sorted (optional)
+   * @param orderKey  (optional)
    * @param partitionFilter Value of partition to include. Value -1 means filter is not active. (optional)
-   * @param topic Filter consumer groups for a specific topic (optional)
+   * @param topic  (optional)
    * @return a {@code ConsumerGroup}
    * @throws ApiException if fails to make API call
    */
-  public ConsumerGroup getConsumerGroupById(String consumerGroupId, String order, String orderKey, Integer partitionFilter, String topic) throws ApiException {
+  public ConsumerGroup getConsumerGroupById(String consumerGroupId, SortDirection order, ConsumerGroupDescriptionOrderKey orderKey, Integer partitionFilter, Object topic) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'consumerGroupId' is set
@@ -101,7 +104,7 @@ public class GroupsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/rest/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "consumerGroupId" + "\\}", apiClient.escapeString(consumerGroupId.toString()));
 
     // query params
@@ -128,7 +131,7 @@ public class GroupsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<ConsumerGroup> localVarReturnType = new GenericType<ConsumerGroup>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -136,20 +139,20 @@ public class GroupsApi {
   /**
    * List of consumer groups in the Kafka instance.
    * Returns a list of all consumer groups for a particular Kafka instance. The consumer groups returned are limited to those records the requestor is authorized to view.
-   * @param limit Maximum number of consumer groups to return (optional)
-   * @param page The page when returning the list of consumer groups (optional)
+   * @param size Number of records per page (optional)
+   * @param page Page number (optional)
    * @param topic Return consumer groups where the topic name contains with this value (optional)
    * @param groupIdFilter Return the consumer groups where the ID contains with this value (optional)
-   * @param order Order of the consumer groups sorting. Ascending order is used as default. (optional)
-   * @param orderKey Order key to sort the items by. Only the value &#39;name&#39; is currently applicable. (optional)
+   * @param order Order items are sorted (optional)
+   * @param orderKey  (optional)
    * @return a {@code ConsumerGroupList}
    * @throws ApiException if fails to make API call
    */
-  public ConsumerGroupList getConsumerGroups(Integer limit, Integer page, String topic, String groupIdFilter, String order, String orderKey) throws ApiException {
+  public ConsumerGroupList getConsumerGroups(Integer size, Integer page, String topic, String groupIdFilter, SortDirection order, ConsumerGroupOrderKey orderKey) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/consumer-groups".replaceAll("\\{format\\}","json");
+    String localVarPath = "/rest/consumer-groups".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -157,7 +160,7 @@ public class GroupsApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "topic", topic));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "group-id-filter", groupIdFilter));
@@ -177,7 +180,7 @@ public class GroupsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<ConsumerGroupList> localVarReturnType = new GenericType<ConsumerGroupList>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -185,7 +188,7 @@ public class GroupsApi {
   /**
    * Reset the offset for a consumer group.
    * Reset the offset for a particular consumer group.
-   * @param consumerGroupId The ID of the consumer group. (required)
+   * @param consumerGroupId Consumer group identifier (required)
    * @param consumerGroupResetOffsetParameters  (required)
    * @return a {@code ConsumerGroupResetOffsetResult}
    * @throws ApiException if fails to make API call
@@ -204,7 +207,7 @@ public class GroupsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/consumer-groups/{consumerGroupId}/reset-offset".replaceAll("\\{format\\}","json")
+    String localVarPath = "/rest/consumer-groups/{consumerGroupId}/reset-offset".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "consumerGroupId" + "\\}", apiClient.escapeString(consumerGroupId.toString()));
 
     // query params
@@ -227,7 +230,7 @@ public class GroupsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "BasicAuth" };
 
     GenericType<ConsumerGroupResetOffsetResult> localVarReturnType = new GenericType<ConsumerGroupResetOffsetResult>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);

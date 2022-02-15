@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**topic** | **String** |  |  [optional]
+**offset** | **Long** |  |  [optional]
 **partition** | **Integer** |  |  [optional]
-**offset** | **Integer** |  |  [optional]
+**topic** | **String** |  |  [optional]
 
 
 

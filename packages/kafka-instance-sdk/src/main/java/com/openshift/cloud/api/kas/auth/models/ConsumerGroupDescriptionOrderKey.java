@@ -22,17 +22,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Gets or Sets AclPermissionType
+ * Gets or Sets ConsumerGroupDescriptionOrderKey
  */
-public enum AclPermissionType {
+public enum ConsumerGroupDescriptionOrderKey {
   
-  ALLOW("ALLOW"),
+  OFFSET("offset"),
   
-  DENY("DENY");
+  ENDOFFSET("endOffset"),
+  
+  LAG("lag"),
+  
+  PARTITION("partition");
 
   private String value;
 
-  AclPermissionType(String value) {
+  ConsumerGroupDescriptionOrderKey(String value) {
     this.value = value;
   }
 
@@ -47,8 +51,8 @@ public enum AclPermissionType {
   }
 
   @JsonCreator
-  public static AclPermissionType fromValue(String value) {
-    for (AclPermissionType b : AclPermissionType.values()) {
+  public static ConsumerGroupDescriptionOrderKey fromValue(String value) {
+    for (ConsumerGroupDescriptionOrderKey b : ConsumerGroupDescriptionOrderKey.values()) {
       if (b.value.equals(value)) {
         return b;
       }

@@ -1,13 +1,13 @@
 # AclsApi
 
-All URIs are relative to */rest*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAcl**](AclsApi.md#createAcl) | **POST** /acls | Create ACL binding
-[**deleteAcls**](AclsApi.md#deleteAcls) | **DELETE** /acls | Delete ACL bindings
-[**getAclResourceOperations**](AclsApi.md#getAclResourceOperations) | **GET** /acls/resource-operations | Retrieve allowed ACL resources and operations
-[**getAcls**](AclsApi.md#getAcls) | **GET** /acls | List ACL bindings
+[**createAcl**](AclsApi.md#createAcl) | **POST** /rest/acls | Create ACL binding
+[**deleteAcls**](AclsApi.md#deleteAcls) | **DELETE** /rest/acls | Delete ACL bindings
+[**getAclResourceOperations**](AclsApi.md#getAclResourceOperations) | **GET** /rest/acls/resource-operations | Retrieve allowed ACL resources and operations
+[**getAcls**](AclsApi.md#getAcls) | **GET** /rest/acls | List ACL bindings
 
 
 
@@ -33,11 +33,12 @@ import com.openshift.cloud.api.kas.auth.AclsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
-        // Configure OAuth2 access token for authorization: Bearer
-        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+        // Configure HTTP basic authorization: BasicAuth
+        HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+        BasicAuth.setUsername("YOUR USERNAME");
+        BasicAuth.setPassword("YOUR PASSWORD");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
         AclBinding aclBinding = new AclBinding(); // AclBinding | ACL to create.
@@ -67,7 +68,7 @@ null (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -79,7 +80,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | ACL created successfully. |  -  |
-| **400** | The client request was invalid |  -  |
+| **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
 | **403** | User is not authorized to access requested resource |  -  |
 | **500** | Internal server error |  -  |
@@ -88,7 +89,7 @@ null (empty response body)
 
 ## deleteAcls
 
-> AclBindingListPage deleteAcls(resourceType, resourceName, patternType, principal, operation, permission)
+> AclBindingListPage deleteAcls(operation, patternType, permission, principal, resourceName, resourceType)
 
 Delete ACL bindings
 
@@ -108,21 +109,22 @@ import com.openshift.cloud.api.kas.auth.AclsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
-        // Configure OAuth2 access token for authorization: Bearer
-        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+        // Configure HTTP basic authorization: BasicAuth
+        HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+        BasicAuth.setUsername("YOUR USERNAME");
+        BasicAuth.setPassword("YOUR PASSWORD");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
-        AclResourceTypeFilter resourceType = AclResourceTypeFilter.fromValue("ANY"); // AclResourceTypeFilter | ACL Resource Type Filter
+        AclOperationFilter operation = new AclOperationFilter(); // AclOperationFilter | ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not `ANY`.
+        AclPatternTypeFilter patternType = new AclPatternTypeFilter(); // AclPatternTypeFilter | ACL Pattern Type Filter
+        AclPermissionTypeFilter permission = new AclPermissionTypeFilter(); // AclPermissionTypeFilter | ACL Permission Type Filter
+        String principal = ""; // String | ACL Principal Filter. Either a specific user or the wildcard user `User:*` may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
         String resourceName = "resourceName_example"; // String | ACL Resource Name Filter
-        AclPatternTypeFilter patternType = AclPatternTypeFilter.fromValue("LITERAL"); // AclPatternTypeFilter | ACL Pattern Type Filter
-        String principal = "User:*"; // String | ACL Principal Filter. Either a specific user or the wildcard user `User:*` may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
-        AclOperationFilter operation = AclOperationFilter.fromValue("ALL"); // AclOperationFilter | ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not `ANY`.
-        AclPermissionTypeFilter permission = AclPermissionTypeFilter.fromValue("ALLOW"); // AclPermissionTypeFilter | ACL Permission Type Filter
+        AclResourceTypeFilter resourceType = new AclResourceTypeFilter(); // AclResourceTypeFilter | ACL Resource Type Filter
         try {
-            AclBindingListPage result = apiInstance.deleteAcls(resourceType, resourceName, patternType, principal, operation, permission);
+            AclBindingListPage result = apiInstance.deleteAcls(operation, patternType, permission, principal, resourceName, resourceType);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AclsApi#deleteAcls");
@@ -140,12 +142,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional] [default to ANY] [enum: ANY, GROUP, TOPIC, CLUSTER, TRANSACTIONAL_ID]
+ **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional]
+ **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional]
+ **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional]
+ **principal** | **String**| ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. | [optional] [default to ]
  **resourceName** | **String**| ACL Resource Name Filter | [optional]
- **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional] [default to ANY] [enum: LITERAL, PREFIXED, ANY, MATCH]
- **principal** | **String**| ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. | [optional]
- **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional] [default to ANY] [enum: ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, DESCRIBE_CONFIGS, ALTER_CONFIGS, ANY]
- **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional] [default to ANY] [enum: ALLOW, DENY, ANY]
+ **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional]
 
 ### Return type
 
@@ -153,7 +155,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -164,12 +166,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | List of all ACL bindings matching the query parameters that were deleted. |  -  |
-| **400** | The client request was invalid |  -  |
+| **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
 | **403** | User is not authorized to access requested resource |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
+| **200** | List of all ACL bindings matching the query parameters that were deleted. |  -  |
 
 
 ## getAclResourceOperations
@@ -194,11 +196,12 @@ import com.openshift.cloud.api.kas.auth.AclsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
-        // Configure OAuth2 access token for authorization: Bearer
-        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+        // Configure HTTP basic authorization: BasicAuth
+        HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+        BasicAuth.setUsername("YOUR USERNAME");
+        BasicAuth.setPassword("YOUR PASSWORD");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
         try {
@@ -225,7 +228,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -238,17 +241,16 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Map of allowed resources and operations for ACL creation |  -  |
 | **401** | Request authentication missing or invalid |  -  |
-| **403** | User is not authorized to access requested resource |  -  |
 | **500** | Internal server error |  -  |
 
 
 ## getAcls
 
-> AclBindingListPage getAcls(resourceType, resourceName, patternType, principal, operation, permission, page, size, order, orderKey)
+> AclBindingListPage getAcls(resourceType, resourceName, patternType, principal, operation, permissionType, page, size, order, orderKey, permission)
 
 List ACL bindings
 
-Returns a list of all of the available ACL bindings, or the list of bindings that meet the users URL Query Parameters. If no parameters are specified, all ACL bindings known to the system will be returned (with paging).
+Returns a list of all of the available ACL bindings, or the list of bindings that meet the users URL query parameters. If no parameters are specified, all ACL bindings known to the system will be returned (with paging).
 
 ### Example
 
@@ -264,25 +266,27 @@ import com.openshift.cloud.api.kas.auth.AclsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
-        // Configure OAuth2 access token for authorization: Bearer
-        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+        // Configure HTTP basic authorization: BasicAuth
+        HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+        BasicAuth.setUsername("YOUR USERNAME");
+        BasicAuth.setPassword("YOUR PASSWORD");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
-        AclResourceTypeFilter resourceType = AclResourceTypeFilter.fromValue("ANY"); // AclResourceTypeFilter | ACL Resource Type Filter
+        AclResourceTypeFilter resourceType = new AclResourceTypeFilter(); // AclResourceTypeFilter | ACL Resource Type Filter
         String resourceName = "resourceName_example"; // String | ACL Resource Name Filter
-        AclPatternTypeFilter patternType = AclPatternTypeFilter.fromValue("LITERAL"); // AclPatternTypeFilter | ACL Pattern Type Filter
-        String principal = "User:*"; // String | ACL Principal Filter. Either a specific user or the wildcard user `User:*` may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
-        AclOperationFilter operation = AclOperationFilter.fromValue("ALL"); // AclOperationFilter | ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not `ANY`.
-        AclPermissionTypeFilter permission = AclPermissionTypeFilter.fromValue("ALLOW"); // AclPermissionTypeFilter | ACL Permission Type Filter
-        BigDecimal page = new BigDecimal("1"); // BigDecimal | Page number for result lists
-        BigDecimal size = new BigDecimal("10"); // BigDecimal | Page size for result lists
-        String order = "asc"; // String | Order of the ACL binding sorting.
-        String orderKey = "resourceType"; // String | Order key to sort the items by.
+        AclPatternTypeFilter patternType = new AclPatternTypeFilter(); // AclPatternTypeFilter | ACL Pattern Type Filter
+        String principal = ""; // String | ACL Principal Filter. Either a specific user or the wildcard user `User:*` may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
+        AclOperationFilter operation = new AclOperationFilter(); // AclOperationFilter | ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not `ANY`.
+        Object permissionType = null; // Object | 
+        Integer page = 56; // Integer | Page number
+        Integer size = 56; // Integer | Number of records per page
+        SortDirection order = SortDirection.fromValue("asc"); // SortDirection | Order items are sorted
+        AclBindingOrderKey orderKey = new AclBindingOrderKey(); // AclBindingOrderKey | 
+        AclPermissionTypeFilter permission = new AclPermissionTypeFilter(); // AclPermissionTypeFilter | ACL Permission Type Filter
         try {
-            AclBindingListPage result = apiInstance.getAcls(resourceType, resourceName, patternType, principal, operation, permission, page, size, order, orderKey);
+            AclBindingListPage result = apiInstance.getAcls(resourceType, resourceName, patternType, principal, operation, permissionType, page, size, order, orderKey, permission);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AclsApi#getAcls");
@@ -300,16 +304,17 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional] [default to ANY] [enum: ANY, GROUP, TOPIC, CLUSTER, TRANSACTIONAL_ID]
+ **resourceType** | [**AclResourceTypeFilter**](.md)| ACL Resource Type Filter | [optional]
  **resourceName** | **String**| ACL Resource Name Filter | [optional]
- **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional] [default to ANY] [enum: LITERAL, PREFIXED, ANY, MATCH]
- **principal** | **String**| ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. | [optional]
- **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional] [default to ANY] [enum: ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, DESCRIBE_CONFIGS, ALTER_CONFIGS, ANY]
- **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional] [default to ANY] [enum: ALLOW, DENY, ANY]
- **page** | **BigDecimal**| Page number for result lists | [optional] [default to 1]
- **size** | **BigDecimal**| Page size for result lists | [optional] [default to 10]
- **order** | **String**| Order of the ACL binding sorting. | [optional] [default to desc] [enum: asc, desc]
- **orderKey** | **String**| Order key to sort the items by. | [optional] [default to permission] [enum: resourceType, resourceName, patternType, principal, operation, permission]
+ **patternType** | [**AclPatternTypeFilter**](.md)| ACL Pattern Type Filter | [optional]
+ **principal** | **String**| ACL Principal Filter. Either a specific user or the wildcard user &#x60;User:*&#x60; may be provided. - When fetching by a specific user, the results will also include ACL bindings that apply to all users. - When deleting, ACL bindings to be delete must match the provided &#x60;principal&#x60; exactly. | [optional] [default to ]
+ **operation** | [**AclOperationFilter**](.md)| ACL Operation Filter. The ACL binding operation provided should be valid for the resource type in the request, if not &#x60;ANY&#x60;. | [optional]
+ **permissionType** | [**Object**](.md)|  | [optional]
+ **page** | **Integer**| Page number | [optional]
+ **size** | **Integer**| Number of records per page | [optional]
+ **order** | [**SortDirection**](.md)| Order items are sorted | [optional] [enum: asc, desc]
+ **orderKey** | [**AclBindingOrderKey**](.md)|  | [optional]
+ **permission** | [**AclPermissionTypeFilter**](.md)| ACL Permission Type Filter | [optional]
 
 ### Return type
 
@@ -317,7 +322,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -328,10 +333,10 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | List of ACL bindings matching the query parameters. |  -  |
-| **400** | The client request was invalid |  -  |
+| **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
 | **403** | User is not authorized to access requested resource |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
+| **200** | List of ACL bindings matching the query parameters. |  -  |
 

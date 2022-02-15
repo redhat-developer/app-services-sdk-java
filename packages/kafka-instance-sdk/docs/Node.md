@@ -1,14 +1,14 @@
 
 
-# TopicsToResetOffset
+# Node
 
+Identifier for a Kafka server / broker.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**partitions** | **List&lt;Integer&gt;** |  |  [optional]
-**topic** | **String** |  | 
+**id** | **Integer** |  |  [optional]
 
 
 

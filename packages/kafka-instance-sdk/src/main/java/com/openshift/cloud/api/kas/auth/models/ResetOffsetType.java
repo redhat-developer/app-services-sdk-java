@@ -22,17 +22,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Gets or Sets AclPermissionType
+ * Gets or Sets ResetOffsetType
  */
-public enum AclPermissionType {
+public enum ResetOffsetType {
   
-  ALLOW("ALLOW"),
+  TIMESTAMP("timestamp"),
   
-  DENY("DENY");
+  ABSOLUTE("absolute"),
+  
+  LATEST("latest"),
+  
+  EARLIEST("earliest");
 
   private String value;
 
-  AclPermissionType(String value) {
+  ResetOffsetType(String value) {
     this.value = value;
   }
 
@@ -47,8 +51,8 @@ public enum AclPermissionType {
   }
 
   @JsonCreator
-  public static AclPermissionType fromValue(String value) {
-    for (AclPermissionType b : AclPermissionType.values()) {
+  public static ResetOffsetType fromValue(String value) {
+    for (ResetOffsetType b : ResetOffsetType.values()) {
       if (b.value.equals(value)) {
         return b;
       }

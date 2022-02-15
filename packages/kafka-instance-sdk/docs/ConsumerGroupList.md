@@ -8,10 +8,10 @@ A list of consumer groups
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;ConsumerGroup&gt;**](ConsumerGroup.md) | Consumer group list items |  [optional]
-**total** | **BigDecimal** | The total number of consumer groups. |  [optional]
-**size** | **BigDecimal** | The number of consumer groups per page. |  [optional]
-**page** | **Integer** | The page |  [optional]
+**items** | [**List&lt;ConsumerGroup&gt;**](ConsumerGroup.md) |  | 
+**page** | **Integer** | Current page number (returned for fetch requests) |  [optional]
+**size** | **Integer** | Number of entries per page (returned for fetch requests) |  [optional]
+**total** | **Integer** | Total number of entries in the full result set | 
 
 
 
