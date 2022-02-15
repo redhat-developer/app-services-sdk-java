@@ -487,6 +487,13 @@ paths:
         - $ref: '#/components/parameters/instance_type'
   /api/kafkas_mgmt/v1/service_accounts:
     get:
+      parameters:
+        - in: query
+          name: client_id
+          required: false
+          schema:
+            type: string
+          description: client_id of the service account to be retrieved
       responses:
         '200':
           content:
@@ -906,7 +913,7 @@ components:
             instance_type:
               type: string
             reauthentication_enabled:
-              type: boolean  
+              type: boolean
             kafka_storage_size:
               type: string
           example:
@@ -981,9 +988,9 @@ components:
           description: The region where the Kafka cluster will be created in
           type: string
         reauthentication_enabled:
-          description: Whether connection reauthentication is enabled or not. If set to true, connection reauthentication on the Kafka instance will be required every 5 minutes. The default value is true 
+          description: Whether connection reauthentication is enabled or not. If set to true, connection reauthentication on the Kafka instance will be required every 5 minutes. The default value is true
           type: boolean
-          nullable: true  
+          nullable: true
     CloudProviderList:
       allOf:
         - $ref: "#/components/schemas/List"
@@ -1057,7 +1064,7 @@ components:
         supported_instance_types:
           description: 'The Kafka instance types supported by this region.'
           type: array
-          items: 
+          items:
             type: string
         capacity:
           description: 'Indicates whether there is capacity left per instance type'
@@ -1257,7 +1264,7 @@ components:
         reauthentication_enabled:
           description: Whether connection reauthentication is enabled or not. If set to true, connection reauthentication on the Kafka instance will be required every 5 minutes.
           type: boolean
-          nullable: true   
+          nullable: true
 
   parameters:
     id:
