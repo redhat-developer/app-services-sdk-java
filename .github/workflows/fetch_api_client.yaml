@@ -11,8 +11,8 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
-      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
       - name: Install jq
         run: sudo apt-get install jq
       - name: Fetch OpenAPI doc
