@@ -3,10 +3,10 @@
   "info": {
     "title": "Service Registry Fleet Manager",
     "version": "0.0.6",
-    "description": "Managed Service Registry cloud.redhat.com API Management API that lets you create new registry instances. Registry is a datastore for standard event schemas and API designs. Service Registry enables developers to manage and share the structure of their data using a REST interface. For example, client applications can dynamically push or pull the latest updates to or from the registry without needing to redeploy. Registry is an Managed version of upstream project called Apicurio Registry. Apicurio Registry also enables developers to create rules that govern how registry content can evolve over time. For example, this includes rules for content validation and version compatibility.",
+    "description": "Service Registry Fleet Manager is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.",
     "contact": {
-      "name": "Cloud Red Hat",
-      "url": "https://cloud.redhat.com/beta/application-services/streams/",
+      "name": "Red Hat Hybrid Cloud Console",
+      "url": "https://console.redhat.com/application-services/service-registry/",
       "email": "rhosak-eval-support@redhat.com"
     },
     "license": {
@@ -34,7 +34,7 @@
   ],
   "paths": {
     "/api/serviceregistry_mgmt/v1/registries": {
-      "summary": "Manage the list of all registries.",
+      "summary": "Manage the list of all Registry instances",
       "description": "",
       "get": {
         "tags": [
@@ -78,7 +78,7 @@
                 }
               }
             },
-            "description": "Auth token is invalid"
+            "description": "Auth token is invalid."
           },
           "403": {
             "content": {
@@ -93,7 +93,7 @@
                 }
               }
             },
-            "description": "User not authorized to access the service."
+            "description": "User is not authorized to access the service."
           },
           "500": {
             "content": {
@@ -108,7 +108,7 @@
                 }
               }
             },
-            "description": "Unexpected error occurred"
+            "description": "Unexpected error occurred."
           }
         },
         "security": [
@@ -118,12 +118,12 @@
           }
         ],
         "operationId": "getRegistries",
-        "summary": "Get the list of all registries.",
+        "summary": "Get the list of all Registry instances",
         "description": ""
       },
       "post": {
         "requestBody": {
-          "description": "A new `Registry` to be created.",
+          "description": "A new `Registry` instance to be created.",
           "content": {
             "application/json": {
               "schema": {
@@ -145,7 +145,7 @@
                 }
               }
             },
-            "description": "A successful response. The full request to create a new `Registry` is processed asynchronously. User should verify the result of the operation by reading the `status` property of the created `Registry` entity."
+            "description": "A successful response. The full request to create a new `Registry` instance is processed asynchronously. The user should verify the result of the operation by reading the `status` property of the created `Registry` instance."
           },
           "401": {
             "content": {
@@ -160,7 +160,7 @@
                 }
               }
             },
-            "description": "Auth token is invalid"
+            "description": "Auth token is invalid."
           },
           "403": {
             "content": {
@@ -175,7 +175,7 @@
                 }
               }
             },
-            "description": "User not authorized to access the service."
+            "description": "User is not authorized to access the service."
           },
           "500": {
             "content": {
@@ -190,7 +190,7 @@
                 }
               }
             },
-            "description": "Unexpected error occurred"
+            "description": "Unexpected error occurred."
           }
         },
         "security": [
@@ -205,7 +205,7 @@
       }
     },
     "/api/serviceregistry_mgmt/v1/registries/{id}": {
-      "summary": "Manage a specific Registry.",
+      "summary": "Manage a specific Registry instance",
       "description": "",
       "get": {
         "tags": [
@@ -220,7 +220,7 @@
                 }
               }
             },
-            "description": "Successful response - returns a single `Registry`."
+            "description": "Successful response - returns a single `Registry` instance."
           },
           "401": {
             "content": {
@@ -235,7 +235,7 @@
                 }
               }
             },
-            "description": "Auth token is invalid"
+            "description": "Auth token is invalid."
           },
           "403": {
             "content": {
@@ -250,7 +250,7 @@
                 }
               }
             },
-            "description": "User not authorized to access the service."
+            "description": "User is not authorized to access the service."
           },
           "404": {
             "content": {
@@ -265,7 +265,7 @@
                 }
               }
             },
-            "description": "No service registry with specified id exists"
+            "description": "No Service Registry instance with specified id exists."
           }
         },
         "security": [
@@ -275,7 +275,7 @@
           }
         ],
         "operationId": "getRegistry",
-        "summary": "Get a Registry",
+        "summary": "Get a Registry instance",
         "description": "Gets the details of a single instance of a `Registry`."
       },
       "delete": {
@@ -314,7 +314,7 @@
                 }
               }
             },
-            "description": "User not authorized to access the service."
+            "description": "User is not authorized to access the service."
           },
           "404": {
             "content": {
@@ -329,7 +329,7 @@
                 }
               }
             },
-            "description": "No Service Registry with specified id exists"
+            "description": "No Service Registry instance with the specified id exists"
           }
         },
         "security": [
@@ -339,13 +339,13 @@
           }
         ],
         "operationId": "deleteRegistry",
-        "summary": "Delete a Registry",
-        "description": "Deletes an existing `Registry`."
+        "summary": "Delete a Registry instance",
+        "description": "Deletes an existing `Registry` instance and all of the data that it stores. Important: Users should export the registry data before deleting the instance, e.g., using the Service Registry web console, core REST API, or `rhoas` CLI."
       },
       "parameters": [
         {
           "name": "id",
-          "description": "A unique identifier for a `Registry`.",
+          "description": "A unique identifier for a `Registry` instance.",
           "schema": {
             "type": "string"
           },
@@ -384,7 +384,7 @@
                 }
               }
             },
-            "description": "No service registry with specified id exists"
+            "description": "No Service Registry with the specified id exists."
           },
           "500": {
             "content": {
@@ -399,12 +399,12 @@
                 }
               }
             },
-            "description": "Unexpected error occurred"
+            "description": "Unexpected error occurred."
           }
         },
         "security": [],
         "operationId": "getError",
-        "summary": "Get information about a specific error type.",
+        "summary": "Get information about a specific error type",
         "description": ""
       },
       "parameters": [
@@ -463,11 +463,11 @@
         },
         "security": [],
         "operationId": "getErrors",
-        "summary": "Get the list of all errors."
+        "summary": "Get the list of all errors"
       }
     },
     "/api/serviceregistry_mgmt/v1/status": {
-      "summary": "Retrieves the status of resources e.g whether we have reached maximum service capacity",
+      "summary": "Retrieves the status of resources e.g., whether we have reached maximum service capacity",
       "get": {
         "responses": {
           "200": {
@@ -478,7 +478,7 @@
                 }
               }
             },
-            "description": "Successfully returned service status"
+            "description": "Successfully returned service status."
           },
           "500": {
             "content": {
@@ -497,7 +497,8 @@
             ]
           }
         ],
-        "operationId": "getServiceStatus"
+        "operationId": "getServiceStatus",
+        "summary": "Get the service status"
       }
     }
   },
@@ -586,8 +587,8 @@
             "$ref": "#/components/schemas/ObjectReference"
           },
           {
-            "title": "Root Type for Registry",
-            "description": "Service Registry instance within a multi-tenant deployment.",
+            "title": "Root type for Registry",
+            "description": "Service Registry instance in a multi-tenant deployment.",
             "required": [
               "id",
               "status",
@@ -610,7 +611,7 @@
                 "type": "string"
               },
               "name": {
-                "description": "User-defined Registry name. Does not have to be unique.",
+                "description": "User-defined Registry instance name. Does not have to be unique.",
                 "type": "string"
               },
               "registryDeploymentId": {
@@ -618,7 +619,7 @@
                 "type": "integer"
               },
               "owner": {
-                "description": "Registry instance owner",
+                "description": "Registry instance owner.",
                 "type": "string"
               },
               "description": {
@@ -656,26 +657,26 @@
         ]
       },
       "RegistryCreate": {
-        "title": "Root Type for RegistryCreate",
-        "description": "Information used to create a new Service Registry instance within a multi-tenant deployment.",
+        "title": "Root type for RegistryCreate",
+        "description": "Information used to create a new Service Registry instance in a multi-tenant deployment.",
         "type": "object",
         "properties": {
           "name": {
-            "description": "User-defined Registry name. Required. Does not have to be unique.",
+            "description": "User-defined Registry instance name. Required. Does not have to be unique.",
             "maxLength": 32,
             "minLength": 1,
             "pattern": "[a-z]([a-z0-9\\-]*[a-z0-9])?",
             "type": "string"
           },
           "description": {
-            "description": "User-provided description of the new Registry instance. Not required.",
+            "description": "User-provided description of the new Service Registry instance. Not required.",
             "maxLength": 255,
             "type": "string"
           }
         },
         "example": {
           "name": "my-registry",
-          "description": "This instance is for development environment only."
+          "description": "This Registry instance is for a development environment only."
         }
       },
       "RegistryList": {
@@ -716,7 +717,7 @@
         ]
       },
       "RegistryStatusValue": {
-        "description": "\"accepted\": Registry status when accepted for processing.\n\n\"provisioning\": Registry status when provisioning a new instance.\n\n\"ready\": Registry status when ready for use.\n\n\"failed\": Registry status when the provisioning failed. When removing a Registry in this state,\nthe status transitions directly to \"deleting\".\n\n\n\"deprovision\": Registry status when accepted for deprovisioning.\n\n\"deleting\": Registry status when deprovisioning.\n",
+        "description": "\"accepted\": Registry status when accepted for processing.\n\n\"provisioning\": Registry status when provisioning a new instance.\n\n\"ready\": Registry status when ready for use.\n\n\"failed\": Registry status when the provisioning failed. When removing a Registry instance in this state,\nthe status transitions directly to \"deleting\".\n\n\n\"deprovision\": Registry status when accepted for deprovisioning.\n\n\"deleting\": Registry status when deprovisioning.\n",
         "enum": [
           "accepted",
           "provisioning",
@@ -736,12 +737,12 @@
         "type": "string"
       },
       "ServiceStatus": {
-        "title": "Root Type for ServiceStatus",
+        "title": "Root type for ServiceStatus",
         "description": "Schema for the service status response body",
         "type": "object",
         "properties": {
           "max_instances_reached": {
-            "description": "Boolean property indicating if the maximum number of total instances have been reached, therefore creation of more instances should not be allowed.",
+            "description": "Boolean property indicating if the maximum number of total Registry instances have been reached, therefore creation of more instances should not be allowed.",
             "type": "boolean"
           }
         },
@@ -753,7 +754,7 @@
     "parameters": {
       "id": {
         "name": "id",
-        "description": "The id of record",
+        "description": "The id of record.",
         "schema": {
           "type": "string"
         },
@@ -767,7 +768,7 @@
           }
         },
         "name": "page",
-        "description": "Page index",
+        "description": "Page index.",
         "schema": {
           "minimum": 0,
           "type": "integer"
@@ -782,7 +783,7 @@
           }
         },
         "name": "size",
-        "description": "Number of items in each page",
+        "description": "Number of items in each page.",
         "schema": {
           "maximum": 500,
           "minimum": 1,
@@ -800,7 +801,7 @@
           }
         },
         "name": "orderBy",
-        "description": "Specifies the order by criteria. The syntax of this parameter is\nsimilar to the syntax of the _order by_ clause of an SQL statement.\nEach query can be ordered by any of the kafkaRequests fields.\nFor example, in order to retrieve all kafkas ordered by their name:\n\n```sql\nname asc\n```\n\nOr in order to retrieve all kafkas ordered by their name _and_ created date:\n\n```sql\nname asc, created_at asc\n```\n\nIf the parameter isn't provided, or if the value is empty, then\nthe results will be ordered by name.",
+        "description": "Specifies the order by criteria. The syntax of this parameter is\nsimilar to the syntax of the _order by_ clause of an SQL statement.\nEach query can be ordered by any of the request fields.\nFor example, to retrieve all Registry instances ordered by their name:\n\n```sql\nname asc\n```\n\nOr to retrieve all Registry instances ordered by their name _and_ created date:\n\n```sql\nname asc, created_at asc\n```\n\nIf the parameter isn't provided, or if the value is empty, \nthe results are ordered by name.",
         "schema": {
           "type": "string"
         },
@@ -816,7 +817,7 @@
           }
         },
         "name": "search",
-        "description": "Search criteria.\n\nThe syntax of this parameter is similar to the syntax of the _where_ clause of an\nSQL statement. Allowed fields in the search are: name, status. Allowed comparators are `=` or `LIKE`.\nAllowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.\n\nExamples:\n\nTo retrieve request with name equal `my-registry`  the value should be:\n\n```\nname = my-registry \n```\n\nTo retrieve kafka request with its name starting with `my`, the value should be:\n\n```\nname like my%25\n```\n\nIf the parameter isn't provided, or if the value is empty, then all the kafkas\nthat the user has permission to see will be returned.\n\nNote. If the query is invalid, an error will be returned\n",
+        "description": "Search criteria.\n\nThe syntax of this parameter is similar to the syntax of the _where_ clause of an\nSQL statement. Allowed fields in the search are: `name`, `status`. Allowed comparators are `=` or `LIKE`.\nAllowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.\n\nExamples:\n\nTo retrieve a request with name equal `my-registry`, the value should be:\n\n```\nname = my-registry \n```\n\nTo retrieve a request with its name starting with `my`, the value should be:\n\n```\nname like my%25\n```\n\nIf the parameter isn't provided, or if the value is empty, all the Registry instances\nthat the user has permission to see are returned.\n\nNote: If the query is invalid, an error is returned.\n",
         "schema": {
           "type": "string"
         },
@@ -831,7 +832,7 @@
           "kind": "Error",
           "href": "/api/managed-services-api/v1/errors/7",
           "code": "MGD-SERV-API-7",
-          "reason": "The requested resource doesn't exist"
+          "reason": "The requested resource doesn't exist."
         }
       },
       "401Example": {
@@ -840,7 +841,7 @@
           "kind": "Error",
           "href": "/api/serviceregistry_mgmt/v1/errors/11",
           "code": "CLOUD-SERV-API-11",
-          "reason": "Unable to verify JWT token: Required authorization token not found",
+          "reason": "Unable to verify JWT token: Required authorization token not found.",
           "operation_id": "1iY3UhEhwmXBpWPfI2lNekpd4ZD"
         }
       },
@@ -860,7 +861,7 @@
           "kind": "Error",
           "href": "/api/serviceregistry_mgmt/v1/errors/9",
           "code": "MGD-SERV-API-9",
-          "reason": "Unspecified error",
+          "reason": "Unspecified error.",
           "operation_id": "1ieELvF9jMQY6YghfM9gGRsHvEW"
         }
       }
