@@ -27,6 +27,7 @@ You can view all SDK packages directly in [GitHub](https://github.com/orgs/redha
 | Name             | Artifact Id                        | Status | Version           | Package            | Docs               |
 | ---------------- | :--------------------------------- | :----- | ----------------- | ------------------ | ------------------ |
 | kafka            | **kafka-management-sdk**           | beta   | 1.1.2             | [info](https://search.maven.org/search?q=a:kafka-management-sdk)                | [doc][kafkagit]    |
+| service accounts            | **service-accounts-sdk**           | alpha   | 1.1.2             | [info](https://search.maven.org/search?q=a:service-accounts-sdk)                | [doc][sadoc]    |
 | service registry | **registry-management-sdk**        | alpha  | 0.0.6             | [info](https://search.maven.org/search?q=a:registry-management-sdk)                | [doc][registrygit] |
 | service accounts | **kafka-management-sdk**           | alpha  | 1.1.2             | [info](https://search.maven.org/search?q=a:kafka-management-sdk)                | [doc][kafkagit]    |
 
@@ -47,6 +48,7 @@ You can view all SDK packages directly in [GitHub](https://github.com/orgs/redha
 Contributions are welcome. See [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 [kafkagit]: https://github.com/redhat-developer/app-services-sdk-java/tree/main/packages/kafka-management-sdk 
+[sadoc]: https://github.com/redhat-developer/app-services-sdk-java/tree/main/packages/service-accounts-sdk 
 [kinstancegit]: https://github.com/redhat-developer/app-services-sdk-java/tree/main/packages/kafka-instance-sdk 
 [registrygit]: https://github.com/redhat-developer/app-services-sdk-java/tree/main/packages/registry-management-sdk 
 
