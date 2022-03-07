@@ -5,7 +5,7 @@
     <artifactId>registry-management-sdk</artifactId>
     <packaging>jar</packaging>
     <name>registry-management-sdk</name>
-    <description>Red Hat Application Services Java SDK</description>
+    <description>Red Hat Aplicaiton Services Java SDK</description>
     <url>https://github.com/redhat-developer/app-services-sdk-java</url>
     
     <version>0.0.1-SNAPSHOT</version>
