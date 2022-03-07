@@ -4,7 +4,7 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getServiceStatus**](DefaultApi.md#getServiceStatus) | **GET** /api/serviceregistry_mgmt/v1/status | 
+[**getServiceStatus**](DefaultApi.md#getServiceStatus) | **GET** /api/serviceregistry_mgmt/v1/status | Get the service status
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > ServiceStatus getServiceStatus()
 
-
+Get the service status
 
 ### Example
 
@@ -70,6 +70,6 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successfully returned service status |  -  |
+| **200** | Successfully returned service status. |  -  |
 | **500** | Internal error retrieving service status. |  -  |
 

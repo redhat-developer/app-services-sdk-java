@@ -1,6 +1,6 @@
 /*
  * Service Registry Fleet Manager
- * Managed Service Registry cloud.redhat.com API Management API that lets you create new registry instances. Registry is a datastore for standard event schemas and API designs. Service Registry enables developers to manage and share the structure of their data using a REST interface. For example, client applications can dynamically push or pull the latest updates to or from the registry without needing to redeploy. Registry is an Managed version of upstream project called Apicurio Registry. Apicurio Registry also enables developers to create rules that govern how registry content can evolve over time. For example, this includes rules for content validation and version compatibility.
+ * Service Registry Fleet Manager is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
  *
  * The version of the OpenAPI document: 0.0.6
  * Contact: rhosak-eval-support@redhat.com
@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * \&quot;accepted\&quot;: Registry status when accepted for processing.  \&quot;provisioning\&quot;: Registry status when provisioning a new instance.  \&quot;ready\&quot;: Registry status when ready for use.  \&quot;failed\&quot;: Registry status when the provisioning failed. When removing a Registry in this state, the status transitions directly to \&quot;deleting\&quot;.   \&quot;deprovision\&quot;: Registry status when accepted for deprovisioning.  \&quot;deleting\&quot;: Registry status when deprovisioning. 
+ * \&quot;accepted\&quot;: Registry status when accepted for processing.  \&quot;provisioning\&quot;: Registry status when provisioning a new instance.  \&quot;ready\&quot;: Registry status when ready for use.  \&quot;failed\&quot;: Registry status when the provisioning failed. When removing a Registry instance in this state, the status transitions directly to \&quot;deleting\&quot;.   \&quot;deprovision\&quot;: Registry status when accepted for deprovisioning.  \&quot;deleting\&quot;: Registry status when deprovisioning. 
  */
 public enum RegistryStatusValue {
   

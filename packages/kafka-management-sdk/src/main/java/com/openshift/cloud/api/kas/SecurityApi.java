@@ -171,10 +171,11 @@ public class SecurityApi {
   /**
    * Returns a list of service accounts
    * 
+   * @param clientId client_id of the service account to be retrieved (optional)
    * @return a {@code ServiceAccountList}
    * @throws ApiException if fails to make API call
    */
-  public ServiceAccountList getServiceAccounts() throws ApiException {
+  public ServiceAccountList getServiceAccounts(String clientId) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -186,6 +187,7 @@ public class SecurityApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "client_id", clientId));
 
     
     
