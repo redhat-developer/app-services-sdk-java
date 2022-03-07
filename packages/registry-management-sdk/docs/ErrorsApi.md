@@ -4,8 +4,8 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getError**](ErrorsApi.md#getError) | **GET** /api/serviceregistry_mgmt/v1/errors/{id} | Get information about a specific error type.
-[**getErrors**](ErrorsApi.md#getErrors) | **GET** /api/serviceregistry_mgmt/v1/errors | Get the list of all errors.
+[**getError**](ErrorsApi.md#getError) | **GET** /api/serviceregistry_mgmt/v1/errors/{id} | Get information about a specific error type
+[**getErrors**](ErrorsApi.md#getErrors) | **GET** /api/serviceregistry_mgmt/v1/errors | Get the list of all errors
 
 
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 > Error getError(id)
 
-Get information about a specific error type.
+Get information about a specific error type
 
 ### Example
 
@@ -71,15 +71,15 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response - returns a single &#x60;Error&#x60;. |  -  |
-| **404** | No service registry with specified id exists |  -  |
-| **500** | Unexpected error occurred |  -  |
+| **404** | No Service Registry with the specified id exists. |  -  |
+| **500** | Unexpected error occurred. |  -  |
 
 
 ## getErrors
 
 > ErrorList getErrors(page, size)
 
-Get the list of all errors.
+Get the list of all errors
 
 ### Example
 
@@ -97,8 +97,8 @@ public class Example {
         defaultClient.setBasePath("https://api.openshift.com");
 
         ErrorsApi apiInstance = new ErrorsApi(defaultClient);
-        Integer page = 0; // Integer | Page index
-        Integer size = 100; // Integer | Number of items in each page
+        Integer page = 0; // Integer | Page index.
+        Integer size = 100; // Integer | Number of items in each page.
         try {
             ErrorList result = apiInstance.getErrors(page, size);
             System.out.println(result);
@@ -118,8 +118,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Integer**| Page index | [optional]
- **size** | **Integer**| Number of items in each page | [optional]
+ **page** | **Integer**| Page index. | [optional]
+ **size** | **Integer**| Number of items in each page. | [optional]
 
 ### Return type
 

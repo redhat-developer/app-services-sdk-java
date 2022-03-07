@@ -172,8 +172,6 @@ Class | Method | HTTP request | Description
  - [ServiceAccountListItem](docs/ServiceAccountListItem.md)
  - [ServiceAccountListItemAllOf](docs/ServiceAccountListItemAllOf.md)
  - [ServiceAccountRequest](docs/ServiceAccountRequest.md)
- - [ServiceStatus](docs/ServiceStatus.md)
- - [ServiceStatusKafkas](docs/ServiceStatusKafkas.md)
  - [Values](docs/Values.md)
  - [VersionMetadata](docs/VersionMetadata.md)
  - [VersionMetadataAllOf](docs/VersionMetadataAllOf.md)

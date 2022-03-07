@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 ## getServiceAccounts
 
-> ServiceAccountList getServiceAccounts()
+> ServiceAccountList getServiceAccounts(clientId)
 
 Returns a list of service accounts
 
@@ -252,8 +252,9 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         SecurityApi apiInstance = new SecurityApi(defaultClient);
+        String clientId = "clientId_example"; // String | client_id of the service account to be retrieved
         try {
-            ServiceAccountList result = apiInstance.getServiceAccounts();
+            ServiceAccountList result = apiInstance.getServiceAccounts(clientId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SecurityApi#getServiceAccounts");
@@ -268,7 +269,10 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clientId** | **String**| client_id of the service account to be retrieved | [optional]
 
 ### Return type
 

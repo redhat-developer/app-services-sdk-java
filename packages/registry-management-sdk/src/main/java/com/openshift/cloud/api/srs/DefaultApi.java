@@ -36,7 +36,7 @@ public class DefaultApi {
   }
 
   /**
-   * 
+   * Get the service status
    * 
    * @return a {@code ServiceStatus}
    * @throws ApiException if fails to make API call
