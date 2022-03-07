@@ -1,0 +1,3 @@
+<manifest package="com.openshift.cloud.api.serviceaccounts.invoker" xmlns:android="http://schemas.android.com/apk/res/android">
+    <application />
+</manifest>

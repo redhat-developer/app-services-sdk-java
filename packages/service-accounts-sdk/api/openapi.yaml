@@ -1,0 +1,635 @@
+openapi: 3.0.1
+info:
+  description: This is the API documentation for Service Accounts
+  termsOfService: https://www.redhat.com/en/about/terms-use
+  title: Service Accounts API Documentation
+  version: "1.0"
+servers:
+- description: Development server
+  url: /
+security:
+- bearerAuth: []
+paths:
+  /apis/service_accounts/v1:
+    get:
+      description: Returns a list of service accounts created by a user. User information
+        is obtained from the bearer token. The list is paginated with starting index
+        as 'first' and page size as 'max.' If 'max' is greater than the maximum allowable
+        page size a NotAcceptableException is thrown
+      operationId: getServiceAccounts
+      parameters:
+      - explode: true
+        in: query
+        name: first
+        required: false
+        schema:
+          default: 0
+          format: int32
+          minimum: 0
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: max
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceAccountData'
+                type: array
+          description: OK
+          links:
+            getNextPage:
+              description: link to the next page of service accounts
+              operationId: getServiceAccounts
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Acceptable
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+      summary: List all service accounts
+      tags:
+      - service_accounts
+      x-accepts: application/json
+    post:
+      description: Create a service account. Created service account is associated
+        with the user defined in the bearer token.
+      operationId: createServiceAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceAccountCreateRequestData'
+        description: '''name'' and ''description'' of the service account'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccountData'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+          description: Unauthorized
+      summary: Create service account
+      tags:
+      - service_accounts
+      x-contentType: application/json
+      x-accepts: application/json
+  /apis/service_accounts/v1/{id}:
+    delete:
+      description: Delete service account by id. Throws not found exception if the
+        service account is not found or the user does not have access to this service
+        account
+      operationId: deleteServiceAccount
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json: {}
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+          description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+          description: Unauthorized
+      summary: Delete service account by id
+      tags:
+      - service_accounts
+      x-accepts: application/json
+    get:
+      description: Returns service account by id. Throws not found exception if the
+        service account is not found or the user does not have access to this service
+        account
+      operationId: getServiceAccount
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccountData'
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+      summary: Get service account by id
+      tags:
+      - serviceaccounts
+      x-accepts: application/json
+    patch:
+      description: Update a service account by id.
+      operationId: updateServiceAccount
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceAccountRequestData'
+        description: '''name'' and ''description'' of the service account'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccountData'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+      summary: Update service account
+      tags:
+      - service_accounts
+      x-contentType: application/json
+      x-accepts: application/json
+  /apis/service_accounts/v1/{id}/resetSecret:
+    post:
+      description: Reset service account secret by id . Throws not found exception
+        if the service account is not found or the user does not have access to this
+        service account
+      operationId: resetServiceAccountSecret
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccountData'
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+      summary: Reset service account secret by id
+      tags:
+      - serviceaccounts
+      x-accepts: application/json
+components:
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    "400":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Bad Request
+    "401":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Unauthorized
+    "403":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Forbidden
+    "404":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Not Found
+    "406":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Not Acceptable
+    "500":
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Internal Server Error
+  schemas:
+    Error:
+      properties:
+        error:
+          description: The cause of the Error.
+          type: string
+      required:
+      - error
+      type: object
+    ServiceAccountData:
+      example:
+        createdAt: 0
+        clientId: clientId
+        name: name
+        description: description
+        id: id
+        secret: secret
+        ownerId: ownerId
+      properties:
+        id:
+          type: string
+        clientId:
+          type: string
+        secret:
+          description: Provided during creation and resetting of service account credentials.
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        ownerId:
+          type: string
+        createdAt:
+          format: int64
+          type: integer
+      type: object
+    ServiceAccountCreateRequestData:
+      example:
+        name: name
+        description: description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
+      - description
+      - name
+      type: object
+    ServiceAccountRequestData:
+      example:
+        name: name
+        description: description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      type: object
+    inline_response_400_cause_stackTrace:
+      properties:
+        methodName:
+          type: string
+        fileName:
+          type: string
+        lineNumber:
+          format: int32
+          type: integer
+        className:
+          type: string
+        nativeMethod:
+          type: boolean
+      type: object
+    inline_response_400_cause_suppressed:
+      properties:
+        stackTrace:
+          items:
+            $ref: '#/components/schemas/inline_response_400_cause_stackTrace'
+          type: array
+        message:
+          type: string
+        localizedMessage:
+          type: string
+      type: object
+    inline_response_400_cause:
+      properties:
+        stackTrace:
+          items:
+            $ref: '#/components/schemas/inline_response_400_cause_stackTrace'
+          type: array
+        message:
+          type: string
+        localizedMessage:
+          type: string
+        suppressed:
+          items:
+            $ref: '#/components/schemas/inline_response_400_cause_suppressed'
+          type: array
+      type: object
+    inline_response_400_response_entityTag:
+      properties:
+        value:
+          type: string
+        weak:
+          type: boolean
+      type: object
+    inline_response_400_response_cookies:
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        version:
+          format: int32
+          type: integer
+        path:
+          type: string
+        domain:
+          type: string
+        comment:
+          type: string
+        maxAge:
+          format: int32
+          type: integer
+        expiry:
+          format: date-time
+          type: string
+        secure:
+          type: boolean
+        httpOnly:
+          type: boolean
+      type: object
+    inline_response_400_response_mediaType:
+      properties:
+        type:
+          type: string
+        subtype:
+          type: string
+        parameters:
+          additionalProperties:
+            type: string
+          type: object
+        wildcardType:
+          type: boolean
+        wildcardSubtype:
+          type: boolean
+      type: object
+    inline_response_400_response_statusInfo:
+      properties:
+        reasonPhrase:
+          type: string
+        statusCode:
+          format: int32
+          type: integer
+        family:
+          enum:
+          - INFORMATIONAL
+          - SUCCESSFUL
+          - REDIRECTION
+          - CLIENT_ERROR
+          - SERVER_ERROR
+          - OTHER
+          type: string
+      type: object
+    inline_response_400_response_links:
+      properties:
+        uriBuilder:
+          type: object
+        params:
+          additionalProperties:
+            type: string
+          type: object
+        title:
+          type: string
+        uri:
+          format: uri
+          type: string
+        rel:
+          type: string
+        rels:
+          items:
+            type: string
+          type: array
+        type:
+          type: string
+      type: object
+    inline_response_400_response_language:
+      properties:
+        language:
+          type: string
+        script:
+          type: string
+        country:
+          type: string
+        variant:
+          type: string
+        extensionKeys:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        unicodeLocaleAttributes:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        unicodeLocaleKeys:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        iso3Language:
+          type: string
+        iso3Country:
+          type: string
+        displayLanguage:
+          type: string
+        displayScript:
+          type: string
+        displayCountry:
+          type: string
+        displayVariant:
+          type: string
+        displayName:
+          type: string
+      type: object
+    inline_response_400_response:
+      properties:
+        metadata:
+          additionalProperties:
+            items:
+              type: object
+            type: array
+          type: object
+        entity:
+          type: object
+        status:
+          format: int32
+          type: integer
+        entityTag:
+          $ref: '#/components/schemas/inline_response_400_response_entityTag'
+        cookies:
+          additionalProperties:
+            $ref: '#/components/schemas/inline_response_400_response_cookies'
+          type: object
+        allowedMethods:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        mediaType:
+          $ref: '#/components/schemas/inline_response_400_response_mediaType'
+        stringHeaders:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+        statusInfo:
+          $ref: '#/components/schemas/inline_response_400_response_statusInfo'
+        links:
+          items:
+            $ref: '#/components/schemas/inline_response_400_response_links'
+          type: array
+          uniqueItems: true
+        length:
+          format: int32
+          type: integer
+        language:
+          $ref: '#/components/schemas/inline_response_400_response_language'
+        location:
+          format: uri
+          type: string
+        lastModified:
+          format: date-time
+          type: string
+        date:
+          format: date-time
+          type: string
+        headers:
+          additionalProperties:
+            items:
+              type: object
+            type: array
+          type: object
+      type: object
+    inline_response_400:
+      properties:
+        cause:
+          $ref: '#/components/schemas/inline_response_400_cause'
+        stackTrace:
+          items:
+            $ref: '#/components/schemas/inline_response_400_cause_stackTrace'
+          type: array
+        response:
+          $ref: '#/components/schemas/inline_response_400_response'
+        message:
+          type: string
+        localizedMessage:
+          type: string
+        suppressed:
+          items:
+            $ref: '#/components/schemas/inline_response_400_cause_suppressed'
+          type: array
+      type: object
+    inline_response_401:
+      properties:
+        cause:
+          $ref: '#/components/schemas/inline_response_400_cause'
+        stackTrace:
+          items:
+            $ref: '#/components/schemas/inline_response_400_cause_stackTrace'
+          type: array
+        response:
+          $ref: '#/components/schemas/inline_response_400_response'
+        challenges:
+          items:
+            type: object
+          type: array
+        message:
+          type: string
+        localizedMessage:
+          type: string
+        suppressed:
+          items:
+            $ref: '#/components/schemas/inline_response_400_cause_suppressed'
+          type: array
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+

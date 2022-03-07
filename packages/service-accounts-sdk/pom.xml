@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.redhat.cloud</groupId>
-    <artifactId>registry-management-sdk</artifactId>
+    <artifactId>service-accounts-sdk</artifactId>
     <packaging>jar</packaging>
-    <name>registry-management-sdk</name>
-    <description>Red Hat Application Services Java SDK</description>
+    <name>service-accounts-sdk</name>
+    <description>Red Hat Aplicaiton Services Java SDK</description>
     <url>https://github.com/redhat-developer/app-services-sdk-java</url>
     
     <version>0.0.1-SNAPSHOT</version>
@@ -28,7 +28,7 @@
     <licenses>
         <license>
             <name>Apache-2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
