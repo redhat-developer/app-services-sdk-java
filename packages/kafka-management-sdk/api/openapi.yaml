@@ -62,7 +62,6 @@ paths:
       tags:
       - errors
       x-accepts: application/json
-  /api/kafkas_mgmt/v1/status: {}
   /api/kafkas_mgmt/v1/kafkas/{id}:
     delete:
       operationId: deleteKafkaById
@@ -666,6 +665,15 @@ paths:
   /api/kafkas_mgmt/v1/service_accounts:
     get:
       operationId: getServiceAccounts
+      parameters:
+      - description: client_id of the service account to be retrieved
+        explode: true
+        in: query
+        name: client_id
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -1550,15 +1558,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
       - $ref: '#/components/schemas/VersionMetadata_allOf'
-    ServiceStatus:
-      description: Schema for the service status response body
-      example:
-        kafkas:
-          max_capacity_reached: true
-      properties:
-        kafkas:
-          $ref: '#/components/schemas/ServiceStatus_kafkas'
-      type: object
     KafkaRequestPayload:
       description: Schema for the request body sent to /kafkas POST
       example:
@@ -1842,15 +1841,6 @@ components:
             allOf:
             - $ref: '#/components/schemas/ObjectReference'
           type: array
-      type: object
-    ServiceStatus_kafkas:
-      description: The Kafka resource api status
-      properties:
-        max_capacity_reached:
-          description: Indicates whether we have reached Kafka maximum capacity
-          type: boolean
-      required:
-      - max_capacity_reached
       type: object
     CloudProviderList_allOf:
       example:
