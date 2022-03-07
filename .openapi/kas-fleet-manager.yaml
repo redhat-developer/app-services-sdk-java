@@ -56,30 +56,6 @@ paths:
       tags:
         - errors
 
-  /api/kafkas_mgmt/v1/status:
-    get:
-      deprecated: true
-      operationId: getServiceStatus
-      description: "[DEPRECATED] The service capacity status is now reported per cloud provider region and Kafka instance type in the /api/kafkas_mgmt/v1/cloud_providers/{id}/regions endpoint. Please use this endpoint instead."
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServiceStatus'
-          description: Ok
-        "500":
-          description: Unexpected error occurred
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-              examples:
-                500Example:
-                  $ref: '#/components/examples/500Example'
-      summary: Returns the status of resources, such as whether maximum service capacity has been reached
-      security:
-        - Bearer: [ ]
   /api/kafkas_mgmt/v1/kafkas/{id}:
     get:
       operationId: getKafkaById
@@ -487,6 +463,13 @@ paths:
         - $ref: '#/components/parameters/instance_type'
   /api/kafkas_mgmt/v1/service_accounts:
     get:
+      parameters:
+        - in: query
+          name: client_id
+          required: false
+          schema:
+            type: string
+          description: client_id of the service account to be retrieved
       responses:
         '200':
           content:
@@ -906,7 +889,7 @@ components:
             instance_type:
               type: string
             reauthentication_enabled:
-              type: boolean  
+              type: boolean
             kafka_storage_size:
               type: string
           example:
@@ -946,22 +929,6 @@ components:
               items:
                 allOf:
                   - $ref: "#/components/schemas/ObjectReference"
-    ServiceStatus:
-      description: Schema for the service status response body
-      example:
-        kafkas:
-          max_capacity_reached: true
-      type: object
-      properties:
-        kafkas:
-          description: The Kafka resource api status
-          type: object
-          required:
-            - max_capacity_reached
-          properties:
-            max_capacity_reached:
-              description: Indicates whether we have reached Kafka maximum capacity
-              type: boolean
     KafkaRequestPayload:
       description: Schema for the request body sent to /kafkas POST
       required:
@@ -981,9 +948,9 @@ components:
           description: The region where the Kafka cluster will be created in
           type: string
         reauthentication_enabled:
-          description: Whether connection reauthentication is enabled or not. If set to true, connection reauthentication on the Kafka instance will be required every 5 minutes. The default value is true 
+          description: Whether connection reauthentication is enabled or not. If set to true, connection reauthentication on the Kafka instance will be required every 5 minutes. The default value is true
           type: boolean
-          nullable: true  
+          nullable: true
     CloudProviderList:
       allOf:
         - $ref: "#/components/schemas/List"
@@ -1057,7 +1024,7 @@ components:
         supported_instance_types:
           description: 'The Kafka instance types supported by this region.'
           type: array
-          items: 
+          items:
             type: string
         capacity:
           description: 'Indicates whether there is capacity left per instance type'
@@ -1257,7 +1224,7 @@ components:
         reauthentication_enabled:
           description: Whether connection reauthentication is enabled or not. If set to true, connection reauthentication on the Kafka instance will be required every 5 minutes.
           type: boolean
-          nullable: true   
+          nullable: true
 
   parameters:
     id:
