@@ -1,14 +1,14 @@
 # TopicsApi
 
-All URIs are relative to */rest*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createTopic**](TopicsApi.md#createTopic) | **POST** /topics | Creates a new topic
-[**deleteTopic**](TopicsApi.md#deleteTopic) | **DELETE** /topics/{topicName} | Deletes a  topic
-[**getTopic**](TopicsApi.md#getTopic) | **GET** /topics/{topicName} | Retrieves the topic with the specified name.
-[**getTopics**](TopicsApi.md#getTopics) | **GET** /topics | List of topics
-[**updateTopic**](TopicsApi.md#updateTopic) | **PATCH** /topics/{topicName} | Updates the topic with the specified name.
+[**createTopic**](TopicsApi.md#createTopic) | **POST** /rest/topics | Creates a new topic
+[**deleteTopic**](TopicsApi.md#deleteTopic) | **DELETE** /rest/topics/{topicName} | Deletes a topic
+[**getTopic**](TopicsApi.md#getTopic) | **GET** /rest/topics/{topicName} | Retrieves a single topic
+[**getTopics**](TopicsApi.md#getTopics) | **GET** /rest/topics | Retrieves a list of topics
+[**updateTopic**](TopicsApi.md#updateTopic) | **PATCH** /rest/topics/{topicName} | Updates a single topic
 
 
 
@@ -34,7 +34,7 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -80,19 +80,19 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Topic created successfully. |  -  |
-| **400** | The client request was invalid |  -  |
+| **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
 | **409** | The resource already exists. |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
+| **201** | Topic created successfully. |  -  |
 
 
 ## deleteTopic
 
 > deleteTopic(topicName)
 
-Deletes a  topic
+Deletes a topic
 
 Deletes the topic with the specified name.
 
@@ -110,14 +110,14 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         TopicsApi apiInstance = new TopicsApi(defaultClient);
-        String topicName = "topicName_example"; // String | The topic name to delete.
+        String topicName = "topicName_example"; // String | Name of the topic to delete
         try {
             apiInstance.deleteTopic(topicName);
         } catch (ApiException e) {
@@ -136,7 +136,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **topicName** | **String**| The topic name to delete. |
+ **topicName** | **String**| Name of the topic to delete |
 
 ### Return type
 
@@ -155,9 +155,10 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Topic deleted successfully. |  -  |
+| **204** | Topic deleted successfully. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
-| **404** | Topic not found. |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
+| **404** | The requested resource could not be found. |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
 
@@ -166,7 +167,7 @@ null (empty response body)
 
 > Topic getTopic(topicName)
 
-Retrieves the topic with the specified name.
+Retrieves a single topic
 
 Topic
 
@@ -184,14 +185,14 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         TopicsApi apiInstance = new TopicsApi(defaultClient);
-        String topicName = "topicName_example"; // String | The topic name to retrieve.
+        String topicName = "topicName_example"; // String | Name of the topic to describe
         try {
             Topic result = apiInstance.getTopic(topicName);
             System.out.println(result);
@@ -211,7 +212,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **topicName** | **String**| The topic name to retrieve. |
+ **topicName** | **String**| Name of the topic to describe |
 
 ### Return type
 
@@ -230,18 +231,19 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Kafka topic details. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
-| **404** | Topic not found. |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
+| **404** | The requested resource could not be found. |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
+| **200** | Kafka topic details |  -  |
 
 
 ## getTopics
 
 > TopicsList getTopics(limit, filter, page, order, orderKey)
 
-List of topics
+Retrieves a list of topics
 
 Returns a list of all of the available topics, or the list of topics that meet the request query parameters. The topics returned are limited to those records the requestor is authorized to view.
 
@@ -259,18 +261,18 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         TopicsApi apiInstance = new TopicsApi(defaultClient);
-        Integer limit = 56; // Integer | Maximum number of topics to return
+        Integer limit = 56; // Integer | Maximum number of records to return
         String filter = "filter_example"; // String | Filter to apply when returning the list of topics
-        Integer page = 56; // Integer | The page when returning the limit of requested topics.
-        String order = "asc"; // String | Order of the items sorting. Ascending order is used as default.
-        String orderKey = "name"; // String | Order key to sort the topics by.
+        Integer page = 56; // Integer | Page number
+        SortDirection order = SortDirection.fromValue("asc"); // SortDirection | Order items are sorted
+        TopicOrderKey orderKey = new TopicOrderKey(); // TopicOrderKey | Order key to sort the topics by.
         try {
             TopicsList result = apiInstance.getTopics(limit, filter, page, order, orderKey);
             System.out.println(result);
@@ -290,11 +292,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Integer**| Maximum number of topics to return | [optional]
+ **limit** | **Integer**| Maximum number of records to return | [optional]
  **filter** | **String**| Filter to apply when returning the list of topics | [optional]
- **page** | **Integer**| The page when returning the limit of requested topics. | [optional]
- **order** | **String**| Order of the items sorting. Ascending order is used as default. | [optional] [enum: asc, desc]
- **orderKey** | **String**| Order key to sort the topics by. | [optional] [enum: name, partitions, retention.ms, retention.bytes]
+ **page** | **Integer**| Page number | [optional]
+ **order** | [**SortDirection**](.md)| Order items are sorted | [optional] [enum: asc, desc]
+ **orderKey** | [**TopicOrderKey**](.md)| Order key to sort the topics by. | [optional]
 
 ### Return type
 
@@ -313,20 +315,20 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | List of topics matching the request query parameters. The topics returned are limited to those records the requestor is authorized to view. |  -  |
-| **400** | Unable to retrieve topics. |  -  |
+| **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
+| **200** | List of topics matching the request query parameters. The topics returned are limited to those records the requestor is authorized to view. |  -  |
 
 
 ## updateTopic
 
-> Topic updateTopic(topicName, updateTopicInput)
+> Topic updateTopic(topicName, topicSettings)
 
-Updates the topic with the specified name.
+Updates a single topic
 
-updates the topic with the new data.
+Update the configuration settings for a topic.
 
 ### Example
 
@@ -342,17 +344,17 @@ import com.openshift.cloud.api.kas.auth.TopicsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         TopicsApi apiInstance = new TopicsApi(defaultClient);
-        String topicName = "topicName_example"; // String | The topic name which is its unique id.
-        UpdateTopicInput updateTopicInput = new UpdateTopicInput(); // UpdateTopicInput | 
+        String topicName = "topicName_example"; // String | Name of the topic to update
+        TopicSettings topicSettings = new TopicSettings(); // TopicSettings | 
         try {
-            Topic result = apiInstance.updateTopic(topicName, updateTopicInput);
+            Topic result = apiInstance.updateTopic(topicName, topicSettings);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TopicsApi#updateTopic");
@@ -370,8 +372,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **topicName** | **String**| The topic name which is its unique id. |
- **updateTopicInput** | [**UpdateTopicInput**](UpdateTopicInput.md)|  |
+ **topicName** | **String**| Name of the topic to update |
+ **topicSettings** | [**TopicSettings**](TopicSettings.md)|  |
 
 ### Return type
 
@@ -390,10 +392,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Topic updated successfully. |  -  |
-| **400** | The client request was invalid |  -  |
+| **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
-| **404** | Topic not found. |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
+| **404** | The requested resource could not be found. |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
+| **200** | Topic updated successfully. |  -  |
 

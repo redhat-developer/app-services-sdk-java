@@ -2,7 +2,7 @@
 
 Kafka Admin REST API
 
-- API version: 0.3.0
+- API version: 0.7.1-SNAPSHOT
 
 An API to provide REST endpoints for query Kafka for admin operations
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-instance-sdk</artifactId>
-  <version>0.3.0</version>
+  <version>0.7.1-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-instance-sdk:0.3.0"
+     implementation "com.redhat.cloud:kafka-instance-sdk:0.7.1-SNAPSHOT"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-instance-sdk-0.3.0.jar`
+- `target/kafka-instance-sdk-0.7.1-SNAPSHOT.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -88,7 +88,7 @@ public class AclsApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
@@ -112,30 +112,30 @@ public class AclsApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to */rest*
+All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AclsApi* | [**createAcl**](docs/AclsApi.md#createAcl) | **POST** /acls | Create ACL binding
-*AclsApi* | [**deleteAcls**](docs/AclsApi.md#deleteAcls) | **DELETE** /acls | Delete ACL bindings
-*AclsApi* | [**getAclResourceOperations**](docs/AclsApi.md#getAclResourceOperations) | **GET** /acls/resource-operations | Retrieve allowed ACL resources and operations
-*AclsApi* | [**getAcls**](docs/AclsApi.md#getAcls) | **GET** /acls | List ACL bindings
-*GroupsApi* | [**deleteConsumerGroupById**](docs/GroupsApi.md#deleteConsumerGroupById) | **DELETE** /consumer-groups/{consumerGroupId} | Delete a consumer group.
-*GroupsApi* | [**getConsumerGroupById**](docs/GroupsApi.md#getConsumerGroupById) | **GET** /consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
-*GroupsApi* | [**getConsumerGroups**](docs/GroupsApi.md#getConsumerGroups) | **GET** /consumer-groups | List of consumer groups in the Kafka instance.
-*GroupsApi* | [**resetConsumerGroupOffset**](docs/GroupsApi.md#resetConsumerGroupOffset) | **POST** /consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
-*TopicsApi* | [**createTopic**](docs/TopicsApi.md#createTopic) | **POST** /topics | Creates a new topic
-*TopicsApi* | [**deleteTopic**](docs/TopicsApi.md#deleteTopic) | **DELETE** /topics/{topicName} | Deletes a  topic
-*TopicsApi* | [**getTopic**](docs/TopicsApi.md#getTopic) | **GET** /topics/{topicName} | Retrieves the topic with the specified name.
-*TopicsApi* | [**getTopics**](docs/TopicsApi.md#getTopics) | **GET** /topics | List of topics
-*TopicsApi* | [**updateTopic**](docs/TopicsApi.md#updateTopic) | **PATCH** /topics/{topicName} | Updates the topic with the specified name.
+*AclsApi* | [**createAcl**](docs/AclsApi.md#createAcl) | **POST** /rest/acls | Create ACL binding
+*AclsApi* | [**deleteAcls**](docs/AclsApi.md#deleteAcls) | **DELETE** /rest/acls | Delete ACL bindings
+*AclsApi* | [**getAclResourceOperations**](docs/AclsApi.md#getAclResourceOperations) | **GET** /rest/acls/resource-operations | Retrieve allowed ACL resources and operations
+*AclsApi* | [**getAcls**](docs/AclsApi.md#getAcls) | **GET** /rest/acls | List ACL bindings
+*GroupsApi* | [**deleteConsumerGroupById**](docs/GroupsApi.md#deleteConsumerGroupById) | **DELETE** /rest/consumer-groups/{consumerGroupId} | Delete a consumer group.
+*GroupsApi* | [**getConsumerGroupById**](docs/GroupsApi.md#getConsumerGroupById) | **GET** /rest/consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
+*GroupsApi* | [**getConsumerGroups**](docs/GroupsApi.md#getConsumerGroups) | **GET** /rest/consumer-groups | List of consumer groups in the Kafka instance.
+*GroupsApi* | [**resetConsumerGroupOffset**](docs/GroupsApi.md#resetConsumerGroupOffset) | **POST** /rest/consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
+*TopicsApi* | [**createTopic**](docs/TopicsApi.md#createTopic) | **POST** /rest/topics | Creates a new topic
+*TopicsApi* | [**deleteTopic**](docs/TopicsApi.md#deleteTopic) | **DELETE** /rest/topics/{topicName} | Deletes a topic
+*TopicsApi* | [**getTopic**](docs/TopicsApi.md#getTopic) | **GET** /rest/topics/{topicName} | Retrieves a single topic
+*TopicsApi* | [**getTopics**](docs/TopicsApi.md#getTopics) | **GET** /rest/topics | Retrieves a list of topics
+*TopicsApi* | [**updateTopic**](docs/TopicsApi.md#updateTopic) | **PATCH** /rest/topics/{topicName} | Updates a single topic
 
 
 ## Documentation for Models
 
  - [AclBinding](docs/AclBinding.md)
- - [AclBindingList](docs/AclBindingList.md)
  - [AclBindingListPage](docs/AclBindingListPage.md)
+ - [AclBindingOrderKey](docs/AclBindingOrderKey.md)
  - [AclOperation](docs/AclOperation.md)
  - [AclOperationFilter](docs/AclOperationFilter.md)
  - [AclPatternType](docs/AclPatternType.md)
@@ -147,20 +147,25 @@ Class | Method | HTTP request | Description
  - [ConfigEntry](docs/ConfigEntry.md)
  - [Consumer](docs/Consumer.md)
  - [ConsumerGroup](docs/ConsumerGroup.md)
+ - [ConsumerGroupDescriptionOrderKey](docs/ConsumerGroupDescriptionOrderKey.md)
  - [ConsumerGroupList](docs/ConsumerGroupList.md)
+ - [ConsumerGroupMetrics](docs/ConsumerGroupMetrics.md)
+ - [ConsumerGroupOrderKey](docs/ConsumerGroupOrderKey.md)
  - [ConsumerGroupResetOffsetParameters](docs/ConsumerGroupResetOffsetParameters.md)
  - [ConsumerGroupResetOffsetResult](docs/ConsumerGroupResetOffsetResult.md)
  - [ConsumerGroupResetOffsetResultItem](docs/ConsumerGroupResetOffsetResultItem.md)
- - [ConsumerGroupResetOffsetResultItemList](docs/ConsumerGroupResetOffsetResultItemList.md)
+ - [ConsumerGroupState](docs/ConsumerGroupState.md)
  - [Error](docs/Error.md)
  - [NewTopicInput](docs/NewTopicInput.md)
+ - [Node](docs/Node.md)
+ - [OffsetType](docs/OffsetType.md)
  - [Partition](docs/Partition.md)
- - [ResultListPage](docs/ResultListPage.md)
+ - [SortDirection](docs/SortDirection.md)
  - [Topic](docs/Topic.md)
+ - [TopicOrderKey](docs/TopicOrderKey.md)
  - [TopicSettings](docs/TopicSettings.md)
  - [TopicsList](docs/TopicsList.md)
  - [TopicsToResetOffset](docs/TopicsToResetOffset.md)
- - [UpdateTopicInput](docs/UpdateTopicInput.md)
 
 
 ## Documentation for Authorization
