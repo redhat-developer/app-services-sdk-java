@@ -30,7 +30,7 @@ jobs:
           author: "app-services-ci <app-services-ci@users.noreply.github.com>"
           branch: chore/generate-api-clients
           branch-suffix: timestamp
-          reviewers: wtrocki
+          reviewers: '@redhat-developer/app-services-sdk-maintainers'
           delete-branch: suffix
           body: |
             _This pull request was auto-generated_

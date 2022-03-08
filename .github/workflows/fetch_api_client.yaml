@@ -25,7 +25,7 @@ jobs:
           author: "app-services-ci <app-services-ci@users.noreply.github.com>"
           branch: add-${{ github.event.client_payload.id }}-openapi
           branch-suffix: timestamp
-          reviewers: wtrocki
+          reviewers: '@redhat-developer/app-services-sdk-maintainers'
           body: |
             _This pull request was auto-generated_
             
