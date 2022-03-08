@@ -1,13 +1,13 @@
 # GroupsApi
 
-All URIs are relative to */rest*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteConsumerGroupById**](GroupsApi.md#deleteConsumerGroupById) | **DELETE** /consumer-groups/{consumerGroupId} | Delete a consumer group.
-[**getConsumerGroupById**](GroupsApi.md#getConsumerGroupById) | **GET** /consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
-[**getConsumerGroups**](GroupsApi.md#getConsumerGroups) | **GET** /consumer-groups | List of consumer groups in the Kafka instance.
-[**resetConsumerGroupOffset**](GroupsApi.md#resetConsumerGroupOffset) | **POST** /consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
+[**deleteConsumerGroupById**](GroupsApi.md#deleteConsumerGroupById) | **DELETE** /rest/consumer-groups/{consumerGroupId} | Delete a consumer group.
+[**getConsumerGroupById**](GroupsApi.md#getConsumerGroupById) | **GET** /rest/consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
+[**getConsumerGroups**](GroupsApi.md#getConsumerGroups) | **GET** /rest/consumer-groups | List of consumer groups in the Kafka instance.
+[**resetConsumerGroupOffset**](GroupsApi.md#resetConsumerGroupOffset) | **POST** /rest/consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
 
 
 
@@ -33,14 +33,14 @@ import com.openshift.cloud.api.kas.auth.GroupsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String consumerGroupId = "consumerGroupId_example"; // String | The unique ID of the cobsumer group.
+        String consumerGroupId = "consumerGroupId_example"; // String | Consumer group identifier
         try {
             apiInstance.deleteConsumerGroupById(consumerGroupId);
         } catch (ApiException e) {
@@ -59,7 +59,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consumerGroupId** | **String**| The unique ID of the cobsumer group. |
+ **consumerGroupId** | **String**| Consumer group identifier |
 
 ### Return type
 
@@ -80,8 +80,8 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | The consumer group was deleted successfully. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
-| **403** | Forbidden to delete this consumer group. |  -  |
-| **404** | The consumer group does not exist. |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
+| **404** | The requested resource could not be found. |  -  |
 | **423** | User cannot delete consumer group with active members. |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
@@ -107,18 +107,18 @@ import com.openshift.cloud.api.kas.auth.GroupsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String consumerGroupId = "consumerGroupId_example"; // String | The unique ID of the consumer group
-        String order = "asc"; // String | Order of the items sorting. Ascending order is used as default.
-        String orderKey = "offset"; // String | Order key to sort the topics by.
+        String consumerGroupId = "consumerGroupId_example"; // String | Consumer group identifier
+        SortDirection order = SortDirection.fromValue("asc"); // SortDirection | Order items are sorted
+        ConsumerGroupDescriptionOrderKey orderKey = new ConsumerGroupDescriptionOrderKey(); // ConsumerGroupDescriptionOrderKey | 
         Integer partitionFilter = 56; // Integer | Value of partition to include. Value -1 means filter is not active.
-        String topic = "{\"groupId\":\"consumer_group_1\",\"consumers\":[{\"groupId\":\"consumer_group_1\",\"topic\":\"topic-1\",\"partition\":0,\"memberId\":\"consumer_group_member1\",\"offset\":5,\"lag\":0,\"logEndOffset\":5},{\"groupId\":\"consumer_group_1\",\"topic\":\"topic-1\",\"partition\":1,\"memberId\":\"consumer_group_member2\",\"offset\":3,\"lag\":0,\"logEndOffset\":3},{\"groupId\":\"consumer_group_1\",\"topic\":\"topic-1\",\"partition\":2,\"memberId\":\"consumer_group_member3\",\"offset\":6,\"lag\":1,\"logEndOffset\":5}]}"; // String | Filter consumer groups for a specific topic
+        String topic = "topic_example"; // String | Filter consumer groups for a specific topic
         try {
             ConsumerGroup result = apiInstance.getConsumerGroupById(consumerGroupId, order, orderKey, partitionFilter, topic);
             System.out.println(result);
@@ -138,9 +138,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consumerGroupId** | **String**| The unique ID of the consumer group |
- **order** | **String**| Order of the items sorting. Ascending order is used as default. | [optional] [enum: asc, desc]
- **orderKey** | **String**| Order key to sort the topics by. | [optional] [enum: offset, endOffset, lag, partition]
+ **consumerGroupId** | **String**| Consumer group identifier |
+ **order** | [**SortDirection**](.md)| Order items are sorted | [optional] [enum: asc, desc]
+ **orderKey** | [**ConsumerGroupDescriptionOrderKey**](.md)|  | [optional]
  **partitionFilter** | **Integer**| Value of partition to include. Value -1 means filter is not active. | [optional]
  **topic** | **String**| Filter consumer groups for a specific topic | [optional]
 
@@ -163,8 +163,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | Consumer group details. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
-| **403** | User is forbidden this view this consumer group. |  -  |
-| **404** | Consumer group not found. |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
+| **404** | The requested resource could not be found. |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
 
@@ -191,19 +191,19 @@ import com.openshift.cloud.api.kas.auth.GroupsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
-        Integer limit = 56; // Integer | Maximum number of consumer groups to return
-        Integer page = 56; // Integer | The page when returning the list of consumer groups
-        String topic = "topic_example"; // String | Return consumer groups where the topic name contains with this value
-        String groupIdFilter = "groupIdFilter_example"; // String | Return the consumer groups where the ID contains with this value
-        String order = "asc"; // String | Order of the consumer groups sorting. Ascending order is used as default.
-        String orderKey = "name"; // String | Order key to sort the items by. Only the value 'name' is currently applicable.
+        Integer limit = 56; // Integer | Maximum number of records to return
+        Integer page = 56; // Integer | Page number
+        String topic = "topic_example"; // String | Return consumer groups where the topic name contains this value
+        String groupIdFilter = "groupIdFilter_example"; // String | Return the consumer groups where the ID contains this value
+        SortDirection order = SortDirection.fromValue("asc"); // SortDirection | Order items are sorted
+        ConsumerGroupOrderKey orderKey = new ConsumerGroupOrderKey(); // ConsumerGroupOrderKey | 
         try {
             ConsumerGroupList result = apiInstance.getConsumerGroups(limit, page, topic, groupIdFilter, order, orderKey);
             System.out.println(result);
@@ -223,12 +223,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Integer**| Maximum number of consumer groups to return | [optional]
- **page** | **Integer**| The page when returning the list of consumer groups | [optional]
- **topic** | **String**| Return consumer groups where the topic name contains with this value | [optional]
- **groupIdFilter** | **String**| Return the consumer groups where the ID contains with this value | [optional]
- **order** | **String**| Order of the consumer groups sorting. Ascending order is used as default. | [optional] [enum: asc, desc]
- **orderKey** | **String**| Order key to sort the items by. Only the value &#39;name&#39; is currently applicable. | [optional] [enum: name]
+ **limit** | **Integer**| Maximum number of records to return | [optional]
+ **page** | **Integer**| Page number | [optional]
+ **topic** | **String**| Return consumer groups where the topic name contains this value | [optional]
+ **groupIdFilter** | **String**| Return the consumer groups where the ID contains this value | [optional]
+ **order** | [**SortDirection**](.md)| Order items are sorted | [optional] [enum: asc, desc]
+ **orderKey** | [**ConsumerGroupOrderKey**](.md)|  | [optional]
 
 ### Return type
 
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of consumer groups matching the request parameters. The consumer groups returned are limited to those records the requestor is authorized to view. |  -  |
-| **400** | The server cannot or will not process the request due to something that is perceived to be a client error such as malformed request syntax. |  -  |
+| **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
@@ -276,14 +276,14 @@ import com.openshift.cloud.api.kas.auth.GroupsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("/rest");
+        defaultClient.setBasePath("http://localhost");
         
         // Configure OAuth2 access token for authorization: Bearer
         OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
-        String consumerGroupId = "consumerGroupId_example"; // String | The ID of the consumer group.
+        String consumerGroupId = "consumerGroupId_example"; // String | Consumer group identifier
         ConsumerGroupResetOffsetParameters consumerGroupResetOffsetParameters = new ConsumerGroupResetOffsetParameters(); // ConsumerGroupResetOffsetParameters | 
         try {
             ConsumerGroupResetOffsetResult result = apiInstance.resetConsumerGroupOffset(consumerGroupId, consumerGroupResetOffsetParameters);
@@ -304,7 +304,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consumerGroupId** | **String**| The ID of the consumer group. |
+ **consumerGroupId** | **String**| Consumer group identifier |
  **consumerGroupResetOffsetParameters** | [**ConsumerGroupResetOffsetParameters**](ConsumerGroupResetOffsetParameters.md)|  |
 
 ### Return type
@@ -324,11 +324,11 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The consumer group offsets have been reset. |  -  |
-| **400** | The consumer group to reset the offset does have active consumers. |  -  |
+| **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
-| **403** | Forbidden to delete this consumer group. |  -  |
-| **404** | Specified topic or its partition does not exist. |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
+| **404** | The requested resource could not be found. |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
+| **200** | The consumer group offsets have been reset. |  -  |
 

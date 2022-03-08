@@ -51,7 +51,7 @@ import com.openshift.cloud.api.kas.auth.invoker.auth.OAuth;
 public class ApiClient extends JavaTimeFormatter {
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private Map<String, String> defaultCookieMap = new HashMap<String, String>();
-  private String basePath = "/rest";
+  private String basePath = "http://localhost";
   private boolean debugging = false;
 
   private Client httpClient;
@@ -77,7 +77,7 @@ public class ApiClient extends JavaTimeFormatter {
     this.json.setDateFormat((DateFormat) dateFormat.clone());
 
     // Set default User-Agent.
-    setUserAgent("OpenAPI-Generator/0.3.0/java");
+    setUserAgent("OpenAPI-Generator/0.7.1-SNAPSHOT/java");
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<String, Authentication>();
