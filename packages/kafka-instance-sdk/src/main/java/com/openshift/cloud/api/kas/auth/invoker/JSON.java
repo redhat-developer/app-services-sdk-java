@@ -2,7 +2,6 @@ package com.openshift.cloud.api.kas.auth.invoker;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.*;
-import org.openapitools.jackson.nullable.JsonNullableModule;
 import com.fasterxml.jackson.datatype.jsr310.*;
 
 import java.text.DateFormat;
@@ -22,8 +21,6 @@ public class JSON implements ContextResolver<ObjectMapper> {
     mapper.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
     mapper.enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING);
     mapper.setDateFormat(new RFC3339DateFormat());
-    JsonNullableModule jnm = new JsonNullableModule();
-    mapper.registerModule(jnm);
     mapper.registerModule(new JavaTimeModule());
   }
 

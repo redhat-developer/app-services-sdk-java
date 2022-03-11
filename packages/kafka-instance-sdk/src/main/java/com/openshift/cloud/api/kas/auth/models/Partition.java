@@ -25,10 +25,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -55,7 +51,7 @@ public class Partition {
   private List<Node> isr = null;
 
   public static final String JSON_PROPERTY_LEADER = "leader";
-  private JsonNullable<Node> leader = JsonNullable.<Node>undefined();
+  private Node leader;
 
   public Partition() { 
   }
@@ -158,8 +154,8 @@ public class Partition {
 
 
   public Partition leader(Node leader) {
-    this.leader = JsonNullable.<Node>of(leader);
     
+    this.leader = leader;
     return this;
   }
 
@@ -169,26 +165,18 @@ public class Partition {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public Node getLeader() {
-        return leader.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_LEADER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Node> getLeader_JsonNullable() {
+  public Node getLeader() {
     return leader;
   }
-  
-  @JsonProperty(JSON_PROPERTY_LEADER)
-  public void setLeader_JsonNullable(JsonNullable<Node> leader) {
-    this.leader = leader;
-  }
 
+
+  @JsonProperty(JSON_PROPERTY_LEADER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLeader(Node leader) {
-    this.leader = JsonNullable.<Node>of(leader);
+    this.leader = leader;
   }
 
 
@@ -204,23 +192,12 @@ public class Partition {
     return Objects.equals(this.partition, partition.partition) &&
         Objects.equals(this.replicas, partition.replicas) &&
         Objects.equals(this.isr, partition.isr) &&
-        equalsNullable(this.leader, partition.leader);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.leader, partition.leader);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(partition, replicas, isr, hashCodeNullable(leader));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(partition, replicas, isr, leader);
   }
 
   @Override
