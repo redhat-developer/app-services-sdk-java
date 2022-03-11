@@ -19,6 +19,8 @@ tags:
   description: Consumer Group Management
 - name: acls
   description: Access Control Management (ACLs)
+- name: records
+  description: Send and receive records interactively
 paths:
   /rest/topics:
     get:
@@ -790,6 +792,114 @@ paths:
           $ref: '#/components/responses/NotAuthorized'
         "500":
           $ref: '#/components/responses/ServerError'
+  /rest/topics/{topicName}/records:
+    get:
+      tags:
+      - records
+      summary: Consume records from a topic
+      description: "Consume a limited number of records from a topic, optionally specifying\
+        \ a partition and an absolute offset or timestamp as the starting point for\
+        \ message retrieval."
+      operationId: consumeRecords
+      parameters:
+      - name: topicName
+        in: path
+        description: Topic name
+        required: true
+        schema:
+          type: string
+      - name: include
+        in: query
+        description: List of properties to include for each record in the response
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecordIncludedProperty'
+        explode: false
+      - name: limit
+        in: query
+        description: Limit the number of records fetched and returned
+        schema:
+          format: int32
+          default: "20"
+          type: integer
+      - name: offset
+        in: query
+        description: "Retrieve messages with an offset equal to or greater than this\
+          \ offset. If both `timestamp` and `offset` are requested, `timestamp` is\
+          \ given preference."
+        schema:
+          format: int32
+          type: integer
+      - name: partition
+        in: query
+        description: Retrieve messages only from this partition
+        schema:
+          format: int32
+          type: integer
+      - name: timestamp
+        in: query
+        description: "Retrieve messages with a timestamp equal to or later than this\
+          \ timestamp. If both `timestamp` and `offset` are requested, `timestamp`\
+          \ is given preference."
+        schema:
+          format: date-time
+      responses:
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/NotAuthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/ServerError'
+        "503":
+          $ref: '#/components/responses/ServiceUnavailable'
+        "200":
+          description: List of records matching the request query parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordList'
+    post:
+      tags:
+      - records
+      summary: Send a record to a topic
+      description: Produce (write) a single record to a topic.
+      operationId: produceRecord
+      parameters:
+      - name: topicName
+        in: path
+        description: Topic name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Record'
+            examples:
+              RecordProduceExample:
+                $ref: '#/components/examples/RecordProduceExample'
+        required: true
+      responses:
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "401":
+          $ref: '#/components/responses/NotAuthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
+        "500":
+          $ref: '#/components/responses/ServerError'
+        "503":
+          $ref: '#/components/responses/ServiceUnavailable'
+        "201":
+          description: Record was successfully sent to the topic
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
 components:
   schemas:
     AclBinding:
@@ -1303,6 +1413,81 @@ components:
         - id: 1
         leader:
           id: 1
+    Record:
+      title: Record
+      description: An individual record consumed from a topic or produced to a topic
+      required:
+      - value
+      type: object
+      properties:
+        partition:
+          format: int32
+          description: The record's partition within the topic
+          type: integer
+        offset:
+          format: int64
+          description: The record's offset within the topic partition
+          type: integer
+          readOnly: true
+        timestamp:
+          format: date-time
+          description: "Timestamp associated with the record. The type is indicated\
+            \ by `timestampType`. When producing a record, this value will be used\
+            \ as the record's `CREATE_TIME`."
+          type: string
+        timestampType:
+          description: Type of timestamp associated with the record
+          type: string
+          readOnly: true
+        headers:
+          description: "Record headers, key/value pairs"
+          type: object
+          additionalProperties:
+            type: string
+        key:
+          description: Record key
+          type: string
+        value:
+          description: Record value
+          type: string
+          nullable: false
+    RecordIncludedProperty:
+      enum:
+      - partition
+      - offset
+      - timestamp
+      - timestampType
+      - headers
+      - key
+      - value
+      type: string
+    RecordList:
+      title: Record List
+      description: A page of records consumed from a topic
+      required:
+      - items
+      - total
+      type: object
+      properties:
+        total:
+          format: int32
+          description: Total number of records returned in this request. This value
+            does not indicate the total number of records in the topic.
+          type: integer
+          nullable: false
+        size:
+          format: int32
+          description: Not used
+          type: integer
+        page:
+          format: int32
+          description: Not used
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+          nullable: false
     SortDirection:
       enum:
       - asc
@@ -1575,6 +1760,14 @@ components:
         - topic: my-topic
           partitions:
           - 0
+    RecordProduceExample:
+      description: "Sample record to produce a record to partition 1, including a\
+        \ custom header"
+      value:
+        partition: 1
+        headers:
+          X-Custom-Header: header-value-1
+        value: "{ \"examplekey\": \"example-value\" }"
   securitySchemes:
     Bearer:
       type: oauth2
