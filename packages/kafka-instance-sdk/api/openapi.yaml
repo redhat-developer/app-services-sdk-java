@@ -18,6 +18,8 @@ tags:
   name: groups
 - description: Access Control Management (ACLs)
   name: acls
+- description: Send and receive records interactively
+  name: records
 paths:
   /rest/topics:
     get:
@@ -1180,6 +1182,190 @@ paths:
       tags:
       - acls
       x-accepts: application/json
+  /rest/topics/{topicName}/records:
+    get:
+      description: Consume a limited number of records from a topic, optionally specifying
+        a partition and an absolute offset or timestamp as the starting point for
+        message retrieval.
+      operationId: consumeRecords
+      parameters:
+      - description: Topic name
+        explode: false
+        in: path
+        name: topicName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: List of properties to include for each record in the response
+        explode: false
+        in: query
+        name: include
+        required: false
+        schema:
+          items:
+            $ref: '#/components/schemas/RecordIncludedProperty'
+          type: array
+        style: form
+      - description: Limit the number of records fetched and returned
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Retrieve messages with an offset equal to or greater than this
+          offset. If both `timestamp` and `offset` are requested, `timestamp` is given
+          preference.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Retrieve messages only from this partition
+        explode: true
+        in: query
+        name: partition
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Retrieve messages with a timestamp equal to or later than this
+          timestamp. If both `timestamp` and `offset` are requested, `timestamp` is
+          given preference.
+        explode: true
+        in: query
+        name: timestamp
+        required: false
+        schema:
+          format: date-time
+        style: form
+      responses:
+        "400":
+          content:
+            application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordList'
+          description: List of records matching the request query parameters.
+      summary: Consume records from a topic
+      tags:
+      - records
+      x-accepts: application/json
+    post:
+      description: Produce (write) a single record to a topic.
+      operationId: produceRecord
+      parameters:
+      - description: Topic name
+        explode: false
+        in: path
+        name: topicName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              RecordProduceExample:
+                $ref: '#/components/examples/RecordProduceExample'
+            schema:
+              $ref: '#/components/schemas/Record'
+        required: true
+      responses:
+        "400":
+          content:
+            application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+          description: Record was successfully sent to the topic
+      summary: Send a record to a topic
+      tags:
+      - records
+      x-contentType: application/json
+      x-accepts: application/json
 components:
   examples:
     NewTopicExample:
@@ -1234,6 +1420,14 @@ components:
         - topic: my-topic
           partitions:
           - 0
+    RecordProduceExample:
+      description: Sample record to produce a record to partition 1, including a custom
+        header
+      value:
+        partition: 1
+        headers:
+          X-Custom-Header: header-value-1
+        value: '{ "examplekey": "example-value" }'
   responses:
     BadRequest:
       content:
@@ -1827,6 +2021,111 @@ components:
           - description: Node that is the leader for this partition.
       required:
       - partition
+      type: object
+    Record:
+      description: An individual record consumed from a topic or produced to a topic
+      example:
+        headers:
+          key: headers
+        partition: 5
+        offset: 5
+        timestampType: timestampType
+        value: value
+        key: key
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        partition:
+          description: The record's partition within the topic
+          format: int32
+          type: integer
+        offset:
+          description: The record's offset within the topic partition
+          format: int64
+          readOnly: true
+          type: integer
+        timestamp:
+          description: Timestamp associated with the record. The type is indicated
+            by `timestampType`. When producing a record, this value will be used as
+            the record's `CREATE_TIME`.
+          format: date-time
+          type: string
+        timestampType:
+          description: Type of timestamp associated with the record
+          readOnly: true
+          type: string
+        headers:
+          additionalProperties:
+            type: string
+          description: Record headers, key/value pairs
+          type: object
+        key:
+          description: Record key
+          type: string
+        value:
+          description: Record value
+          nullable: false
+          type: string
+      required:
+      - value
+      title: Record
+      type: object
+    RecordIncludedProperty:
+      enum:
+      - partition
+      - offset
+      - timestamp
+      - timestampType
+      - headers
+      - key
+      - value
+      type: string
+    RecordList:
+      description: A page of records consumed from a topic
+      example:
+        total: 0
+        size: 6
+        page: 1
+        items:
+        - headers:
+            key: headers
+          partition: 5
+          offset: 5
+          timestampType: timestampType
+          value: value
+          key: key
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - headers:
+            key: headers
+          partition: 5
+          offset: 5
+          timestampType: timestampType
+          value: value
+          key: key
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        total:
+          description: Total number of records returned in this request. This value
+            does not indicate the total number of records in the topic.
+          format: int32
+          nullable: false
+          type: integer
+        size:
+          description: Not used
+          format: int32
+          type: integer
+        page:
+          description: Not used
+          format: int32
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/Record'
+          nullable: false
+          type: array
+      required:
+      - items
+      - total
+      title: Record List
       type: object
     SortDirection:
       enum:

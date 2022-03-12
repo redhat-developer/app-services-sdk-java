@@ -124,6 +124,8 @@ Class | Method | HTTP request | Description
 *GroupsApi* | [**getConsumerGroupById**](docs/GroupsApi.md#getConsumerGroupById) | **GET** /rest/consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
 *GroupsApi* | [**getConsumerGroups**](docs/GroupsApi.md#getConsumerGroups) | **GET** /rest/consumer-groups | List of consumer groups in the Kafka instance.
 *GroupsApi* | [**resetConsumerGroupOffset**](docs/GroupsApi.md#resetConsumerGroupOffset) | **POST** /rest/consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
+*RecordsApi* | [**consumeRecords**](docs/RecordsApi.md#consumeRecords) | **GET** /rest/topics/{topicName}/records | Consume records from a topic
+*RecordsApi* | [**produceRecord**](docs/RecordsApi.md#produceRecord) | **POST** /rest/topics/{topicName}/records | Send a record to a topic
 *TopicsApi* | [**createTopic**](docs/TopicsApi.md#createTopic) | **POST** /rest/topics | Creates a new topic
 *TopicsApi* | [**deleteTopic**](docs/TopicsApi.md#deleteTopic) | **DELETE** /rest/topics/{topicName} | Deletes a topic
 *TopicsApi* | [**getTopic**](docs/TopicsApi.md#getTopic) | **GET** /rest/topics/{topicName} | Retrieves a single topic
@@ -160,6 +162,9 @@ Class | Method | HTTP request | Description
  - [Node](docs/Node.md)
  - [OffsetType](docs/OffsetType.md)
  - [Partition](docs/Partition.md)
+ - [Record](docs/Record.md)
+ - [RecordIncludedProperty](docs/RecordIncludedProperty.md)
+ - [RecordList](docs/RecordList.md)
  - [SortDirection](docs/SortDirection.md)
  - [Topic](docs/Topic.md)
  - [TopicOrderKey](docs/TopicOrderKey.md)
