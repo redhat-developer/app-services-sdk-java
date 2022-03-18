@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteConsumerGroupById**](GroupsApi.md#deleteConsumerGroupById) | **DELETE** /rest/consumer-groups/{consumerGroupId} | Delete a consumer group.
-[**getConsumerGroupById**](GroupsApi.md#getConsumerGroupById) | **GET** /rest/consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
-[**getConsumerGroups**](GroupsApi.md#getConsumerGroups) | **GET** /rest/consumer-groups | List of consumer groups in the Kafka instance.
-[**resetConsumerGroupOffset**](GroupsApi.md#resetConsumerGroupOffset) | **POST** /rest/consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
+[**deleteConsumerGroupById**](GroupsApi.md#deleteConsumerGroupById) | **DELETE** /api/v1/consumer-groups/{consumerGroupId} | Delete a consumer group.
+[**getConsumerGroupById**](GroupsApi.md#getConsumerGroupById) | **GET** /api/v1/consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
+[**getConsumerGroups**](GroupsApi.md#getConsumerGroups) | **GET** /api/v1/consumer-groups | List of consumer groups in the Kafka instance.
+[**resetConsumerGroupOffset**](GroupsApi.md#resetConsumerGroupOffset) | **POST** /api/v1/consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
 
 
 

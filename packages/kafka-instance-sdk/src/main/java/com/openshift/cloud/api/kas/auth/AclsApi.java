@@ -57,7 +57,7 @@ public class AclsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/acls".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/v1/acls".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -100,7 +100,7 @@ public class AclsApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/rest/acls".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/v1/acls".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -143,7 +143,7 @@ public class AclsApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/rest/acls/resource-operations".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/v1/acls/resource-operations".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -190,7 +190,7 @@ public class AclsApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/rest/acls".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/v1/acls".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();

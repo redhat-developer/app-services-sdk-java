@@ -5,7 +5,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Admin REST API
-  version: 0.7.1-SNAPSHOT
+  version: 0.8.1-SNAPSHOT
 servers:
 - description: Kafka Admin REST API
   url: /
@@ -21,7 +21,7 @@ tags:
 - description: Send and receive records interactively
   name: records
 paths:
-  /rest/topics:
+  /api/v1/topics:
     get:
       description: Returns a list of all of the available topics, or the list of topics
         that meet the request query parameters. The topics returned are limited to
@@ -182,7 +182,7 @@ paths:
       - topics
       x-contentType: application/json
       x-accepts: application/json
-  /rest/topics/{topicName}:
+  /api/v1/topics/{topicName}:
     delete:
       description: Deletes the topic with the specified name.
       operationId: deleteTopic
@@ -359,7 +359,7 @@ paths:
       - topics
       x-contentType: application/json
       x-accepts: application/json
-  /rest/consumer-groups:
+  /api/v1/consumer-groups:
     get:
       description: Returns a list of all consumer groups for a particular Kafka instance.
         The consumer groups returned are limited to those records the requestor is
@@ -495,7 +495,7 @@ paths:
       tags:
       - groups
       x-accepts: application/json
-  /rest/consumer-groups/{consumerGroupId}:
+  /api/v1/consumer-groups/{consumerGroupId}:
     delete:
       description: Delete a consumer group, along with its consumers.
       operationId: deleteConsumerGroupById
@@ -640,7 +640,7 @@ paths:
       tags:
       - groups
       x-accepts: application/json
-  /rest/consumer-groups/{consumerGroupId}/reset-offset:
+  /api/v1/consumer-groups/{consumerGroupId}/reset-offset:
     post:
       description: Reset the offset for a particular consumer group.
       operationId: resetConsumerGroupOffset
@@ -718,7 +718,7 @@ paths:
       - groups
       x-contentType: application/json
       x-accepts: application/json
-  /rest/acls:
+  /api/v1/acls:
     delete:
       description: Deletes ACL bindings that match the query parameters.
       operationId: deleteAcls
@@ -1137,7 +1137,7 @@ paths:
       - acls
       x-contentType: application/json
       x-accepts: application/json
-  /rest/acls/resource-operations:
+  /api/v1/acls/resource-operations:
     get:
       description: Retrieve the resources and associated operations that may have
         ACLs configured.
@@ -1182,7 +1182,7 @@ paths:
       tags:
       - acls
       x-accepts: application/json
-  /rest/topics/{topicName}/records:
+  /api/v1/topics/{topicName}/records:
     get:
       description: Consume a limited number of records from a topic, optionally specifying
         a partition and an absolute offset or timestamp as the starting point for

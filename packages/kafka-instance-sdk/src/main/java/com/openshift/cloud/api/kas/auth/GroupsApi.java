@@ -56,7 +56,7 @@ public class GroupsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/v1/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "consumerGroupId" + "\\}", apiClient.escapeString(consumerGroupId.toString()));
 
     // query params
@@ -104,7 +104,7 @@ public class GroupsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/v1/consumer-groups/{consumerGroupId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "consumerGroupId" + "\\}", apiClient.escapeString(consumerGroupId.toString()));
 
     // query params
@@ -152,7 +152,7 @@ public class GroupsApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/rest/consumer-groups".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/v1/consumer-groups".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -207,7 +207,7 @@ public class GroupsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/consumer-groups/{consumerGroupId}/reset-offset".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/v1/consumer-groups/{consumerGroupId}/reset-offset".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "consumerGroupId" + "\\}", apiClient.escapeString(consumerGroupId.toString()));
 
     // query params
