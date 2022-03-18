@@ -6,7 +6,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  version: 0.7.1-SNAPSHOT
+  version: 0.8.1-SNAPSHOT
 servers:
 - url: /
   description: Kafka Admin REST API
@@ -22,7 +22,7 @@ tags:
 - name: records
   description: Send and receive records interactively
 paths:
-  /rest/topics:
+  /api/v1/topics:
     get:
       tags:
       - topics
@@ -132,7 +132,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Topic'
-  /rest/topics/{topicName}:
+  /api/v1/topics/{topicName}:
     get:
       tags:
       - topics
@@ -227,7 +227,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Topic'
-  /rest/consumer-groups:
+  /api/v1/consumer-groups:
     get:
       tags:
       - groups
@@ -338,7 +338,7 @@ paths:
           $ref: '#/components/responses/ServerError'
         "503":
           $ref: '#/components/responses/ServiceUnavailable'
-  /rest/consumer-groups/{consumerGroupId}:
+  /api/v1/consumer-groups/{consumerGroupId}:
     get:
       tags:
       - groups
@@ -427,7 +427,7 @@ paths:
           $ref: '#/components/responses/ServerError'
         "503":
           $ref: '#/components/responses/ServiceUnavailable'
-  /rest/consumer-groups/{consumerGroupId}/reset-offset:
+  /api/v1/consumer-groups/{consumerGroupId}/reset-offset:
     post:
       tags:
       - groups
@@ -469,7 +469,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConsumerGroupResetOffsetResult'
-  /rest/acls:
+  /api/v1/acls:
     get:
       tags:
       - acls
@@ -756,7 +756,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AclBindingListPage'
-  /rest/acls/resource-operations:
+  /api/v1/acls/resource-operations:
     get:
       tags:
       - acls
@@ -792,7 +792,7 @@ paths:
           $ref: '#/components/responses/NotAuthorized'
         "500":
           $ref: '#/components/responses/ServerError'
-  /rest/topics/{topicName}/records:
+  /api/v1/topics/{topicName}/records:
     get:
       tags:
       - records
