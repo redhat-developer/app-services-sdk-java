@@ -2,7 +2,7 @@
 
 Kafka Admin REST API
 
-- API version: 0.7.1-SNAPSHOT
+- API version: 0.8.1-SNAPSHOT
 
 An API to provide REST endpoints for query Kafka for admin operations
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-instance-sdk</artifactId>
-  <version>0.7.1-SNAPSHOT</version>
+  <version>0.8.1-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-instance-sdk:0.7.1-SNAPSHOT"
+     implementation "com.redhat.cloud:kafka-instance-sdk:0.8.1-SNAPSHOT"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-instance-sdk-0.7.1-SNAPSHOT.jar`
+- `target/kafka-instance-sdk-0.8.1-SNAPSHOT.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -116,21 +116,21 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AclsApi* | [**createAcl**](docs/AclsApi.md#createAcl) | **POST** /rest/acls | Create ACL binding
-*AclsApi* | [**deleteAcls**](docs/AclsApi.md#deleteAcls) | **DELETE** /rest/acls | Delete ACL bindings
-*AclsApi* | [**getAclResourceOperations**](docs/AclsApi.md#getAclResourceOperations) | **GET** /rest/acls/resource-operations | Retrieve allowed ACL resources and operations
-*AclsApi* | [**getAcls**](docs/AclsApi.md#getAcls) | **GET** /rest/acls | List ACL bindings
-*GroupsApi* | [**deleteConsumerGroupById**](docs/GroupsApi.md#deleteConsumerGroupById) | **DELETE** /rest/consumer-groups/{consumerGroupId} | Delete a consumer group.
-*GroupsApi* | [**getConsumerGroupById**](docs/GroupsApi.md#getConsumerGroupById) | **GET** /rest/consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
-*GroupsApi* | [**getConsumerGroups**](docs/GroupsApi.md#getConsumerGroups) | **GET** /rest/consumer-groups | List of consumer groups in the Kafka instance.
-*GroupsApi* | [**resetConsumerGroupOffset**](docs/GroupsApi.md#resetConsumerGroupOffset) | **POST** /rest/consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
-*RecordsApi* | [**consumeRecords**](docs/RecordsApi.md#consumeRecords) | **GET** /rest/topics/{topicName}/records | Consume records from a topic
-*RecordsApi* | [**produceRecord**](docs/RecordsApi.md#produceRecord) | **POST** /rest/topics/{topicName}/records | Send a record to a topic
-*TopicsApi* | [**createTopic**](docs/TopicsApi.md#createTopic) | **POST** /rest/topics | Creates a new topic
-*TopicsApi* | [**deleteTopic**](docs/TopicsApi.md#deleteTopic) | **DELETE** /rest/topics/{topicName} | Deletes a topic
-*TopicsApi* | [**getTopic**](docs/TopicsApi.md#getTopic) | **GET** /rest/topics/{topicName} | Retrieves a single topic
-*TopicsApi* | [**getTopics**](docs/TopicsApi.md#getTopics) | **GET** /rest/topics | Retrieves a list of topics
-*TopicsApi* | [**updateTopic**](docs/TopicsApi.md#updateTopic) | **PATCH** /rest/topics/{topicName} | Updates a single topic
+*AclsApi* | [**createAcl**](docs/AclsApi.md#createAcl) | **POST** /api/v1/acls | Create ACL binding
+*AclsApi* | [**deleteAcls**](docs/AclsApi.md#deleteAcls) | **DELETE** /api/v1/acls | Delete ACL bindings
+*AclsApi* | [**getAclResourceOperations**](docs/AclsApi.md#getAclResourceOperations) | **GET** /api/v1/acls/resource-operations | Retrieve allowed ACL resources and operations
+*AclsApi* | [**getAcls**](docs/AclsApi.md#getAcls) | **GET** /api/v1/acls | List ACL bindings
+*GroupsApi* | [**deleteConsumerGroupById**](docs/GroupsApi.md#deleteConsumerGroupById) | **DELETE** /api/v1/consumer-groups/{consumerGroupId} | Delete a consumer group.
+*GroupsApi* | [**getConsumerGroupById**](docs/GroupsApi.md#getConsumerGroupById) | **GET** /api/v1/consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
+*GroupsApi* | [**getConsumerGroups**](docs/GroupsApi.md#getConsumerGroups) | **GET** /api/v1/consumer-groups | List of consumer groups in the Kafka instance.
+*GroupsApi* | [**resetConsumerGroupOffset**](docs/GroupsApi.md#resetConsumerGroupOffset) | **POST** /api/v1/consumer-groups/{consumerGroupId}/reset-offset | Reset the offset for a consumer group.
+*RecordsApi* | [**consumeRecords**](docs/RecordsApi.md#consumeRecords) | **GET** /api/v1/topics/{topicName}/records | Consume records from a topic
+*RecordsApi* | [**produceRecord**](docs/RecordsApi.md#produceRecord) | **POST** /api/v1/topics/{topicName}/records | Send a record to a topic
+*TopicsApi* | [**createTopic**](docs/TopicsApi.md#createTopic) | **POST** /api/v1/topics | Creates a new topic
+*TopicsApi* | [**deleteTopic**](docs/TopicsApi.md#deleteTopic) | **DELETE** /api/v1/topics/{topicName} | Deletes a topic
+*TopicsApi* | [**getTopic**](docs/TopicsApi.md#getTopic) | **GET** /api/v1/topics/{topicName} | Retrieves a single topic
+*TopicsApi* | [**getTopics**](docs/TopicsApi.md#getTopics) | **GET** /api/v1/topics | Retrieves a list of topics
+*TopicsApi* | [**updateTopic**](docs/TopicsApi.md#updateTopic) | **PATCH** /api/v1/topics/{topicName} | Updates a single topic
 
 
 ## Documentation for Models

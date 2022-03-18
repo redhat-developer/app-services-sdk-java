@@ -58,7 +58,7 @@ public class RecordsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/topics/{topicName}/records".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/v1/topics/{topicName}/records".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "topicName" + "\\}", apiClient.escapeString(topicName.toString()));
 
     // query params
@@ -113,7 +113,7 @@ public class RecordsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/topics/{topicName}/records".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/v1/topics/{topicName}/records".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "topicName" + "\\}", apiClient.escapeString(topicName.toString()));
 
     // query params

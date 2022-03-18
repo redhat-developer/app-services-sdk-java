@@ -56,7 +56,7 @@ public class TopicsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/topics".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/v1/topics".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -98,7 +98,7 @@ public class TopicsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/topics/{topicName}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/v1/topics/{topicName}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "topicName" + "\\}", apiClient.escapeString(topicName.toString()));
 
     // query params
@@ -142,7 +142,7 @@ public class TopicsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/topics/{topicName}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/v1/topics/{topicName}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "topicName" + "\\}", apiClient.escapeString(topicName.toString()));
 
     // query params
@@ -185,7 +185,7 @@ public class TopicsApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/rest/topics".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/v1/topics".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -239,7 +239,7 @@ public class TopicsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/rest/topics/{topicName}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/v1/topics/{topicName}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "topicName" + "\\}", apiClient.escapeString(topicName.toString()));
 
     // query params

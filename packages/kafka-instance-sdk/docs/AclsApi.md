@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAcl**](AclsApi.md#createAcl) | **POST** /rest/acls | Create ACL binding
-[**deleteAcls**](AclsApi.md#deleteAcls) | **DELETE** /rest/acls | Delete ACL bindings
-[**getAclResourceOperations**](AclsApi.md#getAclResourceOperations) | **GET** /rest/acls/resource-operations | Retrieve allowed ACL resources and operations
-[**getAcls**](AclsApi.md#getAcls) | **GET** /rest/acls | List ACL bindings
+[**createAcl**](AclsApi.md#createAcl) | **POST** /api/v1/acls | Create ACL binding
+[**deleteAcls**](AclsApi.md#deleteAcls) | **DELETE** /api/v1/acls | Delete ACL bindings
+[**getAclResourceOperations**](AclsApi.md#getAclResourceOperations) | **GET** /api/v1/acls/resource-operations | Retrieve allowed ACL resources and operations
+[**getAcls**](AclsApi.md#getAcls) | **GET** /api/v1/acls | List ACL bindings
 
 
 

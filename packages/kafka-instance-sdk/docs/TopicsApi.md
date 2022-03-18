@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createTopic**](TopicsApi.md#createTopic) | **POST** /rest/topics | Creates a new topic
-[**deleteTopic**](TopicsApi.md#deleteTopic) | **DELETE** /rest/topics/{topicName} | Deletes a topic
-[**getTopic**](TopicsApi.md#getTopic) | **GET** /rest/topics/{topicName} | Retrieves a single topic
-[**getTopics**](TopicsApi.md#getTopics) | **GET** /rest/topics | Retrieves a list of topics
-[**updateTopic**](TopicsApi.md#updateTopic) | **PATCH** /rest/topics/{topicName} | Updates a single topic
+[**createTopic**](TopicsApi.md#createTopic) | **POST** /api/v1/topics | Creates a new topic
+[**deleteTopic**](TopicsApi.md#deleteTopic) | **DELETE** /api/v1/topics/{topicName} | Deletes a topic
+[**getTopic**](TopicsApi.md#getTopic) | **GET** /api/v1/topics/{topicName} | Retrieves a single topic
+[**getTopics**](TopicsApi.md#getTopics) | **GET** /api/v1/topics | Retrieves a list of topics
+[**updateTopic**](TopicsApi.md#updateTopic) | **PATCH** /api/v1/topics/{topicName} | Updates a single topic
 
 
 
