@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Use Node.js  
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14.x
       - run: mkdir -p "$HOME/.local/bin"; echo "$HOME/.local/bin" >> $GITHUB_PATH
@@ -22,7 +22,7 @@ jobs:
         run: ./scripts/generate.sh
       - name: Generate Errors SDK
         run: ./scripts/errors/generate-errors.sh
-      - uses: peter-evans/create-pull-request@v3
+      - uses: peter-evans/create-pull-request@v4
         with:
           title: "chore(all): re-generate OpenAPI client(s)"
           token: "${{ secrets.CI_USER_TOKEN }}"

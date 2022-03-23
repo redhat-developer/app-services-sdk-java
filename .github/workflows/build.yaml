@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: mkdir -p "$HOME/.local/bin"; echo "$HOME/.local/bin" >> $GITHUB_PATH
     - run: wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O $HOME/.local/bin/yq && chmod +x $HOME/.local/bin/yq          
     - run: ./scripts/generate.sh
