@@ -1022,7 +1022,11 @@ components:
           type: boolean
           default: false
         supported_instance_types:
-          description: 'The Kafka instance types supported by this region.'
+          deprecated: true  
+          description:  |-
+            The Kafka instance types supported by this region.
+
+            DEPRECATION NOTICE - instance_type will be deprecated
           type: array
           items:
             type: string
@@ -1375,8 +1379,12 @@ components:
         type: string
       style: form
     instance_type:
+      deprecated: true
       name: instance_type
-      description: The Kafka instance type to filter the results by
+      description: |-
+        The Kafka instance type to filter the results by
+
+        DEPRECATION NOTICE - instance_type will be deprecated
       in: query
       schema:
         type: string
