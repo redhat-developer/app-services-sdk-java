@@ -116,6 +116,9 @@ public enum ApiErrorType {
   /** Failed to find service account*/
   ERROR_113("KAFKAS-MGMT-113"), 
 
+  /** Max limit for the service account creation has reached*/
+  ERROR_115("KAFKAS-MGMT-115"), 
+
   /** Insufficient quota*/
   ERROR_120("KAFKAS-MGMT-120"), 
 
