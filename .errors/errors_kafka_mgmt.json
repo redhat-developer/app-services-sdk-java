@@ -1,8 +1,8 @@
 {
   "kind": "ErrorList",
   "page": 1,
-  "size": 40,
-  "total": 40,
+  "size": 41,
+  "total": 41,
   "items": [
     {
       "id": "4",
@@ -255,6 +255,13 @@
       "href": "/api/kafkas_mgmt/v1/errors/113",
       "code": "KAFKAS-MGMT-113",
       "reason": "Failed to find service account"
+    },
+    {
+      "id": "115",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/115",
+      "code": "KAFKAS-MGMT-115",
+      "reason": "Max limit for the service account creation has reached"
     },
     {
       "id": "120",
