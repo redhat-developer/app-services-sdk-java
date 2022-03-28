@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Gets or Sets ConnectorClusterState
+ * Gets or Sets ConnectorNamespaceState
  */
-public enum ConnectorClusterState {
+public enum ConnectorNamespaceState {
   
   DISCONNECTED("disconnected"),
   
@@ -34,7 +34,7 @@ public enum ConnectorClusterState {
 
   private String value;
 
-  ConnectorClusterState(String value) {
+  ConnectorNamespaceState(String value) {
     this.value = value;
   }
 
@@ -49,8 +49,8 @@ public enum ConnectorClusterState {
   }
 
   @JsonCreator
-  public static ConnectorClusterState fromValue(String value) {
-    for (ConnectorClusterState b : ConnectorClusterState.values()) {
+  public static ConnectorNamespaceState fromValue(String value) {
+    for (ConnectorNamespaceState b : ConnectorNamespaceState.values()) {
       if (b.value.equals(value)) {
         return b;
       }

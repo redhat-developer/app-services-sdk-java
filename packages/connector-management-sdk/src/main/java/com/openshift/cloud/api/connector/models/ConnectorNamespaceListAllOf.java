@@ -20,52 +20,61 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.connector.models.ConnectorClusterRequestMeta;
+import com.openshift.cloud.api.connector.models.ConnectorNamespace;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Schema for the request to update a data plane cluster&#39;s name
+ * ConnectorNamespaceListAllOf
  */
-@ApiModel(description = "Schema for the request to update a data plane cluster's name")
 @JsonPropertyOrder({
-  ConnectorClusterRequest.JSON_PROPERTY_NAME
+  ConnectorNamespaceListAllOf.JSON_PROPERTY_ITEMS
 })
-@JsonTypeName("ConnectorClusterRequest")
+@JsonTypeName("ConnectorNamespaceList_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ConnectorClusterRequest {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+public class ConnectorNamespaceListAllOf {
+  public static final String JSON_PROPERTY_ITEMS = "items";
+  private List<ConnectorNamespace> items = null;
 
-  public ConnectorClusterRequest() { 
+  public ConnectorNamespaceListAllOf() { 
   }
 
-  public ConnectorClusterRequest name(String name) {
+  public ConnectorNamespaceListAllOf items(List<ConnectorNamespace> items) {
     
-    this.name = name;
+    this.items = items;
+    return this;
+  }
+
+  public ConnectorNamespaceListAllOf addItemsItem(ConnectorNamespace itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
+    this.items.add(itemsItem);
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get items
+   * @return items
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public List<ConnectorNamespace> getItems() {
+    return items;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
+  public void setItems(List<ConnectorNamespace> items) {
+    this.items = items;
   }
 
 
@@ -77,20 +86,20 @@ public class ConnectorClusterRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConnectorClusterRequest connectorClusterRequest = (ConnectorClusterRequest) o;
-    return Objects.equals(this.name, connectorClusterRequest.name);
+    ConnectorNamespaceListAllOf connectorNamespaceListAllOf = (ConnectorNamespaceListAllOf) o;
+    return Objects.equals(this.items, connectorNamespaceListAllOf.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(items);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConnectorClusterRequest {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class ConnectorNamespaceListAllOf {\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }

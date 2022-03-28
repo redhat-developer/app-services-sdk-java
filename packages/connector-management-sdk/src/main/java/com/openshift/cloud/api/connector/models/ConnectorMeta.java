@@ -24,7 +24,6 @@ import com.openshift.cloud.api.connector.models.Channel;
 import com.openshift.cloud.api.connector.models.ConnectorDesiredState;
 import com.openshift.cloud.api.connector.models.ConnectorMetaAllOf;
 import com.openshift.cloud.api.connector.models.ConnectorRequestMeta;
-import com.openshift.cloud.api.connector.models.DeploymentLocation;
 import com.openshift.cloud.api.connector.models.ObjectMeta;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -41,8 +40,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorMeta.JSON_PROPERTY_MODIFIED_AT,
   ConnectorMeta.JSON_PROPERTY_NAME,
   ConnectorMeta.JSON_PROPERTY_CONNECTOR_TYPE_ID,
+  ConnectorMeta.JSON_PROPERTY_NAMESPACE_ID,
   ConnectorMeta.JSON_PROPERTY_CHANNEL,
-  ConnectorMeta.JSON_PROPERTY_DEPLOYMENT_LOCATION,
   ConnectorMeta.JSON_PROPERTY_DESIRED_STATE,
   ConnectorMeta.JSON_PROPERTY_RESOURCE_VERSION
 })
@@ -64,11 +63,11 @@ public class ConnectorMeta {
   public static final String JSON_PROPERTY_CONNECTOR_TYPE_ID = "connector_type_id";
   private String connectorTypeId;
 
+  public static final String JSON_PROPERTY_NAMESPACE_ID = "namespace_id";
+  private String namespaceId;
+
   public static final String JSON_PROPERTY_CHANNEL = "channel";
   private Channel channel = Channel.STABLE;
-
-  public static final String JSON_PROPERTY_DEPLOYMENT_LOCATION = "deployment_location";
-  private DeploymentLocation deploymentLocation;
 
   public static final String JSON_PROPERTY_DESIRED_STATE = "desired_state";
   private ConnectorDesiredState desiredState;
@@ -214,6 +213,33 @@ public class ConnectorMeta {
   }
 
 
+  public ConnectorMeta namespaceId(String namespaceId) {
+    
+    this.namespaceId = namespaceId;
+    return this;
+  }
+
+   /**
+   * Get namespaceId
+   * @return namespaceId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_NAMESPACE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getNamespaceId() {
+    return namespaceId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAMESPACE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNamespaceId(String namespaceId) {
+    this.namespaceId = namespaceId;
+  }
+
+
   public ConnectorMeta channel(Channel channel) {
     
     this.channel = channel;
@@ -238,33 +264,6 @@ public class ConnectorMeta {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChannel(Channel channel) {
     this.channel = channel;
-  }
-
-
-  public ConnectorMeta deploymentLocation(DeploymentLocation deploymentLocation) {
-    
-    this.deploymentLocation = deploymentLocation;
-    return this;
-  }
-
-   /**
-   * Get deploymentLocation
-   * @return deploymentLocation
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_DEPLOYMENT_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public DeploymentLocation getDeploymentLocation() {
-    return deploymentLocation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEPLOYMENT_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDeploymentLocation(DeploymentLocation deploymentLocation) {
-    this.deploymentLocation = deploymentLocation;
   }
 
 
@@ -336,15 +335,15 @@ public class ConnectorMeta {
         Objects.equals(this.modifiedAt, connectorMeta.modifiedAt) &&
         Objects.equals(this.name, connectorMeta.name) &&
         Objects.equals(this.connectorTypeId, connectorMeta.connectorTypeId) &&
+        Objects.equals(this.namespaceId, connectorMeta.namespaceId) &&
         Objects.equals(this.channel, connectorMeta.channel) &&
-        Objects.equals(this.deploymentLocation, connectorMeta.deploymentLocation) &&
         Objects.equals(this.desiredState, connectorMeta.desiredState) &&
         Objects.equals(this.resourceVersion, connectorMeta.resourceVersion);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(owner, createdAt, modifiedAt, name, connectorTypeId, channel, deploymentLocation, desiredState, resourceVersion);
+    return Objects.hash(owner, createdAt, modifiedAt, name, connectorTypeId, namespaceId, channel, desiredState, resourceVersion);
   }
 
   @Override
@@ -356,8 +355,8 @@ public class ConnectorMeta {
     sb.append("    modifiedAt: ").append(toIndentedString(modifiedAt)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    connectorTypeId: ").append(toIndentedString(connectorTypeId)).append("\n");
+    sb.append("    namespaceId: ").append(toIndentedString(namespaceId)).append("\n");
     sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
-    sb.append("    deploymentLocation: ").append(toIndentedString(deploymentLocation)).append("\n");
     sb.append("    desiredState: ").append(toIndentedString(desiredState)).append("\n");
     sb.append("    resourceVersion: ").append(toIndentedString(resourceVersion)).append("\n");
     sb.append("}");

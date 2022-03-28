@@ -1,26 +1,25 @@
-# ConnectorClustersApi
+# ConnectorNamespacesApi
 
 All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createConnectorCluster**](ConnectorClustersApi.md#createConnectorCluster) | **POST** /api/connector_mgmt/v1/kafka_connector_clusters | Create a new connector cluster
-[**deleteConnectorCluster**](ConnectorClustersApi.md#deleteConnectorCluster) | **DELETE** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | Delete a connector cluster
-[**getConnectorCluster**](ConnectorClustersApi.md#getConnectorCluster) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | Get a connector cluster
-[**getConnectorClusterAddonParameters**](ConnectorClustersApi.md#getConnectorClusterAddonParameters) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}/addon_parameters | Get a connector cluster&#39;s addon parameters
-[**getConnectorClusterNamespaces**](ConnectorClustersApi.md#getConnectorClusterNamespaces) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}/namespaces | Get a connector cluster&#39;s namespaces
-[**listConnectorClusters**](ConnectorClustersApi.md#listConnectorClusters) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters | Returns a list of connector clusters
-[**updateConnectorClusterById**](ConnectorClustersApi.md#updateConnectorClusterById) | **PUT** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | udpate a connector cluster
+[**createConnectorNamespace**](ConnectorNamespacesApi.md#createConnectorNamespace) | **POST** /api/connector_mgmt/v1/kafka_connector_namespaces | Create a new connector namespace
+[**createEvaluationNamespace**](ConnectorNamespacesApi.md#createEvaluationNamespace) | **POST** /api/connector_mgmt/v1/kafka_connector_namespaces/eval | Create a new short lived evaluation connector namespace
+[**deleteConnectorNamespace**](ConnectorNamespacesApi.md#deleteConnectorNamespace) | **DELETE** /api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id} | Delete a connector namespace
+[**getConnectorNamespace**](ConnectorNamespacesApi.md#getConnectorNamespace) | **GET** /api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id} | Get a connector namespace
+[**listConnectorNamespaces**](ConnectorNamespacesApi.md#listConnectorNamespaces) | **GET** /api/connector_mgmt/v1/kafka_connector_namespaces | Returns a list of connector namespaces
+[**updateConnectorNamespaceById**](ConnectorNamespacesApi.md#updateConnectorNamespaceById) | **PATCH** /api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id} | udpate a connector namespace
 
 
 
-## createConnectorCluster
+## createConnectorNamespace
 
-> ConnectorCluster createConnectorCluster(async, connectorClusterRequest)
+> ConnectorNamespace createConnectorNamespace(connectorNamespaceRequest)
 
-Create a new connector cluster
+Create a new connector namespace
 
-Create a new connector cluster
+Create a new connector namespace
 
 ### Example
 
@@ -31,7 +30,7 @@ import com.openshift.cloud.api.connector.invoker.ApiException;
 import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
-import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -42,14 +41,13 @@ public class Example {
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setBearerToken("BEARER TOKEN");
 
-        ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
-        Boolean async = true; // Boolean | Perform the action in an asynchronous manner
-        ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Connector cluster data
+        ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
+        ConnectorNamespaceRequest connectorNamespaceRequest = new ConnectorNamespaceRequest(); // ConnectorNamespaceRequest | Connector namespace data
         try {
-            ConnectorCluster result = apiInstance.createConnectorCluster(async, connectorClusterRequest);
+            ConnectorNamespace result = apiInstance.createConnectorNamespace(connectorNamespaceRequest);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ConnectorClustersApi#createConnectorCluster");
+            System.err.println("Exception when calling ConnectorNamespacesApi#createConnectorNamespace");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -64,12 +62,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **async** | **Boolean**| Perform the action in an asynchronous manner |
- **connectorClusterRequest** | [**ConnectorClusterRequest**](ConnectorClusterRequest.md)| Connector cluster data |
+ **connectorNamespaceRequest** | [**ConnectorNamespaceRequest**](ConnectorNamespaceRequest.md)| Connector namespace data |
 
 ### Return type
 
-[**ConnectorCluster**](ConnectorCluster.md)
+[**ConnectorNamespace**](ConnectorNamespace.md)
 
 ### Authorization
 
@@ -88,16 +85,16 @@ Name | Type | Description  | Notes
 | **400** | Validation errors occurred |  -  |
 | **401** | Auth token is invalid |  -  |
 | **404** | The requested resource doesn&#39;t exist |  -  |
-| **500** | An unexpected error occurred creating the connector cluster |  -  |
+| **500** | An unexpected error occurred creating the connector namespace |  -  |
 
 
-## deleteConnectorCluster
+## createEvaluationNamespace
 
-> Error deleteConnectorCluster(connectorClusterId)
+> ConnectorNamespace createEvaluationNamespace(connectorNamespaceEvalRequest)
 
-Delete a connector cluster
+Create a new short lived evaluation connector namespace
 
-Delete a connector cluster
+Create a new evaluation connector namespace
 
 ### Example
 
@@ -108,7 +105,7 @@ import com.openshift.cloud.api.connector.invoker.ApiException;
 import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
-import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -119,13 +116,13 @@ public class Example {
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setBearerToken("BEARER TOKEN");
 
-        ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
-        String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
+        ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
+        ConnectorNamespaceEvalRequest connectorNamespaceEvalRequest = new ConnectorNamespaceEvalRequest(); // ConnectorNamespaceEvalRequest | Connector namespace data
         try {
-            Error result = apiInstance.deleteConnectorCluster(connectorClusterId);
+            ConnectorNamespace result = apiInstance.createEvaluationNamespace(connectorNamespaceEvalRequest);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ConnectorClustersApi#deleteConnectorCluster");
+            System.err.println("Exception when calling ConnectorNamespacesApi#createEvaluationNamespace");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -140,7 +137,82 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connectorClusterId** | **String**| The id of the connector cluster |
+ **connectorNamespaceEvalRequest** | [**ConnectorNamespaceEvalRequest**](ConnectorNamespaceEvalRequest.md)| Connector namespace data |
+
+### Return type
+
+[**ConnectorNamespace**](ConnectorNamespace.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **202** | Accepted |  -  |
+| **400** | Validation errors occurred |  -  |
+| **401** | Auth token is invalid |  -  |
+| **404** | The requested resource doesn&#39;t exist |  -  |
+| **500** | An unexpected error occurred creating the connector namespace |  -  |
+
+
+## deleteConnectorNamespace
+
+> Error deleteConnectorNamespace(connectorNamespaceId)
+
+Delete a connector namespace
+
+Delete a connector namespace
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.connector.invoker.ApiClient;
+import com.openshift.cloud.api.connector.invoker.ApiException;
+import com.openshift.cloud.api.connector.invoker.Configuration;
+import com.openshift.cloud.api.connector.invoker.auth.*;
+import com.openshift.cloud.api.connector.invoker.models.*;
+import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+        
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
+        String connectorNamespaceId = "connectorNamespaceId_example"; // String | The id of the connector namespace
+        try {
+            Error result = apiInstance.deleteConnectorNamespace(connectorNamespaceId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectorNamespacesApi#deleteConnectorNamespace");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **connectorNamespaceId** | **String**| The id of the connector namespace |
 
 ### Return type
 
@@ -165,13 +237,13 @@ Name | Type | Description  | Notes
 | **500** | Unexpected error occurred |  -  |
 
 
-## getConnectorCluster
+## getConnectorNamespace
 
-> ConnectorCluster getConnectorCluster(connectorClusterId)
+> ConnectorNamespace getConnectorNamespace(connectorNamespaceId)
 
-Get a connector cluster
+Get a connector namespace
 
-Get a connector cluster
+Get a connector namespace
 
 ### Example
 
@@ -182,7 +254,7 @@ import com.openshift.cloud.api.connector.invoker.ApiException;
 import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
-import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -193,13 +265,13 @@ public class Example {
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setBearerToken("BEARER TOKEN");
 
-        ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
-        String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
+        ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
+        String connectorNamespaceId = "connectorNamespaceId_example"; // String | The id of the connector namespace
         try {
-            ConnectorCluster result = apiInstance.getConnectorCluster(connectorClusterId);
+            ConnectorNamespace result = apiInstance.getConnectorNamespace(connectorNamespaceId);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ConnectorClustersApi#getConnectorCluster");
+            System.err.println("Exception when calling ConnectorNamespacesApi#getConnectorNamespace");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -214,11 +286,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connectorClusterId** | **String**| The id of the connector cluster |
+ **connectorNamespaceId** | **String**| The id of the connector namespace |
 
 ### Return type
 
-[**ConnectorCluster**](ConnectorCluster.md)
+[**ConnectorNamespace**](ConnectorNamespace.md)
 
 ### Authorization
 
@@ -233,19 +305,19 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The connector cluster matching the request |  -  |
+| **200** | The connector namespace matching the request |  -  |
 | **401** | Auth token is invalid |  -  |
-| **404** | No matching connector cluster type exists |  -  |
+| **404** | No matching connector namespace type exists |  -  |
 | **500** | Unexpected error occurred |  -  |
 
 
-## getConnectorClusterAddonParameters
+## listConnectorNamespaces
 
-> List&lt;AddonParameter&gt; getConnectorClusterAddonParameters(connectorClusterId)
+> ConnectorNamespaceList listConnectorNamespaces(page, size, orderBy, search)
 
-Get a connector cluster&#39;s addon parameters
+Returns a list of connector namespaces
 
-Get a connector cluster&#39;s addon parameters
+Returns a list of connector namespaces
 
 ### Example
 
@@ -256,7 +328,7 @@ import com.openshift.cloud.api.connector.invoker.ApiException;
 import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
-import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -267,91 +339,16 @@ public class Example {
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setBearerToken("BEARER TOKEN");
 
-        ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
-        String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
-        try {
-            List<AddonParameter> result = apiInstance.getConnectorClusterAddonParameters(connectorClusterId);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ConnectorClustersApi#getConnectorClusterAddonParameters");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **connectorClusterId** | **String**| The id of the connector cluster |
-
-### Return type
-
-[**List&lt;AddonParameter&gt;**](AddonParameter.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | The parameters that should be used to configure the managed connector addon on the cluster. |  -  |
-| **401** | Auth token is invalid |  -  |
-| **404** | No matching connector cluster type exists |  -  |
-| **500** | Unexpected error occurred |  -  |
-
-
-## getConnectorClusterNamespaces
-
-> ConnectorNamespaceList getConnectorClusterNamespaces(connectorClusterId, page, size, orderBy, search)
-
-Get a connector cluster&#39;s namespaces
-
-Get a connector cluster&#39;s namespaces
-
-### Example
-
-```java
-// Import classes:
-import com.openshift.cloud.api.connector.invoker.ApiClient;
-import com.openshift.cloud.api.connector.invoker.ApiException;
-import com.openshift.cloud.api.connector.invoker.Configuration;
-import com.openshift.cloud.api.connector.invoker.auth.*;
-import com.openshift.cloud.api.connector.invoker.models.*;
-import com.openshift.cloud.api.connector.ConnectorClustersApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.openshift.com");
-        
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
-
-        ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
-        String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
+        ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
         String page = "1"; // String | Page index
         String size = "100"; // String | Number of items in each page
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ConnectorNamespaceList result = apiInstance.getConnectorClusterNamespaces(connectorClusterId, page, size, orderBy, search);
+            ConnectorNamespaceList result = apiInstance.listConnectorNamespaces(page, size, orderBy, search);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ConnectorClustersApi#getConnectorClusterNamespaces");
+            System.err.println("Exception when calling ConnectorNamespacesApi#listConnectorNamespaces");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -366,7 +363,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connectorClusterId** | **String**| The id of the connector cluster |
  **page** | **String**| Page index | [optional]
  **size** | **String**| Number of items in each page | [optional]
  **orderBy** | **String**| Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;ConnectorType&#x60; fields. For example, to return all Connector types ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Connector types ordered by their name _and_ version, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, version asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. | [optional]
@@ -389,19 +385,18 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The namespaces visible to user in the cluster. |  -  |
+| **200** | A list of connector namespaces |  -  |
 | **401** | Auth token is invalid |  -  |
-| **404** | No matching connector cluster type exists |  -  |
 | **500** | Unexpected error occurred |  -  |
 
 
-## listConnectorClusters
+## updateConnectorNamespaceById
 
-> ConnectorClusterList listConnectorClusters(page, size)
+> updateConnectorNamespaceById(connectorNamespaceId, connectorNamespacePatchRequest)
 
-Returns a list of connector clusters
+udpate a connector namespace
 
-Returns a list of connector clusters
+udpate a connector namespace
 
 ### Example
 
@@ -412,7 +407,7 @@ import com.openshift.cloud.api.connector.invoker.ApiException;
 import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
-import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -423,14 +418,13 @@ public class Example {
         HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
         Bearer.setBearerToken("BEARER TOKEN");
 
-        ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
-        String page = "1"; // String | Page index
-        String size = "100"; // String | Number of items in each page
+        ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
+        String connectorNamespaceId = "connectorNamespaceId_example"; // String | The id of the connector namespace
+        ConnectorNamespacePatchRequest connectorNamespacePatchRequest = new ConnectorNamespacePatchRequest(); // ConnectorNamespacePatchRequest | Data to update namespace with
         try {
-            ConnectorClusterList result = apiInstance.listConnectorClusters(page, size);
-            System.out.println(result);
+            apiInstance.updateConnectorNamespaceById(connectorNamespaceId, connectorNamespacePatchRequest);
         } catch (ApiException e) {
-            System.err.println("Exception when calling ConnectorClustersApi#listConnectorClusters");
+            System.err.println("Exception when calling ConnectorNamespacesApi#updateConnectorNamespaceById");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -445,82 +439,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String**| Page index | [optional]
- **size** | **String**| Number of items in each page | [optional]
-
-### Return type
-
-[**ConnectorClusterList**](ConnectorClusterList.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | A list of connector clusters |  -  |
-| **401** | Auth token is invalid |  -  |
-| **500** | Unexpected error occurred |  -  |
-
-
-## updateConnectorClusterById
-
-> updateConnectorClusterById(connectorClusterId, connectorClusterRequest)
-
-udpate a connector cluster
-
-udpate a connector cluster
-
-### Example
-
-```java
-// Import classes:
-import com.openshift.cloud.api.connector.invoker.ApiClient;
-import com.openshift.cloud.api.connector.invoker.ApiException;
-import com.openshift.cloud.api.connector.invoker.Configuration;
-import com.openshift.cloud.api.connector.invoker.auth.*;
-import com.openshift.cloud.api.connector.invoker.models.*;
-import com.openshift.cloud.api.connector.ConnectorClustersApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.openshift.com");
-        
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
-
-        ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
-        String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
-        ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Data to updated connector with
-        try {
-            apiInstance.updateConnectorClusterById(connectorClusterId, connectorClusterRequest);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ConnectorClustersApi#updateConnectorClusterById");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **connectorClusterId** | **String**| The id of the connector cluster |
- **connectorClusterRequest** | [**ConnectorClusterRequest**](ConnectorClusterRequest.md)| Data to updated connector with |
+ **connectorNamespaceId** | **String**| The id of the connector namespace |
+ **connectorNamespacePatchRequest** | [**ConnectorNamespacePatchRequest**](ConnectorNamespacePatchRequest.md)| Data to update namespace with |
 
 ### Return type
 
@@ -539,8 +459,8 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Cluster status is updated |  -  |
+| **204** | Namespace status is updated |  -  |
 | **401** | Auth token is invalid |  -  |
-| **404** | No matching connector cluster exists |  -  |
+| **404** | No matching connector namespace exists |  -  |
 | **500** | Unexpected error occurred |  -  |
 
