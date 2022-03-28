@@ -26,7 +26,6 @@ import com.openshift.cloud.api.connector.models.ConnectorDesiredState;
 import com.openshift.cloud.api.connector.models.ConnectorMeta;
 import com.openshift.cloud.api.connector.models.ConnectorStatus;
 import com.openshift.cloud.api.connector.models.ConnectorStatusStatus;
-import com.openshift.cloud.api.connector.models.DeploymentLocation;
 import com.openshift.cloud.api.connector.models.KafkaConnectionSettings;
 import com.openshift.cloud.api.connector.models.ObjectReference;
 import com.openshift.cloud.api.connector.models.SchemaRegistryConnectionSettings;
@@ -49,8 +48,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Connector.JSON_PROPERTY_MODIFIED_AT,
   Connector.JSON_PROPERTY_NAME,
   Connector.JSON_PROPERTY_CONNECTOR_TYPE_ID,
+  Connector.JSON_PROPERTY_NAMESPACE_ID,
   Connector.JSON_PROPERTY_CHANNEL,
-  Connector.JSON_PROPERTY_DEPLOYMENT_LOCATION,
   Connector.JSON_PROPERTY_DESIRED_STATE,
   Connector.JSON_PROPERTY_RESOURCE_VERSION,
   Connector.JSON_PROPERTY_KAFKA,
@@ -86,11 +85,11 @@ public class Connector {
   public static final String JSON_PROPERTY_CONNECTOR_TYPE_ID = "connector_type_id";
   private String connectorTypeId;
 
+  public static final String JSON_PROPERTY_NAMESPACE_ID = "namespace_id";
+  private String namespaceId;
+
   public static final String JSON_PROPERTY_CHANNEL = "channel";
   private Channel channel = Channel.STABLE;
-
-  public static final String JSON_PROPERTY_DEPLOYMENT_LOCATION = "deployment_location";
-  private DeploymentLocation deploymentLocation;
 
   public static final String JSON_PROPERTY_DESIRED_STATE = "desired_state";
   private ConnectorDesiredState desiredState;
@@ -332,6 +331,33 @@ public class Connector {
   }
 
 
+  public Connector namespaceId(String namespaceId) {
+    
+    this.namespaceId = namespaceId;
+    return this;
+  }
+
+   /**
+   * Get namespaceId
+   * @return namespaceId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_NAMESPACE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getNamespaceId() {
+    return namespaceId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAMESPACE_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNamespaceId(String namespaceId) {
+    this.namespaceId = namespaceId;
+  }
+
+
   public Connector channel(Channel channel) {
     
     this.channel = channel;
@@ -356,33 +382,6 @@ public class Connector {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChannel(Channel channel) {
     this.channel = channel;
-  }
-
-
-  public Connector deploymentLocation(DeploymentLocation deploymentLocation) {
-    
-    this.deploymentLocation = deploymentLocation;
-    return this;
-  }
-
-   /**
-   * Get deploymentLocation
-   * @return deploymentLocation
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_DEPLOYMENT_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public DeploymentLocation getDeploymentLocation() {
-    return deploymentLocation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEPLOYMENT_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDeploymentLocation(DeploymentLocation deploymentLocation) {
-    this.deploymentLocation = deploymentLocation;
   }
 
 
@@ -592,8 +591,8 @@ public class Connector {
         Objects.equals(this.modifiedAt, connector.modifiedAt) &&
         Objects.equals(this.name, connector.name) &&
         Objects.equals(this.connectorTypeId, connector.connectorTypeId) &&
+        Objects.equals(this.namespaceId, connector.namespaceId) &&
         Objects.equals(this.channel, connector.channel) &&
-        Objects.equals(this.deploymentLocation, connector.deploymentLocation) &&
         Objects.equals(this.desiredState, connector.desiredState) &&
         Objects.equals(this.resourceVersion, connector.resourceVersion) &&
         Objects.equals(this.kafka, connector.kafka) &&
@@ -605,7 +604,7 @@ public class Connector {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, owner, createdAt, modifiedAt, name, connectorTypeId, channel, deploymentLocation, desiredState, resourceVersion, kafka, serviceAccount, schemaRegistry, connector, status);
+    return Objects.hash(id, kind, href, owner, createdAt, modifiedAt, name, connectorTypeId, namespaceId, channel, desiredState, resourceVersion, kafka, serviceAccount, schemaRegistry, connector, status);
   }
 
   @Override
@@ -620,8 +619,8 @@ public class Connector {
     sb.append("    modifiedAt: ").append(toIndentedString(modifiedAt)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    connectorTypeId: ").append(toIndentedString(connectorTypeId)).append("\n");
+    sb.append("    namespaceId: ").append(toIndentedString(namespaceId)).append("\n");
     sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
-    sb.append("    deploymentLocation: ").append(toIndentedString(deploymentLocation)).append("\n");
     sb.append("    desiredState: ").append(toIndentedString(desiredState)).append("\n");
     sb.append("    resourceVersion: ").append(toIndentedString(resourceVersion)).append("\n");
     sb.append("    kafka: ").append(toIndentedString(kafka)).append("\n");

@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **modifiedAt** | **OffsetDateTime** |  |  [optional]
 **name** | **String** |  | 
 **connectorTypeId** | **String** |  | 
+**namespaceId** | **String** |  |  [optional]
 **channel** | **Channel** |  |  [optional]
-**deploymentLocation** | [**DeploymentLocation**](DeploymentLocation.md) |  | 
 **desiredState** | **ConnectorDesiredState** |  | 
 **resourceVersion** | **Long** |  |  [optional]
 **kafka** | [**KafkaConnectionSettings**](KafkaConnectionSettings.md) |  | 

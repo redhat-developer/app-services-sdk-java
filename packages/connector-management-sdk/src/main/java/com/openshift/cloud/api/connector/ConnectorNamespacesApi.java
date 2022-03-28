@@ -7,11 +7,11 @@ import com.openshift.cloud.api.connector.invoker.Pair;
 
 import javax.ws.rs.core.GenericType;
 
-import com.openshift.cloud.api.connector.models.AddonParameter;
-import com.openshift.cloud.api.connector.models.ConnectorCluster;
-import com.openshift.cloud.api.connector.models.ConnectorClusterList;
-import com.openshift.cloud.api.connector.models.ConnectorClusterRequest;
+import com.openshift.cloud.api.connector.models.ConnectorNamespace;
+import com.openshift.cloud.api.connector.models.ConnectorNamespaceEvalRequest;
 import com.openshift.cloud.api.connector.models.ConnectorNamespaceList;
+import com.openshift.cloud.api.connector.models.ConnectorNamespacePatchRequest;
+import com.openshift.cloud.api.connector.models.ConnectorNamespaceRequest;
 import com.openshift.cloud.api.connector.models.Error;
 
 import java.util.ArrayList;
@@ -20,14 +20,14 @@ import java.util.List;
 import java.util.Map;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ConnectorClustersApi {
+public class ConnectorNamespacesApi {
   private ApiClient apiClient;
 
-  public ConnectorClustersApi() {
+  public ConnectorNamespacesApi() {
     this(Configuration.getDefaultApiClient());
   }
 
-  public ConnectorClustersApi(ApiClient apiClient) {
+  public ConnectorNamespacesApi(ApiClient apiClient) {
     this.apiClient = apiClient;
   }
 
@@ -40,28 +40,22 @@ public class ConnectorClustersApi {
   }
 
   /**
-   * Create a new connector cluster
-   * Create a new connector cluster
-   * @param async Perform the action in an asynchronous manner (required)
-   * @param connectorClusterRequest Connector cluster data (required)
-   * @return a {@code ConnectorCluster}
+   * Create a new connector namespace
+   * Create a new connector namespace
+   * @param connectorNamespaceRequest Connector namespace data (required)
+   * @return a {@code ConnectorNamespace}
    * @throws ApiException if fails to make API call
    */
-  public ConnectorCluster createConnectorCluster(Boolean async, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
-    Object localVarPostBody = connectorClusterRequest;
+  public ConnectorNamespace createConnectorNamespace(ConnectorNamespaceRequest connectorNamespaceRequest) throws ApiException {
+    Object localVarPostBody = connectorNamespaceRequest;
     
-    // verify the required parameter 'async' is set
-    if (async == null) {
-      throw new ApiException(400, "Missing the required parameter 'async' when calling createConnectorCluster");
-    }
-    
-    // verify the required parameter 'connectorClusterRequest' is set
-    if (connectorClusterRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorClusterRequest' when calling createConnectorCluster");
+    // verify the required parameter 'connectorNamespaceRequest' is set
+    if (connectorNamespaceRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorNamespaceRequest' when calling createConnectorNamespace");
     }
     
     // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_clusters".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_namespaces".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -69,7 +63,6 @@ public class ConnectorClustersApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "async", async));
 
     
     
@@ -86,27 +79,70 @@ public class ConnectorClustersApi {
 
     String[] localVarAuthNames = new String[] { "Bearer" };
 
-    GenericType<ConnectorCluster> localVarReturnType = new GenericType<ConnectorCluster>() {};
+    GenericType<ConnectorNamespace> localVarReturnType = new GenericType<ConnectorNamespace>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Delete a connector cluster
-   * Delete a connector cluster
-   * @param connectorClusterId The id of the connector cluster (required)
-   * @return a {@code Error}
+   * Create a new short lived evaluation connector namespace
+   * Create a new evaluation connector namespace
+   * @param connectorNamespaceEvalRequest Connector namespace data (required)
+   * @return a {@code ConnectorNamespace}
    * @throws ApiException if fails to make API call
    */
-  public Error deleteConnectorCluster(String connectorClusterId) throws ApiException {
-    Object localVarPostBody = null;
+  public ConnectorNamespace createEvaluationNamespace(ConnectorNamespaceEvalRequest connectorNamespaceEvalRequest) throws ApiException {
+    Object localVarPostBody = connectorNamespaceEvalRequest;
     
-    // verify the required parameter 'connectorClusterId' is set
-    if (connectorClusterId == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorClusterId' when calling deleteConnectorCluster");
+    // verify the required parameter 'connectorNamespaceEvalRequest' is set
+    if (connectorNamespaceEvalRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorNamespaceEvalRequest' when calling createEvaluationNamespace");
     }
     
     // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "connector_cluster_id" + "\\}", apiClient.escapeString(connectorClusterId.toString()));
+    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_namespaces/eval".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "Bearer" };
+
+    GenericType<ConnectorNamespace> localVarReturnType = new GenericType<ConnectorNamespace>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Delete a connector namespace
+   * Delete a connector namespace
+   * @param connectorNamespaceId The id of the connector namespace (required)
+   * @return a {@code Error}
+   * @throws ApiException if fails to make API call
+   */
+  public Error deleteConnectorNamespace(String connectorNamespaceId) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'connectorNamespaceId' is set
+    if (connectorNamespaceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorNamespaceId' when calling deleteConnectorNamespace");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "connector_namespace_id" + "\\}", apiClient.escapeString(connectorNamespaceId.toString()));
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -134,23 +170,23 @@ public class ConnectorClustersApi {
     return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Get a connector cluster
-   * Get a connector cluster
-   * @param connectorClusterId The id of the connector cluster (required)
-   * @return a {@code ConnectorCluster}
+   * Get a connector namespace
+   * Get a connector namespace
+   * @param connectorNamespaceId The id of the connector namespace (required)
+   * @return a {@code ConnectorNamespace}
    * @throws ApiException if fails to make API call
    */
-  public ConnectorCluster getConnectorCluster(String connectorClusterId) throws ApiException {
+  public ConnectorNamespace getConnectorNamespace(String connectorNamespaceId) throws ApiException {
     Object localVarPostBody = null;
     
-    // verify the required parameter 'connectorClusterId' is set
-    if (connectorClusterId == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorClusterId' when calling getConnectorCluster");
+    // verify the required parameter 'connectorNamespaceId' is set
+    if (connectorNamespaceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorNamespaceId' when calling getConnectorNamespace");
     }
     
     // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "connector_cluster_id" + "\\}", apiClient.escapeString(connectorClusterId.toString()));
+    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "connector_namespace_id" + "\\}", apiClient.escapeString(connectorNamespaceId.toString()));
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -174,57 +210,12 @@ public class ConnectorClustersApi {
 
     String[] localVarAuthNames = new String[] { "Bearer" };
 
-    GenericType<ConnectorCluster> localVarReturnType = new GenericType<ConnectorCluster>() {};
+    GenericType<ConnectorNamespace> localVarReturnType = new GenericType<ConnectorNamespace>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Get a connector cluster&#39;s addon parameters
-   * Get a connector cluster&#39;s addon parameters
-   * @param connectorClusterId The id of the connector cluster (required)
-   * @return a {@code List<AddonParameter>}
-   * @throws ApiException if fails to make API call
-   */
-  public List<AddonParameter> getConnectorClusterAddonParameters(String connectorClusterId) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'connectorClusterId' is set
-    if (connectorClusterId == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorClusterId' when calling getConnectorClusterAddonParameters");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}/addon_parameters".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "connector_cluster_id" + "\\}", apiClient.escapeString(connectorClusterId.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] { "Bearer" };
-
-    GenericType<List<AddonParameter>> localVarReturnType = new GenericType<List<AddonParameter>>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * Get a connector cluster&#39;s namespaces
-   * Get a connector cluster&#39;s namespaces
-   * @param connectorClusterId The id of the connector cluster (required)
+   * Returns a list of connector namespaces
+   * Returns a list of connector namespaces
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;ConnectorType&#x60; fields. For example, to return all Connector types ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Connector types ordered by their name _and_ version, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, version asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
@@ -232,17 +223,11 @@ public class ConnectorClustersApi {
    * @return a {@code ConnectorNamespaceList}
    * @throws ApiException if fails to make API call
    */
-  public ConnectorNamespaceList getConnectorClusterNamespaces(String connectorClusterId, String page, String size, String orderBy, String search) throws ApiException {
+  public ConnectorNamespaceList listConnectorNamespaces(String page, String size, String orderBy, String search) throws ApiException {
     Object localVarPostBody = null;
     
-    // verify the required parameter 'connectorClusterId' is set
-    if (connectorClusterId == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorClusterId' when calling getConnectorClusterNamespaces");
-    }
-    
     // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}/namespaces".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "connector_cluster_id" + "\\}", apiClient.escapeString(connectorClusterId.toString()));
+    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_namespaces".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -274,69 +259,28 @@ public class ConnectorClustersApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns a list of connector clusters
-   * Returns a list of connector clusters
-   * @param page Page index (optional)
-   * @param size Number of items in each page (optional)
-   * @return a {@code ConnectorClusterList}
+   * udpate a connector namespace
+   * udpate a connector namespace
+   * @param connectorNamespaceId The id of the connector namespace (required)
+   * @param connectorNamespacePatchRequest Data to update namespace with (required)
    * @throws ApiException if fails to make API call
    */
-  public ConnectorClusterList listConnectorClusters(String page, String size) throws ApiException {
-    Object localVarPostBody = null;
+  public void updateConnectorNamespaceById(String connectorNamespaceId, ConnectorNamespacePatchRequest connectorNamespacePatchRequest) throws ApiException {
+    Object localVarPostBody = connectorNamespacePatchRequest;
     
-    // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_clusters".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] { "Bearer" };
-
-    GenericType<ConnectorClusterList> localVarReturnType = new GenericType<ConnectorClusterList>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * udpate a connector cluster
-   * udpate a connector cluster
-   * @param connectorClusterId The id of the connector cluster (required)
-   * @param connectorClusterRequest Data to updated connector with (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void updateConnectorClusterById(String connectorClusterId, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
-    Object localVarPostBody = connectorClusterRequest;
-    
-    // verify the required parameter 'connectorClusterId' is set
-    if (connectorClusterId == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorClusterId' when calling updateConnectorClusterById");
+    // verify the required parameter 'connectorNamespaceId' is set
+    if (connectorNamespaceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorNamespaceId' when calling updateConnectorNamespaceById");
     }
     
-    // verify the required parameter 'connectorClusterRequest' is set
-    if (connectorClusterRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorClusterRequest' when calling updateConnectorClusterById");
+    // verify the required parameter 'connectorNamespacePatchRequest' is set
+    if (connectorNamespacePatchRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'connectorNamespacePatchRequest' when calling updateConnectorNamespaceById");
     }
     
     // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "connector_cluster_id" + "\\}", apiClient.escapeString(connectorClusterId.toString()));
+    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "connector_namespace_id" + "\\}", apiClient.escapeString(connectorNamespaceId.toString()));
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -361,6 +305,6 @@ public class ConnectorClustersApi {
     String[] localVarAuthNames = new String[] { "Bearer" };
 
 
-    apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    apiClient.invokeAPI(localVarPath, "PATCH", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
 }

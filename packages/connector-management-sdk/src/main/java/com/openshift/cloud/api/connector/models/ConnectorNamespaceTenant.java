@@ -18,42 +18,34 @@ import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.connector.models.ConnectorClusterTarget;
+import com.openshift.cloud.api.connector.models.ConnectorNamespaceTenantKind;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * DeploymentLocation
+ * ConnectorNamespaceTenant
  */
 @JsonPropertyOrder({
-  DeploymentLocation.JSON_PROPERTY_KIND,
-  DeploymentLocation.JSON_PROPERTY_CLUSTER_ID
+  ConnectorNamespaceTenant.JSON_PROPERTY_KIND,
+  ConnectorNamespaceTenant.JSON_PROPERTY_ID
 })
-@JsonTypeName("DeploymentLocation")
+@JsonTypeName("ConnectorNamespaceTenant")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "kind", visible = true)
-@JsonSubTypes({
-  @JsonSubTypes.Type(value = ConnectorClusterTarget.class, name = "ConnectorCluster"),
-  @JsonSubTypes.Type(value = ConnectorClusterTarget.class, name = "ConnectorClusterTarget"),
-})
-
-public class DeploymentLocation {
+public class ConnectorNamespaceTenant {
   public static final String JSON_PROPERTY_KIND = "kind";
-  protected String kind;
+  private ConnectorNamespaceTenantKind kind;
 
-  public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
-  private String clusterId;
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
 
-  public DeploymentLocation() { 
+  public ConnectorNamespaceTenant() { 
   }
 
-  public DeploymentLocation kind(String kind) {
+  public ConnectorNamespaceTenant kind(ConnectorNamespaceTenantKind kind) {
     
     this.kind = kind;
     return this;
@@ -68,42 +60,42 @@ public class DeploymentLocation {
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getKind() {
+  public ConnectorNamespaceTenantKind getKind() {
     return kind;
   }
 
 
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setKind(String kind) {
+  public void setKind(ConnectorNamespaceTenantKind kind) {
     this.kind = kind;
   }
 
 
-  public DeploymentLocation clusterId(String clusterId) {
+  public ConnectorNamespaceTenant id(String id) {
     
-    this.clusterId = clusterId;
+    this.id = id;
     return this;
   }
 
    /**
-   * Get clusterId
-   * @return clusterId
+   * Either user or organisation id depending on the value of kind
+   * @return id
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Either user or organisation id depending on the value of kind")
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getClusterId() {
-    return clusterId;
+  public String getId() {
+    return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setClusterId(String clusterId) {
-    this.clusterId = clusterId;
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(String id) {
+    this.id = id;
   }
 
 
@@ -115,22 +107,22 @@ public class DeploymentLocation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeploymentLocation deploymentLocation = (DeploymentLocation) o;
-    return Objects.equals(this.kind, deploymentLocation.kind) &&
-        Objects.equals(this.clusterId, deploymentLocation.clusterId);
+    ConnectorNamespaceTenant connectorNamespaceTenant = (ConnectorNamespaceTenant) o;
+    return Objects.equals(this.kind, connectorNamespaceTenant.kind) &&
+        Objects.equals(this.id, connectorNamespaceTenant.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, clusterId);
+    return Objects.hash(kind, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeploymentLocation {\n");
+    sb.append("class ConnectorNamespaceTenant {\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
-    sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
 **connectorTypeId** | **String** |  | 
+**namespaceId** | **String** |  |  [optional]
 **channel** | **Channel** |  |  [optional]
-**deploymentLocation** | [**DeploymentLocation**](DeploymentLocation.md) |  | 
 **desiredState** | **ConnectorDesiredState** |  | 
 
 

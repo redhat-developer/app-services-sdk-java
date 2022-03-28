@@ -20,59 +20,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.connector.models.ConnectorNamespaceTenantKind;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Targets workloads to an addon cluster
+ * ConnectorNamespaceRequestAllOf
  */
-@ApiModel(description = "Targets workloads to an addon cluster")
 @JsonPropertyOrder({
-  ConnectorClusterTarget.JSON_PROPERTY_KIND,
-  ConnectorClusterTarget.JSON_PROPERTY_CLUSTER_ID
+  ConnectorNamespaceRequestAllOf.JSON_PROPERTY_CLUSTER_ID,
+  ConnectorNamespaceRequestAllOf.JSON_PROPERTY_KIND
 })
-@JsonTypeName("ConnectorClusterTarget")
+@JsonTypeName("ConnectorNamespaceRequest_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ConnectorClusterTarget {
-  public static final String JSON_PROPERTY_KIND = "kind";
-  private String kind;
-
+public class ConnectorNamespaceRequestAllOf {
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
 
-  public ConnectorClusterTarget() { 
+  public static final String JSON_PROPERTY_KIND = "kind";
+  private ConnectorNamespaceTenantKind kind;
+
+  public ConnectorNamespaceRequestAllOf() { 
   }
 
-  public ConnectorClusterTarget kind(String kind) {
-    
-    this.kind = kind;
-    return this;
-  }
-
-   /**
-   * Get kind
-   * @return kind
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getKind() {
-    return kind;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setKind(String kind) {
-    this.kind = kind;
-  }
-
-
-  public ConnectorClusterTarget clusterId(String clusterId) {
+  public ConnectorNamespaceRequestAllOf clusterId(String clusterId) {
     
     this.clusterId = clusterId;
     return this;
@@ -99,6 +72,33 @@ public class ConnectorClusterTarget {
   }
 
 
+  public ConnectorNamespaceRequestAllOf kind(ConnectorNamespaceTenantKind kind) {
+    
+    this.kind = kind;
+    return this;
+  }
+
+   /**
+   * Get kind
+   * @return kind
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public ConnectorNamespaceTenantKind getKind() {
+    return kind;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setKind(ConnectorNamespaceTenantKind kind) {
+    this.kind = kind;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -107,22 +107,22 @@ public class ConnectorClusterTarget {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConnectorClusterTarget connectorClusterTarget = (ConnectorClusterTarget) o;
-    return Objects.equals(this.kind, connectorClusterTarget.kind) &&
-        Objects.equals(this.clusterId, connectorClusterTarget.clusterId);
+    ConnectorNamespaceRequestAllOf connectorNamespaceRequestAllOf = (ConnectorNamespaceRequestAllOf) o;
+    return Objects.equals(this.clusterId, connectorNamespaceRequestAllOf.clusterId) &&
+        Objects.equals(this.kind, connectorNamespaceRequestAllOf.kind);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, clusterId);
+    return Objects.hash(clusterId, kind);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConnectorClusterTarget {\n");
-    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
+    sb.append("class ConnectorNamespaceRequestAllOf {\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
+    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("}");
     return sb.toString();
   }

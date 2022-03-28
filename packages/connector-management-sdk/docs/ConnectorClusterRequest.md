@@ -2,7 +2,7 @@
 
 # ConnectorClusterRequest
 
-Schema for the request to update a data plane cluster's status
+Schema for the request to update a data plane cluster's name
 
 ## Properties
 

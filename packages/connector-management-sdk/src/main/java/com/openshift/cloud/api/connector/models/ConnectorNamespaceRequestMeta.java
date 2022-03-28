@@ -20,29 +20,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.connector.models.ConnectorClusterRequestMeta;
+import com.openshift.cloud.api.connector.models.ConnectorNamespaceRequestMetaAnnotations;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Schema for the request to update a data plane cluster&#39;s name
+ * ConnectorNamespaceRequestMeta
  */
-@ApiModel(description = "Schema for the request to update a data plane cluster's name")
 @JsonPropertyOrder({
-  ConnectorClusterRequest.JSON_PROPERTY_NAME
+  ConnectorNamespaceRequestMeta.JSON_PROPERTY_NAME,
+  ConnectorNamespaceRequestMeta.JSON_PROPERTY_ANNOTATIONS
 })
-@JsonTypeName("ConnectorClusterRequest")
+@JsonTypeName("ConnectorNamespaceRequestMeta")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ConnectorClusterRequest {
+public class ConnectorNamespaceRequestMeta {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
-  public ConnectorClusterRequest() { 
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
+  private List<ConnectorNamespaceRequestMetaAnnotations> annotations = null;
+
+  public ConnectorNamespaceRequestMeta() { 
   }
 
-  public ConnectorClusterRequest name(String name) {
+  public ConnectorNamespaceRequestMeta name(String name) {
     
     this.name = name;
     return this;
@@ -69,6 +74,41 @@ public class ConnectorClusterRequest {
   }
 
 
+  public ConnectorNamespaceRequestMeta annotations(List<ConnectorNamespaceRequestMetaAnnotations> annotations) {
+    
+    this.annotations = annotations;
+    return this;
+  }
+
+  public ConnectorNamespaceRequestMeta addAnnotationsItem(ConnectorNamespaceRequestMetaAnnotations annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new ArrayList<>();
+    }
+    this.annotations.add(annotationsItem);
+    return this;
+  }
+
+   /**
+   * Get annotations
+   * @return annotations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<ConnectorNamespaceRequestMetaAnnotations> getAnnotations() {
+    return annotations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAnnotations(List<ConnectorNamespaceRequestMetaAnnotations> annotations) {
+    this.annotations = annotations;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -77,20 +117,22 @@ public class ConnectorClusterRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConnectorClusterRequest connectorClusterRequest = (ConnectorClusterRequest) o;
-    return Objects.equals(this.name, connectorClusterRequest.name);
+    ConnectorNamespaceRequestMeta connectorNamespaceRequestMeta = (ConnectorNamespaceRequestMeta) o;
+    return Objects.equals(this.name, connectorNamespaceRequestMeta.name) &&
+        Objects.equals(this.annotations, connectorNamespaceRequestMeta.annotations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, annotations);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConnectorClusterRequest {\n");
+    sb.append("class ConnectorNamespaceRequestMeta {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

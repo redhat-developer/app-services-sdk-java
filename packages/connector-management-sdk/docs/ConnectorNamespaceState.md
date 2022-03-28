@@ -1,6 +1,6 @@
 
 
-# ConnectorClusterState
+# ConnectorNamespaceState
 
 ## Enum
 
