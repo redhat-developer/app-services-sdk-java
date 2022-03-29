@@ -674,6 +674,40 @@ paths:
       tags:
         - security
       summary: Resets the credentials for a service account by ID
+  /api/kafkas_mgmt/v1/sso_providers:
+    get:
+      summary: Return sso provider info
+      operationId: getSsoProviders
+      security:
+        - Bearer: [ ]
+      tags:
+        - security
+      responses:
+        '200':
+          description: Returned list of supported cloud providers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsoProvider'
+        '401':
+          description: Auth token is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                401Example:
+                  $ref: '#/components/examples/401Example'
+        '500':
+          description: Unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                500Example:
+                  $ref: '#/components/examples/500Example'
+  
   #
   # These are the user-facing related endpoints
   #
@@ -1022,7 +1056,11 @@ components:
           type: boolean
           default: false
         supported_instance_types:
-          description: 'The Kafka instance types supported by this region.'
+          deprecated: true  
+          description:  |-
+            The Kafka instance types supported by this region.
+
+            DEPRECATION NOTICE - instance_type will be deprecated
           type: array
           items:
             type: string
@@ -1139,6 +1177,23 @@ components:
             - kind
             - items
     # user-facing metrics related #
+    SsoProvider:
+      description: 'SSO Provider'
+      allOf:
+        - $ref: "#/components/schemas/ObjectReference"
+        - type: object
+          properties:
+            base_url:
+              description: 'base url'
+              type: string
+            token_url:
+              type: string
+            jwks:
+              type: string
+            valid_issuer:
+              type: string
+          example:
+            $ref: "#/components/examples/SsoProviderExample"      
     MetricsRangeQueryList:
       allOf:
         - type: object
@@ -1375,8 +1430,12 @@ components:
         type: string
       style: form
     instance_type:
+      deprecated: true
       name: instance_type
-      description: The Kafka instance type to filter the results by
+      description: |-
+        The Kafka instance type to filter the results by
+
+        DEPRECATION NOTICE - instance_type will be deprecated
       in: query
       schema:
         type: string
@@ -1472,6 +1531,14 @@ components:
         owner: "test-user"
         created_by: "test-user"
         created_at: "2021-04-07T16:24:01+05:30"
+    SsoProviderExample:
+      value:
+        kind: "SsoProvider"
+        href: "/api/kafkas_mgmt/v1/sso_providers"
+        base_url: "https://identity.api.redhat.com"
+        jwks: "https://identity.api.openshift.com/auth/realms/rhoas/protocol/openid-connect/certs"
+        token_url: "https://identity.api.openshift.com/auth/realms/rhoas/protocol/openid-connect/token"
+        valid_issuer: "https://identity.api.openshift.com/auth/realms/rhoas"     
     ServiceAccountByIdExample:
       value:
         id: "1"
