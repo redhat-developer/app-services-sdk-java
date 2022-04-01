@@ -119,11 +119,11 @@ public class ConnectorNamespaceAllOf {
   }
 
    /**
-   * Get expiration
+   * Namespace expiration timestamp in RFC 3339 format
    * @return expiration
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Namespace expiration timestamp in RFC 3339 format")
   @JsonProperty(JSON_PROPERTY_EXPIRATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
