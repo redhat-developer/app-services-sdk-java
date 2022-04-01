@@ -1513,8 +1513,6 @@ components:
 
     ConnectorNamespaceEvalRequest:
       description: An evaluation connector namespace create request
-      required:
-        - name
       allOf:
         - $ref: "#/components/schemas/ConnectorNamespaceRequestMeta"
 
@@ -1563,6 +1561,7 @@ components:
             cluster_id:
               type: string
             expiration:
+              description: Namespace expiration timestamp in RFC 3339 format
               #format: date-time
               type: string
             tenant:
