@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **resourceVersion** | **Long** |  | 
 **quota** | [**ConnectorNamespaceQuota**](ConnectorNamespaceQuota.md) |  |  [optional]
 **clusterId** | **String** |  | 
-**expiration** | **String** |  |  [optional]
+**expiration** | **String** | Namespace expiration timestamp in RFC 3339 format |  [optional]
 **tenant** | [**ConnectorNamespaceTenant**](ConnectorNamespaceTenant.md) |  | 
 **status** | [**ConnectorNamespaceStatus**](ConnectorNamespaceStatus.md) |  | 
 

@@ -8,7 +8,7 @@ An evaluation connector namespace create request
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **String** |  | 
+**name** | **String** |  |  [optional]
 **annotations** | [**List&lt;ConnectorNamespaceRequestMetaAnnotations&gt;**](ConnectorNamespaceRequestMetaAnnotations.md) |  |  [optional]
 
 

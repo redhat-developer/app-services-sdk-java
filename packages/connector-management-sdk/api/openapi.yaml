@@ -2074,8 +2074,6 @@ components:
       allOf:
       - $ref: '#/components/schemas/ConnectorNamespaceRequestMeta'
       description: An evaluation connector namespace create request
-      required:
-      - name
     ConnectorNamespaceList:
       allOf:
       - $ref: '#/components/schemas/List'
@@ -2258,6 +2256,7 @@ components:
         cluster_id:
           type: string
         expiration:
+          description: Namespace expiration timestamp in RFC 3339 format
           type: string
         tenant:
           $ref: '#/components/schemas/ConnectorNamespaceTenant'
