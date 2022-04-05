@@ -37,7 +37,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   CloudRegion.JSON_PROPERTY_ID,
   CloudRegion.JSON_PROPERTY_DISPLAY_NAME,
   CloudRegion.JSON_PROPERTY_ENABLED,
-  CloudRegion.JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES,
   CloudRegion.JSON_PROPERTY_CAPACITY
 })
 @JsonTypeName("CloudRegion")
@@ -54,9 +53,6 @@ public class CloudRegion {
 
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   private Boolean enabled = false;
-
-  public static final String JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES = "supported_instance_types";
-  private List<String> supportedInstanceTypes = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CAPACITY = "capacity";
   private List<RegionCapacityListItem> capacity = new ArrayList<>();
@@ -172,38 +168,6 @@ public class CloudRegion {
   }
 
 
-  public CloudRegion supportedInstanceTypes(List<String> supportedInstanceTypes) {
-    
-    this.supportedInstanceTypes = supportedInstanceTypes;
-    return this;
-  }
-
-  public CloudRegion addSupportedInstanceTypesItem(String supportedInstanceTypesItem) {
-    this.supportedInstanceTypes.add(supportedInstanceTypesItem);
-    return this;
-  }
-
-   /**
-   * The Kafka instance types supported by this region.
-   * @return supportedInstanceTypes
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "The Kafka instance types supported by this region.")
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<String> getSupportedInstanceTypes() {
-    return supportedInstanceTypes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSupportedInstanceTypes(List<String> supportedInstanceTypes) {
-    this.supportedInstanceTypes = supportedInstanceTypes;
-  }
-
-
   public CloudRegion capacity(List<RegionCapacityListItem> capacity) {
     
     this.capacity = capacity;
@@ -249,13 +213,12 @@ public class CloudRegion {
         Objects.equals(this.id, cloudRegion.id) &&
         Objects.equals(this.displayName, cloudRegion.displayName) &&
         Objects.equals(this.enabled, cloudRegion.enabled) &&
-        Objects.equals(this.supportedInstanceTypes, cloudRegion.supportedInstanceTypes) &&
         Objects.equals(this.capacity, cloudRegion.capacity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, displayName, enabled, supportedInstanceTypes, capacity);
+    return Objects.hash(kind, id, displayName, enabled, capacity);
   }
 
   @Override
@@ -266,7 +229,6 @@ public class CloudRegion {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
-    sb.append("    supportedInstanceTypes: ").append(toIndentedString(supportedInstanceTypes)).append("\n");
     sb.append("    capacity: ").append(toIndentedString(capacity)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## getCloudProviderRegions
 
-> CloudRegionList getCloudProviderRegions(id, page, size, instanceType)
+> CloudRegionList getCloudProviderRegions(id, page, size, UNKNOWN_PARAMETER_NAME)
 
 Returns the list of supported regions of the supported cloud provider
 
@@ -274,9 +274,9 @@ public class Example {
         String id = "id_example"; // String | The ID of record
         String page = "1"; // String | Page index
         String size = "100"; // String | Number of items in each page
-        String instanceType = "eval"; // String | The Kafka instance type to filter the results by
+         UNKNOWN_PARAMETER_NAME = new null(); //  | 
         try {
-            CloudRegionList result = apiInstance.getCloudProviderRegions(id, page, size, instanceType);
+            CloudRegionList result = apiInstance.getCloudProviderRegions(id, page, size, UNKNOWN_PARAMETER_NAME);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#getCloudProviderRegions");
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
  **id** | **String**| The ID of record |
  **page** | **String**| Page index | [optional]
  **size** | **String**| Number of items in each page | [optional]
- **instanceType** | **String**| The Kafka instance type to filter the results by | [optional]
+ **UNKNOWN_PARAMETER_NAME** | [****](.md)|  | [optional]
 
 ### Return type
 

@@ -194,11 +194,11 @@ public class DefaultApi {
    * @param id The ID of record (required)
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
-   * @param instanceType The Kafka instance type to filter the results by (optional)
+   * @param UNKNOWN_PARAMETER_NAME  (optional)
    * @return a {@code CloudRegionList}
    * @throws ApiException if fails to make API call
    */
-  public CloudRegionList getCloudProviderRegions(String id, String page, String size, String instanceType) throws ApiException {
+  public CloudRegionList getCloudProviderRegions(String id, String page, String size,  UNKNOWN_PARAMETER_NAME) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -218,7 +218,6 @@ public class DefaultApi {
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "instance_type", instanceType));
 
     
     

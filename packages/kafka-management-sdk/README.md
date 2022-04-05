@@ -135,6 +135,7 @@ Class | Method | HTTP request | Description
 *SecurityApi* | [**deleteServiceAccountById**](docs/SecurityApi.md#deleteServiceAccountById) | **DELETE** /api/kafkas_mgmt/v1/service_accounts/{id} | Deletes a service account by ID
 *SecurityApi* | [**getServiceAccountById**](docs/SecurityApi.md#getServiceAccountById) | **GET** /api/kafkas_mgmt/v1/service_accounts/{id} | Returned service account by ID
 *SecurityApi* | [**getServiceAccounts**](docs/SecurityApi.md#getServiceAccounts) | **GET** /api/kafkas_mgmt/v1/service_accounts | Returns a list of service accounts
+*SecurityApi* | [**getSsoProviders**](docs/SecurityApi.md#getSsoProviders) | **GET** /api/kafkas_mgmt/v1/sso_providers | Return sso provider info
 *SecurityApi* | [**resetServiceAccountCreds**](docs/SecurityApi.md#resetServiceAccountCreds) | **POST** /api/kafkas_mgmt/v1/service_accounts/{id}/reset_credentials | Resets the credentials for a service account by ID
 
 
@@ -172,6 +173,8 @@ Class | Method | HTTP request | Description
  - [ServiceAccountListItem](docs/ServiceAccountListItem.md)
  - [ServiceAccountListItemAllOf](docs/ServiceAccountListItemAllOf.md)
  - [ServiceAccountRequest](docs/ServiceAccountRequest.md)
+ - [SsoProvider](docs/SsoProvider.md)
+ - [SsoProviderAllOf](docs/SsoProviderAllOf.md)
  - [Values](docs/Values.md)
  - [VersionMetadata](docs/VersionMetadata.md)
  - [VersionMetadataAllOf](docs/VersionMetadataAllOf.md)
