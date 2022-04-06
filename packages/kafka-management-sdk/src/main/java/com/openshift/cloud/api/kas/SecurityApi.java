@@ -11,6 +11,7 @@ import com.openshift.cloud.api.kas.models.Error;
 import com.openshift.cloud.api.kas.models.ServiceAccount;
 import com.openshift.cloud.api.kas.models.ServiceAccountList;
 import com.openshift.cloud.api.kas.models.ServiceAccountRequest;
+import com.openshift.cloud.api.kas.models.SsoProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -205,6 +206,43 @@ public class SecurityApi {
     String[] localVarAuthNames = new String[] { "Bearer" };
 
     GenericType<ServiceAccountList> localVarReturnType = new GenericType<ServiceAccountList>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Return sso provider info
+   * 
+   * @return a {@code SsoProvider}
+   * @throws ApiException if fails to make API call
+   */
+  public SsoProvider getSsoProviders() throws ApiException {
+    Object localVarPostBody = null;
+    
+    // create path and map variables
+    String localVarPath = "/api/kafkas_mgmt/v1/sso_providers".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "Bearer" };
+
+    GenericType<SsoProvider> localVarReturnType = new GenericType<SsoProvider>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
