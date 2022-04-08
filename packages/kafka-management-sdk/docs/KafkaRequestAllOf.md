@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **instanceType** | **String** |  |  [optional]
 **reauthenticationEnabled** | **Boolean** |  | 
 **kafkaStorageSize** | **String** |  |  [optional]
+**browserUrl** | **String** |  |  [optional]
 
 
 

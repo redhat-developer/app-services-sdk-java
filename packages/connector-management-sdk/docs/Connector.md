@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **modifiedAt** | **OffsetDateTime** |  |  [optional]
 **name** | **String** |  | 
 **connectorTypeId** | **String** |  | 
-**namespaceId** | **String** |  |  [optional]
+**namespaceId** | **String** |  | 
 **channel** | **Channel** |  |  [optional]
 **desiredState** | **ConnectorDesiredState** |  | 
 **resourceVersion** | **Long** |  |  [optional]

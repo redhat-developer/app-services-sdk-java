@@ -223,10 +223,10 @@ public class ConnectorMeta {
    * Get namespaceId
    * @return namespaceId
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_NAMESPACE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getNamespaceId() {
     return namespaceId;
@@ -234,7 +234,7 @@ public class ConnectorMeta {
 
 
   @JsonProperty(JSON_PROPERTY_NAMESPACE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNamespaceId(String namespaceId) {
     this.namespaceId = namespaceId;
   }
