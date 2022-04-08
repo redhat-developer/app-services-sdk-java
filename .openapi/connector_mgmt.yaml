@@ -758,67 +758,6 @@ paths:
   #
 
   "/api/connector_mgmt/v1/kafka_connector_namespaces":
-    post:
-      tags:
-        - Connector Namespaces
-      operationId: createConnectorNamespace
-      security:
-        - Bearer: [ ]
-      summary: Create a new connector namespace
-      description: Create a new connector namespace
-      requestBody:
-        description: Connector namespace data
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ConnectorNamespaceRequest"
-            examples:
-              ConnectorNamespaceCreateExample:
-                $ref: "#/components/examples/ConnectorNamespaceCreateExample"
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ConnectorNamespace"
-          description: Accepted
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                400CreationExample:
-                  $ref: "#/components/examples/400CreationExample"
-          description: Validation errors occurred
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                401Example:
-                  $ref: "#/components/examples/401Example"
-          description: Auth token is invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                404Example:
-                  $ref: "#/components/examples/404Example"
-          description: The requested resource doesn't exist
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                500Example:
-                  $ref: "#/components/examples/500Example"
-          description: An unexpected error occurred creating the connector namespace
     get:
       tags:
         - Connector Namespaces
@@ -907,93 +846,6 @@ paths:
               examples:
                 500Example:
                   $ref: "#/components/examples/500Example"
-          description: Unexpected error occurred
-    patch:
-      tags:
-        - Connector Namespaces
-      security:
-        - Bearer: [ ]
-      operationId: updateConnectorNamespaceById
-      summary: udpate a connector namespace
-      description: udpate a connector namespace
-      requestBody:
-        description: Data to update namespace with
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ConnectorNamespacePatchRequest"
-        required: true
-      responses:
-        "204":
-          description: Namespace status is updated
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                401Example:
-                  $ref: "#/components/examples/401Example"
-          description: Auth token is invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                404Example:
-                  $ref: "#/components/examples/404Example"
-          description: No matching connector namespace exists
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                500Example:
-                  $ref: "#/components/examples/500Example"
-          description: Unexpected error occurred
-    delete:
-      tags:
-        - Connector Namespaces
-      security:
-        - Bearer: [ ]
-      operationId: deleteConnectorNamespace
-      summary: Delete a connector namespace
-      description: Delete a connector namespace
-      responses:
-        "204":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-          description: Deleted
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                401Example:
-                  $ref: "#/components/examples/401Example"
-          description: Auth token is invalid
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                404DeleteExample:
-                  $ref: "#/components/examples/404DeleteExample"
-          description: No resource with specified ID exists
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-              examples:
-                500DeleteExample:
-                  $ref: "#/components/examples/500DeleteExample"
           description: Unexpected error occurred
 
   "/api/connector_mgmt/v1/kafka_connector_namespaces/eval":
@@ -1302,6 +1154,7 @@ components:
       required:
         - name
         - connector_type_id
+        - namespace_id
         - desired_state
       properties:
         name:
