@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
   title: Kafka Service Fleet Manager
-  version: 1.3.0
+  version: 1.4.0
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -1148,6 +1148,7 @@ components:
         updated_at: 2020-10-05T12:56:36.362208Z
         version: 2.6.0
         instance_type: standard
+        browser_url: https://console.redhat.com/application-services/streams/kafkas/1isy6rq3jki8q0otmjqfd3ocfrg/dashboard
         reauthentication_enabled: true
     KafkaRequestFailedCreationStatusExample:
       value:
@@ -1821,6 +1822,8 @@ components:
         reauthentication_enabled:
           type: boolean
         kafka_storage_size:
+          type: string
+        browser_url:
           type: string
       required:
       - multi_az

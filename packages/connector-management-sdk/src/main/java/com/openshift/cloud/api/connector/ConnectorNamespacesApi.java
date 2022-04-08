@@ -10,8 +10,6 @@ import javax.ws.rs.core.GenericType;
 import com.openshift.cloud.api.connector.models.ConnectorNamespace;
 import com.openshift.cloud.api.connector.models.ConnectorNamespaceEvalRequest;
 import com.openshift.cloud.api.connector.models.ConnectorNamespaceList;
-import com.openshift.cloud.api.connector.models.ConnectorNamespacePatchRequest;
-import com.openshift.cloud.api.connector.models.ConnectorNamespaceRequest;
 import com.openshift.cloud.api.connector.models.Error;
 
 import java.util.ArrayList;
@@ -39,49 +37,6 @@ public class ConnectorNamespacesApi {
     this.apiClient = apiClient;
   }
 
-  /**
-   * Create a new connector namespace
-   * Create a new connector namespace
-   * @param connectorNamespaceRequest Connector namespace data (required)
-   * @return a {@code ConnectorNamespace}
-   * @throws ApiException if fails to make API call
-   */
-  public ConnectorNamespace createConnectorNamespace(ConnectorNamespaceRequest connectorNamespaceRequest) throws ApiException {
-    Object localVarPostBody = connectorNamespaceRequest;
-    
-    // verify the required parameter 'connectorNamespaceRequest' is set
-    if (connectorNamespaceRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorNamespaceRequest' when calling createConnectorNamespace");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_namespaces".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      "application/json"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] { "Bearer" };
-
-    GenericType<ConnectorNamespace> localVarReturnType = new GenericType<ConnectorNamespace>() {};
-    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
   /**
    * Create a new short lived evaluation connector namespace
    * Create a new evaluation connector namespace
@@ -124,50 +79,6 @@ public class ConnectorNamespacesApi {
 
     GenericType<ConnectorNamespace> localVarReturnType = new GenericType<ConnectorNamespace>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * Delete a connector namespace
-   * Delete a connector namespace
-   * @param connectorNamespaceId The id of the connector namespace (required)
-   * @return a {@code Error}
-   * @throws ApiException if fails to make API call
-   */
-  public Error deleteConnectorNamespace(String connectorNamespaceId) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'connectorNamespaceId' is set
-    if (connectorNamespaceId == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorNamespaceId' when calling deleteConnectorNamespace");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "connector_namespace_id" + "\\}", apiClient.escapeString(connectorNamespaceId.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] { "Bearer" };
-
-    GenericType<Error> localVarReturnType = new GenericType<Error>() {};
-    return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * Get a connector namespace
@@ -258,53 +169,4 @@ public class ConnectorNamespacesApi {
     GenericType<ConnectorNamespaceList> localVarReturnType = new GenericType<ConnectorNamespaceList>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
-  /**
-   * udpate a connector namespace
-   * udpate a connector namespace
-   * @param connectorNamespaceId The id of the connector namespace (required)
-   * @param connectorNamespacePatchRequest Data to update namespace with (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void updateConnectorNamespaceById(String connectorNamespaceId, ConnectorNamespacePatchRequest connectorNamespacePatchRequest) throws ApiException {
-    Object localVarPostBody = connectorNamespacePatchRequest;
-    
-    // verify the required parameter 'connectorNamespaceId' is set
-    if (connectorNamespaceId == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorNamespaceId' when calling updateConnectorNamespaceById");
-    }
-    
-    // verify the required parameter 'connectorNamespacePatchRequest' is set
-    if (connectorNamespacePatchRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'connectorNamespacePatchRequest' when calling updateConnectorNamespaceById");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "connector_namespace_id" + "\\}", apiClient.escapeString(connectorNamespaceId.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      "application/json"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] { "Bearer" };
-
-
-    apiClient.invokeAPI(localVarPath, "PATCH", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
-  }
 }

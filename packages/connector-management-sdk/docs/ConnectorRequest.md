@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
 **connectorTypeId** | **String** |  | 
-**namespaceId** | **String** |  |  [optional]
+**namespaceId** | **String** |  | 
 **channel** | **Channel** |  |  [optional]
 **desiredState** | **ConnectorDesiredState** |  | 
 **kafka** | [**KafkaConnectionSettings**](KafkaConnectionSettings.md) |  | 
