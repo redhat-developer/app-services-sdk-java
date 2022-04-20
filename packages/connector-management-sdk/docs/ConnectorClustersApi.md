@@ -236,6 +236,7 @@ Name | Type | Description  | Notes
 | **200** | The connector cluster matching the request |  -  |
 | **401** | Auth token is invalid |  -  |
 | **404** | No matching connector cluster type exists |  -  |
+| **410** | The requested resource doesn&#39;t exist anymore |  -  |
 | **500** | Unexpected error occurred |  -  |
 
 
@@ -310,6 +311,7 @@ Name | Type | Description  | Notes
 | **200** | The parameters that should be used to configure the managed connector addon on the cluster. |  -  |
 | **401** | Auth token is invalid |  -  |
 | **404** | No matching connector cluster type exists |  -  |
+| **410** | The requested resource doesn&#39;t exist anymore |  -  |
 | **500** | Unexpected error occurred |  -  |
 
 

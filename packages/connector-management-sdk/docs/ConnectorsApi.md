@@ -233,7 +233,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | The connector matching the request |  -  |
 | **401** | Auth token is invalid |  -  |
-| **404** | No matching connector type exists |  -  |
+| **404** | No matching connector exists |  -  |
+| **410** | The requested resource doesn&#39;t exist anymore |  -  |
 | **500** | Unexpected error occurred |  -  |
 
 
@@ -388,6 +389,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **202** | The connector matching the request |  -  |
 | **401** | Auth token is invalid |  -  |
-| **404** | No matching connector type exists |  -  |
+| **404** | No matching resource exists |  -  |
+| **410** | The requested resource doesn&#39;t exist anymore |  -  |
 | **500** | Unexpected error occurred |  -  |
 
