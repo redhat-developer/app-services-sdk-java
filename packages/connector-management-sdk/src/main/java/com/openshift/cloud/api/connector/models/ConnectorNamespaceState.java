@@ -30,7 +30,9 @@ public enum ConnectorNamespaceState {
   
   READY("ready"),
   
-  DELETING("deleting");
+  DELETING("deleting"),
+  
+  DELETED("deleted");
 
   private String value;
 

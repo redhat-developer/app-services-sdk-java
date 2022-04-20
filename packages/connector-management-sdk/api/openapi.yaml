@@ -74,6 +74,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: No matching connector type exists
+        "410":
+          content:
+            application/json:
+              examples:
+                "404Example":
+                  $ref: '#/components/examples/410Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Connector type doesn't exist anymore
         "500":
           content:
             application/json:
@@ -494,7 +503,16 @@ paths:
                   $ref: '#/components/examples/404Example'
               schema:
                 $ref: '#/components/schemas/Error'
-          description: No matching connector type exists
+          description: No matching connector exists
+        "410":
+          content:
+            application/json:
+              examples:
+                "404Example":
+                  $ref: '#/components/examples/410Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource doesn't exist anymore
         "500":
           content:
             application/json:
@@ -560,7 +578,16 @@ paths:
                   $ref: '#/components/examples/404Example'
               schema:
                 $ref: '#/components/schemas/Error'
-          description: No matching connector type exists
+          description: No matching resource exists
+        "410":
+          content:
+            application/json:
+              examples:
+                "404Example":
+                  $ref: '#/components/examples/410Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource doesn't exist anymore
         "500":
           content:
             application/json:
@@ -797,6 +824,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: No matching connector cluster type exists
+        "410":
+          content:
+            application/json:
+              examples:
+                "404Example":
+                  $ref: '#/components/examples/410Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource doesn't exist anymore
         "500":
           content:
             application/json:
@@ -907,6 +943,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: No matching connector cluster type exists
+        "410":
+          content:
+            application/json:
+              examples:
+                "404Example":
+                  $ref: '#/components/examples/410Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource doesn't exist anymore
         "500":
           content:
             application/json:
@@ -1474,6 +1519,13 @@ components:
         href: /api/connector_mgmt/v1/errors/7
         code: CONNECTOR-MGMT-7
         reason: The requested resource doesn't exist
+    "410Example":
+      value:
+        id: "410"
+        kind: Error
+        href: /api/connector_mgmt/v1/errors/25
+        code: CONNECTOR-MGMT-25
+        reason: The requested resource has been deleted
     "404DeleteExample":
       value:
         id: "7"
@@ -1837,6 +1889,9 @@ components:
     ConnectorNamespaceRequestMeta:
       properties:
         name:
+          description: Namespace name must match pattern `^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$`,
+            or it may be empty to be auto-generated.
+          pattern: ^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$
           type: string
         annotations:
           items:
@@ -1913,6 +1968,7 @@ components:
       - disconnected
       - ready
       - deleting
+      - deleted
       type: string
     ConnectorNamespaceStatus:
       properties:

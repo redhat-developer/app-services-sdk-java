@@ -11,5 +11,7 @@
 
 * `DELETING` (value: `"deleting"`)
 
+* `DELETED` (value: `"deleted"`)
+
 
 

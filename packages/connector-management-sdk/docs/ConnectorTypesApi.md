@@ -80,6 +80,7 @@ Name | Type | Description  | Notes
 | **200** | The connector type matching the request |  -  |
 | **401** | Auth token is invalid |  -  |
 | **404** | No matching connector type exists |  -  |
+| **410** | Connector type doesn&#39;t exist anymore |  -  |
 | **500** | Unexpected error occurred |  -  |
 
 
