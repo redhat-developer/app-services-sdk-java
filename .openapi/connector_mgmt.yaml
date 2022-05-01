@@ -691,6 +691,12 @@ paths:
           type: string
         in: path
         required: true
+      - name: reset_credentials
+        description: Resets cluster service account credentials when true
+        schema:
+          type: boolean
+        in: query
+        required: false
     get:
       tags:
         - Connector Clusters
