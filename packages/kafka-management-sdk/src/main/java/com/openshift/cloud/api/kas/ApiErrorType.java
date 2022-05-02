@@ -68,9 +68,6 @@ public enum ApiErrorType {
   /** Maximum field length has been depassed*/
   ERROR_34("KAFKAS-MGMT-34"), 
 
-  /** Only multiAZ Kafkas are supported, use multi_az=true*/
-  ERROR_35("KAFKAS-MGMT-35"), 
-
   /** Kafka cluster name is already used*/
   ERROR_36("KAFKAS-MGMT-36"), 
 
@@ -88,6 +85,9 @@ public enum ApiErrorType {
 
   /** Instance Type not supported*/
   ERROR_41("KAFKAS-MGMT-41"), 
+
+  /** Instance plan not supported*/
+  ERROR_42("KAFKAS-MGMT-42"), 
 
   /** Synchronous action is not supported, use async=true parameter*/
   ERROR_103("KAFKAS-MGMT-103"), 
