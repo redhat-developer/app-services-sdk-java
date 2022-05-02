@@ -181,10 +181,11 @@ public class ConnectorClustersApi {
    * Get a connector cluster&#39;s addon parameters
    * Get a connector cluster&#39;s addon parameters
    * @param connectorClusterId The id of the connector cluster (required)
+   * @param resetCredentials Resets cluster service account credentials when true (optional)
    * @return a {@code List<AddonParameter>}
    * @throws ApiException if fails to make API call
    */
-  public List<AddonParameter> getConnectorClusterAddonParameters(String connectorClusterId) throws ApiException {
+  public List<AddonParameter> getConnectorClusterAddonParameters(String connectorClusterId, Boolean resetCredentials) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'connectorClusterId' is set
@@ -202,6 +203,7 @@ public class ConnectorClustersApi {
     Map<String, String> localVarCookieParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "reset_credentials", resetCredentials));
 
     
     

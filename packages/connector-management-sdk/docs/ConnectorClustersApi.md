@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## getConnectorClusterAddonParameters
 
-> List&lt;AddonParameter&gt; getConnectorClusterAddonParameters(connectorClusterId)
+> List&lt;AddonParameter&gt; getConnectorClusterAddonParameters(connectorClusterId, resetCredentials)
 
 Get a connector cluster&#39;s addon parameters
 
@@ -270,8 +270,9 @@ public class Example {
 
         ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
+        Boolean resetCredentials = true; // Boolean | Resets cluster service account credentials when true
         try {
-            List<AddonParameter> result = apiInstance.getConnectorClusterAddonParameters(connectorClusterId);
+            List<AddonParameter> result = apiInstance.getConnectorClusterAddonParameters(connectorClusterId, resetCredentials);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#getConnectorClusterAddonParameters");
@@ -290,6 +291,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectorClusterId** | **String**| The id of the connector cluster |
+ **resetCredentials** | **Boolean**| Resets cluster service account credentials when true | [optional]
 
 ### Return type
 

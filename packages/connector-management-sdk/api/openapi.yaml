@@ -917,6 +917,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Resets cluster service account credentials when true
+        explode: true
+        in: query
+        name: reset_credentials
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
