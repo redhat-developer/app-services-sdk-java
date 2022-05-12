@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.models.Error;
+import com.openshift.cloud.api.kas.models.SupportedKafkaInstanceType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -29,52 +29,52 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * ErrorListAllOf
+ * SupportedKafkaInstanceTypesListAllOf
  */
 @JsonPropertyOrder({
-  ErrorListAllOf.JSON_PROPERTY_ITEMS
+  SupportedKafkaInstanceTypesListAllOf.JSON_PROPERTY_INSTANCE_TYPES
 })
-@JsonTypeName("ErrorList_allOf")
+@JsonTypeName("SupportedKafkaInstanceTypesList_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ErrorListAllOf {
-  public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<Error> items = null;
+public class SupportedKafkaInstanceTypesListAllOf {
+  public static final String JSON_PROPERTY_INSTANCE_TYPES = "instance_types";
+  private List<SupportedKafkaInstanceType> instanceTypes = null;
 
-  public ErrorListAllOf() { 
+  public SupportedKafkaInstanceTypesListAllOf() { 
   }
 
-  public ErrorListAllOf items(List<Error> items) {
+  public SupportedKafkaInstanceTypesListAllOf instanceTypes(List<SupportedKafkaInstanceType> instanceTypes) {
     
-    this.items = items;
+    this.instanceTypes = instanceTypes;
     return this;
   }
 
-  public ErrorListAllOf addItemsItem(Error itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
+  public SupportedKafkaInstanceTypesListAllOf addInstanceTypesItem(SupportedKafkaInstanceType instanceTypesItem) {
+    if (this.instanceTypes == null) {
+      this.instanceTypes = new ArrayList<>();
     }
-    this.items.add(itemsItem);
+    this.instanceTypes.add(instanceTypesItem);
     return this;
   }
 
    /**
-   * Get items
-   * @return items
+   * Get instanceTypes
+   * @return instanceTypes
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ITEMS)
+  @JsonProperty(JSON_PROPERTY_INSTANCE_TYPES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Error> getItems() {
-    return items;
+  public List<SupportedKafkaInstanceType> getInstanceTypes() {
+    return instanceTypes;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ITEMS)
+  @JsonProperty(JSON_PROPERTY_INSTANCE_TYPES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<Error> items) {
-    this.items = items;
+  public void setInstanceTypes(List<SupportedKafkaInstanceType> instanceTypes) {
+    this.instanceTypes = instanceTypes;
   }
 
 
@@ -86,20 +86,20 @@ public class ErrorListAllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorListAllOf errorListAllOf = (ErrorListAllOf) o;
-    return Objects.equals(this.items, errorListAllOf.items);
+    SupportedKafkaInstanceTypesListAllOf supportedKafkaInstanceTypesListAllOf = (SupportedKafkaInstanceTypesListAllOf) o;
+    return Objects.equals(this.instanceTypes, supportedKafkaInstanceTypesListAllOf.instanceTypes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(instanceTypes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorListAllOf {\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("class SupportedKafkaInstanceTypesListAllOf {\n");
+    sb.append("    instanceTypes: ").append(toIndentedString(instanceTypes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

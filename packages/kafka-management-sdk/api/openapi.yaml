@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
   title: Kafka Service Fleet Manager
-  version: 1.4.0
+  version: 1.5.0
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -452,6 +452,8 @@ paths:
                 $ref: '#/components/examples/USRegionExample'
               EURegion:
                 $ref: '#/components/examples/EURegionExample'
+              ExplicitSizeExample:
+                $ref: '#/components/examples/ExplicitSizeExample'
             schema:
               $ref: '#/components/schemas/KafkaRequestPayload'
         description: Kafka data
@@ -648,6 +650,68 @@ paths:
       security:
       - Bearer: []
       summary: Returns the list of supported regions of the supported cloud provider
+      x-accepts: application/json
+  /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region}:
+    get:
+      operationId: getInstanceTypesByCloudProviderAndRegion
+      parameters:
+      - description: ID of the supported cloud provider
+        explode: false
+        in: path
+        name: cloud_provider
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Name of the supported cloud provider region
+        explode: false
+        in: path
+        name: cloud_region
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportedKafkaInstanceTypesList'
+          description: Returned list of supported Kafka instance types and sizes filtered
+            by cloud provider and region
+        "400":
+          content:
+            application/json:
+              examples:
+                "400UnsupportedRegionExample":
+                  $ref: '#/components/examples/400UnsupportedRegionExample'
+                "400UnsupportedProviderExample":
+                  $ref: '#/components/examples/400UnsupportedProviderExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Cloud provider or region is not supported
+        "401":
+          content:
+            application/json:
+              examples:
+                "401Example":
+                  $ref: '#/components/examples/401Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Auth token is invalid
+        "500":
+          content:
+            application/json:
+              examples:
+                "500Example":
+                  $ref: '#/components/examples/500Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error occurred
+      security:
+      - Bearer: []
+      summary: Returns the list of supported Kafka instance types and sizes filtered
+        by cloud provider and region
       x-accepts: application/json
   /api/kafkas_mgmt/v1/service_accounts:
     get:
@@ -1132,6 +1196,12 @@ components:
         region: eu-west-1
         cloud_provider: aws
         name: serviceapitest
+    ExplicitSizeExample:
+      value:
+        region: us-east-1
+        cloud_provider: aws
+        name: test_kafka
+        plan: standard.x1
     KafkaRequestExample:
       value:
         id: 1iSY6RQ3JKI8Q0OTmjQFd3ocFRg
@@ -1150,6 +1220,13 @@ components:
         instance_type: standard
         browser_url: https://console.redhat.com/application-services/streams/kafkas/1isy6rq3jki8q0otmjqfd3ocfrg/dashboard
         reauthentication_enabled: true
+        size_id: x1
+        ingress_throughput_per_sec: 2Mi
+        egress_throughput_per_sec: 2Mi
+        total_max_connections: 100
+        max_partitions: 100
+        max_data_retention_period: P14D
+        max_connection_attempts_per_sec: 100
     KafkaRequestFailedCreationStatusExample:
       value:
         id: 1iSY6RQ3JKI8Q0OTmjQFd3ocFRg
@@ -1167,6 +1244,25 @@ components:
         failed_reason: a reason the Kafka request creation failed
         instance_type: standard
         reauthentication_enabled: true
+    SupportedKafkaInstanceTypeListExample:
+      value:
+        id: developer
+        display_name: Trial
+        sizes:
+        - id: x1
+          ingress_throughput_per_sec:
+            bytes: 31457280
+          egress_throughput_per_sec:
+            bytes: 31457280
+          total_max_connections: 3000
+          max_data_retention_size:
+            bytes: 1073741800000
+          max_partitions: 1000
+          max_data_retention_period: P14D
+          max_connection_attempts_per_sec: 100
+          quota_consumed: 1
+          quota_type: rhosak
+          capacity_consumed: 1
     CloudProviderExample:
       value:
         kind: CloudProvider
@@ -1185,6 +1281,9 @@ components:
         capacity:
         - instance_type: standard
           max_capacity_reached: true
+          available_sizes:
+          - x1
+          - x2
     ServiceAccountRequestExample:
       value:
         name: my-app-sa
@@ -1279,6 +1378,22 @@ components:
           search: ''id''. Supported column names are: region, name, cloud_provider,
           name, status. Query invalid: id = 123'
         operation_id: 1lWDGuybIrEnxrAem724gqkkiDv
+    "400UnsupportedProviderExample":
+      value:
+        id: "30"
+        kind: Error
+        href: /api/kafkas_mgmt/v1/errors/30
+        code: KAFKAS-MGMT-30
+        reason: Provider not supported
+        operation_id: c980htvgvcn9kf51d0n0
+    "400UnsupportedRegionExample":
+      value:
+        id: "31"
+        kind: Error
+        href: /api/kafkas_mgmt/v1/errors/31
+        code: KAFKAS-MGMT-31
+        reason: Region not supported
+        operation_id: c980htvgvcn9kf51d0n0
     "400MissingParameterExample":
       value:
         id: "21"
@@ -1324,7 +1439,8 @@ components:
         kind: Error
         href: /api/kafkas_mgmt/v1/errors/5
         code: KAFKAS-MGMT-5
-        reason: User 'foo-bar' has reached a maximum number of 6 allowed instances.
+        reason: User 'foo-bar' has reached a maximum number of 6 allowed streaming
+          units.
         operation_id: 1lY3UiEkxnXBpVPeI2oNejd3XB
     "403TermsNotAcceptedExample":
       value:
@@ -1578,18 +1694,15 @@ components:
       description: Schema for the request body sent to /kafkas POST
       example:
         reauthentication_enabled: true
-        multi_az: true
         name: name
         cloud_provider: cloud_provider
         region: region
+        plan: plan
       properties:
         cloud_provider:
           description: The cloud provider where the Kafka cluster will be created
             in
           type: string
-        multi_az:
-          description: Set this to true to configure the Kafka cluster to be multiAZ
-          type: boolean
         name:
           description: The name of the Kafka cluster. It must consist of lower-case
             alphanumeric characters or '-', start with an alphabetic character, and
@@ -1604,8 +1717,75 @@ components:
             every 5 minutes. The default value is true
           nullable: true
           type: boolean
+        plan:
+          description: kafka plan in a format of <instance_type>.<size_id>
+          type: string
       required:
       - name
+      type: object
+    SupportedKafkaInstanceTypesList:
+      allOf:
+      - $ref: '#/components/schemas/SupportedKafkaInstanceTypesList_allOf'
+    SupportedKafkaInstanceType:
+      description: Supported Kafka instance type
+      properties:
+        id:
+          description: Unique identifier of the Kafka instance type.
+          type: string
+        display_name:
+          description: Human readable name of the supported Kafka instance type
+          type: string
+        sizes:
+          description: ' A list of Kafka instance sizes available for this instance
+            type'
+          items:
+            allOf:
+            - $ref: '#/components/schemas/SupportedKafkaSize'
+          type: array
+      type: object
+    SupportedKafkaSize:
+      description: Supported Kafka Size
+      properties:
+        id:
+          description: Unique identifier of this Kafka instance size.
+          type: string
+        ingress_throughput_per_sec:
+          $ref: '#/components/schemas/SupportedKafkaSizeBytesValueItem'
+        egress_throughput_per_sec:
+          $ref: '#/components/schemas/SupportedKafkaSizeBytesValueItem'
+        total_max_connections:
+          description: Maximum amount of total connections available to this Kafka
+            instance size.
+          type: integer
+        max_data_retention_size:
+          $ref: '#/components/schemas/SupportedKafkaSizeBytesValueItem'
+        max_partitions:
+          description: Maximum amount of total partitions available to this Kafka
+            instance size.
+          type: integer
+        max_data_retention_period:
+          description: Maximum data retention period available to this Kafka instance
+            size.
+          type: string
+        max_connection_attempts_per_sec:
+          description: Maximium connection attempts per second available to this Kafka
+            instance size.
+          type: integer
+        quota_consumed:
+          description: Quota consumed by this Kafka instance size.
+          type: integer
+        quota_type:
+          description: Quota type used by this Kafka instance size.
+          type: string
+        capacity_consumed:
+          description: Data plane cluster capacity consumed by this Kafka instance
+            size.
+          type: integer
+      type: object
+    SupportedKafkaSizeBytesValueItem:
+      properties:
+        bytes:
+          type: number
       type: object
     CloudProviderList:
       allOf:
@@ -1689,12 +1869,15 @@ components:
         instance_type:
           description: kafka instance type
           type: string
-        max_capacity_reached:
-          description: flag indicating whether the capacity for the instance type
-            in the region is reached
-          type: boolean
+        available_sizes:
+          description: list of available Kafka instance sizes that can be created
+            in this region when taking account current capacity and regional limits
+          items:
+            type: string
+          type: array
       required:
-      - max_capacity_reached
+      - available_sizes
+      - instance_type
       type: object
     ServiceAccountListItem:
       allOf:
@@ -1819,12 +2002,28 @@ components:
           type: string
         instance_type:
           type: string
+        instance_type_name:
+          type: string
         reauthentication_enabled:
           type: boolean
         kafka_storage_size:
           type: string
         browser_url:
           type: string
+        size_id:
+          type: string
+        ingress_throughput_per_sec:
+          type: string
+        egress_throughput_per_sec:
+          type: string
+        total_max_connections:
+          type: integer
+        max_partitions:
+          type: integer
+        max_data_retention_period:
+          type: string
+        max_connection_attempts_per_sec:
+          type: integer
       required:
       - multi_az
       - reauthentication_enabled
@@ -1858,6 +2057,17 @@ components:
           items:
             allOf:
             - $ref: '#/components/schemas/ObjectReference'
+          type: array
+      type: object
+    SupportedKafkaInstanceTypesList_allOf:
+      example:
+        instance_types:
+          $ref: '#/components/examples/SupportedKafkaInstanceTypeListExample'
+      properties:
+        instance_types:
+          items:
+            allOf:
+            - $ref: '#/components/schemas/SupportedKafkaInstanceType'
           type: array
       type: object
     CloudProviderList_allOf:

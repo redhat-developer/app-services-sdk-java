@@ -8,8 +8,8 @@ schema for a kafka instance type capacity in region
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**instanceType** | **String** | kafka instance type |  [optional]
-**maxCapacityReached** | **Boolean** | flag indicating whether the capacity for the instance type in the region is reached | 
+**instanceType** | **String** | kafka instance type | 
+**availableSizes** | **List&lt;String&gt;** | list of available Kafka instance sizes that can be created in this region when taking account current capacity and regional limits | 
 
 
 

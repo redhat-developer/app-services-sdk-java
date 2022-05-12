@@ -2,7 +2,7 @@
 
 Kafka Service Fleet Manager
 
-- API version: 1.4.0
+- API version: 1.5.0
 
 Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-management-sdk</artifactId>
-  <version>1.4.0</version>
+  <version>1.5.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-management-sdk:1.4.0"
+     implementation "com.redhat.cloud:kafka-management-sdk:1.5.0"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-management-sdk-1.4.0.jar`
+- `target/kafka-management-sdk-1.5.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -123,6 +123,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**federateMetrics**](docs/DefaultApi.md#federateMetrics) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate | Returns all metrics in scrapeable format for a given kafka id
 *DefaultApi* | [**getCloudProviderRegions**](docs/DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | Returns the list of supported regions of the supported cloud provider
 *DefaultApi* | [**getCloudProviders**](docs/DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | Returns the list of supported cloud providers
+*DefaultApi* | [**getInstanceTypesByCloudProviderAndRegion**](docs/DefaultApi.md#getInstanceTypesByCloudProviderAndRegion) | **GET** /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} | Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
 *DefaultApi* | [**getKafkaById**](docs/DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | Returns a Kafka request by ID
 *DefaultApi* | [**getKafkas**](docs/DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | Returns a list of Kafka requests
 *DefaultApi* | [**getMetricsByInstantQuery**](docs/DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | Returns metrics with instant query by Kafka ID
@@ -175,6 +176,11 @@ Class | Method | HTTP request | Description
  - [ServiceAccountRequest](docs/ServiceAccountRequest.md)
  - [SsoProvider](docs/SsoProvider.md)
  - [SsoProviderAllOf](docs/SsoProviderAllOf.md)
+ - [SupportedKafkaInstanceType](docs/SupportedKafkaInstanceType.md)
+ - [SupportedKafkaInstanceTypesList](docs/SupportedKafkaInstanceTypesList.md)
+ - [SupportedKafkaInstanceTypesListAllOf](docs/SupportedKafkaInstanceTypesListAllOf.md)
+ - [SupportedKafkaSize](docs/SupportedKafkaSize.md)
+ - [SupportedKafkaSizeBytesValueItem](docs/SupportedKafkaSizeBytesValueItem.md)
  - [Values](docs/Values.md)
  - [VersionMetadata](docs/VersionMetadata.md)
  - [VersionMetadataAllOf](docs/VersionMetadataAllOf.md)

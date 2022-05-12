@@ -20,61 +20,51 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.models.Error;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * ErrorListAllOf
+ * SupportedKafkaSizeBytesValueItem
  */
 @JsonPropertyOrder({
-  ErrorListAllOf.JSON_PROPERTY_ITEMS
+  SupportedKafkaSizeBytesValueItem.JSON_PROPERTY_BYTES
 })
-@JsonTypeName("ErrorList_allOf")
+@JsonTypeName("SupportedKafkaSizeBytesValueItem")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ErrorListAllOf {
-  public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<Error> items = null;
+public class SupportedKafkaSizeBytesValueItem {
+  public static final String JSON_PROPERTY_BYTES = "bytes";
+  private BigDecimal bytes;
 
-  public ErrorListAllOf() { 
+  public SupportedKafkaSizeBytesValueItem() { 
   }
 
-  public ErrorListAllOf items(List<Error> items) {
+  public SupportedKafkaSizeBytesValueItem bytes(BigDecimal bytes) {
     
-    this.items = items;
-    return this;
-  }
-
-  public ErrorListAllOf addItemsItem(Error itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
-    this.items.add(itemsItem);
+    this.bytes = bytes;
     return this;
   }
 
    /**
-   * Get items
-   * @return items
+   * Get bytes
+   * @return bytes
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ITEMS)
+  @JsonProperty(JSON_PROPERTY_BYTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Error> getItems() {
-    return items;
+  public BigDecimal getBytes() {
+    return bytes;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ITEMS)
+  @JsonProperty(JSON_PROPERTY_BYTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<Error> items) {
-    this.items = items;
+  public void setBytes(BigDecimal bytes) {
+    this.bytes = bytes;
   }
 
 
@@ -86,20 +76,20 @@ public class ErrorListAllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorListAllOf errorListAllOf = (ErrorListAllOf) o;
-    return Objects.equals(this.items, errorListAllOf.items);
+    SupportedKafkaSizeBytesValueItem supportedKafkaSizeBytesValueItem = (SupportedKafkaSizeBytesValueItem) o;
+    return Objects.equals(this.bytes, supportedKafkaSizeBytesValueItem.bytes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(bytes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorListAllOf {\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("class SupportedKafkaSizeBytesValueItem {\n");
+    sb.append("    bytes: ").append(toIndentedString(bytes)).append("\n");
     sb.append("}");
     return sb.toString();
   }
