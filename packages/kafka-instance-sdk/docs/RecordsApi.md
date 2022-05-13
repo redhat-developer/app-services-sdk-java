@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## consumeRecords
 
-> RecordList consumeRecords(topicName, include, limit, offset, partition, timestamp)
+> RecordList consumeRecords(topicName, include, limit, maxValueLength, offset, partition, timestamp)
 
 Consume records from a topic
 
@@ -41,11 +41,12 @@ public class Example {
         String topicName = "topicName_example"; // String | Topic name
         List<RecordIncludedProperty> include = Arrays.asList(); // List<RecordIncludedProperty> | List of properties to include for each record in the response
         Integer limit = 56; // Integer | Limit the number of records fetched and returned
+        Integer maxValueLength = 56; // Integer | Maximum length of string values returned in the response. Values with a length that exceeds this parameter will be truncated. When this parameter is not included in the request, the full string values will be returned.
         Integer offset = 56; // Integer | Retrieve messages with an offset equal to or greater than this offset. If both `timestamp` and `offset` are requested, `timestamp` is given preference.
         Integer partition = 56; // Integer | Retrieve messages only from this partition
         Object timestamp = null; // Object | Retrieve messages with a timestamp equal to or later than this timestamp. If both `timestamp` and `offset` are requested, `timestamp` is given preference.
         try {
-            RecordList result = apiInstance.consumeRecords(topicName, include, limit, offset, partition, timestamp);
+            RecordList result = apiInstance.consumeRecords(topicName, include, limit, maxValueLength, offset, partition, timestamp);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling RecordsApi#consumeRecords");
@@ -66,6 +67,7 @@ Name | Type | Description  | Notes
  **topicName** | **String**| Topic name |
  **include** | [**List&lt;RecordIncludedProperty&gt;**](RecordIncludedProperty.md)| List of properties to include for each record in the response | [optional]
  **limit** | **Integer**| Limit the number of records fetched and returned | [optional]
+ **maxValueLength** | **Integer**| Maximum length of string values returned in the response. Values with a length that exceeds this parameter will be truncated. When this parameter is not included in the request, the full string values will be returned. | [optional]
  **offset** | **Integer**| Retrieve messages with an offset equal to or greater than this offset. If both &#x60;timestamp&#x60; and &#x60;offset&#x60; are requested, &#x60;timestamp&#x60; is given preference. | [optional]
  **partition** | **Integer**| Retrieve messages only from this partition | [optional]
  **timestamp** | [**Object**](.md)| Retrieve messages with a timestamp equal to or later than this timestamp. If both &#x60;timestamp&#x60; and &#x60;offset&#x60; are requested, &#x60;timestamp&#x60; is given preference. | [optional]

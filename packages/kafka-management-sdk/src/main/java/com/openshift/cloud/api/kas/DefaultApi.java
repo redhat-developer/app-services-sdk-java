@@ -16,6 +16,7 @@ import com.openshift.cloud.api.kas.models.KafkaRequestPayload;
 import com.openshift.cloud.api.kas.models.KafkaUpdateRequest;
 import com.openshift.cloud.api.kas.models.MetricsInstantQueryList;
 import com.openshift.cloud.api.kas.models.MetricsRangeQueryList;
+import com.openshift.cloud.api.kas.models.SupportedKafkaInstanceTypesList;
 import com.openshift.cloud.api.kas.models.VersionMetadata;
 
 import java.util.ArrayList;
@@ -275,6 +276,57 @@ public class DefaultApi {
     String[] localVarAuthNames = new String[] { "Bearer" };
 
     GenericType<CloudProviderList> localVarReturnType = new GenericType<CloudProviderList>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
+   * 
+   * @param cloudProvider ID of the supported cloud provider (required)
+   * @param cloudRegion Name of the supported cloud provider region (required)
+   * @return a {@code SupportedKafkaInstanceTypesList}
+   * @throws ApiException if fails to make API call
+   */
+  public SupportedKafkaInstanceTypesList getInstanceTypesByCloudProviderAndRegion(String cloudProvider, String cloudRegion) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'cloudProvider' is set
+    if (cloudProvider == null) {
+      throw new ApiException(400, "Missing the required parameter 'cloudProvider' when calling getInstanceTypesByCloudProviderAndRegion");
+    }
+    
+    // verify the required parameter 'cloudRegion' is set
+    if (cloudRegion == null) {
+      throw new ApiException(400, "Missing the required parameter 'cloudRegion' when calling getInstanceTypesByCloudProviderAndRegion");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "cloud_provider" + "\\}", apiClient.escapeString(cloudProvider.toString()))
+      .replaceAll("\\{" + "cloud_region" + "\\}", apiClient.escapeString(cloudRegion.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "Bearer" };
+
+    GenericType<SupportedKafkaInstanceTypesList> localVarReturnType = new GenericType<SupportedKafkaInstanceTypesList>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**

@@ -9,7 +9,7 @@ An evaluation connector namespace create request
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** | Namespace name must match pattern &#x60;^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$&#x60;, or it may be empty to be auto-generated. |  [optional]
-**annotations** | [**List&lt;ConnectorNamespaceRequestMetaAnnotations&gt;**](ConnectorNamespaceRequestMetaAnnotations.md) |  |  [optional]
+**annotations** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 

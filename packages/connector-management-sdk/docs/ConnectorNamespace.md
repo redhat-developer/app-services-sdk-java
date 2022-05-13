@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **createdAt** | **OffsetDateTime** |  |  [optional]
 **modifiedAt** | **OffsetDateTime** |  |  [optional]
 **name** | **String** |  | 
-**annotations** | [**List&lt;ConnectorNamespaceRequestMetaAnnotations&gt;**](ConnectorNamespaceRequestMetaAnnotations.md) |  |  [optional]
+**annotations** | **Map&lt;String, String&gt;** |  |  [optional]
 **resourceVersion** | **Long** |  | 
 **quota** | [**ConnectorNamespaceQuota**](ConnectorNamespaceQuota.md) |  |  [optional]
 **clusterId** | **String** |  | 

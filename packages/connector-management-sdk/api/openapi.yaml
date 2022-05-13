@@ -1493,14 +1493,12 @@ components:
         name: MyNamespace
         cluster_id: 9bsv0s7tne7g02gh5g4g
         annotations:
-        - key: connector_mgmt.bf2.org/profile
-          value: default-profile
+          connector_mgmt.bf2.org/profile: default-profile
     ConnectorNamespaceEvalCreateExample:
       value:
         name: MyEvalNamespace
         annotations:
-        - key: connector_mgmt.bf2.org/profile
-          value: evaluation-profile
+          connector_mgmt.bf2.org/profile: evaluation-profile
     "400CreationExample":
       value:
         id: "103"
@@ -1902,9 +1900,9 @@ components:
           pattern: ^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$
           type: string
         annotations:
-          items:
-            $ref: '#/components/schemas/ConnectorNamespaceRequestMeta_annotations'
-          type: array
+          additionalProperties:
+            type: string
+          type: object
       type: object
     ConnectorNamespaceQuota:
       properties:
@@ -2110,16 +2108,6 @@ components:
           items:
             $ref: '#/components/schemas/ConnectorType'
           type: array
-      type: object
-    ConnectorNamespaceRequestMeta_annotations:
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-      required:
-      - key
-      - value
       type: object
     ConnectorNamespaceMeta_allOf:
       properties:

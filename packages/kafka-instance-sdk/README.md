@@ -2,7 +2,7 @@
 
 Kafka Admin REST API
 
-- API version: 0.8.1-SNAPSHOT
+- API version: 0.10.0
 
 An API to provide REST endpoints for query Kafka for admin operations
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-instance-sdk</artifactId>
-  <version>0.8.1-SNAPSHOT</version>
+  <version>0.10.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-instance-sdk:0.8.1-SNAPSHOT"
+     implementation "com.redhat.cloud:kafka-instance-sdk:0.10.0"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-instance-sdk-0.8.1-SNAPSHOT.jar`
+- `target/kafka-instance-sdk-0.10.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started

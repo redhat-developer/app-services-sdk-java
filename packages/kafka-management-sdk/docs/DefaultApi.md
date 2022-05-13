@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**federateMetrics**](DefaultApi.md#federateMetrics) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate | Returns all metrics in scrapeable format for a given kafka id
 [**getCloudProviderRegions**](DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | Returns the list of supported regions of the supported cloud provider
 [**getCloudProviders**](DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | Returns the list of supported cloud providers
+[**getInstanceTypesByCloudProviderAndRegion**](DefaultApi.md#getInstanceTypesByCloudProviderAndRegion) | **GET** /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} | Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
 [**getKafkaById**](DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | Returns a Kafka request by ID
 [**getKafkas**](DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | Returns a list of Kafka requests
 [**getMetricsByInstantQuery**](DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | Returns metrics with instant query by Kafka ID
@@ -388,6 +389,80 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Returned list of supported cloud providers |  -  |
+| **401** | Auth token is invalid |  -  |
+| **500** | Unexpected error occurred |  -  |
+
+
+## getInstanceTypesByCloudProviderAndRegion
+
+> SupportedKafkaInstanceTypesList getInstanceTypesByCloudProviderAndRegion(cloudProvider, cloudRegion)
+
+Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.kas.invoker.ApiClient;
+import com.openshift.cloud.api.kas.invoker.ApiException;
+import com.openshift.cloud.api.kas.invoker.Configuration;
+import com.openshift.cloud.api.kas.invoker.auth.*;
+import com.openshift.cloud.api.kas.invoker.models.*;
+import com.openshift.cloud.api.kas.DefaultApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+        
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        String cloudProvider = "cloudProvider_example"; // String | ID of the supported cloud provider
+        String cloudRegion = "cloudRegion_example"; // String | Name of the supported cloud provider region
+        try {
+            SupportedKafkaInstanceTypesList result = apiInstance.getInstanceTypesByCloudProviderAndRegion(cloudProvider, cloudRegion);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#getInstanceTypesByCloudProviderAndRegion");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cloudProvider** | **String**| ID of the supported cloud provider |
+ **cloudRegion** | **String**| Name of the supported cloud provider region |
+
+### Return type
+
+[**SupportedKafkaInstanceTypesList**](SupportedKafkaInstanceTypesList.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returned list of supported Kafka instance types and sizes filtered by cloud provider and region |  -  |
+| **400** | Cloud provider or region is not supported |  -  |
 | **401** | Auth token is invalid |  -  |
 | **500** | Unexpected error occurred |  -  |
 
