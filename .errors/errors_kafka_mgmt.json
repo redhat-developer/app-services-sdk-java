@@ -145,13 +145,6 @@
       "reason": "Maximum field length has been depassed"
     },
     {
-      "id": "35",
-      "kind": "Error",
-      "href": "/api/kafkas_mgmt/v1/errors/35",
-      "code": "KAFKAS-MGMT-35",
-      "reason": "Only multiAZ Kafkas are supported, use multi_az=true"
-    },
-    {
       "id": "36",
       "kind": "Error",
       "href": "/api/kafkas_mgmt/v1/errors/36",
@@ -192,6 +185,13 @@
       "href": "/api/kafkas_mgmt/v1/errors/41",
       "code": "KAFKAS-MGMT-41",
       "reason": "Instance Type not supported"
+    },
+    {
+      "id": "42",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/42",
+      "code": "KAFKAS-MGMT-42",
+      "reason": "Instance plan not supported"
     },
     {
       "id": "103",
