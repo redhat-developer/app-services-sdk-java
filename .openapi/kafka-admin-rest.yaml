@@ -6,7 +6,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  version: 0.8.1-SNAPSHOT
+  version: 0.10.0
 servers:
 - url: /
   description: Kafka Admin REST API
@@ -822,6 +822,17 @@ paths:
         schema:
           format: int32
           default: "20"
+          minimum: 1
+          type: integer
+      - name: maxValueLength
+        in: query
+        description: "Maximum length of string values returned in the response. Values\
+          \ with a length that exceeds this parameter will be truncated. When this\
+          \ parameter is not included in the request, the full string values will\
+          \ be returned."
+        schema:
+          format: int32
+          minimum: 1
           type: integer
       - name: offset
         in: query
@@ -830,6 +841,7 @@ paths:
           \ given preference."
         schema:
           format: int32
+          minimum: 0
           type: integer
       - name: partition
         in: query
