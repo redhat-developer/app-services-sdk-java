@@ -19,9 +19,17 @@ Name | Type | Description | Notes
 **failedReason** | **String** |  |  [optional]
 **version** | **String** |  |  [optional]
 **instanceType** | **String** |  |  [optional]
+**instanceTypeName** | **String** |  |  [optional]
 **reauthenticationEnabled** | **Boolean** |  | 
 **kafkaStorageSize** | **String** |  |  [optional]
 **browserUrl** | **String** |  |  [optional]
+**sizeId** | **String** |  |  [optional]
+**ingressThroughputPerSec** | **String** |  |  [optional]
+**egressThroughputPerSec** | **String** |  |  [optional]
+**totalMaxConnections** | **Integer** |  |  [optional]
+**maxPartitions** | **Integer** |  |  [optional]
+**maxDataRetentionPeriod** | **String** |  |  [optional]
+**maxConnectionAttemptsPerSec** | **Integer** |  |  [optional]
 
 
 

@@ -43,13 +43,14 @@ public class RecordsApi {
    * @param topicName Topic name (required)
    * @param include List of properties to include for each record in the response (optional)
    * @param limit Limit the number of records fetched and returned (optional)
+   * @param maxValueLength Maximum length of string values returned in the response. Values with a length that exceeds this parameter will be truncated. When this parameter is not included in the request, the full string values will be returned. (optional)
    * @param offset Retrieve messages with an offset equal to or greater than this offset. If both &#x60;timestamp&#x60; and &#x60;offset&#x60; are requested, &#x60;timestamp&#x60; is given preference. (optional)
    * @param partition Retrieve messages only from this partition (optional)
    * @param timestamp Retrieve messages with a timestamp equal to or later than this timestamp. If both &#x60;timestamp&#x60; and &#x60;offset&#x60; are requested, &#x60;timestamp&#x60; is given preference. (optional)
    * @return a {@code RecordList}
    * @throws ApiException if fails to make API call
    */
-  public RecordList consumeRecords(String topicName, List<RecordIncludedProperty> include, Integer limit, Integer offset, Integer partition, Object timestamp) throws ApiException {
+  public RecordList consumeRecords(String topicName, List<RecordIncludedProperty> include, Integer limit, Integer maxValueLength, Integer offset, Integer partition, Object timestamp) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'topicName' is set
@@ -69,6 +70,7 @@ public class RecordsApi {
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("csv", "include", include));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "limit", limit));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "maxValueLength", maxValueLength));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "offset", offset));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "partition", partition));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "timestamp", timestamp));

@@ -23,15 +23,15 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.openshift.cloud.api.connector.models.ConnectorNamespaceAllOf;
 import com.openshift.cloud.api.connector.models.ConnectorNamespaceMeta;
 import com.openshift.cloud.api.connector.models.ConnectorNamespaceQuota;
-import com.openshift.cloud.api.connector.models.ConnectorNamespaceRequestMetaAnnotations;
 import com.openshift.cloud.api.connector.models.ConnectorNamespaceStatus;
 import com.openshift.cloud.api.connector.models.ConnectorNamespaceTenant;
 import com.openshift.cloud.api.connector.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -80,7 +80,7 @@ public class ConnectorNamespace {
   private String name;
 
   public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
-  private List<ConnectorNamespaceRequestMetaAnnotations> annotations = null;
+  private Map<String, String> annotations = null;
 
   public static final String JSON_PROPERTY_RESOURCE_VERSION = "resource_version";
   private Long resourceVersion;
@@ -292,17 +292,17 @@ public class ConnectorNamespace {
   }
 
 
-  public ConnectorNamespace annotations(List<ConnectorNamespaceRequestMetaAnnotations> annotations) {
+  public ConnectorNamespace annotations(Map<String, String> annotations) {
     
     this.annotations = annotations;
     return this;
   }
 
-  public ConnectorNamespace addAnnotationsItem(ConnectorNamespaceRequestMetaAnnotations annotationsItem) {
+  public ConnectorNamespace putAnnotationsItem(String key, String annotationsItem) {
     if (this.annotations == null) {
-      this.annotations = new ArrayList<>();
+      this.annotations = new HashMap<>();
     }
-    this.annotations.add(annotationsItem);
+    this.annotations.put(key, annotationsItem);
     return this;
   }
 
@@ -315,14 +315,14 @@ public class ConnectorNamespace {
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ConnectorNamespaceRequestMetaAnnotations> getAnnotations() {
+  public Map<String, String> getAnnotations() {
     return annotations;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAnnotations(List<ConnectorNamespaceRequestMetaAnnotations> annotations) {
+  public void setAnnotations(Map<String, String> annotations) {
     this.annotations = annotations;
   }
 
