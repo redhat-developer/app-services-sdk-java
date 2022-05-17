@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * SsoProviderAllOf
  */
 @JsonPropertyOrder({
+  SsoProviderAllOf.JSON_PROPERTY_NAME,
   SsoProviderAllOf.JSON_PROPERTY_BASE_URL,
   SsoProviderAllOf.JSON_PROPERTY_TOKEN_URL,
   SsoProviderAllOf.JSON_PROPERTY_JWKS,
@@ -37,6 +38,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("SsoProvider_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SsoProviderAllOf {
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
+
   public static final String JSON_PROPERTY_BASE_URL = "base_url";
   private String baseUrl;
 
@@ -51,6 +55,33 @@ public class SsoProviderAllOf {
 
   public SsoProviderAllOf() { 
   }
+
+  public SsoProviderAllOf name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * name of the sso provider
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "name of the sso provider")
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(String name) {
+    this.name = name;
+  }
+
 
   public SsoProviderAllOf baseUrl(String baseUrl) {
     
@@ -169,7 +200,8 @@ public class SsoProviderAllOf {
       return false;
     }
     SsoProviderAllOf ssoProviderAllOf = (SsoProviderAllOf) o;
-    return Objects.equals(this.baseUrl, ssoProviderAllOf.baseUrl) &&
+    return Objects.equals(this.name, ssoProviderAllOf.name) &&
+        Objects.equals(this.baseUrl, ssoProviderAllOf.baseUrl) &&
         Objects.equals(this.tokenUrl, ssoProviderAllOf.tokenUrl) &&
         Objects.equals(this.jwks, ssoProviderAllOf.jwks) &&
         Objects.equals(this.validIssuer, ssoProviderAllOf.validIssuer);
@@ -177,13 +209,14 @@ public class SsoProviderAllOf {
 
   @Override
   public int hashCode() {
-    return Objects.hash(baseUrl, tokenUrl, jwks, validIssuer);
+    return Objects.hash(name, baseUrl, tokenUrl, jwks, validIssuer);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SsoProviderAllOf {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    baseUrl: ").append(toIndentedString(baseUrl)).append("\n");
     sb.append("    tokenUrl: ").append(toIndentedString(tokenUrl)).append("\n");
     sb.append("    jwks: ").append(toIndentedString(jwks)).append("\n");

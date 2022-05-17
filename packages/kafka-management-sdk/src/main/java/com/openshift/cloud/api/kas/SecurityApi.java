@@ -240,7 +240,7 @@ public class SecurityApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] {  };
 
     GenericType<SsoProvider> localVarReturnType = new GenericType<SsoProvider>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
