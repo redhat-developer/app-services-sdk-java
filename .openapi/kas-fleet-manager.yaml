@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
   title: Kafka Service Fleet Manager
-  version: 1.6.0
+  version: 1.7.0
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
 servers:
   - url: https://api.openshift.com
@@ -983,6 +983,10 @@ components:
             created_at:
               format: date-time
               type: string
+            expires_at:
+              format: date-time
+              type: string
+              nullable: true
             updated_at:
               format: date-time
               type: string
