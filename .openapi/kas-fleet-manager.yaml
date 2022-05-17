@@ -750,8 +750,6 @@ paths:
     get:
       summary: Return sso provider info
       operationId: getSsoProviders
-      security:
-        - Bearer: [ ]
       tags:
         - security
       responses:
@@ -1380,6 +1378,9 @@ components:
         - $ref: "#/components/schemas/ObjectReference"
         - type: object
           properties:
+            name:
+              description: "name of the sso provider"
+              type: string
             base_url:
               description: 'base url'
               type: string
@@ -1757,8 +1758,7 @@ components:
         created_at: "2021-04-07T16:24:01+05:30"
     SsoProviderExample:
       value:
-        kind: "SsoProvider"
-        href: "/api/kafkas_mgmt/v1/sso_providers"
+        name: "mas_sso"
         base_url: "https://identity.api.redhat.com"
         jwks: "https://identity.api.openshift.com/auth/realms/rhoas/protocol/openid-connect/certs"
         token_url: "https://identity.api.openshift.com/auth/realms/rhoas/protocol/openid-connect/token"
