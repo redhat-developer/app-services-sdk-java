@@ -311,7 +311,6 @@ Return sso provider info
 import com.openshift.cloud.api.kas.invoker.ApiClient;
 import com.openshift.cloud.api.kas.invoker.ApiException;
 import com.openshift.cloud.api.kas.invoker.Configuration;
-import com.openshift.cloud.api.kas.invoker.auth.*;
 import com.openshift.cloud.api.kas.invoker.models.*;
 import com.openshift.cloud.api.kas.SecurityApi;
 
@@ -319,10 +318,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://api.openshift.com");
-        
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
 
         SecurityApi apiInstance = new SecurityApi(defaultClient);
         try {
@@ -349,7 +344,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 

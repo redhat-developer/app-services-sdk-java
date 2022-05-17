@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   SsoProvider.JSON_PROPERTY_ID,
   SsoProvider.JSON_PROPERTY_KIND,
   SsoProvider.JSON_PROPERTY_HREF,
+  SsoProvider.JSON_PROPERTY_NAME,
   SsoProvider.JSON_PROPERTY_BASE_URL,
   SsoProvider.JSON_PROPERTY_TOKEN_URL,
   SsoProvider.JSON_PROPERTY_JWKS,
@@ -51,6 +52,9 @@ public class SsoProvider {
 
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
+
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
   public static final String JSON_PROPERTY_BASE_URL = "base_url";
   private String baseUrl;
@@ -145,6 +149,33 @@ public class SsoProvider {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHref(String href) {
     this.href = href;
+  }
+
+
+  public SsoProvider name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * name of the sso provider
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "name of the sso provider")
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -268,6 +299,7 @@ public class SsoProvider {
     return Objects.equals(this.id, ssoProvider.id) &&
         Objects.equals(this.kind, ssoProvider.kind) &&
         Objects.equals(this.href, ssoProvider.href) &&
+        Objects.equals(this.name, ssoProvider.name) &&
         Objects.equals(this.baseUrl, ssoProvider.baseUrl) &&
         Objects.equals(this.tokenUrl, ssoProvider.tokenUrl) &&
         Objects.equals(this.jwks, ssoProvider.jwks) &&
@@ -276,7 +308,7 @@ public class SsoProvider {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, baseUrl, tokenUrl, jwks, validIssuer);
+    return Objects.hash(id, kind, href, name, baseUrl, tokenUrl, jwks, validIssuer);
   }
 
   @Override
@@ -286,6 +318,7 @@ public class SsoProvider {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    baseUrl: ").append(toIndentedString(baseUrl)).append("\n");
     sb.append("    tokenUrl: ").append(toIndentedString(tokenUrl)).append("\n");
     sb.append("    jwks: ").append(toIndentedString(jwks)).append("\n");
