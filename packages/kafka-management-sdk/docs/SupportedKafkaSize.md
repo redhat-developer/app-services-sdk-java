@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **quotaConsumed** | **Integer** | Quota consumed by this Kafka instance size. |  [optional]
 **quotaType** | **String** | Quota type used by this Kafka instance size. |  [optional]
 **capacityConsumed** | **Integer** | Data plane cluster capacity consumed by this Kafka instance size. |  [optional]
+**maturityStatus** | **String** | Maturity level of the size. Can be stable or tech preview. |  [optional]
 
 
 
