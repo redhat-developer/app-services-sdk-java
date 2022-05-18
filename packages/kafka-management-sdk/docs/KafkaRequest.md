@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **name** | **String** |  |  [optional]
 **bootstrapServerHost** | **String** |  |  [optional]
 **createdAt** | **OffsetDateTime** |  |  [optional]
+**expiresAt** | **OffsetDateTime** |  |  [optional]
 **updatedAt** | **OffsetDateTime** |  |  [optional]
 **failedReason** | **String** |  |  [optional]
 **version** | **String** |  |  [optional]
