@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
   title: Kafka Service Fleet Manager
-  version: 1.7.0
+  version: 1.7.1
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
 servers:
   - url: https://api.openshift.com
@@ -1172,7 +1172,7 @@ components:
           description: 'Data plane cluster capacity consumed by this Kafka instance size.'
           type: integer
         maturity_status:
-          description: 'Maturity level of the size. Can be stable or tech preview.'
+          description: 'Maturity level of the size. Can be "stable" or "preview".'
           type: string
     SupportedKafkaSizeBytesValueItem:
       type: object
