@@ -2,7 +2,7 @@
 
 Kafka Service Fleet Manager
 
-- API version: 1.7.0
+- API version: 1.7.1
 
 Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-management-sdk</artifactId>
-  <version>1.7.0</version>
+  <version>1.7.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-management-sdk:1.7.0"
+     implementation "com.redhat.cloud:kafka-management-sdk:1.7.1"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-management-sdk-1.7.0.jar`
+- `target/kafka-management-sdk-1.7.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started

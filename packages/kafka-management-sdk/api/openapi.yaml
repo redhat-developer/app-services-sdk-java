@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
   title: Kafka Service Fleet Manager
-  version: 1.7.0
+  version: 1.7.1
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -311,6 +311,7 @@ paths:
           Each query can be ordered by any of the following `kafkaRequests` fields:
 
           * bootstrap_server_host
+          * admin_api_server_url
           * cloud_provider
           * cluster_id
           * created_at
@@ -1212,6 +1213,7 @@ components:
         owner: api_kafka_service
         name: serviceapi
         bootstrap_server_host: serviceapi-1isy6rq3jki8q0otmjqfd3ocfrg.apps.mk-bttg0jn170hp.x5u8.s1.devshift.org
+        admin_api_server_url: https://admin-server-mk-e-e-e-e-c---{}ld{-}-n-vp--bltg.rhcloud.com
         created_at: 2020-10-05T12:51:24.053142Z
         updated_at: 2020-10-05T12:56:36.362208Z
         version: 2.6.0
@@ -1237,6 +1239,7 @@ components:
         owner: api_kafka_service
         name: serviceapi
         bootstrap_server_host: serviceapi-1isy6rq3jki8q0otmjqfd3ocfrg.apps.mk-bttg0jn170hp.x5u8.s1.devshift.org
+        admin_api_server_url: https://admin-server-mk-e-e-e-e-c---{}ld{-}-n-vp--bltg.rhcloud.com
         created_at: 2020-10-05T12:51:24.053142Z
         updated_at: 2020-10-05T12:56:36.362208Z
         failed_reason: a reason the Kafka request creation failed
@@ -1569,6 +1572,7 @@ components:
         Each query can be ordered by any of the following `kafkaRequests` fields:
 
         * bootstrap_server_host
+        * admin_api_server_url
         * cloud_provider
         * cluster_id
         * created_at
@@ -1810,7 +1814,7 @@ components:
             size.
           type: integer
         maturity_status:
-          description: Maturity level of the size. Can be stable or tech preview.
+          description: Maturity level of the size. Can be "stable" or "preview".
           type: string
       type: object
     SupportedKafkaSizeBytesValueItem:
@@ -2021,6 +2025,11 @@ components:
         name:
           type: string
         bootstrap_server_host:
+          type: string
+        admin_api_server_url:
+          description: The kafka admin server url to perform kafka admin operations
+            e.g acl management etc. The value will be available when the Kafka has
+            been fully provisioned i.e it reaches a 'ready' state
           type: string
         created_at:
           format: date-time
