@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **owner** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
 **bootstrapServerHost** | **String** |  |  [optional]
+**adminApiServerUrl** | **String** | The kafka admin server url to perform kafka admin operations e.g acl management etc. The value will be available when the Kafka has been fully provisioned i.e it reaches a &#39;ready&#39; state |  [optional]
 **createdAt** | **OffsetDateTime** |  |  [optional]
 **expiresAt** | **OffsetDateTime** |  |  [optional]
 **updatedAt** | **OffsetDateTime** |  |  [optional]
