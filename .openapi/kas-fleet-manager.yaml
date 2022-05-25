@@ -1266,11 +1266,9 @@ components:
           description: 'Indicates whether there is capacity left per instance type'
           type: array
           items:
-            allOf:
-              - $ref: "#/components/schemas/RegionCapacityListItem"
+            $ref: "#/components/schemas/RegionCapacityListItem"
       required:
         - enabled
-        - supported_instance_types
         - capacity
     ServiceAccount:
       description: 'Service Account created in MAS-SSO for the Kafka Cluster for authentication'
