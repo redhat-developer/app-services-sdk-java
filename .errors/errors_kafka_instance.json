@@ -1,0 +1,126 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "kind": "Error",
+      "href": "/api/v1/errors/1",
+      "reason": "Invalid or missing credentials",
+      "code": 401
+    },
+    {
+      "id": "2",
+      "kind": "Error",
+      "href": "/api/v1/errors/2",
+      "reason": "Client is not authorized to perform the requested operation",
+      "code": 403
+    },
+    {
+      "id": "3",
+      "kind": "Error",
+      "href": "/api/v1/errors/3",
+      "reason": "No such topic",
+      "code": 404
+    },
+    {
+      "id": "4",
+      "kind": "Error",
+      "href": "/api/v1/errors/4",
+      "reason": "No such consumer group",
+      "code": 404
+    },
+    {
+      "id": "5",
+      "kind": "Error",
+      "href": "/api/v1/errors/5",
+      "reason": "Topic/Partition in request is invalid",
+      "code": 400
+    },
+    {
+      "id": "6",
+      "kind": "Error",
+      "href": "/api/v1/errors/6",
+      "reason": "Topic/Partition in request does not exist",
+      "code": 400
+    },
+    {
+      "id": "7",
+      "kind": "Error",
+      "href": "/api/v1/errors/7",
+      "reason": "Request body is malformed or invalid",
+      "code": 400
+    },
+    {
+      "id": "8",
+      "kind": "Error",
+      "href": "/api/v1/errors/8",
+      "reason": "Request violates topic configuration policy",
+      "code": 400
+    },
+    {
+      "id": "9",
+      "kind": "Error",
+      "href": "/api/v1/errors/9",
+      "reason": "Request contains invalid configuration",
+      "code": 400
+    },
+    {
+      "id": "10",
+      "kind": "Error",
+      "href": "/api/v1/errors/10",
+      "reason": "Requested topic already exists",
+      "code": 409
+    },
+    {
+      "id": "11",
+      "kind": "Error",
+      "href": "/api/v1/errors/11",
+      "reason": "Consumer group has connected clients",
+      "code": 423
+    },
+    {
+      "id": "12",
+      "kind": "Error",
+      "href": "/api/v1/errors/12",
+      "reason": "Cluster not available",
+      "code": 503
+    },
+    {
+      "id": "13",
+      "kind": "Error",
+      "href": "/api/v1/errors/13",
+      "reason": "Invalid ACL binding resourceType or operation",
+      "code": 400
+    },
+    {
+      "id": "14",
+      "kind": "Error",
+      "href": "/api/v1/errors/14",
+      "reason": "No such error",
+      "code": 404
+    },
+    {
+      "id": "15",
+      "kind": "Error",
+      "href": "/api/v1/errors/15",
+      "reason": "Unknown consumer group member",
+      "code": 400
+    },
+    {
+      "id": "16",
+      "kind": "Error",
+      "href": "/api/v1/errors/16",
+      "reason": "Request body or parameters invalid",
+      "code": 400
+    },
+    {
+      "id": "99",
+      "kind": "Error",
+      "href": "/api/v1/errors/99",
+      "reason": "Server has encountered an unexpected error",
+      "code": 500
+    }
+  ],
+  "total": 17,
+  "size": 17,
+  "page": 1
+}

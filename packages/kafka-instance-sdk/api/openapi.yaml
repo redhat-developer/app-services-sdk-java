@@ -5,7 +5,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Admin REST API
-  version: 0.10.0
+  version: 0.10.1-SNAPSHOT
 servers:
 - description: Kafka Admin REST API
   url: /
@@ -20,6 +20,8 @@ tags:
   name: acls
 - description: Send and receive records interactively
   name: records
+- description: Error Type Retrieval
+  name: errors
 paths:
   /api/v1/topics:
     get:
@@ -28,11 +30,10 @@ paths:
         those records the requestor is authorized to view.
       operationId: getTopics
       parameters:
-      - deprecated: true
-        description: Maximum number of records to return
+      - description: Number of records per page
         explode: true
         in: query
-        name: limit
+        name: size
         required: false
         schema:
           format: int32
@@ -359,6 +360,204 @@ paths:
       - topics
       x-contentType: application/json
       x-accepts: application/json
+  /api/v1/topics/{topicName}/records:
+    get:
+      description: Consume a limited number of records from a topic, optionally specifying
+        a partition and an absolute offset or timestamp as the starting point for
+        message retrieval.
+      operationId: consumeRecords
+      parameters:
+      - description: List of properties to include for each record in the response
+        explode: false
+        in: query
+        name: include
+        required: false
+        schema:
+          items:
+            $ref: '#/components/schemas/RecordIncludedProperty'
+          type: array
+        style: form
+      - description: Limit the number of records fetched and returned
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
+      - description: Maximum length of string values returned in the response. Values
+          with a length that exceeds this parameter will be truncated. When this parameter
+          is not included in the request, the full string values will be returned.
+        explode: true
+        in: query
+        name: maxValueLength
+        required: false
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
+      - description: Retrieve messages with an offset equal to or greater than this
+          offset. If both `timestamp` and `offset` are requested, `timestamp` is given
+          preference.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          format: int32
+          minimum: 0
+          type: integer
+        style: form
+      - description: Retrieve messages only from this partition
+        explode: true
+        in: query
+        name: partition
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Retrieve messages with a timestamp equal to or later than this
+          timestamp. If both `timestamp` and `offset` are requested, `timestamp` is
+          given preference.
+        explode: true
+        in: query
+        name: timestamp
+        required: false
+        schema:
+          format: date-time
+        style: form
+      - description: Topic name
+        explode: false
+        in: path
+        name: topicName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "400":
+          content:
+            application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordList'
+          description: List of records matching the request query parameters.
+      summary: Consume records from a topic
+      tags:
+      - records
+      x-accepts: application/json
+    post:
+      description: Produce (write) a single record to a topic.
+      operationId: produceRecord
+      parameters:
+      - description: Topic name
+        explode: false
+        in: path
+        name: topicName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              RecordProduceExample:
+                $ref: '#/components/examples/RecordProduceExample'
+            schema:
+              $ref: '#/components/schemas/Record'
+        required: true
+      responses:
+        "400":
+          content:
+            application/json:
+              examples:
+                badrequest:
+                  summary: Invalid query parameter
+                  value:
+                    code: 400
+                    error_message: Invalid parameter value
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: |-
+            The client request was invalid. One or more request parameters or the request
+            body was rejected. Additional information may be found in the response.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Request authentication missing or invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access requested resource
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Kafka service unavailable
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Record'
+          description: Record was successfully sent to the topic
+      summary: Send a record to a topic
+      tags:
+      - records
+      x-contentType: application/json
+      x-accepts: application/json
   /api/v1/consumer-groups:
     get:
       description: Returns a list of all consumer groups for a particular Kafka instance.
@@ -366,11 +565,10 @@ paths:
         authorized to view.
       operationId: getConsumerGroups
       parameters:
-      - deprecated: true
-        description: Maximum number of records to return
+      - description: Number of records per page
         explode: true
         in: query
-        name: limit
+        name: size
         required: false
         schema:
           format: int32
@@ -427,11 +625,15 @@ paths:
               examples:
                 List of consumer groups:
                   value:
+                    kind: ConsumerGroupList
                     count: 1
                     limit: 10
                     offset: 0
                     items:
-                    - groupId: consumer_group_1
+                    - id: consumer_group_1
+                      kind: ConsumerGroup
+                      href: /api/v1/consumer-groups/consumer_group_1
+                      groupId: consumer_group_1
                       consumers:
                       - groupId: consumer_group_1
                         topic: topic-1
@@ -1178,207 +1380,70 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error
+      security:
+      - {}
       summary: Retrieve allowed ACL resources and operations
       tags:
       - acls
       x-accepts: application/json
-  /api/v1/topics/{topicName}/records:
+  /api/v1/errors:
     get:
-      description: Consume a limited number of records from a topic, optionally specifying
-        a partition and an absolute offset or timestamp as the starting point for
-        message retrieval.
-      operationId: consumeRecords
-      parameters:
-      - description: Topic name
-        explode: false
-        in: path
-        name: topicName
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: List of properties to include for each record in the response
-        explode: false
-        in: query
-        name: include
-        required: false
-        schema:
-          items:
-            $ref: '#/components/schemas/RecordIncludedProperty'
-          type: array
-        style: form
-      - description: Limit the number of records fetched and returned
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          format: int32
-          minimum: 1
-          type: integer
-        style: form
-      - description: Maximum length of string values returned in the response. Values
-          with a length that exceeds this parameter will be truncated. When this parameter
-          is not included in the request, the full string values will be returned.
-        explode: true
-        in: query
-        name: maxValueLength
-        required: false
-        schema:
-          format: int32
-          minimum: 1
-          type: integer
-        style: form
-      - description: Retrieve messages with an offset equal to or greater than this
-          offset. If both `timestamp` and `offset` are requested, `timestamp` is given
-          preference.
-        explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          format: int32
-          minimum: 0
-          type: integer
-        style: form
-      - description: Retrieve messages only from this partition
-        explode: true
-        in: query
-        name: partition
-        required: false
-        schema:
-          format: int32
-          type: integer
-        style: form
-      - description: Retrieve messages with a timestamp equal to or later than this
-          timestamp. If both `timestamp` and `offset` are requested, `timestamp` is
-          given preference.
-        explode: true
-        in: query
-        name: timestamp
-        required: false
-        schema:
-          format: date-time
-        style: form
+      operationId: getErrors
       responses:
-        "400":
-          content:
-            application/json:
-              examples:
-                badrequest:
-                  summary: Invalid query parameter
-                  value:
-                    code: 400
-                    error_message: Invalid parameter value
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: |-
-            The client request was invalid. One or more request parameters or the request
-            body was rejected. Additional information may be found in the response.
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Request authentication missing or invalid
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User is not authorized to access requested resource
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Internal server error
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Kafka service unavailable
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RecordList'
-          description: List of records matching the request query parameters.
-      summary: Consume records from a topic
-      tags:
-      - records
-      x-accepts: application/json
-    post:
-      description: Produce (write) a single record to a topic.
-      operationId: produceRecord
-      parameters:
-      - description: Topic name
-        explode: false
-        in: path
-        name: topicName
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            examples:
-              RecordProduceExample:
-                $ref: '#/components/examples/RecordProduceExample'
-            schema:
-              $ref: '#/components/schemas/Record'
-        required: true
-      responses:
-        "400":
-          content:
-            application/json:
-              examples:
-                badrequest:
-                  summary: Invalid query parameter
-                  value:
-                    code: 400
-                    error_message: Invalid parameter value
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: |-
-            The client request was invalid. One or more request parameters or the request
-            body was rejected. Additional information may be found in the response.
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Request authentication missing or invalid
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: User is not authorized to access requested resource
+                $ref: '#/components/schemas/ErrorList'
+          description: Error listing
         "500":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Internal server error
-        "503":
+      security:
+      - {}
+      summary: Get list of errors
+      tags:
+      - errors
+      x-accepts: application/json
+  /api/v1/errors/{errorId}:
+    get:
+      operationId: getError
+      parameters:
+      - description: Error identifier
+        explode: false
+        in: path
+        name: errorId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Kafka service unavailable
-        "201":
+          description: Error details
+        "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Record'
-          description: Record was successfully sent to the topic
-      summary: Send a record to a topic
+                $ref: '#/components/schemas/Error'
+          description: The requested resource could not be found.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal server error
+      security:
+      - {}
+      summary: Get an error by its unique ID
       tags:
-      - records
-      x-contentType: application/json
+      - errors
       x-accepts: application/json
 components:
   examples:
@@ -1396,6 +1461,9 @@ components:
     ConsumerGroupExample:
       description: Sample consumer group with 3 partitions and 3 active consumers
       value:
+        id: consumer_group_1
+        kind: ConsumerGroup
+        href: /api/v1/consumer-groups/consumer_group_1
         groupId: consumer_group_1
         state: STABLE
         consumers:
@@ -1438,6 +1506,7 @@ components:
       description: Sample record to produce a record to partition 1, including a custom
         header
       value:
+        kind: Record
         partition: 1
         headers:
           X-Custom-Header: header-value-1
@@ -1495,9 +1564,12 @@ components:
       description: Kafka service unavailable
   schemas:
     AclBinding:
+      allOf:
+      - $ref: '#/components/schemas/ObjectReference'
       description: Represents a binding between a resource pattern and an access control
         entry
       example:
+        kind: AclBinding
         resourceType: TOPIC
         resourceName: '*'
         patternType: LITERAL
@@ -1536,19 +1608,20 @@ components:
       title: ACL Binding
       type: object
     AclBindingListPage:
+      allOf:
+      - $ref: '#/components/schemas/List'
       description: A page of ACL binding entries
       example:
-        total: 0
-        size: 6
-        page: 1
         items:
-        - resourceType: TOPIC
+        - kind: AclBinding
+          resourceType: TOPIC
           resourceName: '*'
           patternType: LITERAL
           principal: User:user123
           operation: READ
           permission: ALLOW
-        - resourceType: TOPIC
+        - kind: AclBinding
+          resourceType: TOPIC
           resourceName: '*'
           patternType: LITERAL
           principal: User:user123
@@ -1558,25 +1631,8 @@ components:
         items:
           items:
             $ref: '#/components/schemas/AclBinding'
-          nullable: false
           type: array
-        total:
-          description: Total number of entries in the full result set
-          format: int32
-          nullable: false
-          type: integer
-        size:
-          description: Number of entries per page (returned for fetch requests)
-          format: int32
-          type: integer
-        page:
-          description: Current page number (returned for fetch requests)
-          format: int32
-          type: integer
-      required:
-      - items
-      - total
-      title: ACL Binding List Page
+      title: ACL Binding List
       type: object
     AclBindingOrderKey:
       enum:
@@ -1586,6 +1642,7 @@ components:
       - principal
       - operation
       - permission
+      title: ACL Binding Order Key
       type: string
     AclOperation:
       enum:
@@ -1738,6 +1795,8 @@ components:
       - topic
       type: object
     ConsumerGroup:
+      allOf:
+      - $ref: '#/components/schemas/ObjectReference'
       description: A group of Kafka consumers
       example:
         groupId: groupId
@@ -1790,11 +1849,15 @@ components:
     ConsumerGroupList:
       description: A list of consumer groups
       example:
+        kind: ConsumerGroupList
         count: 1
         limit: 10
         offset: 0
         items:
-        - groupId: consumer_group_1
+        - id: consumer_group_1
+          kind: ConsumerGroup
+          href: /api/v1/consumer-groups/consumer_group_1
+          groupId: consumer_group_1
           consumers:
           - groupId: consumer_group_1
             topic: topic-1
@@ -1818,6 +1881,8 @@ components:
             lag: 1
             logEndOffset: 5
       properties:
+        kind:
+          type: string
         items:
           items:
             $ref: '#/components/schemas/ConsumerGroup'
@@ -1839,6 +1904,7 @@ components:
       required:
       - items
       - total
+      title: ConsumerGroup List
       type: object
     ConsumerGroupMetrics:
       example:
@@ -1894,6 +1960,8 @@ components:
       title: Root Type for ConsumerGroupResetOffsetParameters
       type: object
     ConsumerGroupResetOffsetResult:
+      allOf:
+      - $ref: '#/components/schemas/List'
       example:
         total: 2
         page: 1
@@ -1909,24 +1977,7 @@ components:
         items:
           items:
             $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
-          nullable: false
           type: array
-        total:
-          description: Total number of entries in the full result set
-          format: int32
-          nullable: false
-          type: integer
-        size:
-          description: Number of entries per page (returned for fetch requests)
-          format: int32
-          type: integer
-        page:
-          description: Current page number (returned for fetch requests)
-          format: int32
-          type: integer
-      required:
-      - items
-      - total
       title: Root Type for ConsumerGroupResetOffsetResult
       type: object
     ConsumerGroupResetOffsetResultItem:
@@ -1955,12 +2006,93 @@ components:
       type: string
     Error:
       description: General error response
+      example:
+        reason: reason
+        code: 0
+        kind: kind
+        id: id
+        href: href
+        detail: detail
       properties:
+        id:
+          description: Unique identifier for the object. Not supported for all object
+            kinds.
+          type: string
+        kind:
+          nullable: false
+          readOnly: true
+          type: string
+        href:
+          description: Link path to request the object. Not supported for all object
+            kinds.
+          type: string
+        reason:
+          description: General reason for the error. Does not change between specific
+            occurrences.
+          type: string
+        detail:
+          description: Detail specific to an error occurrence. May be different depending
+            on the condition(s) that trigger the error.
+          type: string
         code:
           format: int32
           type: integer
-        error_message:
+      required:
+      - kind
+      type: object
+    ErrorList:
+      allOf:
+      - $ref: '#/components/schemas/List'
+      description: List of errors
+      example:
+        total: ""
+        items:
+        - reason: reason
+          code: 0
+          kind: kind
+          id: id
+          href: href
+          detail: detail
+        - reason: reason
+          code: 0
+          kind: kind
+          id: id
+          href: href
+          detail: detail
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+        total:
+          description: Total number of errors returned in this request
+      title: Error List
+      type: object
+    List:
+      properties:
+        kind:
           type: string
+        items:
+          items:
+            type: object
+          nullable: false
+          type: array
+        total:
+          description: Total number of entries in the full result set
+          format: int32
+          nullable: false
+          type: integer
+        size:
+          description: Number of entries per page (returned for fetch requests)
+          format: int32
+          type: integer
+        page:
+          description: Current page number (returned for fetch requests)
+          format: int32
+          type: integer
+      required:
+      - items
+      - total
       type: object
     NewTopicInput:
       description: Input object to create a new topic.
@@ -1993,6 +2125,23 @@ components:
         id:
           format: int32
           type: integer
+      type: object
+    ObjectReference:
+      properties:
+        id:
+          description: Unique identifier for the object. Not supported for all object
+            kinds.
+          type: string
+        kind:
+          nullable: false
+          readOnly: true
+          type: string
+        href:
+          description: Link path to request the object. Not supported for all object
+            kinds.
+          type: string
+      required:
+      - kind
       type: object
     OffsetType:
       enum:
@@ -2037,12 +2186,14 @@ components:
       - partition
       type: object
     Record:
+      allOf:
+      - $ref: '#/components/schemas/ObjectReference'
       description: An individual record consumed from a topic or produced to a topic
       example:
         headers:
           key: headers
-        partition: 5
-        offset: 5
+        partition: 0
+        offset: 6
         timestampType: timestampType
         value: value
         key: key
@@ -2094,51 +2245,42 @@ components:
       - value
       type: string
     RecordList:
+      allOf:
+      - $ref: '#/components/schemas/List'
       description: A page of records consumed from a topic
       example:
-        total: 0
-        size: 6
-        page: 1
+        total: ""
+        size: ""
+        page: ""
         items:
         - headers:
             key: headers
-          partition: 5
-          offset: 5
+          partition: 0
+          offset: 6
           timestampType: timestampType
           value: value
           key: key
           timestamp: 2000-01-23T04:56:07.000+00:00
         - headers:
             key: headers
-          partition: 5
-          offset: 5
+          partition: 0
+          offset: 6
           timestampType: timestampType
           value: value
           key: key
           timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
-        total:
-          description: Total number of records returned in this request. This value
-            does not indicate the total number of records in the topic.
-          format: int32
-          nullable: false
-          type: integer
-        size:
-          description: Not used
-          format: int32
-          type: integer
-        page:
-          description: Not used
-          format: int32
-          type: integer
         items:
           items:
             $ref: '#/components/schemas/Record'
-          nullable: false
           type: array
-      required:
-      - items
-      - total
+        total:
+          description: Total number of records returned in this request. This value
+            does not indicate the total number of records in the topic.
+        size:
+          description: Not used
+        page:
+          description: Not used
       title: Record List
       type: object
     SortDirection:
@@ -2147,8 +2289,13 @@ components:
       - desc
       type: string
     Topic:
+      allOf:
+      - $ref: '#/components/schemas/ObjectReference'
       description: Kafka Topic (A feed where records are stored and published)
       example:
+        id: my-topic
+        kind: Topic
+        href: /api/v1/topics/my-topic
         name: my-topic
         config:
         - key: min.insync.replicas
@@ -2190,7 +2337,7 @@ components:
           items:
             $ref: '#/components/schemas/ConfigEntry'
           type: array
-      title: Root Type for NewTopicInput
+      title: Topic
       type: object
     TopicOrderKey:
       enum:
@@ -2228,8 +2375,12 @@ components:
     TopicsList:
       description: A list of topics.
       example:
+        kind: TopicList
         items:
-        - name: my-topic
+        - id: my-topic
+          kind: Topic
+          href: /api/v1/topics/my-topic
+          name: my-topic
           config:
           - key: min.insync.replicas
             value: "1"
@@ -2258,6 +2409,8 @@ components:
         limit: 90
         count: 94
       properties:
+        kind:
+          type: string
         items:
           items:
             $ref: '#/components/schemas/Topic'
@@ -2279,6 +2432,7 @@ components:
       required:
       - items
       - total
+      title: Topic List
       type: object
     TopicsToResetOffset:
       example:

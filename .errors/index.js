@@ -13,6 +13,10 @@ module.exports ={
     connector: {
         definition: require("./errors_connector_mgmt.json"),
         file: "packages/connector-management-sdk/src/main/java/com/openshift/cloud/api/connector/ApiErrorType.java"
-    }, 
+    },
+    kafkainstance: {
+        definition: require("./errors_kafka_instance.json"),
+        file: "packages/kafka-instance-sdk/src/errors.ts"
+    },
 }
 

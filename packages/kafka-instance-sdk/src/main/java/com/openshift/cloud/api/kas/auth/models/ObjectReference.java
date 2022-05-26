@@ -26,20 +26,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * General error response
+ * ObjectReference
  */
-@ApiModel(description = "General error response")
 @JsonPropertyOrder({
-  Error.JSON_PROPERTY_ID,
-  Error.JSON_PROPERTY_KIND,
-  Error.JSON_PROPERTY_HREF,
-  Error.JSON_PROPERTY_REASON,
-  Error.JSON_PROPERTY_DETAIL,
-  Error.JSON_PROPERTY_CODE
+  ObjectReference.JSON_PROPERTY_ID,
+  ObjectReference.JSON_PROPERTY_KIND,
+  ObjectReference.JSON_PROPERTY_HREF
 })
-@JsonTypeName("Error")
+@JsonTypeName("ObjectReference")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class Error {
+public class ObjectReference {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
@@ -49,27 +45,18 @@ public class Error {
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
 
-  public static final String JSON_PROPERTY_REASON = "reason";
-  private String reason;
-
-  public static final String JSON_PROPERTY_DETAIL = "detail";
-  private String detail;
-
-  public static final String JSON_PROPERTY_CODE = "code";
-  private Integer code;
-
-  public Error() { 
+  public ObjectReference() { 
   }
 
   @JsonCreator
-  public Error(
+  public ObjectReference(
     @JsonProperty(JSON_PROPERTY_KIND) String kind
   ) {
     this();
     this.kind = kind;
   }
 
-  public Error id(String id) {
+  public ObjectReference id(String id) {
     
     this.id = id;
     return this;
@@ -112,7 +99,7 @@ public class Error {
 
 
 
-  public Error href(String href) {
+  public ObjectReference href(String href) {
     
     this.href = href;
     return this;
@@ -139,87 +126,6 @@ public class Error {
   }
 
 
-  public Error reason(String reason) {
-    
-    this.reason = reason;
-    return this;
-  }
-
-   /**
-   * General reason for the error. Does not change between specific occurrences.
-   * @return reason
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "General reason for the error. Does not change between specific occurrences.")
-  @JsonProperty(JSON_PROPERTY_REASON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getReason() {
-    return reason;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REASON)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReason(String reason) {
-    this.reason = reason;
-  }
-
-
-  public Error detail(String detail) {
-    
-    this.detail = detail;
-    return this;
-  }
-
-   /**
-   * Detail specific to an error occurrence. May be different depending on the condition(s) that trigger the error.
-   * @return detail
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Detail specific to an error occurrence. May be different depending on the condition(s) that trigger the error.")
-  @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDetail() {
-    return detail;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetail(String detail) {
-    this.detail = detail;
-  }
-
-
-  public Error code(Integer code) {
-    
-    this.code = code;
-    return this;
-  }
-
-   /**
-   * Get code
-   * @return code
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getCode() {
-    return code;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCode(Integer code) {
-    this.code = code;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -228,30 +134,24 @@ public class Error {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Error error = (Error) o;
-    return Objects.equals(this.id, error.id) &&
-        Objects.equals(this.kind, error.kind) &&
-        Objects.equals(this.href, error.href) &&
-        Objects.equals(this.reason, error.reason) &&
-        Objects.equals(this.detail, error.detail) &&
-        Objects.equals(this.code, error.code);
+    ObjectReference objectReference = (ObjectReference) o;
+    return Objects.equals(this.id, objectReference.id) &&
+        Objects.equals(this.kind, objectReference.kind) &&
+        Objects.equals(this.href, objectReference.href);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, reason, detail, code);
+    return Objects.hash(id, kind, href);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Error {\n");
+    sb.append("class ObjectReference {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
-    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
-    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("}");
     return sb.toString();
   }

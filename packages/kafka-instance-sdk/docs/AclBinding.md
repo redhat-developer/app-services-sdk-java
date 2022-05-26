@@ -14,6 +14,9 @@ Name | Type | Description | Notes
 **principal** | **String** | Identifies the user or service account to which an ACL entry is bound. The literal prefix value of &#x60;User:&#x60; is required. May be used to specify all users with value &#x60;User:*&#x60;. | 
 **operation** | **AclOperation** |  | 
 **permission** | **AclPermissionType** |  | 
+**id** | **String** | Unique identifier for the object. Not supported for all object kinds. |  [optional]
+**kind** | **String** |  |  [readonly]
+**href** | **String** | Link path to request the object. Not supported for all object kinds. |  [optional]
 
 
 

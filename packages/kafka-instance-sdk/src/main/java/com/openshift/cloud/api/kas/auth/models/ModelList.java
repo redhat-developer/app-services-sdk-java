@@ -20,8 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.auth.models.ModelList;
-import com.openshift.cloud.api.kas.auth.models.Record;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -30,154 +28,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * A page of records consumed from a topic
+ * ModelList
  */
-@ApiModel(description = "A page of records consumed from a topic")
 @JsonPropertyOrder({
-  RecordList.JSON_PROPERTY_ITEMS,
-  RecordList.JSON_PROPERTY_TOTAL,
-  RecordList.JSON_PROPERTY_SIZE,
-  RecordList.JSON_PROPERTY_PAGE,
-  RecordList.JSON_PROPERTY_KIND
+  ModelList.JSON_PROPERTY_KIND,
+  ModelList.JSON_PROPERTY_ITEMS,
+  ModelList.JSON_PROPERTY_TOTAL,
+  ModelList.JSON_PROPERTY_SIZE,
+  ModelList.JSON_PROPERTY_PAGE
 })
-@JsonTypeName("RecordList")
+@JsonTypeName("List")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RecordList {
-  public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<Record> items = null;
-
-  public static final String JSON_PROPERTY_TOTAL = "total";
-  private Object total = null;
-
-  public static final String JSON_PROPERTY_SIZE = "size";
-  private Object size = null;
-
-  public static final String JSON_PROPERTY_PAGE = "page";
-  private Object page = null;
-
+public class ModelList {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
 
-  public RecordList() { 
+  public static final String JSON_PROPERTY_ITEMS = "items";
+  private List<Object> items = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_TOTAL = "total";
+  private Integer total;
+
+  public static final String JSON_PROPERTY_SIZE = "size";
+  private Integer size;
+
+  public static final String JSON_PROPERTY_PAGE = "page";
+  private Integer page;
+
+  public ModelList() { 
   }
 
-  public RecordList items(List<Record> items) {
-    
-    this.items = items;
-    return this;
-  }
-
-  public RecordList addItemsItem(Record itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
-    this.items.add(itemsItem);
-    return this;
-  }
-
-   /**
-   * Get items
-   * @return items
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Record> getItems() {
-    return items;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<Record> items) {
-    this.items = items;
-  }
-
-
-  public RecordList total(Object total) {
-    
-    this.total = total;
-    return this;
-  }
-
-   /**
-   * Total number of records returned in this request. This value does not indicate the total number of records in the topic.
-   * @return total
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Total number of records returned in this request. This value does not indicate the total number of records in the topic.")
-  @JsonProperty(JSON_PROPERTY_TOTAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getTotal() {
-    return total;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TOTAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTotal(Object total) {
-    this.total = total;
-  }
-
-
-  public RecordList size(Object size) {
-    
-    this.size = size;
-    return this;
-  }
-
-   /**
-   * Not used
-   * @return size
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Not used")
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Object size) {
-    this.size = size;
-  }
-
-
-  public RecordList page(Object page) {
-    
-    this.page = page;
-    return this;
-  }
-
-   /**
-   * Not used
-   * @return page
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Not used")
-  @JsonProperty(JSON_PROPERTY_PAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getPage() {
-    return page;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPage(Object page) {
-    this.page = page;
-  }
-
-
-  public RecordList kind(String kind) {
+  public ModelList kind(String kind) {
     
     this.kind = kind;
     return this;
@@ -204,6 +85,119 @@ public class RecordList {
   }
 
 
+  public ModelList items(List<Object> items) {
+    
+    this.items = items;
+    return this;
+  }
+
+  public ModelList addItemsItem(Object itemsItem) {
+    this.items.add(itemsItem);
+    return this;
+  }
+
+   /**
+   * Get items
+   * @return items
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_ITEMS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public List<Object> getItems() {
+    return items;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ITEMS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setItems(List<Object> items) {
+    this.items = items;
+  }
+
+
+  public ModelList total(Integer total) {
+    
+    this.total = total;
+    return this;
+  }
+
+   /**
+   * Total number of entries in the full result set
+   * @return total
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Total number of entries in the full result set")
+  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Integer getTotal() {
+    return total;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTotal(Integer total) {
+    this.total = total;
+  }
+
+
+  public ModelList size(Integer size) {
+    
+    this.size = size;
+    return this;
+  }
+
+   /**
+   * Number of entries per page (returned for fetch requests)
+   * @return size
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Number of entries per page (returned for fetch requests)")
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getSize() {
+    return size;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSize(Integer size) {
+    this.size = size;
+  }
+
+
+  public ModelList page(Integer page) {
+    
+    this.page = page;
+    return this;
+  }
+
+   /**
+   * Current page number (returned for fetch requests)
+   * @return page
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Current page number (returned for fetch requests)")
+  @JsonProperty(JSON_PROPERTY_PAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getPage() {
+    return page;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPage(Integer page) {
+    this.page = page;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -212,28 +206,28 @@ public class RecordList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RecordList recordList = (RecordList) o;
-    return Objects.equals(this.items, recordList.items) &&
-        Objects.equals(this.total, recordList.total) &&
-        Objects.equals(this.size, recordList.size) &&
-        Objects.equals(this.page, recordList.page) &&
-        Objects.equals(this.kind, recordList.kind);
+    ModelList _list = (ModelList) o;
+    return Objects.equals(this.kind, _list.kind) &&
+        Objects.equals(this.items, _list.items) &&
+        Objects.equals(this.total, _list.total) &&
+        Objects.equals(this.size, _list.size) &&
+        Objects.equals(this.page, _list.page);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, total, size, page, kind);
+    return Objects.hash(kind, items, total, size, page);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RecordList {\n");
+    sb.append("class ModelList {\n");
+    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
-    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("}");
     return sb.toString();
   }
