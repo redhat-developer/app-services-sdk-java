@@ -735,10 +735,7 @@ components:
           type: string
           nullable: false
         parameters:
-          minProperties: 1
           type: object
-          additionalProperties:
-            type: string
     BaseFilter:
       required:
       - key
@@ -1037,10 +1034,7 @@ components:
           type: string
           nullable: false
         parameters:
-          minProperties: 1
           type: object
-          additionalProperties:
-            type: string
   securitySchemes:
     bearer:
       type: http
