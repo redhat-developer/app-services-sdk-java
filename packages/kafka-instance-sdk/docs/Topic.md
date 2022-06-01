@@ -12,6 +12,9 @@ Name | Type | Description | Notes
 **isInternal** | **Boolean** |  |  [optional]
 **partitions** | [**List&lt;Partition&gt;**](Partition.md) | Partitions for this topic. |  [optional]
 **config** | [**List&lt;ConfigEntry&gt;**](ConfigEntry.md) | Topic configuration entry. |  [optional]
+**id** | **String** | Unique identifier for the object. Not supported for all object kinds. |  [optional]
+**kind** | **String** |  |  [readonly]
+**href** | **String** | Link path to request the object. Not supported for all object kinds. |  [optional]
 
 
 

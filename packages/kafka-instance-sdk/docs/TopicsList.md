@@ -8,6 +8,7 @@ A list of topics.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**kind** | **String** |  |  [optional]
 **items** | [**List&lt;Topic&gt;**](Topic.md) |  | 
 **total** | **Integer** | Total number of entries in the full result set | 
 **size** | **Integer** | Number of entries per page (returned for fetch requests) |  [optional]

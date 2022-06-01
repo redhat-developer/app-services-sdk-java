@@ -20,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.kas.auth.models.Error;
 import com.openshift.cloud.api.kas.auth.models.ModelList;
-import com.openshift.cloud.api.kas.auth.models.Record;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -30,44 +30,44 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * A page of records consumed from a topic
+ * List of errors
  */
-@ApiModel(description = "A page of records consumed from a topic")
+@ApiModel(description = "List of errors")
 @JsonPropertyOrder({
-  RecordList.JSON_PROPERTY_ITEMS,
-  RecordList.JSON_PROPERTY_TOTAL,
-  RecordList.JSON_PROPERTY_SIZE,
-  RecordList.JSON_PROPERTY_PAGE,
-  RecordList.JSON_PROPERTY_KIND
+  ErrorList.JSON_PROPERTY_ITEMS,
+  ErrorList.JSON_PROPERTY_TOTAL,
+  ErrorList.JSON_PROPERTY_KIND,
+  ErrorList.JSON_PROPERTY_SIZE,
+  ErrorList.JSON_PROPERTY_PAGE
 })
-@JsonTypeName("RecordList")
+@JsonTypeName("ErrorList")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class RecordList {
+public class ErrorList {
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<Record> items = null;
+  private List<Error> items = null;
 
   public static final String JSON_PROPERTY_TOTAL = "total";
   private Object total = null;
 
-  public static final String JSON_PROPERTY_SIZE = "size";
-  private Object size = null;
-
-  public static final String JSON_PROPERTY_PAGE = "page";
-  private Object page = null;
-
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
 
-  public RecordList() { 
+  public static final String JSON_PROPERTY_SIZE = "size";
+  private Integer size;
+
+  public static final String JSON_PROPERTY_PAGE = "page";
+  private Integer page;
+
+  public ErrorList() { 
   }
 
-  public RecordList items(List<Record> items) {
+  public ErrorList items(List<Error> items) {
     
     this.items = items;
     return this;
   }
 
-  public RecordList addItemsItem(Record itemsItem) {
+  public ErrorList addItemsItem(Error itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -84,30 +84,30 @@ public class RecordList {
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Record> getItems() {
+  public List<Error> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<Record> items) {
+  public void setItems(List<Error> items) {
     this.items = items;
   }
 
 
-  public RecordList total(Object total) {
+  public ErrorList total(Object total) {
     
     this.total = total;
     return this;
   }
 
    /**
-   * Total number of records returned in this request. This value does not indicate the total number of records in the topic.
+   * Total number of errors returned in this request
    * @return total
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Total number of records returned in this request. This value does not indicate the total number of records in the topic.")
+  @ApiModelProperty(value = "Total number of errors returned in this request")
   @JsonProperty(JSON_PROPERTY_TOTAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -123,61 +123,7 @@ public class RecordList {
   }
 
 
-  public RecordList size(Object size) {
-    
-    this.size = size;
-    return this;
-  }
-
-   /**
-   * Not used
-   * @return size
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Not used")
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Object size) {
-    this.size = size;
-  }
-
-
-  public RecordList page(Object page) {
-    
-    this.page = page;
-    return this;
-  }
-
-   /**
-   * Not used
-   * @return page
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Not used")
-  @JsonProperty(JSON_PROPERTY_PAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getPage() {
-    return page;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPage(Object page) {
-    this.page = page;
-  }
-
-
-  public RecordList kind(String kind) {
+  public ErrorList kind(String kind) {
     
     this.kind = kind;
     return this;
@@ -204,6 +150,60 @@ public class RecordList {
   }
 
 
+  public ErrorList size(Integer size) {
+    
+    this.size = size;
+    return this;
+  }
+
+   /**
+   * Number of entries per page (returned for fetch requests)
+   * @return size
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Number of entries per page (returned for fetch requests)")
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getSize() {
+    return size;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSize(Integer size) {
+    this.size = size;
+  }
+
+
+  public ErrorList page(Integer page) {
+    
+    this.page = page;
+    return this;
+  }
+
+   /**
+   * Current page number (returned for fetch requests)
+   * @return page
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Current page number (returned for fetch requests)")
+  @JsonProperty(JSON_PROPERTY_PAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getPage() {
+    return page;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_PAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPage(Integer page) {
+    this.page = page;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -212,28 +212,28 @@ public class RecordList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RecordList recordList = (RecordList) o;
-    return Objects.equals(this.items, recordList.items) &&
-        Objects.equals(this.total, recordList.total) &&
-        Objects.equals(this.size, recordList.size) &&
-        Objects.equals(this.page, recordList.page) &&
-        Objects.equals(this.kind, recordList.kind);
+    ErrorList errorList = (ErrorList) o;
+    return Objects.equals(this.items, errorList.items) &&
+        Objects.equals(this.total, errorList.total) &&
+        Objects.equals(this.kind, errorList.kind) &&
+        Objects.equals(this.size, errorList.size) &&
+        Objects.equals(this.page, errorList.page);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, total, size, page, kind);
+    return Objects.hash(items, total, kind, size, page);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RecordList {\n");
+    sb.append("class ErrorList {\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
-    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("}");
     return sb.toString();
   }

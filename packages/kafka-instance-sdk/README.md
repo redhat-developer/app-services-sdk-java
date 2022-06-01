@@ -2,7 +2,7 @@
 
 Kafka Admin REST API
 
-- API version: 0.10.0
+- API version: 0.10.1-SNAPSHOT
 
 An API to provide REST endpoints for query Kafka for admin operations
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-instance-sdk</artifactId>
-  <version>0.10.0</version>
+  <version>0.10.1-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-instance-sdk:0.10.0"
+     implementation "com.redhat.cloud:kafka-instance-sdk:0.10.1-SNAPSHOT"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-instance-sdk-0.10.0.jar`
+- `target/kafka-instance-sdk-0.10.1-SNAPSHOT.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -120,6 +120,8 @@ Class | Method | HTTP request | Description
 *AclsApi* | [**deleteAcls**](docs/AclsApi.md#deleteAcls) | **DELETE** /api/v1/acls | Delete ACL bindings
 *AclsApi* | [**getAclResourceOperations**](docs/AclsApi.md#getAclResourceOperations) | **GET** /api/v1/acls/resource-operations | Retrieve allowed ACL resources and operations
 *AclsApi* | [**getAcls**](docs/AclsApi.md#getAcls) | **GET** /api/v1/acls | List ACL bindings
+*ErrorsApi* | [**getError**](docs/ErrorsApi.md#getError) | **GET** /api/v1/errors/{errorId} | Get an error by its unique ID
+*ErrorsApi* | [**getErrors**](docs/ErrorsApi.md#getErrors) | **GET** /api/v1/errors | Get list of errors
 *GroupsApi* | [**deleteConsumerGroupById**](docs/GroupsApi.md#deleteConsumerGroupById) | **DELETE** /api/v1/consumer-groups/{consumerGroupId} | Delete a consumer group.
 *GroupsApi* | [**getConsumerGroupById**](docs/GroupsApi.md#getConsumerGroupById) | **GET** /api/v1/consumer-groups/{consumerGroupId} | Get a single consumer group by its unique ID.
 *GroupsApi* | [**getConsumerGroups**](docs/GroupsApi.md#getConsumerGroups) | **GET** /api/v1/consumer-groups | List of consumer groups in the Kafka instance.
@@ -158,8 +160,11 @@ Class | Method | HTTP request | Description
  - [ConsumerGroupResetOffsetResultItem](docs/ConsumerGroupResetOffsetResultItem.md)
  - [ConsumerGroupState](docs/ConsumerGroupState.md)
  - [Error](docs/Error.md)
+ - [ErrorList](docs/ErrorList.md)
+ - [ModelList](docs/ModelList.md)
  - [NewTopicInput](docs/NewTopicInput.md)
  - [Node](docs/Node.md)
+ - [ObjectReference](docs/ObjectReference.md)
  - [OffsetType](docs/OffsetType.md)
  - [Partition](docs/Partition.md)
  - [Record](docs/Record.md)

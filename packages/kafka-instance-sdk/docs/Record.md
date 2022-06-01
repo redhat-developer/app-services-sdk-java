@@ -15,6 +15,9 @@ Name | Type | Description | Notes
 **headers** | **Map&lt;String, String&gt;** | Record headers, key/value pairs |  [optional]
 **key** | **String** | Record key |  [optional]
 **value** | **String** | Record value | 
+**id** | **String** | Unique identifier for the object. Not supported for all object kinds. |  [optional]
+**kind** | **String** |  |  [readonly]
+**href** | **String** | Link path to request the object. Not supported for all object kinds. |  [optional]
 
 
 
