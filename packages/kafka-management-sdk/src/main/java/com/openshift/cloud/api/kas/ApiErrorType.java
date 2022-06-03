@@ -89,6 +89,9 @@ public enum ApiErrorType {
   /** Instance plan not supported*/
   ERROR_42("KAFKAS-MGMT-42"), 
 
+  /** Billing account id missing or invalid*/
+  ERROR_43("KAFKAS-MGMT-43"), 
+
   /** Synchronous action is not supported, use async=true parameter*/
   ERROR_103("KAFKAS-MGMT-103"), 
 
