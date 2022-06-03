@@ -32,6 +32,8 @@ Name | Type | Description | Notes
 **maxPartitions** | **Integer** |  |  [optional]
 **maxDataRetentionPeriod** | **String** |  |  [optional]
 **maxConnectionAttemptsPerSec** | **Integer** |  |  [optional]
+**billingCloudAccountId** | **String** |  |  [optional]
+**marketplace** | **String** |  |  [optional]
 
 
 
