@@ -2,7 +2,6 @@
 
 # Error
 
-General error response
 
 ## Properties
 

@@ -2,7 +2,6 @@
 
 # TopicsList
 
-A list of topics.
 
 ## Properties
 
