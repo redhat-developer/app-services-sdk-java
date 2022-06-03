@@ -2,7 +2,7 @@
 
 Kafka Admin REST API
 
-- API version: 0.10.1-SNAPSHOT
+- API version: 0.11.0
 
 An API to provide REST endpoints for query Kafka for admin operations
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-instance-sdk</artifactId>
-  <version>0.10.1-SNAPSHOT</version>
+  <version>0.11.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-instance-sdk:0.10.1-SNAPSHOT"
+     implementation "com.redhat.cloud:kafka-instance-sdk:0.11.0"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-instance-sdk-0.10.1-SNAPSHOT.jar`
+- `target/kafka-instance-sdk-0.11.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -137,6 +137,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [ACLBinding](docs/ACLBinding.md)
+ - [ACLBindingList](docs/ACLBindingList.md)
  - [AclBinding](docs/AclBinding.md)
  - [AclBindingListPage](docs/AclBindingListPage.md)
  - [AclBindingOrderKey](docs/AclBindingOrderKey.md)
@@ -151,6 +153,7 @@ Class | Method | HTTP request | Description
  - [ConfigEntry](docs/ConfigEntry.md)
  - [Consumer](docs/Consumer.md)
  - [ConsumerGroup](docs/ConsumerGroup.md)
+ - [ConsumerGroupAllOf](docs/ConsumerGroupAllOf.md)
  - [ConsumerGroupDescriptionOrderKey](docs/ConsumerGroupDescriptionOrderKey.md)
  - [ConsumerGroupList](docs/ConsumerGroupList.md)
  - [ConsumerGroupMetrics](docs/ConsumerGroupMetrics.md)
@@ -160,7 +163,9 @@ Class | Method | HTTP request | Description
  - [ConsumerGroupResetOffsetResultItem](docs/ConsumerGroupResetOffsetResultItem.md)
  - [ConsumerGroupState](docs/ConsumerGroupState.md)
  - [Error](docs/Error.md)
+ - [ErrorAllOf](docs/ErrorAllOf.md)
  - [ErrorList](docs/ErrorList.md)
+ - [ListDeprecated](docs/ListDeprecated.md)
  - [ModelList](docs/ModelList.md)
  - [NewTopicInput](docs/NewTopicInput.md)
  - [Node](docs/Node.md)
@@ -168,10 +173,14 @@ Class | Method | HTTP request | Description
  - [OffsetType](docs/OffsetType.md)
  - [Partition](docs/Partition.md)
  - [Record](docs/Record.md)
+ - [Record1](docs/Record1.md)
  - [RecordIncludedProperty](docs/RecordIncludedProperty.md)
  - [RecordList](docs/RecordList.md)
+ - [RootTypeForConsumerGroupResetOffsetResult](docs/RootTypeForConsumerGroupResetOffsetResult.md)
  - [SortDirection](docs/SortDirection.md)
  - [Topic](docs/Topic.md)
+ - [Topic1](docs/Topic1.md)
+ - [TopicList](docs/TopicList.md)
  - [TopicOrderKey](docs/TopicOrderKey.md)
  - [TopicSettings](docs/TopicSettings.md)
  - [TopicsList](docs/TopicsList.md)

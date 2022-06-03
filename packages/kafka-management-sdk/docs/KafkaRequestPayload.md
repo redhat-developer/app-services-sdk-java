@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **region** | **String** | The region where the Kafka cluster will be created in |  [optional]
 **reauthenticationEnabled** | **Boolean** | Whether connection reauthentication is enabled or not. If set to true, connection reauthentication on the Kafka instance will be required every 5 minutes. The default value is true |  [optional]
 **plan** | **String** | kafka plan in a format of &lt;instance_type&gt;.&lt;size_id&gt; |  [optional]
+**billingCloudAccountId** | **String** | cloud account id used to purchase the instance |  [optional]
+**marketplace** | **String** | marketplace where the instance is purchased on |  [optional]
 
 
 

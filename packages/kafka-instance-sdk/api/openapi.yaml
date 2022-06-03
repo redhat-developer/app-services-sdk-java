@@ -5,7 +5,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Admin REST API
-  version: 0.10.1-SNAPSHOT
+  version: 0.11.0
 servers:
 - description: Kafka Admin REST API
   url: /
@@ -1568,8 +1568,7 @@ components:
     AclBinding:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
-      description: Represents a binding between a resource pattern and an access control
-        entry
+      - $ref: '#/components/schemas/ACL_Binding'
       example:
         kind: AclBinding
         resourceType: TOPIC
@@ -1578,64 +1577,10 @@ components:
         principal: User:user123
         operation: READ
         permission: ALLOW
-      properties:
-        resourceType:
-          $ref: '#/components/schemas/AclResourceType'
-        resourceName:
-          nullable: false
-          pattern: \S
-          type: string
-        patternType:
-          $ref: '#/components/schemas/AclPatternType'
-        principal:
-          description: Identifies the user or service account to which an ACL entry
-            is bound. The literal prefix value of `User:` is required. May be used
-            to specify all users with value `User:*`.
-          example: User:user-123-abc
-          nullable: false
-          pattern: \S
-          title: ACL Principal
-          type: string
-        operation:
-          $ref: '#/components/schemas/AclOperation'
-        permission:
-          $ref: '#/components/schemas/AclPermissionType'
-      required:
-      - operation
-      - patternType
-      - permission
-      - principal
-      - resourceName
-      - resourceType
-      title: ACL Binding
-      type: object
     AclBindingListPage:
       allOf:
       - $ref: '#/components/schemas/List'
-      description: A page of ACL binding entries
-      example:
-        items:
-        - kind: AclBinding
-          resourceType: TOPIC
-          resourceName: '*'
-          patternType: LITERAL
-          principal: User:user123
-          operation: READ
-          permission: ALLOW
-        - kind: AclBinding
-          resourceType: TOPIC
-          resourceName: '*'
-          patternType: LITERAL
-          principal: User:user123
-          operation: READ
-          permission: ALLOW
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/AclBinding'
-          type: array
-      title: ACL Binding List
-      type: object
+      - $ref: '#/components/schemas/ACL_Binding_List'
     AclBindingOrderKey:
       enum:
       - resourceType
@@ -1799,48 +1744,7 @@ components:
     ConsumerGroup:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
-      description: A group of Kafka consumers
-      example:
-        groupId: groupId
-        consumers:
-        - groupId: consumer_group_1
-          topic: topic-1
-          partition: 0
-          memberId: consumer_group_1-0
-          offset: 5
-          lag: 0
-          logEndOffset: 5
-        - groupId: consumer_group_1
-          topic: topic-1
-          partition: 0
-          memberId: consumer_group_1-0
-          offset: 5
-          lag: 0
-          logEndOffset: 5
-        metrics:
-          laggingPartitions: 0
-          activeConsumers: 6
-          unassignedPartitions: 1
-      properties:
-        groupId:
-          description: Unique identifier for the consumer group
-          nullable: false
-          pattern: \S
-          type: string
-        state:
-          $ref: '#/components/schemas/ConsumerGroupState'
-        consumers:
-          description: The list of consumers associated with this consumer group
-          items:
-            $ref: '#/components/schemas/Consumer'
-          nullable: false
-          type: array
-        metrics:
-          $ref: '#/components/schemas/ConsumerGroupMetrics'
-      required:
-      - consumers
-      - groupId
-      type: object
+      - $ref: '#/components/schemas/ConsumerGroup_allOf'
     ConsumerGroupDescriptionOrderKey:
       enum:
       - offset
@@ -1849,7 +1753,9 @@ components:
       - partition
       type: string
     ConsumerGroupList:
-      description: A list of consumer groups
+      allOf:
+      - $ref: '#/components/schemas/ListDeprecated'
+      - $ref: '#/components/schemas/ConsumerGroup_List'
       example:
         kind: ConsumerGroupList
         count: 1
@@ -1882,37 +1788,7 @@ components:
             offset: 6
             lag: 1
             logEndOffset: 5
-      properties:
-        kind:
-          type: string
-        items:
-          items:
-            $ref: '#/components/schemas/ConsumerGroup'
-          nullable: false
-          type: array
-        total:
-          description: Total number of entries in the full result set
-          format: int32
-          nullable: false
-          type: integer
-        size:
-          description: Number of entries per page (returned for fetch requests)
-          format: int32
-          type: integer
-        page:
-          description: Current page number (returned for fetch requests)
-          format: int32
-          type: integer
-      required:
-      - items
-      - total
-      title: ConsumerGroup List
-      type: object
     ConsumerGroupMetrics:
-      example:
-        laggingPartitions: 0
-        activeConsumers: 6
-        unassignedPartitions: 1
       properties:
         laggingPartitions:
           format: int32
@@ -1964,6 +1840,7 @@ components:
     ConsumerGroupResetOffsetResult:
       allOf:
       - $ref: '#/components/schemas/List'
+      - $ref: '#/components/schemas/Root_Type_for_ConsumerGroupResetOffsetResult'
       example:
         total: 2
         page: 1
@@ -1975,13 +1852,6 @@ components:
         - topic: my-topic
           partition: 0
           offset: 0
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
-          type: array
-      title: Root Type for ConsumerGroupResetOffsetResult
-      type: object
     ConsumerGroupResetOffsetResultItem:
       example:
         topic: your-topic
@@ -2007,69 +1877,13 @@ components:
       - EMPTY
       type: string
     Error:
-      description: General error response
-      example:
-        reason: reason
-        code: 0
-        kind: kind
-        id: id
-        href: href
-        detail: detail
-      properties:
-        id:
-          description: Unique identifier for the object. Not supported for all object
-            kinds.
-          type: string
-        kind:
-          nullable: false
-          readOnly: true
-          type: string
-        href:
-          description: Link path to request the object. Not supported for all object
-            kinds.
-          type: string
-        reason:
-          description: General reason for the error. Does not change between specific
-            occurrences.
-          type: string
-        detail:
-          description: Detail specific to an error occurrence. May be different depending
-            on the condition(s) that trigger the error.
-          type: string
-        code:
-          format: int32
-          type: integer
-      required:
-      - kind
-      type: object
+      allOf:
+      - $ref: '#/components/schemas/ObjectReference'
+      - $ref: '#/components/schemas/Error_allOf'
     ErrorList:
       allOf:
       - $ref: '#/components/schemas/List'
-      description: List of errors
-      example:
-        total: ""
-        items:
-        - reason: reason
-          code: 0
-          kind: kind
-          id: id
-          href: href
-          detail: detail
-        - reason: reason
-          code: 0
-          kind: kind
-          id: id
-          href: href
-          detail: detail
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/Error'
-          type: array
-        total:
-          description: Total number of errors returned in this request
-      title: Error List
-      type: object
+      - $ref: '#/components/schemas/Error_List'
     List:
       properties:
         kind:
@@ -2096,6 +1910,11 @@ components:
       - items
       - total
       type: object
+    ListDeprecated:
+      allOf:
+      - $ref: '#/components/schemas/List'
+      - properties: {}
+        type: object
     NewTopicInput:
       description: Input object to create a new topic.
       example:
@@ -2190,16 +2009,259 @@ components:
     Record:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
-      description: An individual record consumed from a topic or produced to a topic
+      - $ref: '#/components/schemas/Record_1'
+    RecordIncludedProperty:
+      enum:
+      - partition
+      - offset
+      - timestamp
+      - timestampType
+      - headers
+      - key
+      - value
+      type: string
+    RecordList:
+      allOf:
+      - $ref: '#/components/schemas/List'
+      - $ref: '#/components/schemas/Record_List'
+    SortDirection:
+      enum:
+      - asc
+      - desc
+      type: string
+    Topic:
+      allOf:
+      - $ref: '#/components/schemas/ObjectReference'
+      - $ref: '#/components/schemas/Topic_1'
       example:
-        headers:
-          key: headers
-        partition: 0
-        offset: 6
-        timestampType: timestampType
-        value: value
-        key: key
-        timestamp: 2000-01-23T04:56:07.000+00:00
+        id: my-topic
+        kind: Topic
+        href: /api/v1/topics/my-topic
+        name: my-topic
+        config:
+        - key: min.insync.replicas
+          value: "1"
+        - key: max.message.bytes
+          value: "1050000"
+        partitions:
+        - id: 0
+          replicas:
+          - id: 0
+          - id: 1
+          isr:
+          - id: 0
+          - id: 1
+          leader:
+            id: 0
+        - id: 1
+          replicas:
+          - id: 0
+          - id: 1
+          isr:
+          - id: 0
+          - id: 1
+          leader:
+            id: 1
+    TopicOrderKey:
+      enum:
+      - name
+      - partitions
+      - retention.ms
+      - retention.bytes
+      type: string
+    TopicSettings:
+      description: The settings that are applicable to this topic. This includes partitions,
+        configuration information, and number of replicas.
+      example:
+        numPartitions: 2
+        config:
+        - key: min.insync.replicas
+          value: "1"
+        - key: max.message.bytes
+          value: "1050000"
+      properties:
+        numPartitions:
+          description: Number of partitions for this topic. If not specified, the
+            default for new topics is `1`. Number of partitions may not be reduced
+            when updating existing topics
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        config:
+          description: Topic configuration entries.
+          items:
+            $ref: '#/components/schemas/ConfigEntry'
+          type: array
+      title: Topic Settings
+      type: object
+    TopicsList:
+      allOf:
+      - $ref: '#/components/schemas/ListDeprecated'
+      - $ref: '#/components/schemas/Topic_List'
+      example:
+        kind: TopicList
+        items:
+        - id: my-topic
+          kind: Topic
+          href: /api/v1/topics/my-topic
+          name: my-topic
+          config:
+          - key: min.insync.replicas
+            value: "1"
+          - key: max.message.bytes
+            value: "1050000"
+          partitions:
+          - id: 0
+            replicas:
+            - id: 0
+            - id: 1
+            isr:
+            - id: 0
+            - id: 1
+            leader:
+              id: 0
+          - id: 1
+            replicas:
+            - id: 0
+            - id: 1
+            isr:
+            - id: 0
+            - id: 1
+            leader:
+              id: 1
+        offset: 25
+        limit: 90
+        count: 94
+    TopicsToResetOffset:
+      example:
+        partitions:
+        - 0
+        - 0
+        topic: topic
+      properties:
+        topic:
+          nullable: false
+          type: string
+        partitions:
+          items:
+            format: int32
+            type: integer
+          type: array
+      required:
+      - topic
+      title: Root Type for TopicsToResetOffset
+      type: object
+    ACL_Binding:
+      description: Represents a binding between a resource pattern and an access control
+        entry
+      properties:
+        resourceType:
+          $ref: '#/components/schemas/AclResourceType'
+        resourceName:
+          nullable: false
+          pattern: \S
+          type: string
+        patternType:
+          $ref: '#/components/schemas/AclPatternType'
+        principal:
+          description: Identifies the user or service account to which an ACL entry
+            is bound. The literal prefix value of `User:` is required. May be used
+            to specify all users with value `User:*`.
+          example: User:user-123-abc
+          nullable: false
+          pattern: \S
+          title: ACL Principal
+          type: string
+        operation:
+          $ref: '#/components/schemas/AclOperation'
+        permission:
+          $ref: '#/components/schemas/AclPermissionType'
+      required:
+      - operation
+      - patternType
+      - permission
+      - principal
+      - resourceName
+      - resourceType
+      title: ACL Binding
+      type: object
+    ACL_Binding_List:
+      description: A page of ACL binding entries
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AclBinding'
+          type: array
+      title: ACL Binding List
+      type: object
+    ConsumerGroup_allOf:
+      description: A group of Kafka consumers
+      properties:
+        groupId:
+          description: Unique identifier for the consumer group
+          nullable: false
+          pattern: \S
+          type: string
+        state:
+          $ref: '#/components/schemas/ConsumerGroupState'
+        consumers:
+          description: The list of consumers associated with this consumer group
+          items:
+            $ref: '#/components/schemas/Consumer'
+          nullable: false
+          type: array
+        metrics:
+          $ref: '#/components/schemas/ConsumerGroupMetrics'
+      required:
+      - consumers
+      - groupId
+      type: object
+    ConsumerGroup_List:
+      description: A list of consumer groups
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ConsumerGroup'
+          type: array
+      title: ConsumerGroup List
+      type: object
+    Root_Type_for_ConsumerGroupResetOffsetResult:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
+          type: array
+      title: Root Type for ConsumerGroupResetOffsetResult
+      type: object
+    Error_allOf:
+      description: General error response
+      properties:
+        reason:
+          description: General reason for the error. Does not change between specific
+            occurrences.
+          type: string
+        detail:
+          description: Detail specific to an error occurrence. May be different depending
+            on the condition(s) that trigger the error.
+          type: string
+        code:
+          format: int32
+          type: integer
+      type: object
+    Error_List:
+      description: List of errors
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Error'
+          type: array
+        total:
+          description: Total number of errors returned in this request
+      title: Error List
+      type: object
+    Record_1:
+      description: An individual record consumed from a topic or produced to a topic
       properties:
         partition:
           description: The record's partition within the topic
@@ -2236,41 +2298,8 @@ components:
       - value
       title: Record
       type: object
-    RecordIncludedProperty:
-      enum:
-      - partition
-      - offset
-      - timestamp
-      - timestampType
-      - headers
-      - key
-      - value
-      type: string
-    RecordList:
-      allOf:
-      - $ref: '#/components/schemas/List'
+    Record_List:
       description: A page of records consumed from a topic
-      example:
-        total: ""
-        size: ""
-        page: ""
-        items:
-        - headers:
-            key: headers
-          partition: 0
-          offset: 6
-          timestampType: timestampType
-          value: value
-          key: key
-          timestamp: 2000-01-23T04:56:07.000+00:00
-        - headers:
-            key: headers
-          partition: 0
-          offset: 6
-          timestampType: timestampType
-          value: value
-          key: key
-          timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         items:
           items:
@@ -2285,44 +2314,8 @@ components:
           description: Not used
       title: Record List
       type: object
-    SortDirection:
-      enum:
-      - asc
-      - desc
-      type: string
-    Topic:
-      allOf:
-      - $ref: '#/components/schemas/ObjectReference'
+    Topic_1:
       description: Kafka Topic (A feed where records are stored and published)
-      example:
-        id: my-topic
-        kind: Topic
-        href: /api/v1/topics/my-topic
-        name: my-topic
-        config:
-        - key: min.insync.replicas
-          value: "1"
-        - key: max.message.bytes
-          value: "1050000"
-        partitions:
-        - id: 0
-          replicas:
-          - id: 0
-          - id: 1
-          isr:
-          - id: 0
-          - id: 1
-          leader:
-            id: 0
-        - id: 1
-          replicas:
-          - id: 0
-          - id: 1
-          isr:
-          - id: 0
-          - id: 1
-          leader:
-            id: 1
       properties:
         name:
           description: The name of the topic.
@@ -2341,119 +2334,14 @@ components:
           type: array
       title: Topic
       type: object
-    TopicOrderKey:
-      enum:
-      - name
-      - partitions
-      - retention.ms
-      - retention.bytes
-      type: string
-    TopicSettings:
-      description: The settings that are applicable to this topic. This includes partitions,
-        configuration information, and number of replicas.
-      example:
-        numPartitions: 2
-        config:
-        - key: min.insync.replicas
-          value: "1"
-        - key: max.message.bytes
-          value: "1050000"
-      properties:
-        numPartitions:
-          description: Number of partitions for this topic. If not specified, the
-            default for new topics is `1`. Number of partitions may not be reduced
-            when updating existing topics
-          format: int32
-          maximum: 100
-          minimum: 1
-          type: integer
-        config:
-          description: Topic configuration entries.
-          items:
-            $ref: '#/components/schemas/ConfigEntry'
-          type: array
-      title: Topic Settings
-      type: object
-    TopicsList:
+    Topic_List:
       description: A list of topics.
-      example:
-        kind: TopicList
-        items:
-        - id: my-topic
-          kind: Topic
-          href: /api/v1/topics/my-topic
-          name: my-topic
-          config:
-          - key: min.insync.replicas
-            value: "1"
-          - key: max.message.bytes
-            value: "1050000"
-          partitions:
-          - id: 0
-            replicas:
-            - id: 0
-            - id: 1
-            isr:
-            - id: 0
-            - id: 1
-            leader:
-              id: 0
-          - id: 1
-            replicas:
-            - id: 0
-            - id: 1
-            isr:
-            - id: 0
-            - id: 1
-            leader:
-              id: 1
-        offset: 25
-        limit: 90
-        count: 94
       properties:
-        kind:
-          type: string
         items:
           items:
             $ref: '#/components/schemas/Topic'
-          nullable: false
           type: array
-        total:
-          description: Total number of entries in the full result set
-          format: int32
-          nullable: false
-          type: integer
-        size:
-          description: Number of entries per page (returned for fetch requests)
-          format: int32
-          type: integer
-        page:
-          description: Current page number (returned for fetch requests)
-          format: int32
-          type: integer
-      required:
-      - items
-      - total
       title: Topic List
-      type: object
-    TopicsToResetOffset:
-      example:
-        partitions:
-        - 0
-        - 0
-        topic: topic
-      properties:
-        topic:
-          nullable: false
-          type: string
-        partitions:
-          items:
-            format: int32
-            type: integer
-          type: array
-      required:
-      - topic
-      title: Root Type for TopicsToResetOffset
       type: object
   securitySchemes:
     Bearer:

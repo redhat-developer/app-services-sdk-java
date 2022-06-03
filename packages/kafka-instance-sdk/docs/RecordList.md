@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **total** | **Object** | Total number of records returned in this request. This value does not indicate the total number of records in the topic. |  [optional]
 **size** | **Object** | Not used |  [optional]
 **page** | **Object** | Not used |  [optional]
-**kind** | **String** |  |  [optional]
 
 
 
