@@ -1,8 +1,8 @@
 {
   "kind": "ErrorList",
   "page": 1,
-  "size": 41,
-  "total": 41,
+  "size": 42,
+  "total": 42,
   "items": [
     {
       "id": "4",
@@ -192,6 +192,13 @@
       "href": "/api/kafkas_mgmt/v1/errors/42",
       "code": "KAFKAS-MGMT-42",
       "reason": "Instance plan not supported"
+    },
+    {
+      "id": "43",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/43",
+      "code": "KAFKAS-MGMT-43",
+      "reason": "Billing account id missing or invalid"
     },
     {
       "id": "103",
