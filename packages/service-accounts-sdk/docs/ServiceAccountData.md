@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **secret** | **String** | Provided during creation and resetting of service account credentials. |  [optional]
 **name** | **String** |  |  [optional]
 **description** | **String** |  |  [optional]
-**ownerId** | **String** |  |  [optional]
+**createdBy** | **String** |  |  [optional]
 **createdAt** | **Long** |  |  [optional]
 
 

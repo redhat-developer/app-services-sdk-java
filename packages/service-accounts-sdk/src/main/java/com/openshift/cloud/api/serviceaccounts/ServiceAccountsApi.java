@@ -8,11 +8,10 @@ import com.openshift.cloud.api.serviceaccounts.invoker.Pair;
 import javax.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.serviceaccounts.models.Error;
-import com.openshift.cloud.api.serviceaccounts.models.InlineResponse400;
-import com.openshift.cloud.api.serviceaccounts.models.InlineResponse401;
 import com.openshift.cloud.api.serviceaccounts.models.ServiceAccountCreateRequestData;
 import com.openshift.cloud.api.serviceaccounts.models.ServiceAccountData;
 import com.openshift.cloud.api.serviceaccounts.models.ServiceAccountRequestData;
+import java.util.Set;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -126,14 +125,59 @@ public class ServiceAccountsApi {
     apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
+   * Get service account by id
+   * Returns service account by id. Throws not found exception if the service account is not found or the user does not have access to this service account
+   * @param id  (required)
+   * @return a {@code ServiceAccountData}
+   * @throws ApiException if fails to make API call
+   */
+  public ServiceAccountData getServiceAccount(String id) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getServiceAccount");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/apis/service_accounts/v1/{id}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "bearerAuth" };
+
+    GenericType<ServiceAccountData> localVarReturnType = new GenericType<ServiceAccountData>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
    * List all service accounts
-   * Returns a list of service accounts created by a user. User information is obtained from the bearer token. The list is paginated with starting index as &#39;first&#39; and page size as &#39;max.&#39; If &#39;max&#39; is greater than the maximum allowable page size a NotAcceptableException is thrown
+   * Returns a list of service accounts created by a user. User information is obtained from the bearer token. The list is paginated with starting index as &#39;first&#39; and page size as &#39;max&#39;.
    * @param first  (optional, default to 0)
    * @param max  (optional, default to 20)
+   * @param clientId  (optional)
    * @return a {@code List<ServiceAccountData>}
    * @throws ApiException if fails to make API call
    */
-  public List<ServiceAccountData> getServiceAccounts(Integer first, Integer max) throws ApiException {
+  public List<ServiceAccountData> getServiceAccounts(Integer first, Integer max, Set<String> clientId) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -147,6 +191,7 @@ public class ServiceAccountsApi {
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "first", first));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "max", max));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "clientId", clientId));
 
     
     
@@ -165,6 +210,50 @@ public class ServiceAccountsApi {
 
     GenericType<List<ServiceAccountData>> localVarReturnType = new GenericType<List<ServiceAccountData>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Reset service account secret by id
+   * Reset service account secret by id . Throws not found exception if the service account is not found or the user does not have access to this service account
+   * @param id  (required)
+   * @return a {@code ServiceAccountData}
+   * @throws ApiException if fails to make API call
+   */
+  public ServiceAccountData resetServiceAccountSecret(String id) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling resetServiceAccountSecret");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/apis/service_accounts/v1/{id}/resetSecret".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "bearerAuth" };
+
+    GenericType<ServiceAccountData> localVarReturnType = new GenericType<ServiceAccountData>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * Update service account
