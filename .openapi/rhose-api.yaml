@@ -808,6 +808,8 @@ components:
           minLength: 1
           type: string
           nullable: false
+        error_handler:
+          $ref: '#/components/schemas/Action'
     BridgeResponse:
       type: object
       properties:
@@ -831,6 +833,8 @@ components:
           type: string
         endpoint:
           type: string
+        error_handler:
+          $ref: '#/components/schemas/Action'
     ErrorListResponse:
       type: object
       properties:
@@ -878,6 +882,8 @@ components:
         securityProtocol:
           type: string
         topic:
+          type: string
+        errorTopic:
           type: string
     ManagedResourceStatus:
       enum:
@@ -1023,6 +1029,7 @@ components:
       enum:
       - source
       - sink
+      - error_handler
       type: string
     Source:
       required:
