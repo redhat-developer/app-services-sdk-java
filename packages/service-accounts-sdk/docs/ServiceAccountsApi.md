@@ -1,12 +1,14 @@
 # ServiceAccountsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://sso.redhat.com/auth/realms/redhat-external*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createServiceAccount**](ServiceAccountsApi.md#createServiceAccount) | **POST** /apis/service_accounts/v1 | Create service account
 [**deleteServiceAccount**](ServiceAccountsApi.md#deleteServiceAccount) | **DELETE** /apis/service_accounts/v1/{id} | Delete service account by id
+[**getServiceAccount**](ServiceAccountsApi.md#getServiceAccount) | **GET** /apis/service_accounts/v1/{id} | Get service account by id
 [**getServiceAccounts**](ServiceAccountsApi.md#getServiceAccounts) | **GET** /apis/service_accounts/v1 | List all service accounts
+[**resetServiceAccountSecret**](ServiceAccountsApi.md#resetServiceAccountSecret) | **POST** /apis/service_accounts/v1/{id}/resetSecret | Reset service account secret by id
 [**updateServiceAccount**](ServiceAccountsApi.md#updateServiceAccount) | **PATCH** /apis/service_accounts/v1/{id} | Update service account
 
 
@@ -33,7 +35,7 @@ import com.openshift.cloud.api.serviceaccounts.ServiceAccountsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -79,7 +81,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **201** | OK |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 
@@ -106,7 +108,7 @@ import com.openshift.cloud.api.serviceaccounts.ServiceAccountsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -156,13 +158,13 @@ null (empty response body)
 | **401** | Unauthorized |  -  |
 
 
-## getServiceAccounts
+## getServiceAccount
 
-> List&lt;ServiceAccountData&gt; getServiceAccounts(first, max)
+> ServiceAccountData getServiceAccount(id)
 
-List all service accounts
+Get service account by id
 
-Returns a list of service accounts created by a user. User information is obtained from the bearer token. The list is paginated with starting index as &#39;first&#39; and page size as &#39;max.&#39; If &#39;max&#39; is greater than the maximum allowable page size a NotAcceptableException is thrown
+Returns service account by id. Throws not found exception if the service account is not found or the user does not have access to this service account
 
 ### Example
 
@@ -178,7 +180,80 @@ import com.openshift.cloud.api.serviceaccounts.ServiceAccountsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            ServiceAccountData result = apiInstance.getServiceAccount(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ServiceAccountsApi#getServiceAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  |
+
+### Return type
+
+[**ServiceAccountData**](ServiceAccountData.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **404** | Not Found |  -  |
+| **401** | Unauthorized |  -  |
+
+
+## getServiceAccounts
+
+> List&lt;ServiceAccountData&gt; getServiceAccounts(first, max, clientId)
+
+List all service accounts
+
+Returns a list of service accounts created by a user. User information is obtained from the bearer token. The list is paginated with starting index as &#39;first&#39; and page size as &#39;max&#39;.
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.serviceaccounts.invoker.ApiClient;
+import com.openshift.cloud.api.serviceaccounts.invoker.ApiException;
+import com.openshift.cloud.api.serviceaccounts.invoker.Configuration;
+import com.openshift.cloud.api.serviceaccounts.invoker.auth.*;
+import com.openshift.cloud.api.serviceaccounts.invoker.models.*;
+import com.openshift.cloud.api.serviceaccounts.ServiceAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -187,8 +262,9 @@ public class Example {
         ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
         Integer first = 0; // Integer | 
         Integer max = 20; // Integer | 
+        Set<String> clientId = Arrays.asList(); // Set<String> | 
         try {
-            List<ServiceAccountData> result = apiInstance.getServiceAccounts(first, max);
+            List<ServiceAccountData> result = apiInstance.getServiceAccounts(first, max, clientId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ServiceAccountsApi#getServiceAccounts");
@@ -208,6 +284,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **first** | **Integer**|  | [optional] [default to 0]
  **max** | **Integer**|  | [optional] [default to 20]
+ **clientId** | [**Set&lt;String&gt;**](String.md)|  | [optional]
 
 ### Return type
 
@@ -227,7 +304,80 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **406** | Not Acceptable |  -  |
+| **400** | Bad Request |  -  |
+| **401** | Unauthorized |  -  |
+
+
+## resetServiceAccountSecret
+
+> ServiceAccountData resetServiceAccountSecret(id)
+
+Reset service account secret by id
+
+Reset service account secret by id . Throws not found exception if the service account is not found or the user does not have access to this service account
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.serviceaccounts.invoker.ApiClient;
+import com.openshift.cloud.api.serviceaccounts.invoker.ApiException;
+import com.openshift.cloud.api.serviceaccounts.invoker.Configuration;
+import com.openshift.cloud.api.serviceaccounts.invoker.auth.*;
+import com.openshift.cloud.api.serviceaccounts.invoker.models.*;
+import com.openshift.cloud.api.serviceaccounts.ServiceAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            ServiceAccountData result = apiInstance.resetServiceAccountSecret(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ServiceAccountsApi#resetServiceAccountSecret");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**|  |
+
+### Return type
+
+[**ServiceAccountData**](ServiceAccountData.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **404** | Not Found |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -253,7 +403,7 @@ import com.openshift.cloud.api.serviceaccounts.ServiceAccountsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

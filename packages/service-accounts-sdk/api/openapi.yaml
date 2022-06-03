@@ -1,12 +1,13 @@
 openapi: 3.0.1
 info:
+  contact:
+    email: it-user-team-list@redhat.com
   description: This is the API documentation for Service Accounts
-  termsOfService: https://www.redhat.com/en/about/terms-use
   title: Service Accounts API Documentation
-  version: "1.0"
+  version: 5.0.19
 servers:
-- description: Development server
-  url: /
+- description: Production server
+  url: https://sso.redhat.com/auth/realms/redhat-external
 security:
 - bearerAuth: []
 paths:
@@ -14,8 +15,7 @@ paths:
     get:
       description: Returns a list of service accounts created by a user. User information
         is obtained from the bearer token. The list is paginated with starting index
-        as 'first' and page size as 'max.' If 'max' is greater than the maximum allowable
-        page size a NotAcceptableException is thrown
+        as 'first' and page size as 'max'.
       operationId: getServiceAccounts
       parameters:
       - explode: true
@@ -39,6 +39,18 @@ paths:
           minimum: 1
           type: integer
         style: form
+      - explode: true
+        in: query
+        name: clientId
+        required: false
+        schema:
+          items:
+            type: string
+          maxItems: 10
+          minItems: 0
+          type: array
+          uniqueItems: true
+        style: form
       responses:
         "200":
           content:
@@ -52,12 +64,12 @@ paths:
             getNextPage:
               description: link to the next page of service accounts
               operationId: getServiceAccounts
-        "406":
+        "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Not Acceptable
+          description: Bad Request
         "401":
           content:
             application/json:
@@ -80,7 +92,7 @@ paths:
         description: '''name'' and ''description'' of the service account'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -90,13 +102,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/Error'
           description: Bad Request
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_401'
+                $ref: '#/components/schemas/Error'
           description: Unauthorized
       summary: Create service account
       tags:
@@ -126,13 +138,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_400'
+                $ref: '#/components/schemas/Error'
           description: Not Found
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_401'
+                $ref: '#/components/schemas/Error'
           description: Unauthorized
       summary: Delete service account by id
       tags:
@@ -172,7 +184,7 @@ paths:
           description: Unauthorized
       summary: Get service account by id
       tags:
-      - serviceaccounts
+      - service_accounts
       x-accepts: application/json
     patch:
       description: Update a service account by id.
@@ -257,12 +269,10 @@ paths:
           description: Unauthorized
       summary: Reset service account secret by id
       tags:
-      - serviceaccounts
+      - service_accounts
       x-accepts: application/json
 components:
   responses:
-    UnauthorizedError:
-      description: Access token is missing or invalid
     "400":
       content:
         application/json:
@@ -287,12 +297,6 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
       description: Not Found
-    "406":
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-      description: Not Acceptable
     "500":
       content:
         application/json:
@@ -312,11 +316,11 @@ components:
       example:
         createdAt: 0
         clientId: clientId
+        createdBy: createdBy
         name: name
         description: description
         id: id
         secret: secret
-        ownerId: ownerId
       properties:
         id:
           type: string
@@ -329,7 +333,7 @@ components:
           type: string
         description:
           type: string
-        ownerId:
+        createdBy:
           type: string
         createdAt:
           format: int64
@@ -357,275 +361,6 @@ components:
           type: string
         description:
           type: string
-      type: object
-    inline_response_400_cause_stackTrace:
-      properties:
-        methodName:
-          type: string
-        fileName:
-          type: string
-        lineNumber:
-          format: int32
-          type: integer
-        className:
-          type: string
-        nativeMethod:
-          type: boolean
-      type: object
-    inline_response_400_cause_suppressed:
-      properties:
-        stackTrace:
-          items:
-            $ref: '#/components/schemas/inline_response_400_cause_stackTrace'
-          type: array
-        message:
-          type: string
-        localizedMessage:
-          type: string
-      type: object
-    inline_response_400_cause:
-      properties:
-        stackTrace:
-          items:
-            $ref: '#/components/schemas/inline_response_400_cause_stackTrace'
-          type: array
-        message:
-          type: string
-        localizedMessage:
-          type: string
-        suppressed:
-          items:
-            $ref: '#/components/schemas/inline_response_400_cause_suppressed'
-          type: array
-      type: object
-    inline_response_400_response_entityTag:
-      properties:
-        value:
-          type: string
-        weak:
-          type: boolean
-      type: object
-    inline_response_400_response_cookies:
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-        version:
-          format: int32
-          type: integer
-        path:
-          type: string
-        domain:
-          type: string
-        comment:
-          type: string
-        maxAge:
-          format: int32
-          type: integer
-        expiry:
-          format: date-time
-          type: string
-        secure:
-          type: boolean
-        httpOnly:
-          type: boolean
-      type: object
-    inline_response_400_response_mediaType:
-      properties:
-        type:
-          type: string
-        subtype:
-          type: string
-        parameters:
-          additionalProperties:
-            type: string
-          type: object
-        wildcardType:
-          type: boolean
-        wildcardSubtype:
-          type: boolean
-      type: object
-    inline_response_400_response_statusInfo:
-      properties:
-        reasonPhrase:
-          type: string
-        statusCode:
-          format: int32
-          type: integer
-        family:
-          enum:
-          - INFORMATIONAL
-          - SUCCESSFUL
-          - REDIRECTION
-          - CLIENT_ERROR
-          - SERVER_ERROR
-          - OTHER
-          type: string
-      type: object
-    inline_response_400_response_links:
-      properties:
-        uriBuilder:
-          type: object
-        params:
-          additionalProperties:
-            type: string
-          type: object
-        title:
-          type: string
-        uri:
-          format: uri
-          type: string
-        rel:
-          type: string
-        rels:
-          items:
-            type: string
-          type: array
-        type:
-          type: string
-      type: object
-    inline_response_400_response_language:
-      properties:
-        language:
-          type: string
-        script:
-          type: string
-        country:
-          type: string
-        variant:
-          type: string
-        extensionKeys:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        unicodeLocaleAttributes:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        unicodeLocaleKeys:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        iso3Language:
-          type: string
-        iso3Country:
-          type: string
-        displayLanguage:
-          type: string
-        displayScript:
-          type: string
-        displayCountry:
-          type: string
-        displayVariant:
-          type: string
-        displayName:
-          type: string
-      type: object
-    inline_response_400_response:
-      properties:
-        metadata:
-          additionalProperties:
-            items:
-              type: object
-            type: array
-          type: object
-        entity:
-          type: object
-        status:
-          format: int32
-          type: integer
-        entityTag:
-          $ref: '#/components/schemas/inline_response_400_response_entityTag'
-        cookies:
-          additionalProperties:
-            $ref: '#/components/schemas/inline_response_400_response_cookies'
-          type: object
-        allowedMethods:
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        mediaType:
-          $ref: '#/components/schemas/inline_response_400_response_mediaType'
-        stringHeaders:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-        statusInfo:
-          $ref: '#/components/schemas/inline_response_400_response_statusInfo'
-        links:
-          items:
-            $ref: '#/components/schemas/inline_response_400_response_links'
-          type: array
-          uniqueItems: true
-        length:
-          format: int32
-          type: integer
-        language:
-          $ref: '#/components/schemas/inline_response_400_response_language'
-        location:
-          format: uri
-          type: string
-        lastModified:
-          format: date-time
-          type: string
-        date:
-          format: date-time
-          type: string
-        headers:
-          additionalProperties:
-            items:
-              type: object
-            type: array
-          type: object
-      type: object
-    inline_response_400:
-      properties:
-        cause:
-          $ref: '#/components/schemas/inline_response_400_cause'
-        stackTrace:
-          items:
-            $ref: '#/components/schemas/inline_response_400_cause_stackTrace'
-          type: array
-        response:
-          $ref: '#/components/schemas/inline_response_400_response'
-        message:
-          type: string
-        localizedMessage:
-          type: string
-        suppressed:
-          items:
-            $ref: '#/components/schemas/inline_response_400_cause_suppressed'
-          type: array
-      type: object
-    inline_response_401:
-      properties:
-        cause:
-          $ref: '#/components/schemas/inline_response_400_cause'
-        stackTrace:
-          items:
-            $ref: '#/components/schemas/inline_response_400_cause_stackTrace'
-          type: array
-        response:
-          $ref: '#/components/schemas/inline_response_400_response'
-        challenges:
-          items:
-            type: object
-          type: array
-        message:
-          type: string
-        localizedMessage:
-          type: string
-        suppressed:
-          items:
-            $ref: '#/components/schemas/inline_response_400_cause_suppressed'
-          type: array
       type: object
   securitySchemes:
     bearerAuth:

@@ -2,7 +2,7 @@
 
 Service Accounts API Documentation
 
-- API version: 1.0
+- API version: 5.0.19
 
 This is the API documentation for Service Accounts
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>service-accounts-sdk</artifactId>
-  <version>1.0</version>
+  <version>5.0.19</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:service-accounts-sdk:1.0"
+     implementation "com.redhat.cloud:service-accounts-sdk:5.0.19"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/service-accounts-sdk-1.0.jar`
+- `target/service-accounts-sdk-5.0.19.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -88,7 +88,7 @@ public class ServiceAccountsApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -113,33 +113,21 @@ public class ServiceAccountsApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://sso.redhat.com/auth/realms/redhat-external*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ServiceAccountsApi* | [**createServiceAccount**](docs/ServiceAccountsApi.md#createServiceAccount) | **POST** /apis/service_accounts/v1 | Create service account
 *ServiceAccountsApi* | [**deleteServiceAccount**](docs/ServiceAccountsApi.md#deleteServiceAccount) | **DELETE** /apis/service_accounts/v1/{id} | Delete service account by id
+*ServiceAccountsApi* | [**getServiceAccount**](docs/ServiceAccountsApi.md#getServiceAccount) | **GET** /apis/service_accounts/v1/{id} | Get service account by id
 *ServiceAccountsApi* | [**getServiceAccounts**](docs/ServiceAccountsApi.md#getServiceAccounts) | **GET** /apis/service_accounts/v1 | List all service accounts
+*ServiceAccountsApi* | [**resetServiceAccountSecret**](docs/ServiceAccountsApi.md#resetServiceAccountSecret) | **POST** /apis/service_accounts/v1/{id}/resetSecret | Reset service account secret by id
 *ServiceAccountsApi* | [**updateServiceAccount**](docs/ServiceAccountsApi.md#updateServiceAccount) | **PATCH** /apis/service_accounts/v1/{id} | Update service account
-*ServiceaccountsApi* | [**getServiceAccount**](docs/ServiceaccountsApi.md#getServiceAccount) | **GET** /apis/service_accounts/v1/{id} | Get service account by id
-*ServiceaccountsApi* | [**resetServiceAccountSecret**](docs/ServiceaccountsApi.md#resetServiceAccountSecret) | **POST** /apis/service_accounts/v1/{id}/resetSecret | Reset service account secret by id
 
 
 ## Documentation for Models
 
  - [Error](docs/Error.md)
- - [InlineResponse400](docs/InlineResponse400.md)
- - [InlineResponse400Cause](docs/InlineResponse400Cause.md)
- - [InlineResponse400CauseStackTrace](docs/InlineResponse400CauseStackTrace.md)
- - [InlineResponse400CauseSuppressed](docs/InlineResponse400CauseSuppressed.md)
- - [InlineResponse400Response](docs/InlineResponse400Response.md)
- - [InlineResponse400ResponseCookies](docs/InlineResponse400ResponseCookies.md)
- - [InlineResponse400ResponseEntityTag](docs/InlineResponse400ResponseEntityTag.md)
- - [InlineResponse400ResponseLanguage](docs/InlineResponse400ResponseLanguage.md)
- - [InlineResponse400ResponseLinks](docs/InlineResponse400ResponseLinks.md)
- - [InlineResponse400ResponseMediaType](docs/InlineResponse400ResponseMediaType.md)
- - [InlineResponse400ResponseStatusInfo](docs/InlineResponse400ResponseStatusInfo.md)
- - [InlineResponse401](docs/InlineResponse401.md)
  - [ServiceAccountCreateRequestData](docs/ServiceAccountCreateRequestData.md)
  - [ServiceAccountData](docs/ServiceAccountData.md)
  - [ServiceAccountRequestData](docs/ServiceAccountRequestData.md)
@@ -160,5 +148,5 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 ## Author
 
-
+it-user-team-list@redhat.com
 
