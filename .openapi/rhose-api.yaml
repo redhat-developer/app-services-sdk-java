@@ -539,7 +539,7 @@ paths:
             application/json: {}
       security:
       - bearer: []
-  /api/v1/schemas/actions/{name}:
+  /api/v1/schemas/actions/{id}:
     get:
       tags:
       - Schema Catalog
@@ -547,7 +547,7 @@ paths:
       description: Get the action processor JSON schema.
       operationId: SchemaAPI_getActionProcessorSchema
       parameters:
-      - name: name
+      - name: id
         in: path
         required: true
         schema:
@@ -573,7 +573,7 @@ paths:
             application/json: {}
       security:
       - bearer: []
-  /api/v1/schemas/sources/{name}:
+  /api/v1/schemas/sources/{id}:
     get:
       tags:
       - Schema Catalog
@@ -581,7 +581,7 @@ paths:
       description: Get the source processor JSON schema.
       operationId: SchemaAPI_getSourceProcessorSchema
       parameters:
-      - name: name
+      - name: id
         in: path
         required: true
         schema:
@@ -1019,7 +1019,7 @@ components:
       properties:
         kind:
           type: string
-        name:
+        id:
           type: string
         type:
           type: string
