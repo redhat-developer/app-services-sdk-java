@@ -558,7 +558,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JsonNode'
+                type: object
         "400":
           description: Bad request.
           content:
@@ -592,7 +592,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JsonNode'
+                type: object
         "400":
           description: Bad request.
           content:
@@ -868,8 +868,6 @@ components:
           type: string
         reason:
           type: string
-    JsonNode:
-      type: array
     KafkaConnectionDTO:
       type: object
       properties:
