@@ -5,7 +5,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Admin REST API
-  version: 0.11.0
+  version: 0.11.1
 servers:
 - description: Kafka Admin REST API
   url: /
@@ -1568,7 +1568,7 @@ components:
     AclBinding:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
-      - $ref: '#/components/schemas/ACL_Binding'
+      - $ref: '#/components/schemas/AclBinding_allOf'
       example:
         kind: AclBinding
         resourceType: TOPIC
@@ -1580,7 +1580,7 @@ components:
     AclBindingListPage:
       allOf:
       - $ref: '#/components/schemas/List'
-      - $ref: '#/components/schemas/ACL_Binding_List'
+      - $ref: '#/components/schemas/AclBindingListPage_allOf'
     AclBindingOrderKey:
       enum:
       - resourceType
@@ -1589,7 +1589,6 @@ components:
       - principal
       - operation
       - permission
-      title: ACL Binding Order Key
       type: string
     AclOperation:
       enum:
@@ -1602,8 +1601,6 @@ components:
       - DESCRIBE
       - DESCRIBE_CONFIGS
       - ALTER_CONFIGS
-      nullable: false
-      title: ACL Operation
       type: string
     AclOperationFilter:
       enum:
@@ -1617,14 +1614,11 @@ components:
       - DESCRIBE_CONFIGS
       - ALTER_CONFIGS
       - ANY
-      title: ACL Operation Filter
       type: string
     AclPatternType:
       enum:
       - LITERAL
       - PREFIXED
-      nullable: false
-      title: ACL Pattern Type
       type: string
     AclPatternTypeFilter:
       description: Use value 'MATCH' to perform pattern matching.
@@ -1633,21 +1627,17 @@ components:
       - PREFIXED
       - ANY
       - MATCH
-      title: ACL Pattern Type Filter
       type: string
     AclPermissionType:
       enum:
       - ALLOW
       - DENY
-      nullable: false
-      title: ACL Permission Type
       type: string
     AclPermissionTypeFilter:
       enum:
       - ALLOW
       - DENY
       - ANY
-      title: ACL Permission Type Filter
       type: string
     AclResourceType:
       enum:
@@ -1655,8 +1645,6 @@ components:
       - TOPIC
       - CLUSTER
       - TRANSACTIONAL_ID
-      nullable: false
-      title: ACL Resource Type
       type: string
     AclResourceTypeFilter:
       enum:
@@ -1665,7 +1653,6 @@ components:
       - TOPIC
       - CLUSTER
       - TRANSACTIONAL_ID
-      title: ACL Resource Type Filter
       type: string
     ConfigEntry:
       description: Key value pair indicating possible configuration options for a
@@ -1755,7 +1742,7 @@ components:
     ConsumerGroupList:
       allOf:
       - $ref: '#/components/schemas/ListDeprecated'
-      - $ref: '#/components/schemas/ConsumerGroup_List'
+      - $ref: '#/components/schemas/ConsumerGroupList_allOf'
       example:
         kind: ConsumerGroupList
         count: 1
@@ -1806,7 +1793,6 @@ components:
       type: string
     ConsumerGroupResetOffsetParameters:
       example:
-        offset: ""
         topics:
         - partitions:
           - 0
@@ -1819,9 +1805,7 @@ components:
         value: value
       properties:
         offset:
-          allOf:
-          - $ref: '#/components/schemas/OffsetType'
-          - nullable: false
+          $ref: '#/components/schemas/OffsetType'
         value:
           description: Value associated with the given `offset`. Not used for `offset`
             values `earliest` and `latest`. When `offset` is `timestamp` then `value`
@@ -1835,12 +1819,11 @@ components:
           type: array
       required:
       - offset
-      title: Root Type for ConsumerGroupResetOffsetParameters
       type: object
     ConsumerGroupResetOffsetResult:
       allOf:
       - $ref: '#/components/schemas/List'
-      - $ref: '#/components/schemas/Root_Type_for_ConsumerGroupResetOffsetResult'
+      - $ref: '#/components/schemas/ConsumerGroupResetOffsetResult_allOf'
       example:
         total: 2
         page: 1
@@ -1883,7 +1866,7 @@ components:
     ErrorList:
       allOf:
       - $ref: '#/components/schemas/List'
-      - $ref: '#/components/schemas/Error_List'
+      - $ref: '#/components/schemas/ErrorList_allOf'
     List:
       properties:
         kind:
@@ -1933,9 +1916,7 @@ components:
           pattern: \S
           type: string
         settings:
-          allOf:
-          - $ref: '#/components/schemas/TopicSettings'
-          - nullable: false
+          $ref: '#/components/schemas/TopicSettings'
       required:
       - name
       - settings
@@ -1954,15 +1935,12 @@ components:
             kinds.
           type: string
         kind:
-          nullable: false
           readOnly: true
           type: string
         href:
           description: Link path to request the object. Not supported for all object
             kinds.
           type: string
-      required:
-      - kind
       type: object
     OffsetType:
       enum:
@@ -2009,7 +1987,7 @@ components:
     Record:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
-      - $ref: '#/components/schemas/Record_1'
+      - $ref: '#/components/schemas/Record_allOf'
     RecordIncludedProperty:
       enum:
       - partition
@@ -2023,7 +2001,7 @@ components:
     RecordList:
       allOf:
       - $ref: '#/components/schemas/List'
-      - $ref: '#/components/schemas/Record_List'
+      - $ref: '#/components/schemas/RecordList_allOf'
     SortDirection:
       enum:
       - asc
@@ -2032,7 +2010,7 @@ components:
     Topic:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
-      - $ref: '#/components/schemas/Topic_1'
+      - $ref: '#/components/schemas/Topic_allOf'
       example:
         id: my-topic
         kind: Topic
@@ -2093,12 +2071,11 @@ components:
           items:
             $ref: '#/components/schemas/ConfigEntry'
           type: array
-      title: Topic Settings
       type: object
     TopicsList:
       allOf:
       - $ref: '#/components/schemas/ListDeprecated'
-      - $ref: '#/components/schemas/Topic_List'
+      - $ref: '#/components/schemas/TopicsList_allOf'
       example:
         kind: TopicList
         items:
@@ -2150,9 +2127,8 @@ components:
           type: array
       required:
       - topic
-      title: Root Type for TopicsToResetOffset
       type: object
-    ACL_Binding:
+    AclBinding_allOf:
       description: Represents a binding between a resource pattern and an access control
         entry
       properties:
@@ -2171,7 +2147,6 @@ components:
           example: User:user-123-abc
           nullable: false
           pattern: \S
-          title: ACL Principal
           type: string
         operation:
           $ref: '#/components/schemas/AclOperation'
@@ -2184,16 +2159,14 @@ components:
       - principal
       - resourceName
       - resourceType
-      title: ACL Binding
       type: object
-    ACL_Binding_List:
+    AclBindingListPage_allOf:
       description: A page of ACL binding entries
       properties:
         items:
           items:
             $ref: '#/components/schemas/AclBinding'
           type: array
-      title: ACL Binding List
       type: object
     ConsumerGroup_allOf:
       description: A group of Kafka consumers
@@ -2217,22 +2190,20 @@ components:
       - consumers
       - groupId
       type: object
-    ConsumerGroup_List:
+    ConsumerGroupList_allOf:
       description: A list of consumer groups
       properties:
         items:
           items:
             $ref: '#/components/schemas/ConsumerGroup'
           type: array
-      title: ConsumerGroup List
       type: object
-    Root_Type_for_ConsumerGroupResetOffsetResult:
+    ConsumerGroupResetOffsetResult_allOf:
       properties:
         items:
           items:
             $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
           type: array
-      title: Root Type for ConsumerGroupResetOffsetResult
       type: object
     Error_allOf:
       description: General error response
@@ -2249,7 +2220,7 @@ components:
           format: int32
           type: integer
       type: object
-    Error_List:
+    ErrorList_allOf:
       description: List of errors
       properties:
         items:
@@ -2258,9 +2229,10 @@ components:
           type: array
         total:
           description: Total number of errors returned in this request
-      title: Error List
+          format: int32
+          type: integer
       type: object
-    Record_1:
+    Record_allOf:
       description: An individual record consumed from a topic or produced to a topic
       properties:
         partition:
@@ -2296,9 +2268,8 @@ components:
           type: string
       required:
       - value
-      title: Record
       type: object
-    Record_List:
+    RecordList_allOf:
       description: A page of records consumed from a topic
       properties:
         items:
@@ -2308,13 +2279,18 @@ components:
         total:
           description: Total number of records returned in this request. This value
             does not indicate the total number of records in the topic.
+          format: int32
+          type: integer
         size:
           description: Not used
+          format: int32
+          type: integer
         page:
           description: Not used
-      title: Record List
+          format: int32
+          type: integer
       type: object
-    Topic_1:
+    Topic_allOf:
       description: Kafka Topic (A feed where records are stored and published)
       properties:
         name:
@@ -2332,16 +2308,14 @@ components:
           items:
             $ref: '#/components/schemas/ConfigEntry'
           type: array
-      title: Topic
       type: object
-    Topic_List:
+    TopicsList_allOf:
       description: A list of topics.
       properties:
         items:
           items:
             $ref: '#/components/schemas/Topic'
           type: array
-      title: Topic List
       type: object
   securitySchemes:
     Bearer:
