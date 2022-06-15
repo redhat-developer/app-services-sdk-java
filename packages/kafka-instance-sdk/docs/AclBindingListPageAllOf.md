@@ -2,6 +2,7 @@
 
 # AclBindingListPageAllOf
 
+A page of ACL binding entries
 
 ## Properties
 

@@ -20,51 +20,62 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.kas.auth.models.AclBinding;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Identifier for a Kafka server / broker.
+ * A page of ACL binding entries
  */
-@ApiModel(description = "Identifier for a Kafka server / broker.")
+@ApiModel(description = "A page of ACL binding entries")
 @JsonPropertyOrder({
-  Node.JSON_PROPERTY_ID
+  AclBindingListPageAllOf.JSON_PROPERTY_ITEMS
 })
-@JsonTypeName("Node")
+@JsonTypeName("AclBindingListPage_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class Node {
-  public static final String JSON_PROPERTY_ID = "id";
-  private Integer id;
+public class AclBindingListPageAllOf {
+  public static final String JSON_PROPERTY_ITEMS = "items";
+  private List<AclBinding> items = null;
 
-  public Node() { 
+  public AclBindingListPageAllOf() { 
   }
 
-  public Node id(Integer id) {
+  public AclBindingListPageAllOf items(List<AclBinding> items) {
     
-    this.id = id;
+    this.items = items;
+    return this;
+  }
+
+  public AclBindingListPageAllOf addItemsItem(AclBinding itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
+    this.items.add(itemsItem);
     return this;
   }
 
    /**
-   * Get id
-   * @return id
+   * Get items
+   * @return items
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getId() {
-    return id;
+  public List<AclBinding> getItems() {
+    return items;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(Integer id) {
-    this.id = id;
+  public void setItems(List<AclBinding> items) {
+    this.items = items;
   }
 
 
@@ -76,20 +87,20 @@ public class Node {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Node node = (Node) o;
-    return Objects.equals(this.id, node.id);
+    AclBindingListPageAllOf aclBindingListPageAllOf = (AclBindingListPageAllOf) o;
+    return Objects.equals(this.items, aclBindingListPageAllOf.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(items);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Node {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("class AclBindingListPageAllOf {\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }
