@@ -33,7 +33,7 @@
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/4",
       "code": "SRS-MGMT-4",
-      "reason": "Invalid request content. Make sure the request conforms to the given JSON schema",
+      "reason": "Invalid request content or parameters. Make sure the request conforms to the given JSON schema",
       "operation_id": ""
     },
     {
