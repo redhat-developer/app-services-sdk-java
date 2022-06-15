@@ -8,7 +8,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | Unique identifier for the object. Not supported for all object kinds. |  [optional]
-**kind** | **String** |  |  [readonly]
+**kind** | **String** |  |  [optional] [readonly]
 **href** | **String** | Link path to request the object. Not supported for all object kinds. |  [optional]
 **groupId** | **String** | Unique identifier for the consumer group | 
 **state** | **ConsumerGroupState** |  |  [optional]

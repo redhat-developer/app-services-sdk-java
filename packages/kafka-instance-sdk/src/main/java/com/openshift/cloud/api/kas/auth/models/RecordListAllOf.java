@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.auth.models.ModelList;
+import com.openshift.cloud.api.kas.auth.models.Record;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -29,23 +29,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * ListDeprecated
+ * A page of records consumed from a topic
  */
+@ApiModel(description = "A page of records consumed from a topic")
 @JsonPropertyOrder({
-  ListDeprecated.JSON_PROPERTY_KIND,
-  ListDeprecated.JSON_PROPERTY_ITEMS,
-  ListDeprecated.JSON_PROPERTY_TOTAL,
-  ListDeprecated.JSON_PROPERTY_SIZE,
-  ListDeprecated.JSON_PROPERTY_PAGE
+  RecordListAllOf.JSON_PROPERTY_ITEMS,
+  RecordListAllOf.JSON_PROPERTY_TOTAL,
+  RecordListAllOf.JSON_PROPERTY_SIZE,
+  RecordListAllOf.JSON_PROPERTY_PAGE
 })
-@JsonTypeName("ListDeprecated")
+@JsonTypeName("RecordList_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ListDeprecated {
-  public static final String JSON_PROPERTY_KIND = "kind";
-  private String kind;
-
+public class RecordListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<Object> items = new ArrayList<>();
+  private List<Record> items = null;
 
   public static final String JSON_PROPERTY_TOTAL = "total";
   private Integer total;
@@ -56,43 +53,19 @@ public class ListDeprecated {
   public static final String JSON_PROPERTY_PAGE = "page";
   private Integer page;
 
-  public ListDeprecated() { 
+  public RecordListAllOf() { 
   }
 
-  public ListDeprecated kind(String kind) {
-    
-    this.kind = kind;
-    return this;
-  }
-
-   /**
-   * Get kind
-   * @return kind
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getKind() {
-    return kind;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKind(String kind) {
-    this.kind = kind;
-  }
-
-
-  public ListDeprecated items(List<Object> items) {
+  public RecordListAllOf items(List<Record> items) {
     
     this.items = items;
     return this;
   }
 
-  public ListDeprecated addItemsItem(Object itemsItem) {
+  public RecordListAllOf addItemsItem(Record itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
     this.items.add(itemsItem);
     return this;
   }
@@ -101,37 +74,37 @@ public class ListDeprecated {
    * Get items
    * @return items
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Object> getItems() {
+  public List<Record> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setItems(List<Object> items) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setItems(List<Record> items) {
     this.items = items;
   }
 
 
-  public ListDeprecated total(Integer total) {
+  public RecordListAllOf total(Integer total) {
     
     this.total = total;
     return this;
   }
 
    /**
-   * Total number of entries in the full result set
+   * Total number of records returned in this request. This value does not indicate the total number of records in the topic.
    * @return total
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Total number of entries in the full result set")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Total number of records returned in this request. This value does not indicate the total number of records in the topic.")
   @JsonProperty(JSON_PROPERTY_TOTAL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Integer getTotal() {
     return total;
@@ -139,24 +112,24 @@ public class ListDeprecated {
 
 
   @JsonProperty(JSON_PROPERTY_TOTAL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTotal(Integer total) {
     this.total = total;
   }
 
 
-  public ListDeprecated size(Integer size) {
+  public RecordListAllOf size(Integer size) {
     
     this.size = size;
     return this;
   }
 
    /**
-   * Number of entries per page (returned for fetch requests)
+   * Not used
    * @return size
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Number of entries per page (returned for fetch requests)")
+  @ApiModelProperty(value = "Not used")
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -172,18 +145,18 @@ public class ListDeprecated {
   }
 
 
-  public ListDeprecated page(Integer page) {
+  public RecordListAllOf page(Integer page) {
     
     this.page = page;
     return this;
   }
 
    /**
-   * Current page number (returned for fetch requests)
+   * Not used
    * @return page
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Current page number (returned for fetch requests)")
+  @ApiModelProperty(value = "Not used")
   @JsonProperty(JSON_PROPERTY_PAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -207,24 +180,22 @@ public class ListDeprecated {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ListDeprecated listDeprecated = (ListDeprecated) o;
-    return Objects.equals(this.kind, listDeprecated.kind) &&
-        Objects.equals(this.items, listDeprecated.items) &&
-        Objects.equals(this.total, listDeprecated.total) &&
-        Objects.equals(this.size, listDeprecated.size) &&
-        Objects.equals(this.page, listDeprecated.page);
+    RecordListAllOf recordListAllOf = (RecordListAllOf) o;
+    return Objects.equals(this.items, recordListAllOf.items) &&
+        Objects.equals(this.total, recordListAllOf.total) &&
+        Objects.equals(this.size, recordListAllOf.size) &&
+        Objects.equals(this.page, recordListAllOf.page);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, items, total, size, page);
+    return Objects.hash(items, total, size, page);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ListDeprecated {\n");
-    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
+    sb.append("class RecordListAllOf {\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
