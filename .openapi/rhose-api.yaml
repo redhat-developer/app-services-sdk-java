@@ -13,6 +13,8 @@ info:
 tags:
 - name: Bridges
   description: "The API that allow the user to retrieve, create or delete Bridge instances."
+- name: Cloud Providers
+  description: List Supported Cloud Providers and Regions
 - name: Error Catalog
   description: List and get the error definitions from the error catalog.
 - name: Processors
@@ -21,8 +23,6 @@ tags:
 - name: Schema Catalog
   description: The API that provide the catalog of the available action/source processors
     definition and their JSON schema.
-- name: Shard
-  description: The API that allow a shard to retrieve and update resources.
 paths:
   /api/v1/bridges:
     get:
@@ -440,6 +440,119 @@ paths:
             application/json: {}
       security:
       - bearer: []
+  /api/v1/cloud_providers:
+    get:
+      tags:
+      - Cloud Providers
+      summary: List Supported Cloud Providers.
+      description: Returns the list of supported Cloud Providers.
+      operationId: CloudProviderAPI_listCloudProviders
+      parameters:
+      - name: page
+        in: query
+        schema:
+          format: int32
+          default: 0
+          minimum: 0
+          type: integer
+      - name: size
+        in: query
+        schema:
+          format: int32
+          default: 100
+          maximum: 100
+          minimum: 1
+          type: integer
+      responses:
+        "200":
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudProviderListResponse'
+        "400":
+          description: Bad request.
+          content:
+            application/json: {}
+        "500":
+          description: Internal error.
+          content:
+            application/json: {}
+  /api/v1/cloud_providers/{id}:
+    get:
+      tags:
+      - Cloud Providers
+      summary: Get Cloud Provider.
+      description: Get details of the Cloud Provider specified by id.
+      operationId: CloudProviderAPI_getCloudProvider
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          minLength: 1
+          type: string
+          nullable: false
+      responses:
+        "200":
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudProviderListResponse'
+        "400":
+          description: Bad request.
+          content:
+            application/json: {}
+        "500":
+          description: Internal error.
+          content:
+            application/json: {}
+  /api/v1/cloud_providers/{id}/regions:
+    get:
+      tags:
+      - Cloud Providers
+      summary: List Supported Cloud Regions.
+      description: Returns the list of supported Regions of the specified Cloud Provider.
+      operationId: CloudProviderAPI_listCloudProviderRegions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          minLength: 1
+          type: string
+          nullable: false
+      - name: page
+        in: query
+        schema:
+          format: int32
+          default: 0
+          minimum: 0
+          type: integer
+      - name: size
+        in: query
+        schema:
+          format: int32
+          default: 100
+          maximum: 100
+          minimum: 1
+          type: integer
+      responses:
+        "200":
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudRegionListResponse'
+        "400":
+          description: Bad request.
+          content:
+            application/json: {}
+        "500":
+          description: Internal error.
+          content:
+            application/json: {}
   /api/v1/errors:
     get:
       tags:
@@ -607,122 +720,6 @@ paths:
             application/json: {}
       security:
       - bearer: []
-  /api/v1/shard/bridges:
-    get:
-      tags:
-      - Shard
-      summary: Get Bridge instances to be processed by a shard.
-      description: Get Bridge instances to be processed by a shard.
-      operationId: ShardBridgesSyncAPI_getBridges
-      responses:
-        "200":
-          description: Success.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/BridgeDTO'
-        "400":
-          description: Bad request.
-          content:
-            application/json: {}
-        "401":
-          description: Unauthorized.
-        "403":
-          description: Forbidden.
-        "500":
-          description: Internal error.
-          content:
-            application/json: {}
-      security:
-      - bearer: []
-    put:
-      tags:
-      - Shard
-      summary: Update a Bridge instance.
-      description: Update a Bridge instance.
-      operationId: ShardBridgesSyncAPI_updateBridge
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BridgeDTO'
-      responses:
-        "200":
-          description: Success.
-        "400":
-          description: Bad request.
-          content:
-            application/json: {}
-        "401":
-          description: Unauthorized.
-        "403":
-          description: Forbidden.
-        "500":
-          description: Internal error.
-          content:
-            application/json: {}
-      security:
-      - bearer: []
-  /api/v1/shard/bridges/processors:
-    get:
-      tags:
-      - Shard
-      summary: Get Processors to be processed by a shard.
-      description: Get Processors to be processed by a shard.
-      operationId: ShardBridgesSyncAPI_getProcessors
-      responses:
-        "200":
-          description: Success.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ProcessorDTO'
-        "400":
-          description: Bad request.
-          content:
-            application/json: {}
-        "401":
-          description: Unauthorized.
-        "403":
-          description: Forbidden.
-        "500":
-          description: Internal error.
-          content:
-            application/json: {}
-      security:
-      - bearer: []
-    put:
-      tags:
-      - Shard
-      summary: Update a Processor.
-      description: Update a Processor.
-      operationId: ShardBridgesSyncAPI_updateProcessorStatus
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProcessorDTO'
-      responses:
-        "200":
-          description: Success.
-        "400":
-          description: Bad request.
-          content:
-            application/json: {}
-        "401":
-          description: Unauthorized.
-        "403":
-          description: Forbidden.
-        "500":
-          description: Internal error.
-          content:
-            application/json: {}
-      security:
-      - bearer: []
 components:
   schemas:
     Action:
@@ -747,23 +744,6 @@ components:
           minLength: 1
           type: string
           nullable: false
-    BridgeDTO:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        endpoint:
-          type: string
-        customerId:
-          type: string
-        owner:
-          type: string
-        status:
-          $ref: '#/components/schemas/ManagedResourceStatus'
-        kafkaConnection:
-          $ref: '#/components/schemas/KafkaConnectionDTO'
     BridgeError:
       type: object
       properties:
@@ -835,6 +815,68 @@ components:
           type: string
         error_handler:
           $ref: '#/components/schemas/Action'
+    CloudProviderListResponse:
+      type: object
+      properties:
+        kind:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudProviderResponse'
+        page:
+          format: int64
+          type: integer
+        size:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+    CloudProviderResponse:
+      type: object
+      properties:
+        kind:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        href:
+          type: string
+        display_name:
+          type: string
+        enabled:
+          type: boolean
+    CloudRegionListResponse:
+      type: object
+      properties:
+        kind:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudRegionResponse'
+        page:
+          format: int64
+          type: integer
+        size:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+    CloudRegionResponse:
+      type: object
+      properties:
+        kind:
+          type: string
+        name:
+          type: string
+        display_name:
+          type: string
+        enabled:
+          type: boolean
     ErrorListResponse:
       type: object
       properties:
@@ -868,21 +910,6 @@ components:
           type: string
         reason:
           type: string
-    KafkaConnectionDTO:
-      type: object
-      properties:
-        bootstrapServers:
-          type: string
-        clientId:
-          type: string
-        clientSecret:
-          type: string
-        securityProtocol:
-          type: string
-        topic:
-          type: string
-        errorTopic:
-          type: string
     ManagedResourceStatus:
       enum:
       - accepted
@@ -903,43 +930,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProcessorSchemaEntryResponse'
-    ProcessorDTO:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ProcessorType'
-        id:
-          type: string
-        name:
-          type: string
-        definition:
-          $ref: '#/components/schemas/ProcessorDefinition'
-        bridgeId:
-          type: string
-        customerId:
-          type: string
-        owner:
-          type: string
-        status:
-          $ref: '#/components/schemas/ManagedResourceStatus'
-        kafkaConnection:
-          $ref: '#/components/schemas/KafkaConnectionDTO'
-    ProcessorDefinition:
-      type: object
-      properties:
-        filters:
-          uniqueItems: true
-          type: array
-          items:
-            $ref: '#/components/schemas/BaseFilter'
-        transformationTemplate:
-          type: string
-        requestedAction:
-          $ref: '#/components/schemas/Action'
-        requestedSource:
-          $ref: '#/components/schemas/Source'
-        resolvedAction:
-          $ref: '#/components/schemas/Action'
     ProcessorListResponse:
       type: object
       properties:
