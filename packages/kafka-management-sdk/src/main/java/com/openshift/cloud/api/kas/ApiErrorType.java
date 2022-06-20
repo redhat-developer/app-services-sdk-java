@@ -41,6 +41,9 @@ public enum ApiErrorType {
   /** Unable to read request body*/
   ERROR_17("KAFKAS-MGMT-17"), 
 
+  /** Unable to perform this action, as the service is currently under maintenance*/
+  ERROR_18("KAFKAS-MGMT-18"), 
+
   /** Bad request*/
   ERROR_21("KAFKAS-MGMT-21"), 
 

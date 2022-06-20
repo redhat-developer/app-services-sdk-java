@@ -1,8 +1,8 @@
 {
   "kind": "ErrorList",
   "page": 1,
-  "size": 42,
-  "total": 42,
+  "size": 43,
+  "total": 43,
   "items": [
     {
       "id": "4",
@@ -80,6 +80,13 @@
       "href": "/api/kafkas_mgmt/v1/errors/17",
       "code": "KAFKAS-MGMT-17",
       "reason": "Unable to read request body"
+    },
+    {
+      "id": "18",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/18",
+      "code": "KAFKAS-MGMT-18",
+      "reason": "Unable to perform this action, as the service is currently under maintenance"
     },
     {
       "id": "21",
