@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
   title: Kafka Service Fleet Manager
-  version: 1.8.0
+  version: 1.9.0
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
 servers:
   - url: https://api.openshift.com
@@ -462,22 +462,6 @@ paths:
         - $ref: "#/components/parameters/id"
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/size'
-        - in: query
-          deprecated: true
-          name: instance_type
-          description: |-
-            The Kafka instance type to filter the results by
-
-            DEPRECATION NOTICE - instance_type will be deprecated
-
-          schema:
-            type: string
-          required: false
-          examples:
-            developer_instance_type:
-              value: "developer"
-            standard_instance_type:
-              value: "standard"
   /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region}:
     get:
       summary: Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
@@ -1071,10 +1055,6 @@ components:
         cloud_provider:
           description: The cloud provider where the Kafka cluster will be created in
           type: string
-        multi_az:
-          description: Deprecated. If it is specified, the value will be ignored. The API automatically determines this value from the 'plan' attribute"
-          type: boolean
-          deprecated: true
         name:
           description: 'The name of the Kafka cluster. It must consist of lower-case alphanumeric characters or ''-'', start with an alphabetic character, and end with an alphanumeric character, and can not be longer than 32 characters.'
           type: string
@@ -1265,15 +1245,6 @@ components:
           description: 'Whether the region is enabled for deploying an OSD cluster.'
           type: boolean
           default: false
-        supported_instance_types:
-          deprecated: true  
-          description:  |-
-            The Kafka instance types supported by this region.
-
-            DEPRECATION NOTICE - instance_type will be deprecated
-          type: array
-          items:
-            type: string
         capacity:
           description: 'Indicates whether there is capacity left per instance type'
           type: array
@@ -1332,10 +1303,6 @@ components:
         instance_type:
           description: 'kafka instance type'
           type: string
-        max_capacity_reached:
-          description: 'flag indicating whether the capacity for the instance type in the region is reached'
-          type: boolean
-          deprecated: true
         available_sizes:
           description: 'list of available Kafka instance sizes that can be created in this region when taking account current capacity and regional limits'
           type: array
@@ -1758,11 +1725,9 @@ components:
         id: "us-east-1"
         display_name: "US East, N. Virginia"
         enabled: true
-        supported_instance_types: ["standard"]
         capacity: [
           {
               instance_type: "standard",
-              max_capacity_reached: true,
               available_sizes: ["x1", "x2"]
           }
         ]
