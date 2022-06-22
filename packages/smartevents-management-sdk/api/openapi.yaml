@@ -1,92 +1,103 @@
----
 openapi: 3.0.3
 info:
-  title: Red Hat Openshift SmartEvents Fleet Manager
-  description: The API exposed by the fleet manager of the SmartEvents service.
   contact:
-    name: Development Team
     email: openbridge-dev@redhat.com
+    name: Development Team
+  description: The API exposed by the fleet manager of the SmartEvents service.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Red Hat Openshift SmartEvents Fleet Manager
   version: 0.0.2
+servers:
+- url: /
 tags:
-- name: Bridges
-  description: "The API that allow the user to retrieve, create or delete Bridge instances."
-- name: Cloud Providers
-  description: List Supported Cloud Providers and Regions
-- name: Error Catalog
-  description: List and get the error definitions from the error catalog.
-- name: Processors
-  description: "The API that allow the user to retrieve, create or delete Processors\
-    \ of a Bridge instance."
-- name: Schema Catalog
-  description: The API that provide the catalog of the available action/source processors
+- description: The API that allow the user to retrieve, create or delete Bridge instances.
+  name: Bridges
+- description: List Supported Cloud Providers and Regions
+  name: Cloud Providers
+- description: List and get the error definitions from the error catalog.
+  name: Error Catalog
+- description: The API that allow the user to retrieve, create or delete Processors
+    of a Bridge instance.
+  name: Processors
+- description: The API that provide the catalog of the available action/source processors
     definition and their JSON schema.
+  name: Schema Catalog
 paths:
   /api/v1/bridges:
     get:
-      tags:
-      - Bridges
-      summary: Get the list of Bridge instances
       description: Get the list of Bridge instances for the authenticated user.
       operationId: BridgesAPI_getBridges
       parameters:
-      - name: name
+      - explode: true
         in: query
+        name: name
+        required: false
         schema:
           type: string
-      - name: page
+        style: form
+      - explode: true
         in: query
+        name: page
+        required: false
         schema:
-          format: int32
           default: 0
+          format: int32
           minimum: 0
           type: integer
-      - name: size
+        style: form
+      - explode: true
         in: query
+        name: size
+        required: false
         schema:
-          format: int32
           default: 100
+          format: int32
           maximum: 100
           minimum: 1
           type: integer
-      - name: status
+        style: form
+      - explode: true
         in: query
+        name: status
+        required: false
         schema:
-          uniqueItems: true
-          type: array
           items:
             $ref: '#/components/schemas/ManagedResourceStatus'
+          type: array
+          uniqueItems: true
+        style: form
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BridgeListResponse'
+          description: Success.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "404":
+          content:
+            application/json: {}
           description: Not found.
-          content:
-            application/json: {}
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
-    post:
+      summary: Get the list of Bridge instances
       tags:
       - Bridges
-      summary: Create a Bridge instance
+      x-accepts: application/json
+    post:
       description: Create a Bridge instance for the authenticated user.
       operationId: BridgesAPI_createBridge
       requestBody:
@@ -96,183 +107,211 @@ paths:
               $ref: '#/components/schemas/BridgeRequest'
       responses:
         "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BridgeResponse'
           description: Accepted.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BridgeResponse'
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
+      summary: Create a Bridge instance
+      tags:
+      - Bridges
+      x-contentType: application/json
+      x-accepts: application/json
   /api/v1/bridges/{bridgeId}:
-    get:
-      tags:
-      - Bridges
-      summary: Get a Bridge instance
-      description: Get a Bridge instance of the authenticated user by ID.
-      operationId: BridgesAPI_getBridge
-      parameters:
-      - name: bridgeId
-        in: path
-        required: true
-        schema:
-          minLength: 1
-          type: string
-          nullable: false
-      responses:
-        "200":
-          description: Success.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BridgeResponse'
-        "400":
-          description: Bad request.
-          content:
-            application/json: {}
-        "401":
-          description: Unauthorized.
-        "403":
-          description: Forbidden.
-        "404":
-          description: Not found.
-          content:
-            application/json: {}
-        "500":
-          description: Internal error.
-          content:
-            application/json: {}
-      security:
-      - bearer: []
     delete:
-      tags:
-      - Bridges
-      summary: Delete a Bridge instance
       description: Delete a Bridge instance of the authenticated user by ID.
       operationId: BridgesAPI_deleteBridge
       parameters:
-      - name: bridgeId
+      - explode: false
         in: path
+        name: bridgeId
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "202":
           description: Accepted.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "404":
+          content:
+            application/json: {}
           description: Not found.
-          content:
-            application/json: {}
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
+      summary: Delete a Bridge instance
+      tags:
+      - Bridges
+      x-accepts: application/json
+    get:
+      description: Get a Bridge instance of the authenticated user by ID.
+      operationId: BridgesAPI_getBridge
+      parameters:
+      - explode: false
+        in: path
+        name: bridgeId
+        required: true
+        schema:
+          minLength: 1
+          nullable: false
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BridgeResponse'
+          description: Success.
+        "400":
+          content:
+            application/json: {}
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          content:
+            application/json: {}
+          description: Not found.
+        "500":
+          content:
+            application/json: {}
+          description: Internal error.
+      security:
+      - bearer: []
+      summary: Get a Bridge instance
+      tags:
+      - Bridges
+      x-accepts: application/json
   /api/v1/bridges/{bridgeId}/processors:
     get:
-      tags:
-      - Processors
-      summary: Get the list of Processors of a Bridge instance
       description: Get the list of Processors of a Bridge instance for the authenticated
         user.
       operationId: ProcessorsAPI_listProcessors
       parameters:
-      - name: bridgeId
+      - explode: false
         in: path
+        name: bridgeId
         required: true
         schema:
           minLength: 1
-          type: string
           nullable: false
-      - name: name
+          type: string
+        style: simple
+      - explode: true
         in: query
+        name: name
+        required: false
         schema:
           type: string
-      - name: page
+        style: form
+      - explode: true
         in: query
+        name: page
+        required: false
         schema:
-          format: int32
           default: 0
+          format: int32
           minimum: 0
           type: integer
-      - name: size
+        style: form
+      - explode: true
         in: query
+        name: size
+        required: false
         schema:
-          format: int32
           default: 100
+          format: int32
           maximum: 100
           minimum: 1
           type: integer
-      - name: status
+        style: form
+      - explode: true
         in: query
+        name: status
+        required: false
         schema:
-          uniqueItems: true
-          type: array
           items:
             $ref: '#/components/schemas/ManagedResourceStatus'
-      - name: type
+          type: array
+          uniqueItems: true
+        style: form
+      - explode: true
         in: query
+        name: type
+        required: false
         schema:
           $ref: '#/components/schemas/ProcessorType'
+        style: form
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessorListResponse'
+          description: Success.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "404":
+          content:
+            application/json: {}
           description: Not found.
-          content:
-            application/json: {}
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
-    post:
+      summary: Get the list of Processors of a Bridge instance
       tags:
       - Processors
-      summary: Create a Processor of a Bridge instance
+      x-accepts: application/json
+    post:
       description: Create a Processor of a Bridge instance for the authenticated user.
       operationId: ProcessorsAPI_addProcessorToBridge
       parameters:
-      - name: bridgeId
+      - explode: false
         in: path
+        name: bridgeId
         required: true
         schema:
           minLength: 1
-          type: string
           nullable: false
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -280,98 +319,152 @@ paths:
               $ref: '#/components/schemas/ProcessorRequest'
       responses:
         "202":
-          description: Accepted.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessorResponse'
+          description: Accepted.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "404":
+          content:
+            application/json: {}
           description: Not found.
-          content:
-            application/json: {}
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
-  /api/v1/bridges/{bridgeId}/processors/{processorId}:
-    get:
+      summary: Create a Processor of a Bridge instance
       tags:
       - Processors
-      summary: Get a Processor of a Bridge instance
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/bridges/{bridgeId}/processors/{processorId}:
+    delete:
+      description: Delete a Processor of a Bridge instance for the authenticated user.
+      operationId: ProcessorsAPI_deleteProcessor
+      parameters:
+      - explode: false
+        in: path
+        name: bridgeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: processorId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          description: Accepted.
+        "400":
+          content:
+            application/json: {}
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          content:
+            application/json: {}
+          description: Not found.
+        "500":
+          content:
+            application/json: {}
+          description: Internal error.
+      security:
+      - bearer: []
+      summary: Delete a Processor of a Bridge instance
+      tags:
+      - Processors
+      x-accepts: application/json
+    get:
       description: Get a Processor of a Bridge instance for the authenticated user.
       operationId: ProcessorsAPI_getProcessor
       parameters:
-      - name: bridgeId
+      - explode: false
         in: path
+        name: bridgeId
         required: true
         schema:
           minLength: 1
-          type: string
           nullable: false
-      - name: processorId
+          type: string
+        style: simple
+      - explode: false
         in: path
+        name: processorId
         required: true
         schema:
           minLength: 1
-          type: string
           nullable: false
+          type: string
+        style: simple
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessorResponse'
+          description: Success.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "404":
+          content:
+            application/json: {}
           description: Not found.
-          content:
-            application/json: {}
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
-    put:
+      summary: Get a Processor of a Bridge instance
       tags:
       - Processors
-      summary: Update a Processor instance Filter definition or Transformation template.
+      x-accepts: application/json
+    put:
       description: Update a Processor instance Filter definition or Transformation
         template for the authenticated user.
       operationId: ProcessorsAPI_updateProcessor
       parameters:
-      - name: bridgeId
+      - explode: false
         in: path
+        name: bridgeId
         required: true
         schema:
           minLength: 1
-          type: string
           nullable: false
-      - name: processorId
+          type: string
+        style: simple
+      - explode: false
         in: path
+        name: processorId
         required: true
         schema:
           minLength: 1
-          type: string
           nullable: false
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -379,373 +472,385 @@ paths:
               $ref: '#/components/schemas/ProcessorRequest'
       responses:
         "202":
-          description: Accepted.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessorResponse'
-        "400":
-          description: Bad request.
-          content:
-            application/json: {}
-        "401":
-          description: Unauthorized.
-        "403":
-          description: Forbidden.
-        "404":
-          description: Not found.
-          content:
-            application/json: {}
-        "500":
-          description: Internal error.
-          content:
-            application/json: {}
-      security:
-      - bearer: []
-    delete:
-      tags:
-      - Processors
-      summary: Delete a Processor of a Bridge instance
-      description: Delete a Processor of a Bridge instance for the authenticated user.
-      operationId: ProcessorsAPI_deleteProcessor
-      parameters:
-      - name: bridgeId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: processorId
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        "202":
           description: Accepted.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "404":
+          content:
+            application/json: {}
           description: Not found.
-          content:
-            application/json: {}
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
+      summary: Update a Processor instance Filter definition or Transformation template.
+      tags:
+      - Processors
+      x-contentType: application/json
+      x-accepts: application/json
   /api/v1/cloud_providers:
     get:
-      tags:
-      - Cloud Providers
-      summary: List Supported Cloud Providers.
       description: Returns the list of supported Cloud Providers.
       operationId: CloudProviderAPI_listCloudProviders
       parameters:
-      - name: page
+      - explode: true
         in: query
+        name: page
+        required: false
         schema:
-          format: int32
           default: 0
+          format: int32
           minimum: 0
           type: integer
-      - name: size
+        style: form
+      - explode: true
         in: query
+        name: size
+        required: false
         schema:
-          format: int32
           default: 100
+          format: int32
           maximum: 100
           minimum: 1
           type: integer
+        style: form
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudProviderListResponse'
+          description: Success.
         "400":
+          content:
+            application/json: {}
           description: Bad request.
-          content:
-            application/json: {}
         "500":
-          description: Internal error.
           content:
             application/json: {}
-  /api/v1/cloud_providers/{id}:
-    get:
+          description: Internal error.
+      summary: List Supported Cloud Providers.
       tags:
       - Cloud Providers
-      summary: Get Cloud Provider.
+      x-accepts: application/json
+  /api/v1/cloud_providers/{id}:
+    get:
       description: Get details of the Cloud Provider specified by id.
       operationId: CloudProviderAPI_getCloudProvider
       parameters:
-      - name: id
+      - explode: false
         in: path
+        name: id
         required: true
         schema:
           minLength: 1
-          type: string
           nullable: false
+          type: string
+        style: simple
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudProviderListResponse'
+          description: Success.
         "400":
+          content:
+            application/json: {}
           description: Bad request.
-          content:
-            application/json: {}
         "500":
-          description: Internal error.
           content:
             application/json: {}
-  /api/v1/cloud_providers/{id}/regions:
-    get:
+          description: Internal error.
+      summary: Get Cloud Provider.
       tags:
       - Cloud Providers
-      summary: List Supported Cloud Regions.
+      x-accepts: application/json
+  /api/v1/cloud_providers/{id}/regions:
+    get:
       description: Returns the list of supported Regions of the specified Cloud Provider.
       operationId: CloudProviderAPI_listCloudProviderRegions
       parameters:
-      - name: id
+      - explode: false
         in: path
+        name: id
         required: true
         schema:
           minLength: 1
-          type: string
           nullable: false
-      - name: page
+          type: string
+        style: simple
+      - explode: true
         in: query
+        name: page
+        required: false
         schema:
-          format: int32
           default: 0
+          format: int32
           minimum: 0
           type: integer
-      - name: size
+        style: form
+      - explode: true
         in: query
+        name: size
+        required: false
         schema:
-          format: int32
           default: 100
+          format: int32
           maximum: 100
           minimum: 1
           type: integer
+        style: form
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudRegionListResponse'
+          description: Success.
         "400":
+          content:
+            application/json: {}
           description: Bad request.
-          content:
-            application/json: {}
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
+      summary: List Supported Cloud Regions.
+      tags:
+      - Cloud Providers
+      x-accepts: application/json
   /api/v1/errors:
     get:
-      tags:
-      - Error Catalog
-      summary: Get the list of errors.
       description: Get the list of errors from the error catalog.
       operationId: ErrorsAPI_getErrors
       parameters:
-      - name: page
+      - explode: true
         in: query
+        name: page
+        required: false
         schema:
-          format: int32
           default: 0
+          format: int32
           minimum: 0
           type: integer
-      - name: size
+        style: form
+      - explode: true
         in: query
+        name: size
+        required: false
         schema:
-          format: int32
           default: 100
+          format: int32
           maximum: 100
           minimum: 1
           type: integer
+        style: form
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorListResponse'
+          description: Success.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "500":
-          description: Internal error.
           content:
             application/json: {}
-  /api/v1/errors/{id}:
-    get:
+          description: Internal error.
+      summary: Get the list of errors.
       tags:
       - Error Catalog
-      summary: Get an error from the error catalog.
+      x-accepts: application/json
+  /api/v1/errors/{id}:
+    get:
       description: Get an error from the error catalog.
       operationId: ErrorsAPI_getError
       parameters:
-      - name: id
+      - explode: false
         in: path
+        name: id
         required: true
         schema:
           format: int32
           type: integer
+        style: simple
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BridgeError'
+          description: Success.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
+      summary: Get an error from the error catalog.
+      tags:
+      - Error Catalog
+      x-accepts: application/json
   /api/v1/schemas:
     get:
-      tags:
-      - Schema Catalog
-      summary: Get processor catalog
       description: Get the processor catalog with all the available sources and actions.
       operationId: SchemaAPI_getCatalog
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessorCatalogResponse'
+          description: Success.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
-  /api/v1/schemas/actions/{id}:
-    get:
+      summary: Get processor catalog
       tags:
       - Schema Catalog
-      summary: Get action processor schema
+      x-accepts: application/json
+  /api/v1/schemas/actions/{id}:
+    get:
       description: Get the action processor JSON schema.
       operationId: SchemaAPI_getActionProcessorSchema
       parameters:
-      - name: id
+      - explode: false
         in: path
+        name: id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 type: object
+          description: Success.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
-  /api/v1/schemas/sources/{id}:
-    get:
+      summary: Get action processor schema
       tags:
       - Schema Catalog
-      summary: Get source processor schema
+      x-accepts: application/json
+  /api/v1/schemas/sources/{id}:
+    get:
       description: Get the source processor JSON schema.
       operationId: SchemaAPI_getSourceProcessorSchema
       parameters:
-      - name: id
+      - explode: false
         in: path
+        name: id
         required: true
         schema:
           type: string
+        style: simple
       responses:
         "200":
-          description: Success.
           content:
             application/json:
               schema:
                 type: object
+          description: Success.
         "400":
-          description: Bad request.
           content:
             application/json: {}
+          description: Bad request.
         "401":
           description: Unauthorized.
         "403":
           description: Forbidden.
         "500":
-          description: Internal error.
           content:
             application/json: {}
+          description: Internal error.
       security:
       - bearer: []
+      summary: Get source processor schema
+      tags:
+      - Schema Catalog
+      x-accepts: application/json
 components:
   schemas:
     Action:
-      required:
-      - type
-      - parameters
-      type: object
+      example:
+        type: type
+        parameters: '{}'
       properties:
         type:
-          type: string
           nullable: false
+          type: string
         parameters:
           type: object
-    BaseFilter:
       required:
-      - key
+      - parameters
+      - type
       type: object
+    BaseFilter:
+      example:
+        type: type
+        key: key
       properties:
         type:
           type: string
         key:
           minLength: 1
-          type: string
           nullable: false
-    BridgeError:
+          type: string
+      required:
+      - key
       type: object
+    BridgeError:
+      example:
+        reason: reason
+        code: code
+        id: 0
       properties:
         id:
           format: int32
@@ -756,20 +861,48 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/BridgeErrorType'
+      type: object
     BridgeErrorType:
       enum:
       - USER
       - PLATFORM
       type: string
     BridgeListResponse:
-      type: object
+      example:
+        total: 1
+        size: 6
+        kind: kind
+        page: 0
+        items:
+        - owner: owner
+          endpoint: endpoint
+          error_handler:
+            type: type
+            parameters: '{}'
+          submitted_at: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          name: name
+          id: id
+          href: href
+          published_at: 2000-01-23T04:56:07.000+00:00
+        - owner: owner
+          endpoint: endpoint
+          error_handler:
+            type: type
+            parameters: '{}'
+          submitted_at: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          name: name
+          id: id
+          href: href
+          published_at: 2000-01-23T04:56:07.000+00:00
       properties:
         kind:
           type: string
         items:
-          type: array
           items:
             $ref: '#/components/schemas/BridgeResponse'
+          type: array
         page:
           format: int64
           type: integer
@@ -779,19 +912,36 @@ components:
         total:
           format: int64
           type: integer
-    BridgeRequest:
-      required:
-      - name
       type: object
+    BridgeRequest:
+      example:
+        error_handler:
+          type: type
+          parameters: '{}'
+        name: name
       properties:
         name:
           minLength: 1
-          type: string
           nullable: false
+          type: string
         error_handler:
           $ref: '#/components/schemas/Action'
-    BridgeResponse:
+      required:
+      - name
       type: object
+    BridgeResponse:
+      example:
+        owner: owner
+        endpoint: endpoint
+        error_handler:
+          type: type
+          parameters: '{}'
+        submitted_at: 2000-01-23T04:56:07.000+00:00
+        kind: kind
+        name: name
+        id: id
+        href: href
+        published_at: 2000-01-23T04:56:07.000+00:00
       properties:
         kind:
           type: string
@@ -815,15 +965,33 @@ components:
           type: string
         error_handler:
           $ref: '#/components/schemas/Action'
-    CloudProviderListResponse:
       type: object
+    CloudProviderListResponse:
+      example:
+        total: 1
+        size: 6
+        kind: kind
+        page: 0
+        items:
+        - kind: kind
+          name: name
+          id: id
+          href: href
+          display_name: display_name
+          enabled: true
+        - kind: kind
+          name: name
+          id: id
+          href: href
+          display_name: display_name
+          enabled: true
       properties:
         kind:
           type: string
         items:
-          type: array
           items:
             $ref: '#/components/schemas/CloudProviderResponse'
+          type: array
         page:
           format: int64
           type: integer
@@ -833,8 +1001,15 @@ components:
         total:
           format: int64
           type: integer
-    CloudProviderResponse:
       type: object
+    CloudProviderResponse:
+      example:
+        kind: kind
+        name: name
+        id: id
+        href: href
+        display_name: display_name
+        enabled: true
       properties:
         kind:
           type: string
@@ -848,15 +1023,29 @@ components:
           type: string
         enabled:
           type: boolean
-    CloudRegionListResponse:
       type: object
+    CloudRegionListResponse:
+      example:
+        total: 1
+        size: 6
+        kind: kind
+        page: 0
+        items:
+        - kind: kind
+          name: name
+          display_name: display_name
+          enabled: true
+        - kind: kind
+          name: name
+          display_name: display_name
+          enabled: true
       properties:
         kind:
           type: string
         items:
-          type: array
           items:
             $ref: '#/components/schemas/CloudRegionResponse'
+          type: array
         page:
           format: int64
           type: integer
@@ -866,8 +1055,13 @@ components:
         total:
           format: int64
           type: integer
-    CloudRegionResponse:
       type: object
+    CloudRegionResponse:
+      example:
+        kind: kind
+        name: name
+        display_name: display_name
+        enabled: true
       properties:
         kind:
           type: string
@@ -877,15 +1071,33 @@ components:
           type: string
         enabled:
           type: boolean
-    ErrorListResponse:
       type: object
+    ErrorListResponse:
+      example:
+        total: 1
+        size: 6
+        kind: kind
+        page: 0
+        items:
+        - reason: reason
+          code: code
+          kind: kind
+          name: name
+          id: id
+          href: href
+        - reason: reason
+          code: code
+          kind: kind
+          name: name
+          id: id
+          href: href
       properties:
         kind:
           type: string
         items:
-          type: array
           items:
             $ref: '#/components/schemas/ErrorResponse'
+          type: array
         page:
           format: int64
           type: integer
@@ -895,8 +1107,15 @@ components:
         total:
           format: int64
           type: integer
-    ErrorResponse:
       type: object
+    ErrorResponse:
+      example:
+        reason: reason
+        code: code
+        kind: kind
+        name: name
+        id: id
+        href: href
       properties:
         kind:
           type: string
@@ -910,15 +1129,16 @@ components:
           type: string
         reason:
           type: string
-    ErrorsResponse:
       type: object
+    ErrorsResponse:
       properties:
         kind:
           type: string
         items:
-          type: array
           items:
             $ref: '#/components/schemas/ErrorResponse'
+          type: array
+      type: object
     ManagedResourceStatus:
       enum:
       - accepted
@@ -931,23 +1151,81 @@ components:
       - failed
       type: string
     ProcessorCatalogResponse:
-      type: object
+      example:
+        kind: kind
+        items:
+        - kind: kind
+          name: name
+          description: description
+          id: id
+          href: href
+          type: type
+        - kind: kind
+          name: name
+          description: description
+          id: id
+          href: href
+          type: type
       properties:
         kind:
           type: string
         items:
-          type: array
           items:
             $ref: '#/components/schemas/ProcessorSchemaEntryResponse'
-    ProcessorListResponse:
+          type: array
       type: object
+    ProcessorListResponse:
+      example:
+        total: 1
+        size: 6
+        kind: kind
+        page: 0
+        items:
+        - owner: owner
+          submitted_at: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          filters:
+          - type: type
+            key: key
+          - type: type
+            key: key
+          source:
+            type: type
+            parameters: '{}'
+          name: name
+          action:
+            type: type
+            parameters: '{}'
+          id: id
+          href: href
+          published_at: 2000-01-23T04:56:07.000+00:00
+          transformationTemplate: transformationTemplate
+        - owner: owner
+          submitted_at: 2000-01-23T04:56:07.000+00:00
+          kind: kind
+          filters:
+          - type: type
+            key: key
+          - type: type
+            key: key
+          source:
+            type: type
+            parameters: '{}'
+          name: name
+          action:
+            type: type
+            parameters: '{}'
+          id: id
+          href: href
+          published_at: 2000-01-23T04:56:07.000+00:00
+          transformationTemplate: transformationTemplate
       properties:
         kind:
           type: string
         items:
-          type: array
           items:
             $ref: '#/components/schemas/ProcessorResponse'
+          type: array
         page:
           format: int64
           type: integer
@@ -957,28 +1235,62 @@ components:
         total:
           format: int64
           type: integer
-    ProcessorRequest:
-      required:
-      - name
       type: object
+    ProcessorRequest:
+      example:
+        name: name
+        action:
+          type: type
+          parameters: '{}'
+        filters:
+        - type: type
+          key: key
+        - type: type
+          key: key
+        source:
+          type: type
+          parameters: '{}'
+        transformationTemplate: transformationTemplate
       properties:
         name:
           minLength: 1
-          type: string
           nullable: false
+          type: string
         filters:
-          uniqueItems: true
-          type: array
           items:
             $ref: '#/components/schemas/BaseFilter'
+          type: array
+          uniqueItems: true
         transformationTemplate:
           type: string
         action:
           $ref: '#/components/schemas/Action'
         source:
           $ref: '#/components/schemas/Source'
-    ProcessorResponse:
+      required:
+      - name
       type: object
+    ProcessorResponse:
+      example:
+        owner: owner
+        submitted_at: 2000-01-23T04:56:07.000+00:00
+        kind: kind
+        filters:
+        - type: type
+          key: key
+        - type: type
+          key: key
+        source:
+          type: type
+          parameters: '{}'
+        name: name
+        action:
+          type: type
+          parameters: '{}'
+        id: id
+        href: href
+        published_at: 2000-01-23T04:56:07.000+00:00
+        transformationTemplate: transformationTemplate
       properties:
         kind:
           type: string
@@ -1001,18 +1313,25 @@ components:
         type:
           $ref: '#/components/schemas/ProcessorType'
         filters:
-          uniqueItems: true
-          type: array
           items:
             $ref: '#/components/schemas/BaseFilter'
+          type: array
+          uniqueItems: true
         transformationTemplate:
           type: string
         action:
           $ref: '#/components/schemas/Action'
         source:
           $ref: '#/components/schemas/Source'
-    ProcessorSchemaEntryResponse:
       type: object
+    ProcessorSchemaEntryResponse:
+      example:
+        kind: kind
+        name: name
+        description: description
+        id: id
+        href: href
+        type: type
       properties:
         kind:
           type: string
@@ -1026,6 +1345,7 @@ components:
           type: string
         href:
           type: string
+      type: object
     ProcessorType:
       enum:
       - source
@@ -1033,17 +1353,21 @@ components:
       - error_handler
       type: string
     Source:
-      required:
-      - type
-      - parameters
-      type: object
+      example:
+        type: type
+        parameters: '{}'
       properties:
         type:
-          type: string
           nullable: false
+          type: string
         parameters:
           type: object
+      required:
+      - parameters
+      - type
+      type: object
   securitySchemes:
     bearer:
-      type: http
       scheme: Bearer
+      type: http
+

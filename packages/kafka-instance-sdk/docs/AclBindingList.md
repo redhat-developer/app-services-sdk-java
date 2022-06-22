@@ -1,7 +1,8 @@
 
 
-# AclBindingList
+# ACLBindingList
 
+A page of ACL binding entries
 
 ## Properties
 
