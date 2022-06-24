@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **maxConnectionAttemptsPerSec** | **Integer** |  |  [optional]
 **billingCloudAccountId** | **String** |  |  [optional]
 **marketplace** | **String** |  |  [optional]
+**billingModel** | **String** |  |  [optional]
 
 
 

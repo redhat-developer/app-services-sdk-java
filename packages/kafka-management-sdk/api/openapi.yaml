@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
   title: Kafka Service Fleet Manager
-  version: 1.8.0
+  version: 1.10.0
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -1229,6 +1229,7 @@ components:
         max_connection_attempts_per_sec: 100
         billing_cloud_account_id: "123456789012"
         marketplace: aws
+        billing_model: marketplace
     KafkaRequestFailedCreationStatusExample:
       value:
         id: 1iSY6RQ3JKI8Q0OTmjQFd3ocFRg
@@ -1288,11 +1289,8 @@ components:
         id: us-east-1
         display_name: US East, N. Virginia
         enabled: true
-        supported_instance_types:
-        - standard
         capacity:
         - instance_type: standard
-          max_capacity_reached: true
           available_sizes:
           - x1
           - x2
@@ -1707,6 +1705,7 @@ components:
       example:
         reauthentication_enabled: true
         marketplace: marketplace
+        billing_model: billing_model
         billing_cloud_account_id: billing_cloud_account_id
         name: name
         cloud_provider: cloud_provider
@@ -1740,6 +1739,10 @@ components:
           type: string
         marketplace:
           description: marketplace where the instance is purchased on
+          nullable: true
+          type: string
+        billing_model:
+          description: billing model to use
           nullable: true
           type: string
       required:
@@ -2082,6 +2085,8 @@ components:
         billing_cloud_account_id:
           type: string
         marketplace:
+          type: string
+        billing_model:
           type: string
       required:
       - multi_az

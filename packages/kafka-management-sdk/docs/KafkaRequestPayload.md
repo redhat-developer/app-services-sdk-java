@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **plan** | **String** | kafka plan in a format of &lt;instance_type&gt;.&lt;size_id&gt; |  [optional]
 **billingCloudAccountId** | **String** | cloud account id used to purchase the instance |  [optional]
 **marketplace** | **String** | marketplace where the instance is purchased on |  [optional]
+**billingModel** | **String** | billing model to use |  [optional]
 
 
 
