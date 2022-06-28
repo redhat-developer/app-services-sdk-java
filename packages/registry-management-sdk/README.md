@@ -1,10 +1,10 @@
 # registry-management-sdk
 
-Service Registry Fleet Manager
+Service Registry Management API
 
 - API version: 0.0.6
 
-Service Registry Fleet Manager is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
+Service Registry Management API is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
 
   For more information, please visit [https://console.redhat.com/application-services/service-registry/](https://console.redhat.com/application-services/service-registry/)
 
