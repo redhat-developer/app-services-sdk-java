@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Service Registry Fleet Manager",
+    "title": "Service Registry Management API",
     "version": "0.0.6",
-    "description": "Service Registry Fleet Manager is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.",
+    "description": "Service Registry Management API is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.",
     "contact": {
       "name": "Red Hat Hybrid Cloud Console",
       "url": "https://console.redhat.com/application-services/service-registry/",
