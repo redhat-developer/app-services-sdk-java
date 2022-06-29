@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
   title: Kafka Service Fleet Manager
-  version: 1.10.0
+  version: 1.11.0
   description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
 servers:
   - url: https://api.openshift.com
@@ -988,7 +988,11 @@ components:
             reauthentication_enabled:
               type: boolean
             kafka_storage_size:
+              deprecated: true
+              description: "Maximum data storage available to this Kafka. This is now deprecated, please use max_data_retention_size instead."
               type: string
+            max_data_retention_size:
+              $ref: '#/components/schemas/SupportedKafkaSizeBytesValueItem'
             browser_url:
               type: string
             size_id:
@@ -1662,6 +1666,9 @@ components:
         instance_type: standard
         browser_url: "https://console.redhat.com/application-services/streams/kafkas/1isy6rq3jki8q0otmjqfd3ocfrg/dashboard"
         reauthentication_enabled: true
+        max_data_retention_size: {
+          bytes: 1073741824000
+        }
         size_id: x1
         ingress_throughput_per_sec: "2Mi"
         egress_throughput_per_sec: "2Mi"
