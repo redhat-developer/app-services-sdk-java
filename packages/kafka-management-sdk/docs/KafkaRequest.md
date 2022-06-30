@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **instanceType** | **String** |  |  [optional]
 **instanceTypeName** | **String** |  |  [optional]
 **reauthenticationEnabled** | **Boolean** |  | 
-**kafkaStorageSize** | **String** |  |  [optional]
+**maxDataRetentionSize** | [**SupportedKafkaSizeBytesValueItem**](SupportedKafkaSizeBytesValueItem.md) |  |  [optional]
 **browserUrl** | **String** |  |  [optional]
 **sizeId** | **String** |  |  [optional]
 **ingressThroughputPerSec** | **String** |  |  [optional]
