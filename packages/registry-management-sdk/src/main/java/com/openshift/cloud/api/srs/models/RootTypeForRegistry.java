@@ -202,10 +202,10 @@ public class RootTypeForRegistry {
    * User-defined Registry instance name. Does not have to be unique.
    * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "User-defined Registry instance name. Does not have to be unique.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "User-defined Registry instance name. Does not have to be unique.")
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getName() {
     return name;
@@ -213,7 +213,7 @@ public class RootTypeForRegistry {
 
 
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }
@@ -256,10 +256,10 @@ public class RootTypeForRegistry {
    * Registry instance owner.
    * @return owner
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Registry instance owner.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Registry instance owner.")
   @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getOwner() {
     return owner;
@@ -267,7 +267,7 @@ public class RootTypeForRegistry {
 
 
   @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOwner(String owner) {
     this.owner = owner;
   }

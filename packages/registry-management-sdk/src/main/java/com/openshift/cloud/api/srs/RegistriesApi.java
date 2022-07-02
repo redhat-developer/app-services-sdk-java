@@ -38,8 +38,8 @@ public class RegistriesApi {
   }
 
   /**
-   * Create a new Registry instance
    * 
+   * Create a new Registry instance
    * @param registryCreate A new &#x60;Registry&#x60; instance to be created. (required)
    * @return a {@code Registry}
    * @throws ApiException if fails to make API call
@@ -124,8 +124,8 @@ public class RegistriesApi {
     apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
-   * Get the list of all Registry instances
    * 
+   * Get the list of all Registry instances
    * @param page Page index. (optional)
    * @param size Number of items in each page. (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the _order by_ clause of an SQL statement. Each query can be ordered by any of the request fields. For example, to retrieve all Registry instances ordered by their name:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  Or to retrieve all Registry instances ordered by their name _and_ created date:  &#x60;&#x60;&#x60;sql name asc, created_at asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty,  the results are ordered by name. (optional)

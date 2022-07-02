@@ -4,13 +4,15 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getServiceStatus**](DefaultApi.md#getServiceStatus) | **GET** /api/serviceregistry_mgmt/v1/status | Get the service status
+[**getServiceStatus**](DefaultApi.md#getServiceStatus) | **GET** /api/serviceregistry_mgmt/v1/status | 
 
 
 
 ## getServiceStatus
 
 > ServiceStatus getServiceStatus()
+
+
 
 Get the service status
 
