@@ -4,14 +4,16 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getError**](ErrorsApi.md#getError) | **GET** /api/serviceregistry_mgmt/v1/errors/{id} | Get information about a specific error type
-[**getErrors**](ErrorsApi.md#getErrors) | **GET** /api/serviceregistry_mgmt/v1/errors | Get the list of all errors
+[**getError**](ErrorsApi.md#getError) | **GET** /api/serviceregistry_mgmt/v1/errors/{id} | 
+[**getErrors**](ErrorsApi.md#getErrors) | **GET** /api/serviceregistry_mgmt/v1/errors | 
 
 
 
 ## getError
 
 > Error getError(id)
+
+
 
 Get information about a specific error type
 
@@ -78,6 +80,8 @@ No authorization required
 ## getErrors
 
 > ErrorList getErrors(page, size)
+
+
 
 Get the list of all errors
 
