@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  |  [optional]
-**kind** | **String** |  |  [optional]
-**href** | **String** |  |  [optional]
+**id** | **String** |  | 
+**kind** | **String** |  | 
+**href** | **String** |  | 
 **collections** | [**List&lt;ObjectReference&gt;**](ObjectReference.md) |  |  [optional]
 
 

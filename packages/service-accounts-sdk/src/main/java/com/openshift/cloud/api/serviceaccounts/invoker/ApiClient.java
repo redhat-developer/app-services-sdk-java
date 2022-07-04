@@ -45,6 +45,7 @@ import com.openshift.cloud.api.serviceaccounts.invoker.auth.Authentication;
 import com.openshift.cloud.api.serviceaccounts.invoker.auth.HttpBasicAuth;
 import com.openshift.cloud.api.serviceaccounts.invoker.auth.HttpBearerAuth;
 import com.openshift.cloud.api.serviceaccounts.invoker.auth.ApiKeyAuth;
+import com.openshift.cloud.api.serviceaccounts.invoker.auth.OAuth;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiClient extends JavaTimeFormatter {
@@ -80,7 +81,9 @@ public class ApiClient extends JavaTimeFormatter {
 
     // Setup authentications (key: authentication name, value: authentication).
     authentications = new HashMap<String, Authentication>();
+    authentications.put("authFlow", new OAuth());
     authentications.put("bearerAuth", new HttpBearerAuth("bearer"));
+    authentications.put("serviceAccounts", new OAuth());
     // Prevent the authentications from being modified.
     authentications = Collections.unmodifiableMap(authentications);
   }
@@ -199,6 +202,20 @@ public class ApiClient extends JavaTimeFormatter {
       }
     }
     throw new RuntimeException("No API key authentication configured!");
+  }
+
+  /**
+   * Helper method to set access token for the first OAuth2 authentication.
+   * @param accessToken the access token
+   */
+  public void setAccessToken(String accessToken) {
+    for (Authentication auth : authentications.values()) {
+      if (auth instanceof OAuth) {
+        ((OAuth) auth).setAccessToken(accessToken);
+        return;
+      }
+    }
+    throw new RuntimeException("No OAuth2 authentication configured!");
   }
 
   /**

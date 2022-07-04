@@ -90,9 +90,13 @@ public class ServiceAccountsApiExample {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
+        // Configure OAuth2 access token for authorization: authFlow
+        OAuth authFlow = (OAuth) defaultClient.getAuthentication("authFlow");
+        authFlow.setAccessToken("YOUR ACCESS TOKEN");
+
+        // Configure OAuth2 access token for authorization: serviceAccounts
+        OAuth serviceAccounts = (OAuth) defaultClient.getAuthentication("serviceAccounts");
+        serviceAccounts.setAccessToken("YOUR ACCESS TOKEN");
 
         ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
         ServiceAccountCreateRequestData serviceAccountCreateRequestData = new ServiceAccountCreateRequestData(); // ServiceAccountCreateRequestData | 'name' and 'description' of the service account
@@ -128,18 +132,40 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Error](docs/Error.md)
+ - [RedHatErrorRepresentation](docs/RedHatErrorRepresentation.md)
  - [ServiceAccountCreateRequestData](docs/ServiceAccountCreateRequestData.md)
  - [ServiceAccountData](docs/ServiceAccountData.md)
  - [ServiceAccountRequestData](docs/ServiceAccountRequestData.md)
+ - [ValidationExceptionData](docs/ValidationExceptionData.md)
 
 
 ## Documentation for Authorization
 
 Authentication schemes defined for the API:
+### authFlow
+
+
+- **Type**: OAuth
+- **Flow**: accessCode
+- **Authorization URL**: /auth/realms/redhat-external/protocol/openid-connect/auth
+- **Scopes**: 
+  - openid: Treat as an OIDC request
+  - api.iam.service_accounts: Grants access to the service accounts api
+
 ### bearerAuth
 
 
 - **Type**: HTTP basic authentication
+
+### serviceAccounts
+
+
+- **Type**: OAuth
+- **Flow**: application
+- **Authorization URL**: 
+- **Scopes**: 
+  - openid: Treat as an OIDC request
+  - api.iam.service_accounts: Grants access to the service accounts api
 
 
 ## Recommendation

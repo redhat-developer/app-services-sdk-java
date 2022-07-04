@@ -36,8 +36,8 @@ public class ErrorsApi {
   }
 
   /**
-   * Returns the error by id
    * 
+   * Returns the error by Id
    * @param id The ID of record (required)
    * @return a {@code Error}
    * @throws ApiException if fails to make API call
@@ -80,8 +80,8 @@ public class ErrorsApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns the list of possible API errors
    * 
+   * Returns the list of possible API errors
    * @return a {@code ErrorList}
    * @throws ApiException if fails to make API call
    */
