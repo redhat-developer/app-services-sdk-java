@@ -4,24 +4,26 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createKafka**](DefaultApi.md#createKafka) | **POST** /api/kafkas_mgmt/v1/kafkas | Creates a Kafka request
-[**deleteKafkaById**](DefaultApi.md#deleteKafkaById) | **DELETE** /api/kafkas_mgmt/v1/kafkas/{id} | Deletes a Kafka request by ID
-[**federateMetrics**](DefaultApi.md#federateMetrics) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate | Returns all metrics in scrapeable format for a given kafka id
-[**getCloudProviderRegions**](DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | Returns the list of supported regions of the supported cloud provider
-[**getCloudProviders**](DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | Returns the list of supported cloud providers
-[**getInstanceTypesByCloudProviderAndRegion**](DefaultApi.md#getInstanceTypesByCloudProviderAndRegion) | **GET** /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} | Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
-[**getKafkaById**](DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | Returns a Kafka request by ID
-[**getKafkas**](DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | Returns a list of Kafka requests
-[**getMetricsByInstantQuery**](DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | Returns metrics with instant query by Kafka ID
-[**getMetricsByRangeQuery**](DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | Returns metrics with timeseries range query by Kafka ID
-[**getVersionMetadata**](DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | Returns the version metadata
-[**updateKafkaById**](DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | Update a Kafka instance by id
+[**createKafka**](DefaultApi.md#createKafka) | **POST** /api/kafkas_mgmt/v1/kafkas | 
+[**deleteKafkaById**](DefaultApi.md#deleteKafkaById) | **DELETE** /api/kafkas_mgmt/v1/kafkas/{id} | 
+[**federateMetrics**](DefaultApi.md#federateMetrics) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate | 
+[**getCloudProviderRegions**](DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | 
+[**getCloudProviders**](DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | 
+[**getInstanceTypesByCloudProviderAndRegion**](DefaultApi.md#getInstanceTypesByCloudProviderAndRegion) | **GET** /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} | 
+[**getKafkaById**](DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | 
+[**getKafkas**](DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | 
+[**getMetricsByInstantQuery**](DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | 
+[**getMetricsByRangeQuery**](DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | 
+[**getVersionMetadata**](DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | 
+[**updateKafkaById**](DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | 
 
 
 
 ## createKafka
 
 > KafkaRequest createKafka(async, kafkaRequestPayload)
+
+
 
 Creates a Kafka request
 
@@ -100,6 +102,8 @@ Name | Type | Description  | Notes
 
 > Error deleteKafkaById(id, async)
 
+
+
 Deletes a Kafka request by ID
 
 ### Example
@@ -176,6 +180,8 @@ Name | Type | Description  | Notes
 
 > String federateMetrics(id)
 
+
+
 Returns all metrics in scrapeable format for a given kafka id
 
 ### Example
@@ -248,6 +254,8 @@ Name | Type | Description  | Notes
 ## getCloudProviderRegions
 
 > CloudRegionList getCloudProviderRegions(id, page, size)
+
+
 
 Returns the list of supported regions of the supported cloud provider
 
@@ -324,6 +332,8 @@ Name | Type | Description  | Notes
 
 > CloudProviderList getCloudProviders(page, size)
 
+
+
 Returns the list of supported cloud providers
 
 ### Example
@@ -396,6 +406,8 @@ Name | Type | Description  | Notes
 ## getInstanceTypesByCloudProviderAndRegion
 
 > SupportedKafkaInstanceTypesList getInstanceTypesByCloudProviderAndRegion(cloudProvider, cloudRegion)
+
+
 
 Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
 
@@ -471,6 +483,8 @@ Name | Type | Description  | Notes
 
 > KafkaRequest getKafkaById(id)
 
+
+
 Returns a Kafka request by ID
 
 ### Example
@@ -543,6 +557,8 @@ Name | Type | Description  | Notes
 ## getKafkas
 
 > KafkaRequestList getKafkas(page, size, orderBy, search)
+
+
 
 Returns a list of Kafka requests
 
@@ -623,6 +639,8 @@ Name | Type | Description  | Notes
 
 > MetricsInstantQueryList getMetricsByInstantQuery(id, filters)
 
+
+
 Returns metrics with instant query by Kafka ID
 
 ### Example
@@ -695,6 +713,8 @@ Name | Type | Description  | Notes
 ## getMetricsByRangeQuery
 
 > MetricsRangeQueryList getMetricsByRangeQuery(id, duration, interval, filters)
+
+
 
 Returns metrics with timeseries range query by Kafka ID
 
@@ -773,7 +793,9 @@ Name | Type | Description  | Notes
 
 > VersionMetadata getVersionMetadata()
 
-Returns the version metadata
+
+
+Returns the kafka Service Fleet Manager API version metadata
 
 ### Example
 
@@ -832,6 +854,8 @@ No authorization required
 ## updateKafkaById
 
 > KafkaRequest updateKafkaById(id, kafkaUpdateRequest)
+
+
 
 Update a Kafka instance by id
 
