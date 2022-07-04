@@ -1,9 +1,20 @@
 openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an openapi document.
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
-  title: Kafka Service Fleet Manager
+  title: Kafka Management API
   version: 1.11.0
-  description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
+  description: Kafka Management API is a REST API to manage Kafka instances
+  license:
+    name: 'Apache 2.0'
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  contact: 
+    name: 'Red Hat Hybrid Cloud Console'
+    email: 'rhosak-support@redhat.com'
+tags:
+  - name: errors
+    description: Errors returned by the API.
+  - name: security
+    description: Security related endpoints.
 servers:
   - url: https://api.openshift.com
     description: Main (production) server
@@ -24,7 +35,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/VersionMetadata'
           description: Version metadata
-      summary: Returns the version metadata
+      description: Returns the kafka Service Fleet Manager API version metadata
 
   /api/kafkas_mgmt/v1/errors/{id}:
     get:
@@ -36,7 +47,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Get error by Id
-      summary: Returns the error by id
+      description: Returns the error by Id
       tags:
         - errors
       parameters:
@@ -52,7 +63,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorList'
           description: List of possible errors
-      summary: Returns the list of possible API errors
+      description: Returns the list of possible API errors
       tags:
         - errors
 
@@ -109,7 +120,7 @@ paths:
           description: Unexpected error occurred
       security:
         - Bearer: [ ]
-      summary: Returns a Kafka request by ID
+      description: Returns a Kafka request by ID
     delete:
       operationId: deleteKafkaById
       parameters:
@@ -173,11 +184,11 @@ paths:
                 500DeleteExample:
                   $ref: '#/components/examples/500DeleteExample'
           description: Unexpected error occurred
-      summary: Deletes a Kafka request by ID
+      description: Deletes a Kafka request by ID
       security:
         - Bearer: [ ]
     patch:
-      summary: Update a Kafka instance by id
+      description: Update a Kafka instance by id
       security:
         - Bearer: [ ]
       operationId: updateKafkaById
@@ -339,9 +350,9 @@ paths:
           description: An unexpected error occurred while creating the Kafka request
       security:
         - Bearer: [ ]
-      summary: Creates a Kafka request
+      description: Creates a Kafka request
     get:
-      summary: Returns a list of Kafka requests
+      description: Returns a list of Kafka requests
       operationId: getKafkas
       security:
         - Bearer: [ ]
@@ -395,7 +406,7 @@ paths:
         - $ref: '#/components/parameters/search'
   /api/kafkas_mgmt/v1/cloud_providers:
     get:
-      summary: Returns the list of supported cloud providers
+      description: Returns the list of supported cloud providers
       operationId: getCloudProviders
       security:
         - Bearer: [ ]
@@ -429,7 +440,7 @@ paths:
         - $ref: '#/components/parameters/size'
   /api/kafkas_mgmt/v1/cloud_providers/{id}/regions:
     get:
-      summary: Returns the list of supported regions of the supported cloud provider
+      description: Returns the list of supported regions of the supported cloud provider
       operationId: getCloudProviderRegions
       security:
         - Bearer: [ ]
@@ -464,7 +475,7 @@ paths:
         - $ref: '#/components/parameters/size'
   /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region}:
     get:
-      summary: Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
+      description: Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
       operationId: getInstanceTypesByCloudProviderAndRegion
       security:
         - Bearer: [ ]
@@ -565,7 +576,7 @@ paths:
       tags:
         - security
       operationId: getServiceAccounts
-      summary: Returns a list of service accounts
+      description: Returns a list of service accounts
     post:
       requestBody:
         description: Service account request
@@ -619,7 +630,7 @@ paths:
       operationId: createServiceAccount
       tags:
         - security
-      summary: Creates a service account
+      description: Creates a service account
   /api/kafkas_mgmt/v1/service_accounts/{id}:
     get:
       parameters:
@@ -639,8 +650,7 @@ paths:
       operationId: getServiceAccountById
       tags:
         - security
-      summary: Returned service account by ID
-    summary: Get service account by id
+      description: Returned service account by ID
     description: Get the service account with the given id
     delete:
       parameters:
@@ -683,7 +693,7 @@ paths:
       operationId: deleteServiceAccountById
       tags:
         - security
-      summary: Deletes a service account by ID
+      description: Deletes a service account by ID
   /api/kafkas_mgmt/v1/service_accounts/{id}/reset_credentials:
     post:
       parameters:
@@ -729,10 +739,10 @@ paths:
       operationId: resetServiceAccountCreds
       tags:
         - security
-      summary: Resets the credentials for a service account by ID
+      description: Resets the credentials for a service account by ID
   /api/kafkas_mgmt/v1/sso_providers:
     get:
-      summary: Return sso provider info
+      description: Return sso provider info
       operationId: getSsoProviders
       tags:
         - security
@@ -767,7 +777,7 @@ paths:
   #
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range:
     get:
-      summary: Returns metrics with timeseries range query by Kafka ID
+      description: Returns metrics with timeseries range query by Kafka ID
       operationId: getMetricsByRangeQuery
       security:
         - Bearer: [ ]
@@ -803,7 +813,7 @@ paths:
         - $ref: "#/components/parameters/filters"
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query:
     get:
-      summary: Returns metrics with instant query by Kafka ID
+      description: Returns metrics with instant query by Kafka ID
       operationId: getMetricsByInstantQuery
       security:
         - Bearer: [ ]
@@ -837,7 +847,7 @@ paths:
         - $ref: "#/components/parameters/filters"
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate:
     get:
-      summary: Returns all metrics in scrapeable format for a given kafka id
+      description: Returns all metrics in scrapeable format for a given kafka id
       operationId: federateMetrics
       security:
         - Bearer: [ ]
@@ -891,6 +901,7 @@ components:
   schemas:
     ObjectReference:
       type: object
+      required: [id, kind, href]
       properties:
         id:
           type: string
@@ -920,16 +931,21 @@ components:
           items:
             $ref: "#/components/schemas/ObjectReference"
     Error:
-      allOf:
-        - $ref: "#/components/schemas/ObjectReference"
-        - type: object
-          properties:
-            code:
-              type: string
-            reason:
-              type: string
-            operation_id:
-              type: string
+        type: object
+        required: [id, kind, href, code, reason]
+        properties:
+          reason:
+            type: string
+          operation_id:
+            type: string
+          id:
+            type: string
+          kind:
+            type: string
+          href:
+            type: string
+          code:
+            type: string
     ErrorList:
       allOf:
         - $ref: "#/components/schemas/List"
@@ -1417,8 +1433,8 @@ components:
         values:
           type: array
           items:
-            $ref: '#/components/schemas/values'
-    values:
+            $ref: '#/components/schemas/Values'
+    Values:
       type: object
       properties:
         timestamp:
@@ -1447,8 +1463,6 @@ components:
               items:
                 allOf:
                   - $ref: "#/components/schemas/InstantQuery"
-    MetricsFederationResult:
-      type: string
     InstantQuery:
       type: object
       properties:
