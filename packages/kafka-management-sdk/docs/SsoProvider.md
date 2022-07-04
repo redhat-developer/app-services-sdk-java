@@ -8,9 +8,9 @@ SSO Provider
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  |  [optional]
-**kind** | **String** |  |  [optional]
-**href** | **String** |  |  [optional]
+**id** | **String** |  | 
+**kind** | **String** |  | 
+**href** | **String** |  | 
 **name** | **String** | name of the sso provider |  [optional]
 **baseUrl** | **String** | base url |  [optional]
 **tokenUrl** | **String** |  |  [optional]

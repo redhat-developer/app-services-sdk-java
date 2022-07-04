@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  |  [optional]
-**kind** | **String** |  |  [optional]
-**href** | **String** |  |  [optional]
+**id** | **String** |  | 
+**kind** | **String** |  | 
+**href** | **String** |  | 
 **status** | **String** | Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting]  |  [optional]
 **cloudProvider** | **String** | Name of Cloud used to deploy. For example AWS |  [optional]
 **multiAz** | **Boolean** |  | 
