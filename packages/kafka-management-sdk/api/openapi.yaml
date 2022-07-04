@@ -1,7 +1,13 @@
 openapi: 3.0.0
 info:
-  description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
-  title: Kafka Service Fleet Manager
+  contact:
+    email: rhosak-support@redhat.com
+    name: Red Hat Hybrid Cloud Console
+  description: Kafka Management API is a REST API to manage Kafka instances
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  title: Kafka Management API
   version: 1.11.0
 servers:
 - description: Main (production) server
@@ -12,9 +18,15 @@ servers:
   url: http://localhost:8000
 - description: current domain
   url: /
+tags:
+- description: Errors returned by the API.
+  name: errors
+- description: Security related endpoints.
+  name: security
 paths:
   /api/kafkas_mgmt/v1:
     get:
+      description: Returns the kafka Service Fleet Manager API version metadata
       operationId: getVersionMetadata
       responses:
         "200":
@@ -23,10 +35,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/VersionMetadata'
           description: Version metadata
-      summary: Returns the version metadata
       x-accepts: application/json
   /api/kafkas_mgmt/v1/errors/{id}:
     get:
+      description: Returns the error by Id
       operationId: getErrorById
       parameters:
       - description: The ID of record
@@ -44,12 +56,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Get error by Id
-      summary: Returns the error by id
       tags:
       - errors
       x-accepts: application/json
   /api/kafkas_mgmt/v1/errors:
     get:
+      description: Returns the list of possible API errors
       operationId: getErrors
       responses:
         "200":
@@ -58,12 +70,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorList'
           description: List of possible errors
-      summary: Returns the list of possible API errors
       tags:
       - errors
       x-accepts: application/json
   /api/kafkas_mgmt/v1/kafkas/{id}:
     delete:
+      description: Deletes a Kafka request by ID
       operationId: deleteKafkaById
       parameters:
       - description: The ID of record
@@ -136,9 +148,9 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Deletes a Kafka request by ID
       x-accepts: application/json
     get:
+      description: Returns a Kafka request by ID
       operationId: getKafkaById
       parameters:
       - description: The ID of record
@@ -199,9 +211,9 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns a Kafka request by ID
       x-accepts: application/json
     patch:
+      description: Update a Kafka instance by id
       operationId: updateKafkaById
       parameters:
       - description: The ID of record
@@ -276,11 +288,11 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Update a Kafka instance by id
       x-contentType: application/json
       x-accepts: application/json
   /api/kafkas_mgmt/v1/kafkas:
     get:
+      description: Returns a list of Kafka requests
       operationId: getKafkas
       parameters:
       - description: Page index
@@ -432,9 +444,9 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns a list of Kafka requests
       x-accepts: application/json
     post:
+      description: Creates a Kafka request
       operationId: createKafka
       parameters:
       - description: Perform the action in an asynchronous manner
@@ -531,11 +543,11 @@ paths:
           description: An unexpected error occurred while creating the Kafka request
       security:
       - Bearer: []
-      summary: Creates a Kafka request
       x-contentType: application/json
       x-accepts: application/json
   /api/kafkas_mgmt/v1/cloud_providers:
     get:
+      description: Returns the list of supported cloud providers
       operationId: getCloudProviders
       parameters:
       - description: Page index
@@ -587,10 +599,10 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns the list of supported cloud providers
       x-accepts: application/json
   /api/kafkas_mgmt/v1/cloud_providers/{id}/regions:
     get:
+      description: Returns the list of supported regions of the supported cloud provider
       operationId: getCloudProviderRegions
       parameters:
       - description: The ID of record
@@ -650,10 +662,11 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns the list of supported regions of the supported cloud provider
       x-accepts: application/json
   /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region}:
     get:
+      description: Returns the list of supported Kafka instance types and sizes filtered
+        by cloud provider and region
       operationId: getInstanceTypesByCloudProviderAndRegion
       parameters:
       - description: ID of the supported cloud provider
@@ -711,11 +724,10 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns the list of supported Kafka instance types and sizes filtered
-        by cloud provider and region
       x-accepts: application/json
   /api/kafkas_mgmt/v1/service_accounts:
     get:
+      description: Returns a list of service accounts
       operationId: getServiceAccounts
       parameters:
       - description: client_id of the service account to be retrieved
@@ -762,11 +774,11 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns a list of service accounts
       tags:
       - security
       x-accepts: application/json
     post:
+      description: Creates a service account
       operationId: createServiceAccount
       requestBody:
         content:
@@ -817,13 +829,13 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Creates a service account
       tags:
       - security
       x-contentType: application/json
       x-accepts: application/json
   /api/kafkas_mgmt/v1/service_accounts/{id}:
     delete:
+      description: Deletes a service account by ID
       operationId: deleteServiceAccountById
       parameters:
       - description: The ID of record
@@ -869,12 +881,12 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Deletes a service account by ID
       tags:
       - security
       x-accepts: application/json
     description: Get the service account with the given id
     get:
+      description: Returned service account by ID
       operationId: getServiceAccountById
       parameters:
       - description: The ID of record
@@ -897,13 +909,12 @@ paths:
           description: Returns a service account by ID
       security:
       - Bearer: []
-      summary: Returned service account by ID
       tags:
       - security
       x-accepts: application/json
-    summary: Get service account by id
   /api/kafkas_mgmt/v1/service_accounts/{id}/reset_credentials:
     post:
+      description: Resets the credentials for a service account by ID
       operationId: resetServiceAccountCreds
       parameters:
       - description: The ID of record
@@ -952,12 +963,12 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Resets the credentials for a service account by ID
       tags:
       - security
       x-accepts: application/json
   /api/kafkas_mgmt/v1/sso_providers:
     get:
+      description: Return sso provider info
       operationId: getSsoProviders
       responses:
         "200":
@@ -984,12 +995,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Unexpected error occurred
-      summary: Return sso provider info
       tags:
       - security
       x-accepts: application/json
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range:
     get:
+      description: Returns metrics with timeseries range query by Kafka ID
       operationId: getMetricsByRangeQuery
       parameters:
       - description: The ID of record
@@ -1069,10 +1080,10 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns metrics with timeseries range query by Kafka ID
       x-accepts: application/json
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query:
     get:
+      description: Returns metrics with instant query by Kafka ID
       operationId: getMetricsByInstantQuery
       parameters:
       - description: The ID of record
@@ -1122,10 +1133,10 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns metrics with instant query by Kafka ID
       x-accepts: application/json
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate:
     get:
+      description: Returns all metrics in scrapeable format for a given kafka id
       operationId: federateMetrics
       parameters:
       - description: The ID of record
@@ -1181,7 +1192,6 @@ paths:
           description: Unexpected error occurred
       security:
       - Bearer: []
-      summary: Returns all metrics in scrapeable format for a given kafka id
       x-accepts: application/json
 components:
   examples:
@@ -1660,6 +1670,10 @@ components:
           type: string
         href:
           type: string
+      required:
+      - href
+      - id
+      - kind
       type: object
     List:
       properties:
@@ -1683,9 +1697,33 @@ components:
       - total
       type: object
     Error:
-      allOf:
-      - $ref: '#/components/schemas/ObjectReference'
-      - $ref: '#/components/schemas/Error_allOf'
+      example:
+        reason: reason
+        code: code
+        kind: kind
+        operation_id: operation_id
+        id: id
+        href: href
+      properties:
+        reason:
+          type: string
+        operation_id:
+          type: string
+        id:
+          type: string
+        kind:
+          type: string
+        href:
+          type: string
+        code:
+          type: string
+      required:
+      - code
+      - href
+      - id
+      - kind
+      - reason
+      type: object
     ErrorList:
       allOf:
       - $ref: '#/components/schemas/List'
@@ -1953,10 +1991,10 @@ components:
           type: object
         values:
           items:
-            $ref: '#/components/schemas/values'
+            $ref: '#/components/schemas/Values'
           type: array
       type: object
-    values:
+    Values:
       properties:
         timestamp:
           format: int64
@@ -1970,8 +2008,6 @@ components:
     MetricsInstantQueryList:
       allOf:
       - $ref: '#/components/schemas/MetricsInstantQueryList_allOf'
-    MetricsFederationResult:
-      type: string
     InstantQuery:
       properties:
         metric:
@@ -2001,15 +2037,6 @@ components:
             every 5 minutes.
           nullable: true
           type: boolean
-      type: object
-    Error_allOf:
-      properties:
-        code:
-          type: string
-        reason:
-          type: string
-        operation_id:
-          type: string
       type: object
     ErrorList_allOf:
       properties:

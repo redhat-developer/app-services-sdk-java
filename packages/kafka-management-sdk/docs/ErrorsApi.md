@@ -4,8 +4,8 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getErrorById**](ErrorsApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | Returns the error by id
-[**getErrors**](ErrorsApi.md#getErrors) | **GET** /api/kafkas_mgmt/v1/errors | Returns the list of possible API errors
+[**getErrorById**](ErrorsApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | 
+[**getErrors**](ErrorsApi.md#getErrors) | **GET** /api/kafkas_mgmt/v1/errors | 
 
 
 
@@ -13,7 +13,9 @@ Method | HTTP request | Description
 
 > Error getErrorById(id)
 
-Returns the error by id
+
+
+Returns the error by Id
 
 ### Example
 
@@ -76,6 +78,8 @@ No authorization required
 ## getErrors
 
 > ErrorList getErrors()
+
+
 
 Returns the list of possible API errors
 

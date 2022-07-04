@@ -8,10 +8,12 @@ import com.openshift.cloud.api.serviceaccounts.invoker.Pair;
 import javax.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.serviceaccounts.models.Error;
+import com.openshift.cloud.api.serviceaccounts.models.RedHatErrorRepresentation;
 import com.openshift.cloud.api.serviceaccounts.models.ServiceAccountCreateRequestData;
 import com.openshift.cloud.api.serviceaccounts.models.ServiceAccountData;
 import com.openshift.cloud.api.serviceaccounts.models.ServiceAccountRequestData;
 import java.util.Set;
+import com.openshift.cloud.api.serviceaccounts.models.ValidationExceptionData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,7 +78,7 @@ public class ServiceAccountsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "bearerAuth" };
+    String[] localVarAuthNames = new String[] { "authFlow", "serviceAccounts" };
 
     GenericType<ServiceAccountData> localVarReturnType = new GenericType<ServiceAccountData>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -119,7 +121,7 @@ public class ServiceAccountsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "bearerAuth" };
+    String[] localVarAuthNames = new String[] { "authFlow", "serviceAccounts" };
 
 
     apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
@@ -163,7 +165,7 @@ public class ServiceAccountsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "bearerAuth" };
+    String[] localVarAuthNames = new String[] { "authFlow", "serviceAccounts" };
 
     GenericType<ServiceAccountData> localVarReturnType = new GenericType<ServiceAccountData>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -206,7 +208,7 @@ public class ServiceAccountsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "bearerAuth" };
+    String[] localVarAuthNames = new String[] { "authFlow", "serviceAccounts" };
 
     GenericType<List<ServiceAccountData>> localVarReturnType = new GenericType<List<ServiceAccountData>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -250,7 +252,7 @@ public class ServiceAccountsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "bearerAuth" };
+    String[] localVarAuthNames = new String[] { "authFlow", "serviceAccounts" };
 
     GenericType<ServiceAccountData> localVarReturnType = new GenericType<ServiceAccountData>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -300,7 +302,7 @@ public class ServiceAccountsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "bearerAuth" };
+    String[] localVarAuthNames = new String[] { "authFlow", "serviceAccounts" };
 
     GenericType<ServiceAccountData> localVarReturnType = new GenericType<ServiceAccountData>() {};
     return apiClient.invokeAPI(localVarPath, "PATCH", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);

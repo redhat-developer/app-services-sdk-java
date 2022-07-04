@@ -37,9 +37,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
+        // Configure OAuth2 access token for authorization: authFlow
+        OAuth authFlow = (OAuth) defaultClient.getAuthentication("authFlow");
+        authFlow.setAccessToken("YOUR ACCESS TOKEN");
+
+        // Configure OAuth2 access token for authorization: serviceAccounts
+        OAuth serviceAccounts = (OAuth) defaultClient.getAuthentication("serviceAccounts");
+        serviceAccounts.setAccessToken("YOUR ACCESS TOKEN");
 
         ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
         ServiceAccountCreateRequestData serviceAccountCreateRequestData = new ServiceAccountCreateRequestData(); // ServiceAccountCreateRequestData | 'name' and 'description' of the service account
@@ -70,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[authFlow](../README.md#authFlow), [serviceAccounts](../README.md#serviceAccounts)
 
 ### HTTP request headers
 
@@ -82,8 +86,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | OK |  -  |
-| **400** | Bad Request |  -  |
+| **400** | All fields did not pass validation. |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Exceeded account level threshold limits for creating service accounts. |  -  |
 
 
 ## deleteServiceAccount
@@ -110,9 +115,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
+        // Configure OAuth2 access token for authorization: authFlow
+        OAuth authFlow = (OAuth) defaultClient.getAuthentication("authFlow");
+        authFlow.setAccessToken("YOUR ACCESS TOKEN");
+
+        // Configure OAuth2 access token for authorization: serviceAccounts
+        OAuth serviceAccounts = (OAuth) defaultClient.getAuthentication("serviceAccounts");
+        serviceAccounts.setAccessToken("YOUR ACCESS TOKEN");
 
         ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
         String id = "id_example"; // String | 
@@ -142,7 +151,7 @@ null (empty response body)
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[authFlow](../README.md#authFlow), [serviceAccounts](../README.md#serviceAccounts)
 
 ### HTTP request headers
 
@@ -154,8 +163,8 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **404** | Not Found |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Not Found |  -  |
 
 
 ## getServiceAccount
@@ -182,9 +191,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
+        // Configure OAuth2 access token for authorization: authFlow
+        OAuth authFlow = (OAuth) defaultClient.getAuthentication("authFlow");
+        authFlow.setAccessToken("YOUR ACCESS TOKEN");
+
+        // Configure OAuth2 access token for authorization: serviceAccounts
+        OAuth serviceAccounts = (OAuth) defaultClient.getAuthentication("serviceAccounts");
+        serviceAccounts.setAccessToken("YOUR ACCESS TOKEN");
 
         ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
         String id = "id_example"; // String | 
@@ -215,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[authFlow](../README.md#authFlow), [serviceAccounts](../README.md#serviceAccounts)
 
 ### HTTP request headers
 
@@ -227,8 +240,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **404** | Not Found |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Not Found |  -  |
 
 
 ## getServiceAccounts
@@ -255,9 +268,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
+        // Configure OAuth2 access token for authorization: authFlow
+        OAuth authFlow = (OAuth) defaultClient.getAuthentication("authFlow");
+        authFlow.setAccessToken("YOUR ACCESS TOKEN");
+
+        // Configure OAuth2 access token for authorization: serviceAccounts
+        OAuth serviceAccounts = (OAuth) defaultClient.getAuthentication("serviceAccounts");
+        serviceAccounts.setAccessToken("YOUR ACCESS TOKEN");
 
         ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
         Integer first = 0; // Integer | 
@@ -292,7 +309,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[authFlow](../README.md#authFlow), [serviceAccounts](../README.md#serviceAccounts)
 
 ### HTTP request headers
 
@@ -304,7 +321,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **400** | Bad Request |  -  |
+| **400** | Bad Request if page filters are invalid |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -332,9 +349,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
+        // Configure OAuth2 access token for authorization: authFlow
+        OAuth authFlow = (OAuth) defaultClient.getAuthentication("authFlow");
+        authFlow.setAccessToken("YOUR ACCESS TOKEN");
+
+        // Configure OAuth2 access token for authorization: serviceAccounts
+        OAuth serviceAccounts = (OAuth) defaultClient.getAuthentication("serviceAccounts");
+        serviceAccounts.setAccessToken("YOUR ACCESS TOKEN");
 
         ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
         String id = "id_example"; // String | 
@@ -365,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[authFlow](../README.md#authFlow), [serviceAccounts](../README.md#serviceAccounts)
 
 ### HTTP request headers
 
@@ -377,8 +398,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
-| **404** | Not Found |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Not Found |  -  |
 
 
 ## updateServiceAccount
@@ -405,9 +426,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
         
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
+        // Configure OAuth2 access token for authorization: authFlow
+        OAuth authFlow = (OAuth) defaultClient.getAuthentication("authFlow");
+        authFlow.setAccessToken("YOUR ACCESS TOKEN");
+
+        // Configure OAuth2 access token for authorization: serviceAccounts
+        OAuth serviceAccounts = (OAuth) defaultClient.getAuthentication("serviceAccounts");
+        serviceAccounts.setAccessToken("YOUR ACCESS TOKEN");
 
         ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
         String id = "id_example"; // String | 
@@ -440,7 +465,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[authFlow](../README.md#authFlow), [serviceAccounts](../README.md#serviceAccounts)
 
 ### HTTP request headers
 
@@ -453,6 +478,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **200** | OK |  -  |
 | **400** | Bad Request |  -  |
-| **404** | Not Found |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Not Found |  -  |
 

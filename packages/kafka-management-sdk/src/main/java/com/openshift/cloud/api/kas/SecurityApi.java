@@ -39,8 +39,8 @@ public class SecurityApi {
   }
 
   /**
-   * Creates a service account
    * 
+   * Creates a service account
    * @param serviceAccountRequest Service account request (required)
    * @return a {@code ServiceAccount}
    * @throws ApiException if fails to make API call
@@ -82,8 +82,8 @@ public class SecurityApi {
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Deletes a service account by ID
    * 
+   * Deletes a service account by ID
    * @param id The ID of record (required)
    * @return a {@code Error}
    * @throws ApiException if fails to make API call
@@ -126,8 +126,8 @@ public class SecurityApi {
     return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returned service account by ID
    * 
+   * Returned service account by ID
    * @param id The ID of record (required)
    * @return a {@code ServiceAccount}
    * @throws ApiException if fails to make API call
@@ -170,8 +170,8 @@ public class SecurityApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns a list of service accounts
    * 
+   * Returns a list of service accounts
    * @param clientId client_id of the service account to be retrieved (optional)
    * @return a {@code ServiceAccountList}
    * @throws ApiException if fails to make API call
@@ -209,8 +209,8 @@ public class SecurityApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Return sso provider info
    * 
+   * Return sso provider info
    * @return a {@code SsoProvider}
    * @throws ApiException if fails to make API call
    */
@@ -246,8 +246,8 @@ public class SecurityApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Resets the credentials for a service account by ID
    * 
+   * Resets the credentials for a service account by ID
    * @param id The ID of record (required)
    * @return a {@code ServiceAccount}
    * @throws ApiException if fails to make API call

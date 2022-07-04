@@ -4,18 +4,20 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createServiceAccount**](SecurityApi.md#createServiceAccount) | **POST** /api/kafkas_mgmt/v1/service_accounts | Creates a service account
-[**deleteServiceAccountById**](SecurityApi.md#deleteServiceAccountById) | **DELETE** /api/kafkas_mgmt/v1/service_accounts/{id} | Deletes a service account by ID
-[**getServiceAccountById**](SecurityApi.md#getServiceAccountById) | **GET** /api/kafkas_mgmt/v1/service_accounts/{id} | Returned service account by ID
-[**getServiceAccounts**](SecurityApi.md#getServiceAccounts) | **GET** /api/kafkas_mgmt/v1/service_accounts | Returns a list of service accounts
-[**getSsoProviders**](SecurityApi.md#getSsoProviders) | **GET** /api/kafkas_mgmt/v1/sso_providers | Return sso provider info
-[**resetServiceAccountCreds**](SecurityApi.md#resetServiceAccountCreds) | **POST** /api/kafkas_mgmt/v1/service_accounts/{id}/reset_credentials | Resets the credentials for a service account by ID
+[**createServiceAccount**](SecurityApi.md#createServiceAccount) | **POST** /api/kafkas_mgmt/v1/service_accounts | 
+[**deleteServiceAccountById**](SecurityApi.md#deleteServiceAccountById) | **DELETE** /api/kafkas_mgmt/v1/service_accounts/{id} | 
+[**getServiceAccountById**](SecurityApi.md#getServiceAccountById) | **GET** /api/kafkas_mgmt/v1/service_accounts/{id} | 
+[**getServiceAccounts**](SecurityApi.md#getServiceAccounts) | **GET** /api/kafkas_mgmt/v1/service_accounts | 
+[**getSsoProviders**](SecurityApi.md#getSsoProviders) | **GET** /api/kafkas_mgmt/v1/sso_providers | 
+[**resetServiceAccountCreds**](SecurityApi.md#resetServiceAccountCreds) | **POST** /api/kafkas_mgmt/v1/service_accounts/{id}/reset_credentials | 
 
 
 
 ## createServiceAccount
 
 > ServiceAccount createServiceAccount(serviceAccountRequest)
+
+
 
 Creates a service account
 
@@ -89,6 +91,8 @@ Name | Type | Description  | Notes
 
 > Error deleteServiceAccountById(id)
 
+
+
 Deletes a service account by ID
 
 ### Example
@@ -161,6 +165,8 @@ Name | Type | Description  | Notes
 
 > ServiceAccount getServiceAccountById(id)
 
+
+
 Returned service account by ID
 
 ### Example
@@ -229,6 +235,8 @@ Name | Type | Description  | Notes
 ## getServiceAccounts
 
 > ServiceAccountList getServiceAccounts(clientId)
+
+
 
 Returns a list of service accounts
 
@@ -302,6 +310,8 @@ Name | Type | Description  | Notes
 
 > SsoProvider getSsoProviders()
 
+
+
 Return sso provider info
 
 ### Example
@@ -363,6 +373,8 @@ No authorization required
 ## resetServiceAccountCreds
 
 > ServiceAccount resetServiceAccountCreds(id)
+
+
 
 Resets the credentials for a service account by ID
 

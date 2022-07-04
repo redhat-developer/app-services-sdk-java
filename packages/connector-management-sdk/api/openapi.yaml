@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  description: Connector Service Fleet Manager is a Rest API to manage connectors.
-  title: Connector Service Fleet Manager
+  description: Connector Management API is a REST API to manage connectors.
+  title: Connector Management API
   version: 0.1.0
 servers:
 - description: Main (production) server
