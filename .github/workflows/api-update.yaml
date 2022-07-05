@@ -1,0 +1,44 @@
+name: Update SDK
+on:
+  repository_dispatch:
+    types: [openapi-spec-change]
+
+jobs:
+  generate_client:
+    env:
+      APP_SERVICES_TOKEN: ${{ secrets.APP_SERVICES_TOKEN }}
+      BF2_TOKEN: ${{ secrets.BF2_TOKEN }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - name: Install jq
+        run: sudo apt-get install jq
+      - name: Fetch OpenAPI doc
+        run: ./scripts/fetch_api.sh ${{ github.event.client_payload.download_url }}
+      - name: Generate API clients
+        run: make generate
+      - name: Fetch and Generate Errors SDK
+        run: make generateErrors
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          title: "fix(${{ github.event.client_payload.id }): automated SDK update"
+          token: "${{ secrets.CI_USER_TOKEN }}"
+          commit-message: "fix(${{ github.event.client_payload.id }): update ${{ github.event.client_payload.id }} SDK"
+          author: "app-services-ci <app-services-ci@users.noreply.github.com>"
+          branch: chore/generate-api-clients
+          branch-suffix: timestamp
+          reviewers: '@redhat-developer/app-services-sdk-maintainers'
+          delete-branch: true
+          body: |
+            _This pull request was auto-generated_
+
+            This PR adds the latest generated API clients.
+            This PR will be merged automatically after all verification passes.
+
+            **Handling Errors**:
+
+              1. Review changes and validate against the examples.
+              2. Make changes where necessary.
+              3. Approve and merge with proper commit message that represents change
