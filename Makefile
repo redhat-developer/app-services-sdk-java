@@ -9,5 +9,13 @@ build:
 
 generate:
 	./scripts/generate.sh
-	./scripts/errors/generate-errors.sh
 .PHONY: generate
+
+fetch:
+	./scripts/fetch-api.sh
+.PHONY: fetch
+
+generateErrors:
+	./scripts/errors/fetch-errors.sh
+	./scripts/errors/generate-errors.sh
+.PHONY: generateErrors
