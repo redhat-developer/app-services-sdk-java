@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**bridgesAPICreateBridge**](BridgesApi.md#bridgesAPICreateBridge) | **POST** /api/v1/bridges | Create a Bridge instance
-[**bridgesAPIDeleteBridge**](BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/v1/bridges/{bridgeId} | Delete a Bridge instance
-[**bridgesAPIGetBridge**](BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/v1/bridges/{bridgeId} | Get a Bridge instance
-[**bridgesAPIGetBridges**](BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/v1/bridges | Get the list of Bridge instances
+[**bridgesAPICreateBridge**](BridgesApi.md#bridgesAPICreateBridge) | **POST** /api/smartevents_mgmt/v1/bridges | Create a Bridge instance
+[**bridgesAPIDeleteBridge**](BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Delete a Bridge instance
+[**bridgesAPIGetBridge**](BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Get a Bridge instance
+[**bridgesAPIGetBridges**](BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/smartevents_mgmt/v1/bridges | Get the list of Bridge instances
 
 
 

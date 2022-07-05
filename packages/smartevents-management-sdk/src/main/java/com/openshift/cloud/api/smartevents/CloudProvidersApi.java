@@ -51,7 +51,7 @@ public class CloudProvidersApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/cloud_providers/{id}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/cloud_providers/{id}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
     // query params
@@ -97,7 +97,7 @@ public class CloudProvidersApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/cloud_providers/{id}/regions".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/cloud_providers/{id}/regions".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
     // query params
@@ -139,7 +139,7 @@ public class CloudProvidersApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/api/v1/cloud_providers".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/smartevents_mgmt/v1/cloud_providers".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();

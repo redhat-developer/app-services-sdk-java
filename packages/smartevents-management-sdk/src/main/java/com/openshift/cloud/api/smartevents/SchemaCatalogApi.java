@@ -50,7 +50,7 @@ public class SchemaCatalogApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/schemas/actions/{id}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/schemas/actions/{id}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
     // query params
@@ -88,7 +88,7 @@ public class SchemaCatalogApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/api/v1/schemas".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/smartevents_mgmt/v1/schemas".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -131,7 +131,7 @@ public class SchemaCatalogApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/schemas/sources/{id}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/schemas/sources/{id}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
     // query params

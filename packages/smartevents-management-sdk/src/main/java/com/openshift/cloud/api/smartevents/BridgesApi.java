@@ -49,7 +49,7 @@ public class BridgesApi {
     Object localVarPostBody = bridgeRequest;
     
     // create path and map variables
-    String localVarPath = "/api/v1/bridges".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/smartevents_mgmt/v1/bridges".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -91,7 +91,7 @@ public class BridgesApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/bridges/{bridgeId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()));
 
     // query params
@@ -135,7 +135,7 @@ public class BridgesApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/bridges/{bridgeId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()));
 
     // query params
@@ -177,7 +177,7 @@ public class BridgesApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/api/v1/bridges".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/smartevents_mgmt/v1/bridges".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();

@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**processorsAPIAddProcessorToBridge**](ProcessorsApi.md#processorsAPIAddProcessorToBridge) | **POST** /api/v1/bridges/{bridgeId}/processors | Create a Processor of a Bridge instance
-[**processorsAPIDeleteProcessor**](ProcessorsApi.md#processorsAPIDeleteProcessor) | **DELETE** /api/v1/bridges/{bridgeId}/processors/{processorId} | Delete a Processor of a Bridge instance
-[**processorsAPIGetProcessor**](ProcessorsApi.md#processorsAPIGetProcessor) | **GET** /api/v1/bridges/{bridgeId}/processors/{processorId} | Get a Processor of a Bridge instance
-[**processorsAPIListProcessors**](ProcessorsApi.md#processorsAPIListProcessors) | **GET** /api/v1/bridges/{bridgeId}/processors | Get the list of Processors of a Bridge instance
-[**processorsAPIUpdateProcessor**](ProcessorsApi.md#processorsAPIUpdateProcessor) | **PUT** /api/v1/bridges/{bridgeId}/processors/{processorId} | Update a Processor instance Filter definition or Transformation template.
+[**processorsAPIAddProcessorToBridge**](ProcessorsApi.md#processorsAPIAddProcessorToBridge) | **POST** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors | Create a Processor of a Bridge instance
+[**processorsAPIDeleteProcessor**](ProcessorsApi.md#processorsAPIDeleteProcessor) | **DELETE** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId} | Delete a Processor of a Bridge instance
+[**processorsAPIGetProcessor**](ProcessorsApi.md#processorsAPIGetProcessor) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId} | Get a Processor of a Bridge instance
+[**processorsAPIListProcessors**](ProcessorsApi.md#processorsAPIListProcessors) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors | Get the list of Processors of a Bridge instance
+[**processorsAPIUpdateProcessor**](ProcessorsApi.md#processorsAPIUpdateProcessor) | **PUT** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId} | Update a Processor instance Filter definition or Transformation template.
 
 
 
