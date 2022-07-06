@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +26,7 @@ import com.openshift.cloud.api.connector.models.ConnectorNamespaceState;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorNamespaceStatus
@@ -35,8 +37,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorNamespaceStatus.JSON_PROPERTY_CONNECTORS_DEPLOYED,
   ConnectorNamespaceStatus.JSON_PROPERTY_ERROR
 })
-@JsonTypeName("ConnectorNamespaceStatus")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorNamespaceStatus {
   public static final String JSON_PROPERTY_STATE = "state";
   private ConnectorNamespaceState state;
@@ -54,7 +55,6 @@ public class ConnectorNamespaceStatus {
   }
 
   public ConnectorNamespaceStatus state(ConnectorNamespaceState state) {
-    
     this.state = state;
     return this;
   }
@@ -81,7 +81,6 @@ public class ConnectorNamespaceStatus {
 
 
   public ConnectorNamespaceStatus version(String version) {
-    
     this.version = version;
     return this;
   }
@@ -108,7 +107,6 @@ public class ConnectorNamespaceStatus {
 
 
   public ConnectorNamespaceStatus connectorsDeployed(Integer connectorsDeployed) {
-    
     this.connectorsDeployed = connectorsDeployed;
     return this;
   }
@@ -135,7 +133,6 @@ public class ConnectorNamespaceStatus {
 
 
   public ConnectorNamespaceStatus error(String error) {
-    
     this.error = error;
     return this;
   }
@@ -161,6 +158,9 @@ public class ConnectorNamespaceStatus {
   }
 
 
+  /**
+   * Return true if this ConnectorNamespaceStatus object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

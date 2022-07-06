@@ -30,11 +30,10 @@ paths:
         those records the requestor is authorized to view.
       operationId: getTopics
       parameters:
-      - deprecated: true
-        description: Maximum number of records to return
+      - description: Number of records per page
         explode: true
         in: query
-        name: limit
+        name: size
         required: false
         schema:
           format: int32
@@ -566,11 +565,10 @@ paths:
         authorized to view.
       operationId: getConsumerGroups
       parameters:
-      - deprecated: true
-        description: Maximum number of records to return
+      - description: Number of records per page
         explode: true
         in: query
-        name: limit
+        name: size
         required: false
         schema:
           format: int32

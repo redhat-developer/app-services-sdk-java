@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## getTopics
 
-> TopicsList getTopics(limit, filter, page, order, orderKey)
+> TopicsList getTopics(size, filter, page, order, orderKey)
 
 Retrieves a list of topics
 
@@ -268,13 +268,13 @@ public class Example {
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         TopicsApi apiInstance = new TopicsApi(defaultClient);
-        Integer limit = 56; // Integer | Maximum number of records to return
+        Integer size = 56; // Integer | Number of records per page
         String filter = "filter_example"; // String | Filter to apply when returning the list of topics
         Integer page = 56; // Integer | Page number
         SortDirection order = SortDirection.fromValue("asc"); // SortDirection | Order items are sorted
         TopicOrderKey orderKey = new TopicOrderKey(); // TopicOrderKey | Order key to sort the topics by.
         try {
-            TopicsList result = apiInstance.getTopics(limit, filter, page, order, orderKey);
+            TopicsList result = apiInstance.getTopics(size, filter, page, order, orderKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TopicsApi#getTopics");
@@ -292,7 +292,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Integer**| Maximum number of records to return | [optional]
+ **size** | **Integer**| Number of records per page | [optional]
  **filter** | **String**| Filter to apply when returning the list of topics | [optional]
  **page** | **Integer**| Page number | [optional]
  **order** | [**SortDirection**](.md)| Order items are sorted | [optional] [enum: asc, desc]

@@ -15,6 +15,8 @@ package com.openshift.cloud.api.serviceaccounts.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ServiceAccountData
@@ -37,8 +39,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ServiceAccountData.JSON_PROPERTY_CREATED_BY,
   ServiceAccountData.JSON_PROPERTY_CREATED_AT
 })
-@JsonTypeName("ServiceAccountData")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ServiceAccountData {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -65,7 +66,6 @@ public class ServiceAccountData {
   }
 
   public ServiceAccountData id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -92,7 +92,6 @@ public class ServiceAccountData {
 
 
   public ServiceAccountData clientId(String clientId) {
-    
     this.clientId = clientId;
     return this;
   }
@@ -119,7 +118,6 @@ public class ServiceAccountData {
 
 
   public ServiceAccountData secret(String secret) {
-    
     this.secret = secret;
     return this;
   }
@@ -146,7 +144,6 @@ public class ServiceAccountData {
 
 
   public ServiceAccountData name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -173,7 +170,6 @@ public class ServiceAccountData {
 
 
   public ServiceAccountData description(String description) {
-    
     this.description = description;
     return this;
   }
@@ -200,7 +196,6 @@ public class ServiceAccountData {
 
 
   public ServiceAccountData createdBy(String createdBy) {
-    
     this.createdBy = createdBy;
     return this;
   }
@@ -227,7 +222,6 @@ public class ServiceAccountData {
 
 
   public ServiceAccountData createdAt(Long createdAt) {
-    
     this.createdAt = createdAt;
     return this;
   }
@@ -253,6 +247,9 @@ public class ServiceAccountData {
   }
 
 
+  /**
+   * Return true if this ServiceAccountData object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

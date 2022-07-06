@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,7 +31,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorMeta
@@ -45,8 +47,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorMeta.JSON_PROPERTY_DESIRED_STATE,
   ConnectorMeta.JSON_PROPERTY_RESOURCE_VERSION
 })
-@JsonTypeName("ConnectorMeta")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorMeta {
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
@@ -79,7 +80,6 @@ public class ConnectorMeta {
   }
 
   public ConnectorMeta owner(String owner) {
-    
     this.owner = owner;
     return this;
   }
@@ -106,7 +106,6 @@ public class ConnectorMeta {
 
 
   public ConnectorMeta createdAt(OffsetDateTime createdAt) {
-    
     this.createdAt = createdAt;
     return this;
   }
@@ -133,7 +132,6 @@ public class ConnectorMeta {
 
 
   public ConnectorMeta modifiedAt(OffsetDateTime modifiedAt) {
-    
     this.modifiedAt = modifiedAt;
     return this;
   }
@@ -160,7 +158,6 @@ public class ConnectorMeta {
 
 
   public ConnectorMeta name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -187,7 +184,6 @@ public class ConnectorMeta {
 
 
   public ConnectorMeta connectorTypeId(String connectorTypeId) {
-    
     this.connectorTypeId = connectorTypeId;
     return this;
   }
@@ -214,7 +210,6 @@ public class ConnectorMeta {
 
 
   public ConnectorMeta namespaceId(String namespaceId) {
-    
     this.namespaceId = namespaceId;
     return this;
   }
@@ -241,7 +236,6 @@ public class ConnectorMeta {
 
 
   public ConnectorMeta channel(Channel channel) {
-    
     this.channel = channel;
     return this;
   }
@@ -268,7 +262,6 @@ public class ConnectorMeta {
 
 
   public ConnectorMeta desiredState(ConnectorDesiredState desiredState) {
-    
     this.desiredState = desiredState;
     return this;
   }
@@ -295,7 +288,6 @@ public class ConnectorMeta {
 
 
   public ConnectorMeta resourceVersion(Long resourceVersion) {
-    
     this.resourceVersion = resourceVersion;
     return this;
   }
@@ -321,6 +313,9 @@ public class ConnectorMeta {
   }
 
 
+  /**
+   * Return true if this ConnectorMeta object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

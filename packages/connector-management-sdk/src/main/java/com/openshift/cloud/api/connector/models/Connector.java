@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -34,7 +36,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * Connector
@@ -58,8 +60,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Connector.JSON_PROPERTY_CONNECTOR,
   Connector.JSON_PROPERTY_STATUS
 })
-@JsonTypeName("Connector")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Connector {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -116,7 +117,6 @@ public class Connector {
   }
 
   public Connector id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -143,7 +143,6 @@ public class Connector {
 
 
   public Connector kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -170,7 +169,6 @@ public class Connector {
 
 
   public Connector href(String href) {
-    
     this.href = href;
     return this;
   }
@@ -197,7 +195,6 @@ public class Connector {
 
 
   public Connector owner(String owner) {
-    
     this.owner = owner;
     return this;
   }
@@ -224,7 +221,6 @@ public class Connector {
 
 
   public Connector createdAt(OffsetDateTime createdAt) {
-    
     this.createdAt = createdAt;
     return this;
   }
@@ -251,7 +247,6 @@ public class Connector {
 
 
   public Connector modifiedAt(OffsetDateTime modifiedAt) {
-    
     this.modifiedAt = modifiedAt;
     return this;
   }
@@ -278,7 +273,6 @@ public class Connector {
 
 
   public Connector name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -305,7 +299,6 @@ public class Connector {
 
 
   public Connector connectorTypeId(String connectorTypeId) {
-    
     this.connectorTypeId = connectorTypeId;
     return this;
   }
@@ -332,7 +325,6 @@ public class Connector {
 
 
   public Connector namespaceId(String namespaceId) {
-    
     this.namespaceId = namespaceId;
     return this;
   }
@@ -359,7 +351,6 @@ public class Connector {
 
 
   public Connector channel(Channel channel) {
-    
     this.channel = channel;
     return this;
   }
@@ -386,7 +377,6 @@ public class Connector {
 
 
   public Connector desiredState(ConnectorDesiredState desiredState) {
-    
     this.desiredState = desiredState;
     return this;
   }
@@ -413,7 +403,6 @@ public class Connector {
 
 
   public Connector resourceVersion(Long resourceVersion) {
-    
     this.resourceVersion = resourceVersion;
     return this;
   }
@@ -440,7 +429,6 @@ public class Connector {
 
 
   public Connector kafka(KafkaConnectionSettings kafka) {
-    
     this.kafka = kafka;
     return this;
   }
@@ -467,7 +455,6 @@ public class Connector {
 
 
   public Connector serviceAccount(ServiceAccount serviceAccount) {
-    
     this.serviceAccount = serviceAccount;
     return this;
   }
@@ -494,7 +481,6 @@ public class Connector {
 
 
   public Connector schemaRegistry(SchemaRegistryConnectionSettings schemaRegistry) {
-    
     this.schemaRegistry = schemaRegistry;
     return this;
   }
@@ -521,7 +507,6 @@ public class Connector {
 
 
   public Connector connector(Object connector) {
-    
     this.connector = connector;
     return this;
   }
@@ -548,7 +533,6 @@ public class Connector {
 
 
   public Connector status(ConnectorStatusStatus status) {
-    
     this.status = status;
     return this;
   }
@@ -574,6 +558,9 @@ public class Connector {
   }
 
 
+  /**
+   * Return true if this Connector object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

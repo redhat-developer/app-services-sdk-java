@@ -15,6 +15,8 @@ package com.openshift.cloud.api.smartevents.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -30,7 +32,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ProcessorRequest
@@ -42,8 +44,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ProcessorRequest.JSON_PROPERTY_ACTION,
   ProcessorRequest.JSON_PROPERTY_SOURCE
 })
-@JsonTypeName("ProcessorRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ProcessorRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -64,7 +65,6 @@ public class ProcessorRequest {
   }
 
   public ProcessorRequest name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -91,7 +91,6 @@ public class ProcessorRequest {
 
 
   public ProcessorRequest filters(Set<BaseFilter> filters) {
-    
     this.filters = filters;
     return this;
   }
@@ -127,7 +126,6 @@ public class ProcessorRequest {
 
 
   public ProcessorRequest transformationTemplate(String transformationTemplate) {
-    
     this.transformationTemplate = transformationTemplate;
     return this;
   }
@@ -154,7 +152,6 @@ public class ProcessorRequest {
 
 
   public ProcessorRequest action(Action action) {
-    
     this.action = action;
     return this;
   }
@@ -181,7 +178,6 @@ public class ProcessorRequest {
 
 
   public ProcessorRequest source(Source source) {
-    
     this.source = source;
     return this;
   }
@@ -207,6 +203,9 @@ public class ProcessorRequest {
   }
 
 
+  /**
+   * Return true if this ProcessorRequest object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

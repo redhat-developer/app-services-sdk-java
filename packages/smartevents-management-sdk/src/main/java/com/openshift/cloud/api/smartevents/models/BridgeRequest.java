@@ -15,6 +15,8 @@ package com.openshift.cloud.api.smartevents.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +26,7 @@ import com.openshift.cloud.api.smartevents.models.Action;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * BridgeRequest
@@ -33,8 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   BridgeRequest.JSON_PROPERTY_NAME,
   BridgeRequest.JSON_PROPERTY_ERROR_HANDLER
 })
-@JsonTypeName("BridgeRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class BridgeRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -46,7 +47,6 @@ public class BridgeRequest {
   }
 
   public BridgeRequest name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -73,7 +73,6 @@ public class BridgeRequest {
 
 
   public BridgeRequest errorHandler(Action errorHandler) {
-    
     this.errorHandler = errorHandler;
     return this;
   }
@@ -99,6 +98,9 @@ public class BridgeRequest {
   }
 
 
+  /**
+   * Return true if this BridgeRequest object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

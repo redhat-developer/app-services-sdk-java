@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -28,7 +30,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorCluster
@@ -43,8 +45,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorCluster.JSON_PROPERTY_NAME,
   ConnectorCluster.JSON_PROPERTY_STATUS
 })
-@JsonTypeName("ConnectorCluster")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorCluster {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -74,7 +75,6 @@ public class ConnectorCluster {
   }
 
   public ConnectorCluster id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -101,7 +101,6 @@ public class ConnectorCluster {
 
 
   public ConnectorCluster kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -128,7 +127,6 @@ public class ConnectorCluster {
 
 
   public ConnectorCluster href(String href) {
-    
     this.href = href;
     return this;
   }
@@ -155,7 +153,6 @@ public class ConnectorCluster {
 
 
   public ConnectorCluster owner(String owner) {
-    
     this.owner = owner;
     return this;
   }
@@ -182,7 +179,6 @@ public class ConnectorCluster {
 
 
   public ConnectorCluster createdAt(OffsetDateTime createdAt) {
-    
     this.createdAt = createdAt;
     return this;
   }
@@ -209,7 +205,6 @@ public class ConnectorCluster {
 
 
   public ConnectorCluster modifiedAt(OffsetDateTime modifiedAt) {
-    
     this.modifiedAt = modifiedAt;
     return this;
   }
@@ -236,7 +231,6 @@ public class ConnectorCluster {
 
 
   public ConnectorCluster name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -263,7 +257,6 @@ public class ConnectorCluster {
 
 
   public ConnectorCluster status(ConnectorClusterStatusStatus status) {
-    
     this.status = status;
     return this;
   }
@@ -289,6 +282,9 @@ public class ConnectorCluster {
   }
 
 
+  /**
+   * Return true if this ConnectorCluster object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

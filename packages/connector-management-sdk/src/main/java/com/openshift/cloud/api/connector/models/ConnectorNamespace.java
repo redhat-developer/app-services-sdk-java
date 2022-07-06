@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -33,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * A connector namespace
@@ -55,8 +57,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorNamespace.JSON_PROPERTY_TENANT,
   ConnectorNamespace.JSON_PROPERTY_STATUS
 })
-@JsonTypeName("ConnectorNamespace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorNamespace {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -104,7 +105,6 @@ public class ConnectorNamespace {
   }
 
   public ConnectorNamespace id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -131,7 +131,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -158,7 +157,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace href(String href) {
-    
     this.href = href;
     return this;
   }
@@ -185,7 +183,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace owner(String owner) {
-    
     this.owner = owner;
     return this;
   }
@@ -212,7 +209,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace createdAt(OffsetDateTime createdAt) {
-    
     this.createdAt = createdAt;
     return this;
   }
@@ -239,7 +235,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace modifiedAt(OffsetDateTime modifiedAt) {
-    
     this.modifiedAt = modifiedAt;
     return this;
   }
@@ -266,7 +261,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -293,7 +287,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace annotations(Map<String, String> annotations) {
-    
     this.annotations = annotations;
     return this;
   }
@@ -328,7 +321,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace resourceVersion(Long resourceVersion) {
-    
     this.resourceVersion = resourceVersion;
     return this;
   }
@@ -355,7 +347,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace quota(ConnectorNamespaceQuota quota) {
-    
     this.quota = quota;
     return this;
   }
@@ -382,7 +373,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace clusterId(String clusterId) {
-    
     this.clusterId = clusterId;
     return this;
   }
@@ -409,7 +399,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace expiration(String expiration) {
-    
     this.expiration = expiration;
     return this;
   }
@@ -436,7 +425,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace tenant(ConnectorNamespaceTenant tenant) {
-    
     this.tenant = tenant;
     return this;
   }
@@ -463,7 +451,6 @@ public class ConnectorNamespace {
 
 
   public ConnectorNamespace status(ConnectorNamespaceStatus status) {
-    
     this.status = status;
     return this;
   }
@@ -489,6 +476,9 @@ public class ConnectorNamespace {
   }
 
 
+  /**
+   * Return true if this ConnectorNamespace object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

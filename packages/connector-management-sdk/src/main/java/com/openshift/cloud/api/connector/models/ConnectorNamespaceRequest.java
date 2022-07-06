@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -29,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * A connector namespace create request
@@ -41,8 +43,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorNamespaceRequest.JSON_PROPERTY_CLUSTER_ID,
   ConnectorNamespaceRequest.JSON_PROPERTY_KIND
 })
-@JsonTypeName("ConnectorNamespaceRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorNamespaceRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -60,7 +61,6 @@ public class ConnectorNamespaceRequest {
   }
 
   public ConnectorNamespaceRequest name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -87,7 +87,6 @@ public class ConnectorNamespaceRequest {
 
 
   public ConnectorNamespaceRequest annotations(Map<String, String> annotations) {
-    
     this.annotations = annotations;
     return this;
   }
@@ -122,7 +121,6 @@ public class ConnectorNamespaceRequest {
 
 
   public ConnectorNamespaceRequest clusterId(String clusterId) {
-    
     this.clusterId = clusterId;
     return this;
   }
@@ -149,7 +147,6 @@ public class ConnectorNamespaceRequest {
 
 
   public ConnectorNamespaceRequest kind(ConnectorNamespaceTenantKind kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -175,6 +172,9 @@ public class ConnectorNamespaceRequest {
   }
 
 
+  /**
+   * Return true if this ConnectorNamespaceRequest object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,7 +27,7 @@ import com.openshift.cloud.api.connector.models.ConnectorDesiredState;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorRequestMeta
@@ -37,8 +39,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorRequestMeta.JSON_PROPERTY_CHANNEL,
   ConnectorRequestMeta.JSON_PROPERTY_DESIRED_STATE
 })
-@JsonTypeName("ConnectorRequestMeta")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorRequestMeta {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -59,7 +60,6 @@ public class ConnectorRequestMeta {
   }
 
   public ConnectorRequestMeta name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -86,7 +86,6 @@ public class ConnectorRequestMeta {
 
 
   public ConnectorRequestMeta connectorTypeId(String connectorTypeId) {
-    
     this.connectorTypeId = connectorTypeId;
     return this;
   }
@@ -113,7 +112,6 @@ public class ConnectorRequestMeta {
 
 
   public ConnectorRequestMeta namespaceId(String namespaceId) {
-    
     this.namespaceId = namespaceId;
     return this;
   }
@@ -140,7 +138,6 @@ public class ConnectorRequestMeta {
 
 
   public ConnectorRequestMeta channel(Channel channel) {
-    
     this.channel = channel;
     return this;
   }
@@ -167,7 +164,6 @@ public class ConnectorRequestMeta {
 
 
   public ConnectorRequestMeta desiredState(ConnectorDesiredState desiredState) {
-    
     this.desiredState = desiredState;
     return this;
   }
@@ -193,6 +189,9 @@ public class ConnectorRequestMeta {
   }
 
 
+  /**
+   * Return true if this ConnectorRequestMeta object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

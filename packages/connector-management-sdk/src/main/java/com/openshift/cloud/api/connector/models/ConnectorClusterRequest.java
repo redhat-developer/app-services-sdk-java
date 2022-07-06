@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +26,7 @@ import com.openshift.cloud.api.connector.models.ConnectorClusterRequestMeta;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * Schema for the request to update a data plane cluster&#39;s name
@@ -33,8 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   ConnectorClusterRequest.JSON_PROPERTY_NAME
 })
-@JsonTypeName("ConnectorClusterRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorClusterRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -43,7 +44,6 @@ public class ConnectorClusterRequest {
   }
 
   public ConnectorClusterRequest name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -69,6 +69,9 @@ public class ConnectorClusterRequest {
   }
 
 
+  /**
+   * Return true if this ConnectorClusterRequest object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

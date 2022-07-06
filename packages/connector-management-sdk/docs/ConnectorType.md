@@ -4,22 +4,36 @@
 
 Represents a connector type supported by the API
 
-## Properties
+## oneOf schemas
+* [ConnectorTypeAllOf](ConnectorTypeAllOf.md)
+* [ObjectReference](ObjectReference.md)
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**id** | **String** |  |  [optional]
-**kind** | **String** |  |  [optional]
-**href** | **String** |  |  [optional]
-**name** | **String** | Name of the connector type. |  [optional]
-**version** | **String** | Version of the connector type. |  [optional]
-**channels** | **List&lt;Channel&gt;** | Channels of the connector type. |  [optional]
-**description** | **String** | A description of the connector. |  [optional]
-**iconHref** | **String** | URL to an icon of the connector. |  [optional]
-**labels** | **List&lt;String&gt;** | Labels used to categorize the connector |  [optional]
-**capabilities** | **List&lt;String&gt;** | The capabilities supported by the conenctor |  [optional]
-**schema** | **Object** | A json schema that can be used to validate a ConnectorRequest connector field. |  [optional]
-**jsonSchema** | **Object** | A json schema that can be used to validate a ConnectorRequest connector field. |  [optional]
+## Example
+```java
+// Import classes:
+import com.openshift.cloud.api.connector.models.ConnectorType;
+import com.openshift.cloud.api.connector.models.ConnectorTypeAllOf;
+import com.openshift.cloud.api.connector.models.ObjectReference;
 
+public class Example {
+    public static void main(String[] args) {
+        ConnectorType exampleConnectorType = new ConnectorType();
+
+        // create a new ConnectorTypeAllOf
+        ConnectorTypeAllOf exampleConnectorTypeAllOf = new ConnectorTypeAllOf();
+        // set ConnectorType to ConnectorTypeAllOf
+        exampleConnectorType.setActualInstance(exampleConnectorTypeAllOf);
+        // to get back the ConnectorTypeAllOf set earlier
+        ConnectorTypeAllOf testConnectorTypeAllOf = (ConnectorTypeAllOf) exampleConnectorType.getActualInstance();
+
+        // create a new ObjectReference
+        ObjectReference exampleObjectReference = new ObjectReference();
+        // set ConnectorType to ObjectReference
+        exampleConnectorType.setActualInstance(exampleObjectReference);
+        // to get back the ObjectReference set earlier
+        ObjectReference testObjectReference = (ObjectReference) exampleConnectorType.getActualInstance();
+    }
+}
+```
 
 

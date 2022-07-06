@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,7 +28,7 @@ import com.openshift.cloud.api.connector.models.ServiceAccount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorConfiguration
@@ -37,8 +39,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorConfiguration.JSON_PROPERTY_SCHEMA_REGISTRY,
   ConnectorConfiguration.JSON_PROPERTY_CONNECTOR
 })
-@JsonTypeName("ConnectorConfiguration")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorConfiguration {
   public static final String JSON_PROPERTY_KAFKA = "kafka";
   private KafkaConnectionSettings kafka;
@@ -56,7 +57,6 @@ public class ConnectorConfiguration {
   }
 
   public ConnectorConfiguration kafka(KafkaConnectionSettings kafka) {
-    
     this.kafka = kafka;
     return this;
   }
@@ -83,7 +83,6 @@ public class ConnectorConfiguration {
 
 
   public ConnectorConfiguration serviceAccount(ServiceAccount serviceAccount) {
-    
     this.serviceAccount = serviceAccount;
     return this;
   }
@@ -110,7 +109,6 @@ public class ConnectorConfiguration {
 
 
   public ConnectorConfiguration schemaRegistry(SchemaRegistryConnectionSettings schemaRegistry) {
-    
     this.schemaRegistry = schemaRegistry;
     return this;
   }
@@ -137,7 +135,6 @@ public class ConnectorConfiguration {
 
 
   public ConnectorConfiguration connector(Object connector) {
-    
     this.connector = connector;
     return this;
   }
@@ -163,6 +160,9 @@ public class ConnectorConfiguration {
   }
 
 
+  /**
+   * Return true if this ConnectorConfiguration object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

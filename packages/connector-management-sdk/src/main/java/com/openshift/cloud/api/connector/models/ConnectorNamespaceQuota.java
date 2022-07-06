@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorNamespaceQuota
@@ -35,8 +37,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorNamespaceQuota.JSON_PROPERTY_CPU_REQUESTS,
   ConnectorNamespaceQuota.JSON_PROPERTY_CPU_LIMITS
 })
-@JsonTypeName("ConnectorNamespaceQuota")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorNamespaceQuota {
   public static final String JSON_PROPERTY_CONNECTORS = "connectors";
   private Integer connectors;
@@ -57,7 +58,6 @@ public class ConnectorNamespaceQuota {
   }
 
   public ConnectorNamespaceQuota connectors(Integer connectors) {
-    
     this.connectors = connectors;
     return this;
   }
@@ -84,7 +84,6 @@ public class ConnectorNamespaceQuota {
 
 
   public ConnectorNamespaceQuota memoryRequests(String memoryRequests) {
-    
     this.memoryRequests = memoryRequests;
     return this;
   }
@@ -111,7 +110,6 @@ public class ConnectorNamespaceQuota {
 
 
   public ConnectorNamespaceQuota memoryLimits(String memoryLimits) {
-    
     this.memoryLimits = memoryLimits;
     return this;
   }
@@ -138,7 +136,6 @@ public class ConnectorNamespaceQuota {
 
 
   public ConnectorNamespaceQuota cpuRequests(String cpuRequests) {
-    
     this.cpuRequests = cpuRequests;
     return this;
   }
@@ -165,7 +162,6 @@ public class ConnectorNamespaceQuota {
 
 
   public ConnectorNamespaceQuota cpuLimits(String cpuLimits) {
-    
     this.cpuLimits = cpuLimits;
     return this;
   }
@@ -191,6 +187,9 @@ public class ConnectorNamespaceQuota {
   }
 
 
+  /**
+   * Return true if this ConnectorNamespaceQuota object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

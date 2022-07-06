@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 
 ## getConsumerGroups
 
-> ConsumerGroupList getConsumerGroups(limit, page, topic, groupIdFilter, order, orderKey)
+> ConsumerGroupList getConsumerGroups(size, page, topic, groupIdFilter, order, orderKey)
 
 List of consumer groups in the Kafka instance.
 
@@ -198,14 +198,14 @@ public class Example {
         Bearer.setAccessToken("YOUR ACCESS TOKEN");
 
         GroupsApi apiInstance = new GroupsApi(defaultClient);
-        Integer limit = 56; // Integer | Maximum number of records to return
+        Integer size = 56; // Integer | Number of records per page
         Integer page = 56; // Integer | Page number
         String topic = "topic_example"; // String | Return consumer groups where the topic name contains this value
         String groupIdFilter = "groupIdFilter_example"; // String | Return the consumer groups where the ID contains this value
         SortDirection order = SortDirection.fromValue("asc"); // SortDirection | Order items are sorted
         ConsumerGroupOrderKey orderKey = new ConsumerGroupOrderKey(); // ConsumerGroupOrderKey | 
         try {
-            ConsumerGroupList result = apiInstance.getConsumerGroups(limit, page, topic, groupIdFilter, order, orderKey);
+            ConsumerGroupList result = apiInstance.getConsumerGroups(size, page, topic, groupIdFilter, order, orderKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GroupsApi#getConsumerGroups");
@@ -223,7 +223,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Integer**| Maximum number of records to return | [optional]
+ **size** | **Integer**| Number of records per page | [optional]
  **page** | **Integer**| Page number | [optional]
  **topic** | **String**| Return consumer groups where the topic name contains this value | [optional]
  **groupIdFilter** | **String**| Return the consumer groups where the ID contains this value | [optional]

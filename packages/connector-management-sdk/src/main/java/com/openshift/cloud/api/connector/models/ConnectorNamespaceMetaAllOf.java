@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +26,7 @@ import com.openshift.cloud.api.connector.models.ConnectorNamespaceQuota;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorNamespaceMetaAllOf
@@ -33,8 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorNamespaceMetaAllOf.JSON_PROPERTY_RESOURCE_VERSION,
   ConnectorNamespaceMetaAllOf.JSON_PROPERTY_QUOTA
 })
-@JsonTypeName("ConnectorNamespaceMeta_allOf")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorNamespaceMetaAllOf {
   public static final String JSON_PROPERTY_RESOURCE_VERSION = "resource_version";
   private Long resourceVersion;
@@ -46,7 +47,6 @@ public class ConnectorNamespaceMetaAllOf {
   }
 
   public ConnectorNamespaceMetaAllOf resourceVersion(Long resourceVersion) {
-    
     this.resourceVersion = resourceVersion;
     return this;
   }
@@ -73,7 +73,6 @@ public class ConnectorNamespaceMetaAllOf {
 
 
   public ConnectorNamespaceMetaAllOf quota(ConnectorNamespaceQuota quota) {
-    
     this.quota = quota;
     return this;
   }
@@ -99,6 +98,9 @@ public class ConnectorNamespaceMetaAllOf {
   }
 
 
+  /**
+   * Return true if this ConnectorNamespaceMeta_allOf object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

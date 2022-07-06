@@ -58,23 +58,6 @@ npx @openapitools/openapi-generator-cli generate -g java --library resteasy  -t 
     --ignore-file-override=.openapi-generator-ignore
 
 GROUP_ID="com.redhat.cloud"
-ARTIFACT_ID="connector-management-sdk"
-OPENAPI_FILENAME=".openapi/connector_mgmt.yaml"
-PACKAGE_NAME="com.openshift.cloud.api.connector"
-OUTPUT_PATH="packages/connector-management-sdk/"
-yq e 'del(.. | select(has("deprecated")))' "${OPENAPI_FILENAME}" > "${OPENAPI_FILENAME}.processed"
-yq e 'del(.. | select(has("deprecated")))' "${OPENAPI_FILENAME}" > "${OPENAPI_FILENAME}.processed"
-rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
-
-echo "Generating based on ${OPENAPI_FILENAME}"
-
-npx @openapitools/openapi-generator-cli generate -g java --library resteasy  -t "$TEMPLATES_DIR"  -i \
-    "$OPENAPI_FILENAME.processed" -o "$OUTPUT_PATH" \
-    --package-name="${PACKAGE_NAME}" \
-    --additional-properties="apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
-    --ignore-file-override=.openapi-generator-ignore
-
-GROUP_ID="com.redhat.cloud"
 ARTIFACT_ID="service-accounts-sdk"
 OPENAPI_FILENAME=".openapi/service-accounts.yaml"
 PACKAGE_NAME="com.openshift.cloud.api.serviceaccounts"
@@ -84,10 +67,28 @@ echo "Generating based on ${OPENAPI_FILENAME}"
 rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
 
 npx @openapitools/openapi-generator-cli generate -g java \
-    --library resteasy -t "$TEMPLATES_DIR" \
+    --library native -t "$TEMPLATES_DIR" \
     -i "$OPENAPI_FILENAME" -o "$OUTPUT_PATH" \
     --package-name="${PACKAGE_NAME}" \
     --additional-properties="apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
+    --ignore-file-override=.openapi-generator-ignore
+
+echo "generating experimental native java clients"
+
+GROUP_ID="com.redhat.cloud"
+ARTIFACT_ID="connector-management-sdk"
+OPENAPI_FILENAME=".openapi/connector_mgmt.yaml"
+PACKAGE_NAME="com.openshift.cloud.api.connector"
+OUTPUT_PATH="packages/connector-management-sdk/"
+rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
+
+echo "Generating based on ${OPENAPI_FILENAME}"
+
+npx @openapitools/openapi-generator-cli generate -g java \
+    --library native -i  "$OPENAPI_FILENAME"  \
+    -o "$OUTPUT_PATH"  \
+    --package-name="${PACKAGE_NAME}" \
+    --additional-properties="asyncNative=true,apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
     --ignore-file-override=.openapi-generator-ignore
 
 GROUP_ID="com.redhat.cloud"
@@ -97,8 +98,8 @@ PACKAGE_NAME="com.openshift.cloud.api.smartevents"
 OUTPUT_PATH="packages/smartevents-management-sdk/"
 
 npx @openapitools/openapi-generator-cli generate -g java \
-    --library resteasy -t "$TEMPLATES_DIR" \
+    --library native \
     -i "$OPENAPI_FILENAME" -o "$OUTPUT_PATH" \
     --package-name="${PACKAGE_NAME}" \
-    --additional-properties="apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
+    --additional-properties="asyncNative=true,apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
     --ignore-file-override=.openapi-generator-ignore

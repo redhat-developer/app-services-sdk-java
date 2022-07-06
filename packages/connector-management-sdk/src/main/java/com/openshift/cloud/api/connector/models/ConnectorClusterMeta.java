@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,7 +28,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorClusterMeta
@@ -37,8 +39,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorClusterMeta.JSON_PROPERTY_MODIFIED_AT,
   ConnectorClusterMeta.JSON_PROPERTY_NAME
 })
-@JsonTypeName("ConnectorClusterMeta")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorClusterMeta {
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
@@ -56,7 +57,6 @@ public class ConnectorClusterMeta {
   }
 
   public ConnectorClusterMeta owner(String owner) {
-    
     this.owner = owner;
     return this;
   }
@@ -83,7 +83,6 @@ public class ConnectorClusterMeta {
 
 
   public ConnectorClusterMeta createdAt(OffsetDateTime createdAt) {
-    
     this.createdAt = createdAt;
     return this;
   }
@@ -110,7 +109,6 @@ public class ConnectorClusterMeta {
 
 
   public ConnectorClusterMeta modifiedAt(OffsetDateTime modifiedAt) {
-    
     this.modifiedAt = modifiedAt;
     return this;
   }
@@ -137,7 +135,6 @@ public class ConnectorClusterMeta {
 
 
   public ConnectorClusterMeta name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -163,6 +160,9 @@ public class ConnectorClusterMeta {
   }
 
 
+  /**
+   * Return true if this ConnectorClusterMeta object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

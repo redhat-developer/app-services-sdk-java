@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,7 +27,7 @@ import com.openshift.cloud.api.connector.models.ConnectorNamespaceTenant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorNamespaceAllOf
@@ -37,8 +39,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorNamespaceAllOf.JSON_PROPERTY_TENANT,
   ConnectorNamespaceAllOf.JSON_PROPERTY_STATUS
 })
-@JsonTypeName("ConnectorNamespace_allOf")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorNamespaceAllOf {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -59,7 +60,6 @@ public class ConnectorNamespaceAllOf {
   }
 
   public ConnectorNamespaceAllOf name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -86,7 +86,6 @@ public class ConnectorNamespaceAllOf {
 
 
   public ConnectorNamespaceAllOf clusterId(String clusterId) {
-    
     this.clusterId = clusterId;
     return this;
   }
@@ -113,7 +112,6 @@ public class ConnectorNamespaceAllOf {
 
 
   public ConnectorNamespaceAllOf expiration(String expiration) {
-    
     this.expiration = expiration;
     return this;
   }
@@ -140,7 +138,6 @@ public class ConnectorNamespaceAllOf {
 
 
   public ConnectorNamespaceAllOf tenant(ConnectorNamespaceTenant tenant) {
-    
     this.tenant = tenant;
     return this;
   }
@@ -167,7 +164,6 @@ public class ConnectorNamespaceAllOf {
 
 
   public ConnectorNamespaceAllOf status(ConnectorNamespaceStatus status) {
-    
     this.status = status;
     return this;
   }
@@ -193,6 +189,9 @@ public class ConnectorNamespaceAllOf {
   }
 
 
+  /**
+   * Return true if this ConnectorNamespace_allOf object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

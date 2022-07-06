@@ -15,6 +15,8 @@ package com.openshift.cloud.api.smartevents.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,7 +28,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * BridgeListResponse
@@ -38,8 +40,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   BridgeListResponse.JSON_PROPERTY_SIZE,
   BridgeListResponse.JSON_PROPERTY_TOTAL
 })
-@JsonTypeName("BridgeListResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class BridgeListResponse {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
@@ -60,7 +61,6 @@ public class BridgeListResponse {
   }
 
   public BridgeListResponse kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -87,7 +87,6 @@ public class BridgeListResponse {
 
 
   public BridgeListResponse items(List<BridgeResponse> items) {
-    
     this.items = items;
     return this;
   }
@@ -122,7 +121,6 @@ public class BridgeListResponse {
 
 
   public BridgeListResponse page(Long page) {
-    
     this.page = page;
     return this;
   }
@@ -149,7 +147,6 @@ public class BridgeListResponse {
 
 
   public BridgeListResponse size(Long size) {
-    
     this.size = size;
     return this;
   }
@@ -176,7 +173,6 @@ public class BridgeListResponse {
 
 
   public BridgeListResponse total(Long total) {
-    
     this.total = total;
     return this;
   }
@@ -202,6 +198,9 @@ public class BridgeListResponse {
   }
 
 
+  /**
+   * Return true if this BridgeListResponse object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

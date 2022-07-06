@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorNamespaceRequestMeta
@@ -35,8 +37,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorNamespaceRequestMeta.JSON_PROPERTY_NAME,
   ConnectorNamespaceRequestMeta.JSON_PROPERTY_ANNOTATIONS
 })
-@JsonTypeName("ConnectorNamespaceRequestMeta")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorNamespaceRequestMeta {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -48,7 +49,6 @@ public class ConnectorNamespaceRequestMeta {
   }
 
   public ConnectorNamespaceRequestMeta name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -75,7 +75,6 @@ public class ConnectorNamespaceRequestMeta {
 
 
   public ConnectorNamespaceRequestMeta annotations(Map<String, String> annotations) {
-    
     this.annotations = annotations;
     return this;
   }
@@ -109,6 +108,9 @@ public class ConnectorNamespaceRequestMeta {
   }
 
 
+  /**
+   * Return true if this ConnectorNamespaceRequestMeta object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -31,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorNamespaceMeta
@@ -45,8 +47,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorNamespaceMeta.JSON_PROPERTY_RESOURCE_VERSION,
   ConnectorNamespaceMeta.JSON_PROPERTY_QUOTA
 })
-@JsonTypeName("ConnectorNamespaceMeta")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorNamespaceMeta {
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
@@ -73,7 +74,6 @@ public class ConnectorNamespaceMeta {
   }
 
   public ConnectorNamespaceMeta owner(String owner) {
-    
     this.owner = owner;
     return this;
   }
@@ -100,7 +100,6 @@ public class ConnectorNamespaceMeta {
 
 
   public ConnectorNamespaceMeta createdAt(OffsetDateTime createdAt) {
-    
     this.createdAt = createdAt;
     return this;
   }
@@ -127,7 +126,6 @@ public class ConnectorNamespaceMeta {
 
 
   public ConnectorNamespaceMeta modifiedAt(OffsetDateTime modifiedAt) {
-    
     this.modifiedAt = modifiedAt;
     return this;
   }
@@ -154,7 +152,6 @@ public class ConnectorNamespaceMeta {
 
 
   public ConnectorNamespaceMeta name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -181,7 +178,6 @@ public class ConnectorNamespaceMeta {
 
 
   public ConnectorNamespaceMeta annotations(Map<String, String> annotations) {
-    
     this.annotations = annotations;
     return this;
   }
@@ -216,7 +212,6 @@ public class ConnectorNamespaceMeta {
 
 
   public ConnectorNamespaceMeta resourceVersion(Long resourceVersion) {
-    
     this.resourceVersion = resourceVersion;
     return this;
   }
@@ -243,7 +238,6 @@ public class ConnectorNamespaceMeta {
 
 
   public ConnectorNamespaceMeta quota(ConnectorNamespaceQuota quota) {
-    
     this.quota = quota;
     return this;
   }
@@ -269,6 +263,9 @@ public class ConnectorNamespaceMeta {
   }
 
 
+  /**
+   * Return true if this ConnectorNamespaceMeta object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

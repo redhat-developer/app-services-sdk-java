@@ -15,6 +15,8 @@ package com.openshift.cloud.api.serviceaccounts.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * RedHatErrorRepresentation
@@ -32,8 +34,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   RedHatErrorRepresentation.JSON_PROPERTY_ERROR,
   RedHatErrorRepresentation.JSON_PROPERTY_ERROR_DESCRIPTION
 })
-@JsonTypeName("RedHatErrorRepresentation")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class RedHatErrorRepresentation {
   /**
    * Gets or Sets error
@@ -84,7 +85,6 @@ public class RedHatErrorRepresentation {
   }
 
   public RedHatErrorRepresentation error(ErrorEnum error) {
-    
     this.error = error;
     return this;
   }
@@ -111,7 +111,6 @@ public class RedHatErrorRepresentation {
 
 
   public RedHatErrorRepresentation errorDescription(String errorDescription) {
-    
     this.errorDescription = errorDescription;
     return this;
   }
@@ -137,6 +136,9 @@ public class RedHatErrorRepresentation {
   }
 
 
+  /**
+   * Return true if this RedHatErrorRepresentation object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

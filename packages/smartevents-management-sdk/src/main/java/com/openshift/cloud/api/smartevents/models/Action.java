@@ -15,6 +15,8 @@ package com.openshift.cloud.api.smartevents.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * Action
@@ -32,8 +34,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Action.JSON_PROPERTY_TYPE,
   Action.JSON_PROPERTY_PARAMETERS
 })
-@JsonTypeName("Action")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Action {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
@@ -45,7 +46,6 @@ public class Action {
   }
 
   public Action type(String type) {
-    
     this.type = type;
     return this;
   }
@@ -72,7 +72,6 @@ public class Action {
 
 
   public Action parameters(Object parameters) {
-    
     this.parameters = parameters;
     return this;
   }
@@ -98,6 +97,9 @@ public class Action {
   }
 
 
+  /**
+   * Return true if this Action object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -28,7 +30,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorList
@@ -40,8 +42,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorList.JSON_PROPERTY_TOTAL,
   ConnectorList.JSON_PROPERTY_ITEMS
 })
-@JsonTypeName("ConnectorList")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorList {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
@@ -62,7 +63,6 @@ public class ConnectorList {
   }
 
   public ConnectorList kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -89,7 +89,6 @@ public class ConnectorList {
 
 
   public ConnectorList page(Integer page) {
-    
     this.page = page;
     return this;
   }
@@ -116,7 +115,6 @@ public class ConnectorList {
 
 
   public ConnectorList size(Integer size) {
-    
     this.size = size;
     return this;
   }
@@ -143,7 +141,6 @@ public class ConnectorList {
 
 
   public ConnectorList total(Integer total) {
-    
     this.total = total;
     return this;
   }
@@ -170,7 +167,6 @@ public class ConnectorList {
 
 
   public ConnectorList items(List<Connector> items) {
-    
     this.items = items;
     return this;
   }
@@ -201,6 +197,9 @@ public class ConnectorList {
   }
 
 
+  /**
+   * Return true if this ConnectorList object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
