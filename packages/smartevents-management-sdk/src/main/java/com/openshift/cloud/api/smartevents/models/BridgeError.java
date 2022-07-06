@@ -15,6 +15,8 @@ package com.openshift.cloud.api.smartevents.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +26,7 @@ import com.openshift.cloud.api.smartevents.models.BridgeErrorType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * BridgeError
@@ -35,8 +37,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   BridgeError.JSON_PROPERTY_REASON,
   BridgeError.JSON_PROPERTY_TYPE
 })
-@JsonTypeName("BridgeError")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class BridgeError {
   public static final String JSON_PROPERTY_ID = "id";
   private Integer id;
@@ -54,7 +55,6 @@ public class BridgeError {
   }
 
   public BridgeError id(Integer id) {
-    
     this.id = id;
     return this;
   }
@@ -81,7 +81,6 @@ public class BridgeError {
 
 
   public BridgeError code(String code) {
-    
     this.code = code;
     return this;
   }
@@ -108,7 +107,6 @@ public class BridgeError {
 
 
   public BridgeError reason(String reason) {
-    
     this.reason = reason;
     return this;
   }
@@ -135,7 +133,6 @@ public class BridgeError {
 
 
   public BridgeError type(BridgeErrorType type) {
-    
     this.type = type;
     return this;
   }
@@ -161,6 +158,9 @@ public class BridgeError {
   }
 
 
+  /**
+   * Return true if this BridgeError object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

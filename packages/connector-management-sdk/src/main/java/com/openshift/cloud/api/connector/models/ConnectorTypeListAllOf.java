@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,7 +28,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorTypeListAllOf
@@ -34,8 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   ConnectorTypeListAllOf.JSON_PROPERTY_ITEMS
 })
-@JsonTypeName("ConnectorTypeList_allOf")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorTypeListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
   private List<ConnectorType> items = null;
@@ -44,7 +45,6 @@ public class ConnectorTypeListAllOf {
   }
 
   public ConnectorTypeListAllOf items(List<ConnectorType> items) {
-    
     this.items = items;
     return this;
   }
@@ -78,6 +78,9 @@ public class ConnectorTypeListAllOf {
   }
 
 
+  /**
+   * Return true if this ConnectorTypeList_allOf object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

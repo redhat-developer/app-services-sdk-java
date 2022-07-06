@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -27,7 +29,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * VersionMetadata
@@ -38,8 +40,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   VersionMetadata.JSON_PROPERTY_HREF,
   VersionMetadata.JSON_PROPERTY_COLLECTIONS
 })
-@JsonTypeName("VersionMetadata")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class VersionMetadata {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -57,7 +58,6 @@ public class VersionMetadata {
   }
 
   public VersionMetadata id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -84,7 +84,6 @@ public class VersionMetadata {
 
 
   public VersionMetadata kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -111,7 +110,6 @@ public class VersionMetadata {
 
 
   public VersionMetadata href(String href) {
-    
     this.href = href;
     return this;
   }
@@ -138,7 +136,6 @@ public class VersionMetadata {
 
 
   public VersionMetadata collections(List<ObjectReference> collections) {
-    
     this.collections = collections;
     return this;
   }
@@ -172,6 +169,9 @@ public class VersionMetadata {
   }
 
 
+  /**
+   * Return true if this VersionMetadata object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

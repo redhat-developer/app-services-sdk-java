@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +26,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ObjectMeta
@@ -34,8 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ObjectMeta.JSON_PROPERTY_CREATED_AT,
   ObjectMeta.JSON_PROPERTY_MODIFIED_AT
 })
-@JsonTypeName("ObjectMeta")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ObjectMeta {
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
@@ -50,7 +51,6 @@ public class ObjectMeta {
   }
 
   public ObjectMeta owner(String owner) {
-    
     this.owner = owner;
     return this;
   }
@@ -77,7 +77,6 @@ public class ObjectMeta {
 
 
   public ObjectMeta createdAt(OffsetDateTime createdAt) {
-    
     this.createdAt = createdAt;
     return this;
   }
@@ -104,7 +103,6 @@ public class ObjectMeta {
 
 
   public ObjectMeta modifiedAt(OffsetDateTime modifiedAt) {
-    
     this.modifiedAt = modifiedAt;
     return this;
   }
@@ -130,6 +128,9 @@ public class ObjectMeta {
   }
 
 
+  /**
+   * Return true if this ObjectMeta object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

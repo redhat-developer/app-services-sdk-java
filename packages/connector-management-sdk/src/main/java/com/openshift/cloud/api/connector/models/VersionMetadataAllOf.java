@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,7 +28,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * VersionMetadataAllOf
@@ -34,8 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   VersionMetadataAllOf.JSON_PROPERTY_COLLECTIONS
 })
-@JsonTypeName("VersionMetadata_allOf")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class VersionMetadataAllOf {
   public static final String JSON_PROPERTY_COLLECTIONS = "collections";
   private List<ObjectReference> collections = null;
@@ -44,7 +45,6 @@ public class VersionMetadataAllOf {
   }
 
   public VersionMetadataAllOf collections(List<ObjectReference> collections) {
-    
     this.collections = collections;
     return this;
   }
@@ -78,6 +78,9 @@ public class VersionMetadataAllOf {
   }
 
 
+  /**
+   * Return true if this VersionMetadata_allOf object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

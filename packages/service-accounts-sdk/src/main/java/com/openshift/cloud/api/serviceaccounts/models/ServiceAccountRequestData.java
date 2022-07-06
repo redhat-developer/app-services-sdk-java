@@ -15,6 +15,8 @@ package com.openshift.cloud.api.serviceaccounts.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ServiceAccountRequestData
@@ -32,8 +34,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ServiceAccountRequestData.JSON_PROPERTY_NAME,
   ServiceAccountRequestData.JSON_PROPERTY_DESCRIPTION
 })
-@JsonTypeName("ServiceAccountRequestData")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ServiceAccountRequestData {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -45,7 +46,6 @@ public class ServiceAccountRequestData {
   }
 
   public ServiceAccountRequestData name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -72,7 +72,6 @@ public class ServiceAccountRequestData {
 
 
   public ServiceAccountRequestData description(String description) {
-    
     this.description = description;
     return this;
   }
@@ -98,6 +97,9 @@ public class ServiceAccountRequestData {
   }
 
 
+  /**
+   * Return true if this ServiceAccountRequestData object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

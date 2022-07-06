@@ -13,7 +13,7 @@ Connector Management API is a REST API to manage connectors.
 
 Building the API client library requires:
 
-1. Java 1.8+
+1. Java 11+
 2. Maven/Gradle
 
 ## Installation
@@ -50,14 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-  repositories {
-    mavenCentral()     // Needed if the 'connector-management-sdk' jar has been published to maven central.
-    mavenLocal()       // Needed if the 'connector-management-sdk' jar has been published to the local maven repo.
-  }
-
-  dependencies {
-     implementation "com.redhat.cloud:connector-management-sdk:0.1.0"
-  }
+compile "com.redhat.cloud:connector-management-sdk:0.1.0"
 ```
 
 ### Others
@@ -80,7 +73,6 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 import com.openshift.cloud.api.connector.invoker.*;
-import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
 
@@ -88,12 +80,8 @@ public class ConnectorClustersApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.openshift.com");
-        
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
-
+        // Configure clients using the `defaultClient` object, such as
+        // overriding the host and port, timeout, etc.
         ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
         ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Connector cluster data
@@ -119,23 +107,41 @@ All URIs are relative to *https://api.openshift.com*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ConnectorClustersApi* | [**createConnectorCluster**](docs/ConnectorClustersApi.md#createConnectorCluster) | **POST** /api/connector_mgmt/v1/kafka_connector_clusters | Create a new connector cluster
+*ConnectorClustersApi* | [**createConnectorClusterWithHttpInfo**](docs/ConnectorClustersApi.md#createConnectorClusterWithHttpInfo) | **POST** /api/connector_mgmt/v1/kafka_connector_clusters | Create a new connector cluster
 *ConnectorClustersApi* | [**deleteConnectorCluster**](docs/ConnectorClustersApi.md#deleteConnectorCluster) | **DELETE** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | Delete a connector cluster
+*ConnectorClustersApi* | [**deleteConnectorClusterWithHttpInfo**](docs/ConnectorClustersApi.md#deleteConnectorClusterWithHttpInfo) | **DELETE** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | Delete a connector cluster
 *ConnectorClustersApi* | [**getConnectorCluster**](docs/ConnectorClustersApi.md#getConnectorCluster) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | Get a connector cluster
+*ConnectorClustersApi* | [**getConnectorClusterWithHttpInfo**](docs/ConnectorClustersApi.md#getConnectorClusterWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | Get a connector cluster
 *ConnectorClustersApi* | [**getConnectorClusterAddonParameters**](docs/ConnectorClustersApi.md#getConnectorClusterAddonParameters) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}/addon_parameters | Get a connector cluster&#39;s addon parameters
+*ConnectorClustersApi* | [**getConnectorClusterAddonParametersWithHttpInfo**](docs/ConnectorClustersApi.md#getConnectorClusterAddonParametersWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}/addon_parameters | Get a connector cluster&#39;s addon parameters
 *ConnectorClustersApi* | [**getConnectorClusterNamespaces**](docs/ConnectorClustersApi.md#getConnectorClusterNamespaces) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}/namespaces | Get a connector cluster&#39;s namespaces
+*ConnectorClustersApi* | [**getConnectorClusterNamespacesWithHttpInfo**](docs/ConnectorClustersApi.md#getConnectorClusterNamespacesWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id}/namespaces | Get a connector cluster&#39;s namespaces
 *ConnectorClustersApi* | [**listConnectorClusters**](docs/ConnectorClustersApi.md#listConnectorClusters) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters | Returns a list of connector clusters
+*ConnectorClustersApi* | [**listConnectorClustersWithHttpInfo**](docs/ConnectorClustersApi.md#listConnectorClustersWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connector_clusters | Returns a list of connector clusters
 *ConnectorClustersApi* | [**updateConnectorClusterById**](docs/ConnectorClustersApi.md#updateConnectorClusterById) | **PUT** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | udpate a connector cluster
+*ConnectorClustersApi* | [**updateConnectorClusterByIdWithHttpInfo**](docs/ConnectorClustersApi.md#updateConnectorClusterByIdWithHttpInfo) | **PUT** /api/connector_mgmt/v1/kafka_connector_clusters/{connector_cluster_id} | udpate a connector cluster
 *ConnectorNamespacesApi* | [**createEvaluationNamespace**](docs/ConnectorNamespacesApi.md#createEvaluationNamespace) | **POST** /api/connector_mgmt/v1/kafka_connector_namespaces/eval | Create a new short lived evaluation connector namespace
+*ConnectorNamespacesApi* | [**createEvaluationNamespaceWithHttpInfo**](docs/ConnectorNamespacesApi.md#createEvaluationNamespaceWithHttpInfo) | **POST** /api/connector_mgmt/v1/kafka_connector_namespaces/eval | Create a new short lived evaluation connector namespace
 *ConnectorNamespacesApi* | [**getConnectorNamespace**](docs/ConnectorNamespacesApi.md#getConnectorNamespace) | **GET** /api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id} | Get a connector namespace
+*ConnectorNamespacesApi* | [**getConnectorNamespaceWithHttpInfo**](docs/ConnectorNamespacesApi.md#getConnectorNamespaceWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connector_namespaces/{connector_namespace_id} | Get a connector namespace
 *ConnectorNamespacesApi* | [**listConnectorNamespaces**](docs/ConnectorNamespacesApi.md#listConnectorNamespaces) | **GET** /api/connector_mgmt/v1/kafka_connector_namespaces | Returns a list of connector namespaces
+*ConnectorNamespacesApi* | [**listConnectorNamespacesWithHttpInfo**](docs/ConnectorNamespacesApi.md#listConnectorNamespacesWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connector_namespaces | Returns a list of connector namespaces
 *ConnectorServiceApi* | [**getVersionMetadata**](docs/ConnectorServiceApi.md#getVersionMetadata) | **GET** /api/connector_mgmt/v1 | Returns the version metadata
+*ConnectorServiceApi* | [**getVersionMetadataWithHttpInfo**](docs/ConnectorServiceApi.md#getVersionMetadataWithHttpInfo) | **GET** /api/connector_mgmt/v1 | Returns the version metadata
 *ConnectorTypesApi* | [**getConnectorTypeByID**](docs/ConnectorTypesApi.md#getConnectorTypeByID) | **GET** /api/connector_mgmt/v1/kafka_connector_types/{connector_type_id} | Get a connector type by id
+*ConnectorTypesApi* | [**getConnectorTypeByIDWithHttpInfo**](docs/ConnectorTypesApi.md#getConnectorTypeByIDWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connector_types/{connector_type_id} | Get a connector type by id
 *ConnectorTypesApi* | [**getConnectorTypes**](docs/ConnectorTypesApi.md#getConnectorTypes) | **GET** /api/connector_mgmt/v1/kafka_connector_types | Returns a list of connector types
+*ConnectorTypesApi* | [**getConnectorTypesWithHttpInfo**](docs/ConnectorTypesApi.md#getConnectorTypesWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connector_types | Returns a list of connector types
 *ConnectorsApi* | [**createConnector**](docs/ConnectorsApi.md#createConnector) | **POST** /api/connector_mgmt/v1/kafka_connectors | Create a new connector
+*ConnectorsApi* | [**createConnectorWithHttpInfo**](docs/ConnectorsApi.md#createConnectorWithHttpInfo) | **POST** /api/connector_mgmt/v1/kafka_connectors | Create a new connector
 *ConnectorsApi* | [**deleteConnector**](docs/ConnectorsApi.md#deleteConnector) | **DELETE** /api/connector_mgmt/v1/kafka_connectors/{id} | Delete a connector
+*ConnectorsApi* | [**deleteConnectorWithHttpInfo**](docs/ConnectorsApi.md#deleteConnectorWithHttpInfo) | **DELETE** /api/connector_mgmt/v1/kafka_connectors/{id} | Delete a connector
 *ConnectorsApi* | [**getConnector**](docs/ConnectorsApi.md#getConnector) | **GET** /api/connector_mgmt/v1/kafka_connectors/{id} | Get a connector
+*ConnectorsApi* | [**getConnectorWithHttpInfo**](docs/ConnectorsApi.md#getConnectorWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connectors/{id} | Get a connector
 *ConnectorsApi* | [**listConnectors**](docs/ConnectorsApi.md#listConnectors) | **GET** /api/connector_mgmt/v1/kafka_connectors | Returns a list of connector types
+*ConnectorsApi* | [**listConnectorsWithHttpInfo**](docs/ConnectorsApi.md#listConnectorsWithHttpInfo) | **GET** /api/connector_mgmt/v1/kafka_connectors | Returns a list of connector types
 *ConnectorsApi* | [**patchConnector**](docs/ConnectorsApi.md#patchConnector) | **PATCH** /api/connector_mgmt/v1/kafka_connectors/{id} | Patch a connector
+*ConnectorsApi* | [**patchConnectorWithHttpInfo**](docs/ConnectorsApi.md#patchConnectorWithHttpInfo) | **PATCH** /api/connector_mgmt/v1/kafka_connectors/{id} | Patch a connector
 
 
 ## Documentation for Models
@@ -208,6 +214,7 @@ Authentication schemes defined for the API:
 ## Recommendation
 
 It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
+However, the instances of the api clients created from the `ApiClient` are thread-safe and can be re-used.
 
 ## Author
 

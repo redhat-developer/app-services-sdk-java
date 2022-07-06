@@ -13,7 +13,7 @@ The API exposed by the fleet manager of the SmartEvents service.
 
 Building the API client library requires:
 
-1. Java 1.8+
+1. Java 11+
 2. Maven/Gradle
 
 ## Installation
@@ -50,14 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-  repositories {
-    mavenCentral()     // Needed if the 'smartevents-management-sdk' jar has been published to maven central.
-    mavenLocal()       // Needed if the 'smartevents-management-sdk' jar has been published to the local maven repo.
-  }
-
-  dependencies {
-     implementation "com.redhat.cloud:smartevents-management-sdk:0.0.2"
-  }
+compile "com.redhat.cloud:smartevents-management-sdk:0.0.2"
 ```
 
 ### Others
@@ -80,7 +73,6 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 import com.openshift.cloud.api.smartevents.invoker.*;
-import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
 
@@ -88,12 +80,8 @@ public class BridgesApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
-        
-        // Configure HTTP bearer authorization: bearer
-        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
-        bearer.setBearerToken("BEARER TOKEN");
-
+        // Configure clients using the `defaultClient` object, such as
+        // overriding the host and port, timeout, etc.
         BridgesApi apiInstance = new BridgesApi(defaultClient);
         BridgeRequest bridgeRequest = new BridgeRequest(); // BridgeRequest | 
         try {
@@ -118,22 +106,39 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *BridgesApi* | [**bridgesAPICreateBridge**](docs/BridgesApi.md#bridgesAPICreateBridge) | **POST** /api/v1/bridges | Create a Bridge instance
+*BridgesApi* | [**bridgesAPICreateBridgeWithHttpInfo**](docs/BridgesApi.md#bridgesAPICreateBridgeWithHttpInfo) | **POST** /api/v1/bridges | Create a Bridge instance
 *BridgesApi* | [**bridgesAPIDeleteBridge**](docs/BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/v1/bridges/{bridgeId} | Delete a Bridge instance
+*BridgesApi* | [**bridgesAPIDeleteBridgeWithHttpInfo**](docs/BridgesApi.md#bridgesAPIDeleteBridgeWithHttpInfo) | **DELETE** /api/v1/bridges/{bridgeId} | Delete a Bridge instance
 *BridgesApi* | [**bridgesAPIGetBridge**](docs/BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/v1/bridges/{bridgeId} | Get a Bridge instance
+*BridgesApi* | [**bridgesAPIGetBridgeWithHttpInfo**](docs/BridgesApi.md#bridgesAPIGetBridgeWithHttpInfo) | **GET** /api/v1/bridges/{bridgeId} | Get a Bridge instance
 *BridgesApi* | [**bridgesAPIGetBridges**](docs/BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/v1/bridges | Get the list of Bridge instances
+*BridgesApi* | [**bridgesAPIGetBridgesWithHttpInfo**](docs/BridgesApi.md#bridgesAPIGetBridgesWithHttpInfo) | **GET** /api/v1/bridges | Get the list of Bridge instances
 *CloudProvidersApi* | [**cloudProviderAPIGetCloudProvider**](docs/CloudProvidersApi.md#cloudProviderAPIGetCloudProvider) | **GET** /api/v1/cloud_providers/{id} | Get Cloud Provider.
+*CloudProvidersApi* | [**cloudProviderAPIGetCloudProviderWithHttpInfo**](docs/CloudProvidersApi.md#cloudProviderAPIGetCloudProviderWithHttpInfo) | **GET** /api/v1/cloud_providers/{id} | Get Cloud Provider.
 *CloudProvidersApi* | [**cloudProviderAPIListCloudProviderRegions**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviderRegions) | **GET** /api/v1/cloud_providers/{id}/regions | List Supported Cloud Regions.
+*CloudProvidersApi* | [**cloudProviderAPIListCloudProviderRegionsWithHttpInfo**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviderRegionsWithHttpInfo) | **GET** /api/v1/cloud_providers/{id}/regions | List Supported Cloud Regions.
 *CloudProvidersApi* | [**cloudProviderAPIListCloudProviders**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviders) | **GET** /api/v1/cloud_providers | List Supported Cloud Providers.
+*CloudProvidersApi* | [**cloudProviderAPIListCloudProvidersWithHttpInfo**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProvidersWithHttpInfo) | **GET** /api/v1/cloud_providers | List Supported Cloud Providers.
 *ErrorCatalogApi* | [**errorsAPIGetError**](docs/ErrorCatalogApi.md#errorsAPIGetError) | **GET** /api/v1/errors/{id} | Get an error from the error catalog.
+*ErrorCatalogApi* | [**errorsAPIGetErrorWithHttpInfo**](docs/ErrorCatalogApi.md#errorsAPIGetErrorWithHttpInfo) | **GET** /api/v1/errors/{id} | Get an error from the error catalog.
 *ErrorCatalogApi* | [**errorsAPIGetErrors**](docs/ErrorCatalogApi.md#errorsAPIGetErrors) | **GET** /api/v1/errors | Get the list of errors.
+*ErrorCatalogApi* | [**errorsAPIGetErrorsWithHttpInfo**](docs/ErrorCatalogApi.md#errorsAPIGetErrorsWithHttpInfo) | **GET** /api/v1/errors | Get the list of errors.
 *ProcessorsApi* | [**processorsAPIAddProcessorToBridge**](docs/ProcessorsApi.md#processorsAPIAddProcessorToBridge) | **POST** /api/v1/bridges/{bridgeId}/processors | Create a Processor of a Bridge instance
+*ProcessorsApi* | [**processorsAPIAddProcessorToBridgeWithHttpInfo**](docs/ProcessorsApi.md#processorsAPIAddProcessorToBridgeWithHttpInfo) | **POST** /api/v1/bridges/{bridgeId}/processors | Create a Processor of a Bridge instance
 *ProcessorsApi* | [**processorsAPIDeleteProcessor**](docs/ProcessorsApi.md#processorsAPIDeleteProcessor) | **DELETE** /api/v1/bridges/{bridgeId}/processors/{processorId} | Delete a Processor of a Bridge instance
+*ProcessorsApi* | [**processorsAPIDeleteProcessorWithHttpInfo**](docs/ProcessorsApi.md#processorsAPIDeleteProcessorWithHttpInfo) | **DELETE** /api/v1/bridges/{bridgeId}/processors/{processorId} | Delete a Processor of a Bridge instance
 *ProcessorsApi* | [**processorsAPIGetProcessor**](docs/ProcessorsApi.md#processorsAPIGetProcessor) | **GET** /api/v1/bridges/{bridgeId}/processors/{processorId} | Get a Processor of a Bridge instance
+*ProcessorsApi* | [**processorsAPIGetProcessorWithHttpInfo**](docs/ProcessorsApi.md#processorsAPIGetProcessorWithHttpInfo) | **GET** /api/v1/bridges/{bridgeId}/processors/{processorId} | Get a Processor of a Bridge instance
 *ProcessorsApi* | [**processorsAPIListProcessors**](docs/ProcessorsApi.md#processorsAPIListProcessors) | **GET** /api/v1/bridges/{bridgeId}/processors | Get the list of Processors of a Bridge instance
+*ProcessorsApi* | [**processorsAPIListProcessorsWithHttpInfo**](docs/ProcessorsApi.md#processorsAPIListProcessorsWithHttpInfo) | **GET** /api/v1/bridges/{bridgeId}/processors | Get the list of Processors of a Bridge instance
 *ProcessorsApi* | [**processorsAPIUpdateProcessor**](docs/ProcessorsApi.md#processorsAPIUpdateProcessor) | **PUT** /api/v1/bridges/{bridgeId}/processors/{processorId} | Update a Processor instance Filter definition or Transformation template.
+*ProcessorsApi* | [**processorsAPIUpdateProcessorWithHttpInfo**](docs/ProcessorsApi.md#processorsAPIUpdateProcessorWithHttpInfo) | **PUT** /api/v1/bridges/{bridgeId}/processors/{processorId} | Update a Processor instance Filter definition or Transformation template.
 *SchemaCatalogApi* | [**schemaAPIGetActionProcessorSchema**](docs/SchemaCatalogApi.md#schemaAPIGetActionProcessorSchema) | **GET** /api/v1/schemas/actions/{id} | Get action processor schema
+*SchemaCatalogApi* | [**schemaAPIGetActionProcessorSchemaWithHttpInfo**](docs/SchemaCatalogApi.md#schemaAPIGetActionProcessorSchemaWithHttpInfo) | **GET** /api/v1/schemas/actions/{id} | Get action processor schema
 *SchemaCatalogApi* | [**schemaAPIGetCatalog**](docs/SchemaCatalogApi.md#schemaAPIGetCatalog) | **GET** /api/v1/schemas | Get processor catalog
+*SchemaCatalogApi* | [**schemaAPIGetCatalogWithHttpInfo**](docs/SchemaCatalogApi.md#schemaAPIGetCatalogWithHttpInfo) | **GET** /api/v1/schemas | Get processor catalog
 *SchemaCatalogApi* | [**schemaAPIGetSourceProcessorSchema**](docs/SchemaCatalogApi.md#schemaAPIGetSourceProcessorSchema) | **GET** /api/v1/schemas/sources/{id} | Get source processor schema
+*SchemaCatalogApi* | [**schemaAPIGetSourceProcessorSchemaWithHttpInfo**](docs/SchemaCatalogApi.md#schemaAPIGetSourceProcessorSchemaWithHttpInfo) | **GET** /api/v1/schemas/sources/{id} | Get source processor schema
 
 
 ## Documentation for Models
@@ -174,6 +179,7 @@ Authentication schemes defined for the API:
 ## Recommendation
 
 It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
+However, the instances of the api clients created from the `ApiClient` are thread-safe and can be re-used.
 
 ## Author
 

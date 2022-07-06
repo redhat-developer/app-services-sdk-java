@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +26,7 @@ import com.openshift.cloud.api.connector.models.ConnectorNamespaceTenantKind;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorNamespaceRequestAllOf
@@ -33,8 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorNamespaceRequestAllOf.JSON_PROPERTY_CLUSTER_ID,
   ConnectorNamespaceRequestAllOf.JSON_PROPERTY_KIND
 })
-@JsonTypeName("ConnectorNamespaceRequest_allOf")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorNamespaceRequestAllOf {
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
@@ -46,7 +47,6 @@ public class ConnectorNamespaceRequestAllOf {
   }
 
   public ConnectorNamespaceRequestAllOf clusterId(String clusterId) {
-    
     this.clusterId = clusterId;
     return this;
   }
@@ -73,7 +73,6 @@ public class ConnectorNamespaceRequestAllOf {
 
 
   public ConnectorNamespaceRequestAllOf kind(ConnectorNamespaceTenantKind kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -99,6 +98,9 @@ public class ConnectorNamespaceRequestAllOf {
   }
 
 
+  /**
+   * Return true if this ConnectorNamespaceRequest_allOf object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

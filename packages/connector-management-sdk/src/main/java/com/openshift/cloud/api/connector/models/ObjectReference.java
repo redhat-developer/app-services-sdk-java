@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ObjectReference
@@ -33,8 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ObjectReference.JSON_PROPERTY_KIND,
   ObjectReference.JSON_PROPERTY_HREF
 })
-@JsonTypeName("ObjectReference")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ObjectReference {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -49,7 +50,6 @@ public class ObjectReference {
   }
 
   public ObjectReference id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -76,7 +76,6 @@ public class ObjectReference {
 
 
   public ObjectReference kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -103,7 +102,6 @@ public class ObjectReference {
 
 
   public ObjectReference href(String href) {
-    
     this.href = href;
     return this;
   }
@@ -129,6 +127,9 @@ public class ObjectReference {
   }
 
 
+  /**
+   * Return true if this ObjectReference object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

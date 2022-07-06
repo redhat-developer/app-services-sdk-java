@@ -15,6 +15,8 @@ package com.openshift.cloud.api.smartevents.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,7 +28,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ProcessorCatalogResponse
@@ -35,8 +37,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ProcessorCatalogResponse.JSON_PROPERTY_KIND,
   ProcessorCatalogResponse.JSON_PROPERTY_ITEMS
 })
-@JsonTypeName("ProcessorCatalogResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ProcessorCatalogResponse {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
@@ -48,7 +49,6 @@ public class ProcessorCatalogResponse {
   }
 
   public ProcessorCatalogResponse kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -75,7 +75,6 @@ public class ProcessorCatalogResponse {
 
 
   public ProcessorCatalogResponse items(List<ProcessorSchemaEntryResponse> items) {
-    
     this.items = items;
     return this;
   }
@@ -109,6 +108,9 @@ public class ProcessorCatalogResponse {
   }
 
 
+  /**
+   * Return true if this ProcessorCatalogResponse object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

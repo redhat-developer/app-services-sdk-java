@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -25,7 +27,7 @@ import com.openshift.cloud.api.connector.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * Error
@@ -38,8 +40,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Error.JSON_PROPERTY_REASON,
   Error.JSON_PROPERTY_OPERATION_ID
 })
-@JsonTypeName("Error")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Error {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -63,7 +64,6 @@ public class Error {
   }
 
   public Error id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -90,7 +90,6 @@ public class Error {
 
 
   public Error kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -117,7 +116,6 @@ public class Error {
 
 
   public Error href(String href) {
-    
     this.href = href;
     return this;
   }
@@ -144,7 +142,6 @@ public class Error {
 
 
   public Error code(String code) {
-    
     this.code = code;
     return this;
   }
@@ -171,7 +168,6 @@ public class Error {
 
 
   public Error reason(String reason) {
-    
     this.reason = reason;
     return this;
   }
@@ -198,7 +194,6 @@ public class Error {
 
 
   public Error operationId(String operationId) {
-    
     this.operationId = operationId;
     return this;
   }
@@ -224,6 +219,9 @@ public class Error {
   }
 
 
+  /**
+   * Return true if this Error object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

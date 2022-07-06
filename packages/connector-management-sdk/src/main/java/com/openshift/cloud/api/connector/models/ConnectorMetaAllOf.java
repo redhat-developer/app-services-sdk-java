@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorMetaAllOf
@@ -31,8 +33,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   ConnectorMetaAllOf.JSON_PROPERTY_RESOURCE_VERSION
 })
-@JsonTypeName("ConnectorMeta_allOf")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorMetaAllOf {
   public static final String JSON_PROPERTY_RESOURCE_VERSION = "resource_version";
   private Long resourceVersion;
@@ -41,7 +42,6 @@ public class ConnectorMetaAllOf {
   }
 
   public ConnectorMetaAllOf resourceVersion(Long resourceVersion) {
-    
     this.resourceVersion = resourceVersion;
     return this;
   }
@@ -67,6 +67,9 @@ public class ConnectorMetaAllOf {
   }
 
 
+  /**
+   * Return true if this ConnectorMeta_allOf object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -28,474 +30,220 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/**
- * Represents a connector type supported by the API
- */
-@ApiModel(description = "Represents a connector type supported by the API")
-@JsonPropertyOrder({
-  ConnectorType.JSON_PROPERTY_ID,
-  ConnectorType.JSON_PROPERTY_KIND,
-  ConnectorType.JSON_PROPERTY_HREF,
-  ConnectorType.JSON_PROPERTY_NAME,
-  ConnectorType.JSON_PROPERTY_VERSION,
-  ConnectorType.JSON_PROPERTY_CHANNELS,
-  ConnectorType.JSON_PROPERTY_DESCRIPTION,
-  ConnectorType.JSON_PROPERTY_ICON_HREF,
-  ConnectorType.JSON_PROPERTY_LABELS,
-  ConnectorType.JSON_PROPERTY_CAPABILITIES,
-  ConnectorType.JSON_PROPERTY_SCHEMA,
-  ConnectorType.JSON_PROPERTY_JSON_SCHEMA
-})
-@JsonTypeName("ConnectorType")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ConnectorType {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+import com.fasterxml.jackson.core.type.TypeReference;
 
-  public static final String JSON_PROPERTY_KIND = "kind";
-  private String kind;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 
-  public static final String JSON_PROPERTY_HREF = "href";
-  private String href;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import com.openshift.cloud.api.connector.invoker.JSON;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@JsonDeserialize(using = ConnectorType.ConnectorTypeDeserializer.class)
+@JsonSerialize(using = ConnectorType.ConnectorTypeSerializer.class)
+public class ConnectorType extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(ConnectorType.class.getName());
 
-  public static final String JSON_PROPERTY_VERSION = "version";
-  private String version;
+    public static class ConnectorTypeSerializer extends StdSerializer<ConnectorType> {
+        public ConnectorTypeSerializer(Class<ConnectorType> t) {
+            super(t);
+        }
 
-  public static final String JSON_PROPERTY_CHANNELS = "channels";
-  private List<Channel> channels = null;
+        public ConnectorTypeSerializer() {
+            this(null);
+        }
 
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
-
-  public static final String JSON_PROPERTY_ICON_HREF = "icon_href";
-  private String iconHref;
-
-  public static final String JSON_PROPERTY_LABELS = "labels";
-  private List<String> labels = null;
-
-  public static final String JSON_PROPERTY_CAPABILITIES = "capabilities";
-  private List<String> capabilities = null;
-
-  public static final String JSON_PROPERTY_SCHEMA = "schema";
-  private Object schema;
-
-  public static final String JSON_PROPERTY_JSON_SCHEMA = "json_schema";
-  private Object jsonSchema;
-
-  public ConnectorType() { 
-  }
-
-  public ConnectorType id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ConnectorType kind(String kind) {
-    
-    this.kind = kind;
-    return this;
-  }
-
-   /**
-   * Get kind
-   * @return kind
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getKind() {
-    return kind;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKind(String kind) {
-    this.kind = kind;
-  }
-
-
-  public ConnectorType href(String href) {
-    
-    this.href = href;
-    return this;
-  }
-
-   /**
-   * Get href
-   * @return href
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getHref() {
-    return href;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHref(String href) {
-    this.href = href;
-  }
-
-
-  public ConnectorType name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Name of the connector type.
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Name of the connector type.")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ConnectorType version(String version) {
-    
-    this.version = version;
-    return this;
-  }
-
-   /**
-   * Version of the connector type.
-   * @return version
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Version of the connector type.")
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
-
-  public ConnectorType channels(List<Channel> channels) {
-    
-    this.channels = channels;
-    return this;
-  }
-
-  public ConnectorType addChannelsItem(Channel channelsItem) {
-    if (this.channels == null) {
-      this.channels = new ArrayList<>();
+        @Override
+        public void serialize(ConnectorType value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
     }
-    this.channels.add(channelsItem);
-    return this;
-  }
 
-   /**
-   * Channels of the connector type.
-   * @return channels
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Channels of the connector type.")
-  @JsonProperty(JSON_PROPERTY_CHANNELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public static class ConnectorTypeDeserializer extends StdDeserializer<ConnectorType> {
+        public ConnectorTypeDeserializer() {
+            this(ConnectorType.class);
+        }
 
-  public List<Channel> getChannels() {
-    return channels;
-  }
+        public ConnectorTypeDeserializer(Class<?> vc) {
+            super(vc);
+        }
 
+        @Override
+        public ConnectorType deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+            Object deserialized = null;
+            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+            int match = 0;
+            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
+            // deserialize ConnectorTypeAllOf
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (ConnectorTypeAllOf.class.equals(Integer.class) || ConnectorTypeAllOf.class.equals(Long.class) || ConnectorTypeAllOf.class.equals(Float.class) || ConnectorTypeAllOf.class.equals(Double.class) || ConnectorTypeAllOf.class.equals(Boolean.class) || ConnectorTypeAllOf.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((ConnectorTypeAllOf.class.equals(Integer.class) || ConnectorTypeAllOf.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((ConnectorTypeAllOf.class.equals(Float.class) || ConnectorTypeAllOf.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (ConnectorTypeAllOf.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (ConnectorTypeAllOf.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(ConnectorTypeAllOf.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'ConnectorTypeAllOf'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'ConnectorTypeAllOf'", e);
+            }
 
-  @JsonProperty(JSON_PROPERTY_CHANNELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChannels(List<Channel> channels) {
-    this.channels = channels;
-  }
+            // deserialize ObjectReference
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (ObjectReference.class.equals(Integer.class) || ObjectReference.class.equals(Long.class) || ObjectReference.class.equals(Float.class) || ObjectReference.class.equals(Double.class) || ObjectReference.class.equals(Boolean.class) || ObjectReference.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((ObjectReference.class.equals(Integer.class) || ObjectReference.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((ObjectReference.class.equals(Float.class) || ObjectReference.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (ObjectReference.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (ObjectReference.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(ObjectReference.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'ObjectReference'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'ObjectReference'", e);
+            }
 
+            if (match == 1) {
+                ConnectorType ret = new ConnectorType();
+                ret.setActualInstance(deserialized);
+                return ret;
+            }
+            throw new IOException(String.format("Failed deserialization for ConnectorType: %d classes match result, expected 1", match));
+        }
 
-  public ConnectorType description(String description) {
-    
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * A description of the connector.
-   * @return description
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "A description of the connector.")
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public ConnectorType iconHref(String iconHref) {
-    
-    this.iconHref = iconHref;
-    return this;
-  }
-
-   /**
-   * URL to an icon of the connector.
-   * @return iconHref
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "URL to an icon of the connector.")
-  @JsonProperty(JSON_PROPERTY_ICON_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getIconHref() {
-    return iconHref;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ICON_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIconHref(String iconHref) {
-    this.iconHref = iconHref;
-  }
-
-
-  public ConnectorType labels(List<String> labels) {
-    
-    this.labels = labels;
-    return this;
-  }
-
-  public ConnectorType addLabelsItem(String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new ArrayList<>();
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public ConnectorType getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "ConnectorType cannot be null");
+        }
     }
-    this.labels.add(labelsItem);
-    return this;
-  }
 
-   /**
-   * Labels used to categorize the connector
-   * @return labels
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Labels used to categorize the connector")
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<>();
 
-  public List<String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(List<String> labels) {
-    this.labels = labels;
-  }
-
-
-  public ConnectorType capabilities(List<String> capabilities) {
-    
-    this.capabilities = capabilities;
-    return this;
-  }
-
-  public ConnectorType addCapabilitiesItem(String capabilitiesItem) {
-    if (this.capabilities == null) {
-      this.capabilities = new ArrayList<>();
+    public ConnectorType() {
+        super("oneOf", Boolean.FALSE);
     }
-    this.capabilities.add(capabilitiesItem);
-    return this;
-  }
 
-   /**
-   * The capabilities supported by the conenctor
-   * @return capabilities
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The capabilities supported by the conenctor")
-  @JsonProperty(JSON_PROPERTY_CAPABILITIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getCapabilities() {
-    return capabilities;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAPABILITIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapabilities(List<String> capabilities) {
-    this.capabilities = capabilities;
-  }
-
-
-  public ConnectorType schema(Object schema) {
-    
-    this.schema = schema;
-    return this;
-  }
-
-   /**
-   * A json schema that can be used to validate a ConnectorRequest connector field.
-   * @return schema
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "A json schema that can be used to validate a ConnectorRequest connector field.")
-  @JsonProperty(JSON_PROPERTY_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getSchema() {
-    return schema;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSchema(Object schema) {
-    this.schema = schema;
-  }
-
-
-  public ConnectorType jsonSchema(Object jsonSchema) {
-    
-    this.jsonSchema = jsonSchema;
-    return this;
-  }
-
-   /**
-   * A json schema that can be used to validate a ConnectorRequest connector field.
-   * @return jsonSchema
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "A json schema that can be used to validate a ConnectorRequest connector field.")
-  @JsonProperty(JSON_PROPERTY_JSON_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Object getJsonSchema() {
-    return jsonSchema;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_JSON_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setJsonSchema(Object jsonSchema) {
-    this.jsonSchema = jsonSchema;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ConnectorType(ConnectorTypeAllOf o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public ConnectorType(ObjectReference o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
     }
-    ConnectorType connectorType = (ConnectorType) o;
-    return Objects.equals(this.id, connectorType.id) &&
-        Objects.equals(this.kind, connectorType.kind) &&
-        Objects.equals(this.href, connectorType.href) &&
-        Objects.equals(this.name, connectorType.name) &&
-        Objects.equals(this.version, connectorType.version) &&
-        Objects.equals(this.channels, connectorType.channels) &&
-        Objects.equals(this.description, connectorType.description) &&
-        Objects.equals(this.iconHref, connectorType.iconHref) &&
-        Objects.equals(this.labels, connectorType.labels) &&
-        Objects.equals(this.capabilities, connectorType.capabilities) &&
-        Objects.equals(this.schema, connectorType.schema) &&
-        Objects.equals(this.jsonSchema, connectorType.jsonSchema);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, kind, href, name, version, channels, description, iconHref, labels, capabilities, schema, jsonSchema);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ConnectorType {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
-    sb.append("    href: ").append(toIndentedString(href)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("    channels: ").append(toIndentedString(channels)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    iconHref: ").append(toIndentedString(iconHref)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    capabilities: ").append(toIndentedString(capabilities)).append("\n");
-    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
-    sb.append("    jsonSchema: ").append(toIndentedString(jsonSchema)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    static {
+        schemas.put("ConnectorTypeAllOf", ConnectorTypeAllOf.class);
+        schemas.put("ObjectReference", ObjectReference.class);
+        JSON.registerDescendants(ConnectorType.class, Collections.unmodifiableMap(schemas));
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return ConnectorType.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * ConnectorTypeAllOf, ObjectReference
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(ConnectorTypeAllOf.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (JSON.isInstanceOf(ObjectReference.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be ConnectorTypeAllOf, ObjectReference");
+    }
+
+    /**
+     * Get the actual instance, which can be the following:
+     * ConnectorTypeAllOf, ObjectReference
+     *
+     * @return The actual instance (ConnectorTypeAllOf, ObjectReference)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ConnectorTypeAllOf`. If the actual instance is not `ConnectorTypeAllOf`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ConnectorTypeAllOf`
+     * @throws ClassCastException if the instance is not `ConnectorTypeAllOf`
+     */
+    public ConnectorTypeAllOf getConnectorTypeAllOf() throws ClassCastException {
+        return (ConnectorTypeAllOf)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `ObjectReference`. If the actual instance is not `ObjectReference`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `ObjectReference`
+     * @throws ClassCastException if the instance is not `ObjectReference`
+     */
+    public ObjectReference getObjectReference() throws ClassCastException {
+        return (ObjectReference)super.getActualInstance();
+    }
 
 }
 

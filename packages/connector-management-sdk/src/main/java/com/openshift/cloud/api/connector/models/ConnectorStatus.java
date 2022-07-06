@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +26,7 @@ import com.openshift.cloud.api.connector.models.ConnectorStatusStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorStatus
@@ -32,8 +34,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   ConnectorStatus.JSON_PROPERTY_STATUS
 })
-@JsonTypeName("ConnectorStatus")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorStatus {
   public static final String JSON_PROPERTY_STATUS = "status";
   private ConnectorStatusStatus status;
@@ -42,7 +43,6 @@ public class ConnectorStatus {
   }
 
   public ConnectorStatus status(ConnectorStatusStatus status) {
-    
     this.status = status;
     return this;
   }
@@ -68,6 +68,9 @@ public class ConnectorStatus {
   }
 
 
+  /**
+   * Return true if this ConnectorStatus object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

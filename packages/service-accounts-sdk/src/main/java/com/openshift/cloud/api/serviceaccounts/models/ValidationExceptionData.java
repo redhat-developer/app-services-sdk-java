@@ -15,6 +15,8 @@ package com.openshift.cloud.api.serviceaccounts.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ValidationExceptionData
@@ -36,8 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ValidationExceptionData.JSON_PROPERTY_ERROR,
   ValidationExceptionData.JSON_PROPERTY_ERROR_DESCRIPTION
 })
-@JsonTypeName("ValidationExceptionData")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ValidationExceptionData {
   public static final String JSON_PROPERTY_FIELDS = "fields";
   private Map<String, String> fields = null;
@@ -52,7 +53,6 @@ public class ValidationExceptionData {
   }
 
   public ValidationExceptionData fields(Map<String, String> fields) {
-    
     this.fields = fields;
     return this;
   }
@@ -87,7 +87,6 @@ public class ValidationExceptionData {
 
 
   public ValidationExceptionData error(String error) {
-    
     this.error = error;
     return this;
   }
@@ -114,7 +113,6 @@ public class ValidationExceptionData {
 
 
   public ValidationExceptionData errorDescription(String errorDescription) {
-    
     this.errorDescription = errorDescription;
     return this;
   }
@@ -140,6 +138,9 @@ public class ValidationExceptionData {
   }
 
 
+  /**
+   * Return true if this ValidationExceptionData object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

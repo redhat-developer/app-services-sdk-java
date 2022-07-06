@@ -15,6 +15,8 @@ package com.openshift.cloud.api.smartevents.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -33,7 +35,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ProcessorResponse
@@ -53,8 +55,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ProcessorResponse.JSON_PROPERTY_ACTION,
   ProcessorResponse.JSON_PROPERTY_SOURCE
 })
-@JsonTypeName("ProcessorResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ProcessorResponse {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
@@ -99,7 +100,6 @@ public class ProcessorResponse {
   }
 
   public ProcessorResponse kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -126,7 +126,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -153,7 +152,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -180,7 +178,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse href(String href) {
-    
     this.href = href;
     return this;
   }
@@ -207,7 +204,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse submittedAt(OffsetDateTime submittedAt) {
-    
     this.submittedAt = submittedAt;
     return this;
   }
@@ -234,7 +230,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse publishedAt(OffsetDateTime publishedAt) {
-    
     this.publishedAt = publishedAt;
     return this;
   }
@@ -261,7 +256,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse status(ManagedResourceStatus status) {
-    
     this.status = status;
     return this;
   }
@@ -288,7 +282,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse owner(String owner) {
-    
     this.owner = owner;
     return this;
   }
@@ -315,7 +308,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse type(ProcessorType type) {
-    
     this.type = type;
     return this;
   }
@@ -342,7 +334,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse filters(Set<BaseFilter> filters) {
-    
     this.filters = filters;
     return this;
   }
@@ -378,7 +369,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse transformationTemplate(String transformationTemplate) {
-    
     this.transformationTemplate = transformationTemplate;
     return this;
   }
@@ -405,7 +395,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse action(Action action) {
-    
     this.action = action;
     return this;
   }
@@ -432,7 +421,6 @@ public class ProcessorResponse {
 
 
   public ProcessorResponse source(Source source) {
-    
     this.source = source;
     return this;
   }
@@ -458,6 +446,9 @@ public class ProcessorResponse {
   }
 
 
+  /**
+   * Return true if this ProcessorResponse object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

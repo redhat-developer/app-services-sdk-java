@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ErrorAllOf
@@ -33,8 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ErrorAllOf.JSON_PROPERTY_REASON,
   ErrorAllOf.JSON_PROPERTY_OPERATION_ID
 })
-@JsonTypeName("Error_allOf")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ErrorAllOf {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
@@ -49,7 +50,6 @@ public class ErrorAllOf {
   }
 
   public ErrorAllOf code(String code) {
-    
     this.code = code;
     return this;
   }
@@ -76,7 +76,6 @@ public class ErrorAllOf {
 
 
   public ErrorAllOf reason(String reason) {
-    
     this.reason = reason;
     return this;
   }
@@ -103,7 +102,6 @@ public class ErrorAllOf {
 
 
   public ErrorAllOf operationId(String operationId) {
-    
     this.operationId = operationId;
     return this;
   }
@@ -129,6 +127,9 @@ public class ErrorAllOf {
   }
 
 
+  /**
+   * Return true if this Error_allOf object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

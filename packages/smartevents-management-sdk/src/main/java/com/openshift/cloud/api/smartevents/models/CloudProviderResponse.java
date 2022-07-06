@@ -15,6 +15,8 @@ package com.openshift.cloud.api.smartevents.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * CloudProviderResponse
@@ -36,8 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   CloudProviderResponse.JSON_PROPERTY_DISPLAY_NAME,
   CloudProviderResponse.JSON_PROPERTY_ENABLED
 })
-@JsonTypeName("CloudProviderResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CloudProviderResponse {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
@@ -61,7 +62,6 @@ public class CloudProviderResponse {
   }
 
   public CloudProviderResponse kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -88,7 +88,6 @@ public class CloudProviderResponse {
 
 
   public CloudProviderResponse id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -115,7 +114,6 @@ public class CloudProviderResponse {
 
 
   public CloudProviderResponse name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -142,7 +140,6 @@ public class CloudProviderResponse {
 
 
   public CloudProviderResponse href(String href) {
-    
     this.href = href;
     return this;
   }
@@ -169,7 +166,6 @@ public class CloudProviderResponse {
 
 
   public CloudProviderResponse displayName(String displayName) {
-    
     this.displayName = displayName;
     return this;
   }
@@ -196,7 +192,6 @@ public class CloudProviderResponse {
 
 
   public CloudProviderResponse enabled(Boolean enabled) {
-    
     this.enabled = enabled;
     return this;
   }
@@ -222,6 +217,9 @@ public class CloudProviderResponse {
   }
 
 
+  /**
+   * Return true if this CloudProviderResponse object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

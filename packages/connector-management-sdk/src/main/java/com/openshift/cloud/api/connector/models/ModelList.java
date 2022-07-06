@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ModelList
@@ -34,8 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ModelList.JSON_PROPERTY_SIZE,
   ModelList.JSON_PROPERTY_TOTAL
 })
-@JsonTypeName("List")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ModelList {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
@@ -53,7 +54,6 @@ public class ModelList {
   }
 
   public ModelList kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -80,7 +80,6 @@ public class ModelList {
 
 
   public ModelList page(Integer page) {
-    
     this.page = page;
     return this;
   }
@@ -107,7 +106,6 @@ public class ModelList {
 
 
   public ModelList size(Integer size) {
-    
     this.size = size;
     return this;
   }
@@ -134,7 +132,6 @@ public class ModelList {
 
 
   public ModelList total(Integer total) {
-    
     this.total = total;
     return this;
   }
@@ -160,6 +157,9 @@ public class ModelList {
   }
 
 
+  /**
+   * Return true if this List object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

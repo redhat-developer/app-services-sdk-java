@@ -13,7 +13,7 @@ This is the API documentation for Service Accounts
 
 Building the API client library requires:
 
-1. Java 1.8+
+1. Java 11+
 2. Maven/Gradle
 
 ## Installation
@@ -50,14 +50,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-  repositories {
-    mavenCentral()     // Needed if the 'service-accounts-sdk' jar has been published to maven central.
-    mavenLocal()       // Needed if the 'service-accounts-sdk' jar has been published to the local maven repo.
-  }
-
-  dependencies {
-     implementation "com.redhat.cloud:service-accounts-sdk:5.0.19"
-  }
+compile "com.redhat.cloud:service-accounts-sdk:5.0.19"
 ```
 
 ### Others
@@ -80,7 +73,6 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 import com.openshift.cloud.api.serviceaccounts.invoker.*;
-import com.openshift.cloud.api.serviceaccounts.invoker.auth.*;
 import com.openshift.cloud.api.serviceaccounts.models.*;
 import com.openshift.cloud.api.serviceaccounts.ServiceAccountsApi;
 
@@ -88,16 +80,8 @@ public class ServiceAccountsApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://sso.redhat.com/auth/realms/redhat-external");
-        
-        // Configure OAuth2 access token for authorization: authFlow
-        OAuth authFlow = (OAuth) defaultClient.getAuthentication("authFlow");
-        authFlow.setAccessToken("YOUR ACCESS TOKEN");
-
-        // Configure OAuth2 access token for authorization: serviceAccounts
-        OAuth serviceAccounts = (OAuth) defaultClient.getAuthentication("serviceAccounts");
-        serviceAccounts.setAccessToken("YOUR ACCESS TOKEN");
-
+        // Configure clients using the `defaultClient` object, such as
+        // overriding the host and port, timeout, etc.
         ServiceAccountsApi apiInstance = new ServiceAccountsApi(defaultClient);
         ServiceAccountCreateRequestData serviceAccountCreateRequestData = new ServiceAccountCreateRequestData(); // ServiceAccountCreateRequestData | 'name' and 'description' of the service account
         try {
@@ -122,11 +106,17 @@ All URIs are relative to *https://sso.redhat.com/auth/realms/redhat-external*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ServiceAccountsApi* | [**createServiceAccount**](docs/ServiceAccountsApi.md#createServiceAccount) | **POST** /apis/service_accounts/v1 | Create service account
+*ServiceAccountsApi* | [**createServiceAccountWithHttpInfo**](docs/ServiceAccountsApi.md#createServiceAccountWithHttpInfo) | **POST** /apis/service_accounts/v1 | Create service account
 *ServiceAccountsApi* | [**deleteServiceAccount**](docs/ServiceAccountsApi.md#deleteServiceAccount) | **DELETE** /apis/service_accounts/v1/{id} | Delete service account by id
+*ServiceAccountsApi* | [**deleteServiceAccountWithHttpInfo**](docs/ServiceAccountsApi.md#deleteServiceAccountWithHttpInfo) | **DELETE** /apis/service_accounts/v1/{id} | Delete service account by id
 *ServiceAccountsApi* | [**getServiceAccount**](docs/ServiceAccountsApi.md#getServiceAccount) | **GET** /apis/service_accounts/v1/{id} | Get service account by id
+*ServiceAccountsApi* | [**getServiceAccountWithHttpInfo**](docs/ServiceAccountsApi.md#getServiceAccountWithHttpInfo) | **GET** /apis/service_accounts/v1/{id} | Get service account by id
 *ServiceAccountsApi* | [**getServiceAccounts**](docs/ServiceAccountsApi.md#getServiceAccounts) | **GET** /apis/service_accounts/v1 | List all service accounts
+*ServiceAccountsApi* | [**getServiceAccountsWithHttpInfo**](docs/ServiceAccountsApi.md#getServiceAccountsWithHttpInfo) | **GET** /apis/service_accounts/v1 | List all service accounts
 *ServiceAccountsApi* | [**resetServiceAccountSecret**](docs/ServiceAccountsApi.md#resetServiceAccountSecret) | **POST** /apis/service_accounts/v1/{id}/resetSecret | Reset service account secret by id
+*ServiceAccountsApi* | [**resetServiceAccountSecretWithHttpInfo**](docs/ServiceAccountsApi.md#resetServiceAccountSecretWithHttpInfo) | **POST** /apis/service_accounts/v1/{id}/resetSecret | Reset service account secret by id
 *ServiceAccountsApi* | [**updateServiceAccount**](docs/ServiceAccountsApi.md#updateServiceAccount) | **PATCH** /apis/service_accounts/v1/{id} | Update service account
+*ServiceAccountsApi* | [**updateServiceAccountWithHttpInfo**](docs/ServiceAccountsApi.md#updateServiceAccountWithHttpInfo) | **PATCH** /apis/service_accounts/v1/{id} | Update service account
 
 
 ## Documentation for Models
@@ -171,6 +161,7 @@ Authentication schemes defined for the API:
 ## Recommendation
 
 It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
+However, the instances of the api clients created from the `ApiClient` are thread-safe and can be re-used.
 
 ## Author
 

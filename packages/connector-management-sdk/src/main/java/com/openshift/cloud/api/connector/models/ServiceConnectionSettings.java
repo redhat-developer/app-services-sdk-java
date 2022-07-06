@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ServiceConnectionSettings
@@ -32,8 +34,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ServiceConnectionSettings.JSON_PROPERTY_ID,
   ServiceConnectionSettings.JSON_PROPERTY_URL
 })
-@JsonTypeName("ServiceConnectionSettings")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ServiceConnectionSettings {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -45,7 +46,6 @@ public class ServiceConnectionSettings {
   }
 
   public ServiceConnectionSettings id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -72,7 +72,6 @@ public class ServiceConnectionSettings {
 
 
   public ServiceConnectionSettings url(String url) {
-    
     this.url = url;
     return this;
   }
@@ -98,6 +97,9 @@ public class ServiceConnectionSettings {
   }
 
 
+  /**
+   * Return true if this ServiceConnectionSettings object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

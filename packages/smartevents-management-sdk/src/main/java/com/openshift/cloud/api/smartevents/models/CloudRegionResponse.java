@@ -15,6 +15,8 @@ package com.openshift.cloud.api.smartevents.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -23,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * CloudRegionResponse
@@ -34,8 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   CloudRegionResponse.JSON_PROPERTY_DISPLAY_NAME,
   CloudRegionResponse.JSON_PROPERTY_ENABLED
 })
-@JsonTypeName("CloudRegionResponse")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CloudRegionResponse {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
@@ -53,7 +54,6 @@ public class CloudRegionResponse {
   }
 
   public CloudRegionResponse kind(String kind) {
-    
     this.kind = kind;
     return this;
   }
@@ -80,7 +80,6 @@ public class CloudRegionResponse {
 
 
   public CloudRegionResponse name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -107,7 +106,6 @@ public class CloudRegionResponse {
 
 
   public CloudRegionResponse displayName(String displayName) {
-    
     this.displayName = displayName;
     return this;
   }
@@ -134,7 +132,6 @@ public class CloudRegionResponse {
 
 
   public CloudRegionResponse enabled(Boolean enabled) {
-    
     this.enabled = enabled;
     return this;
   }
@@ -160,6 +157,9 @@ public class CloudRegionResponse {
   }
 
 
+  /**
+   * Return true if this CloudRegionResponse object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -26,7 +28,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorTypeAllOf
@@ -42,8 +44,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorTypeAllOf.JSON_PROPERTY_SCHEMA,
   ConnectorTypeAllOf.JSON_PROPERTY_JSON_SCHEMA
 })
-@JsonTypeName("ConnectorType_allOf")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorTypeAllOf {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -76,7 +77,6 @@ public class ConnectorTypeAllOf {
   }
 
   public ConnectorTypeAllOf name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -103,7 +103,6 @@ public class ConnectorTypeAllOf {
 
 
   public ConnectorTypeAllOf version(String version) {
-    
     this.version = version;
     return this;
   }
@@ -130,7 +129,6 @@ public class ConnectorTypeAllOf {
 
 
   public ConnectorTypeAllOf channels(List<Channel> channels) {
-    
     this.channels = channels;
     return this;
   }
@@ -165,7 +163,6 @@ public class ConnectorTypeAllOf {
 
 
   public ConnectorTypeAllOf description(String description) {
-    
     this.description = description;
     return this;
   }
@@ -192,7 +189,6 @@ public class ConnectorTypeAllOf {
 
 
   public ConnectorTypeAllOf iconHref(String iconHref) {
-    
     this.iconHref = iconHref;
     return this;
   }
@@ -219,7 +215,6 @@ public class ConnectorTypeAllOf {
 
 
   public ConnectorTypeAllOf labels(List<String> labels) {
-    
     this.labels = labels;
     return this;
   }
@@ -254,7 +249,6 @@ public class ConnectorTypeAllOf {
 
 
   public ConnectorTypeAllOf capabilities(List<String> capabilities) {
-    
     this.capabilities = capabilities;
     return this;
   }
@@ -289,7 +283,6 @@ public class ConnectorTypeAllOf {
 
 
   public ConnectorTypeAllOf schema(Object schema) {
-    
     this.schema = schema;
     return this;
   }
@@ -316,7 +309,6 @@ public class ConnectorTypeAllOf {
 
 
   public ConnectorTypeAllOf jsonSchema(Object jsonSchema) {
-    
     this.jsonSchema = jsonSchema;
     return this;
   }
@@ -342,6 +334,9 @@ public class ConnectorTypeAllOf {
   }
 
 
+  /**
+   * Return true if this ConnectorType_allOf object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -30,7 +32,7 @@ import com.openshift.cloud.api.connector.models.ServiceAccount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * ConnectorRequest
@@ -46,8 +48,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorRequest.JSON_PROPERTY_SCHEMA_REGISTRY,
   ConnectorRequest.JSON_PROPERTY_CONNECTOR
 })
-@JsonTypeName("ConnectorRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -80,7 +81,6 @@ public class ConnectorRequest {
   }
 
   public ConnectorRequest name(String name) {
-    
     this.name = name;
     return this;
   }
@@ -107,7 +107,6 @@ public class ConnectorRequest {
 
 
   public ConnectorRequest connectorTypeId(String connectorTypeId) {
-    
     this.connectorTypeId = connectorTypeId;
     return this;
   }
@@ -134,7 +133,6 @@ public class ConnectorRequest {
 
 
   public ConnectorRequest namespaceId(String namespaceId) {
-    
     this.namespaceId = namespaceId;
     return this;
   }
@@ -161,7 +159,6 @@ public class ConnectorRequest {
 
 
   public ConnectorRequest channel(Channel channel) {
-    
     this.channel = channel;
     return this;
   }
@@ -188,7 +185,6 @@ public class ConnectorRequest {
 
 
   public ConnectorRequest desiredState(ConnectorDesiredState desiredState) {
-    
     this.desiredState = desiredState;
     return this;
   }
@@ -215,7 +211,6 @@ public class ConnectorRequest {
 
 
   public ConnectorRequest kafka(KafkaConnectionSettings kafka) {
-    
     this.kafka = kafka;
     return this;
   }
@@ -242,7 +237,6 @@ public class ConnectorRequest {
 
 
   public ConnectorRequest serviceAccount(ServiceAccount serviceAccount) {
-    
     this.serviceAccount = serviceAccount;
     return this;
   }
@@ -269,7 +263,6 @@ public class ConnectorRequest {
 
 
   public ConnectorRequest schemaRegistry(SchemaRegistryConnectionSettings schemaRegistry) {
-    
     this.schemaRegistry = schemaRegistry;
     return this;
   }
@@ -296,7 +289,6 @@ public class ConnectorRequest {
 
 
   public ConnectorRequest connector(Object connector) {
-    
     this.connector = connector;
     return this;
   }
@@ -322,6 +314,9 @@ public class ConnectorRequest {
   }
 
 
+  /**
+   * Return true if this ConnectorRequest object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {

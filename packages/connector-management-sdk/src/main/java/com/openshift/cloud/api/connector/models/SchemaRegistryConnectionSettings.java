@@ -15,6 +15,8 @@ package com.openshift.cloud.api.connector.models;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +26,7 @@ import com.openshift.cloud.api.connector.models.ServiceConnectionSettings;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+
 
 /**
  * Holds the configuration to connect to a Schem Registry Instance.
@@ -34,8 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   SchemaRegistryConnectionSettings.JSON_PROPERTY_ID,
   SchemaRegistryConnectionSettings.JSON_PROPERTY_URL
 })
-@JsonTypeName("SchemaRegistryConnectionSettings")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
+@javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SchemaRegistryConnectionSettings {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
@@ -47,7 +48,6 @@ public class SchemaRegistryConnectionSettings {
   }
 
   public SchemaRegistryConnectionSettings id(String id) {
-    
     this.id = id;
     return this;
   }
@@ -74,7 +74,6 @@ public class SchemaRegistryConnectionSettings {
 
 
   public SchemaRegistryConnectionSettings url(String url) {
-    
     this.url = url;
     return this;
   }
@@ -100,6 +99,9 @@ public class SchemaRegistryConnectionSettings {
   }
 
 
+  /**
+   * Return true if this SchemaRegistryConnectionSettings object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
