@@ -38,6 +38,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import java.util.concurrent.CompletableFuture;
+
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CloudProvidersApi {
   private final HttpClient memberVarHttpClient;
@@ -62,10 +64,9 @@ public class CloudProvidersApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
+  private ApiException getApiException(String operationId, HttpResponse<String> response) {
+    String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
+    return new ApiException(response.statusCode(), message, response.headers(), response.body());
   }
 
   private String formatExceptionMessage(String operationId, int statusCode, String body) {
@@ -79,48 +80,66 @@ public class CloudProvidersApi {
    * Get Cloud Provider.
    * Get details of the Cloud Provider specified by id.
    * @param id  (required)
-   * @return CloudProviderListResponse
+   * @return CompletableFuture&lt;CloudProviderListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public CloudProviderListResponse cloudProviderAPIGetCloudProvider(String id) throws ApiException {
-    ApiResponse<CloudProviderListResponse> localVarResponse = cloudProviderAPIGetCloudProviderWithHttpInfo(id);
-    return localVarResponse.getData();
+  public CompletableFuture<CloudProviderListResponse> cloudProviderAPIGetCloudProvider(String id) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = cloudProviderAPIGetCloudProviderRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("cloudProviderAPIGetCloudProvider", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CloudProviderListResponse>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Get Cloud Provider.
    * Get details of the Cloud Provider specified by id.
    * @param id  (required)
-   * @return ApiResponse&lt;CloudProviderListResponse&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;CloudProviderListResponse&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CloudProviderListResponse> cloudProviderAPIGetCloudProviderWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = cloudProviderAPIGetCloudProviderRequestBuilder(id);
+  public CompletableFuture<ApiResponse<CloudProviderListResponse>> cloudProviderAPIGetCloudProviderWithHttpInfo(String id) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = cloudProviderAPIGetCloudProviderRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("cloudProviderAPIGetCloudProvider", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("cloudProviderAPIGetCloudProvider", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<CloudProviderListResponse>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CloudProviderListResponse>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<CloudProviderListResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CloudProviderListResponse>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -154,12 +173,30 @@ public class CloudProvidersApi {
    * @param id  (required)
    * @param page  (optional, default to 0)
    * @param size  (optional, default to 100)
-   * @return CloudRegionListResponse
+   * @return CompletableFuture&lt;CloudRegionListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public CloudRegionListResponse cloudProviderAPIListCloudProviderRegions(String id, Integer page, Integer size) throws ApiException {
-    ApiResponse<CloudRegionListResponse> localVarResponse = cloudProviderAPIListCloudProviderRegionsWithHttpInfo(id, page, size);
-    return localVarResponse.getData();
+  public CompletableFuture<CloudRegionListResponse> cloudProviderAPIListCloudProviderRegions(String id, Integer page, Integer size) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = cloudProviderAPIListCloudProviderRegionsRequestBuilder(id, page, size);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("cloudProviderAPIListCloudProviderRegions", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CloudRegionListResponse>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -168,36 +205,36 @@ public class CloudProvidersApi {
    * @param id  (required)
    * @param page  (optional, default to 0)
    * @param size  (optional, default to 100)
-   * @return ApiResponse&lt;CloudRegionListResponse&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;CloudRegionListResponse&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CloudRegionListResponse> cloudProviderAPIListCloudProviderRegionsWithHttpInfo(String id, Integer page, Integer size) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = cloudProviderAPIListCloudProviderRegionsRequestBuilder(id, page, size);
+  public CompletableFuture<ApiResponse<CloudRegionListResponse>> cloudProviderAPIListCloudProviderRegionsWithHttpInfo(String id, Integer page, Integer size) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = cloudProviderAPIListCloudProviderRegionsRequestBuilder(id, page, size);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("cloudProviderAPIListCloudProviderRegions", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("cloudProviderAPIListCloudProviderRegions", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<CloudRegionListResponse>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CloudRegionListResponse>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<CloudRegionListResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CloudRegionListResponse>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -240,12 +277,30 @@ public class CloudProvidersApi {
    * Returns the list of supported Cloud Providers.
    * @param page  (optional, default to 0)
    * @param size  (optional, default to 100)
-   * @return CloudProviderListResponse
+   * @return CompletableFuture&lt;CloudProviderListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public CloudProviderListResponse cloudProviderAPIListCloudProviders(Integer page, Integer size) throws ApiException {
-    ApiResponse<CloudProviderListResponse> localVarResponse = cloudProviderAPIListCloudProvidersWithHttpInfo(page, size);
-    return localVarResponse.getData();
+  public CompletableFuture<CloudProviderListResponse> cloudProviderAPIListCloudProviders(Integer page, Integer size) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = cloudProviderAPIListCloudProvidersRequestBuilder(page, size);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("cloudProviderAPIListCloudProviders", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CloudProviderListResponse>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -253,36 +308,36 @@ public class CloudProvidersApi {
    * Returns the list of supported Cloud Providers.
    * @param page  (optional, default to 0)
    * @param size  (optional, default to 100)
-   * @return ApiResponse&lt;CloudProviderListResponse&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;CloudProviderListResponse&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CloudProviderListResponse> cloudProviderAPIListCloudProvidersWithHttpInfo(Integer page, Integer size) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = cloudProviderAPIListCloudProvidersRequestBuilder(page, size);
+  public CompletableFuture<ApiResponse<CloudProviderListResponse>> cloudProviderAPIListCloudProvidersWithHttpInfo(Integer page, Integer size) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = cloudProviderAPIListCloudProvidersRequestBuilder(page, size);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("cloudProviderAPIListCloudProviders", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("cloudProviderAPIListCloudProviders", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<CloudProviderListResponse>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CloudProviderListResponse>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<CloudProviderListResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<CloudProviderListResponse>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 

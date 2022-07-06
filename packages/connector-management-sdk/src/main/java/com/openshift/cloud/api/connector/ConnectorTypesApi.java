@@ -39,6 +39,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import java.util.concurrent.CompletableFuture;
+
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorTypesApi {
   private final HttpClient memberVarHttpClient;
@@ -63,10 +65,9 @@ public class ConnectorTypesApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
+  private ApiException getApiException(String operationId, HttpResponse<String> response) {
+    String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
+    return new ApiException(response.statusCode(), message, response.headers(), response.body());
   }
 
   private String formatExceptionMessage(String operationId, int statusCode, String body) {
@@ -80,48 +81,66 @@ public class ConnectorTypesApi {
    * Get a connector type by id
    * Get a connector type by id
    * @param connectorTypeId The id of the connector type (required)
-   * @return ConnectorType
+   * @return CompletableFuture&lt;ConnectorType&gt;
    * @throws ApiException if fails to make API call
    */
-  public ConnectorType getConnectorTypeByID(String connectorTypeId) throws ApiException {
-    ApiResponse<ConnectorType> localVarResponse = getConnectorTypeByIDWithHttpInfo(connectorTypeId);
-    return localVarResponse.getData();
+  public CompletableFuture<ConnectorType> getConnectorTypeByID(String connectorTypeId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = getConnectorTypeByIDRequestBuilder(connectorTypeId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorTypeByID", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorType>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Get a connector type by id
    * Get a connector type by id
    * @param connectorTypeId The id of the connector type (required)
-   * @return ApiResponse&lt;ConnectorType&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;ConnectorType&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ConnectorType> getConnectorTypeByIDWithHttpInfo(String connectorTypeId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getConnectorTypeByIDRequestBuilder(connectorTypeId);
+  public CompletableFuture<ApiResponse<ConnectorType>> getConnectorTypeByIDWithHttpInfo(String connectorTypeId) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = getConnectorTypeByIDRequestBuilder(connectorTypeId);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("getConnectorTypeByID", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorTypeByID", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ConnectorType>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorType>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<ConnectorType>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorType>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -156,12 +175,30 @@ public class ConnectorTypesApi {
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;ConnectorType&#x60; fields. For example, to return all Connector types ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Connector types ordered by their name _and_ version, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, version asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
    * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of a SQL statement. Allowed fields in the search are &#x60;name&#x60;, &#x60;description&#x60;, &#x60;version&#x60;, &#x60;label&#x60;, and &#x60;channel&#x60;. Allowed operators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed conjunctive operators are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name &#x60;aws-sqs-source&#x60; and the channel &#x60;stable&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; aws-sqs-source and channel &#x3D; stable &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like aws%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
-   * @return ConnectorTypeList
+   * @return CompletableFuture&lt;ConnectorTypeList&gt;
    * @throws ApiException if fails to make API call
    */
-  public ConnectorTypeList getConnectorTypes(String page, String size, String orderBy, String search) throws ApiException {
-    ApiResponse<ConnectorTypeList> localVarResponse = getConnectorTypesWithHttpInfo(page, size, orderBy, search);
-    return localVarResponse.getData();
+  public CompletableFuture<ConnectorTypeList> getConnectorTypes(String page, String size, String orderBy, String search) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = getConnectorTypesRequestBuilder(page, size, orderBy, search);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorTypes", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorTypeList>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -171,36 +208,36 @@ public class ConnectorTypesApi {
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;ConnectorType&#x60; fields. For example, to return all Connector types ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Connector types ordered by their name _and_ version, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, version asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
    * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of a SQL statement. Allowed fields in the search are &#x60;name&#x60;, &#x60;description&#x60;, &#x60;version&#x60;, &#x60;label&#x60;, and &#x60;channel&#x60;. Allowed operators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed conjunctive operators are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name &#x60;aws-sqs-source&#x60; and the channel &#x60;stable&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; aws-sqs-source and channel &#x3D; stable &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like aws%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
-   * @return ApiResponse&lt;ConnectorTypeList&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;ConnectorTypeList&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ConnectorTypeList> getConnectorTypesWithHttpInfo(String page, String size, String orderBy, String search) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getConnectorTypesRequestBuilder(page, size, orderBy, search);
+  public CompletableFuture<ApiResponse<ConnectorTypeList>> getConnectorTypesWithHttpInfo(String page, String size, String orderBy, String search) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = getConnectorTypesRequestBuilder(page, size, orderBy, search);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("getConnectorTypes", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorTypes", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ConnectorTypeList>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorTypeList>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<ConnectorTypeList>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorTypeList>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 

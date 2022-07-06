@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## getConnectorTypeByID
 
-> ConnectorType getConnectorTypeByID(connectorTypeId)
+> CompletableFuture<ConnectorType> getConnectorTypeByID(connectorTypeId)
 
 Get a connector type by id
 
@@ -29,6 +29,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorTypesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -42,8 +43,8 @@ public class Example {
         ConnectorTypesApi apiInstance = new ConnectorTypesApi(defaultClient);
         String connectorTypeId = "connectorTypeId_example"; // String | The id of the connector type
         try {
-            ConnectorType result = apiInstance.getConnectorTypeByID(connectorTypeId);
-            System.out.println(result);
+            CompletableFuture<ConnectorType> result = apiInstance.getConnectorTypeByID(connectorTypeId);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorTypesApi#getConnectorTypeByID");
             System.err.println("Status code: " + e.getCode());
@@ -64,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorType**](ConnectorType.md)
+CompletableFuture<[**ConnectorType**](ConnectorType.md)>
 
 
 ### Authorization
@@ -87,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## getConnectorTypeByIDWithHttpInfo
 
-> ApiResponse<ConnectorType> getConnectorTypeByID getConnectorTypeByIDWithHttpInfo(connectorTypeId)
+> CompletableFuture<ApiResponse<ConnectorType>> getConnectorTypeByID getConnectorTypeByIDWithHttpInfo(connectorTypeId)
 
 Get a connector type by id
 
@@ -104,6 +105,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorTypesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -117,10 +119,17 @@ public class Example {
         ConnectorTypesApi apiInstance = new ConnectorTypesApi(defaultClient);
         String connectorTypeId = "connectorTypeId_example"; // String | The id of the connector type
         try {
-            ApiResponse<ConnectorType> response = apiInstance.getConnectorTypeByIDWithHttpInfo(connectorTypeId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorType>> response = apiInstance.getConnectorTypeByIDWithHttpInfo(connectorTypeId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorTypesApi#getConnectorTypeByID");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorTypesApi#getConnectorTypeByID");
             System.err.println("Status code: " + e.getCode());
@@ -141,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorType**](ConnectorType.md)>
+CompletableFuture<ApiResponse<[**ConnectorType**](ConnectorType.md)>>
 
 
 ### Authorization
@@ -165,7 +174,7 @@ ApiResponse<[**ConnectorType**](ConnectorType.md)>
 
 ## getConnectorTypes
 
-> ConnectorTypeList getConnectorTypes(page, size, orderBy, search)
+> CompletableFuture<ConnectorTypeList> getConnectorTypes(page, size, orderBy, search)
 
 Returns a list of connector types
 
@@ -181,6 +190,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorTypesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -197,8 +207,8 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ConnectorTypeList result = apiInstance.getConnectorTypes(page, size, orderBy, search);
-            System.out.println(result);
+            CompletableFuture<ConnectorTypeList> result = apiInstance.getConnectorTypes(page, size, orderBy, search);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorTypesApi#getConnectorTypes");
             System.err.println("Status code: " + e.getCode());
@@ -222,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorTypeList**](ConnectorTypeList.md)
+CompletableFuture<[**ConnectorTypeList**](ConnectorTypeList.md)>
 
 
 ### Authorization
@@ -243,7 +253,7 @@ Name | Type | Description  | Notes
 
 ## getConnectorTypesWithHttpInfo
 
-> ApiResponse<ConnectorTypeList> getConnectorTypes getConnectorTypesWithHttpInfo(page, size, orderBy, search)
+> CompletableFuture<ApiResponse<ConnectorTypeList>> getConnectorTypes getConnectorTypesWithHttpInfo(page, size, orderBy, search)
 
 Returns a list of connector types
 
@@ -260,6 +270,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorTypesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -276,10 +287,17 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ApiResponse<ConnectorTypeList> response = apiInstance.getConnectorTypesWithHttpInfo(page, size, orderBy, search);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorTypeList>> response = apiInstance.getConnectorTypesWithHttpInfo(page, size, orderBy, search);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorTypesApi#getConnectorTypes");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorTypesApi#getConnectorTypes");
             System.err.println("Status code: " + e.getCode());
@@ -303,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorTypeList**](ConnectorTypeList.md)>
+CompletableFuture<ApiResponse<[**ConnectorTypeList**](ConnectorTypeList.md)>>
 
 
 ### Authorization

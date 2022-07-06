@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## createConnector
 
-> Connector createConnector(async, connectorRequest)
+> CompletableFuture<Connector> createConnector(async, connectorRequest)
 
 Create a new connector
 
@@ -35,6 +35,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -49,8 +50,8 @@ public class Example {
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
         ConnectorRequest connectorRequest = new ConnectorRequest(); // ConnectorRequest | Connector data
         try {
-            Connector result = apiInstance.createConnector(async, connectorRequest);
-            System.out.println(result);
+            CompletableFuture<Connector> result = apiInstance.createConnector(async, connectorRequest);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#createConnector");
             System.err.println("Status code: " + e.getCode());
@@ -72,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Connector**](Connector.md)
+CompletableFuture<[**Connector**](Connector.md)>
 
 
 ### Authorization
@@ -95,7 +96,7 @@ Name | Type | Description  | Notes
 
 ## createConnectorWithHttpInfo
 
-> ApiResponse<Connector> createConnector createConnectorWithHttpInfo(async, connectorRequest)
+> CompletableFuture<ApiResponse<Connector>> createConnector createConnectorWithHttpInfo(async, connectorRequest)
 
 Create a new connector
 
@@ -112,6 +113,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -126,10 +128,17 @@ public class Example {
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
         ConnectorRequest connectorRequest = new ConnectorRequest(); // ConnectorRequest | Connector data
         try {
-            ApiResponse<Connector> response = apiInstance.createConnectorWithHttpInfo(async, connectorRequest);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<Connector>> response = apiInstance.createConnectorWithHttpInfo(async, connectorRequest);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorsApi#createConnector");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#createConnector");
             System.err.println("Status code: " + e.getCode());
@@ -151,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**Connector**](Connector.md)>
+CompletableFuture<ApiResponse<[**Connector**](Connector.md)>>
 
 
 ### Authorization
@@ -175,7 +184,7 @@ ApiResponse<[**Connector**](Connector.md)>
 
 ## deleteConnector
 
-> Error deleteConnector(id)
+> CompletableFuture<Error> deleteConnector(id)
 
 Delete a connector
 
@@ -191,6 +200,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -204,8 +214,8 @@ public class Example {
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         String id = "id_example"; // String | The ID of record
         try {
-            Error result = apiInstance.deleteConnector(id);
-            System.out.println(result);
+            CompletableFuture<Error> result = apiInstance.deleteConnector(id);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#deleteConnector");
             System.err.println("Status code: " + e.getCode());
@@ -226,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Error**](Error.md)
+CompletableFuture<[**Error**](Error.md)>
 
 
 ### Authorization
@@ -248,7 +258,7 @@ Name | Type | Description  | Notes
 
 ## deleteConnectorWithHttpInfo
 
-> ApiResponse<Error> deleteConnector deleteConnectorWithHttpInfo(id)
+> CompletableFuture<ApiResponse<Error>> deleteConnector deleteConnectorWithHttpInfo(id)
 
 Delete a connector
 
@@ -265,6 +275,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -278,10 +289,17 @@ public class Example {
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         String id = "id_example"; // String | The ID of record
         try {
-            ApiResponse<Error> response = apiInstance.deleteConnectorWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<Error>> response = apiInstance.deleteConnectorWithHttpInfo(id);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorsApi#deleteConnector");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#deleteConnector");
             System.err.println("Status code: " + e.getCode());
@@ -302,7 +320,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**Error**](Error.md)>
+CompletableFuture<ApiResponse<[**Error**](Error.md)>>
 
 
 ### Authorization
@@ -325,7 +343,7 @@ ApiResponse<[**Error**](Error.md)>
 
 ## getConnector
 
-> Connector getConnector(id)
+> CompletableFuture<Connector> getConnector(id)
 
 Get a connector
 
@@ -341,6 +359,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -354,8 +373,8 @@ public class Example {
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         String id = "id_example"; // String | The ID of record
         try {
-            Connector result = apiInstance.getConnector(id);
-            System.out.println(result);
+            CompletableFuture<Connector> result = apiInstance.getConnector(id);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#getConnector");
             System.err.println("Status code: " + e.getCode());
@@ -376,7 +395,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Connector**](Connector.md)
+CompletableFuture<[**Connector**](Connector.md)>
 
 
 ### Authorization
@@ -399,7 +418,7 @@ Name | Type | Description  | Notes
 
 ## getConnectorWithHttpInfo
 
-> ApiResponse<Connector> getConnector getConnectorWithHttpInfo(id)
+> CompletableFuture<ApiResponse<Connector>> getConnector getConnectorWithHttpInfo(id)
 
 Get a connector
 
@@ -416,6 +435,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -429,10 +449,17 @@ public class Example {
         ConnectorsApi apiInstance = new ConnectorsApi(defaultClient);
         String id = "id_example"; // String | The ID of record
         try {
-            ApiResponse<Connector> response = apiInstance.getConnectorWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<Connector>> response = apiInstance.getConnectorWithHttpInfo(id);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorsApi#getConnector");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#getConnector");
             System.err.println("Status code: " + e.getCode());
@@ -453,7 +480,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**Connector**](Connector.md)>
+CompletableFuture<ApiResponse<[**Connector**](Connector.md)>>
 
 
 ### Authorization
@@ -477,7 +504,7 @@ ApiResponse<[**Connector**](Connector.md)>
 
 ## listConnectors
 
-> ConnectorList listConnectors(page, size, orderBy, search)
+> CompletableFuture<ConnectorList> listConnectors(page, size, orderBy, search)
 
 Returns a list of connector types
 
@@ -493,6 +520,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -509,8 +537,8 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ConnectorList result = apiInstance.listConnectors(page, size, orderBy, search);
-            System.out.println(result);
+            CompletableFuture<ConnectorList> result = apiInstance.listConnectors(page, size, orderBy, search);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#listConnectors");
             System.err.println("Status code: " + e.getCode());
@@ -534,7 +562,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorList**](ConnectorList.md)
+CompletableFuture<[**ConnectorList**](ConnectorList.md)>
 
 
 ### Authorization
@@ -555,7 +583,7 @@ Name | Type | Description  | Notes
 
 ## listConnectorsWithHttpInfo
 
-> ApiResponse<ConnectorList> listConnectors listConnectorsWithHttpInfo(page, size, orderBy, search)
+> CompletableFuture<ApiResponse<ConnectorList>> listConnectors listConnectorsWithHttpInfo(page, size, orderBy, search)
 
 Returns a list of connector types
 
@@ -572,6 +600,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -588,10 +617,17 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ApiResponse<ConnectorList> response = apiInstance.listConnectorsWithHttpInfo(page, size, orderBy, search);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorList>> response = apiInstance.listConnectorsWithHttpInfo(page, size, orderBy, search);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorsApi#listConnectors");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#listConnectors");
             System.err.println("Status code: " + e.getCode());
@@ -615,7 +651,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorList**](ConnectorList.md)>
+CompletableFuture<ApiResponse<[**ConnectorList**](ConnectorList.md)>>
 
 
 ### Authorization
@@ -637,7 +673,7 @@ ApiResponse<[**ConnectorList**](ConnectorList.md)>
 
 ## patchConnector
 
-> Connector patchConnector(id, body)
+> CompletableFuture<Connector> patchConnector(id, body)
 
 Patch a connector
 
@@ -653,6 +689,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -667,8 +704,8 @@ public class Example {
         String id = "id_example"; // String | The ID of record
         Object body = null; // Object | Data to patch the connector with
         try {
-            Connector result = apiInstance.patchConnector(id, body);
-            System.out.println(result);
+            CompletableFuture<Connector> result = apiInstance.patchConnector(id, body);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#patchConnector");
             System.err.println("Status code: " + e.getCode());
@@ -690,7 +727,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Connector**](Connector.md)
+CompletableFuture<[**Connector**](Connector.md)>
 
 
 ### Authorization
@@ -713,7 +750,7 @@ Name | Type | Description  | Notes
 
 ## patchConnectorWithHttpInfo
 
-> ApiResponse<Connector> patchConnector patchConnectorWithHttpInfo(id, body)
+> CompletableFuture<ApiResponse<Connector>> patchConnector patchConnectorWithHttpInfo(id, body)
 
 Patch a connector
 
@@ -730,6 +767,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -744,10 +782,17 @@ public class Example {
         String id = "id_example"; // String | The ID of record
         Object body = null; // Object | Data to patch the connector with
         try {
-            ApiResponse<Connector> response = apiInstance.patchConnectorWithHttpInfo(id, body);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<Connector>> response = apiInstance.patchConnectorWithHttpInfo(id, body);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorsApi#patchConnector");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorsApi#patchConnector");
             System.err.println("Status code: " + e.getCode());
@@ -769,7 +814,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**Connector**](Connector.md)>
+CompletableFuture<ApiResponse<[**Connector**](Connector.md)>>
 
 
 ### Authorization

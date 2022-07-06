@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## errorsAPIGetError
 
-> BridgeError errorsAPIGetError(id)
+> CompletableFuture<BridgeError> errorsAPIGetError(id)
 
 Get an error from the error catalog.
 
@@ -28,6 +28,7 @@ import com.openshift.cloud.api.smartevents.invoker.ApiException;
 import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ErrorCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -37,8 +38,8 @@ public class Example {
         ErrorCatalogApi apiInstance = new ErrorCatalogApi(defaultClient);
         Integer id = 56; // Integer | 
         try {
-            BridgeError result = apiInstance.errorsAPIGetError(id);
-            System.out.println(result);
+            CompletableFuture<BridgeError> result = apiInstance.errorsAPIGetError(id);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ErrorCatalogApi#errorsAPIGetError");
             System.err.println("Status code: " + e.getCode());
@@ -59,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BridgeError**](BridgeError.md)
+CompletableFuture<[**BridgeError**](BridgeError.md)>
 
 
 ### Authorization
@@ -81,7 +82,7 @@ No authorization required
 
 ## errorsAPIGetErrorWithHttpInfo
 
-> ApiResponse<BridgeError> errorsAPIGetError errorsAPIGetErrorWithHttpInfo(id)
+> CompletableFuture<ApiResponse<BridgeError>> errorsAPIGetError errorsAPIGetErrorWithHttpInfo(id)
 
 Get an error from the error catalog.
 
@@ -97,6 +98,7 @@ import com.openshift.cloud.api.smartevents.invoker.ApiResponse;
 import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ErrorCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -106,10 +108,17 @@ public class Example {
         ErrorCatalogApi apiInstance = new ErrorCatalogApi(defaultClient);
         Integer id = 56; // Integer | 
         try {
-            ApiResponse<BridgeError> response = apiInstance.errorsAPIGetErrorWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<BridgeError>> response = apiInstance.errorsAPIGetErrorWithHttpInfo(id);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ErrorCatalogApi#errorsAPIGetError");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ErrorCatalogApi#errorsAPIGetError");
             System.err.println("Status code: " + e.getCode());
@@ -130,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**BridgeError**](BridgeError.md)>
+CompletableFuture<ApiResponse<[**BridgeError**](BridgeError.md)>>
 
 
 ### Authorization
@@ -153,7 +162,7 @@ No authorization required
 
 ## errorsAPIGetErrors
 
-> ErrorListResponse errorsAPIGetErrors(page, size)
+> CompletableFuture<ErrorListResponse> errorsAPIGetErrors(page, size)
 
 Get the list of errors.
 
@@ -168,6 +177,7 @@ import com.openshift.cloud.api.smartevents.invoker.ApiException;
 import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ErrorCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -178,8 +188,8 @@ public class Example {
         Integer page = 0; // Integer | 
         Integer size = 100; // Integer | 
         try {
-            ErrorListResponse result = apiInstance.errorsAPIGetErrors(page, size);
-            System.out.println(result);
+            CompletableFuture<ErrorListResponse> result = apiInstance.errorsAPIGetErrors(page, size);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ErrorCatalogApi#errorsAPIGetErrors");
             System.err.println("Status code: " + e.getCode());
@@ -201,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ErrorListResponse**](ErrorListResponse.md)
+CompletableFuture<[**ErrorListResponse**](ErrorListResponse.md)>
 
 
 ### Authorization
@@ -223,7 +233,7 @@ No authorization required
 
 ## errorsAPIGetErrorsWithHttpInfo
 
-> ApiResponse<ErrorListResponse> errorsAPIGetErrors errorsAPIGetErrorsWithHttpInfo(page, size)
+> CompletableFuture<ApiResponse<ErrorListResponse>> errorsAPIGetErrors errorsAPIGetErrorsWithHttpInfo(page, size)
 
 Get the list of errors.
 
@@ -239,6 +249,7 @@ import com.openshift.cloud.api.smartevents.invoker.ApiResponse;
 import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ErrorCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -249,10 +260,17 @@ public class Example {
         Integer page = 0; // Integer | 
         Integer size = 100; // Integer | 
         try {
-            ApiResponse<ErrorListResponse> response = apiInstance.errorsAPIGetErrorsWithHttpInfo(page, size);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ErrorListResponse>> response = apiInstance.errorsAPIGetErrorsWithHttpInfo(page, size);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ErrorCatalogApi#errorsAPIGetErrors");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ErrorCatalogApi#errorsAPIGetErrors");
             System.err.println("Status code: " + e.getCode());
@@ -274,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ErrorListResponse**](ErrorListResponse.md)>
+CompletableFuture<ApiResponse<[**ErrorListResponse**](ErrorListResponse.md)>>
 
 
 ### Authorization

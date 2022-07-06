@@ -75,6 +75,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 import com.openshift.cloud.api.connector.invoker.*;
 import com.openshift.cloud.api.connector.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class ConnectorClustersApiExample {
 
@@ -86,8 +87,8 @@ public class ConnectorClustersApiExample {
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
         ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Connector cluster data
         try {
-            ConnectorCluster result = apiInstance.createConnectorCluster(async, connectorClusterRequest);
-            System.out.println(result);
+            CompletableFuture<ConnectorCluster> result = apiInstance.createConnectorCluster(async, connectorClusterRequest);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#createConnectorCluster");
             System.err.println("Status code: " + e.getCode());

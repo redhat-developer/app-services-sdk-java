@@ -37,6 +37,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import java.util.concurrent.CompletableFuture;
+
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class SchemaCatalogApi {
   private final HttpClient memberVarHttpClient;
@@ -61,10 +63,9 @@ public class SchemaCatalogApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
+  private ApiException getApiException(String operationId, HttpResponse<String> response) {
+    String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
+    return new ApiException(response.statusCode(), message, response.headers(), response.body());
   }
 
   private String formatExceptionMessage(String operationId, int statusCode, String body) {
@@ -78,48 +79,66 @@ public class SchemaCatalogApi {
    * Get action processor schema
    * Get the action processor JSON schema.
    * @param id  (required)
-   * @return Object
+   * @return CompletableFuture&lt;Object&gt;
    * @throws ApiException if fails to make API call
    */
-  public Object schemaAPIGetActionProcessorSchema(String id) throws ApiException {
-    ApiResponse<Object> localVarResponse = schemaAPIGetActionProcessorSchemaWithHttpInfo(id);
-    return localVarResponse.getData();
+  public CompletableFuture<Object> schemaAPIGetActionProcessorSchema(String id) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = schemaAPIGetActionProcessorSchemaRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("schemaAPIGetActionProcessorSchema", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Object>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Get action processor schema
    * Get the action processor JSON schema.
    * @param id  (required)
-   * @return ApiResponse&lt;Object&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;Object&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Object> schemaAPIGetActionProcessorSchemaWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = schemaAPIGetActionProcessorSchemaRequestBuilder(id);
+  public CompletableFuture<ApiResponse<Object>> schemaAPIGetActionProcessorSchemaWithHttpInfo(String id) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = schemaAPIGetActionProcessorSchemaRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("schemaAPIGetActionProcessorSchema", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("schemaAPIGetActionProcessorSchema", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Object>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Object>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<Object>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Object>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -150,47 +169,65 @@ public class SchemaCatalogApi {
   /**
    * Get processor catalog
    * Get the processor catalog with all the available sources and actions.
-   * @return ProcessorCatalogResponse
+   * @return CompletableFuture&lt;ProcessorCatalogResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ProcessorCatalogResponse schemaAPIGetCatalog() throws ApiException {
-    ApiResponse<ProcessorCatalogResponse> localVarResponse = schemaAPIGetCatalogWithHttpInfo();
-    return localVarResponse.getData();
+  public CompletableFuture<ProcessorCatalogResponse> schemaAPIGetCatalog() throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = schemaAPIGetCatalogRequestBuilder();
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("schemaAPIGetCatalog", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ProcessorCatalogResponse>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Get processor catalog
    * Get the processor catalog with all the available sources and actions.
-   * @return ApiResponse&lt;ProcessorCatalogResponse&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;ProcessorCatalogResponse&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ProcessorCatalogResponse> schemaAPIGetCatalogWithHttpInfo() throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = schemaAPIGetCatalogRequestBuilder();
+  public CompletableFuture<ApiResponse<ProcessorCatalogResponse>> schemaAPIGetCatalogWithHttpInfo() throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = schemaAPIGetCatalogRequestBuilder();
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("schemaAPIGetCatalog", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("schemaAPIGetCatalog", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ProcessorCatalogResponse>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ProcessorCatalogResponse>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<ProcessorCatalogResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ProcessorCatalogResponse>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -217,48 +254,66 @@ public class SchemaCatalogApi {
    * Get source processor schema
    * Get the source processor JSON schema.
    * @param id  (required)
-   * @return Object
+   * @return CompletableFuture&lt;Object&gt;
    * @throws ApiException if fails to make API call
    */
-  public Object schemaAPIGetSourceProcessorSchema(String id) throws ApiException {
-    ApiResponse<Object> localVarResponse = schemaAPIGetSourceProcessorSchemaWithHttpInfo(id);
-    return localVarResponse.getData();
+  public CompletableFuture<Object> schemaAPIGetSourceProcessorSchema(String id) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = schemaAPIGetSourceProcessorSchemaRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("schemaAPIGetSourceProcessorSchema", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Object>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Get source processor schema
    * Get the source processor JSON schema.
    * @param id  (required)
-   * @return ApiResponse&lt;Object&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;Object&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Object> schemaAPIGetSourceProcessorSchemaWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = schemaAPIGetSourceProcessorSchemaRequestBuilder(id);
+  public CompletableFuture<ApiResponse<Object>> schemaAPIGetSourceProcessorSchemaWithHttpInfo(String id) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = schemaAPIGetSourceProcessorSchemaRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("schemaAPIGetSourceProcessorSchema", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("schemaAPIGetSourceProcessorSchema", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Object>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Object>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<Object>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Object>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 

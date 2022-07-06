@@ -75,6 +75,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 import com.openshift.cloud.api.smartevents.invoker.*;
 import com.openshift.cloud.api.smartevents.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class BridgesApiExample {
 
@@ -85,8 +86,8 @@ public class BridgesApiExample {
         BridgesApi apiInstance = new BridgesApi(defaultClient);
         BridgeRequest bridgeRequest = new BridgeRequest(); // BridgeRequest | 
         try {
-            BridgeResponse result = apiInstance.bridgesAPICreateBridge(bridgeRequest);
-            System.out.println(result);
+            CompletableFuture<BridgeResponse> result = apiInstance.bridgesAPICreateBridge(bridgeRequest);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling BridgesApi#bridgesAPICreateBridge");
             System.err.println("Status code: " + e.getCode());

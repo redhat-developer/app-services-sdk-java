@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## processorsAPIAddProcessorToBridge
 
-> ProcessorResponse processorsAPIAddProcessorToBridge(bridgeId, processorRequest)
+> CompletableFuture<ProcessorResponse> processorsAPIAddProcessorToBridge(bridgeId, processorRequest)
 
 Create a Processor of a Bridge instance
 
@@ -35,6 +35,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -49,8 +50,8 @@ public class Example {
         String bridgeId = "bridgeId_example"; // String | 
         ProcessorRequest processorRequest = new ProcessorRequest(); // ProcessorRequest | 
         try {
-            ProcessorResponse result = apiInstance.processorsAPIAddProcessorToBridge(bridgeId, processorRequest);
-            System.out.println(result);
+            CompletableFuture<ProcessorResponse> result = apiInstance.processorsAPIAddProcessorToBridge(bridgeId, processorRequest);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIAddProcessorToBridge");
             System.err.println("Status code: " + e.getCode());
@@ -72,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProcessorResponse**](ProcessorResponse.md)
+CompletableFuture<[**ProcessorResponse**](ProcessorResponse.md)>
 
 
 ### Authorization
@@ -96,7 +97,7 @@ Name | Type | Description  | Notes
 
 ## processorsAPIAddProcessorToBridgeWithHttpInfo
 
-> ApiResponse<ProcessorResponse> processorsAPIAddProcessorToBridge processorsAPIAddProcessorToBridgeWithHttpInfo(bridgeId, processorRequest)
+> CompletableFuture<ApiResponse<ProcessorResponse>> processorsAPIAddProcessorToBridge processorsAPIAddProcessorToBridgeWithHttpInfo(bridgeId, processorRequest)
 
 Create a Processor of a Bridge instance
 
@@ -113,6 +114,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -127,10 +129,17 @@ public class Example {
         String bridgeId = "bridgeId_example"; // String | 
         ProcessorRequest processorRequest = new ProcessorRequest(); // ProcessorRequest | 
         try {
-            ApiResponse<ProcessorResponse> response = apiInstance.processorsAPIAddProcessorToBridgeWithHttpInfo(bridgeId, processorRequest);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ProcessorResponse>> response = apiInstance.processorsAPIAddProcessorToBridgeWithHttpInfo(bridgeId, processorRequest);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ProcessorsApi#processorsAPIAddProcessorToBridge");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIAddProcessorToBridge");
             System.err.println("Status code: " + e.getCode());
@@ -152,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ProcessorResponse**](ProcessorResponse.md)>
+CompletableFuture<ApiResponse<[**ProcessorResponse**](ProcessorResponse.md)>>
 
 
 ### Authorization
@@ -177,7 +186,7 @@ ApiResponse<[**ProcessorResponse**](ProcessorResponse.md)>
 
 ## processorsAPIDeleteProcessor
 
-> void processorsAPIDeleteProcessor(bridgeId, processorId)
+> CompletableFuture<Void> processorsAPIDeleteProcessor(bridgeId, processorId)
 
 Delete a Processor of a Bridge instance
 
@@ -193,6 +202,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -207,7 +217,7 @@ public class Example {
         String bridgeId = "bridgeId_example"; // String | 
         String processorId = "processorId_example"; // String | 
         try {
-            apiInstance.processorsAPIDeleteProcessor(bridgeId, processorId);
+            CompletableFuture<Void> result = apiInstance.processorsAPIDeleteProcessor(bridgeId, processorId);
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIDeleteProcessor");
             System.err.println("Status code: " + e.getCode());
@@ -230,7 +240,7 @@ Name | Type | Description  | Notes
 ### Return type
 
 
-null (empty response body)
+CompletableFuture<void> (empty response body)
 
 ### Authorization
 
@@ -253,7 +263,7 @@ null (empty response body)
 
 ## processorsAPIDeleteProcessorWithHttpInfo
 
-> ApiResponse<Void> processorsAPIDeleteProcessor processorsAPIDeleteProcessorWithHttpInfo(bridgeId, processorId)
+> CompletableFuture<ApiResponse<Void>> processorsAPIDeleteProcessor processorsAPIDeleteProcessorWithHttpInfo(bridgeId, processorId)
 
 Delete a Processor of a Bridge instance
 
@@ -270,6 +280,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -284,9 +295,16 @@ public class Example {
         String bridgeId = "bridgeId_example"; // String | 
         String processorId = "processorId_example"; // String | 
         try {
-            ApiResponse<Void> response = apiInstance.processorsAPIDeleteProcessorWithHttpInfo(bridgeId, processorId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
+            CompletableFuture<ApiResponse<Void>> response = apiInstance.processorsAPIDeleteProcessorWithHttpInfo(bridgeId, processorId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ProcessorsApi#processorsAPIDeleteProcessor");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIDeleteProcessor");
             System.err.println("Status code: " + e.getCode());
@@ -309,7 +327,7 @@ Name | Type | Description  | Notes
 ### Return type
 
 
-ApiResponse<Void>
+CompletableFuture<ApiResponse<Void>>
 
 ### Authorization
 
@@ -333,7 +351,7 @@ ApiResponse<Void>
 
 ## processorsAPIGetProcessor
 
-> ProcessorResponse processorsAPIGetProcessor(bridgeId, processorId)
+> CompletableFuture<ProcessorResponse> processorsAPIGetProcessor(bridgeId, processorId)
 
 Get a Processor of a Bridge instance
 
@@ -349,6 +367,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -363,8 +382,8 @@ public class Example {
         String bridgeId = "bridgeId_example"; // String | 
         String processorId = "processorId_example"; // String | 
         try {
-            ProcessorResponse result = apiInstance.processorsAPIGetProcessor(bridgeId, processorId);
-            System.out.println(result);
+            CompletableFuture<ProcessorResponse> result = apiInstance.processorsAPIGetProcessor(bridgeId, processorId);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIGetProcessor");
             System.err.println("Status code: " + e.getCode());
@@ -386,7 +405,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProcessorResponse**](ProcessorResponse.md)
+CompletableFuture<[**ProcessorResponse**](ProcessorResponse.md)>
 
 
 ### Authorization
@@ -410,7 +429,7 @@ Name | Type | Description  | Notes
 
 ## processorsAPIGetProcessorWithHttpInfo
 
-> ApiResponse<ProcessorResponse> processorsAPIGetProcessor processorsAPIGetProcessorWithHttpInfo(bridgeId, processorId)
+> CompletableFuture<ApiResponse<ProcessorResponse>> processorsAPIGetProcessor processorsAPIGetProcessorWithHttpInfo(bridgeId, processorId)
 
 Get a Processor of a Bridge instance
 
@@ -427,6 +446,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -441,10 +461,17 @@ public class Example {
         String bridgeId = "bridgeId_example"; // String | 
         String processorId = "processorId_example"; // String | 
         try {
-            ApiResponse<ProcessorResponse> response = apiInstance.processorsAPIGetProcessorWithHttpInfo(bridgeId, processorId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ProcessorResponse>> response = apiInstance.processorsAPIGetProcessorWithHttpInfo(bridgeId, processorId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ProcessorsApi#processorsAPIGetProcessor");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIGetProcessor");
             System.err.println("Status code: " + e.getCode());
@@ -466,7 +493,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ProcessorResponse**](ProcessorResponse.md)>
+CompletableFuture<ApiResponse<[**ProcessorResponse**](ProcessorResponse.md)>>
 
 
 ### Authorization
@@ -491,7 +518,7 @@ ApiResponse<[**ProcessorResponse**](ProcessorResponse.md)>
 
 ## processorsAPIListProcessors
 
-> ProcessorListResponse processorsAPIListProcessors(bridgeId, name, page, size, status, type)
+> CompletableFuture<ProcessorListResponse> processorsAPIListProcessors(bridgeId, name, page, size, status, type)
 
 Get the list of Processors of a Bridge instance
 
@@ -507,6 +534,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -525,8 +553,8 @@ public class Example {
         Set<ManagedResourceStatus> status = Arrays.asList(); // Set<ManagedResourceStatus> | 
         ProcessorType type = ProcessorType.fromValue("source"); // ProcessorType | 
         try {
-            ProcessorListResponse result = apiInstance.processorsAPIListProcessors(bridgeId, name, page, size, status, type);
-            System.out.println(result);
+            CompletableFuture<ProcessorListResponse> result = apiInstance.processorsAPIListProcessors(bridgeId, name, page, size, status, type);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIListProcessors");
             System.err.println("Status code: " + e.getCode());
@@ -552,7 +580,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProcessorListResponse**](ProcessorListResponse.md)
+CompletableFuture<[**ProcessorListResponse**](ProcessorListResponse.md)>
 
 
 ### Authorization
@@ -576,7 +604,7 @@ Name | Type | Description  | Notes
 
 ## processorsAPIListProcessorsWithHttpInfo
 
-> ApiResponse<ProcessorListResponse> processorsAPIListProcessors processorsAPIListProcessorsWithHttpInfo(bridgeId, name, page, size, status, type)
+> CompletableFuture<ApiResponse<ProcessorListResponse>> processorsAPIListProcessors processorsAPIListProcessorsWithHttpInfo(bridgeId, name, page, size, status, type)
 
 Get the list of Processors of a Bridge instance
 
@@ -593,6 +621,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -611,10 +640,17 @@ public class Example {
         Set<ManagedResourceStatus> status = Arrays.asList(); // Set<ManagedResourceStatus> | 
         ProcessorType type = ProcessorType.fromValue("source"); // ProcessorType | 
         try {
-            ApiResponse<ProcessorListResponse> response = apiInstance.processorsAPIListProcessorsWithHttpInfo(bridgeId, name, page, size, status, type);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ProcessorListResponse>> response = apiInstance.processorsAPIListProcessorsWithHttpInfo(bridgeId, name, page, size, status, type);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ProcessorsApi#processorsAPIListProcessors");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIListProcessors");
             System.err.println("Status code: " + e.getCode());
@@ -640,7 +676,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ProcessorListResponse**](ProcessorListResponse.md)>
+CompletableFuture<ApiResponse<[**ProcessorListResponse**](ProcessorListResponse.md)>>
 
 
 ### Authorization
@@ -665,7 +701,7 @@ ApiResponse<[**ProcessorListResponse**](ProcessorListResponse.md)>
 
 ## processorsAPIUpdateProcessor
 
-> ProcessorResponse processorsAPIUpdateProcessor(bridgeId, processorId, processorRequest)
+> CompletableFuture<ProcessorResponse> processorsAPIUpdateProcessor(bridgeId, processorId, processorRequest)
 
 Update a Processor instance Filter definition or Transformation template.
 
@@ -681,6 +717,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -696,8 +733,8 @@ public class Example {
         String processorId = "processorId_example"; // String | 
         ProcessorRequest processorRequest = new ProcessorRequest(); // ProcessorRequest | 
         try {
-            ProcessorResponse result = apiInstance.processorsAPIUpdateProcessor(bridgeId, processorId, processorRequest);
-            System.out.println(result);
+            CompletableFuture<ProcessorResponse> result = apiInstance.processorsAPIUpdateProcessor(bridgeId, processorId, processorRequest);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIUpdateProcessor");
             System.err.println("Status code: " + e.getCode());
@@ -720,7 +757,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProcessorResponse**](ProcessorResponse.md)
+CompletableFuture<[**ProcessorResponse**](ProcessorResponse.md)>
 
 
 ### Authorization
@@ -744,7 +781,7 @@ Name | Type | Description  | Notes
 
 ## processorsAPIUpdateProcessorWithHttpInfo
 
-> ApiResponse<ProcessorResponse> processorsAPIUpdateProcessor processorsAPIUpdateProcessorWithHttpInfo(bridgeId, processorId, processorRequest)
+> CompletableFuture<ApiResponse<ProcessorResponse>> processorsAPIUpdateProcessor processorsAPIUpdateProcessorWithHttpInfo(bridgeId, processorId, processorRequest)
 
 Update a Processor instance Filter definition or Transformation template.
 
@@ -761,6 +798,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.ProcessorsApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -776,10 +814,17 @@ public class Example {
         String processorId = "processorId_example"; // String | 
         ProcessorRequest processorRequest = new ProcessorRequest(); // ProcessorRequest | 
         try {
-            ApiResponse<ProcessorResponse> response = apiInstance.processorsAPIUpdateProcessorWithHttpInfo(bridgeId, processorId, processorRequest);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ProcessorResponse>> response = apiInstance.processorsAPIUpdateProcessorWithHttpInfo(bridgeId, processorId, processorRequest);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ProcessorsApi#processorsAPIUpdateProcessor");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ProcessorsApi#processorsAPIUpdateProcessor");
             System.err.println("Status code: " + e.getCode());
@@ -802,7 +847,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ProcessorResponse**](ProcessorResponse.md)>
+CompletableFuture<ApiResponse<[**ProcessorResponse**](ProcessorResponse.md)>>
 
 
 ### Authorization

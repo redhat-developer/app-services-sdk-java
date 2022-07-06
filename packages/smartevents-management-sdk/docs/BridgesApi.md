@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## bridgesAPICreateBridge
 
-> BridgeResponse bridgesAPICreateBridge(bridgeRequest)
+> CompletableFuture<BridgeResponse> bridgesAPICreateBridge(bridgeRequest)
 
 Create a Bridge instance
 
@@ -33,6 +33,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -46,8 +47,8 @@ public class Example {
         BridgesApi apiInstance = new BridgesApi(defaultClient);
         BridgeRequest bridgeRequest = new BridgeRequest(); // BridgeRequest | 
         try {
-            BridgeResponse result = apiInstance.bridgesAPICreateBridge(bridgeRequest);
-            System.out.println(result);
+            CompletableFuture<BridgeResponse> result = apiInstance.bridgesAPICreateBridge(bridgeRequest);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling BridgesApi#bridgesAPICreateBridge");
             System.err.println("Status code: " + e.getCode());
@@ -68,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BridgeResponse**](BridgeResponse.md)
+CompletableFuture<[**BridgeResponse**](BridgeResponse.md)>
 
 
 ### Authorization
@@ -91,7 +92,7 @@ Name | Type | Description  | Notes
 
 ## bridgesAPICreateBridgeWithHttpInfo
 
-> ApiResponse<BridgeResponse> bridgesAPICreateBridge bridgesAPICreateBridgeWithHttpInfo(bridgeRequest)
+> CompletableFuture<ApiResponse<BridgeResponse>> bridgesAPICreateBridge bridgesAPICreateBridgeWithHttpInfo(bridgeRequest)
 
 Create a Bridge instance
 
@@ -108,6 +109,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -121,10 +123,17 @@ public class Example {
         BridgesApi apiInstance = new BridgesApi(defaultClient);
         BridgeRequest bridgeRequest = new BridgeRequest(); // BridgeRequest | 
         try {
-            ApiResponse<BridgeResponse> response = apiInstance.bridgesAPICreateBridgeWithHttpInfo(bridgeRequest);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<BridgeResponse>> response = apiInstance.bridgesAPICreateBridgeWithHttpInfo(bridgeRequest);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling BridgesApi#bridgesAPICreateBridge");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling BridgesApi#bridgesAPICreateBridge");
             System.err.println("Status code: " + e.getCode());
@@ -145,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**BridgeResponse**](BridgeResponse.md)>
+CompletableFuture<ApiResponse<[**BridgeResponse**](BridgeResponse.md)>>
 
 
 ### Authorization
@@ -169,7 +178,7 @@ ApiResponse<[**BridgeResponse**](BridgeResponse.md)>
 
 ## bridgesAPIDeleteBridge
 
-> void bridgesAPIDeleteBridge(bridgeId)
+> CompletableFuture<Void> bridgesAPIDeleteBridge(bridgeId)
 
 Delete a Bridge instance
 
@@ -185,6 +194,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -198,7 +208,7 @@ public class Example {
         BridgesApi apiInstance = new BridgesApi(defaultClient);
         String bridgeId = "bridgeId_example"; // String | 
         try {
-            apiInstance.bridgesAPIDeleteBridge(bridgeId);
+            CompletableFuture<Void> result = apiInstance.bridgesAPIDeleteBridge(bridgeId);
         } catch (ApiException e) {
             System.err.println("Exception when calling BridgesApi#bridgesAPIDeleteBridge");
             System.err.println("Status code: " + e.getCode());
@@ -220,7 +230,7 @@ Name | Type | Description  | Notes
 ### Return type
 
 
-null (empty response body)
+CompletableFuture<void> (empty response body)
 
 ### Authorization
 
@@ -243,7 +253,7 @@ null (empty response body)
 
 ## bridgesAPIDeleteBridgeWithHttpInfo
 
-> ApiResponse<Void> bridgesAPIDeleteBridge bridgesAPIDeleteBridgeWithHttpInfo(bridgeId)
+> CompletableFuture<ApiResponse<Void>> bridgesAPIDeleteBridge bridgesAPIDeleteBridgeWithHttpInfo(bridgeId)
 
 Delete a Bridge instance
 
@@ -260,6 +270,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -273,9 +284,16 @@ public class Example {
         BridgesApi apiInstance = new BridgesApi(defaultClient);
         String bridgeId = "bridgeId_example"; // String | 
         try {
-            ApiResponse<Void> response = apiInstance.bridgesAPIDeleteBridgeWithHttpInfo(bridgeId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
+            CompletableFuture<ApiResponse<Void>> response = apiInstance.bridgesAPIDeleteBridgeWithHttpInfo(bridgeId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling BridgesApi#bridgesAPIDeleteBridge");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling BridgesApi#bridgesAPIDeleteBridge");
             System.err.println("Status code: " + e.getCode());
@@ -297,7 +315,7 @@ Name | Type | Description  | Notes
 ### Return type
 
 
-ApiResponse<Void>
+CompletableFuture<ApiResponse<Void>>
 
 ### Authorization
 
@@ -321,7 +339,7 @@ ApiResponse<Void>
 
 ## bridgesAPIGetBridge
 
-> BridgeResponse bridgesAPIGetBridge(bridgeId)
+> CompletableFuture<BridgeResponse> bridgesAPIGetBridge(bridgeId)
 
 Get a Bridge instance
 
@@ -337,6 +355,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -350,8 +369,8 @@ public class Example {
         BridgesApi apiInstance = new BridgesApi(defaultClient);
         String bridgeId = "bridgeId_example"; // String | 
         try {
-            BridgeResponse result = apiInstance.bridgesAPIGetBridge(bridgeId);
-            System.out.println(result);
+            CompletableFuture<BridgeResponse> result = apiInstance.bridgesAPIGetBridge(bridgeId);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling BridgesApi#bridgesAPIGetBridge");
             System.err.println("Status code: " + e.getCode());
@@ -372,7 +391,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BridgeResponse**](BridgeResponse.md)
+CompletableFuture<[**BridgeResponse**](BridgeResponse.md)>
 
 
 ### Authorization
@@ -396,7 +415,7 @@ Name | Type | Description  | Notes
 
 ## bridgesAPIGetBridgeWithHttpInfo
 
-> ApiResponse<BridgeResponse> bridgesAPIGetBridge bridgesAPIGetBridgeWithHttpInfo(bridgeId)
+> CompletableFuture<ApiResponse<BridgeResponse>> bridgesAPIGetBridge bridgesAPIGetBridgeWithHttpInfo(bridgeId)
 
 Get a Bridge instance
 
@@ -413,6 +432,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -426,10 +446,17 @@ public class Example {
         BridgesApi apiInstance = new BridgesApi(defaultClient);
         String bridgeId = "bridgeId_example"; // String | 
         try {
-            ApiResponse<BridgeResponse> response = apiInstance.bridgesAPIGetBridgeWithHttpInfo(bridgeId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<BridgeResponse>> response = apiInstance.bridgesAPIGetBridgeWithHttpInfo(bridgeId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling BridgesApi#bridgesAPIGetBridge");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling BridgesApi#bridgesAPIGetBridge");
             System.err.println("Status code: " + e.getCode());
@@ -450,7 +477,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**BridgeResponse**](BridgeResponse.md)>
+CompletableFuture<ApiResponse<[**BridgeResponse**](BridgeResponse.md)>>
 
 
 ### Authorization
@@ -475,7 +502,7 @@ ApiResponse<[**BridgeResponse**](BridgeResponse.md)>
 
 ## bridgesAPIGetBridges
 
-> BridgeListResponse bridgesAPIGetBridges(name, page, size, status)
+> CompletableFuture<BridgeListResponse> bridgesAPIGetBridges(name, page, size, status)
 
 Get the list of Bridge instances
 
@@ -491,6 +518,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -507,8 +535,8 @@ public class Example {
         Integer size = 100; // Integer | 
         Set<ManagedResourceStatus> status = Arrays.asList(); // Set<ManagedResourceStatus> | 
         try {
-            BridgeListResponse result = apiInstance.bridgesAPIGetBridges(name, page, size, status);
-            System.out.println(result);
+            CompletableFuture<BridgeListResponse> result = apiInstance.bridgesAPIGetBridges(name, page, size, status);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling BridgesApi#bridgesAPIGetBridges");
             System.err.println("Status code: " + e.getCode());
@@ -532,7 +560,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BridgeListResponse**](BridgeListResponse.md)
+CompletableFuture<[**BridgeListResponse**](BridgeListResponse.md)>
 
 
 ### Authorization
@@ -556,7 +584,7 @@ Name | Type | Description  | Notes
 
 ## bridgesAPIGetBridgesWithHttpInfo
 
-> ApiResponse<BridgeListResponse> bridgesAPIGetBridges bridgesAPIGetBridgesWithHttpInfo(name, page, size, status)
+> CompletableFuture<ApiResponse<BridgeListResponse>> bridgesAPIGetBridges bridgesAPIGetBridgesWithHttpInfo(name, page, size, status)
 
 Get the list of Bridge instances
 
@@ -573,6 +601,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.BridgesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -589,10 +618,17 @@ public class Example {
         Integer size = 100; // Integer | 
         Set<ManagedResourceStatus> status = Arrays.asList(); // Set<ManagedResourceStatus> | 
         try {
-            ApiResponse<BridgeListResponse> response = apiInstance.bridgesAPIGetBridgesWithHttpInfo(name, page, size, status);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<BridgeListResponse>> response = apiInstance.bridgesAPIGetBridgesWithHttpInfo(name, page, size, status);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling BridgesApi#bridgesAPIGetBridges");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling BridgesApi#bridgesAPIGetBridges");
             System.err.println("Status code: " + e.getCode());
@@ -616,7 +652,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**BridgeListResponse**](BridgeListResponse.md)>
+CompletableFuture<ApiResponse<[**BridgeListResponse**](BridgeListResponse.md)>>
 
 
 ### Authorization

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## createEvaluationNamespace
 
-> ConnectorNamespace createEvaluationNamespace(connectorNamespaceEvalRequest)
+> CompletableFuture<ConnectorNamespace> createEvaluationNamespace(connectorNamespaceEvalRequest)
 
 Create a new short lived evaluation connector namespace
 
@@ -31,6 +31,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -44,8 +45,8 @@ public class Example {
         ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
         ConnectorNamespaceEvalRequest connectorNamespaceEvalRequest = new ConnectorNamespaceEvalRequest(); // ConnectorNamespaceEvalRequest | Connector namespace data
         try {
-            ConnectorNamespace result = apiInstance.createEvaluationNamespace(connectorNamespaceEvalRequest);
-            System.out.println(result);
+            CompletableFuture<ConnectorNamespace> result = apiInstance.createEvaluationNamespace(connectorNamespaceEvalRequest);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorNamespacesApi#createEvaluationNamespace");
             System.err.println("Status code: " + e.getCode());
@@ -66,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorNamespace**](ConnectorNamespace.md)
+CompletableFuture<[**ConnectorNamespace**](ConnectorNamespace.md)>
 
 
 ### Authorization
@@ -89,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## createEvaluationNamespaceWithHttpInfo
 
-> ApiResponse<ConnectorNamespace> createEvaluationNamespace createEvaluationNamespaceWithHttpInfo(connectorNamespaceEvalRequest)
+> CompletableFuture<ApiResponse<ConnectorNamespace>> createEvaluationNamespace createEvaluationNamespaceWithHttpInfo(connectorNamespaceEvalRequest)
 
 Create a new short lived evaluation connector namespace
 
@@ -106,6 +107,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -119,10 +121,17 @@ public class Example {
         ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
         ConnectorNamespaceEvalRequest connectorNamespaceEvalRequest = new ConnectorNamespaceEvalRequest(); // ConnectorNamespaceEvalRequest | Connector namespace data
         try {
-            ApiResponse<ConnectorNamespace> response = apiInstance.createEvaluationNamespaceWithHttpInfo(connectorNamespaceEvalRequest);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorNamespace>> response = apiInstance.createEvaluationNamespaceWithHttpInfo(connectorNamespaceEvalRequest);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorNamespacesApi#createEvaluationNamespace");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorNamespacesApi#createEvaluationNamespace");
             System.err.println("Status code: " + e.getCode());
@@ -143,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorNamespace**](ConnectorNamespace.md)>
+CompletableFuture<ApiResponse<[**ConnectorNamespace**](ConnectorNamespace.md)>>
 
 
 ### Authorization
@@ -167,7 +176,7 @@ ApiResponse<[**ConnectorNamespace**](ConnectorNamespace.md)>
 
 ## getConnectorNamespace
 
-> ConnectorNamespace getConnectorNamespace(connectorNamespaceId)
+> CompletableFuture<ConnectorNamespace> getConnectorNamespace(connectorNamespaceId)
 
 Get a connector namespace
 
@@ -183,6 +192,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -196,8 +206,8 @@ public class Example {
         ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
         String connectorNamespaceId = "connectorNamespaceId_example"; // String | The id of the connector namespace
         try {
-            ConnectorNamespace result = apiInstance.getConnectorNamespace(connectorNamespaceId);
-            System.out.println(result);
+            CompletableFuture<ConnectorNamespace> result = apiInstance.getConnectorNamespace(connectorNamespaceId);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorNamespacesApi#getConnectorNamespace");
             System.err.println("Status code: " + e.getCode());
@@ -218,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorNamespace**](ConnectorNamespace.md)
+CompletableFuture<[**ConnectorNamespace**](ConnectorNamespace.md)>
 
 
 ### Authorization
@@ -240,7 +250,7 @@ Name | Type | Description  | Notes
 
 ## getConnectorNamespaceWithHttpInfo
 
-> ApiResponse<ConnectorNamespace> getConnectorNamespace getConnectorNamespaceWithHttpInfo(connectorNamespaceId)
+> CompletableFuture<ApiResponse<ConnectorNamespace>> getConnectorNamespace getConnectorNamespaceWithHttpInfo(connectorNamespaceId)
 
 Get a connector namespace
 
@@ -257,6 +267,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -270,10 +281,17 @@ public class Example {
         ConnectorNamespacesApi apiInstance = new ConnectorNamespacesApi(defaultClient);
         String connectorNamespaceId = "connectorNamespaceId_example"; // String | The id of the connector namespace
         try {
-            ApiResponse<ConnectorNamespace> response = apiInstance.getConnectorNamespaceWithHttpInfo(connectorNamespaceId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorNamespace>> response = apiInstance.getConnectorNamespaceWithHttpInfo(connectorNamespaceId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorNamespacesApi#getConnectorNamespace");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorNamespacesApi#getConnectorNamespace");
             System.err.println("Status code: " + e.getCode());
@@ -294,7 +312,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorNamespace**](ConnectorNamespace.md)>
+CompletableFuture<ApiResponse<[**ConnectorNamespace**](ConnectorNamespace.md)>>
 
 
 ### Authorization
@@ -317,7 +335,7 @@ ApiResponse<[**ConnectorNamespace**](ConnectorNamespace.md)>
 
 ## listConnectorNamespaces
 
-> ConnectorNamespaceList listConnectorNamespaces(page, size, orderBy, search)
+> CompletableFuture<ConnectorNamespaceList> listConnectorNamespaces(page, size, orderBy, search)
 
 Returns a list of connector namespaces
 
@@ -333,6 +351,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -349,8 +368,8 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ConnectorNamespaceList result = apiInstance.listConnectorNamespaces(page, size, orderBy, search);
-            System.out.println(result);
+            CompletableFuture<ConnectorNamespaceList> result = apiInstance.listConnectorNamespaces(page, size, orderBy, search);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorNamespacesApi#listConnectorNamespaces");
             System.err.println("Status code: " + e.getCode());
@@ -374,7 +393,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorNamespaceList**](ConnectorNamespaceList.md)
+CompletableFuture<[**ConnectorNamespaceList**](ConnectorNamespaceList.md)>
 
 
 ### Authorization
@@ -395,7 +414,7 @@ Name | Type | Description  | Notes
 
 ## listConnectorNamespacesWithHttpInfo
 
-> ApiResponse<ConnectorNamespaceList> listConnectorNamespaces listConnectorNamespacesWithHttpInfo(page, size, orderBy, search)
+> CompletableFuture<ApiResponse<ConnectorNamespaceList>> listConnectorNamespaces listConnectorNamespacesWithHttpInfo(page, size, orderBy, search)
 
 Returns a list of connector namespaces
 
@@ -412,6 +431,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorNamespacesApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -428,10 +448,17 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ApiResponse<ConnectorNamespaceList> response = apiInstance.listConnectorNamespacesWithHttpInfo(page, size, orderBy, search);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorNamespaceList>> response = apiInstance.listConnectorNamespacesWithHttpInfo(page, size, orderBy, search);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorNamespacesApi#listConnectorNamespaces");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorNamespacesApi#listConnectorNamespaces");
             System.err.println("Status code: " + e.getCode());
@@ -455,7 +482,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorNamespaceList**](ConnectorNamespaceList.md)>
+CompletableFuture<ApiResponse<[**ConnectorNamespaceList**](ConnectorNamespaceList.md)>>
 
 
 ### Authorization

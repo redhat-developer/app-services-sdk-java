@@ -40,6 +40,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import java.util.concurrent.CompletableFuture;
+
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorsApi {
   private final HttpClient memberVarHttpClient;
@@ -64,10 +66,9 @@ public class ConnectorsApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
+  private ApiException getApiException(String operationId, HttpResponse<String> response) {
+    String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
+    return new ApiException(response.statusCode(), message, response.headers(), response.body());
   }
 
   private String formatExceptionMessage(String operationId, int statusCode, String body) {
@@ -82,12 +83,30 @@ public class ConnectorsApi {
    * Create a new connector
    * @param async Perform the action in an asynchronous manner (required)
    * @param connectorRequest Connector data (required)
-   * @return Connector
+   * @return CompletableFuture&lt;Connector&gt;
    * @throws ApiException if fails to make API call
    */
-  public Connector createConnector(Boolean async, ConnectorRequest connectorRequest) throws ApiException {
-    ApiResponse<Connector> localVarResponse = createConnectorWithHttpInfo(async, connectorRequest);
-    return localVarResponse.getData();
+  public CompletableFuture<Connector> createConnector(Boolean async, ConnectorRequest connectorRequest) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = createConnectorRequestBuilder(async, connectorRequest);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("createConnector", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Connector>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -95,36 +114,36 @@ public class ConnectorsApi {
    * Create a new connector
    * @param async Perform the action in an asynchronous manner (required)
    * @param connectorRequest Connector data (required)
-   * @return ApiResponse&lt;Connector&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;Connector&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Connector> createConnectorWithHttpInfo(Boolean async, ConnectorRequest connectorRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createConnectorRequestBuilder(async, connectorRequest);
+  public CompletableFuture<ApiResponse<Connector>> createConnectorWithHttpInfo(Boolean async, ConnectorRequest connectorRequest) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = createConnectorRequestBuilder(async, connectorRequest);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("createConnector", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("createConnector", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Connector>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Connector>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<Connector>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Connector>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -174,48 +193,66 @@ public class ConnectorsApi {
    * Delete a connector
    * Delete a connector
    * @param id The ID of record (required)
-   * @return Error
+   * @return CompletableFuture&lt;Error&gt;
    * @throws ApiException if fails to make API call
    */
-  public Error deleteConnector(String id) throws ApiException {
-    ApiResponse<Error> localVarResponse = deleteConnectorWithHttpInfo(id);
-    return localVarResponse.getData();
+  public CompletableFuture<Error> deleteConnector(String id) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = deleteConnectorRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("deleteConnector", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Error>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Delete a connector
    * Delete a connector
    * @param id The ID of record (required)
-   * @return ApiResponse&lt;Error&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;Error&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Error> deleteConnectorWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteConnectorRequestBuilder(id);
+  public CompletableFuture<ApiResponse<Error>> deleteConnectorWithHttpInfo(String id) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = deleteConnectorRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("deleteConnector", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("deleteConnector", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Error>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Error>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<Error>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Error>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -247,48 +284,66 @@ public class ConnectorsApi {
    * Get a connector
    * Get a connector
    * @param id The ID of record (required)
-   * @return Connector
+   * @return CompletableFuture&lt;Connector&gt;
    * @throws ApiException if fails to make API call
    */
-  public Connector getConnector(String id) throws ApiException {
-    ApiResponse<Connector> localVarResponse = getConnectorWithHttpInfo(id);
-    return localVarResponse.getData();
+  public CompletableFuture<Connector> getConnector(String id) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = getConnectorRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnector", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Connector>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Get a connector
    * Get a connector
    * @param id The ID of record (required)
-   * @return ApiResponse&lt;Connector&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;Connector&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Connector> getConnectorWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getConnectorRequestBuilder(id);
+  public CompletableFuture<ApiResponse<Connector>> getConnectorWithHttpInfo(String id) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = getConnectorRequestBuilder(id);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("getConnector", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnector", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Connector>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Connector>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<Connector>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Connector>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -323,12 +378,30 @@ public class ConnectorsApi {
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;ConnectorType&#x60; fields. For example, to return all Connector types ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Connector types ordered by their name _and_ version, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, version asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
    * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of a SQL statement. Allowed fields in the search are &#x60;name&#x60;, &#x60;description&#x60;, &#x60;version&#x60;, &#x60;label&#x60;, and &#x60;channel&#x60;. Allowed operators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed conjunctive operators are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name &#x60;aws-sqs-source&#x60; and the channel &#x60;stable&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; aws-sqs-source and channel &#x3D; stable &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like aws%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
-   * @return ConnectorList
+   * @return CompletableFuture&lt;ConnectorList&gt;
    * @throws ApiException if fails to make API call
    */
-  public ConnectorList listConnectors(String page, String size, String orderBy, String search) throws ApiException {
-    ApiResponse<ConnectorList> localVarResponse = listConnectorsWithHttpInfo(page, size, orderBy, search);
-    return localVarResponse.getData();
+  public CompletableFuture<ConnectorList> listConnectors(String page, String size, String orderBy, String search) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = listConnectorsRequestBuilder(page, size, orderBy, search);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("listConnectors", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorList>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -338,36 +411,36 @@ public class ConnectorsApi {
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;ConnectorType&#x60; fields. For example, to return all Connector types ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Connector types ordered by their name _and_ version, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, version asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
    * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of a SQL statement. Allowed fields in the search are &#x60;name&#x60;, &#x60;description&#x60;, &#x60;version&#x60;, &#x60;label&#x60;, and &#x60;channel&#x60;. Allowed operators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed conjunctive operators are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name &#x60;aws-sqs-source&#x60; and the channel &#x60;stable&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; aws-sqs-source and channel &#x3D; stable &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like aws%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
-   * @return ApiResponse&lt;ConnectorList&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;ConnectorList&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ConnectorList> listConnectorsWithHttpInfo(String page, String size, String orderBy, String search) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listConnectorsRequestBuilder(page, size, orderBy, search);
+  public CompletableFuture<ApiResponse<ConnectorList>> listConnectorsWithHttpInfo(String page, String size, String orderBy, String search) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = listConnectorsRequestBuilder(page, size, orderBy, search);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("listConnectors", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("listConnectors", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ConnectorList>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorList>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<ConnectorList>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorList>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -407,12 +480,30 @@ public class ConnectorsApi {
    * Patch a connector
    * @param id The ID of record (required)
    * @param body Data to patch the connector with (required)
-   * @return Connector
+   * @return CompletableFuture&lt;Connector&gt;
    * @throws ApiException if fails to make API call
    */
-  public Connector patchConnector(String id, Object body) throws ApiException {
-    ApiResponse<Connector> localVarResponse = patchConnectorWithHttpInfo(id, body);
-    return localVarResponse.getData();
+  public CompletableFuture<Connector> patchConnector(String id, Object body) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = patchConnectorRequestBuilder(id, body);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("patchConnector", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Connector>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -420,36 +511,36 @@ public class ConnectorsApi {
    * Patch a connector
    * @param id The ID of record (required)
    * @param body Data to patch the connector with (required)
-   * @return ApiResponse&lt;Connector&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;Connector&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Connector> patchConnectorWithHttpInfo(String id, Object body) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = patchConnectorRequestBuilder(id, body);
+  public CompletableFuture<ApiResponse<Connector>> patchConnectorWithHttpInfo(String id, Object body) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = patchConnectorRequestBuilder(id, body);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("patchConnector", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("patchConnector", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Connector>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Connector>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<Connector>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Connector>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 

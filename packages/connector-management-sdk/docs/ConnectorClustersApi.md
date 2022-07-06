@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 ## createConnectorCluster
 
-> ConnectorCluster createConnectorCluster(async, connectorClusterRequest)
+> CompletableFuture<ConnectorCluster> createConnectorCluster(async, connectorClusterRequest)
 
 Create a new connector cluster
 
@@ -39,6 +39,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -53,8 +54,8 @@ public class Example {
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
         ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Connector cluster data
         try {
-            ConnectorCluster result = apiInstance.createConnectorCluster(async, connectorClusterRequest);
-            System.out.println(result);
+            CompletableFuture<ConnectorCluster> result = apiInstance.createConnectorCluster(async, connectorClusterRequest);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#createConnectorCluster");
             System.err.println("Status code: " + e.getCode());
@@ -76,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorCluster**](ConnectorCluster.md)
+CompletableFuture<[**ConnectorCluster**](ConnectorCluster.md)>
 
 
 ### Authorization
@@ -99,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## createConnectorClusterWithHttpInfo
 
-> ApiResponse<ConnectorCluster> createConnectorCluster createConnectorClusterWithHttpInfo(async, connectorClusterRequest)
+> CompletableFuture<ApiResponse<ConnectorCluster>> createConnectorCluster createConnectorClusterWithHttpInfo(async, connectorClusterRequest)
 
 Create a new connector cluster
 
@@ -116,6 +117,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -130,10 +132,17 @@ public class Example {
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
         ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Connector cluster data
         try {
-            ApiResponse<ConnectorCluster> response = apiInstance.createConnectorClusterWithHttpInfo(async, connectorClusterRequest);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorCluster>> response = apiInstance.createConnectorClusterWithHttpInfo(async, connectorClusterRequest);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorClustersApi#createConnectorCluster");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#createConnectorCluster");
             System.err.println("Status code: " + e.getCode());
@@ -155,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorCluster**](ConnectorCluster.md)>
+CompletableFuture<ApiResponse<[**ConnectorCluster**](ConnectorCluster.md)>>
 
 
 ### Authorization
@@ -179,7 +188,7 @@ ApiResponse<[**ConnectorCluster**](ConnectorCluster.md)>
 
 ## deleteConnectorCluster
 
-> Error deleteConnectorCluster(connectorClusterId)
+> CompletableFuture<Error> deleteConnectorCluster(connectorClusterId)
 
 Delete a connector cluster
 
@@ -195,6 +204,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -208,8 +218,8 @@ public class Example {
         ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
         try {
-            Error result = apiInstance.deleteConnectorCluster(connectorClusterId);
-            System.out.println(result);
+            CompletableFuture<Error> result = apiInstance.deleteConnectorCluster(connectorClusterId);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#deleteConnectorCluster");
             System.err.println("Status code: " + e.getCode());
@@ -230,7 +240,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Error**](Error.md)
+CompletableFuture<[**Error**](Error.md)>
 
 
 ### Authorization
@@ -252,7 +262,7 @@ Name | Type | Description  | Notes
 
 ## deleteConnectorClusterWithHttpInfo
 
-> ApiResponse<Error> deleteConnectorCluster deleteConnectorClusterWithHttpInfo(connectorClusterId)
+> CompletableFuture<ApiResponse<Error>> deleteConnectorCluster deleteConnectorClusterWithHttpInfo(connectorClusterId)
 
 Delete a connector cluster
 
@@ -269,6 +279,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -282,10 +293,17 @@ public class Example {
         ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
         try {
-            ApiResponse<Error> response = apiInstance.deleteConnectorClusterWithHttpInfo(connectorClusterId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<Error>> response = apiInstance.deleteConnectorClusterWithHttpInfo(connectorClusterId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorClustersApi#deleteConnectorCluster");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#deleteConnectorCluster");
             System.err.println("Status code: " + e.getCode());
@@ -306,7 +324,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**Error**](Error.md)>
+CompletableFuture<ApiResponse<[**Error**](Error.md)>>
 
 
 ### Authorization
@@ -329,7 +347,7 @@ ApiResponse<[**Error**](Error.md)>
 
 ## getConnectorCluster
 
-> ConnectorCluster getConnectorCluster(connectorClusterId)
+> CompletableFuture<ConnectorCluster> getConnectorCluster(connectorClusterId)
 
 Get a connector cluster
 
@@ -345,6 +363,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -358,8 +377,8 @@ public class Example {
         ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
         try {
-            ConnectorCluster result = apiInstance.getConnectorCluster(connectorClusterId);
-            System.out.println(result);
+            CompletableFuture<ConnectorCluster> result = apiInstance.getConnectorCluster(connectorClusterId);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#getConnectorCluster");
             System.err.println("Status code: " + e.getCode());
@@ -380,7 +399,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorCluster**](ConnectorCluster.md)
+CompletableFuture<[**ConnectorCluster**](ConnectorCluster.md)>
 
 
 ### Authorization
@@ -403,7 +422,7 @@ Name | Type | Description  | Notes
 
 ## getConnectorClusterWithHttpInfo
 
-> ApiResponse<ConnectorCluster> getConnectorCluster getConnectorClusterWithHttpInfo(connectorClusterId)
+> CompletableFuture<ApiResponse<ConnectorCluster>> getConnectorCluster getConnectorClusterWithHttpInfo(connectorClusterId)
 
 Get a connector cluster
 
@@ -420,6 +439,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -433,10 +453,17 @@ public class Example {
         ConnectorClustersApi apiInstance = new ConnectorClustersApi(defaultClient);
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
         try {
-            ApiResponse<ConnectorCluster> response = apiInstance.getConnectorClusterWithHttpInfo(connectorClusterId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorCluster>> response = apiInstance.getConnectorClusterWithHttpInfo(connectorClusterId);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorClustersApi#getConnectorCluster");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#getConnectorCluster");
             System.err.println("Status code: " + e.getCode());
@@ -457,7 +484,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorCluster**](ConnectorCluster.md)>
+CompletableFuture<ApiResponse<[**ConnectorCluster**](ConnectorCluster.md)>>
 
 
 ### Authorization
@@ -481,7 +508,7 @@ ApiResponse<[**ConnectorCluster**](ConnectorCluster.md)>
 
 ## getConnectorClusterAddonParameters
 
-> List<AddonParameter> getConnectorClusterAddonParameters(connectorClusterId, resetCredentials)
+> CompletableFuture<List<AddonParameter>> getConnectorClusterAddonParameters(connectorClusterId, resetCredentials)
 
 Get a connector cluster&#39;s addon parameters
 
@@ -497,6 +524,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -511,8 +539,8 @@ public class Example {
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
         Boolean resetCredentials = true; // Boolean | Resets cluster service account credentials when true
         try {
-            List<AddonParameter> result = apiInstance.getConnectorClusterAddonParameters(connectorClusterId, resetCredentials);
-            System.out.println(result);
+            CompletableFuture<List<AddonParameter>> result = apiInstance.getConnectorClusterAddonParameters(connectorClusterId, resetCredentials);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#getConnectorClusterAddonParameters");
             System.err.println("Status code: " + e.getCode());
@@ -534,7 +562,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;AddonParameter&gt;**](AddonParameter.md)
+CompletableFuture<[**List&lt;AddonParameter&gt;**](AddonParameter.md)>
 
 
 ### Authorization
@@ -557,7 +585,7 @@ Name | Type | Description  | Notes
 
 ## getConnectorClusterAddonParametersWithHttpInfo
 
-> ApiResponse<List<AddonParameter>> getConnectorClusterAddonParameters getConnectorClusterAddonParametersWithHttpInfo(connectorClusterId, resetCredentials)
+> CompletableFuture<ApiResponse<List<AddonParameter>>> getConnectorClusterAddonParameters getConnectorClusterAddonParametersWithHttpInfo(connectorClusterId, resetCredentials)
 
 Get a connector cluster&#39;s addon parameters
 
@@ -574,6 +602,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -588,10 +617,17 @@ public class Example {
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
         Boolean resetCredentials = true; // Boolean | Resets cluster service account credentials when true
         try {
-            ApiResponse<List<AddonParameter>> response = apiInstance.getConnectorClusterAddonParametersWithHttpInfo(connectorClusterId, resetCredentials);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<List<AddonParameter>>> response = apiInstance.getConnectorClusterAddonParametersWithHttpInfo(connectorClusterId, resetCredentials);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorClustersApi#getConnectorClusterAddonParameters");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#getConnectorClusterAddonParameters");
             System.err.println("Status code: " + e.getCode());
@@ -613,7 +649,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**List&lt;AddonParameter&gt;**](AddonParameter.md)>
+CompletableFuture<ApiResponse<[**List&lt;AddonParameter&gt;**](AddonParameter.md)>>
 
 
 ### Authorization
@@ -637,7 +673,7 @@ ApiResponse<[**List&lt;AddonParameter&gt;**](AddonParameter.md)>
 
 ## getConnectorClusterNamespaces
 
-> ConnectorNamespaceList getConnectorClusterNamespaces(connectorClusterId, page, size, orderBy, search)
+> CompletableFuture<ConnectorNamespaceList> getConnectorClusterNamespaces(connectorClusterId, page, size, orderBy, search)
 
 Get a connector cluster&#39;s namespaces
 
@@ -653,6 +689,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -670,8 +707,8 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ConnectorNamespaceList result = apiInstance.getConnectorClusterNamespaces(connectorClusterId, page, size, orderBy, search);
-            System.out.println(result);
+            CompletableFuture<ConnectorNamespaceList> result = apiInstance.getConnectorClusterNamespaces(connectorClusterId, page, size, orderBy, search);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#getConnectorClusterNamespaces");
             System.err.println("Status code: " + e.getCode());
@@ -696,7 +733,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorNamespaceList**](ConnectorNamespaceList.md)
+CompletableFuture<[**ConnectorNamespaceList**](ConnectorNamespaceList.md)>
 
 
 ### Authorization
@@ -718,7 +755,7 @@ Name | Type | Description  | Notes
 
 ## getConnectorClusterNamespacesWithHttpInfo
 
-> ApiResponse<ConnectorNamespaceList> getConnectorClusterNamespaces getConnectorClusterNamespacesWithHttpInfo(connectorClusterId, page, size, orderBy, search)
+> CompletableFuture<ApiResponse<ConnectorNamespaceList>> getConnectorClusterNamespaces getConnectorClusterNamespacesWithHttpInfo(connectorClusterId, page, size, orderBy, search)
 
 Get a connector cluster&#39;s namespaces
 
@@ -735,6 +772,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -752,10 +790,17 @@ public class Example {
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the `ConnectorType` fields. For example, to return all Connector types ordered by their name, use the following syntax:  ```sql name asc ```  To return all Connector types ordered by their name _and_ version, use the following syntax:  ```sql name asc, version asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
         String search = "name = aws-sqs-source and channel = stable"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of a SQL statement. Allowed fields in the search are `name`, `description`, `version`, `label`, and `channel`. Allowed operators are `<>`, `=`, or `LIKE`. Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name `aws-sqs-source` and the channel `stable`, use the following syntax:  ``` name = aws-sqs-source and channel = stable ```[p-]  To return a Kafka instance with a name that starts with `aws`, use the following syntax:  ``` name like aws%25 ```  If the parameter isn't provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
-            ApiResponse<ConnectorNamespaceList> response = apiInstance.getConnectorClusterNamespacesWithHttpInfo(connectorClusterId, page, size, orderBy, search);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorNamespaceList>> response = apiInstance.getConnectorClusterNamespacesWithHttpInfo(connectorClusterId, page, size, orderBy, search);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorClustersApi#getConnectorClusterNamespaces");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#getConnectorClusterNamespaces");
             System.err.println("Status code: " + e.getCode());
@@ -780,7 +825,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorNamespaceList**](ConnectorNamespaceList.md)>
+CompletableFuture<ApiResponse<[**ConnectorNamespaceList**](ConnectorNamespaceList.md)>>
 
 
 ### Authorization
@@ -803,7 +848,7 @@ ApiResponse<[**ConnectorNamespaceList**](ConnectorNamespaceList.md)>
 
 ## listConnectorClusters
 
-> ConnectorClusterList listConnectorClusters(page, size)
+> CompletableFuture<ConnectorClusterList> listConnectorClusters(page, size)
 
 Returns a list of connector clusters
 
@@ -819,6 +864,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -833,8 +879,8 @@ public class Example {
         String page = "1"; // String | Page index
         String size = "100"; // String | Number of items in each page
         try {
-            ConnectorClusterList result = apiInstance.listConnectorClusters(page, size);
-            System.out.println(result);
+            CompletableFuture<ConnectorClusterList> result = apiInstance.listConnectorClusters(page, size);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#listConnectorClusters");
             System.err.println("Status code: " + e.getCode());
@@ -856,7 +902,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorClusterList**](ConnectorClusterList.md)
+CompletableFuture<[**ConnectorClusterList**](ConnectorClusterList.md)>
 
 
 ### Authorization
@@ -877,7 +923,7 @@ Name | Type | Description  | Notes
 
 ## listConnectorClustersWithHttpInfo
 
-> ApiResponse<ConnectorClusterList> listConnectorClusters listConnectorClustersWithHttpInfo(page, size)
+> CompletableFuture<ApiResponse<ConnectorClusterList>> listConnectorClusters listConnectorClustersWithHttpInfo(page, size)
 
 Returns a list of connector clusters
 
@@ -894,6 +940,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -908,10 +955,17 @@ public class Example {
         String page = "1"; // String | Page index
         String size = "100"; // String | Number of items in each page
         try {
-            ApiResponse<ConnectorClusterList> response = apiInstance.listConnectorClustersWithHttpInfo(page, size);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ConnectorClusterList>> response = apiInstance.listConnectorClustersWithHttpInfo(page, size);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorClustersApi#listConnectorClusters");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#listConnectorClusters");
             System.err.println("Status code: " + e.getCode());
@@ -933,7 +987,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<[**ConnectorClusterList**](ConnectorClusterList.md)>
+CompletableFuture<ApiResponse<[**ConnectorClusterList**](ConnectorClusterList.md)>>
 
 
 ### Authorization
@@ -955,7 +1009,7 @@ ApiResponse<[**ConnectorClusterList**](ConnectorClusterList.md)>
 
 ## updateConnectorClusterById
 
-> void updateConnectorClusterById(connectorClusterId, connectorClusterRequest)
+> CompletableFuture<Void> updateConnectorClusterById(connectorClusterId, connectorClusterRequest)
 
 udpate a connector cluster
 
@@ -971,6 +1025,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -985,7 +1040,7 @@ public class Example {
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
         ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Data to updated connector with
         try {
-            apiInstance.updateConnectorClusterById(connectorClusterId, connectorClusterRequest);
+            CompletableFuture<Void> result = apiInstance.updateConnectorClusterById(connectorClusterId, connectorClusterRequest);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#updateConnectorClusterById");
             System.err.println("Status code: " + e.getCode());
@@ -1008,7 +1063,7 @@ Name | Type | Description  | Notes
 ### Return type
 
 
-null (empty response body)
+CompletableFuture<void> (empty response body)
 
 ### Authorization
 
@@ -1029,7 +1084,7 @@ null (empty response body)
 
 ## updateConnectorClusterByIdWithHttpInfo
 
-> ApiResponse<Void> updateConnectorClusterById updateConnectorClusterByIdWithHttpInfo(connectorClusterId, connectorClusterRequest)
+> CompletableFuture<ApiResponse<Void>> updateConnectorClusterById updateConnectorClusterByIdWithHttpInfo(connectorClusterId, connectorClusterRequest)
 
 udpate a connector cluster
 
@@ -1046,6 +1101,7 @@ import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.auth.*;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorClustersApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -1060,9 +1116,16 @@ public class Example {
         String connectorClusterId = "connectorClusterId_example"; // String | The id of the connector cluster
         ConnectorClusterRequest connectorClusterRequest = new ConnectorClusterRequest(); // ConnectorClusterRequest | Data to updated connector with
         try {
-            ApiResponse<Void> response = apiInstance.updateConnectorClusterByIdWithHttpInfo(connectorClusterId, connectorClusterRequest);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
+            CompletableFuture<ApiResponse<Void>> response = apiInstance.updateConnectorClusterByIdWithHttpInfo(connectorClusterId, connectorClusterRequest);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorClustersApi#updateConnectorClusterById");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorClustersApi#updateConnectorClusterById");
             System.err.println("Status code: " + e.getCode());
@@ -1085,7 +1148,7 @@ Name | Type | Description  | Notes
 ### Return type
 
 
-ApiResponse<Void>
+CompletableFuture<ApiResponse<Void>>
 
 ### Authorization
 

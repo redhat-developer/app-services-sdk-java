@@ -42,6 +42,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import java.util.concurrent.CompletableFuture;
+
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorClustersApi {
   private final HttpClient memberVarHttpClient;
@@ -66,10 +68,9 @@ public class ConnectorClustersApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
+  private ApiException getApiException(String operationId, HttpResponse<String> response) {
+    String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
+    return new ApiException(response.statusCode(), message, response.headers(), response.body());
   }
 
   private String formatExceptionMessage(String operationId, int statusCode, String body) {
@@ -84,12 +85,30 @@ public class ConnectorClustersApi {
    * Create a new connector cluster
    * @param async Perform the action in an asynchronous manner (required)
    * @param connectorClusterRequest Connector cluster data (required)
-   * @return ConnectorCluster
+   * @return CompletableFuture&lt;ConnectorCluster&gt;
    * @throws ApiException if fails to make API call
    */
-  public ConnectorCluster createConnectorCluster(Boolean async, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
-    ApiResponse<ConnectorCluster> localVarResponse = createConnectorClusterWithHttpInfo(async, connectorClusterRequest);
-    return localVarResponse.getData();
+  public CompletableFuture<ConnectorCluster> createConnectorCluster(Boolean async, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = createConnectorClusterRequestBuilder(async, connectorClusterRequest);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("createConnectorCluster", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorCluster>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -97,36 +116,36 @@ public class ConnectorClustersApi {
    * Create a new connector cluster
    * @param async Perform the action in an asynchronous manner (required)
    * @param connectorClusterRequest Connector cluster data (required)
-   * @return ApiResponse&lt;ConnectorCluster&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;ConnectorCluster&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ConnectorCluster> createConnectorClusterWithHttpInfo(Boolean async, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createConnectorClusterRequestBuilder(async, connectorClusterRequest);
+  public CompletableFuture<ApiResponse<ConnectorCluster>> createConnectorClusterWithHttpInfo(Boolean async, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = createConnectorClusterRequestBuilder(async, connectorClusterRequest);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("createConnectorCluster", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("createConnectorCluster", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ConnectorCluster>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorCluster>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<ConnectorCluster>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorCluster>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -176,48 +195,66 @@ public class ConnectorClustersApi {
    * Delete a connector cluster
    * Delete a connector cluster
    * @param connectorClusterId The id of the connector cluster (required)
-   * @return Error
+   * @return CompletableFuture&lt;Error&gt;
    * @throws ApiException if fails to make API call
    */
-  public Error deleteConnectorCluster(String connectorClusterId) throws ApiException {
-    ApiResponse<Error> localVarResponse = deleteConnectorClusterWithHttpInfo(connectorClusterId);
-    return localVarResponse.getData();
+  public CompletableFuture<Error> deleteConnectorCluster(String connectorClusterId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = deleteConnectorClusterRequestBuilder(connectorClusterId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("deleteConnectorCluster", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Error>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Delete a connector cluster
    * Delete a connector cluster
    * @param connectorClusterId The id of the connector cluster (required)
-   * @return ApiResponse&lt;Error&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;Error&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Error> deleteConnectorClusterWithHttpInfo(String connectorClusterId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteConnectorClusterRequestBuilder(connectorClusterId);
+  public CompletableFuture<ApiResponse<Error>> deleteConnectorClusterWithHttpInfo(String connectorClusterId) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = deleteConnectorClusterRequestBuilder(connectorClusterId);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("deleteConnectorCluster", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("deleteConnectorCluster", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<Error>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Error>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<Error>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Error>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -249,48 +286,66 @@ public class ConnectorClustersApi {
    * Get a connector cluster
    * Get a connector cluster
    * @param connectorClusterId The id of the connector cluster (required)
-   * @return ConnectorCluster
+   * @return CompletableFuture&lt;ConnectorCluster&gt;
    * @throws ApiException if fails to make API call
    */
-  public ConnectorCluster getConnectorCluster(String connectorClusterId) throws ApiException {
-    ApiResponse<ConnectorCluster> localVarResponse = getConnectorClusterWithHttpInfo(connectorClusterId);
-    return localVarResponse.getData();
+  public CompletableFuture<ConnectorCluster> getConnectorCluster(String connectorClusterId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = getConnectorClusterRequestBuilder(connectorClusterId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorCluster", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorCluster>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Get a connector cluster
    * Get a connector cluster
    * @param connectorClusterId The id of the connector cluster (required)
-   * @return ApiResponse&lt;ConnectorCluster&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;ConnectorCluster&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ConnectorCluster> getConnectorClusterWithHttpInfo(String connectorClusterId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getConnectorClusterRequestBuilder(connectorClusterId);
+  public CompletableFuture<ApiResponse<ConnectorCluster>> getConnectorClusterWithHttpInfo(String connectorClusterId) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = getConnectorClusterRequestBuilder(connectorClusterId);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("getConnectorCluster", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorCluster", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ConnectorCluster>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorCluster>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<ConnectorCluster>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorCluster>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -323,12 +378,30 @@ public class ConnectorClustersApi {
    * Get a connector cluster&#39;s addon parameters
    * @param connectorClusterId The id of the connector cluster (required)
    * @param resetCredentials Resets cluster service account credentials when true (optional)
-   * @return List&lt;AddonParameter&gt;
+   * @return CompletableFuture&lt;List&lt;AddonParameter&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<AddonParameter> getConnectorClusterAddonParameters(String connectorClusterId, Boolean resetCredentials) throws ApiException {
-    ApiResponse<List<AddonParameter>> localVarResponse = getConnectorClusterAddonParametersWithHttpInfo(connectorClusterId, resetCredentials);
-    return localVarResponse.getData();
+  public CompletableFuture<List<AddonParameter>> getConnectorClusterAddonParameters(String connectorClusterId, Boolean resetCredentials) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = getConnectorClusterAddonParametersRequestBuilder(connectorClusterId, resetCredentials);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorClusterAddonParameters", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<AddonParameter>>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -336,36 +409,36 @@ public class ConnectorClustersApi {
    * Get a connector cluster&#39;s addon parameters
    * @param connectorClusterId The id of the connector cluster (required)
    * @param resetCredentials Resets cluster service account credentials when true (optional)
-   * @return ApiResponse&lt;List&lt;AddonParameter&gt;&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;List&lt;AddonParameter&gt;&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<List<AddonParameter>> getConnectorClusterAddonParametersWithHttpInfo(String connectorClusterId, Boolean resetCredentials) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getConnectorClusterAddonParametersRequestBuilder(connectorClusterId, resetCredentials);
+  public CompletableFuture<ApiResponse<List<AddonParameter>>> getConnectorClusterAddonParametersWithHttpInfo(String connectorClusterId, Boolean resetCredentials) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = getConnectorClusterAddonParametersRequestBuilder(connectorClusterId, resetCredentials);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("getConnectorClusterAddonParameters", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorClusterAddonParameters", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<List<AddonParameter>>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<AddonParameter>>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<List<AddonParameter>>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<AddonParameter>>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -410,12 +483,30 @@ public class ConnectorClustersApi {
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;ConnectorType&#x60; fields. For example, to return all Connector types ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Connector types ordered by their name _and_ version, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, version asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
    * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of a SQL statement. Allowed fields in the search are &#x60;name&#x60;, &#x60;description&#x60;, &#x60;version&#x60;, &#x60;label&#x60;, and &#x60;channel&#x60;. Allowed operators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed conjunctive operators are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name &#x60;aws-sqs-source&#x60; and the channel &#x60;stable&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; aws-sqs-source and channel &#x3D; stable &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like aws%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
-   * @return ConnectorNamespaceList
+   * @return CompletableFuture&lt;ConnectorNamespaceList&gt;
    * @throws ApiException if fails to make API call
    */
-  public ConnectorNamespaceList getConnectorClusterNamespaces(String connectorClusterId, String page, String size, String orderBy, String search) throws ApiException {
-    ApiResponse<ConnectorNamespaceList> localVarResponse = getConnectorClusterNamespacesWithHttpInfo(connectorClusterId, page, size, orderBy, search);
-    return localVarResponse.getData();
+  public CompletableFuture<ConnectorNamespaceList> getConnectorClusterNamespaces(String connectorClusterId, String page, String size, String orderBy, String search) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = getConnectorClusterNamespacesRequestBuilder(connectorClusterId, page, size, orderBy, search);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorClusterNamespaces", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorNamespaceList>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -426,36 +517,36 @@ public class ConnectorClustersApi {
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the &#x60;ConnectorType&#x60; fields. For example, to return all Connector types ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Connector types ordered by their name _and_ version, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, version asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
    * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of a SQL statement. Allowed fields in the search are &#x60;name&#x60;, &#x60;description&#x60;, &#x60;version&#x60;, &#x60;label&#x60;, and &#x60;channel&#x60;. Allowed operators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed conjunctive operators are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 conjunctions in a search query.  Examples:  To return a Connector Type with the name &#x60;aws-sqs-source&#x60; and the channel &#x60;stable&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; aws-sqs-source and channel &#x3D; stable &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like aws%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Connector Type that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
-   * @return ApiResponse&lt;ConnectorNamespaceList&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;ConnectorNamespaceList&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ConnectorNamespaceList> getConnectorClusterNamespacesWithHttpInfo(String connectorClusterId, String page, String size, String orderBy, String search) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getConnectorClusterNamespacesRequestBuilder(connectorClusterId, page, size, orderBy, search);
+  public CompletableFuture<ApiResponse<ConnectorNamespaceList>> getConnectorClusterNamespacesWithHttpInfo(String connectorClusterId, String page, String size, String orderBy, String search) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = getConnectorClusterNamespacesRequestBuilder(connectorClusterId, page, size, orderBy, search);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("getConnectorClusterNamespaces", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("getConnectorClusterNamespaces", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ConnectorNamespaceList>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorNamespaceList>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<ConnectorNamespaceList>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorNamespaceList>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -500,12 +591,30 @@ public class ConnectorClustersApi {
    * Returns a list of connector clusters
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
-   * @return ConnectorClusterList
+   * @return CompletableFuture&lt;ConnectorClusterList&gt;
    * @throws ApiException if fails to make API call
    */
-  public ConnectorClusterList listConnectorClusters(String page, String size) throws ApiException {
-    ApiResponse<ConnectorClusterList> localVarResponse = listConnectorClustersWithHttpInfo(page, size);
-    return localVarResponse.getData();
+  public CompletableFuture<ConnectorClusterList> listConnectorClusters(String page, String size) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = listConnectorClustersRequestBuilder(page, size);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("listConnectorClusters", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorClusterList>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -513,36 +622,36 @@ public class ConnectorClustersApi {
    * Returns a list of connector clusters
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
-   * @return ApiResponse&lt;ConnectorClusterList&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;ConnectorClusterList&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ConnectorClusterList> listConnectorClustersWithHttpInfo(String page, String size) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listConnectorClustersRequestBuilder(page, size);
+  public CompletableFuture<ApiResponse<ConnectorClusterList>> listConnectorClustersWithHttpInfo(String page, String size) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = listConnectorClustersRequestBuilder(page, size);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("listConnectorClusters", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("listConnectorClusters", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<ConnectorClusterList>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorClusterList>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<ConnectorClusterList>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ConnectorClusterList>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -582,8 +691,21 @@ public class ConnectorClustersApi {
    * @param connectorClusterRequest Data to updated connector with (required)
    * @throws ApiException if fails to make API call
    */
-  public void updateConnectorClusterById(String connectorClusterId, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
-    updateConnectorClusterByIdWithHttpInfo(connectorClusterId, connectorClusterRequest);
+  public CompletableFuture<Void> updateConnectorClusterById(String connectorClusterId, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = updateConnectorClusterByIdRequestBuilder(connectorClusterId, connectorClusterRequest);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("updateConnectorClusterById", localVarResponse));
+            }
+            return CompletableFuture.completedFuture(null);
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -591,41 +713,29 @@ public class ConnectorClustersApi {
    * udpate a connector cluster
    * @param connectorClusterId The id of the connector cluster (required)
    * @param connectorClusterRequest Data to updated connector with (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;Void&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateConnectorClusterByIdWithHttpInfo(String connectorClusterId, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateConnectorClusterByIdRequestBuilder(connectorClusterId, connectorClusterRequest);
+  public CompletableFuture<ApiResponse<Void>> updateConnectorClusterByIdWithHttpInfo(String connectorClusterId, ConnectorClusterRequest connectorClusterRequest) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = updateConnectorClusterByIdRequestBuilder(connectorClusterId, connectorClusterRequest);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("updateConnectorClusterById", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("updateConnectorClusterById", localVarResponse));
+            }
+            return CompletableFuture.completedFuture(
+                new ApiResponse<Void>(localVarResponse.statusCode(), localVarResponse.headers().map(), null)
+            );
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
-        }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 

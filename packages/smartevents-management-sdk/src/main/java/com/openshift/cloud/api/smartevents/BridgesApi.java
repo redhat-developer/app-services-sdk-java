@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import java.util.concurrent.CompletableFuture;
+
 @javax.annotation.processing.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class BridgesApi {
   private final HttpClient memberVarHttpClient;
@@ -65,10 +67,9 @@ public class BridgesApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
+  private ApiException getApiException(String operationId, HttpResponse<String> response) {
+    String message = formatExceptionMessage(operationId, response.statusCode(), response.body());
+    return new ApiException(response.statusCode(), message, response.headers(), response.body());
   }
 
   private String formatExceptionMessage(String operationId, int statusCode, String body) {
@@ -82,48 +83,66 @@ public class BridgesApi {
    * Create a Bridge instance
    * Create a Bridge instance for the authenticated user.
    * @param bridgeRequest  (optional)
-   * @return BridgeResponse
+   * @return CompletableFuture&lt;BridgeResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public BridgeResponse bridgesAPICreateBridge(BridgeRequest bridgeRequest) throws ApiException {
-    ApiResponse<BridgeResponse> localVarResponse = bridgesAPICreateBridgeWithHttpInfo(bridgeRequest);
-    return localVarResponse.getData();
+  public CompletableFuture<BridgeResponse> bridgesAPICreateBridge(BridgeRequest bridgeRequest) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = bridgesAPICreateBridgeRequestBuilder(bridgeRequest);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("bridgesAPICreateBridge", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BridgeResponse>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Create a Bridge instance
    * Create a Bridge instance for the authenticated user.
    * @param bridgeRequest  (optional)
-   * @return ApiResponse&lt;BridgeResponse&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;BridgeResponse&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<BridgeResponse> bridgesAPICreateBridgeWithHttpInfo(BridgeRequest bridgeRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = bridgesAPICreateBridgeRequestBuilder(bridgeRequest);
+  public CompletableFuture<ApiResponse<BridgeResponse>> bridgesAPICreateBridgeWithHttpInfo(BridgeRequest bridgeRequest) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = bridgesAPICreateBridgeRequestBuilder(bridgeRequest);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("bridgesAPICreateBridge", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("bridgesAPICreateBridge", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<BridgeResponse>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BridgeResponse>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<BridgeResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BridgeResponse>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -158,49 +177,50 @@ public class BridgesApi {
    * @param bridgeId  (required)
    * @throws ApiException if fails to make API call
    */
-  public void bridgesAPIDeleteBridge(String bridgeId) throws ApiException {
-    bridgesAPIDeleteBridgeWithHttpInfo(bridgeId);
+  public CompletableFuture<Void> bridgesAPIDeleteBridge(String bridgeId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = bridgesAPIDeleteBridgeRequestBuilder(bridgeId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("bridgesAPIDeleteBridge", localVarResponse));
+            }
+            return CompletableFuture.completedFuture(null);
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Delete a Bridge instance
    * Delete a Bridge instance of the authenticated user by ID.
    * @param bridgeId  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;Void&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> bridgesAPIDeleteBridgeWithHttpInfo(String bridgeId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = bridgesAPIDeleteBridgeRequestBuilder(bridgeId);
+  public CompletableFuture<ApiResponse<Void>> bridgesAPIDeleteBridgeWithHttpInfo(String bridgeId) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = bridgesAPIDeleteBridgeRequestBuilder(bridgeId);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("bridgesAPIDeleteBridge", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("bridgesAPIDeleteBridge", localVarResponse));
+            }
+            return CompletableFuture.completedFuture(
+                new ApiResponse<Void>(localVarResponse.statusCode(), localVarResponse.headers().map(), null)
+            );
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
-        }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -232,48 +252,66 @@ public class BridgesApi {
    * Get a Bridge instance
    * Get a Bridge instance of the authenticated user by ID.
    * @param bridgeId  (required)
-   * @return BridgeResponse
+   * @return CompletableFuture&lt;BridgeResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public BridgeResponse bridgesAPIGetBridge(String bridgeId) throws ApiException {
-    ApiResponse<BridgeResponse> localVarResponse = bridgesAPIGetBridgeWithHttpInfo(bridgeId);
-    return localVarResponse.getData();
+  public CompletableFuture<BridgeResponse> bridgesAPIGetBridge(String bridgeId) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = bridgesAPIGetBridgeRequestBuilder(bridgeId);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("bridgesAPIGetBridge", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BridgeResponse>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
    * Get a Bridge instance
    * Get a Bridge instance of the authenticated user by ID.
    * @param bridgeId  (required)
-   * @return ApiResponse&lt;BridgeResponse&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;BridgeResponse&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<BridgeResponse> bridgesAPIGetBridgeWithHttpInfo(String bridgeId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = bridgesAPIGetBridgeRequestBuilder(bridgeId);
+  public CompletableFuture<ApiResponse<BridgeResponse>> bridgesAPIGetBridgeWithHttpInfo(String bridgeId) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = bridgesAPIGetBridgeRequestBuilder(bridgeId);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("bridgesAPIGetBridge", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("bridgesAPIGetBridge", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<BridgeResponse>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BridgeResponse>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<BridgeResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BridgeResponse>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 
@@ -308,12 +346,30 @@ public class BridgesApi {
    * @param page  (optional, default to 0)
    * @param size  (optional, default to 100)
    * @param status  (optional
-   * @return BridgeListResponse
+   * @return CompletableFuture&lt;BridgeListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public BridgeListResponse bridgesAPIGetBridges(String name, Integer page, Integer size, Set<ManagedResourceStatus> status) throws ApiException {
-    ApiResponse<BridgeListResponse> localVarResponse = bridgesAPIGetBridgesWithHttpInfo(name, page, size, status);
-    return localVarResponse.getData();
+  public CompletableFuture<BridgeListResponse> bridgesAPIGetBridges(String name, Integer page, Integer size, Set<ManagedResourceStatus> status) throws ApiException {
+    try {
+      HttpRequest.Builder localVarRequestBuilder = bridgesAPIGetBridgesRequestBuilder(name, page, size, status);
+      return memberVarHttpClient.sendAsync(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("bridgesAPIGetBridges", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BridgeListResponse>() {})
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
+      });
+    }
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
+    }
   }
 
   /**
@@ -323,36 +379,36 @@ public class BridgesApi {
    * @param page  (optional, default to 0)
    * @param size  (optional, default to 100)
    * @param status  (optional
-   * @return ApiResponse&lt;BridgeListResponse&gt;
+   * @return CompletableFuture&lt;ApiResponse&lt;BridgeListResponse&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<BridgeListResponse> bridgesAPIGetBridgesWithHttpInfo(String name, Integer page, Integer size, Set<ManagedResourceStatus> status) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = bridgesAPIGetBridgesRequestBuilder(name, page, size, status);
+  public CompletableFuture<ApiResponse<BridgeListResponse>> bridgesAPIGetBridgesWithHttpInfo(String name, Integer page, Integer size, Set<ManagedResourceStatus> status) throws ApiException {
     try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+      HttpRequest.Builder localVarRequestBuilder = bridgesAPIGetBridgesRequestBuilder(name, page, size, status);
+      return memberVarHttpClient.sendAsync(
           localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("bridgesAPIGetBridges", localVarResponse);
+          HttpResponse.BodyHandlers.ofString()).thenComposeAsync(localVarResponse -> {
+            if (memberVarAsyncResponseInterceptor != null) {
+              memberVarAsyncResponseInterceptor.accept(localVarResponse);
+            }
+            if (localVarResponse.statusCode()/ 100 != 2) {
+              return CompletableFuture.failedFuture(getApiException("bridgesAPIGetBridges", localVarResponse));
+            }
+            try {
+              return CompletableFuture.completedFuture(
+                  new ApiResponse<BridgeListResponse>(
+                      localVarResponse.statusCode(),
+                      localVarResponse.headers().map(),
+                      memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BridgeListResponse>() {}))
+              );
+            } catch (IOException e) {
+              return CompletableFuture.failedFuture(new ApiException(e));
+            }
         }
-        return new ApiResponse<BridgeListResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<BridgeListResponse>() {}) // closes the InputStream
-          
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+      );
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+    catch (ApiException e) {
+      return CompletableFuture.failedFuture(e);
     }
   }
 

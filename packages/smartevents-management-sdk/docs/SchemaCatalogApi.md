@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## schemaAPIGetActionProcessorSchema
 
-> Object schemaAPIGetActionProcessorSchema(id)
+> CompletableFuture<Object> schemaAPIGetActionProcessorSchema(id)
 
 Get action processor schema
 
@@ -31,6 +31,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.SchemaCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -44,8 +45,8 @@ public class Example {
         SchemaCatalogApi apiInstance = new SchemaCatalogApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            Object result = apiInstance.schemaAPIGetActionProcessorSchema(id);
-            System.out.println(result);
+            CompletableFuture<Object> result = apiInstance.schemaAPIGetActionProcessorSchema(id);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling SchemaCatalogApi#schemaAPIGetActionProcessorSchema");
             System.err.println("Status code: " + e.getCode());
@@ -66,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+CompletableFuture<**Object**>
 
 
 ### Authorization
@@ -89,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## schemaAPIGetActionProcessorSchemaWithHttpInfo
 
-> ApiResponse<Object> schemaAPIGetActionProcessorSchema schemaAPIGetActionProcessorSchemaWithHttpInfo(id)
+> CompletableFuture<ApiResponse<Object>> schemaAPIGetActionProcessorSchema schemaAPIGetActionProcessorSchemaWithHttpInfo(id)
 
 Get action processor schema
 
@@ -106,6 +107,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.SchemaCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -119,10 +121,17 @@ public class Example {
         SchemaCatalogApi apiInstance = new SchemaCatalogApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            ApiResponse<Object> response = apiInstance.schemaAPIGetActionProcessorSchemaWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<Object>> response = apiInstance.schemaAPIGetActionProcessorSchemaWithHttpInfo(id);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling SchemaCatalogApi#schemaAPIGetActionProcessorSchema");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling SchemaCatalogApi#schemaAPIGetActionProcessorSchema");
             System.err.println("Status code: " + e.getCode());
@@ -143,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<**Object**>
+CompletableFuture<ApiResponse<**Object**>>
 
 
 ### Authorization
@@ -167,7 +176,7 @@ ApiResponse<**Object**>
 
 ## schemaAPIGetCatalog
 
-> ProcessorCatalogResponse schemaAPIGetCatalog()
+> CompletableFuture<ProcessorCatalogResponse> schemaAPIGetCatalog()
 
 Get processor catalog
 
@@ -183,6 +192,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.SchemaCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -195,8 +205,8 @@ public class Example {
 
         SchemaCatalogApi apiInstance = new SchemaCatalogApi(defaultClient);
         try {
-            ProcessorCatalogResponse result = apiInstance.schemaAPIGetCatalog();
-            System.out.println(result);
+            CompletableFuture<ProcessorCatalogResponse> result = apiInstance.schemaAPIGetCatalog();
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling SchemaCatalogApi#schemaAPIGetCatalog");
             System.err.println("Status code: " + e.getCode());
@@ -214,7 +224,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ProcessorCatalogResponse**](ProcessorCatalogResponse.md)
+CompletableFuture<[**ProcessorCatalogResponse**](ProcessorCatalogResponse.md)>
 
 
 ### Authorization
@@ -237,7 +247,7 @@ This endpoint does not need any parameter.
 
 ## schemaAPIGetCatalogWithHttpInfo
 
-> ApiResponse<ProcessorCatalogResponse> schemaAPIGetCatalog schemaAPIGetCatalogWithHttpInfo()
+> CompletableFuture<ApiResponse<ProcessorCatalogResponse>> schemaAPIGetCatalog schemaAPIGetCatalogWithHttpInfo()
 
 Get processor catalog
 
@@ -254,6 +264,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.SchemaCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -266,10 +277,17 @@ public class Example {
 
         SchemaCatalogApi apiInstance = new SchemaCatalogApi(defaultClient);
         try {
-            ApiResponse<ProcessorCatalogResponse> response = apiInstance.schemaAPIGetCatalogWithHttpInfo();
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<ProcessorCatalogResponse>> response = apiInstance.schemaAPIGetCatalogWithHttpInfo();
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling SchemaCatalogApi#schemaAPIGetCatalog");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling SchemaCatalogApi#schemaAPIGetCatalog");
             System.err.println("Status code: " + e.getCode());
@@ -287,7 +305,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-ApiResponse<[**ProcessorCatalogResponse**](ProcessorCatalogResponse.md)>
+CompletableFuture<ApiResponse<[**ProcessorCatalogResponse**](ProcessorCatalogResponse.md)>>
 
 
 ### Authorization
@@ -311,7 +329,7 @@ ApiResponse<[**ProcessorCatalogResponse**](ProcessorCatalogResponse.md)>
 
 ## schemaAPIGetSourceProcessorSchema
 
-> Object schemaAPIGetSourceProcessorSchema(id)
+> CompletableFuture<Object> schemaAPIGetSourceProcessorSchema(id)
 
 Get source processor schema
 
@@ -327,6 +345,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.SchemaCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -340,8 +359,8 @@ public class Example {
         SchemaCatalogApi apiInstance = new SchemaCatalogApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            Object result = apiInstance.schemaAPIGetSourceProcessorSchema(id);
-            System.out.println(result);
+            CompletableFuture<Object> result = apiInstance.schemaAPIGetSourceProcessorSchema(id);
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling SchemaCatalogApi#schemaAPIGetSourceProcessorSchema");
             System.err.println("Status code: " + e.getCode());
@@ -362,7 +381,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+CompletableFuture<**Object**>
 
 
 ### Authorization
@@ -385,7 +404,7 @@ Name | Type | Description  | Notes
 
 ## schemaAPIGetSourceProcessorSchemaWithHttpInfo
 
-> ApiResponse<Object> schemaAPIGetSourceProcessorSchema schemaAPIGetSourceProcessorSchemaWithHttpInfo(id)
+> CompletableFuture<ApiResponse<Object>> schemaAPIGetSourceProcessorSchema schemaAPIGetSourceProcessorSchemaWithHttpInfo(id)
 
 Get source processor schema
 
@@ -402,6 +421,7 @@ import com.openshift.cloud.api.smartevents.invoker.Configuration;
 import com.openshift.cloud.api.smartevents.invoker.auth.*;
 import com.openshift.cloud.api.smartevents.invoker.models.*;
 import com.openshift.cloud.api.smartevents.SchemaCatalogApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -415,10 +435,17 @@ public class Example {
         SchemaCatalogApi apiInstance = new SchemaCatalogApi(defaultClient);
         String id = "id_example"; // String | 
         try {
-            ApiResponse<Object> response = apiInstance.schemaAPIGetSourceProcessorSchemaWithHttpInfo(id);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<Object>> response = apiInstance.schemaAPIGetSourceProcessorSchemaWithHttpInfo(id);
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling SchemaCatalogApi#schemaAPIGetSourceProcessorSchema");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling SchemaCatalogApi#schemaAPIGetSourceProcessorSchema");
             System.err.println("Status code: " + e.getCode());
@@ -439,7 +466,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-ApiResponse<**Object**>
+CompletableFuture<ApiResponse<**Object**>>
 
 
 ### Authorization

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## getVersionMetadata
 
-> VersionMetadata getVersionMetadata()
+> CompletableFuture<VersionMetadata> getVersionMetadata()
 
 Returns the version metadata
 
@@ -26,6 +26,7 @@ import com.openshift.cloud.api.connector.invoker.ApiException;
 import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorServiceApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -34,8 +35,8 @@ public class Example {
 
         ConnectorServiceApi apiInstance = new ConnectorServiceApi(defaultClient);
         try {
-            VersionMetadata result = apiInstance.getVersionMetadata();
-            System.out.println(result);
+            CompletableFuture<VersionMetadata> result = apiInstance.getVersionMetadata();
+            System.out.println(result.get());
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorServiceApi#getVersionMetadata");
             System.err.println("Status code: " + e.getCode());
@@ -53,7 +54,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**VersionMetadata**](VersionMetadata.md)
+CompletableFuture<[**VersionMetadata**](VersionMetadata.md)>
 
 
 ### Authorization
@@ -72,7 +73,7 @@ No authorization required
 
 ## getVersionMetadataWithHttpInfo
 
-> ApiResponse<VersionMetadata> getVersionMetadata getVersionMetadataWithHttpInfo()
+> CompletableFuture<ApiResponse<VersionMetadata>> getVersionMetadata getVersionMetadataWithHttpInfo()
 
 Returns the version metadata
 
@@ -88,6 +89,7 @@ import com.openshift.cloud.api.connector.invoker.ApiResponse;
 import com.openshift.cloud.api.connector.invoker.Configuration;
 import com.openshift.cloud.api.connector.invoker.models.*;
 import com.openshift.cloud.api.connector.ConnectorServiceApi;
+import java.util.concurrent.CompletableFuture;
 
 public class Example {
     public static void main(String[] args) {
@@ -96,10 +98,17 @@ public class Example {
 
         ConnectorServiceApi apiInstance = new ConnectorServiceApi(defaultClient);
         try {
-            ApiResponse<VersionMetadata> response = apiInstance.getVersionMetadataWithHttpInfo();
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
+            CompletableFuture<ApiResponse<VersionMetadata>> response = apiInstance.getVersionMetadataWithHttpInfo();
+            System.out.println("Status code: " + response.get().getStatusCode());
+            System.out.println("Response headers: " + response.get().getHeaders());
+            System.out.println("Response body: " + response.get().getData());
+        } catch (InterruptedException | ExecutionException e) {
+            ApiException apiException = (ApiException)e.getCause();
+            System.err.println("Exception when calling ConnectorServiceApi#getVersionMetadata");
+            System.err.println("Status code: " + apiException.getCode());
+            System.err.println("Response headers: " + apiException.getResponseHeaders());
+            System.err.println("Reason: " + apiException.getResponseBody());
+            e.printStackTrace();
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectorServiceApi#getVersionMetadata");
             System.err.println("Status code: " + e.getCode());
@@ -117,7 +126,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-ApiResponse<[**VersionMetadata**](VersionMetadata.md)>
+CompletableFuture<ApiResponse<[**VersionMetadata**](VersionMetadata.md)>>
 
 
 ### Authorization
