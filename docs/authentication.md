@@ -4,7 +4,8 @@ Management SDKs are used to created instances.
 For those instances we can use OAuth.
 
 All Management SDK's are working with Red Hat Single Sign On (sso.redhat.com) server.
-Authentication to services can be done using Keycloak.js library.
+Authentication to services can be done using Keycloak.js library, available at the following locations:
+[NPM](https://www.npmjs.com/package/keycloak-js),[Yarn](https://yarnpkg.com/package/keycloak-js)
 
 When authenticating please use following keycloak client configuration:
 ```
@@ -20,7 +21,7 @@ When authenticating please use following keycloak client configuration:
 
 Valid redirect urls: 
 
-`.openshift.com/*, https://prod.foo.redhat.com/*, https://prod.food.redhat.com:1337/*`
+`.openshift.com/*`, `https://prod.foo.redhat.com/*`, `https://prod.food.redhat.com:1337/*`
 
 For more information about how to use Keycloak.js please refer to [official documentation](https://github.com/keycloak/keycloak-documentation/blob/master/securing_apps/topics/oidc/javascript-adapter.adoc)
 
