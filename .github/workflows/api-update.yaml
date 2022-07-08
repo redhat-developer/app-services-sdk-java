@@ -23,22 +23,22 @@ jobs:
         run: make generateErrors
       - uses: peter-evans/create-pull-request@v4
         with:
-          title: "fix(${{ github.event.client_payload.id }): automated SDK update"
-          token: "${{ secrets.CI_USER_TOKEN }}"
-          commit-message: "fix(${{ github.event.client_payload.id }): update ${{ github.event.client_payload.id }} SDK"
-          author: "app-services-ci <app-services-ci@users.noreply.github.com>"
-          branch: chore/generate-api-clients
-          branch-suffix: timestamp
-          reviewers: '@redhat-developer/app-services-sdk-maintainers'
-          delete-branch: true
-          body: |
-            _This pull request was auto-generated_
+            title: "fix(${{ github.event.client_payload.id }): automated SDK update"
+            token: "${{ secrets.CI_USER_TOKEN }}"
+            commit-message: "fix(${{ github.event.client_payload.id }): update ${{ github.event.client_payload.id }} SDK"
+            author: "app-services-ci <app-services-ci@users.noreply.github.com>"
+            branch: chore/generate-api-clients
+            branch-suffix: timestamp
+            reviewers: '@redhat-developer/app-services-sdk-maintainers'
+            delete-branch: true
+            body: |
+              _This pull request was auto-generated_
 
-            This PR adds the latest generated API clients.
-            This PR will be merged automatically after all verification passes.
+              This PR adds the latest generated API clients.
+              This PR will be merged automatically after all verification passes.
 
-            **Handling Errors**:
+              **Handling Errors**:
 
-              1. Review changes and validate against the examples.
-              2. Make changes where necessary.
-              3. Approve and merge with proper commit message that represents change
+                1. Review changes and validate against the examples.
+                2. Make changes where necessary.
+                3. Approve and merge with proper commit message that represents change
