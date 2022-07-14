@@ -23,7 +23,7 @@ jobs:
         run: make generateErrors
       - uses: peter-evans/create-pull-request@v4
         with:
-            title: "fix(${{ github.event.client_payload.id }): automated SDK update"
+            title: "fix(${{ github.event.client_payload.id }}): automated SDK update"
             token: "${{ secrets.CI_USER_TOKEN }}"
             commit-message: "fix(${{ github.event.client_payload.id }): update ${{ github.event.client_payload.id }} SDK"
             author: "app-services-ci <app-services-ci@users.noreply.github.com>"
