@@ -4,8 +4,8 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**errorsAPIGetError**](ErrorCatalogApi.md#errorsAPIGetError) | **GET** /api/v1/errors/{id} | Get an error from the error catalog.
-[**errorsAPIGetErrors**](ErrorCatalogApi.md#errorsAPIGetErrors) | **GET** /api/v1/errors | Get the list of errors.
+[**errorsAPIGetError**](ErrorCatalogApi.md#errorsAPIGetError) | **GET** /api/smartevents_mgmt/v1/errors/{id} | Get an error from the error catalog.
+[**errorsAPIGetErrors**](ErrorCatalogApi.md#errorsAPIGetErrors) | **GET** /api/smartevents_mgmt/v1/errors | Get the list of errors.
 
 
 

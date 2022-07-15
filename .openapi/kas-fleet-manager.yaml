@@ -8,7 +8,7 @@ info:
     name: 'Apache 2.0'
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
   contact: 
-    name: 'Red Hat Hybrid Cloud Console'
+    name: 'Red Hat OpenShift Streams for Apache Kafka Support'
     email: 'rhosak-support@redhat.com'
 tags:
   - name: errors
