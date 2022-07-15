@@ -56,7 +56,7 @@ public class ProcessorsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/bridges/{bridgeId}/processors".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()));
 
     // query params
@@ -105,7 +105,7 @@ public class ProcessorsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()))
       .replaceAll("\\{" + "processorId" + "\\}", apiClient.escapeString(processorId.toString()));
 
@@ -156,7 +156,7 @@ public class ProcessorsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()))
       .replaceAll("\\{" + "processorId" + "\\}", apiClient.escapeString(processorId.toString()));
 
@@ -206,7 +206,7 @@ public class ProcessorsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/bridges/{bridgeId}/processors".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()));
 
     // query params
@@ -262,7 +262,7 @@ public class ProcessorsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/v1/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()))
       .replaceAll("\\{" + "processorId" + "\\}", apiClient.escapeString(processorId.toString()));
 

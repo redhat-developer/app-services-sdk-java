@@ -8,7 +8,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: Red Hat Openshift SmartEvents Fleet Manager
-  version: 0.0.2
+  version: 0.0.1
 servers:
 - url: /
 tags:
@@ -25,7 +25,7 @@ tags:
     definition and their JSON schema.
   name: Schema Catalog
 paths:
-  /api/v1/bridges:
+  /api/smartevents_mgmt/v1/bridges:
     get:
       description: Get the list of Bridge instances for the authenticated user.
       operationId: BridgesAPI_getBridges
@@ -131,7 +131,7 @@ paths:
       - Bridges
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/bridges/{bridgeId}:
+  /api/smartevents_mgmt/v1/bridges/{bridgeId}:
     delete:
       description: Delete a Bridge instance of the authenticated user by ID.
       operationId: BridgesAPI_deleteBridge
@@ -210,7 +210,7 @@ paths:
       tags:
       - Bridges
       x-accepts: application/json
-  /api/v1/bridges/{bridgeId}/processors:
+  /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors:
     get:
       description: Get the list of Processors of a Bridge instance for the authenticated
         user.
@@ -347,7 +347,7 @@ paths:
       - Processors
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/bridges/{bridgeId}/processors/{processorId}:
+  /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId}:
     delete:
       description: Delete a Processor of a Bridge instance for the authenticated user.
       operationId: ProcessorsAPI_deleteProcessor
@@ -500,7 +500,7 @@ paths:
       - Processors
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/cloud_providers:
+  /api/smartevents_mgmt/v1/cloud_providers:
     get:
       description: Returns the list of supported Cloud Providers.
       operationId: CloudProviderAPI_listCloudProviders
@@ -545,7 +545,7 @@ paths:
       tags:
       - Cloud Providers
       x-accepts: application/json
-  /api/v1/cloud_providers/{id}:
+  /api/smartevents_mgmt/v1/cloud_providers/{id}:
     get:
       description: Get details of the Cloud Provider specified by id.
       operationId: CloudProviderAPI_getCloudProvider
@@ -578,7 +578,7 @@ paths:
       tags:
       - Cloud Providers
       x-accepts: application/json
-  /api/v1/cloud_providers/{id}/regions:
+  /api/smartevents_mgmt/v1/cloud_providers/{id}/regions:
     get:
       description: Returns the list of supported Regions of the specified Cloud Provider.
       operationId: CloudProviderAPI_listCloudProviderRegions
@@ -632,7 +632,7 @@ paths:
       tags:
       - Cloud Providers
       x-accepts: application/json
-  /api/v1/errors:
+  /api/smartevents_mgmt/v1/errors:
     get:
       description: Get the list of errors from the error catalog.
       operationId: ErrorsAPI_getErrors
@@ -679,7 +679,7 @@ paths:
       tags:
       - Error Catalog
       x-accepts: application/json
-  /api/v1/errors/{id}:
+  /api/smartevents_mgmt/v1/errors/{id}:
     get:
       description: Get an error from the error catalog.
       operationId: ErrorsAPI_getError
@@ -713,7 +713,7 @@ paths:
       tags:
       - Error Catalog
       x-accepts: application/json
-  /api/v1/schemas:
+  /api/smartevents_mgmt/v1/schemas:
     get:
       description: Get the processor catalog with all the available sources and actions.
       operationId: SchemaAPI_getCatalog
@@ -742,7 +742,7 @@ paths:
       tags:
       - Schema Catalog
       x-accepts: application/json
-  /api/v1/schemas/actions/{id}:
+  /api/smartevents_mgmt/v1/schemas/actions/{id}:
     get:
       description: Get the action processor JSON schema.
       operationId: SchemaAPI_getActionProcessorSchema
@@ -779,7 +779,7 @@ paths:
       tags:
       - Schema Catalog
       x-accepts: application/json
-  /api/v1/schemas/sources/{id}:
+  /api/smartevents_mgmt/v1/schemas/sources/{id}:
     get:
       description: Get the source processor JSON schema.
       operationId: SchemaAPI_getSourceProcessorSchema

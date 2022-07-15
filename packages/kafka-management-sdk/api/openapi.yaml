@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   contact:
     email: rhosak-support@redhat.com
-    name: Red Hat Hybrid Cloud Console
+    name: Red Hat OpenShift Streams for Apache Kafka Support
   description: Kafka Management API is a REST API to manage Kafka instances
   license:
     name: Apache 2.0
