@@ -1001,6 +1001,8 @@ components:
               type: string
             instance_type_name:
               type: string
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             reauthentication_enabled:
               type: boolean
             kafka_storage_size:
@@ -1015,16 +1017,28 @@ components:
               type: string
             ingress_throughput_per_sec:
               type: string
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             egress_throughput_per_sec:
               type: string
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             total_max_connections:
               type: integer
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             max_partitions:
               type: integer
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             max_data_retention_period:
               type: string
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             max_connection_attempts_per_sec:
               type: integer
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             billing_cloud_account_id:
               type: string
             marketplace:

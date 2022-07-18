@@ -2089,8 +2089,6 @@ components:
           type: string
         instance_type:
           type: string
-        instance_type_name:
-          type: string
         reauthentication_enabled:
           type: boolean
         max_data_retention_size:
@@ -2099,18 +2097,6 @@ components:
           type: string
         size_id:
           type: string
-        ingress_throughput_per_sec:
-          type: string
-        egress_throughput_per_sec:
-          type: string
-        total_max_connections:
-          type: integer
-        max_partitions:
-          type: integer
-        max_data_retention_period:
-          type: string
-        max_connection_attempts_per_sec:
-          type: integer
         billing_cloud_account_id:
           type: string
         marketplace:

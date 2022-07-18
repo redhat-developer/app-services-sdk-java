@@ -49,17 +49,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   KafkaRequestAllOf.JSON_PROPERTY_FAILED_REASON,
   KafkaRequestAllOf.JSON_PROPERTY_VERSION,
   KafkaRequestAllOf.JSON_PROPERTY_INSTANCE_TYPE,
-  KafkaRequestAllOf.JSON_PROPERTY_INSTANCE_TYPE_NAME,
   KafkaRequestAllOf.JSON_PROPERTY_REAUTHENTICATION_ENABLED,
   KafkaRequestAllOf.JSON_PROPERTY_MAX_DATA_RETENTION_SIZE,
   KafkaRequestAllOf.JSON_PROPERTY_BROWSER_URL,
   KafkaRequestAllOf.JSON_PROPERTY_SIZE_ID,
-  KafkaRequestAllOf.JSON_PROPERTY_INGRESS_THROUGHPUT_PER_SEC,
-  KafkaRequestAllOf.JSON_PROPERTY_EGRESS_THROUGHPUT_PER_SEC,
-  KafkaRequestAllOf.JSON_PROPERTY_TOTAL_MAX_CONNECTIONS,
-  KafkaRequestAllOf.JSON_PROPERTY_MAX_PARTITIONS,
-  KafkaRequestAllOf.JSON_PROPERTY_MAX_DATA_RETENTION_PERIOD,
-  KafkaRequestAllOf.JSON_PROPERTY_MAX_CONNECTION_ATTEMPTS_PER_SEC,
   KafkaRequestAllOf.JSON_PROPERTY_BILLING_CLOUD_ACCOUNT_ID,
   KafkaRequestAllOf.JSON_PROPERTY_MARKETPLACE,
   KafkaRequestAllOf.JSON_PROPERTY_BILLING_MODEL
@@ -109,9 +102,6 @@ public class KafkaRequestAllOf {
   public static final String JSON_PROPERTY_INSTANCE_TYPE = "instance_type";
   private String instanceType;
 
-  public static final String JSON_PROPERTY_INSTANCE_TYPE_NAME = "instance_type_name";
-  private String instanceTypeName;
-
   public static final String JSON_PROPERTY_REAUTHENTICATION_ENABLED = "reauthentication_enabled";
   private Boolean reauthenticationEnabled;
 
@@ -123,24 +113,6 @@ public class KafkaRequestAllOf {
 
   public static final String JSON_PROPERTY_SIZE_ID = "size_id";
   private String sizeId;
-
-  public static final String JSON_PROPERTY_INGRESS_THROUGHPUT_PER_SEC = "ingress_throughput_per_sec";
-  private String ingressThroughputPerSec;
-
-  public static final String JSON_PROPERTY_EGRESS_THROUGHPUT_PER_SEC = "egress_throughput_per_sec";
-  private String egressThroughputPerSec;
-
-  public static final String JSON_PROPERTY_TOTAL_MAX_CONNECTIONS = "total_max_connections";
-  private Integer totalMaxConnections;
-
-  public static final String JSON_PROPERTY_MAX_PARTITIONS = "max_partitions";
-  private Integer maxPartitions;
-
-  public static final String JSON_PROPERTY_MAX_DATA_RETENTION_PERIOD = "max_data_retention_period";
-  private String maxDataRetentionPeriod;
-
-  public static final String JSON_PROPERTY_MAX_CONNECTION_ATTEMPTS_PER_SEC = "max_connection_attempts_per_sec";
-  private Integer maxConnectionAttemptsPerSec;
 
   public static final String JSON_PROPERTY_BILLING_CLOUD_ACCOUNT_ID = "billing_cloud_account_id";
   private String billingCloudAccountId;
@@ -540,33 +512,6 @@ public class KafkaRequestAllOf {
   }
 
 
-  public KafkaRequestAllOf instanceTypeName(String instanceTypeName) {
-    
-    this.instanceTypeName = instanceTypeName;
-    return this;
-  }
-
-   /**
-   * Get instanceTypeName
-   * @return instanceTypeName
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_INSTANCE_TYPE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getInstanceTypeName() {
-    return instanceTypeName;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INSTANCE_TYPE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInstanceTypeName(String instanceTypeName) {
-    this.instanceTypeName = instanceTypeName;
-  }
-
-
   public KafkaRequestAllOf reauthenticationEnabled(Boolean reauthenticationEnabled) {
     
     this.reauthenticationEnabled = reauthenticationEnabled;
@@ -675,168 +620,6 @@ public class KafkaRequestAllOf {
   }
 
 
-  public KafkaRequestAllOf ingressThroughputPerSec(String ingressThroughputPerSec) {
-    
-    this.ingressThroughputPerSec = ingressThroughputPerSec;
-    return this;
-  }
-
-   /**
-   * Get ingressThroughputPerSec
-   * @return ingressThroughputPerSec
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_INGRESS_THROUGHPUT_PER_SEC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getIngressThroughputPerSec() {
-    return ingressThroughputPerSec;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INGRESS_THROUGHPUT_PER_SEC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIngressThroughputPerSec(String ingressThroughputPerSec) {
-    this.ingressThroughputPerSec = ingressThroughputPerSec;
-  }
-
-
-  public KafkaRequestAllOf egressThroughputPerSec(String egressThroughputPerSec) {
-    
-    this.egressThroughputPerSec = egressThroughputPerSec;
-    return this;
-  }
-
-   /**
-   * Get egressThroughputPerSec
-   * @return egressThroughputPerSec
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_EGRESS_THROUGHPUT_PER_SEC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getEgressThroughputPerSec() {
-    return egressThroughputPerSec;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EGRESS_THROUGHPUT_PER_SEC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEgressThroughputPerSec(String egressThroughputPerSec) {
-    this.egressThroughputPerSec = egressThroughputPerSec;
-  }
-
-
-  public KafkaRequestAllOf totalMaxConnections(Integer totalMaxConnections) {
-    
-    this.totalMaxConnections = totalMaxConnections;
-    return this;
-  }
-
-   /**
-   * Get totalMaxConnections
-   * @return totalMaxConnections
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TOTAL_MAX_CONNECTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getTotalMaxConnections() {
-    return totalMaxConnections;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TOTAL_MAX_CONNECTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTotalMaxConnections(Integer totalMaxConnections) {
-    this.totalMaxConnections = totalMaxConnections;
-  }
-
-
-  public KafkaRequestAllOf maxPartitions(Integer maxPartitions) {
-    
-    this.maxPartitions = maxPartitions;
-    return this;
-  }
-
-   /**
-   * Get maxPartitions
-   * @return maxPartitions
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_MAX_PARTITIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getMaxPartitions() {
-    return maxPartitions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MAX_PARTITIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxPartitions(Integer maxPartitions) {
-    this.maxPartitions = maxPartitions;
-  }
-
-
-  public KafkaRequestAllOf maxDataRetentionPeriod(String maxDataRetentionPeriod) {
-    
-    this.maxDataRetentionPeriod = maxDataRetentionPeriod;
-    return this;
-  }
-
-   /**
-   * Get maxDataRetentionPeriod
-   * @return maxDataRetentionPeriod
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_MAX_DATA_RETENTION_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getMaxDataRetentionPeriod() {
-    return maxDataRetentionPeriod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MAX_DATA_RETENTION_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxDataRetentionPeriod(String maxDataRetentionPeriod) {
-    this.maxDataRetentionPeriod = maxDataRetentionPeriod;
-  }
-
-
-  public KafkaRequestAllOf maxConnectionAttemptsPerSec(Integer maxConnectionAttemptsPerSec) {
-    
-    this.maxConnectionAttemptsPerSec = maxConnectionAttemptsPerSec;
-    return this;
-  }
-
-   /**
-   * Get maxConnectionAttemptsPerSec
-   * @return maxConnectionAttemptsPerSec
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_MAX_CONNECTION_ATTEMPTS_PER_SEC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getMaxConnectionAttemptsPerSec() {
-    return maxConnectionAttemptsPerSec;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MAX_CONNECTION_ATTEMPTS_PER_SEC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaxConnectionAttemptsPerSec(Integer maxConnectionAttemptsPerSec) {
-    this.maxConnectionAttemptsPerSec = maxConnectionAttemptsPerSec;
-  }
-
-
   public KafkaRequestAllOf billingCloudAccountId(String billingCloudAccountId) {
     
     this.billingCloudAccountId = billingCloudAccountId;
@@ -941,17 +724,10 @@ public class KafkaRequestAllOf {
         Objects.equals(this.failedReason, kafkaRequestAllOf.failedReason) &&
         Objects.equals(this.version, kafkaRequestAllOf.version) &&
         Objects.equals(this.instanceType, kafkaRequestAllOf.instanceType) &&
-        Objects.equals(this.instanceTypeName, kafkaRequestAllOf.instanceTypeName) &&
         Objects.equals(this.reauthenticationEnabled, kafkaRequestAllOf.reauthenticationEnabled) &&
         Objects.equals(this.maxDataRetentionSize, kafkaRequestAllOf.maxDataRetentionSize) &&
         Objects.equals(this.browserUrl, kafkaRequestAllOf.browserUrl) &&
         Objects.equals(this.sizeId, kafkaRequestAllOf.sizeId) &&
-        Objects.equals(this.ingressThroughputPerSec, kafkaRequestAllOf.ingressThroughputPerSec) &&
-        Objects.equals(this.egressThroughputPerSec, kafkaRequestAllOf.egressThroughputPerSec) &&
-        Objects.equals(this.totalMaxConnections, kafkaRequestAllOf.totalMaxConnections) &&
-        Objects.equals(this.maxPartitions, kafkaRequestAllOf.maxPartitions) &&
-        Objects.equals(this.maxDataRetentionPeriod, kafkaRequestAllOf.maxDataRetentionPeriod) &&
-        Objects.equals(this.maxConnectionAttemptsPerSec, kafkaRequestAllOf.maxConnectionAttemptsPerSec) &&
         Objects.equals(this.billingCloudAccountId, kafkaRequestAllOf.billingCloudAccountId) &&
         Objects.equals(this.marketplace, kafkaRequestAllOf.marketplace) &&
         Objects.equals(this.billingModel, kafkaRequestAllOf.billingModel);
@@ -963,7 +739,7 @@ public class KafkaRequestAllOf {
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, cloudProvider, multiAz, region, owner, name, bootstrapServerHost, adminApiServerUrl, createdAt, hashCodeNullable(expiresAt), updatedAt, failedReason, version, instanceType, instanceTypeName, reauthenticationEnabled, maxDataRetentionSize, browserUrl, sizeId, ingressThroughputPerSec, egressThroughputPerSec, totalMaxConnections, maxPartitions, maxDataRetentionPeriod, maxConnectionAttemptsPerSec, billingCloudAccountId, marketplace, billingModel);
+    return Objects.hash(status, cloudProvider, multiAz, region, owner, name, bootstrapServerHost, adminApiServerUrl, createdAt, hashCodeNullable(expiresAt), updatedAt, failedReason, version, instanceType, reauthenticationEnabled, maxDataRetentionSize, browserUrl, sizeId, billingCloudAccountId, marketplace, billingModel);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -991,17 +767,10 @@ public class KafkaRequestAllOf {
     sb.append("    failedReason: ").append(toIndentedString(failedReason)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("    instanceType: ").append(toIndentedString(instanceType)).append("\n");
-    sb.append("    instanceTypeName: ").append(toIndentedString(instanceTypeName)).append("\n");
     sb.append("    reauthenticationEnabled: ").append(toIndentedString(reauthenticationEnabled)).append("\n");
     sb.append("    maxDataRetentionSize: ").append(toIndentedString(maxDataRetentionSize)).append("\n");
     sb.append("    browserUrl: ").append(toIndentedString(browserUrl)).append("\n");
     sb.append("    sizeId: ").append(toIndentedString(sizeId)).append("\n");
-    sb.append("    ingressThroughputPerSec: ").append(toIndentedString(ingressThroughputPerSec)).append("\n");
-    sb.append("    egressThroughputPerSec: ").append(toIndentedString(egressThroughputPerSec)).append("\n");
-    sb.append("    totalMaxConnections: ").append(toIndentedString(totalMaxConnections)).append("\n");
-    sb.append("    maxPartitions: ").append(toIndentedString(maxPartitions)).append("\n");
-    sb.append("    maxDataRetentionPeriod: ").append(toIndentedString(maxDataRetentionPeriod)).append("\n");
-    sb.append("    maxConnectionAttemptsPerSec: ").append(toIndentedString(maxConnectionAttemptsPerSec)).append("\n");
     sb.append("    billingCloudAccountId: ").append(toIndentedString(billingCloudAccountId)).append("\n");
     sb.append("    marketplace: ").append(toIndentedString(marketplace)).append("\n");
     sb.append("    billingModel: ").append(toIndentedString(billingModel)).append("\n");
