@@ -1622,7 +1622,7 @@ components:
         Search criteria.
 
         The syntax of this parameter is similar to the syntax of the `where` clause of an
-        SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, and `status`. Allowed comparators are `<>`, `=`, or `LIKE`.
+        SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, and `status`. Allowed comparators are `<>`, `=`, `LIKE`, or `ILIKE`.
         Allowed joins are `AND` and `OR`. However, you can use a maximum of 10 joins in a search query.
 
         Examples:
@@ -1637,6 +1637,12 @@ components:
 
         ```
         name like my%25
+        ```
+
+        To return a Kafka instance with a name containing `test` matching any character case combinations, use the following syntax:
+
+        ```
+        name ilike %25test%25
         ```
 
         If the parameter isn't provided, or if the value is empty, then all the Kafka instances
