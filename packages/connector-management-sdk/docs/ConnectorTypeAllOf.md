@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **labels** | **List&lt;String&gt;** | Labels used to categorize the connector |  [optional]
 **capabilities** | **List&lt;String&gt;** | The capabilities supported by the conenctor |  [optional]
 **schema** | **Object** | A json schema that can be used to validate a ConnectorRequest connector field. |  [optional]
-**jsonSchema** | **Object** | A json schema that can be used to validate a ConnectorRequest connector field. |  [optional]
 
 
 
