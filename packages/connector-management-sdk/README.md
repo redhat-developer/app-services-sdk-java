@@ -184,7 +184,6 @@ Class | Method | HTTP request | Description
  - [ConnectorTypeList](docs/ConnectorTypeList.md)
  - [ConnectorTypeListAllOf](docs/ConnectorTypeListAllOf.md)
  - [Error](docs/Error.md)
- - [ErrorAllOf](docs/ErrorAllOf.md)
  - [KafkaConnectionSettings](docs/KafkaConnectionSettings.md)
  - [ModelList](docs/ModelList.md)
  - [ObjectMeta](docs/ObjectMeta.md)
@@ -211,5 +210,5 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 ## Author
 
-
+rhosak-support@redhat.com
 
