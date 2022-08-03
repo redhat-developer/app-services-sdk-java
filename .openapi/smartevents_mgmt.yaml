@@ -184,6 +184,64 @@ paths:
                 $ref: '#/components/schemas/ErrorsList'
       security:
       - bearer: []
+    put:
+      tags:
+      - Bridges
+      summary: Update a Bridge instance
+      description: Update a Bridge instance for the authenticated user.
+      operationId: BridgesAPI_updateBridge
+      parameters:
+      - name: bridgeId
+        in: path
+        required: true
+        schema:
+          minLength: 1
+          type: string
+          nullable: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BridgeRequest'
+      responses:
+        "202":
+          description: Accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BridgeResponse'
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+        "401":
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+        "403":
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+        "404":
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+        "500":
+          description: Internal error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+      security:
+      - bearer: []
     delete:
       tags:
       - Bridges
