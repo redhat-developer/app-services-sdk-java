@@ -45,8 +45,8 @@ public class DefaultApi {
   }
 
   /**
-   * Creates a Kafka request
    * 
+   * Creates a Kafka request
    * @param async Perform the action in an asynchronous manner (required)
    * @param kafkaRequestPayload Kafka data (required)
    * @return a {@code KafkaRequest}
@@ -95,8 +95,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Deletes a Kafka request by ID
    * 
+   * Deletes a Kafka request by ID
    * @param id The ID of record (required)
    * @param async Perform the action in an asynchronous manner (required)
    * @return a {@code Error}
@@ -146,8 +146,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns all metrics in scrapeable format for a given kafka id
    * 
+   * Returns all metrics in scrapeable format for a given kafka id
    * @param id The ID of record (required)
    * @return a {@code String}
    * @throws ApiException if fails to make API call
@@ -190,8 +190,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns the list of supported regions of the supported cloud provider
    * 
+   * Returns the list of supported regions of the supported cloud provider
    * @param id The ID of record (required)
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
@@ -238,8 +238,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns the list of supported cloud providers
    * 
+   * Returns the list of supported cloud providers
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
    * @return a {@code CloudProviderList}
@@ -279,8 +279,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
    * 
+   * Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
    * @param cloudProvider ID of the supported cloud provider (required)
    * @param cloudRegion Name of the supported cloud provider region (required)
    * @return a {@code SupportedKafkaInstanceTypesList}
@@ -330,8 +330,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns a Kafka request by ID
    * 
+   * Returns a Kafka request by ID
    * @param id The ID of record (required)
    * @return a {@code KafkaRequest}
    * @throws ApiException if fails to make API call
@@ -374,12 +374,12 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns a list of Kafka requests
    * 
+   * Returns a list of Kafka requests
    * @param page Page index (optional)
    * @param size Number of items in each page (optional)
    * @param orderBy Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the following &#x60;kafkaRequests&#x60; fields:  * bootstrap_server_host * admin_api_server_url * cloud_provider * cluster_id * created_at * href * id * instance_type * multi_az * name * organisation_id * owner * reauthentication_enabled * region * status * updated_at * version  For example, to return all Kafka instances ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Kafka instances ordered by their name _and_ created date, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, created_at asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. (optional)
-   * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of an SQL statement. Allowed fields in the search are &#x60;cloud_provider&#x60;, &#x60;name&#x60;, &#x60;owner&#x60;, &#x60;region&#x60;, and &#x60;status&#x60;. Allowed comparators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed joins are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 joins in a search query.  Examples:  To return a Kafka instance with the name &#x60;my-kafka&#x60; and the region &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; my-kafka and cloud_provider &#x3D; aws &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;my&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like my%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Kafka instances that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
+   * @param search Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of an SQL statement. Allowed fields in the search are &#x60;cloud_provider&#x60;, &#x60;name&#x60;, &#x60;owner&#x60;, &#x60;region&#x60;, and &#x60;status&#x60;. Allowed comparators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, &#x60;LIKE&#x60;, or &#x60;ILIKE&#x60;. Allowed joins are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 joins in a search query.  Examples:  To return a Kafka instance with the name &#x60;my-kafka&#x60; and the region &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; my-kafka and cloud_provider &#x3D; aws &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;my&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like my%25 &#x60;&#x60;&#x60;  To return a Kafka instance with a name containing &#x60;test&#x60; matching any character case combinations, use the following syntax:  &#x60;&#x60;&#x60; name ilike %25test%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Kafka instances that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  (optional)
    * @return a {@code KafkaRequestList}
    * @throws ApiException if fails to make API call
    */
@@ -419,8 +419,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns metrics with instant query by Kafka ID
    * 
+   * Returns metrics with instant query by Kafka ID
    * @param id The ID of record (required)
    * @param filters List of metrics to fetch. Fetch all metrics when empty. List entries are Kafka internal metric names. (optional, default to [])
    * @return a {@code MetricsInstantQueryList}
@@ -465,8 +465,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns metrics with timeseries range query by Kafka ID
    * 
+   * Returns metrics with timeseries range query by Kafka ID
    * @param id The ID of record (required)
    * @param duration The length of time in minutes for which to return the metrics (required)
    * @param interval The interval in seconds between data points (required)
@@ -525,8 +525,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns the version metadata
    * 
+   * Returns the kafka Service Fleet Manager API version metadata
    * @return a {@code VersionMetadata}
    * @throws ApiException if fails to make API call
    */
@@ -562,8 +562,8 @@ public class DefaultApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Update a Kafka instance by id
    * 
+   * Update a Kafka instance by id
    * @param id The ID of record (required)
    * @param kafkaUpdateRequest Update owner of kafka (required)
    * @return a {@code KafkaRequest}

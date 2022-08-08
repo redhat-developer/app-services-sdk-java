@@ -4,9 +4,9 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createRegistry**](RegistriesApi.md#createRegistry) | **POST** /api/serviceregistry_mgmt/v1/registries | Create a new Registry instance
+[**createRegistry**](RegistriesApi.md#createRegistry) | **POST** /api/serviceregistry_mgmt/v1/registries | 
 [**deleteRegistry**](RegistriesApi.md#deleteRegistry) | **DELETE** /api/serviceregistry_mgmt/v1/registries/{id} | Delete a Registry instance
-[**getRegistries**](RegistriesApi.md#getRegistries) | **GET** /api/serviceregistry_mgmt/v1/registries | Get the list of all Registry instances
+[**getRegistries**](RegistriesApi.md#getRegistries) | **GET** /api/serviceregistry_mgmt/v1/registries | 
 [**getRegistry**](RegistriesApi.md#getRegistry) | **GET** /api/serviceregistry_mgmt/v1/registries/{id} | Get a Registry instance
 
 
@@ -14,6 +14,8 @@ Method | HTTP request | Description
 ## createRegistry
 
 > Registry createRegistry(registryCreate)
+
+
 
 Create a new Registry instance
 
@@ -159,6 +161,8 @@ null (empty response body)
 ## getRegistries
 
 > RegistryList getRegistries(page, size, orderBy, search)
+
+
 
 Get the list of all Registry instances
 

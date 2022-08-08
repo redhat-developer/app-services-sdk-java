@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Service Registry Fleet Manager",
+    "title": "Service Registry Management API",
     "version": "0.0.6",
-    "description": "Service Registry Fleet Manager is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.",
+    "description": "Service Registry Management API is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.",
     "contact": {
       "name": "Red Hat Hybrid Cloud Console",
       "url": "https://console.redhat.com/application-services/service-registry/",
@@ -34,8 +34,7 @@
   ],
   "paths": {
     "/api/serviceregistry_mgmt/v1/registries": {
-      "summary": "Manage the list of all Registry instances",
-      "description": "",
+      "description": "Manage the list of all Registry instances",
       "get": {
         "tags": [
           "Registries"
@@ -118,8 +117,7 @@
           }
         ],
         "operationId": "getRegistries",
-        "summary": "Get the list of all Registry instances",
-        "description": ""
+        "description": "Get the list of all Registry instances"
       },
       "post": {
         "requestBody": {
@@ -200,13 +198,11 @@
           }
         ],
         "operationId": "createRegistry",
-        "summary": "Create a new Registry instance",
-        "description": ""
+        "description": "Create a new Registry instance"
       }
     },
     "/api/serviceregistry_mgmt/v1/registries/{id}": {
-      "summary": "Manage a specific Registry instance",
-      "description": "",
+      "description": "Manage a specific Registry instance",
       "get": {
         "tags": [
           "Registries"
@@ -355,7 +351,7 @@
       ]
     },
     "/api/serviceregistry_mgmt/v1/errors/{id}": {
-      "summary": "Get information about a specific error type.",
+      "description": "Get information about a specific error type. This is not an instance of a specific error.",
       "get": {
         "tags": [
           "Errors"
@@ -402,10 +398,8 @@
             "description": "Unexpected error occurred."
           }
         },
-        "security": [],
         "operationId": "getError",
-        "summary": "Get information about a specific error type",
-        "description": ""
+        "description": "Get information about a specific error type"
       },
       "parameters": [
         {
@@ -421,7 +415,7 @@
       ]
     },
     "/api/serviceregistry_mgmt/v1/errors": {
-      "summary": "Get the list of all errors.",
+      "description": "Get a list of error types that can be returned by this API. These are not instances of specific errors.",
       "get": {
         "tags": [
           "Errors"
@@ -461,13 +455,12 @@
             "description": "Unexpected error occurred"
           }
         },
-        "security": [],
         "operationId": "getErrors",
-        "summary": "Get the list of all errors"
+        "description": "Get the list of all errors"
       }
     },
     "/api/serviceregistry_mgmt/v1/status": {
-      "summary": "Retrieves the status of resources e.g., whether we have reached maximum service capacity",
+      "description": "Retrieves the status of resources e.g., whether we have reached maximum service capacity",
       "get": {
         "responses": {
           "200": {
@@ -498,33 +491,12 @@
           }
         ],
         "operationId": "getServiceStatus",
-        "summary": "Get the service status"
+        "description": "Get the service status"
       }
     }
   },
   "components": {
     "schemas": {
-      "Error": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ObjectReference"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "code": {
-                "type": "string"
-              },
-              "reason": {
-                "type": "string"
-              },
-              "operation_id": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
       "ErrorList": {
         "allOf": [
           {
@@ -564,10 +536,153 @@
           },
           "total": {
             "type": "integer"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObjectReference"
+            }
           }
         }
       },
+      "Error": {
+        "required": [
+          "id",
+          "kind",
+          "href",
+          "code",
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string"
+          },
+          "operation_id": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "RegistryList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/List"
+          },
+          {
+            "required": [
+              "items"
+            ],
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Registry"
+                }
+              }
+            },
+            "example": {
+              "kind": "RegistryList",
+              "page": "1",
+              "size": "1",
+              "total": "1",
+              "items": [
+                {
+                  "id": "llmNteR4P7waRp5nJIReG",
+                  "kind": "serviceregistry",
+                  "href": "/api/serviceregistry_mgmt/v1/registries/llmNteR4P7waRp5nJIReG",
+                  "name": "sample-registry",
+                  "status": "ready",
+                  "owner": "some_id",
+                  "registryUrl": "https://somehost:433/t/12345",
+                  "browserUrl": "https://someuihost:443/registries/12345",
+                  "created_at": "2020-01-01T00:00:00Z",
+                  "updated_at": "2022-01-01T00:00:00Z",
+                  "instance_type": "standard"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "RegistryStatusValue": {
+        "description": "\"accepted\": Registry status when accepted for processing.\n\n\"provisioning\": Registry status when provisioning a new instance.\n\n\"ready\": Registry status when ready for use.\n\n\"failed\": Registry status when the provisioning failed. When removing a Registry instance in this state,\nthe status transitions directly to \"deleting\".\n\n\n\"deprovision\": Registry status when accepted for deprovisioning.\n\n\"deleting\": Registry status when deprovisioning.\n",
+        "enum": [
+          "accepted",
+          "provisioning",
+          "ready",
+          "failed",
+          "deprovision",
+          "deleting"
+        ],
+        "type": "string"
+      },
+      "RegistryInstanceTypeValue": {
+        "description": "\"standard\": Standard, full-featured Registry instance\n\n\"eval\": Evaluation (Trial) instance, provided for a limited time\n",
+        "enum": [
+          "standard",
+          "eval"
+        ],
+        "type": "string"
+      },
+      "ServiceStatus": {
+        "title": "Root type for ServiceStatus",
+        "description": "Schema for the service status response body",
+        "type": "object",
+        "properties": {
+          "max_instances_reached": {
+            "description": "Boolean property indicating if the maximum number of total Registry instances have been reached, therefore creation of more instances should not be allowed.",
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "max_instances_reached": true
+        }
+      },
+      "RegistryCreate": {
+        "title": "Root type for RegistryCreate",
+        "description": "Information used to create a new Service Registry instance in a multi-tenant deployment.",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "User-defined Registry instance name. Required. Must be unique within a given organization.",
+            "maxLength": 32,
+            "minLength": 1,
+            "pattern": "[a-z]([a-z0-9\\-]*[a-z0-9])?",
+            "type": "string"
+          },
+          "description": {
+            "description": "User-provided description of the new Service Registry instance. Not required.",
+            "maxLength": 255,
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "my-registry",
+          "description": "This Registry instance is for a development environment only."
+        }
+      },
       "ObjectReference": {
+        "required": [
+          "id",
+          "kind",
+          "href"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -594,7 +709,9 @@
               "status",
               "created_at",
               "updated_at",
-              "instance_type"
+              "instance_type",
+              "name",
+              "owner"
             ],
             "type": "object",
             "properties": {
@@ -646,109 +763,15 @@
               "name": "my-registry",
               "registryUrl": "https://registry.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706",
               "browserUrl": "https://registry-ui.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706",
-              "status": {
-                "status": "PROVISIONING",
-                "lastUpdated": "2021-05-04T12:34:56Z"
-              },
+              "status": "provisioning",
               "registryDeploymentId": 1,
-              "owner": "ownername"
+              "owner": "ownername",
+              "updated_at": "2022-01-01T00:00:00Z",
+              "created_at": "2020-01-01T00:00:00Z",
+              "instance_type": "standard"
             }
           }
         ]
-      },
-      "RegistryCreate": {
-        "title": "Root type for RegistryCreate",
-        "description": "Information used to create a new Service Registry instance in a multi-tenant deployment.",
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "User-defined Registry instance name. Required. Does not have to be unique.",
-            "maxLength": 32,
-            "minLength": 1,
-            "pattern": "[a-z]([a-z0-9\\-]*[a-z0-9])?",
-            "type": "string"
-          },
-          "description": {
-            "description": "User-provided description of the new Service Registry instance. Not required.",
-            "maxLength": 255,
-            "type": "string"
-          }
-        },
-        "example": {
-          "name": "my-registry",
-          "description": "This Registry instance is for a development environment only."
-        }
-      },
-      "RegistryList": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/List"
-          },
-          {
-            "required": [
-              "items"
-            ],
-            "type": "object",
-            "properties": {
-              "items": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Registry"
-                }
-              }
-            },
-            "example": {
-              "kind": "RegistryList",
-              "page": "1",
-              "size": "1",
-              "total": "1",
-              "item": {
-                "id": "llmNteR4P7waRp5nJIReG",
-                "kind": "serviceregistry",
-                "href": "/api/serviceregistry_mgmt/v1/registries/llmNteR4P7waRp5nJIReG",
-                "name": "sample-registry",
-                "status": "ready",
-                "owner": "some_id",
-                "registryUrl": "https://somehost:433/t/12345",
-                "browserUrl": "https://someuihost:443/registries/12345"
-              }
-            }
-          }
-        ]
-      },
-      "RegistryStatusValue": {
-        "description": "\"accepted\": Registry status when accepted for processing.\n\n\"provisioning\": Registry status when provisioning a new instance.\n\n\"ready\": Registry status when ready for use.\n\n\"failed\": Registry status when the provisioning failed. When removing a Registry instance in this state,\nthe status transitions directly to \"deleting\".\n\n\n\"deprovision\": Registry status when accepted for deprovisioning.\n\n\"deleting\": Registry status when deprovisioning.\n",
-        "enum": [
-          "accepted",
-          "provisioning",
-          "ready",
-          "failed",
-          "deprovision",
-          "deleting"
-        ],
-        "type": "string"
-      },
-      "RegistryInstanceTypeValue": {
-        "description": "\"standard\": Standard, full-featured Registry instance\n\n\"eval\": Evaluation (Trial) instance, provided for a limited time\n",
-        "enum": [
-          "standard",
-          "eval"
-        ],
-        "type": "string"
-      },
-      "ServiceStatus": {
-        "title": "Root type for ServiceStatus",
-        "description": "Schema for the service status response body",
-        "type": "object",
-        "properties": {
-          "max_instances_reached": {
-            "description": "Boolean property indicating if the maximum number of total Registry instances have been reached, therefore creation of more instances should not be allowed.",
-            "type": "boolean"
-          }
-        },
-        "example": {
-          "max_instances_reached": true
-        }
       }
     },
     "parameters": {
@@ -764,7 +787,7 @@
       "page": {
         "examples": {
           "page": {
-            "value": "0"
+            "value": 0
           }
         },
         "name": "page",
@@ -779,7 +802,7 @@
       "size": {
         "examples": {
           "size": {
-            "value": "100"
+            "value": 100
           }
         },
         "name": "size",
@@ -873,5 +896,15 @@
         "type": "http"
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Errors",
+      "description": ""
+    },
+    {
+      "name": "Registries",
+      "description": ""
+    }
+  ]
 }

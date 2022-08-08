@@ -4,24 +4,26 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createKafka**](DefaultApi.md#createKafka) | **POST** /api/kafkas_mgmt/v1/kafkas | Creates a Kafka request
-[**deleteKafkaById**](DefaultApi.md#deleteKafkaById) | **DELETE** /api/kafkas_mgmt/v1/kafkas/{id} | Deletes a Kafka request by ID
-[**federateMetrics**](DefaultApi.md#federateMetrics) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate | Returns all metrics in scrapeable format for a given kafka id
-[**getCloudProviderRegions**](DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | Returns the list of supported regions of the supported cloud provider
-[**getCloudProviders**](DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | Returns the list of supported cloud providers
-[**getInstanceTypesByCloudProviderAndRegion**](DefaultApi.md#getInstanceTypesByCloudProviderAndRegion) | **GET** /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} | Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
-[**getKafkaById**](DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | Returns a Kafka request by ID
-[**getKafkas**](DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | Returns a list of Kafka requests
-[**getMetricsByInstantQuery**](DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | Returns metrics with instant query by Kafka ID
-[**getMetricsByRangeQuery**](DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | Returns metrics with timeseries range query by Kafka ID
-[**getVersionMetadata**](DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | Returns the version metadata
-[**updateKafkaById**](DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | Update a Kafka instance by id
+[**createKafka**](DefaultApi.md#createKafka) | **POST** /api/kafkas_mgmt/v1/kafkas | 
+[**deleteKafkaById**](DefaultApi.md#deleteKafkaById) | **DELETE** /api/kafkas_mgmt/v1/kafkas/{id} | 
+[**federateMetrics**](DefaultApi.md#federateMetrics) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate | 
+[**getCloudProviderRegions**](DefaultApi.md#getCloudProviderRegions) | **GET** /api/kafkas_mgmt/v1/cloud_providers/{id}/regions | 
+[**getCloudProviders**](DefaultApi.md#getCloudProviders) | **GET** /api/kafkas_mgmt/v1/cloud_providers | 
+[**getInstanceTypesByCloudProviderAndRegion**](DefaultApi.md#getInstanceTypesByCloudProviderAndRegion) | **GET** /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} | 
+[**getKafkaById**](DefaultApi.md#getKafkaById) | **GET** /api/kafkas_mgmt/v1/kafkas/{id} | 
+[**getKafkas**](DefaultApi.md#getKafkas) | **GET** /api/kafkas_mgmt/v1/kafkas | 
+[**getMetricsByInstantQuery**](DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | 
+[**getMetricsByRangeQuery**](DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | 
+[**getVersionMetadata**](DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | 
+[**updateKafkaById**](DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | 
 
 
 
 ## createKafka
 
 > KafkaRequest createKafka(async, kafkaRequestPayload)
+
+
 
 Creates a Kafka request
 
@@ -100,6 +102,8 @@ Name | Type | Description  | Notes
 
 > Error deleteKafkaById(id, async)
 
+
+
 Deletes a Kafka request by ID
 
 ### Example
@@ -176,6 +180,8 @@ Name | Type | Description  | Notes
 
 > String federateMetrics(id)
 
+
+
 Returns all metrics in scrapeable format for a given kafka id
 
 ### Example
@@ -248,6 +254,8 @@ Name | Type | Description  | Notes
 ## getCloudProviderRegions
 
 > CloudRegionList getCloudProviderRegions(id, page, size)
+
+
 
 Returns the list of supported regions of the supported cloud provider
 
@@ -324,6 +332,8 @@ Name | Type | Description  | Notes
 
 > CloudProviderList getCloudProviders(page, size)
 
+
+
 Returns the list of supported cloud providers
 
 ### Example
@@ -396,6 +406,8 @@ Name | Type | Description  | Notes
 ## getInstanceTypesByCloudProviderAndRegion
 
 > SupportedKafkaInstanceTypesList getInstanceTypesByCloudProviderAndRegion(cloudProvider, cloudRegion)
+
+
 
 Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
 
@@ -471,6 +483,8 @@ Name | Type | Description  | Notes
 
 > KafkaRequest getKafkaById(id)
 
+
+
 Returns a Kafka request by ID
 
 ### Example
@@ -544,6 +558,8 @@ Name | Type | Description  | Notes
 
 > KafkaRequestList getKafkas(page, size, orderBy, search)
 
+
+
 Returns a list of Kafka requests
 
 ### Example
@@ -570,7 +586,7 @@ public class Example {
         String page = "1"; // String | Page index
         String size = "100"; // String | Number of items in each page
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the `order by` clause of an SQL statement. Each query can be ordered by any of the following `kafkaRequests` fields:  * bootstrap_server_host * admin_api_server_url * cloud_provider * cluster_id * created_at * href * id * instance_type * multi_az * name * organisation_id * owner * reauthentication_enabled * region * status * updated_at * version  For example, to return all Kafka instances ordered by their name, use the following syntax:  ```sql name asc ```  To return all Kafka instances ordered by their name _and_ created date, use the following syntax:  ```sql name asc, created_at asc ```  If the parameter isn't provided, or if the value is empty, then the results are ordered by name.
-        String search = "name = my-kafka and cloud_provider = aws"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of an SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, and `status`. Allowed comparators are `<>`, `=`, or `LIKE`. Allowed joins are `AND` and `OR`. However, you can use a maximum of 10 joins in a search query.  Examples:  To return a Kafka instance with the name `my-kafka` and the region `aws`, use the following syntax:  ``` name = my-kafka and cloud_provider = aws ```[p-]  To return a Kafka instance with a name that starts with `my`, use the following syntax:  ``` name like my%25 ```  If the parameter isn't provided, or if the value is empty, then all the Kafka instances that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
+        String search = "name = my-kafka and cloud_provider = aws"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the `where` clause of an SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, and `status`. Allowed comparators are `<>`, `=`, `LIKE`, or `ILIKE`. Allowed joins are `AND` and `OR`. However, you can use a maximum of 10 joins in a search query.  Examples:  To return a Kafka instance with the name `my-kafka` and the region `aws`, use the following syntax:  ``` name = my-kafka and cloud_provider = aws ```[p-]  To return a Kafka instance with a name that starts with `my`, use the following syntax:  ``` name like my%25 ```  To return a Kafka instance with a name containing `test` matching any character case combinations, use the following syntax:  ``` name ilike %25test%25 ```  If the parameter isn't provided, or if the value is empty, then all the Kafka instances that the user has permission to see are returned.  Note. If the query is invalid, an error is returned. 
         try {
             KafkaRequestList result = apiInstance.getKafkas(page, size, orderBy, search);
             System.out.println(result);
@@ -593,7 +609,7 @@ Name | Type | Description  | Notes
  **page** | **String**| Page index | [optional]
  **size** | **String**| Number of items in each page | [optional]
  **orderBy** | **String**| Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the &#x60;order by&#x60; clause of an SQL statement. Each query can be ordered by any of the following &#x60;kafkaRequests&#x60; fields:  * bootstrap_server_host * admin_api_server_url * cloud_provider * cluster_id * created_at * href * id * instance_type * multi_az * name * organisation_id * owner * reauthentication_enabled * region * status * updated_at * version  For example, to return all Kafka instances ordered by their name, use the following syntax:  &#x60;&#x60;&#x60;sql name asc &#x60;&#x60;&#x60;  To return all Kafka instances ordered by their name _and_ created date, use the following syntax:  &#x60;&#x60;&#x60;sql name asc, created_at asc &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then the results are ordered by name. | [optional]
- **search** | **String**| Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of an SQL statement. Allowed fields in the search are &#x60;cloud_provider&#x60;, &#x60;name&#x60;, &#x60;owner&#x60;, &#x60;region&#x60;, and &#x60;status&#x60;. Allowed comparators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, or &#x60;LIKE&#x60;. Allowed joins are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 joins in a search query.  Examples:  To return a Kafka instance with the name &#x60;my-kafka&#x60; and the region &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; my-kafka and cloud_provider &#x3D; aws &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;my&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like my%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Kafka instances that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  | [optional]
+ **search** | **String**| Search criteria.  The syntax of this parameter is similar to the syntax of the &#x60;where&#x60; clause of an SQL statement. Allowed fields in the search are &#x60;cloud_provider&#x60;, &#x60;name&#x60;, &#x60;owner&#x60;, &#x60;region&#x60;, and &#x60;status&#x60;. Allowed comparators are &#x60;&lt;&gt;&#x60;, &#x60;&#x3D;&#x60;, &#x60;LIKE&#x60;, or &#x60;ILIKE&#x60;. Allowed joins are &#x60;AND&#x60; and &#x60;OR&#x60;. However, you can use a maximum of 10 joins in a search query.  Examples:  To return a Kafka instance with the name &#x60;my-kafka&#x60; and the region &#x60;aws&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name &#x3D; my-kafka and cloud_provider &#x3D; aws &#x60;&#x60;&#x60;[p-]  To return a Kafka instance with a name that starts with &#x60;my&#x60;, use the following syntax:  &#x60;&#x60;&#x60; name like my%25 &#x60;&#x60;&#x60;  To return a Kafka instance with a name containing &#x60;test&#x60; matching any character case combinations, use the following syntax:  &#x60;&#x60;&#x60; name ilike %25test%25 &#x60;&#x60;&#x60;  If the parameter isn&#39;t provided, or if the value is empty, then all the Kafka instances that the user has permission to see are returned.  Note. If the query is invalid, an error is returned.  | [optional]
 
 ### Return type
 
@@ -622,6 +638,8 @@ Name | Type | Description  | Notes
 ## getMetricsByInstantQuery
 
 > MetricsInstantQueryList getMetricsByInstantQuery(id, filters)
+
+
 
 Returns metrics with instant query by Kafka ID
 
@@ -695,6 +713,8 @@ Name | Type | Description  | Notes
 ## getMetricsByRangeQuery
 
 > MetricsRangeQueryList getMetricsByRangeQuery(id, duration, interval, filters)
+
+
 
 Returns metrics with timeseries range query by Kafka ID
 
@@ -773,7 +793,9 @@ Name | Type | Description  | Notes
 
 > VersionMetadata getVersionMetadata()
 
-Returns the version metadata
+
+
+Returns the kafka Service Fleet Manager API version metadata
 
 ### Example
 
@@ -832,6 +854,8 @@ No authorization required
 ## updateKafkaById
 
 > KafkaRequest updateKafkaById(id, kafkaUpdateRequest)
+
+
 
 Update a Kafka instance by id
 

@@ -1,0 +1,62 @@
+
+
+name: Update SDK
+on:
+  ## External event triggered by Repository
+  repository_dispatch:
+    types: [openapi-spec-change]
+  ## Manual request that can be used for testing and retriggering failed updates
+  workflow_dispatch:
+    inputs:
+      url: 
+        description: 'Type of SDK event to handle'     
+        required: true
+        type: choice
+        options:
+        - "https://raw.githubusercontent.com/bf2fc6cc711aee1a0c2a/kas-fleet-manager/main/openapi/kas-fleet-manager.yaml"
+        - "https://raw.githubusercontent.com/bf2fc6cc711aee1a0c2a/kas-fleet-manager/main/openapi/connector_mgmt.yaml"
+        - "https://raw.githubusercontent.com/bf2fc6cc711aee1a0c2a/srs-fleet-manager/main/core/src/main/resources/srs-fleet-manager.json"
+
+jobs:
+  generate_client:
+    env:
+      APP_SERVICES_TOKEN: ${{ secrets.APP_SERVICES_TOKEN }}
+      BF2_TOKEN: ${{ secrets.BF2_TOKEN }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - name: Install jq
+        run: sudo apt-get install jq
+      - name: Fetch OpenAPI doc
+        if: github.event.inputs.url != ''
+        run: ./scripts/fetch_api.sh ${{ github.event.inputs.url }}
+      - name: Fetch OpenAPI doc
+        if: github.event.client_payload.download_url != ''
+        run: ./scripts/fetch_api.sh ${{ github.event.client_payload.download_url }}
+      - name: Generate API clients
+        run: make generate
+      - name: Fetch and Generate Errors SDK
+        run: make generateErrors
+      - uses: peter-evans/create-pull-request@v4
+        with:
+            title: "fix(${{ github.event.client_payload.id }}): automated SDK update"
+            token: "${{ secrets.CI_USER_TOKEN }}"
+            commit-message: "fix(${{ github.event.client_payload.id }}): update ${{ github.event.client_payload.id }} SDK"
+            author: "app-services-ci <app-services-ci@users.noreply.github.com>"
+            branch: chore/generate-api-clients
+            branch-suffix: timestamp
+            reviewers: '@redhat-developer/app-services-sdk-maintainers'
+            delete-branch: true
+            body: |
+              _This pull request was auto-generated_
+
+              This PR adds the latest generated API clients.
+              This PR will be merged automatically after all verification passes.
+
+              **Handling Errors**:
+
+                1. Review changes and validate against the examples.
+                2. Make changes where necessary.
+                3. Approve and merge with proper commit message that represents change

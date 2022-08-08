@@ -4,13 +4,13 @@ info:
     email: rhosak-eval-support@redhat.com
     name: Red Hat Hybrid Cloud Console
     url: https://console.redhat.com/application-services/service-registry/
-  description: Service Registry Fleet Manager is a REST API for managing Service Registry
-    instances. Service Registry is a datastore for event schemas and API designs,
-    which is based on the open source Apicurio Registry project.
+  description: Service Registry Management API is a REST API for managing Service
+    Registry instances. Service Registry is a datastore for event schemas and API
+    designs, which is based on the open source Apicurio Registry project.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  title: Service Registry Fleet Manager
+  title: Service Registry Management API
   version: 0.0.6
 servers:
 - description: Main (production) server
@@ -21,15 +21,20 @@ servers:
   url: http://localhost:8000
 - description: current domain
   url: /
+tags:
+- name: Errors
+- name: Registries
 paths:
   /api/serviceregistry_mgmt/v1/registries:
+    description: Manage the list of all Registry instances
     get:
+      description: Get the list of all Registry instances
       operationId: getRegistries
       parameters:
       - description: Page index.
         examples:
           page:
-            value: "0"
+            value: 0
         explode: true
         in: query
         name: page
@@ -41,7 +46,7 @@ paths:
       - description: Number of items in each page.
         examples:
           size:
-            value: "100"
+            value: 100
         explode: true
         in: query
         name: size
@@ -125,11 +130,11 @@ paths:
           description: Unexpected error occurred.
       security:
       - Bearer: []
-      summary: Get the list of all Registry instances
       tags:
       - Registries
       x-accepts: application/json
     post:
+      description: Create a new Registry instance
       operationId: createRegistry
       requestBody:
         content:
@@ -177,12 +182,10 @@ paths:
           description: Unexpected error occurred.
       security:
       - Bearer: []
-      summary: Create a new Registry instance
       tags:
       - Registries
       x-contentType: application/json
       x-accepts: application/json
-    summary: Manage the list of all Registry instances
   /api/serviceregistry_mgmt/v1/registries/{id}:
     delete:
       description: 'Deletes an existing `Registry` instance and all of the data that
@@ -235,6 +238,7 @@ paths:
       tags:
       - Registries
       x-accepts: application/json
+    description: Manage a specific Registry instance
     get:
       description: Gets the details of a single instance of a `Registry`.
       operationId: getRegistry
@@ -287,9 +291,11 @@ paths:
       tags:
       - Registries
       x-accepts: application/json
-    summary: Manage a specific Registry instance
   /api/serviceregistry_mgmt/v1/errors/{id}:
+    description: Get information about a specific error type. This is not an instance
+      of a specific error.
     get:
+      description: Get information about a specific error type
       operationId: getError
       parameters:
       - description: A unique identifier for an error type.
@@ -326,20 +332,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Unexpected error occurred.
-      security: []
-      summary: Get information about a specific error type
       tags:
       - Errors
       x-accepts: application/json
-    summary: Get information about a specific error type.
   /api/serviceregistry_mgmt/v1/errors:
+    description: Get a list of error types that can be returned by this API. These
+      are not instances of specific errors.
     get:
+      description: Get the list of all errors
       operationId: getErrors
       parameters:
       - description: Page index.
         examples:
           page:
-            value: "0"
+            value: 0
         explode: true
         in: query
         name: page
@@ -351,7 +357,7 @@ paths:
       - description: Number of items in each page.
         examples:
           size:
-            value: "100"
+            value: 100
         explode: true
         in: query
         name: size
@@ -377,14 +383,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Unexpected error occurred
-      security: []
-      summary: Get the list of all errors
       tags:
       - Errors
       x-accepts: application/json
-    summary: Get the list of all errors.
   /api/serviceregistry_mgmt/v1/status:
+    description: Retrieves the status of resources e.g., whether we have reached maximum
+      service capacity
     get:
+      description: Get the service status
       operationId: getServiceStatus
       responses:
         "200":
@@ -401,10 +407,7 @@ paths:
           description: Internal error retrieving service status.
       security:
       - Bearer: []
-      summary: Get the service status
       x-accepts: application/json
-    summary: Retrieves the status of resources e.g., whether we have reached maximum
-      service capacity
 components:
   examples:
     "404Example":
@@ -452,7 +455,7 @@ components:
       description: Page index.
       examples:
         page:
-          value: "0"
+          value: 0
       explode: true
       in: query
       name: page
@@ -465,7 +468,7 @@ components:
       description: Number of items in each page.
       examples:
         size:
-          value: "100"
+          value: 100
       explode: true
       in: query
       name: size
@@ -515,10 +518,6 @@ components:
         type: string
       style: form
   schemas:
-    Error:
-      allOf:
-      - $ref: '#/components/schemas/ObjectReference'
-      - $ref: '#/components/schemas/Error_allOf'
     ErrorList:
       allOf:
       - $ref: '#/components/schemas/List'
@@ -533,6 +532,10 @@ components:
           type: integer
         total:
           type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/ObjectReference'
+          type: array
       required:
       - items
       - kind
@@ -540,39 +543,33 @@ components:
       - size
       - total
       type: object
-    ObjectReference:
+    Error:
+      example:
+        reason: reason
+        code: code
+        kind: kind
+        operation_id: operation_id
+        id: id
+        href: href
       properties:
+        reason:
+          type: string
+        operation_id:
+          type: string
         id:
           type: string
         kind:
           type: string
         href:
           type: string
-      type: object
-    Registry:
-      allOf:
-      - $ref: '#/components/schemas/ObjectReference'
-      - $ref: '#/components/schemas/Root_type_for_Registry'
-    RegistryCreate:
-      description: Information used to create a new Service Registry instance in a
-        multi-tenant deployment.
-      example:
-        name: my-registry
-        description: This Registry instance is for a development environment only.
-      properties:
-        name:
-          description: User-defined Registry instance name. Required. Does not have
-            to be unique.
-          maxLength: 32
-          minLength: 1
-          pattern: '[a-z]([a-z0-9\-]*[a-z0-9])?'
+        code:
           type: string
-        description:
-          description: User-provided description of the new Service Registry instance.
-            Not required.
-          maxLength: 255
-          type: string
-      title: Root type for RegistryCreate
+      required:
+      - code
+      - href
+      - id
+      - kind
+      - reason
       type: object
     RegistryList:
       allOf:
@@ -622,21 +619,78 @@ components:
           type: boolean
       title: Root type for ServiceStatus
       type: object
-    Error_allOf:
+    RegistryCreate:
+      description: Information used to create a new Service Registry instance in a
+        multi-tenant deployment.
+      example:
+        name: my-registry
+        description: This Registry instance is for a development environment only.
       properties:
-        code:
+        name:
+          description: User-defined Registry instance name. Required. Must be unique
+            within a given organization.
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-z]([a-z0-9\-]*[a-z0-9])?'
           type: string
-        reason:
+        description:
+          description: User-provided description of the new Service Registry instance.
+            Not required.
+          maxLength: 255
           type: string
-        operation_id:
-          type: string
+      required:
+      - name
+      title: Root type for RegistryCreate
       type: object
+    ObjectReference:
+      properties:
+        id:
+          type: string
+        kind:
+          type: string
+        href:
+          type: string
+      required:
+      - href
+      - id
+      - kind
+      type: object
+    Registry:
+      allOf:
+      - $ref: '#/components/schemas/ObjectReference'
+      - $ref: '#/components/schemas/Root_type_for_Registry'
     ErrorList_allOf:
       properties:
         items:
           items:
             $ref: '#/components/schemas/Error'
           type: array
+      type: object
+    RegistryList_allOf:
+      example:
+        kind: RegistryList
+        page: "1"
+        size: "1"
+        total: "1"
+        items:
+        - id: llmNteR4P7waRp5nJIReG
+          kind: serviceregistry
+          href: /api/serviceregistry_mgmt/v1/registries/llmNteR4P7waRp5nJIReG
+          name: sample-registry
+          status: ready
+          owner: some_id
+          registryUrl: https://somehost:433/t/12345
+          browserUrl: https://someuihost:443/registries/12345
+          created_at: 2020-01-01T00:00:00Z
+          updated_at: 2022-01-01T00:00:00Z
+          instance_type: standard
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Registry'
+          type: array
+      required:
+      - items
       type: object
     Root_type_for_Registry:
       description: Service Registry instance in a multi-tenant deployment.
@@ -645,11 +699,12 @@ components:
         name: my-registry
         registryUrl: https://registry.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706
         browserUrl: https://registry-ui.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706
-        status:
-          status: PROVISIONING
-          lastUpdated: 2021-05-04T12:34:56Z
+        status: provisioning
         registryDeploymentId: 1
         owner: ownername
+        updated_at: 2022-01-01T00:00:00Z
+        created_at: 2020-01-01T00:00:00Z
+        instance_type: standard
       properties:
         id:
           type: string
@@ -686,32 +741,11 @@ components:
       - created_at
       - id
       - instance_type
+      - name
+      - owner
       - status
       - updated_at
       title: Root type for Registry
-      type: object
-    RegistryList_allOf:
-      example:
-        kind: RegistryList
-        page: "1"
-        size: "1"
-        total: "1"
-        item:
-          id: llmNteR4P7waRp5nJIReG
-          kind: serviceregistry
-          href: /api/serviceregistry_mgmt/v1/registries/llmNteR4P7waRp5nJIReG
-          name: sample-registry
-          status: ready
-          owner: some_id
-          registryUrl: https://somehost:433/t/12345
-          browserUrl: https://someuihost:443/registries/12345
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/Registry'
-          type: array
-      required:
-      - items
       type: object
   securitySchemes:
     Bearer:

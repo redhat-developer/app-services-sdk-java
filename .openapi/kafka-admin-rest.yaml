@@ -1,12 +1,13 @@
 ---
 openapi: 3.0.3
 info:
-  title: Kafka Admin REST API
-  description: An API to provide REST endpoints for query Kafka for admin operations
+  title: Kafka Instance API
+  description: "API for interacting with Kafka Instance. Includes Produce, Consume\
+    \ and Admin APIs"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  version: 0.11.1
+  version: 0.12.0
 servers:
 - url: /
   description: Kafka Admin REST API

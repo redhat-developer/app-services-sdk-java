@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  |  [optional]
-**kind** | **String** |  |  [optional]
-**href** | **String** |  |  [optional]
+**id** | **String** |  | 
+**kind** | **String** |  | 
+**href** | **String** |  | 
 **status** | **String** | Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting]  |  [optional]
 **cloudProvider** | **String** | Name of Cloud used to deploy. For example AWS |  [optional]
 **multiAz** | **Boolean** |  | 
@@ -24,19 +24,13 @@ Name | Type | Description | Notes
 **failedReason** | **String** |  |  [optional]
 **version** | **String** |  |  [optional]
 **instanceType** | **String** |  |  [optional]
-**instanceTypeName** | **String** |  |  [optional]
 **reauthenticationEnabled** | **Boolean** |  | 
-**kafkaStorageSize** | **String** |  |  [optional]
+**maxDataRetentionSize** | [**SupportedKafkaSizeBytesValueItem**](SupportedKafkaSizeBytesValueItem.md) |  |  [optional]
 **browserUrl** | **String** |  |  [optional]
 **sizeId** | **String** |  |  [optional]
-**ingressThroughputPerSec** | **String** |  |  [optional]
-**egressThroughputPerSec** | **String** |  |  [optional]
-**totalMaxConnections** | **Integer** |  |  [optional]
-**maxPartitions** | **Integer** |  |  [optional]
-**maxDataRetentionPeriod** | **String** |  |  [optional]
-**maxConnectionAttemptsPerSec** | **Integer** |  |  [optional]
 **billingCloudAccountId** | **String** |  |  [optional]
 **marketplace** | **String** |  |  [optional]
+**billingModel** | **String** |  |  [optional]
 
 
 

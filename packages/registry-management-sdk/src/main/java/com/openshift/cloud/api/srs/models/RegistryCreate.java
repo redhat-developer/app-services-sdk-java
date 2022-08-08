@@ -1,6 +1,6 @@
 /*
- * Service Registry Fleet Manager
- * Service Registry Fleet Manager is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
+ * Service Registry Management API
+ * Service Registry Management API is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
  *
  * The version of the OpenAPI document: 0.0.6
  * Contact: rhosak-eval-support@redhat.com
@@ -52,13 +52,13 @@ public class RegistryCreate {
   }
 
    /**
-   * User-defined Registry instance name. Required. Does not have to be unique.
+   * User-defined Registry instance name. Required. Must be unique within a given organization.
    * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "User-defined Registry instance name. Required. Does not have to be unique.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "User-defined Registry instance name. Required. Must be unique within a given organization.")
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getName() {
     return name;
@@ -66,7 +66,7 @@ public class RegistryCreate {
 
 
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }

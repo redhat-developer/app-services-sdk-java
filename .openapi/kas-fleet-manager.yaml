@@ -1,9 +1,20 @@
 openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an openapi document.
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
-  title: Kafka Service Fleet Manager
-  version: 1.8.0
-  description: Kafka Service Fleet Manager is a Rest API to manage Kafka instances.
+  title: Kafka Management API
+  version: 1.11.0
+  description: Kafka Management API is a REST API to manage Kafka instances
+  license:
+    name: 'Apache 2.0'
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  contact: 
+    name: 'Red Hat OpenShift Streams for Apache Kafka Support'
+    email: 'rhosak-support@redhat.com'
+tags:
+  - name: errors
+    description: Errors returned by the API.
+  - name: security
+    description: Security related endpoints.
 servers:
   - url: https://api.openshift.com
     description: Main (production) server
@@ -24,7 +35,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/VersionMetadata'
           description: Version metadata
-      summary: Returns the version metadata
+      description: Returns the kafka Service Fleet Manager API version metadata
 
   /api/kafkas_mgmt/v1/errors/{id}:
     get:
@@ -36,7 +47,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Get error by Id
-      summary: Returns the error by id
+      description: Returns the error by Id
       tags:
         - errors
       parameters:
@@ -52,7 +63,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorList'
           description: List of possible errors
-      summary: Returns the list of possible API errors
+      description: Returns the list of possible API errors
       tags:
         - errors
 
@@ -109,7 +120,7 @@ paths:
           description: Unexpected error occurred
       security:
         - Bearer: [ ]
-      summary: Returns a Kafka request by ID
+      description: Returns a Kafka request by ID
     delete:
       operationId: deleteKafkaById
       parameters:
@@ -173,11 +184,11 @@ paths:
                 500DeleteExample:
                   $ref: '#/components/examples/500DeleteExample'
           description: Unexpected error occurred
-      summary: Deletes a Kafka request by ID
+      description: Deletes a Kafka request by ID
       security:
         - Bearer: [ ]
     patch:
-      summary: Update a Kafka instance by id
+      description: Update a Kafka instance by id
       security:
         - Bearer: [ ]
       operationId: updateKafkaById
@@ -339,9 +350,9 @@ paths:
           description: An unexpected error occurred while creating the Kafka request
       security:
         - Bearer: [ ]
-      summary: Creates a Kafka request
+      description: Creates a Kafka request
     get:
-      summary: Returns a list of Kafka requests
+      description: Returns a list of Kafka requests
       operationId: getKafkas
       security:
         - Bearer: [ ]
@@ -395,7 +406,7 @@ paths:
         - $ref: '#/components/parameters/search'
   /api/kafkas_mgmt/v1/cloud_providers:
     get:
-      summary: Returns the list of supported cloud providers
+      description: Returns the list of supported cloud providers
       operationId: getCloudProviders
       security:
         - Bearer: [ ]
@@ -429,7 +440,7 @@ paths:
         - $ref: '#/components/parameters/size'
   /api/kafkas_mgmt/v1/cloud_providers/{id}/regions:
     get:
-      summary: Returns the list of supported regions of the supported cloud provider
+      description: Returns the list of supported regions of the supported cloud provider
       operationId: getCloudProviderRegions
       security:
         - Bearer: [ ]
@@ -462,25 +473,9 @@ paths:
         - $ref: "#/components/parameters/id"
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/size'
-        - in: query
-          deprecated: true
-          name: instance_type
-          description: |-
-            The Kafka instance type to filter the results by
-
-            DEPRECATION NOTICE - instance_type will be deprecated
-
-          schema:
-            type: string
-          required: false
-          examples:
-            developer_instance_type:
-              value: "developer"
-            standard_instance_type:
-              value: "standard"
   /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region}:
     get:
-      summary: Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
+      description: Returns the list of supported Kafka instance types and sizes filtered by cloud provider and region
       operationId: getInstanceTypesByCloudProviderAndRegion
       security:
         - Bearer: [ ]
@@ -581,7 +576,7 @@ paths:
       tags:
         - security
       operationId: getServiceAccounts
-      summary: Returns a list of service accounts
+      description: Returns a list of service accounts
     post:
       requestBody:
         description: Service account request
@@ -635,7 +630,7 @@ paths:
       operationId: createServiceAccount
       tags:
         - security
-      summary: Creates a service account
+      description: Creates a service account
   /api/kafkas_mgmt/v1/service_accounts/{id}:
     get:
       parameters:
@@ -655,8 +650,7 @@ paths:
       operationId: getServiceAccountById
       tags:
         - security
-      summary: Returned service account by ID
-    summary: Get service account by id
+      description: Returned service account by ID
     description: Get the service account with the given id
     delete:
       parameters:
@@ -699,7 +693,7 @@ paths:
       operationId: deleteServiceAccountById
       tags:
         - security
-      summary: Deletes a service account by ID
+      description: Deletes a service account by ID
   /api/kafkas_mgmt/v1/service_accounts/{id}/reset_credentials:
     post:
       parameters:
@@ -745,10 +739,10 @@ paths:
       operationId: resetServiceAccountCreds
       tags:
         - security
-      summary: Resets the credentials for a service account by ID
+      description: Resets the credentials for a service account by ID
   /api/kafkas_mgmt/v1/sso_providers:
     get:
-      summary: Return sso provider info
+      description: Return sso provider info
       operationId: getSsoProviders
       tags:
         - security
@@ -783,7 +777,7 @@ paths:
   #
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range:
     get:
-      summary: Returns metrics with timeseries range query by Kafka ID
+      description: Returns metrics with timeseries range query by Kafka ID
       operationId: getMetricsByRangeQuery
       security:
         - Bearer: [ ]
@@ -819,7 +813,7 @@ paths:
         - $ref: "#/components/parameters/filters"
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query:
     get:
-      summary: Returns metrics with instant query by Kafka ID
+      description: Returns metrics with instant query by Kafka ID
       operationId: getMetricsByInstantQuery
       security:
         - Bearer: [ ]
@@ -853,7 +847,7 @@ paths:
         - $ref: "#/components/parameters/filters"
   /api/kafkas_mgmt/v1/kafkas/{id}/metrics/federate:
     get:
-      summary: Returns all metrics in scrapeable format for a given kafka id
+      description: Returns all metrics in scrapeable format for a given kafka id
       operationId: federateMetrics
       security:
         - Bearer: [ ]
@@ -907,6 +901,7 @@ components:
   schemas:
     ObjectReference:
       type: object
+      required: [id, kind, href]
       properties:
         id:
           type: string
@@ -936,16 +931,21 @@ components:
           items:
             $ref: "#/components/schemas/ObjectReference"
     Error:
-      allOf:
-        - $ref: "#/components/schemas/ObjectReference"
-        - type: object
-          properties:
-            code:
-              type: string
-            reason:
-              type: string
-            operation_id:
-              type: string
+        type: object
+        required: [id, kind, href, code, reason]
+        properties:
+          reason:
+            type: string
+          operation_id:
+            type: string
+          id:
+            type: string
+          kind:
+            type: string
+          href:
+            type: string
+          code:
+            type: string
     ErrorList:
       allOf:
         - $ref: "#/components/schemas/List"
@@ -1001,29 +1001,49 @@ components:
               type: string
             instance_type_name:
               type: string
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             reauthentication_enabled:
               type: boolean
             kafka_storage_size:
+              deprecated: true
+              description: "Maximum data storage available to this Kafka. This is now deprecated, please use max_data_retention_size instead."
               type: string
+            max_data_retention_size:
+              $ref: '#/components/schemas/SupportedKafkaSizeBytesValueItem'
             browser_url:
               type: string
             size_id:
               type: string
             ingress_throughput_per_sec:
               type: string
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             egress_throughput_per_sec:
               type: string
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             total_max_connections:
               type: integer
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             max_partitions:
               type: integer
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             max_data_retention_period:
               type: string
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             max_connection_attempts_per_sec:
               type: integer
+              deprecated: true
+              description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             billing_cloud_account_id:
               type: string
             marketplace:
+              type: string
+            billing_model:
               type: string
           example:
             $ref: "#/components/examples/KafkaRequestExample"
@@ -1071,10 +1091,6 @@ components:
         cloud_provider:
           description: The cloud provider where the Kafka cluster will be created in
           type: string
-        multi_az:
-          description: Deprecated. If it is specified, the value will be ignored. The API automatically determines this value from the 'plan' attribute"
-          type: boolean
-          deprecated: true
         name:
           description: 'The name of the Kafka cluster. It must consist of lower-case alphanumeric characters or ''-'', start with an alphabetic character, and end with an alphanumeric character, and can not be longer than 32 characters.'
           type: string
@@ -1094,6 +1110,10 @@ components:
           nullable: true
         marketplace:
           description: marketplace where the instance is purchased on
+          type: string
+          nullable: true
+        billing_model:
+          description: billing model to use
           type: string
           nullable: true
     SupportedKafkaInstanceTypesList:
@@ -1265,15 +1285,6 @@ components:
           description: 'Whether the region is enabled for deploying an OSD cluster.'
           type: boolean
           default: false
-        supported_instance_types:
-          deprecated: true  
-          description:  |-
-            The Kafka instance types supported by this region.
-
-            DEPRECATION NOTICE - instance_type will be deprecated
-          type: array
-          items:
-            type: string
         capacity:
           description: 'Indicates whether there is capacity left per instance type'
           type: array
@@ -1332,10 +1343,6 @@ components:
         instance_type:
           description: 'kafka instance type'
           type: string
-        max_capacity_reached:
-          description: 'flag indicating whether the capacity for the instance type in the region is reached'
-          type: boolean
-          deprecated: true
         available_sizes:
           description: 'list of available Kafka instance sizes that can be created in this region when taking account current capacity and regional limits'
           type: array
@@ -1440,8 +1447,8 @@ components:
         values:
           type: array
           items:
-            $ref: '#/components/schemas/values'
-    values:
+            $ref: '#/components/schemas/Values'
+    Values:
       type: object
       properties:
         timestamp:
@@ -1470,8 +1477,6 @@ components:
               items:
                 allOf:
                   - $ref: "#/components/schemas/InstantQuery"
-    MetricsFederationResult:
-      type: string
     InstantQuery:
       type: object
       properties:
@@ -1617,7 +1622,7 @@ components:
         Search criteria.
 
         The syntax of this parameter is similar to the syntax of the `where` clause of an
-        SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, and `status`. Allowed comparators are `<>`, `=`, or `LIKE`.
+        SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, and `status`. Allowed comparators are `<>`, `=`, `LIKE`, or `ILIKE`.
         Allowed joins are `AND` and `OR`. However, you can use a maximum of 10 joins in a search query.
 
         Examples:
@@ -1632,6 +1637,12 @@ components:
 
         ```
         name like my%25
+        ```
+
+        To return a Kafka instance with a name containing `test` matching any character case combinations, use the following syntax:
+
+        ```
+        name ilike %25test%25
         ```
 
         If the parameter isn't provided, or if the value is empty, then all the Kafka instances
@@ -1689,6 +1700,9 @@ components:
         instance_type: standard
         browser_url: "https://console.redhat.com/application-services/streams/kafkas/1isy6rq3jki8q0otmjqfd3ocfrg/dashboard"
         reauthentication_enabled: true
+        max_data_retention_size: {
+          bytes: 1073741824000
+        }
         size_id: x1
         ingress_throughput_per_sec: "2Mi"
         egress_throughput_per_sec: "2Mi"
@@ -1698,6 +1712,7 @@ components:
         max_connection_attempts_per_sec: 100
         billing_cloud_account_id: "123456789012"
         marketplace: "aws"
+        billing_model: "marketplace"
     KafkaRequestFailedCreationStatusExample:
       value:
         id: "1iSY6RQ3JKI8Q0OTmjQFd3ocFRg"
@@ -1758,11 +1773,9 @@ components:
         id: "us-east-1"
         display_name: "US East, N. Virginia"
         enabled: true
-        supported_instance_types: ["standard"]
         capacity: [
           {
               instance_type: "standard",
-              max_capacity_reached: true,
               available_sizes: ["x1", "x2"]
           }
         ]

@@ -1,6 +1,6 @@
 /*
- * Service Registry Fleet Manager
- * Service Registry Fleet Manager is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
+ * Service Registry Management API
+ * Service Registry Management API is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
  *
  * The version of the OpenAPI document: 0.0.6
  * Contact: rhosak-eval-support@redhat.com
@@ -130,10 +130,10 @@ public class Registry {
    * Get kind
    * @return kind
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getKind() {
     return kind;
@@ -141,7 +141,7 @@ public class Registry {
 
 
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setKind(String kind) {
     this.kind = kind;
   }
@@ -157,10 +157,10 @@ public class Registry {
    * Get href
    * @return href
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getHref() {
     return href;
@@ -168,7 +168,7 @@ public class Registry {
 
 
   @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHref(String href) {
     this.href = href;
   }
@@ -265,10 +265,10 @@ public class Registry {
    * User-defined Registry instance name. Does not have to be unique.
    * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "User-defined Registry instance name. Does not have to be unique.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "User-defined Registry instance name. Does not have to be unique.")
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getName() {
     return name;
@@ -276,7 +276,7 @@ public class Registry {
 
 
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }
@@ -319,10 +319,10 @@ public class Registry {
    * Registry instance owner.
    * @return owner
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Registry instance owner.")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Registry instance owner.")
   @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getOwner() {
     return owner;
@@ -330,7 +330,7 @@ public class Registry {
 
 
   @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOwner(String owner) {
     this.owner = owner;
   }

@@ -36,8 +36,8 @@ public class ErrorsApi {
   }
 
   /**
-   * Get information about a specific error type
    * 
+   * Get information about a specific error type
    * @param id A unique identifier for an error type. (required)
    * @return a {@code Error}
    * @throws ApiException if fails to make API call
@@ -80,8 +80,8 @@ public class ErrorsApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Get the list of all errors
    * 
+   * Get the list of all errors
    * @param page Page index. (optional)
    * @param size Number of items in each page. (optional)
    * @return a {@code ErrorList}

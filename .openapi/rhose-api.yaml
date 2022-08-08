@@ -24,7 +24,7 @@ tags:
   description: The API that provide the catalog of the available action/source processors
     definition and their JSON schema.
 paths:
-  /api/v1/bridges:
+  /api/smartevents_mgmt/v1/bridges:
     get:
       tags:
       - Bridges
@@ -115,7 +115,7 @@ paths:
             application/json: {}
       security:
       - bearer: []
-  /api/v1/bridges/{bridgeId}:
+  /api/smartevents_mgmt/v1/bridges/{bridgeId}:
     get:
       tags:
       - Bridges
@@ -188,7 +188,7 @@ paths:
             application/json: {}
       security:
       - bearer: []
-  /api/v1/bridges/{bridgeId}/processors:
+  /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors:
     get:
       tags:
       - Processors
@@ -303,7 +303,7 @@ paths:
             application/json: {}
       security:
       - bearer: []
-  /api/v1/bridges/{bridgeId}/processors/{processorId}:
+  /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId}:
     get:
       tags:
       - Processors
@@ -440,7 +440,7 @@ paths:
             application/json: {}
       security:
       - bearer: []
-  /api/v1/cloud_providers:
+  /api/smartevents_mgmt/v1/cloud_providers:
     get:
       tags:
       - Cloud Providers
@@ -478,7 +478,7 @@ paths:
           description: Internal error.
           content:
             application/json: {}
-  /api/v1/cloud_providers/{id}:
+  /api/smartevents_mgmt/v1/cloud_providers/{id}:
     get:
       tags:
       - Cloud Providers
@@ -508,7 +508,7 @@ paths:
           description: Internal error.
           content:
             application/json: {}
-  /api/v1/cloud_providers/{id}/regions:
+  /api/smartevents_mgmt/v1/cloud_providers/{id}/regions:
     get:
       tags:
       - Cloud Providers
@@ -553,7 +553,7 @@ paths:
           description: Internal error.
           content:
             application/json: {}
-  /api/v1/errors:
+  /api/smartevents_mgmt/v1/errors:
     get:
       tags:
       - Error Catalog
@@ -593,7 +593,7 @@ paths:
           description: Internal error.
           content:
             application/json: {}
-  /api/v1/errors/{id}:
+  /api/smartevents_mgmt/v1/errors/{id}:
     get:
       tags:
       - Error Catalog
@@ -624,7 +624,7 @@ paths:
           description: Internal error.
           content:
             application/json: {}
-  /api/v1/schemas:
+  /api/smartevents_mgmt/v1/schemas:
     get:
       tags:
       - Schema Catalog
@@ -652,7 +652,7 @@ paths:
             application/json: {}
       security:
       - bearer: []
-  /api/v1/schemas/actions/{id}:
+  /api/smartevents_mgmt/v1/schemas/actions/{id}:
     get:
       tags:
       - Schema Catalog
@@ -686,7 +686,7 @@ paths:
             application/json: {}
       security:
       - bearer: []
-  /api/v1/schemas/sources/{id}:
+  /api/smartevents_mgmt/v1/schemas/sources/{id}:
     get:
       tags:
       - Schema Catalog

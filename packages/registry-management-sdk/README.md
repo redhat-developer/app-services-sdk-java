@@ -1,10 +1,10 @@
 # registry-management-sdk
 
-Service Registry Fleet Manager
+Service Registry Management API
 
 - API version: 0.0.6
 
-Service Registry Fleet Manager is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
+Service Registry Management API is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
 
   For more information, please visit [https://console.redhat.com/application-services/service-registry/](https://console.redhat.com/application-services/service-registry/)
 
@@ -117,19 +117,18 @@ All URIs are relative to *https://api.openshift.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**getServiceStatus**](docs/DefaultApi.md#getServiceStatus) | **GET** /api/serviceregistry_mgmt/v1/status | Get the service status
-*ErrorsApi* | [**getError**](docs/ErrorsApi.md#getError) | **GET** /api/serviceregistry_mgmt/v1/errors/{id} | Get information about a specific error type
-*ErrorsApi* | [**getErrors**](docs/ErrorsApi.md#getErrors) | **GET** /api/serviceregistry_mgmt/v1/errors | Get the list of all errors
-*RegistriesApi* | [**createRegistry**](docs/RegistriesApi.md#createRegistry) | **POST** /api/serviceregistry_mgmt/v1/registries | Create a new Registry instance
+*DefaultApi* | [**getServiceStatus**](docs/DefaultApi.md#getServiceStatus) | **GET** /api/serviceregistry_mgmt/v1/status | 
+*ErrorsApi* | [**getError**](docs/ErrorsApi.md#getError) | **GET** /api/serviceregistry_mgmt/v1/errors/{id} | 
+*ErrorsApi* | [**getErrors**](docs/ErrorsApi.md#getErrors) | **GET** /api/serviceregistry_mgmt/v1/errors | 
+*RegistriesApi* | [**createRegistry**](docs/RegistriesApi.md#createRegistry) | **POST** /api/serviceregistry_mgmt/v1/registries | 
 *RegistriesApi* | [**deleteRegistry**](docs/RegistriesApi.md#deleteRegistry) | **DELETE** /api/serviceregistry_mgmt/v1/registries/{id} | Delete a Registry instance
-*RegistriesApi* | [**getRegistries**](docs/RegistriesApi.md#getRegistries) | **GET** /api/serviceregistry_mgmt/v1/registries | Get the list of all Registry instances
+*RegistriesApi* | [**getRegistries**](docs/RegistriesApi.md#getRegistries) | **GET** /api/serviceregistry_mgmt/v1/registries | 
 *RegistriesApi* | [**getRegistry**](docs/RegistriesApi.md#getRegistry) | **GET** /api/serviceregistry_mgmt/v1/registries/{id} | Get a Registry instance
 
 
 ## Documentation for Models
 
  - [Error](docs/Error.md)
- - [ErrorAllOf](docs/ErrorAllOf.md)
  - [ErrorList](docs/ErrorList.md)
  - [ErrorListAllOf](docs/ErrorListAllOf.md)
  - [ModelList](docs/ModelList.md)

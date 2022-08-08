@@ -1,11 +1,12 @@
 openapi: 3.0.3
 info:
-  description: An API to provide REST endpoints for query Kafka for admin operations
+  description: API for interacting with Kafka Instance. Includes Produce, Consume
+    and Admin APIs
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  title: Kafka Admin REST API
-  version: 0.11.1
+  title: Kafka Instance API
+  version: 0.12.0
 servers:
 - description: Kafka Admin REST API
   url: /
@@ -30,11 +31,10 @@ paths:
         those records the requestor is authorized to view.
       operationId: getTopics
       parameters:
-      - deprecated: true
-        description: Maximum number of records to return
+      - description: Number of records per page
         explode: true
         in: query
-        name: limit
+        name: size
         required: false
         schema:
           format: int32
@@ -566,11 +566,10 @@ paths:
         authorized to view.
       operationId: getConsumerGroups
       parameters:
-      - deprecated: true
-        description: Maximum number of records to return
+      - description: Number of records per page
         explode: true
         in: query
-        name: limit
+        name: size
         required: false
         schema:
           format: int32
