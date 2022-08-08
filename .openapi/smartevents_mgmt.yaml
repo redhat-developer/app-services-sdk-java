@@ -998,6 +998,9 @@ components:
         published_at:
           format: date-time
           type: string
+        modified_at:
+          format: date-time
+          type: string
         status:
           allOf:
           - $ref: '#/components/schemas/ManagedResourceStatus'
@@ -1324,6 +1327,9 @@ components:
           type: string
           nullable: false
         published_at:
+          format: date-time
+          type: string
+        modified_at:
           format: date-time
           type: string
         status:
