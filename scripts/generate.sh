@@ -89,3 +89,20 @@ npx @openapitools/openapi-generator-cli generate -g java \
     --package-name="${PACKAGE_NAME}" \
     --additional-properties="apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
     --ignore-file-override=.openapi-generator-ignore
+
+GROUP_ID="com.redhat.cloud"
+OPENAPI_FILENAME=".openapi/registry-instance.json"
+ARTIFACT_ID="registry-instance-sdk"
+OPENAPI_FILENAME=".openapi/registry-instance.json"
+PACKAGE_NAME="com.openshift.cloud.api.registry.instance"
+OUTPUT_PATH="packages/registry-instance-sdk/"
+
+echo "Generating based on ${OPENAPI_FILENAME}"
+rm -Rf $OUTPUT_PATH/src $OUTPUT_PATH/target
+
+npx @openapitools/openapi-generator-cli generate -g java \
+    --library resteasy -t "$TEMPLATES_DIR" \
+    -i "$OPENAPI_FILENAME" -o "$OUTPUT_PATH" \
+    --package-name="${PACKAGE_NAME}" \
+    --additional-properties="apiTests=false,modelTests=false,hideGenerationTimestamp=true,groupId=${GROUP_ID},artifactId=${ARTIFACT_ID},modelPackage=${PACKAGE_NAME}.models,invokerPackage=${PACKAGE_NAME}.invoker,apiPackage=${PACKAGE_NAME},dateLibrary=java8,licenseName=Apache-2.0,licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.txt" \
+    --ignore-file-override=.openapi-generator-ignore
