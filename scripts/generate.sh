@@ -92,7 +92,7 @@ npx @openapitools/openapi-generator-cli generate -g java \
 
 GROUP_ID="com.redhat.cloud"
 ARTIFACT_ID="smartevents-management-sdk"
-OPENAPI_FILENAME=".openapi/rhose-api.yaml"
+OPENAPI_FILENAME=".openapi/smartevents_mgmt.yaml"
 PACKAGE_NAME="com.openshift.cloud.api.smartevents"
 OUTPUT_PATH="packages/smartevents-management-sdk/"
 
