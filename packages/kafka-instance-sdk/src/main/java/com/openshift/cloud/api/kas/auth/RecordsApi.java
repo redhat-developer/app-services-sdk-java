@@ -88,7 +88,7 @@ public class RecordsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "Bearer", "OAuth2" };
 
     GenericType<RecordList> localVarReturnType = new GenericType<RecordList>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -138,7 +138,7 @@ public class RecordsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "Bearer", "OAuth2" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);

@@ -88,7 +88,7 @@ public class BridgesApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.stage.openshift.com");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
@@ -113,7 +113,7 @@ public class BridgesApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.stage.openshift.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -121,6 +121,7 @@ Class | Method | HTTP request | Description
 *BridgesApi* | [**bridgesAPIDeleteBridge**](docs/BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Delete a Bridge instance
 *BridgesApi* | [**bridgesAPIGetBridge**](docs/BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Get a Bridge instance
 *BridgesApi* | [**bridgesAPIGetBridges**](docs/BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/smartevents_mgmt/v1/bridges | Get the list of Bridge instances
+*BridgesApi* | [**bridgesAPIUpdateBridge**](docs/BridgesApi.md#bridgesAPIUpdateBridge) | **PUT** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Update a Bridge instance
 *CloudProvidersApi* | [**cloudProviderAPIGetCloudProvider**](docs/CloudProvidersApi.md#cloudProviderAPIGetCloudProvider) | **GET** /api/smartevents_mgmt/v1/cloud_providers/{id} | Get Cloud Provider.
 *CloudProvidersApi* | [**cloudProviderAPIListCloudProviderRegions**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviderRegions) | **GET** /api/smartevents_mgmt/v1/cloud_providers/{id}/regions | List Supported Cloud Regions.
 *CloudProvidersApi* | [**cloudProviderAPIListCloudProviders**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviders) | **GET** /api/smartevents_mgmt/v1/cloud_providers | List Supported Cloud Providers.
@@ -149,10 +150,14 @@ Class | Method | HTTP request | Description
  - [CloudProviderResponse](docs/CloudProviderResponse.md)
  - [CloudRegionListResponse](docs/CloudRegionListResponse.md)
  - [CloudRegionResponse](docs/CloudRegionResponse.md)
+ - [Error](docs/Error.md)
  - [ErrorListResponse](docs/ErrorListResponse.md)
- - [ErrorResponse](docs/ErrorResponse.md)
- - [ErrorsResponse](docs/ErrorsResponse.md)
+ - [ErrorsList](docs/ErrorsList.md)
+ - [ListAllOf](docs/ListAllOf.md)
+ - [ListResponse](docs/ListResponse.md)
  - [ManagedResourceStatus](docs/ManagedResourceStatus.md)
+ - [ModelList](docs/ModelList.md)
+ - [ObjectReference](docs/ObjectReference.md)
  - [ProcessorCatalogResponse](docs/ProcessorCatalogResponse.md)
  - [ProcessorListResponse](docs/ProcessorListResponse.md)
  - [ProcessorRequest](docs/ProcessorRequest.md)

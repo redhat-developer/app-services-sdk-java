@@ -45,6 +45,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ProcessorResponse.JSON_PROPERTY_HREF,
   ProcessorResponse.JSON_PROPERTY_SUBMITTED_AT,
   ProcessorResponse.JSON_PROPERTY_PUBLISHED_AT,
+  ProcessorResponse.JSON_PROPERTY_MODIFIED_AT,
   ProcessorResponse.JSON_PROPERTY_STATUS,
   ProcessorResponse.JSON_PROPERTY_OWNER,
   ProcessorResponse.JSON_PROPERTY_TYPE,
@@ -73,6 +74,9 @@ public class ProcessorResponse {
 
   public static final String JSON_PROPERTY_PUBLISHED_AT = "published_at";
   private OffsetDateTime publishedAt;
+
+  public static final String JSON_PROPERTY_MODIFIED_AT = "modified_at";
+  private OffsetDateTime modifiedAt;
 
   public static final String JSON_PROPERTY_STATUS = "status";
   private ManagedResourceStatus status;
@@ -108,10 +112,10 @@ public class ProcessorResponse {
    * Get kind
    * @return kind
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getKind() {
     return kind;
@@ -119,7 +123,7 @@ public class ProcessorResponse {
 
 
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setKind(String kind) {
     this.kind = kind;
   }
@@ -135,10 +139,10 @@ public class ProcessorResponse {
    * Get id
    * @return id
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getId() {
     return id;
@@ -146,7 +150,7 @@ public class ProcessorResponse {
 
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
   }
@@ -189,10 +193,10 @@ public class ProcessorResponse {
    * Get href
    * @return href
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getHref() {
     return href;
@@ -200,7 +204,7 @@ public class ProcessorResponse {
 
 
   @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHref(String href) {
     this.href = href;
   }
@@ -216,10 +220,10 @@ public class ProcessorResponse {
    * Get submittedAt
    * @return submittedAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SUBMITTED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public OffsetDateTime getSubmittedAt() {
     return submittedAt;
@@ -227,7 +231,7 @@ public class ProcessorResponse {
 
 
   @JsonProperty(JSON_PROPERTY_SUBMITTED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSubmittedAt(OffsetDateTime submittedAt) {
     this.submittedAt = submittedAt;
   }
@@ -260,6 +264,33 @@ public class ProcessorResponse {
   }
 
 
+  public ProcessorResponse modifiedAt(OffsetDateTime modifiedAt) {
+    
+    this.modifiedAt = modifiedAt;
+    return this;
+  }
+
+   /**
+   * Get modifiedAt
+   * @return modifiedAt
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_MODIFIED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getModifiedAt() {
+    return modifiedAt;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_MODIFIED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setModifiedAt(OffsetDateTime modifiedAt) {
+    this.modifiedAt = modifiedAt;
+  }
+
+
   public ProcessorResponse status(ManagedResourceStatus status) {
     
     this.status = status;
@@ -271,9 +302,9 @@ public class ProcessorResponse {
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public ManagedResourceStatus getStatus() {
     return status;
@@ -281,7 +312,7 @@ public class ProcessorResponse {
 
 
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStatus(ManagedResourceStatus status) {
     this.status = status;
   }
@@ -297,10 +328,10 @@ public class ProcessorResponse {
    * Get owner
    * @return owner
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getOwner() {
     return owner;
@@ -308,7 +339,7 @@ public class ProcessorResponse {
 
 
   @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOwner(String owner) {
     this.owner = owner;
   }
@@ -325,9 +356,9 @@ public class ProcessorResponse {
    * @return type
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public ProcessorType getType() {
     return type;
@@ -335,7 +366,7 @@ public class ProcessorResponse {
 
 
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(ProcessorType type) {
     this.type = type;
   }
@@ -473,6 +504,7 @@ public class ProcessorResponse {
         Objects.equals(this.href, processorResponse.href) &&
         Objects.equals(this.submittedAt, processorResponse.submittedAt) &&
         Objects.equals(this.publishedAt, processorResponse.publishedAt) &&
+        Objects.equals(this.modifiedAt, processorResponse.modifiedAt) &&
         Objects.equals(this.status, processorResponse.status) &&
         Objects.equals(this.owner, processorResponse.owner) &&
         Objects.equals(this.type, processorResponse.type) &&
@@ -484,7 +516,7 @@ public class ProcessorResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, status, owner, type, filters, transformationTemplate, action, source);
+    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, type, filters, transformationTemplate, action, source);
   }
 
   @Override
@@ -497,6 +529,7 @@ public class ProcessorResponse {
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
+    sb.append("    modifiedAt: ").append(toIndentedString(modifiedAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

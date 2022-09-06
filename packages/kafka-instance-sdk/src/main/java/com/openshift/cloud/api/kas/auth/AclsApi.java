@@ -79,7 +79,7 @@ public class AclsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "Bearer", "OAuth2" };
 
 
     apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
@@ -128,7 +128,7 @@ public class AclsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "Bearer", "OAuth2" };
 
     GenericType<AclBindingListPage> localVarReturnType = new GenericType<AclBindingListPage>() {};
     return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -165,7 +165,7 @@ public class AclsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "Bearer", "OAuth2" };
 
     GenericType<Map<String, List<String>>> localVarReturnType = new GenericType<Map<String, List<String>>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -222,7 +222,7 @@ public class AclsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "Bearer" };
+    String[] localVarAuthNames = new String[] { "Bearer", "OAuth2" };
 
     GenericType<AclBindingListPage> localVarReturnType = new GenericType<AclBindingListPage>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);

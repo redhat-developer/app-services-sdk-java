@@ -1,6 +1,6 @@
 # ErrorCatalogApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.stage.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,7 +30,7 @@ import com.openshift.cloud.api.smartevents.ErrorCatalogApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.stage.openshift.com");
 
         ErrorCatalogApi apiInstance = new ErrorCatalogApi(defaultClient);
         Integer id = 56; // Integer | 
@@ -99,7 +99,7 @@ import com.openshift.cloud.api.smartevents.ErrorCatalogApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.stage.openshift.com");
 
         ErrorCatalogApi apiInstance = new ErrorCatalogApi(defaultClient);
         Integer page = 0; // Integer | 

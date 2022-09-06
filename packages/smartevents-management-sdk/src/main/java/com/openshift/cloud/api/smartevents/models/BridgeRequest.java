@@ -31,7 +31,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   BridgeRequest.JSON_PROPERTY_NAME,
-  BridgeRequest.JSON_PROPERTY_ERROR_HANDLER
+  BridgeRequest.JSON_PROPERTY_ERROR_HANDLER,
+  BridgeRequest.JSON_PROPERTY_CLOUD_PROVIDER,
+  BridgeRequest.JSON_PROPERTY_REGION
 })
 @JsonTypeName("BridgeRequest")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -41,6 +43,12 @@ public class BridgeRequest {
 
   public static final String JSON_PROPERTY_ERROR_HANDLER = "error_handler";
   private Action errorHandler;
+
+  public static final String JSON_PROPERTY_CLOUD_PROVIDER = "cloud_provider";
+  private String cloudProvider;
+
+  public static final String JSON_PROPERTY_REGION = "region";
+  private String region;
 
   public BridgeRequest() { 
   }
@@ -99,6 +107,60 @@ public class BridgeRequest {
   }
 
 
+  public BridgeRequest cloudProvider(String cloudProvider) {
+    
+    this.cloudProvider = cloudProvider;
+    return this;
+  }
+
+   /**
+   * Get cloudProvider
+   * @return cloudProvider
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_CLOUD_PROVIDER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getCloudProvider() {
+    return cloudProvider;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CLOUD_PROVIDER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCloudProvider(String cloudProvider) {
+    this.cloudProvider = cloudProvider;
+  }
+
+
+  public BridgeRequest region(String region) {
+    
+    this.region = region;
+    return this;
+  }
+
+   /**
+   * Get region
+   * @return region
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_REGION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getRegion() {
+    return region;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setRegion(String region) {
+    this.region = region;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -109,12 +171,14 @@ public class BridgeRequest {
     }
     BridgeRequest bridgeRequest = (BridgeRequest) o;
     return Objects.equals(this.name, bridgeRequest.name) &&
-        Objects.equals(this.errorHandler, bridgeRequest.errorHandler);
+        Objects.equals(this.errorHandler, bridgeRequest.errorHandler) &&
+        Objects.equals(this.cloudProvider, bridgeRequest.cloudProvider) &&
+        Objects.equals(this.region, bridgeRequest.region);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, errorHandler);
+    return Objects.hash(name, errorHandler, cloudProvider, region);
   }
 
   @Override
@@ -123,6 +187,8 @@ public class BridgeRequest {
     sb.append("class BridgeRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    errorHandler: ").append(toIndentedString(errorHandler)).append("\n");
+    sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
+    sb.append("    region: ").append(toIndentedString(region)).append("\n");
     sb.append("}");
     return sb.toString();
   }

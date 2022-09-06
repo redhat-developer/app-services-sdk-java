@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.smartevents.models.ErrorResponse;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -29,25 +28,25 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * ErrorsResponse
+ * ListResponse
  */
 @JsonPropertyOrder({
-  ErrorsResponse.JSON_PROPERTY_KIND,
-  ErrorsResponse.JSON_PROPERTY_ITEMS
+  ListResponse.JSON_PROPERTY_KIND,
+  ListResponse.JSON_PROPERTY_ITEMS
 })
-@JsonTypeName("ErrorsResponse")
+@JsonTypeName("ListResponse")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ErrorsResponse {
+public class ListResponse {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
 
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<ErrorResponse> items = null;
+  private List<Object> items = null;
 
-  public ErrorsResponse() { 
+  public ListResponse() { 
   }
 
-  public ErrorsResponse kind(String kind) {
+  public ListResponse kind(String kind) {
     
     this.kind = kind;
     return this;
@@ -57,10 +56,10 @@ public class ErrorsResponse {
    * Get kind
    * @return kind
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getKind() {
     return kind;
@@ -68,19 +67,19 @@ public class ErrorsResponse {
 
 
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setKind(String kind) {
     this.kind = kind;
   }
 
 
-  public ErrorsResponse items(List<ErrorResponse> items) {
+  public ListResponse items(List<Object> items) {
     
     this.items = items;
     return this;
   }
 
-  public ErrorsResponse addItemsItem(ErrorResponse itemsItem) {
+  public ListResponse addItemsItem(Object itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -97,14 +96,14 @@ public class ErrorsResponse {
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ErrorResponse> getItems() {
+  public List<Object> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<ErrorResponse> items) {
+  public void setItems(List<Object> items) {
     this.items = items;
   }
 
@@ -117,9 +116,9 @@ public class ErrorsResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorsResponse errorsResponse = (ErrorsResponse) o;
-    return Objects.equals(this.kind, errorsResponse.kind) &&
-        Objects.equals(this.items, errorsResponse.items);
+    ListResponse listResponse = (ListResponse) o;
+    return Objects.equals(this.kind, listResponse.kind) &&
+        Objects.equals(this.items, listResponse.items);
   }
 
   @Override
@@ -130,7 +129,7 @@ public class ErrorsResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorsResponse {\n");
+    sb.append("class ListResponse {\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");

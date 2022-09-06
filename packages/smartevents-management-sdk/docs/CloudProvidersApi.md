@@ -1,6 +1,6 @@
 # CloudProvidersApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.stage.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,7 +31,7 @@ import com.openshift.cloud.api.smartevents.CloudProvidersApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.stage.openshift.com");
 
         CloudProvidersApi apiInstance = new CloudProvidersApi(defaultClient);
         String id = "id_example"; // String | 
@@ -75,6 +75,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Success. |  -  |
 | **400** | Bad request. |  -  |
+| **404** | Not found. |  -  |
 | **500** | Internal error. |  -  |
 
 
@@ -99,7 +100,7 @@ import com.openshift.cloud.api.smartevents.CloudProvidersApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.stage.openshift.com");
 
         CloudProvidersApi apiInstance = new CloudProvidersApi(defaultClient);
         String id = "id_example"; // String | 
@@ -171,7 +172,7 @@ import com.openshift.cloud.api.smartevents.CloudProvidersApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.stage.openshift.com");
 
         CloudProvidersApi apiInstance = new CloudProvidersApi(defaultClient);
         Integer page = 0; // Integer | 

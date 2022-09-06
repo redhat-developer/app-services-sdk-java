@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kind** | **String** |  |  [optional]
+**kind** | **String** |  | 
 **items** | [**List&lt;ProcessorSchemaEntryResponse&gt;**](ProcessorSchemaEntryResponse.md) |  |  [optional]
 
 

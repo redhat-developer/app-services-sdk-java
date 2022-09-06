@@ -35,9 +35,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
         
-        // Configure OAuth2 access token for authorization: Bearer
-        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
         AclBinding aclBinding = new AclBinding(); // AclBinding | ACL to create.
@@ -67,7 +71,7 @@ null (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README.md#Bearer), [OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -110,9 +114,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
         
-        // Configure OAuth2 access token for authorization: Bearer
-        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
         AclResourceTypeFilter resourceType = new AclResourceTypeFilter(); // AclResourceTypeFilter | ACL Resource Type Filter
@@ -153,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README.md#Bearer), [OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -196,9 +204,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
         
-        // Configure OAuth2 access token for authorization: Bearer
-        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
         try {
@@ -225,7 +237,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README.md#Bearer), [OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -265,9 +277,13 @@ public class Example {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
         
-        // Configure OAuth2 access token for authorization: Bearer
-        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
         AclResourceTypeFilter resourceType = new AclResourceTypeFilter(); // AclResourceTypeFilter | ACL Resource Type Filter
@@ -316,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README.md#Bearer), [OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 

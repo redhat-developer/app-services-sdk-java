@@ -7,6 +7,7 @@ import com.openshift.cloud.api.smartevents.invoker.Pair;
 
 import javax.ws.rs.core.GenericType;
 
+import com.openshift.cloud.api.smartevents.models.ErrorsList;
 import com.openshift.cloud.api.smartevents.models.ManagedResourceStatus;
 import com.openshift.cloud.api.smartevents.models.ProcessorListResponse;
 import com.openshift.cloud.api.smartevents.models.ProcessorRequest;

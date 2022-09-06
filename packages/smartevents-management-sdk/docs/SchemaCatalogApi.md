@@ -1,6 +1,6 @@
 # SchemaCatalogApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://api.stage.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,7 +32,7 @@ import com.openshift.cloud.api.smartevents.SchemaCatalogApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.stage.openshift.com");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
@@ -107,7 +107,7 @@ import com.openshift.cloud.api.smartevents.SchemaCatalogApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.stage.openshift.com");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
@@ -178,7 +178,7 @@ import com.openshift.cloud.api.smartevents.SchemaCatalogApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost");
+        defaultClient.setBasePath("https://api.stage.openshift.com");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");

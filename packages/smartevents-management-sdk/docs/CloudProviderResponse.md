@@ -7,12 +7,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kind** | **String** |  |  [optional]
-**id** | **String** |  |  [optional]
+**kind** | **String** |  | 
+**id** | **String** |  | 
 **name** | **String** |  |  [optional]
-**href** | **String** |  |  [optional]
-**displayName** | **String** |  |  [optional]
-**enabled** | **Boolean** |  |  [optional]
+**href** | **String** |  | 
+**displayName** | **String** |  | 
+**enabled** | **Boolean** |  | 
 
 
 

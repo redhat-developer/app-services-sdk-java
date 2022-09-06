@@ -7,10 +7,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kind** | **String** |  |  [optional]
-**name** | **String** |  |  [optional]
-**displayName** | **String** |  |  [optional]
-**enabled** | **Boolean** |  |  [optional]
+**kind** | **String** |  | 
+**name** | **String** |  | 
+**displayName** | **String** |  | 
+**enabled** | **Boolean** |  | 
 
 
 

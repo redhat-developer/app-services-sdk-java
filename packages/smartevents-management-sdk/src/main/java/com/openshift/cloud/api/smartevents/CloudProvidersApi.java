@@ -9,6 +9,7 @@ import javax.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.smartevents.models.CloudProviderListResponse;
 import com.openshift.cloud.api.smartevents.models.CloudRegionListResponse;
+import com.openshift.cloud.api.smartevents.models.ErrorsList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
