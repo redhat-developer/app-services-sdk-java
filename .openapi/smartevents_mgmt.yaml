@@ -22,6 +22,9 @@ tags:
   description: List Supported Cloud Providers and Regions
 - name: Error Catalog
   description: List and get the error definitions from the error catalog.
+- name: Processing Errors
+  description: The API that allow the user to retrieve processing errors of a specific
+    bridge instance.
 - name: Processors
   description: "The API that allow the user to retrieve, create or delete Processors\
     \ of a Bridge instance."
@@ -267,6 +270,85 @@ paths:
           description: Unauthorized.
         "403":
           description: Forbidden.
+        "404":
+          description: Not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+        "500":
+          description: Internal error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+      security:
+      - bearer: []
+  /api/smartevents_mgmt/v1/bridges/{bridgeId}/errors:
+    get:
+      tags:
+      - Processing Errors
+      summary: Get the list of errors for a particular Bridge instance
+      description: Get the list of errors for a particular Bridge instance for the
+        authenticated user.
+      operationId: ProcessingErrorsAPI_getBridgeErrors
+      parameters:
+      - name: bridgeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          format: int32
+          default: 0
+          minimum: 0
+          type: integer
+      - name: size
+        in: query
+        schema:
+          format: int32
+          default: 100
+          maximum: 100
+          minimum: 1
+          type: integer
+      - name: status
+        in: query
+        schema:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedResourceStatus'
+      responses:
+        "200":
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingErrorListResponse'
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+        "401":
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+        "403":
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
         "404":
           description: Not found.
           content:
@@ -1241,6 +1323,45 @@ components:
         href:
           type: string
           nullable: false
+    ProcessingErrorListResponse:
+      required:
+      - kind
+      - page
+      - size
+      - total
+      type: object
+      properties:
+        kind:
+          type: string
+          nullable: false
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessingErrorResponse'
+        page:
+          format: int64
+          type: integer
+          nullable: false
+        size:
+          format: int64
+          type: integer
+          nullable: false
+        total:
+          format: int64
+          type: integer
+          nullable: false
+    ProcessingErrorResponse:
+      type: object
+      properties:
+        recorded_at:
+          format: date-time
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        payload:
+          type: object
     ProcessorCatalogResponse:
       required:
       - kind

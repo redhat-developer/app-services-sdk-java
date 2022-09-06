@@ -21,6 +21,9 @@ tags:
   name: Cloud Providers
 - description: List and get the error definitions from the error catalog.
   name: Error Catalog
+- description: The API that allow the user to retrieve processing errors of a specific
+    bridge instance.
+  name: Processing Errors
 - description: The API that allow the user to retrieve, create or delete Processors
     of a Bridge instance.
   name: Processors
@@ -304,6 +307,100 @@ paths:
       tags:
       - Bridges
       x-contentType: application/json
+      x-accepts: application/json
+  /api/smartevents_mgmt/v1/bridges/{bridgeId}/errors:
+    get:
+      description: Get the list of errors for a particular Bridge instance for the
+        authenticated user.
+      operationId: ProcessingErrorsAPI_getBridgeErrors
+      parameters:
+      - explode: false
+        in: path
+        name: bridgeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          format: int32
+          minimum: 0
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 100
+          format: int32
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          items:
+            $ref: '#/components/schemas/ManagedResourceStatus'
+          type: array
+          uniqueItems: true
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingErrorListResponse'
+          description: Success.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+          description: Bad request.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+          description: Not found.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
+          description: Internal error.
+      security:
+      - bearer: []
+      summary: Get the list of errors for a particular Bridge instance
+      tags:
+      - Processing Errors
       x-accepts: application/json
   /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors:
     get:
@@ -1459,6 +1556,64 @@ components:
       - href
       - id
       - kind
+      type: object
+    ProcessingErrorListResponse:
+      example:
+        total: 1
+        size: 6
+        kind: kind
+        page: 0
+        items:
+        - recorded_at: 2000-01-23T04:56:07.000+00:00
+          headers:
+            key: headers
+          payload: '{}'
+        - recorded_at: 2000-01-23T04:56:07.000+00:00
+          headers:
+            key: headers
+          payload: '{}'
+      properties:
+        kind:
+          nullable: false
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/ProcessingErrorResponse'
+          type: array
+        page:
+          format: int64
+          nullable: false
+          type: integer
+        size:
+          format: int64
+          nullable: false
+          type: integer
+        total:
+          format: int64
+          nullable: false
+          type: integer
+      required:
+      - kind
+      - page
+      - size
+      - total
+      type: object
+    ProcessingErrorResponse:
+      example:
+        recorded_at: 2000-01-23T04:56:07.000+00:00
+        headers:
+          key: headers
+        payload: '{}'
+      properties:
+        recorded_at:
+          format: date-time
+          type: string
+        headers:
+          additionalProperties:
+            type: string
+          type: object
+        payload:
+          type: object
       type: object
     ProcessorCatalogResponse:
       example:
