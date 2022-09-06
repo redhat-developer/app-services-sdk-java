@@ -6,12 +6,13 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Instance API
-  version: 0.12.0
+  version: 0.12.2
 servers:
 - description: Kafka Admin REST API
   url: /
 security:
 - Bearer: []
+- OAuth2: []
 tags:
 - description: Topic Management
   name: topics
@@ -2318,7 +2319,12 @@ components:
       type: object
   securitySchemes:
     Bearer:
-      description: Access token used with OAuth 2.0
+      bearerFormat: JWT
+      description: JWT used with HTTP Bearer authentication
+      scheme: bearer
+      type: http
+    OAuth2:
+      description: Client credentials used to obtain an OAuth 2.0 access token
       flows:
         clientCredentials:
           scopes: {}

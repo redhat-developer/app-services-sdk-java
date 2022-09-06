@@ -7,11 +7,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kind** | **String** |  |  [optional]
+**kind** | **String** |  | 
 **items** | [**List&lt;CloudProviderResponse&gt;**](CloudProviderResponse.md) |  |  [optional]
-**page** | **Long** |  |  [optional]
-**size** | **Long** |  |  [optional]
-**total** | **Long** |  |  [optional]
+**page** | **Long** |  | 
+**size** | **Long** |  | 
+**total** | **Long** |  | 
 
 
 

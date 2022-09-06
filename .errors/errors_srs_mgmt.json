@@ -5,116 +5,116 @@
   "total": 14,
   "items": [
     {
+      "reason": "Unspecified error",
+      "operation_id": "",
       "id": "1",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/1",
-      "code": "SRS-MGMT-1",
-      "reason": "Unspecified error",
-      "operation_id": ""
+      "code": "SRS-MGMT-1"
     },
     {
+      "reason": "Registry with id='?' not found",
+      "operation_id": "",
       "id": "2",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/2",
-      "code": "SRS-MGMT-2",
-      "reason": "Registry with id='?' not found",
-      "operation_id": ""
+      "code": "SRS-MGMT-2"
     },
     {
+      "reason": "Bad date or time format",
+      "operation_id": "",
       "id": "3",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/3",
-      "code": "SRS-MGMT-3",
-      "reason": "Bad date or time format",
-      "operation_id": ""
+      "code": "SRS-MGMT-3"
     },
     {
+      "reason": "Invalid request content or parameters. Make sure the request conforms to the given JSON schema",
+      "operation_id": "",
       "id": "4",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/4",
-      "code": "SRS-MGMT-4",
-      "reason": "Invalid request content or parameters. Make sure the request conforms to the given JSON schema",
-      "operation_id": ""
+      "code": "SRS-MGMT-4"
     },
     {
+      "reason": "Bad request format - invalid JSON",
+      "operation_id": "",
       "id": "5",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/5",
-      "code": "SRS-MGMT-5",
-      "reason": "Bad request format - invalid JSON",
-      "operation_id": ""
+      "code": "SRS-MGMT-5"
     },
     {
+      "reason": "Required terms have not been accepted for account id='?'",
+      "operation_id": "",
       "id": "6",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/6",
-      "code": "SRS-MGMT-6",
-      "reason": "Required terms have not been accepted for account id='?'",
-      "operation_id": ""
+      "code": "SRS-MGMT-6"
     },
     {
+      "reason": "The maximum number of allowed Registry instances has been reached",
+      "operation_id": "",
       "id": "7",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/7",
-      "code": "SRS-MGMT-7",
-      "reason": "The maximum number of allowed Registry instances has been reached",
-      "operation_id": ""
+      "code": "SRS-MGMT-7"
     },
     {
+      "reason": "Error type with id='?' not found",
+      "operation_id": "",
       "id": "8",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/8",
-      "code": "SRS-MGMT-8",
-      "reason": "Error type with id='?' not found",
-      "operation_id": ""
+      "code": "SRS-MGMT-8"
     },
     {
+      "reason": "Data conflict. Make sure a Registry with the given name does not already exist",
+      "operation_id": "",
       "id": "9",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/9",
-      "code": "SRS-MGMT-9",
-      "reason": "Data conflict. Make sure a Registry with the given name does not already exist",
-      "operation_id": ""
+      "code": "SRS-MGMT-9"
     },
     {
+      "reason": "Bad request format - unsupported media type",
+      "operation_id": "",
       "id": "10",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/10",
-      "code": "SRS-MGMT-10",
-      "reason": "Bad request format - unsupported media type",
-      "operation_id": ""
+      "code": "SRS-MGMT-10"
     },
     {
+      "reason": "Could not check quota for user?",
+      "operation_id": "",
       "id": "11",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/11",
-      "code": "SRS-MGMT-11",
-      "reason": "Could not check quota for user?",
-      "operation_id": ""
+      "code": "SRS-MGMT-11"
     },
     {
+      "reason": "Evaluation instances not allowed.",
+      "operation_id": "",
       "id": "12",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/12",
-      "code": "SRS-MGMT-12",
-      "reason": "Evaluation instances not allowed.",
-      "operation_id": ""
+      "code": "SRS-MGMT-12"
     },
     {
+      "reason": "User already has the maximum number of allowed Evaluation instances.",
+      "operation_id": "",
       "id": "13",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/13",
-      "code": "SRS-MGMT-13",
-      "reason": "User already has the maximum number of allowed Evaluation instances.",
-      "operation_id": ""
+      "code": "SRS-MGMT-13"
     },
     {
+      "reason": "Total (global) number of instances exhausted.",
+      "operation_id": "",
       "id": "14",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/14",
-      "code": "SRS-MGMT-14",
-      "reason": "Total (global) number of instances exhausted.",
-      "operation_id": ""
+      "code": "SRS-MGMT-14"
     }
   ]
 }

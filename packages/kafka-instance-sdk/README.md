@@ -2,7 +2,7 @@
 
 Kafka Instance API
 
-- API version: 0.12.0
+- API version: 0.12.2
 
 API for interacting with Kafka Instance. Includes Produce, Consume and Admin APIs
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-instance-sdk</artifactId>
-  <version>0.12.0</version>
+  <version>0.12.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-instance-sdk:0.12.0"
+     implementation "com.redhat.cloud:kafka-instance-sdk:0.12.2"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-instance-sdk-0.12.0.jar`
+- `target/kafka-instance-sdk-0.12.2.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -90,9 +90,13 @@ public class AclsApiExample {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("http://localhost");
         
-        // Configure OAuth2 access token for authorization: Bearer
-        OAuth Bearer = (OAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setAccessToken("YOUR ACCESS TOKEN");
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        // Configure OAuth2 access token for authorization: OAuth2
+        OAuth OAuth2 = (OAuth) defaultClient.getAuthentication("OAuth2");
+        OAuth2.setAccessToken("YOUR ACCESS TOKEN");
 
         AclsApi apiInstance = new AclsApi(defaultClient);
         AclBinding aclBinding = new AclBinding(); // AclBinding | ACL to create.
@@ -194,6 +198,11 @@ Class | Method | HTTP request | Description
 
 Authentication schemes defined for the API:
 ### Bearer
+
+
+- **Type**: HTTP basic authentication
+
+### OAuth2
 
 
 - **Type**: OAuth

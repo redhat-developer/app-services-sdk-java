@@ -9,6 +9,7 @@ import javax.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.smartevents.models.BridgeError;
 import com.openshift.cloud.api.smartevents.models.ErrorListResponse;
+import com.openshift.cloud.api.smartevents.models.ErrorsList;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.smartevents.models.ErrorResponse;
+import com.openshift.cloud.api.smartevents.models.Error;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class ErrorListResponse {
   private String kind;
 
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<ErrorResponse> items = null;
+  private List<Error> items = null;
 
   public static final String JSON_PROPERTY_PAGE = "page";
   private Long page;
@@ -69,10 +69,10 @@ public class ErrorListResponse {
    * Get kind
    * @return kind
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getKind() {
     return kind;
@@ -80,19 +80,19 @@ public class ErrorListResponse {
 
 
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setKind(String kind) {
     this.kind = kind;
   }
 
 
-  public ErrorListResponse items(List<ErrorResponse> items) {
+  public ErrorListResponse items(List<Error> items) {
     
     this.items = items;
     return this;
   }
 
-  public ErrorListResponse addItemsItem(ErrorResponse itemsItem) {
+  public ErrorListResponse addItemsItem(Error itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -109,14 +109,14 @@ public class ErrorListResponse {
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ErrorResponse> getItems() {
+  public List<Error> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setItems(List<ErrorResponse> items) {
+  public void setItems(List<Error> items) {
     this.items = items;
   }
 
@@ -131,10 +131,10 @@ public class ErrorListResponse {
    * Get page
    * @return page
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_PAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Long getPage() {
     return page;
@@ -142,7 +142,7 @@ public class ErrorListResponse {
 
 
   @JsonProperty(JSON_PROPERTY_PAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPage(Long page) {
     this.page = page;
   }
@@ -158,10 +158,10 @@ public class ErrorListResponse {
    * Get size
    * @return size
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Long getSize() {
     return size;
@@ -169,7 +169,7 @@ public class ErrorListResponse {
 
 
   @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(Long size) {
     this.size = size;
   }
@@ -185,10 +185,10 @@ public class ErrorListResponse {
    * Get total
    * @return total
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_TOTAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Long getTotal() {
     return total;
@@ -196,7 +196,7 @@ public class ErrorListResponse {
 
 
   @JsonProperty(JSON_PROPERTY_TOTAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTotal(Long total) {
     this.total = total;
   }

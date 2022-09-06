@@ -7,11 +7,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kind** | **String** |  |  [optional]
-**items** | [**List&lt;ErrorResponse&gt;**](ErrorResponse.md) |  |  [optional]
-**page** | **Long** |  |  [optional]
-**size** | **Long** |  |  [optional]
-**total** | **Long** |  |  [optional]
+**kind** | **String** |  | 
+**items** | [**List&lt;Error&gt;**](Error.md) |  |  [optional]
+**page** | **Long** |  | 
+**size** | **Long** |  | 
+**total** | **Long** |  | 
 
 
 

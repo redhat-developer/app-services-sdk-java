@@ -7,15 +7,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kind** | **String** |  |  [optional]
-**id** | **String** |  |  [optional]
+**kind** | **String** |  | 
+**id** | **String** |  | 
 **name** | **String** |  |  [optional]
-**href** | **String** |  |  [optional]
-**submittedAt** | **OffsetDateTime** |  |  [optional]
+**href** | **String** |  | 
+**submittedAt** | **OffsetDateTime** |  | 
 **publishedAt** | **OffsetDateTime** |  |  [optional]
-**status** | **ManagedResourceStatus** |  |  [optional]
-**owner** | **String** |  |  [optional]
-**type** | **ProcessorType** |  |  [optional]
+**modifiedAt** | **OffsetDateTime** |  |  [optional]
+**status** | [**ManagedResourceStatus**](ManagedResourceStatus.md) |  | 
+**owner** | **String** |  | 
+**type** | [**ProcessorType**](ProcessorType.md) |  | 
 **filters** | [**Set&lt;BaseFilter&gt;**](BaseFilter.md) |  |  [optional]
 **transformationTemplate** | **String** |  |  [optional]
 **action** | [**Action**](Action.md) |  |  [optional]
