@@ -44,7 +44,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   BridgeResponse.JSON_PROPERTY_ENDPOINT,
   BridgeResponse.JSON_PROPERTY_ERROR_HANDLER,
   BridgeResponse.JSON_PROPERTY_CLOUD_PROVIDER,
-  BridgeResponse.JSON_PROPERTY_REGION
+  BridgeResponse.JSON_PROPERTY_REGION,
+  BridgeResponse.JSON_PROPERTY_STATUS_MESSAGE
 })
 @JsonTypeName("BridgeResponse")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -87,6 +88,9 @@ public class BridgeResponse {
 
   public static final String JSON_PROPERTY_REGION = "region";
   private String region;
+
+  public static final String JSON_PROPERTY_STATUS_MESSAGE = "status_message";
+  private String statusMessage;
 
   public BridgeResponse() { 
   }
@@ -442,6 +446,33 @@ public class BridgeResponse {
   }
 
 
+  public BridgeResponse statusMessage(String statusMessage) {
+    
+    this.statusMessage = statusMessage;
+    return this;
+  }
+
+   /**
+   * Get statusMessage
+   * @return statusMessage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_STATUS_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getStatusMessage() {
+    return statusMessage;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STATUS_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatusMessage(String statusMessage) {
+    this.statusMessage = statusMessage;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -463,12 +494,13 @@ public class BridgeResponse {
         Objects.equals(this.endpoint, bridgeResponse.endpoint) &&
         Objects.equals(this.errorHandler, bridgeResponse.errorHandler) &&
         Objects.equals(this.cloudProvider, bridgeResponse.cloudProvider) &&
-        Objects.equals(this.region, bridgeResponse.region);
+        Objects.equals(this.region, bridgeResponse.region) &&
+        Objects.equals(this.statusMessage, bridgeResponse.statusMessage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, endpoint, errorHandler, cloudProvider, region);
+    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, endpoint, errorHandler, cloudProvider, region, statusMessage);
   }
 
   @Override
@@ -488,6 +520,7 @@ public class BridgeResponse {
     sb.append("    errorHandler: ").append(toIndentedString(errorHandler)).append("\n");
     sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
+    sb.append("    statusMessage: ").append(toIndentedString(statusMessage)).append("\n");
     sb.append("}");
     return sb.toString();
   }

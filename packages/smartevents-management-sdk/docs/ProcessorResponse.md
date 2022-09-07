@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **transformationTemplate** | **String** |  |  [optional]
 **action** | [**Action**](Action.md) |  |  [optional]
 **source** | [**Source**](Source.md) |  |  [optional]
+**statusMessage** | **String** |  |  [optional]
 
 
 

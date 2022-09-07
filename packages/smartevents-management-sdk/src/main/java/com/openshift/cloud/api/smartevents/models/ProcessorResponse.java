@@ -52,7 +52,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ProcessorResponse.JSON_PROPERTY_FILTERS,
   ProcessorResponse.JSON_PROPERTY_TRANSFORMATION_TEMPLATE,
   ProcessorResponse.JSON_PROPERTY_ACTION,
-  ProcessorResponse.JSON_PROPERTY_SOURCE
+  ProcessorResponse.JSON_PROPERTY_SOURCE,
+  ProcessorResponse.JSON_PROPERTY_STATUS_MESSAGE
 })
 @JsonTypeName("ProcessorResponse")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -98,6 +99,9 @@ public class ProcessorResponse {
 
   public static final String JSON_PROPERTY_SOURCE = "source";
   private Source source;
+
+  public static final String JSON_PROPERTY_STATUS_MESSAGE = "status_message";
+  private String statusMessage;
 
   public ProcessorResponse() { 
   }
@@ -489,6 +493,33 @@ public class ProcessorResponse {
   }
 
 
+  public ProcessorResponse statusMessage(String statusMessage) {
+    
+    this.statusMessage = statusMessage;
+    return this;
+  }
+
+   /**
+   * Get statusMessage
+   * @return statusMessage
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_STATUS_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getStatusMessage() {
+    return statusMessage;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_STATUS_MESSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatusMessage(String statusMessage) {
+    this.statusMessage = statusMessage;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -511,12 +542,13 @@ public class ProcessorResponse {
         Objects.equals(this.filters, processorResponse.filters) &&
         Objects.equals(this.transformationTemplate, processorResponse.transformationTemplate) &&
         Objects.equals(this.action, processorResponse.action) &&
-        Objects.equals(this.source, processorResponse.source);
+        Objects.equals(this.source, processorResponse.source) &&
+        Objects.equals(this.statusMessage, processorResponse.statusMessage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, type, filters, transformationTemplate, action, source);
+    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, type, filters, transformationTemplate, action, source, statusMessage);
   }
 
   @Override
@@ -537,6 +569,7 @@ public class ProcessorResponse {
     sb.append("    transformationTemplate: ").append(toIndentedString(transformationTemplate)).append("\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    statusMessage: ").append(toIndentedString(statusMessage)).append("\n");
     sb.append("}");
     return sb.toString();
   }

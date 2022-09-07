@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **errorHandler** | [**Action**](Action.md) |  |  [optional]
 **cloudProvider** | **String** |  |  [optional]
 **region** | **String** |  |  [optional]
+**statusMessage** | **String** |  |  [optional]
 
 
 
