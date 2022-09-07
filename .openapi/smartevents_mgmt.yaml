@@ -999,6 +999,20 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/BridgeErrorType'
+    BridgeErrorInstance:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        code:
+          type: string
+        reason:
+          type: string
+        type:
+          $ref: '#/components/schemas/BridgeErrorType'
+        uuid:
+          type: string
     BridgeErrorType:
       enum:
       - USER
@@ -1097,6 +1111,8 @@ components:
         cloud_provider:
           type: string
         region:
+          type: string
+        status_message:
           type: string
     CloudProviderListResponse:
       required:
@@ -1475,6 +1491,8 @@ components:
           $ref: '#/components/schemas/Action'
         source:
           $ref: '#/components/schemas/Source'
+        status_message:
+          type: string
     ProcessorSchemaEntryResponse:
       required:
       - kind

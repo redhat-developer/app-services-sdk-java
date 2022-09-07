@@ -143,6 +143,7 @@ Class | Method | HTTP request | Description
  - [Action](docs/Action.md)
  - [BaseFilter](docs/BaseFilter.md)
  - [BridgeError](docs/BridgeError.md)
+ - [BridgeErrorInstance](docs/BridgeErrorInstance.md)
  - [BridgeErrorType](docs/BridgeErrorType.md)
  - [BridgeListResponse](docs/BridgeListResponse.md)
  - [BridgeRequest](docs/BridgeRequest.md)
