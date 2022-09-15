@@ -127,7 +127,6 @@ Class | Method | HTTP request | Description
 *CloudProvidersApi* | [**cloudProviderAPIListCloudProviders**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviders) | **GET** /api/smartevents_mgmt/v1/cloud_providers | List Supported Cloud Providers.
 *ErrorCatalogApi* | [**errorsAPIGetError**](docs/ErrorCatalogApi.md#errorsAPIGetError) | **GET** /api/smartevents_mgmt/v1/errors/{id} | Get an error from the error catalog.
 *ErrorCatalogApi* | [**errorsAPIGetErrors**](docs/ErrorCatalogApi.md#errorsAPIGetErrors) | **GET** /api/smartevents_mgmt/v1/errors | Get the list of errors.
-*ProcessingErrorsApi* | [**processingErrorsAPIGetBridgeErrors**](docs/ProcessingErrorsApi.md#processingErrorsAPIGetBridgeErrors) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId}/errors | Get the list of errors for a particular Bridge instance
 *ProcessorsApi* | [**processorsAPIAddProcessorToBridge**](docs/ProcessorsApi.md#processorsAPIAddProcessorToBridge) | **POST** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors | Create a Processor of a Bridge instance
 *ProcessorsApi* | [**processorsAPIDeleteProcessor**](docs/ProcessorsApi.md#processorsAPIDeleteProcessor) | **DELETE** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId} | Delete a Processor of a Bridge instance
 *ProcessorsApi* | [**processorsAPIGetProcessor**](docs/ProcessorsApi.md#processorsAPIGetProcessor) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId} | Get a Processor of a Bridge instance
