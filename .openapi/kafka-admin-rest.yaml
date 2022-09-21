@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  version: 0.12.2
+  version: 0.13.0-SNAPSHOT
 servers:
 - url: /
   description: Kafka Admin REST API

@@ -2,7 +2,7 @@
 
 Kafka Instance API
 
-- API version: 0.12.2
+- API version: 0.13.0-SNAPSHOT
 
 API for interacting with Kafka Instance. Includes Produce, Consume and Admin APIs
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-instance-sdk</artifactId>
-  <version>0.12.2</version>
+  <version>0.13.0-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-instance-sdk:0.12.2"
+     implementation "com.redhat.cloud:kafka-instance-sdk:0.13.0-SNAPSHOT"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-instance-sdk-0.12.2.jar`
+- `target/kafka-instance-sdk-0.13.0-SNAPSHOT.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
