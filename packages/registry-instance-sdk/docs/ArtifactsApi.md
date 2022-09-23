@@ -6,14 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createArtifact**](ArtifactsApi.md#createArtifact) | **POST** /groups/{groupId}/artifacts | Create artifact
 [**deleteArtifact**](ArtifactsApi.md#deleteArtifact) | **DELETE** /groups/{groupId}/artifacts/{artifactId} | Delete artifact
-[**deleteArtifactsInGroup**](ArtifactsApi.md#deleteArtifactsInGroup) | **DELETE** /groups/{groupId}/artifacts | Deletes all artifacts in a group
+[**deleteArtifactsInGroup**](ArtifactsApi.md#deleteArtifactsInGroup) | **DELETE** /groups/{groupId}/artifacts | Delete artifacts in group
 [**getContentByGlobalId**](ArtifactsApi.md#getContentByGlobalId) | **GET** /ids/globalIds/{globalId} | Get artifact by global ID
 [**getContentByHash**](ArtifactsApi.md#getContentByHash) | **GET** /ids/contentHashes/{contentHash}/ | Get artifact content by SHA-256 hash
 [**getContentById**](ArtifactsApi.md#getContentById) | **GET** /ids/contentIds/{contentId}/ | Get artifact content by ID
 [**getLatestArtifact**](ArtifactsApi.md#getLatestArtifact) | **GET** /groups/{groupId}/artifacts/{artifactId} | Get latest artifact
 [**listArtifactsInGroup**](ArtifactsApi.md#listArtifactsInGroup) | **GET** /groups/{groupId}/artifacts | List artifacts in group
-[**referencesByContentHash**](ArtifactsApi.md#referencesByContentHash) | **GET** /ids/contentHashes/{contentHash}/references | Returns a list with all the references for the artifact with the given hash
-[**referencesByContentId**](ArtifactsApi.md#referencesByContentId) | **GET** /ids/contentIds/{contentId}/references | Returns a list with all the references for the artifact with the given content id.
+[**referencesByContentHash**](ArtifactsApi.md#referencesByContentHash) | **GET** /ids/contentHashes/{contentHash}/references | List artifact references by hash
+[**referencesByContentId**](ArtifactsApi.md#referencesByContentId) | **GET** /ids/contentIds/{contentId}/references | List artifact references by content ID
 [**referencesByGlobalId**](ArtifactsApi.md#referencesByGlobalId) | **GET** /ids/globalIds/{globalId}/references | Returns a list with all the references for the artifact with the given global id.
 [**updateArtifact**](ArtifactsApi.md#updateArtifact) | **PUT** /groups/{groupId}/artifacts/{artifactId} | Update artifact
 [**updateArtifactState**](ArtifactsApi.md#updateArtifactState) | **PUT** /groups/{groupId}/artifacts/{artifactId}/state | Update artifact state
@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## createArtifact
 
-> ArtifactMetaData createArtifact(groupId, body, xRegistryArtifactType, xRegistryArtifactId, xRegistryVersion, ifExists, canonical, xRegistryDescription, xRegistryDescriptionEncoded, xRegistryName, xRegistryNameEncoded)
+> ArtifactMetaData createArtifact(groupId, body, xRegistryArtifactType, xRegistryArtifactId, xRegistryVersion, ifExists, canonical, xRegistryDescription, xRegistryDescriptionEncoded, xRegistryName, xRegistryNameEncoded, xRegistryContentHash, xRegistryHashAlgorithm)
 
 Create artifact
 
@@ -45,7 +45,7 @@ public class Example {
 
         ArtifactsApi apiInstance = new ArtifactsApi(defaultClient);
         String groupId = "groupId_example"; // String | Unique ID of an artifact group.
-        Object body = {"openapi":"3.0.2","info":{"title":"Empty API","version":"1.0.7","description":"An example API design using OpenAPI."},"paths":{"/widgets":{"get":{"responses":{"200":{"content":{"application/json":{"schema":{"type":"array","items":{"type":"string"}}}},"description":"All widgets"}},"summary":"Get widgets"}}},"components":{"schemas":{"Widget":{"title":"Root Type for Widget","description":"A sample data type.","type":"object","properties":{"property-1":{"type":"string"},"property-2":{"type":"boolean"}},"example":{"property-1":"value1","property-2":true}}}}}; // Object | The content of the artifact being created. This is often, but not always, JSON data representing one of the supported artifact types:  * Avro (`AVRO`) * Protobuf (`PROTOBUF`) * JSON Schema (`JSON`) * Kafka Connect (`KCONNECT`) * OpenAPI (`OPENAPI`) * AsyncAPI (`ASYNCAPI`) * GraphQL (`GRAPHQL`) * Web Services Description Language (`WSDL`) * XML Schema (`XSD`) 
+        File body = {"openapi":"3.0.2","info":{"title":"Empty API","version":"1.0.7","description":"An example API design using OpenAPI."},"paths":{"/widgets":{"get":{"responses":{"200":{"content":{"application/json":{"schema":{"type":"array","items":{"type":"string"}}}},"description":"All widgets"}},"summary":"Get widgets"}}},"components":{"schemas":{"Widget":{"title":"Root Type for Widget","description":"A sample data type.","type":"object","properties":{"property-1":{"type":"string"},"property-2":{"type":"boolean"}},"example":{"property-1":"value1","property-2":true}}}}}; // File | The content of the artifact being created. This is often, but not always, JSON data representing one of the supported artifact types:  * Avro (`AVRO`) * Protobuf (`PROTOBUF`) * JSON Schema (`JSON`) * Kafka Connect (`KCONNECT`) * OpenAPI (`OPENAPI`) * AsyncAPI (`ASYNCAPI`) * GraphQL (`GRAPHQL`) * Web Services Description Language (`WSDL`) * XML Schema (`XSD`) 
         ArtifactType xRegistryArtifactType = ArtifactType.fromValue("AVRO"); // ArtifactType | Specifies the type of the artifact being added. Possible values include:  * Avro (`AVRO`) * Protobuf (`PROTOBUF`) * JSON Schema (`JSON`) * Kafka Connect (`KCONNECT`) * OpenAPI (`OPENAPI`) * AsyncAPI (`ASYNCAPI`) * GraphQL (`GRAPHQL`) * Web Services Description Language (`WSDL`) * XML Schema (`XSD`)
         String xRegistryArtifactId = "xRegistryArtifactId_example"; // String | A client-provided, globally unique identifier for the new artifact.
         String xRegistryVersion = "xRegistryVersion_example"; // String | Specifies the version number of this initial version of the artifact content.  This would typically be a simple integer or a SemVer value.  If not provided, the server will assign a version number automatically (starting with version `1`).
@@ -55,8 +55,10 @@ public class Example {
         String xRegistryDescriptionEncoded = "xRegistryDescriptionEncoded_example"; // String | Specifies the description of artifact being added. Value of this must be Base64 encoded string. If this is not provided, the server will extract the description from the artifact content.
         String xRegistryName = "xRegistryName_example"; // String | Specifies the name of artifact being added. Name must be ASCII-only string. If this is not provided, the server will extract the name from the artifact content.
         String xRegistryNameEncoded = "xRegistryNameEncoded_example"; // String | Specifies the name of artifact being added. Value of this must be Base64 encoded string. If this is not provided, the server will extract the name from the artifact content.
+        String xRegistryContentHash = "xRegistryContentHash_example"; // String | Specifies the (optional) hash of the artifact to be verified.
+        String xRegistryHashAlgorithm = "SHA256"; // String | The algorithm to use when checking the content validity. (available: SHA256, MD5; default: SHA256)
         try {
-            ArtifactMetaData result = apiInstance.createArtifact(groupId, body, xRegistryArtifactType, xRegistryArtifactId, xRegistryVersion, ifExists, canonical, xRegistryDescription, xRegistryDescriptionEncoded, xRegistryName, xRegistryNameEncoded);
+            ArtifactMetaData result = apiInstance.createArtifact(groupId, body, xRegistryArtifactType, xRegistryArtifactId, xRegistryVersion, ifExists, canonical, xRegistryDescription, xRegistryDescriptionEncoded, xRegistryName, xRegistryNameEncoded, xRegistryContentHash, xRegistryHashAlgorithm);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ArtifactsApi#createArtifact");
@@ -75,7 +77,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **groupId** | **String**| Unique ID of an artifact group. |
- **body** | **Object**| The content of the artifact being created. This is often, but not always, JSON data representing one of the supported artifact types:  * Avro (&#x60;AVRO&#x60;) * Protobuf (&#x60;PROTOBUF&#x60;) * JSON Schema (&#x60;JSON&#x60;) * Kafka Connect (&#x60;KCONNECT&#x60;) * OpenAPI (&#x60;OPENAPI&#x60;) * AsyncAPI (&#x60;ASYNCAPI&#x60;) * GraphQL (&#x60;GRAPHQL&#x60;) * Web Services Description Language (&#x60;WSDL&#x60;) * XML Schema (&#x60;XSD&#x60;)  |
+ **body** | **File**| The content of the artifact being created. This is often, but not always, JSON data representing one of the supported artifact types:  * Avro (&#x60;AVRO&#x60;) * Protobuf (&#x60;PROTOBUF&#x60;) * JSON Schema (&#x60;JSON&#x60;) * Kafka Connect (&#x60;KCONNECT&#x60;) * OpenAPI (&#x60;OPENAPI&#x60;) * AsyncAPI (&#x60;ASYNCAPI&#x60;) * GraphQL (&#x60;GRAPHQL&#x60;) * Web Services Description Language (&#x60;WSDL&#x60;) * XML Schema (&#x60;XSD&#x60;)  |
  **xRegistryArtifactType** | [**ArtifactType**](.md)| Specifies the type of the artifact being added. Possible values include:  * Avro (&#x60;AVRO&#x60;) * Protobuf (&#x60;PROTOBUF&#x60;) * JSON Schema (&#x60;JSON&#x60;) * Kafka Connect (&#x60;KCONNECT&#x60;) * OpenAPI (&#x60;OPENAPI&#x60;) * AsyncAPI (&#x60;ASYNCAPI&#x60;) * GraphQL (&#x60;GRAPHQL&#x60;) * Web Services Description Language (&#x60;WSDL&#x60;) * XML Schema (&#x60;XSD&#x60;) | [optional] [enum: AVRO, PROTOBUF, JSON, OPENAPI, ASYNCAPI, GRAPHQL, KCONNECT, WSDL, XSD, XML]
  **xRegistryArtifactId** | **String**| A client-provided, globally unique identifier for the new artifact. | [optional]
  **xRegistryVersion** | **String**| Specifies the version number of this initial version of the artifact content.  This would typically be a simple integer or a SemVer value.  If not provided, the server will assign a version number automatically (starting with version &#x60;1&#x60;). | [optional]
@@ -85,6 +87,8 @@ Name | Type | Description  | Notes
  **xRegistryDescriptionEncoded** | **String**| Specifies the description of artifact being added. Value of this must be Base64 encoded string. If this is not provided, the server will extract the description from the artifact content. | [optional]
  **xRegistryName** | **String**| Specifies the name of artifact being added. Name must be ASCII-only string. If this is not provided, the server will extract the name from the artifact content. | [optional]
  **xRegistryNameEncoded** | **String**| Specifies the name of artifact being added. Value of this must be Base64 encoded string. If this is not provided, the server will extract the name from the artifact content. | [optional]
+ **xRegistryContentHash** | **String**| Specifies the (optional) hash of the artifact to be verified. | [optional]
+ **xRegistryHashAlgorithm** | **String**| The algorithm to use when checking the content validity. (available: SHA256, MD5; default: SHA256) | [optional] [enum: SHA256, MD5]
 
 ### Return type
 
@@ -182,7 +186,7 @@ No authorization required
 
 > deleteArtifactsInGroup(groupId)
 
-Deletes all artifacts in a group
+Delete artifacts in group
 
 Deletes all of the artifacts that exist in a given group.
 
@@ -601,7 +605,7 @@ No authorization required
 
 > List&lt;ArtifactReference&gt; referencesByContentHash(contentHash)
 
-Returns a list with all the references for the artifact with the given hash
+List artifact references by hash
 
 Returns a list containing all the artifact references using the artifact content hash.  This operation may fail for one of the following reasons:  * A server error occurred (HTTP error &#x60;500&#x60;) 
 
@@ -667,9 +671,9 @@ No authorization required
 
 > List&lt;ArtifactReference&gt; referencesByContentId(contentId)
 
-Returns a list with all the references for the artifact with the given content id.
+List artifact references by content ID
 
-Returns a list containing all the artifact references using the artifact contentId.  This operation may fail for one of the following reasons:  * A server error occurred (HTTP error &#x60;500&#x60;)
+Returns a list containing all the artifact references using the artifact content ID.  This operation may fail for one of the following reasons:  * A server error occurred (HTTP error &#x60;500&#x60;)
 
 ### Example
 

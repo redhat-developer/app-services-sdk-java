@@ -59,10 +59,12 @@ public class ArtifactsApi {
    * @param xRegistryDescriptionEncoded Specifies the description of artifact being added. Value of this must be Base64 encoded string. If this is not provided, the server will extract the description from the artifact content. (optional)
    * @param xRegistryName Specifies the name of artifact being added. Name must be ASCII-only string. If this is not provided, the server will extract the name from the artifact content. (optional)
    * @param xRegistryNameEncoded Specifies the name of artifact being added. Value of this must be Base64 encoded string. If this is not provided, the server will extract the name from the artifact content. (optional)
+   * @param xRegistryContentHash Specifies the (optional) hash of the artifact to be verified. (optional)
+   * @param xRegistryHashAlgorithm The algorithm to use when checking the content validity. (available: SHA256, MD5; default: SHA256) (optional)
    * @return a {@code ArtifactMetaData}
    * @throws ApiException if fails to make API call
    */
-  public ArtifactMetaData createArtifact(String groupId, Object body, ArtifactType xRegistryArtifactType, String xRegistryArtifactId, String xRegistryVersion, IfExists ifExists, Boolean canonical, String xRegistryDescription, String xRegistryDescriptionEncoded, String xRegistryName, String xRegistryNameEncoded) throws ApiException {
+  public ArtifactMetaData createArtifact(String groupId, File body, ArtifactType xRegistryArtifactType, String xRegistryArtifactId, String xRegistryVersion, IfExists ifExists, Boolean canonical, String xRegistryDescription, String xRegistryDescriptionEncoded, String xRegistryName, String xRegistryNameEncoded, String xRegistryContentHash, String xRegistryHashAlgorithm) throws ApiException {
     Object localVarPostBody = body;
     
     // verify the required parameter 'groupId' is set
@@ -102,6 +104,10 @@ if (xRegistryName != null)
       localVarHeaderParams.put("X-Registry-Name", apiClient.parameterToString(xRegistryName));
 if (xRegistryNameEncoded != null)
       localVarHeaderParams.put("X-Registry-Name-Encoded", apiClient.parameterToString(xRegistryNameEncoded));
+if (xRegistryContentHash != null)
+      localVarHeaderParams.put("X-Registry-Content-Hash", apiClient.parameterToString(xRegistryContentHash));
+if (xRegistryHashAlgorithm != null)
+      localVarHeaderParams.put("X-Registry-Hash-Algorithm", apiClient.parameterToString(xRegistryHashAlgorithm));
 
     
     
@@ -171,7 +177,7 @@ if (xRegistryNameEncoded != null)
     apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
-   * Deletes all artifacts in a group
+   * Delete artifacts in group
    * Deletes all of the artifacts that exist in a given group.
    * @param groupId Unique ID of an artifact group. (required)
    * @throws ApiException if fails to make API call
@@ -453,7 +459,7 @@ if (xRegistryNameEncoded != null)
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns a list with all the references for the artifact with the given hash
+   * List artifact references by hash
    * Returns a list containing all the artifact references using the artifact content hash.  This operation may fail for one of the following reasons:  * A server error occurred (HTTP error &#x60;500&#x60;) 
    * @param contentHash SHA-256 content hash for a single artifact content. (required)
    * @return a {@code List<ArtifactReference>}
@@ -497,8 +503,8 @@ if (xRegistryNameEncoded != null)
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Returns a list with all the references for the artifact with the given content id.
-   * Returns a list containing all the artifact references using the artifact contentId.  This operation may fail for one of the following reasons:  * A server error occurred (HTTP error &#x60;500&#x60;)
+   * List artifact references by content ID
+   * Returns a list containing all the artifact references using the artifact content ID.  This operation may fail for one of the following reasons:  * A server error occurred (HTTP error &#x60;500&#x60;)
    * @param contentId Global identifier for a single artifact content. (required)
    * @return a {@code List<ArtifactReference>}
    * @throws ApiException if fails to make API call

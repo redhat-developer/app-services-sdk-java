@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**createRoleMapping**](AdminApi.md#createRoleMapping) | **POST** /admin/roleMappings | Create a new role mapping
 [**deleteRoleMapping**](AdminApi.md#deleteRoleMapping) | **DELETE** /admin/roleMappings/{principalId} | Delete a role mapping
 [**exportData**](AdminApi.md#exportData) | **GET** /admin/export | Export registry data
-[**getConfigProperty**](AdminApi.md#getConfigProperty) | **GET** /admin/config/properties/{propertyName} | Get the value of a configuration property
+[**getConfigProperty**](AdminApi.md#getConfigProperty) | **GET** /admin/config/properties/{propertyName} | Get configuration property value
 [**getLogConfiguration**](AdminApi.md#getLogConfiguration) | **GET** /admin/loggers/{logger} | Get a single logger configuration
 [**getRoleMapping**](AdminApi.md#getRoleMapping) | **GET** /admin/roleMappings/{principalId} | Return a single role mapping
 [**importData**](AdminApi.md#importData) | **POST** /admin/import | Import registry data
@@ -226,7 +226,7 @@ No authorization required
 
 > ConfigurationProperty getConfigProperty(propertyName)
 
-Get the value of a configuration property
+Get configuration property value
 
 Returns the value of a single configuration property.  This operation may fail for one of the following reasons:  * Property not found or not configured (HTTP error &#x60;404&#x60;) * A server error occurred (HTTP error &#x60;500&#x60;) 
 
@@ -363,7 +363,7 @@ No authorization required
 
 Return a single role mapping
 
-Gets the details of a single role mapping (by principalId).  This operation can fail for the following reasons:  * No role mapping for the principalId exists (HTTP error &#x60;404&#x60;) * A server error occurred (HTTP error &#x60;500&#x60;) 
+Gets the details of a single role mapping (by &#x60;principalId&#x60;).  This operation can fail for the following reasons:  * No role mapping for the &#x60;principalId&#x60; exists (HTTP error &#x60;404&#x60;) * A server error occurred (HTTP error &#x60;500&#x60;) 
 
 ### Example
 

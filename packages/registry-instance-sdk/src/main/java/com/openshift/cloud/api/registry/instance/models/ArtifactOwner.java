@@ -20,89 +20,51 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.registry.instance.models.ArtifactReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * ContentCreateRequest
+ * Describes the ownership of an artifact.
  */
+@ApiModel(description = "Describes the ownership of an artifact.")
 @JsonPropertyOrder({
-  ContentCreateRequest.JSON_PROPERTY_CONTENT,
-  ContentCreateRequest.JSON_PROPERTY_REFERENCES
+  ArtifactOwner.JSON_PROPERTY_OWNER
 })
-@JsonTypeName("ContentCreateRequest")
+@JsonTypeName("ArtifactOwner")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ContentCreateRequest {
-  public static final String JSON_PROPERTY_CONTENT = "content";
-  private String content;
+public class ArtifactOwner {
+  public static final String JSON_PROPERTY_OWNER = "owner";
+  private String owner;
 
-  public static final String JSON_PROPERTY_REFERENCES = "references";
-  private List<ArtifactReference> references = new ArrayList<>();
-
-  public ContentCreateRequest() { 
+  public ArtifactOwner() { 
   }
 
-  public ContentCreateRequest content(String content) {
+  public ArtifactOwner owner(String owner) {
     
-    this.content = content;
+    this.owner = owner;
     return this;
   }
 
    /**
-   * Raw content of the artifact or a valid (and accessible) URL where the content can be found.
-   * @return content
+   * Get owner
+   * @return owner
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "", required = true, value = "Raw content of the artifact or a valid (and accessible) URL where the content can be found.")
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getContent() {
-    return content;
+  public String getOwner() {
+    return owner;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONTENT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setContent(String content) {
-    this.content = content;
-  }
-
-
-  public ContentCreateRequest references(List<ArtifactReference> references) {
-    
-    this.references = references;
-    return this;
-  }
-
-  public ContentCreateRequest addReferencesItem(ArtifactReference referencesItem) {
-    this.references.add(referencesItem);
-    return this;
-  }
-
-   /**
-   * Collection of references to other artifacts.
-   * @return references
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Collection of references to other artifacts.")
-  @JsonProperty(JSON_PROPERTY_REFERENCES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<ArtifactReference> getReferences() {
-    return references;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REFERENCES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setReferences(List<ArtifactReference> references) {
-    this.references = references;
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOwner(String owner) {
+    this.owner = owner;
   }
 
 
@@ -114,22 +76,20 @@ public class ContentCreateRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ContentCreateRequest contentCreateRequest = (ContentCreateRequest) o;
-    return Objects.equals(this.content, contentCreateRequest.content) &&
-        Objects.equals(this.references, contentCreateRequest.references);
+    ArtifactOwner artifactOwner = (ArtifactOwner) o;
+    return Objects.equals(this.owner, artifactOwner.owner);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, references);
+    return Objects.hash(owner);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ContentCreateRequest {\n");
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
-    sb.append("    references: ").append(toIndentedString(references)).append("\n");
+    sb.append("class ArtifactOwner {\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("}");
     return sb.toString();
   }

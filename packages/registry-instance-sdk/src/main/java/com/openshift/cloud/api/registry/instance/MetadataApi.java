@@ -8,6 +8,7 @@ import com.openshift.cloud.api.registry.instance.invoker.Pair;
 import javax.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.registry.instance.models.ArtifactMetaData;
+import com.openshift.cloud.api.registry.instance.models.ArtifactOwner;
 import com.openshift.cloud.api.registry.instance.models.EditableMetaData;
 import com.openshift.cloud.api.registry.instance.models.Error;
 import com.openshift.cloud.api.registry.instance.models.VersionMetaData;
@@ -143,6 +144,57 @@ public class MetadataApi {
     String[] localVarAuthNames = new String[] {  };
 
     GenericType<ArtifactMetaData> localVarReturnType = new GenericType<ArtifactMetaData>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Get artifact owner
+   * Gets the owner of an artifact in the registry.  This operation can fail for the following reasons:  * No artifact with this &#x60;artifactId&#x60; exists (HTTP error &#x60;404&#x60;) * A server error occurred (HTTP error &#x60;500&#x60;)
+   * @param groupId The artifact group ID.  Must be a string provided by the client, representing the name of the grouping of artifacts. (required)
+   * @param artifactId The artifact ID.  Can be a string (client-provided) or UUID (server-generated), representing the unique artifact identifier. (required)
+   * @return a {@code ArtifactOwner}
+   * @throws ApiException if fails to make API call
+   */
+  public ArtifactOwner getArtifactOwner(String groupId, String artifactId) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'groupId' is set
+    if (groupId == null) {
+      throw new ApiException(400, "Missing the required parameter 'groupId' when calling getArtifactOwner");
+    }
+    
+    // verify the required parameter 'artifactId' is set
+    if (artifactId == null) {
+      throw new ApiException(400, "Missing the required parameter 'artifactId' when calling getArtifactOwner");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/groups/{groupId}/artifacts/{artifactId}/owner".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "groupId" + "\\}", apiClient.escapeString(groupId.toString()))
+      .replaceAll("\\{" + "artifactId" + "\\}", apiClient.escapeString(artifactId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] {  };
+
+    GenericType<ArtifactOwner> localVarReturnType = new GenericType<ArtifactOwner>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
@@ -290,6 +342,62 @@ public class MetadataApi {
     
     // create path and map variables
     String localVarPath = "/groups/{groupId}/artifacts/{artifactId}/meta".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "groupId" + "\\}", apiClient.escapeString(groupId.toString()))
+      .replaceAll("\\{" + "artifactId" + "\\}", apiClient.escapeString(artifactId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] {  };
+
+
+    apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+  }
+  /**
+   * Update artifact owner
+   * Changes the ownership of an artifact.  This operation can fail for the following reasons:  * No artifact with this &#x60;artifactId&#x60; exists (HTTP error &#x60;404&#x60;) * A server error occurred (HTTP error &#x60;500&#x60;)
+   * @param groupId The artifact group ID.  Must be a string provided by the client, representing the name of the grouping of artifacts. (required)
+   * @param artifactId The artifact ID.  Can be a string (client-provided) or UUID (server-generated), representing the unique artifact identifier. (required)
+   * @param artifactOwner  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void updateArtifactOwner(String groupId, String artifactId, ArtifactOwner artifactOwner) throws ApiException {
+    Object localVarPostBody = artifactOwner;
+    
+    // verify the required parameter 'groupId' is set
+    if (groupId == null) {
+      throw new ApiException(400, "Missing the required parameter 'groupId' when calling updateArtifactOwner");
+    }
+    
+    // verify the required parameter 'artifactId' is set
+    if (artifactId == null) {
+      throw new ApiException(400, "Missing the required parameter 'artifactId' when calling updateArtifactOwner");
+    }
+    
+    // verify the required parameter 'artifactOwner' is set
+    if (artifactOwner == null) {
+      throw new ApiException(400, "Missing the required parameter 'artifactOwner' when calling updateArtifactOwner");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/groups/{groupId}/artifacts/{artifactId}/owner".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "groupId" + "\\}", apiClient.escapeString(groupId.toString()))
       .replaceAll("\\{" + "artifactId" + "\\}", apiClient.escapeString(artifactId.toString()));
 
