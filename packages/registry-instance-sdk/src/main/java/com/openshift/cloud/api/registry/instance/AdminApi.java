@@ -166,7 +166,7 @@ public class AdminApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Get the value of a configuration property
+   * Get configuration property value
    * Returns the value of a single configuration property.  This operation may fail for one of the following reasons:  * Property not found or not configured (HTTP error &#x60;404&#x60;) * A server error occurred (HTTP error &#x60;500&#x60;) 
    * @param propertyName The name of a configuration property. (required)
    * @return a {@code ConfigurationProperty}
@@ -255,7 +255,7 @@ public class AdminApi {
       }
   /**
    * Return a single role mapping
-   * Gets the details of a single role mapping (by principalId).  This operation can fail for the following reasons:  * No role mapping for the principalId exists (HTTP error &#x60;404&#x60;) * A server error occurred (HTTP error &#x60;500&#x60;) 
+   * Gets the details of a single role mapping (by &#x60;principalId&#x60;).  This operation can fail for the following reasons:  * No role mapping for the &#x60;principalId&#x60; exists (HTTP error &#x60;404&#x60;) * A server error occurred (HTTP error &#x60;500&#x60;) 
    * @param principalId Unique id of a principal (typically either a user or service account). (required)
    * @return a {@code RoleMapping}
    * @throws ApiException if fails to make API call

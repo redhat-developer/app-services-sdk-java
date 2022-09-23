@@ -2027,11 +2027,11 @@ paths:
       x-accepts: application/json
     get:
       description: |
-        Gets the details of a single role mapping (by principalId).
+        Gets the details of a single role mapping (by `principalId`).
 
         This operation can fail for the following reasons:
 
-        * No role mapping for the principalId exists (HTTP error `404`)
+        * No role mapping for the `principalId` exists (HTTP error `404`)
         * A server error occurred (HTTP error `500`)
       operationId: getRoleMapping
       parameters:
@@ -2263,15 +2263,14 @@ paths:
                 type: array
           description: A list containing all the references for the artifact with
             the given content hash.
-      summary: Returns a list with all the references for the artifact with the given
-        hash
+      summary: List artifact references by hash
       tags:
       - Artifacts
       x-accepts: application/json
   /ids/contentIds/{contentId}/references:
     get:
       description: |-
-        Returns a list containing all the artifact references using the artifact contentId.
+        Returns a list containing all the artifact references using the artifact content ID.
 
         This operation may fail for one of the following reasons:
 
@@ -2297,8 +2296,7 @@ paths:
                 type: array
           description: A list containing all the references for the artifact with
             the given content id.
-      summary: Returns a list with all the references for the artifact with the given
-        content id.
+      summary: List artifact references by content ID
       tags:
       - Artifacts
       x-accepts: application/json
@@ -2548,7 +2546,7 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Common response for all operations that can fail with an unexpected
             server error.
-      summary: Get the value of a configuration property
+      summary: Get configuration property value
       tags:
       - Admin
       x-accepts: application/json
@@ -2999,7 +2997,7 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: Common response for all operations that can fail with an unexpected
             server error.
-      summary: Deletes all artifacts in a group
+      summary: Delete artifacts in group
       tags:
       - Artifacts
       x-accepts: application/json
@@ -3219,6 +3217,26 @@ paths:
         schema:
           $ref: '#/components/schemas/EncodedArtifactName'
         style: simple
+      - description: Specifies the (optional) hash of the artifact to be verified.
+        explode: false
+        in: header
+        name: X-Registry-Content-Hash
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: 'The algorithm to use when checking the content validity. (available:
+          SHA256, MD5; default: SHA256)'
+        explode: false
+        in: header
+        name: X-Registry-Hash-Algorithm
+        required: false
+        schema:
+          enum:
+          - SHA256
+          - MD5
+          type: string
+        style: simple
       requestBody:
         content:
           '*/*':
@@ -3257,7 +3275,9 @@ paths:
                         example:
                           property-1: value1
                           property-2: true
-            schema: {}
+            schema:
+              format: binary
+              type: string
           application/json:
             schema:
               $ref: '#/components/schemas/ContentCreateRequest'
@@ -3971,6 +3991,137 @@ paths:
       x-contentType: application/json
       x-accepts: application/json
     summary: Manage the metadata of a single artifact.
+  /groups/{groupId}/artifacts/{artifactId}/owner:
+    get:
+      description: |-
+        Gets the owner of an artifact in the registry.
+
+        This operation can fail for the following reasons:
+
+        * No artifact with this `artifactId` exists (HTTP error `404`)
+        * A server error occurred (HTTP error `500`)
+      operationId: getArtifactOwner
+      parameters:
+      - description: The artifact group ID.  Must be a string provided by the client,
+          representing the name of the grouping of artifacts.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          $ref: '#/components/schemas/GroupId'
+        style: simple
+      - description: The artifact ID.  Can be a string (client-provided) or UUID (server-generated),
+          representing the unique artifact identifier.
+        explode: false
+        in: path
+        name: artifactId
+        required: true
+        schema:
+          $ref: '#/components/schemas/ArtifactId'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtifactOwner'
+          description: The artifact's owner.
+        "404":
+          content:
+            application/json:
+              examples:
+                NotFoundExample:
+                  value:
+                    error_code: 404
+                    message: No artifact with id 'Topic-1/Inbound' could be found.
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Common response for all operations that can return a `404`
+            error.
+        "500":
+          content:
+            application/json:
+              examples:
+                ErrorExample:
+                  value:
+                    error_code: 500
+                    message: Lost connection to the database.
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Common response for all operations that can fail with an unexpected
+            server error.
+      summary: Get artifact owner
+      tags:
+      - Metadata
+      x-accepts: application/json
+    put:
+      description: |-
+        Changes the ownership of an artifact.
+
+        This operation can fail for the following reasons:
+
+        * No artifact with this `artifactId` exists (HTTP error `404`)
+        * A server error occurred (HTTP error `500`)
+      operationId: updateArtifactOwner
+      parameters:
+      - description: The artifact group ID.  Must be a string provided by the client,
+          representing the name of the grouping of artifacts.
+        explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          $ref: '#/components/schemas/GroupId'
+        style: simple
+      - description: The artifact ID.  Can be a string (client-provided) or UUID (server-generated),
+          representing the unique artifact identifier.
+        explode: false
+        in: path
+        name: artifactId
+        required: true
+        schema:
+          $ref: '#/components/schemas/ArtifactId'
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArtifactOwner'
+        required: true
+      responses:
+        "204":
+          description: The owner was successfully changed.
+        "404":
+          content:
+            application/json:
+              examples:
+                NotFoundExample:
+                  value:
+                    error_code: 404
+                    message: No artifact with id 'Topic-1/Inbound' could be found.
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Common response for all operations that can return a `404`
+            error.
+        "500":
+          content:
+            application/json:
+              examples:
+                ErrorExample:
+                  value:
+                    error_code: 500
+                    message: Lost connection to the database.
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Common response for all operations that can fail with an unexpected
+            server error.
+      summary: Update artifact owner
+      tags:
+      - Metadata
+      x-contentType: application/json
+      x-accepts: application/json
+    summary: Manage the ownership of a single artifact.
 components:
   responses:
     NotFound:
@@ -4770,7 +4921,8 @@ components:
     ContentCreateRequest:
       properties:
         content:
-          description: Raw content of the artifact.
+          description: Raw content of the artifact or a valid (and accessible) URL
+            where the content can be found.
           example: ""
           type: string
         references:
@@ -4875,6 +5027,15 @@ components:
           format: int64
           type: integer
       title: Root Type for Limits
+      type: object
+    ArtifactOwner:
+      description: Describes the ownership of an artifact.
+      example:
+        owner: bwayne
+      properties:
+        owner:
+          type: string
+      title: Root Type for ArtifactOwner
       type: object
     NamedLogConfiguration_allOf:
       properties:
