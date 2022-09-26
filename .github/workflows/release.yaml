@@ -48,7 +48,7 @@ jobs:
         working-directory: ./packages/service-accounts-sdk
         run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
       - name: Version smartevents
-        working-directory: ./packages/smart-events-management-sdk
+        working-directory: ./packages/smartevents-management-sdk
         run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG            
       - name: Build sdks
         run : mvn package -Prelease                         
@@ -76,8 +76,8 @@ jobs:
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}        
-      - name: Publish smart-events-management-sdk
-        working-directory: ./packages/smart-events-management-sdk
+      - name: Publish smartevents-management-sdk
+        working-directory: ./packages/smartevents-management-sdk
         run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
