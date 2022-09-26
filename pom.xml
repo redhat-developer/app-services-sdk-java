@@ -15,6 +15,7 @@
         <module>packages/registry-management-sdk</module>
         <module>packages/kafka-instance-sdk</module>
         <module>packages/smartevents-management-sdk</module>
+        <module>packages/service-accounts-sdk</module>
         <module>examples</module>
     </modules>
 

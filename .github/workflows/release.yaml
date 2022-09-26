@@ -43,19 +43,15 @@ jobs:
         run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG                
       - name: Version connector-management-sdk
         working-directory: ./packages/connector-management-sdk
-        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG                
-      - name: Build kafka-management-sdk
-        working-directory: ./packages/kafka-management-sdk
-        run : mvn package -Prelease 
-      - name: Build kafka-instance-sdk
-        working-directory: ./packages/kafka-instance-sdk
-        run : mvn package -Prelease 
-      - name: Build registry-management-sdk
-        working-directory: ./packages/registry-management-sdk
-        run : mvn package -Prelease                
-      - name: Build connector-management-sdk
-        working-directory: ./packages/connector-management-sdk
-        run : mvn package -Prelease                        
+        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG       
+      - name: Version service-account-management-sdk
+        working-directory: ./packages/service-accounts-management-sdk
+        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+      - name: Version smartevents
+        working-directory: ./packages/smart-events-management-sdk
+        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG            
+      - name: Build sdks
+        run : mvn package -Prelease                         
       - name: Publish kafka-management-sdk
         working-directory: ./packages/kafka-management-sdk
         run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
@@ -79,7 +75,19 @@ jobs:
         run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}          
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}        
+      - name: Publish smart-events-management-sdk
+        working-directory: ./packages/smart-events-management-sdk
+        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}  
+      - name: Publish service accounts
+        working-directory: ./packages/service-accounts-management-sdk
+        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}  
       - name: Install git-chglog
         uses: craicoverflow/install-git-chglog@v1
       - name: Generate changelog
