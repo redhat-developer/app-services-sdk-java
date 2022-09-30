@@ -1066,22 +1066,25 @@ components:
                   - $ref: "#/components/schemas/KafkaRequest"
     VersionMetadata:
       allOf:
-        - $ref: "#/components/schemas/ObjectReference"
-        - type: object
-          example:
-            kind: "APIVersion"
-            id: "v1"
-            href: "/api/kafkas_mgmt/v1"
-            collections:
-              - id: "kafkas"
-                href: "/api/kafkas_mgmt/v1/kafkas"
-                kind: "KafkaList"
-          properties:
-            collections:
-              type: array
-              items:
-                allOf:
-                  - $ref: "#/components/schemas/ObjectReference"
+      - $ref: "#/components/schemas/ObjectReference"
+      - type: object
+        example:
+          kind: "APIVersion"
+          id: "v1"
+          href: "/api/kafkas_mgmt/v1"
+          server_version: "24a263e8631d713b3104c1a70c143644ab91de6f"
+          collections:
+            - id: "kafkas"
+              href: "/api/kafkas_mgmt/v1/kafkas"
+              kind: "KafkaList"
+        properties:
+          server_version:
+            type: string
+          collections:
+            type: array
+            items:
+              allOf:
+              - $ref: "#/components/schemas/ObjectReference"
     KafkaRequestPayload:
       description: Schema for the request body sent to /kafkas POST
       required:

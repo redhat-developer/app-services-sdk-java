@@ -2139,11 +2139,14 @@ components:
         kind: APIVersion
         id: v1
         href: /api/kafkas_mgmt/v1
+        server_version: 24a263e8631d713b3104c1a70c143644ab91de6f
         collections:
         - id: kafkas
           href: /api/kafkas_mgmt/v1/kafkas
           kind: KafkaList
       properties:
+        server_version:
+          type: string
         collections:
           items:
             allOf:
