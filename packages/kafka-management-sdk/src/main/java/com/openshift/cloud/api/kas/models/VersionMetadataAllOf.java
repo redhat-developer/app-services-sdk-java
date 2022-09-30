@@ -32,16 +32,47 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * VersionMetadataAllOf
  */
 @JsonPropertyOrder({
+  VersionMetadataAllOf.JSON_PROPERTY_SERVER_VERSION,
   VersionMetadataAllOf.JSON_PROPERTY_COLLECTIONS
 })
 @JsonTypeName("VersionMetadata_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class VersionMetadataAllOf {
+  public static final String JSON_PROPERTY_SERVER_VERSION = "server_version";
+  private String serverVersion;
+
   public static final String JSON_PROPERTY_COLLECTIONS = "collections";
   private List<ObjectReference> collections = null;
 
   public VersionMetadataAllOf() { 
   }
+
+  public VersionMetadataAllOf serverVersion(String serverVersion) {
+    
+    this.serverVersion = serverVersion;
+    return this;
+  }
+
+   /**
+   * Get serverVersion
+   * @return serverVersion
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SERVER_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getServerVersion() {
+    return serverVersion;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SERVER_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setServerVersion(String serverVersion) {
+    this.serverVersion = serverVersion;
+  }
+
 
   public VersionMetadataAllOf collections(List<ObjectReference> collections) {
     
@@ -87,18 +118,20 @@ public class VersionMetadataAllOf {
       return false;
     }
     VersionMetadataAllOf versionMetadataAllOf = (VersionMetadataAllOf) o;
-    return Objects.equals(this.collections, versionMetadataAllOf.collections);
+    return Objects.equals(this.serverVersion, versionMetadataAllOf.serverVersion) &&
+        Objects.equals(this.collections, versionMetadataAllOf.collections);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(collections);
+    return Objects.hash(serverVersion, collections);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class VersionMetadataAllOf {\n");
+    sb.append("    serverVersion: ").append(toIndentedString(serverVersion)).append("\n");
     sb.append("    collections: ").append(toIndentedString(collections)).append("\n");
     sb.append("}");
     return sb.toString();

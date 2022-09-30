@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   VersionMetadata.JSON_PROPERTY_ID,
   VersionMetadata.JSON_PROPERTY_KIND,
   VersionMetadata.JSON_PROPERTY_HREF,
+  VersionMetadata.JSON_PROPERTY_SERVER_VERSION,
   VersionMetadata.JSON_PROPERTY_COLLECTIONS
 })
 @JsonTypeName("VersionMetadata")
@@ -49,6 +50,9 @@ public class VersionMetadata {
 
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
+
+  public static final String JSON_PROPERTY_SERVER_VERSION = "server_version";
+  private String serverVersion;
 
   public static final String JSON_PROPERTY_COLLECTIONS = "collections";
   private List<ObjectReference> collections = null;
@@ -137,6 +141,33 @@ public class VersionMetadata {
   }
 
 
+  public VersionMetadata serverVersion(String serverVersion) {
+    
+    this.serverVersion = serverVersion;
+    return this;
+  }
+
+   /**
+   * Get serverVersion
+   * @return serverVersion
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SERVER_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getServerVersion() {
+    return serverVersion;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_SERVER_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setServerVersion(String serverVersion) {
+    this.serverVersion = serverVersion;
+  }
+
+
   public VersionMetadata collections(List<ObjectReference> collections) {
     
     this.collections = collections;
@@ -184,12 +215,13 @@ public class VersionMetadata {
     return Objects.equals(this.id, versionMetadata.id) &&
         Objects.equals(this.kind, versionMetadata.kind) &&
         Objects.equals(this.href, versionMetadata.href) &&
+        Objects.equals(this.serverVersion, versionMetadata.serverVersion) &&
         Objects.equals(this.collections, versionMetadata.collections);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, collections);
+    return Objects.hash(id, kind, href, serverVersion, collections);
   }
 
   @Override
@@ -199,6 +231,7 @@ public class VersionMetadata {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
+    sb.append("    serverVersion: ").append(toIndentedString(serverVersion)).append("\n");
     sb.append("    collections: ").append(toIndentedString(collections)).append("\n");
     sb.append("}");
     return sb.toString();
