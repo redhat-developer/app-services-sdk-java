@@ -32,26 +32,36 @@ jobs:
         uses: rlespinasse/github-slug-action@v4
       - name: Validate Tag
         run: npx semver $GITHUB_REF_SLUG
-      - name: Version kafka-management-sdk
+      - name: Version and build kafka-management-sdk
         working-directory: ./packages/kafka-management-sdk
-        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG
-      - name: Version kafka-instance-sdk
+        run : | 
+          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn package -Prelease
+      - name: Version and build kafka-instance-sdk
         working-directory: ./packages/kafka-instance-sdk
-        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG
-      - name: Version registry-management-sdk
+        run : | 
+          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn package -Prelease
+      - name: Version and build registry-management-sdk
         working-directory: ./packages/registry-management-sdk
-        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG                
-      - name: Version connector-management-sdk
+        run : | 
+          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn package -Prelease              
+      - name: Version and build connector-management-sdk
         working-directory: ./packages/connector-management-sdk
-        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG       
-      - name: Version service-accounts-sdk
+        run : | 
+          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn package -Prelease   
+      - name: Version and build service-accounts-sdk
         working-directory: ./packages/service-accounts-sdk
-        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
-      - name: Version smartevents
+        run : | 
+          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn package -Prelease 
+      - name: Version and build smartevents
         working-directory: ./packages/smartevents-management-sdk
-        run : mvn versions:set -DnewVersion=$GITHUB_REF_SLUG            
-      - name: Build sdks
-        run : mvn package -Prelease                         
+        run : | 
+          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn package -Prelease
       - name: Publish kafka-management-sdk
         working-directory: ./packages/kafka-management-sdk
         run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
