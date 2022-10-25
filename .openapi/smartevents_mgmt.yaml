@@ -131,6 +131,12 @@ paths:
                 $ref: '#/components/schemas/ErrorsList'
         "401":
           description: Unauthorized.
+        "402":
+          description: Not enough quota.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
         "403":
           description: Forbidden.
         "500":
@@ -395,6 +401,12 @@ paths:
                 $ref: '#/components/schemas/ErrorsList'
         "401":
           description: Unauthorized.
+        "402":
+          description: Not enough quota.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorsList'
         "403":
           description: Forbidden.
         "404":
