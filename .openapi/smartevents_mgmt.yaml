@@ -22,9 +22,6 @@ tags:
   description: List Supported Cloud Providers and Regions
 - name: Error Catalog
   description: List and get the error definitions from the error catalog.
-- name: Processing Errors
-  description: The API that allow the user to retrieve processing errors of a specific
-    bridge instance.
 - name: Processors
   description: "The API that allow the user to retrieve, create or delete Processors\
     \ of a Bridge instance."
