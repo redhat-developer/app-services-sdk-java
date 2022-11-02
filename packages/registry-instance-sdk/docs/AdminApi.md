@@ -157,7 +157,7 @@ No authorization required
 
 ## exportData
 
-> File exportData(forBrowser)
+> File exportData(accept, forBrowser)
 
 Export registry data
 
@@ -179,9 +179,10 @@ public class Example {
         defaultClient.setBasePath("http://localhost");
 
         AdminApi apiInstance = new AdminApi(defaultClient);
+        String accept = "accept_example"; // String | 
         Boolean forBrowser = true; // Boolean | Indicates if the operation is done for a browser.  If true, the response will be a JSON payload with a property called `href`.  This `href` will be a single-use, naked download link suitable for use by a web browser to download the content.
         try {
-            File result = apiInstance.exportData(forBrowser);
+            File result = apiInstance.exportData(accept, forBrowser);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdminApi#exportData");
@@ -199,6 +200,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **accept** | **String**|  | [optional]
  **forBrowser** | **Boolean**| Indicates if the operation is done for a browser.  If true, the response will be a JSON payload with a property called &#x60;href&#x60;.  This &#x60;href&#x60; will be a single-use, naked download link suitable for use by a web browser to download the content. | [optional]
 
 ### Return type

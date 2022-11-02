@@ -129,11 +129,12 @@ public class AdminApi {
   /**
    * Export registry data
    * Exports registry data as a ZIP archive.
+   * @param accept  (optional)
    * @param forBrowser Indicates if the operation is done for a browser.  If true, the response will be a JSON payload with a property called &#x60;href&#x60;.  This &#x60;href&#x60; will be a single-use, naked download link suitable for use by a web browser to download the content. (optional)
    * @return a {@code File}
    * @throws ApiException if fails to make API call
    */
-  public File exportData(Boolean forBrowser) throws ApiException {
+  public File exportData(String accept, Boolean forBrowser) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -147,7 +148,9 @@ public class AdminApi {
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "forBrowser", forBrowser));
 
-    
+    if (accept != null)
+      localVarHeaderParams.put("Accept", apiClient.parameterToString(accept));
+
     
     
     final String[] localVarAccepts = {
