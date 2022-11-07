@@ -8,7 +8,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Management API
-  version: 1.11.0
+  version: 1.12.0
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -1270,6 +1270,12 @@ components:
       value:
         id: developer
         display_name: Trial
+        supported_billing_models:
+        - id: trial
+          ams_resource: rhosak
+          ams_product: RHOSAKTrial
+          ams_billing_models:
+          - standard
         sizes:
         - id: x1
           display_name: "1"
@@ -1812,13 +1818,52 @@ components:
         display_name:
           description: Human readable name of the supported Kafka instance type
           type: string
+        supported_billing_models:
+          description: A list of available kafka billing models for the instance type.
+            Each kafka billing model item has a unique 'id'
+          items:
+            $ref: '#/components/schemas/SupportedKafkaBillingModel'
+          minItems: 1
+          type: array
         sizes:
-          description: ' A list of Kafka instance sizes available for this instance
-            type'
+          description: A list of Kafka instance sizes available for this instance
+            type
           items:
             allOf:
             - $ref: '#/components/schemas/SupportedKafkaSize'
           type: array
+      required:
+      - supported_billing_models
+      type: object
+    SupportedKafkaBillingModel:
+      description: Supported Kafka Billing Model
+      properties:
+        id:
+          description: Identifier for the Kafka billing model
+          minLength: 1
+          type: string
+        ams_resource:
+          description: 'AMS resource to be used. Accepted values: [''rhosak'']'
+          minLength: 1
+          type: string
+        ams_product:
+          description: 'AMS product to be used. Accepted values: [''RHOSAK'', ''RHOSAKTrial'',
+            ''RHOSAKEval'']'
+          minLength: 1
+          type: string
+        ams_billing_models:
+          description: 'List of AMS available billing models: Accepted values: [''marketplace'',
+            ''marketplace-rhm'', ''marketplace-aws'']'
+          items:
+            minLength: 1
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - ams_billing_models
+      - ams_product
+      - ams_resource
+      - id
       type: object
     SupportedKafkaSize:
       description: Supported Kafka Size
