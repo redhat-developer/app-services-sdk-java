@@ -8,7 +8,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Management API
-  version: 1.12.0
+  version: 1.13.0
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -1918,9 +1918,6 @@ components:
         quota_consumed:
           description: Quota consumed by this Kafka instance size.
           type: integer
-        quota_type:
-          description: Quota type used by this Kafka instance size.
-          type: string
         capacity_consumed:
           description: Data plane cluster capacity consumed by this Kafka instance
             size.

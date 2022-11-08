@@ -2,7 +2,7 @@
 
 Kafka Management API
 
-- API version: 1.12.0
+- API version: 1.13.0
 
 Kafka Management API is a REST API to manage Kafka instances
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-management-sdk</artifactId>
-  <version>1.12.0</version>
+  <version>1.13.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-management-sdk:1.12.0"
+     implementation "com.redhat.cloud:kafka-management-sdk:1.13.0"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-management-sdk-1.12.0.jar`
+- `target/kafka-management-sdk-1.13.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started

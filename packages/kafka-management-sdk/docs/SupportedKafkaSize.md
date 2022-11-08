@@ -23,7 +23,6 @@ Name | Type | Description | Notes
 **supportedAzModes** | **List&lt;String&gt;** | List of Availability Zone modes that this Kafka instance size supports. The possible values are \&quot;single\&quot;, \&quot;multi\&quot;. |  [optional]
 **lifespanSeconds** | **Integer** | The limit lifespan of the kafka instance in seconds. If not specified then the instance never expires. |  [optional]
 **quotaConsumed** | **Integer** | Quota consumed by this Kafka instance size. |  [optional]
-**quotaType** | **String** | Quota type used by this Kafka instance size. |  [optional]
 **capacityConsumed** | **Integer** | Data plane cluster capacity consumed by this Kafka instance size. |  [optional]
 **maturityStatus** | **String** | Maturity level of the size. Can be \&quot;stable\&quot; or \&quot;preview\&quot;. |  [optional]
 
