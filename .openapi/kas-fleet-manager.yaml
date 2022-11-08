@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
   title: Kafka Management API
-  version: 1.12.0
+  version: 1.13.0
   description: Kafka Management API is a REST API to manage Kafka instances
   license:
     name: 'Apache 2.0'
@@ -1240,8 +1240,9 @@ components:
           description: 'Quota consumed by this Kafka instance size.'
           type: integer
         quota_type:
-          description: 'Quota type used by this Kafka instance size.'
+          description: 'Quota type used by this Kafka instance size. This is now deprecated, please refer to supported_billing_models at instance-type level instead.'
           type: string
+          deprecated: true
         capacity_consumed:
           description: 'Data plane cluster capacity consumed by this Kafka instance size.'
           type: integer
