@@ -292,7 +292,7 @@
       "code": "KAFKAS-MGMT-121"
     },
     {
-      "reason": "Too Many requests",
+      "reason": "Too many requests",
       "id": "429",
       "kind": "Error",
       "href": "/api/kafkas_mgmt/v1/errors/429",
