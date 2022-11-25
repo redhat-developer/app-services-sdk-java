@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
   title: Kafka Management API
-  version: 1.13.0
+  version: 1.14.0
   description: Kafka Management API is a REST API to manage Kafka instances
   license:
     name: 'Apache 2.0'
@@ -936,16 +936,22 @@ components:
         properties:
           reason:
             type: string
+            description: "Human-readable description of the error. Intended for human consumption"
           operation_id:
             type: string
+            description: "Relatively unique operation ID of the request associated to the error"
           id:
             type: string
+            description: "The unique and immutable identifier of the resource"
           kind:
             type: string
+            description: "The kind of the resource"
           href:
             type: string
+            description: "The absolute path of the resource"
           code:
             type: string
+            description: "Code of the error"
     ErrorList:
       allOf:
         - $ref: "#/components/schemas/List"
