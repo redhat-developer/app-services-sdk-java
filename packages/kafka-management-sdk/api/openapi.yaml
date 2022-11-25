@@ -8,7 +8,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Management API
-  version: 1.13.0
+  version: 1.14.0
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -1724,16 +1724,24 @@ components:
         href: href
       properties:
         reason:
+          description: Human-readable description of the error. Intended for human
+            consumption
           type: string
         operation_id:
+          description: Relatively unique operation ID of the request associated to
+            the error
           type: string
         id:
+          description: The unique and immutable identifier of the resource
           type: string
         kind:
+          description: The kind of the resource
           type: string
         href:
+          description: The absolute path of the resource
           type: string
         code:
+          description: Code of the error
           type: string
       required:
       - code
