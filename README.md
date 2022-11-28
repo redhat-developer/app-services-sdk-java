@@ -29,7 +29,7 @@ You can view all SDK packages directly in [GitHub](https://github.com/orgs/redha
 | service accounts            | **service-accounts-sdk**           | alpha   | 1.1.2             | [info](https://search.maven.org/search?q=a:service-accounts-sdk)                | [doc][sadoc]    |
 | service registry | **registry-management-sdk**        | alpha  | 0.0.6             | [info](https://search.maven.org/search?q=a:registry-management-sdk)                | [doc][smarteventsgit] |
 |  connector-management | **connector-management-sdk**        | alpha  | 0.0.6             | [info](https://search.maven.org/search?q=a:connector-management-sdk)                | [doc][connectorgit] |
-|  connector-management | **connector-management-sdk**        | alpha  | 0.0.6             | [info](https://search.maven.org/search?q=a:smartevents-management-sdk)                | [doc][smarteventsgit] |
+|  smart-events-management | **smart-events-management-sdk**        | alpha  | 0.0.6             | [info](https://search.maven.org/search?q=a:smartevents-management-sdk)                | [doc][smarteventsgit] |
 
 ## Instances SDK's
 
