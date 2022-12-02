@@ -4,11 +4,11 @@ All URIs are relative to *https://api.stage.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**bridgesAPICreateBridge**](BridgesApi.md#bridgesAPICreateBridge) | **POST** /api/smartevents_mgmt/v1/bridges | Create a Bridge instance
-[**bridgesAPIDeleteBridge**](BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Delete a Bridge instance
-[**bridgesAPIGetBridge**](BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Get a Bridge instance
-[**bridgesAPIGetBridges**](BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/smartevents_mgmt/v1/bridges | Get the list of Bridge instances
-[**bridgesAPIUpdateBridge**](BridgesApi.md#bridgesAPIUpdateBridge) | **PUT** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Update a Bridge instance
+[**bridgesAPICreateBridge**](BridgesApi.md#bridgesAPICreateBridge) | **POST** /api/smartevents_mgmt/v2/bridges | Create a Bridge instance
+[**bridgesAPIDeleteBridge**](BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Delete a Bridge instance
+[**bridgesAPIGetBridge**](BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Get a Bridge instance
+[**bridgesAPIGetBridges**](BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/smartevents_mgmt/v2/bridges | Get the list of Bridge instances
+[**bridgesAPIUpdateBridge**](BridgesApi.md#bridgesAPIUpdateBridge) | **PUT** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Update a Bridge instance
 
 
 

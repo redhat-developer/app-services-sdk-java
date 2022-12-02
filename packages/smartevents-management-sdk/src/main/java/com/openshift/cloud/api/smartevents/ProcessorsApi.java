@@ -12,7 +12,6 @@ import com.openshift.cloud.api.smartevents.models.ManagedResourceStatus;
 import com.openshift.cloud.api.smartevents.models.ProcessorListResponse;
 import com.openshift.cloud.api.smartevents.models.ProcessorRequest;
 import com.openshift.cloud.api.smartevents.models.ProcessorResponse;
-import com.openshift.cloud.api.smartevents.models.ProcessorType;
 import java.util.Set;
 
 import java.util.ArrayList;
@@ -48,16 +47,16 @@ public class ProcessorsApi {
    * @return a {@code ProcessorResponse}
    * @throws ApiException if fails to make API call
    */
-  public ProcessorResponse processorsAPIAddProcessorToBridge(String bridgeId, ProcessorRequest processorRequest) throws ApiException {
+  public ProcessorResponse processorsAPICreateProcessor(String bridgeId, ProcessorRequest processorRequest) throws ApiException {
     Object localVarPostBody = processorRequest;
     
     // verify the required parameter 'bridgeId' is set
     if (bridgeId == null) {
-      throw new ApiException(400, "Missing the required parameter 'bridgeId' when calling processorsAPIAddProcessorToBridge");
+      throw new ApiException(400, "Missing the required parameter 'bridgeId' when calling processorsAPICreateProcessor");
     }
     
     // create path and map variables
-    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v2/bridges/{bridgeId}/processors".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()));
 
     // query params
@@ -106,7 +105,7 @@ public class ProcessorsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v2/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()))
       .replaceAll("\\{" + "processorId" + "\\}", apiClient.escapeString(processorId.toString()));
 
@@ -157,7 +156,7 @@ public class ProcessorsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v2/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()))
       .replaceAll("\\{" + "processorId" + "\\}", apiClient.escapeString(processorId.toString()));
 
@@ -194,20 +193,19 @@ public class ProcessorsApi {
    * @param page  (optional, default to 0)
    * @param size  (optional, default to 100)
    * @param status  (optional)
-   * @param type  (optional)
    * @return a {@code ProcessorListResponse}
    * @throws ApiException if fails to make API call
    */
-  public ProcessorListResponse processorsAPIListProcessors(String bridgeId, String name, Integer page, Integer size, Set<ManagedResourceStatus> status, ProcessorType type) throws ApiException {
+  public ProcessorListResponse processorsAPIGetProcessors(String bridgeId, String name, Integer page, Integer size, Set<ManagedResourceStatus> status) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'bridgeId' is set
     if (bridgeId == null) {
-      throw new ApiException(400, "Missing the required parameter 'bridgeId' when calling processorsAPIListProcessors");
+      throw new ApiException(400, "Missing the required parameter 'bridgeId' when calling processorsAPIGetProcessors");
     }
     
     // create path and map variables
-    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v2/bridges/{bridgeId}/processors".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()));
 
     // query params
@@ -220,7 +218,6 @@ public class ProcessorsApi {
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "page", page));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "size", size));
     localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "status", status));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "type", type));
 
     
     
@@ -241,8 +238,8 @@ public class ProcessorsApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Update a Processor instance Filter definition or Transformation template.
-   * Update a Processor instance Filter definition or Transformation template for the authenticated user.
+   * Update a Processor instance.
+   * Update a Processor instance for the authenticated user.
    * @param bridgeId  (required)
    * @param processorId  (required)
    * @param processorRequest  (optional)
@@ -263,7 +260,7 @@ public class ProcessorsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v2/bridges/{bridgeId}/processors/{processorId}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()))
       .replaceAll("\\{" + "processorId" + "\\}", apiClient.escapeString(processorId.toString()));
 

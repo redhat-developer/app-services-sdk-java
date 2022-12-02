@@ -1,5 +1,5 @@
 /*
- * Red Hat Openshift SmartEvents Fleet Manager
+ * Red Hat Openshift SmartEvents Fleet Manager V2
  * The API exposed by the fleet manager of the SmartEvents service.
  *
  * The version of the OpenAPI document: 0.0.1
@@ -20,18 +20,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.openshift.cloud.api.smartevents.models.Action;
-import com.openshift.cloud.api.smartevents.models.BaseFilter;
 import com.openshift.cloud.api.smartevents.models.ManagedResourceStatus;
-import com.openshift.cloud.api.smartevents.models.ProcessorType;
-import com.openshift.cloud.api.smartevents.models.Source;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -41,18 +33,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   ProcessorResponse.JSON_PROPERTY_KIND,
   ProcessorResponse.JSON_PROPERTY_ID,
-  ProcessorResponse.JSON_PROPERTY_NAME,
   ProcessorResponse.JSON_PROPERTY_HREF,
   ProcessorResponse.JSON_PROPERTY_SUBMITTED_AT,
   ProcessorResponse.JSON_PROPERTY_PUBLISHED_AT,
   ProcessorResponse.JSON_PROPERTY_MODIFIED_AT,
   ProcessorResponse.JSON_PROPERTY_STATUS,
   ProcessorResponse.JSON_PROPERTY_OWNER,
-  ProcessorResponse.JSON_PROPERTY_TYPE,
-  ProcessorResponse.JSON_PROPERTY_FILTERS,
-  ProcessorResponse.JSON_PROPERTY_TRANSFORMATION_TEMPLATE,
-  ProcessorResponse.JSON_PROPERTY_ACTION,
-  ProcessorResponse.JSON_PROPERTY_SOURCE,
+  ProcessorResponse.JSON_PROPERTY_NAME,
+  ProcessorResponse.JSON_PROPERTY_FLOWS,
   ProcessorResponse.JSON_PROPERTY_STATUS_MESSAGE
 })
 @JsonTypeName("ProcessorResponse")
@@ -63,9 +51,6 @@ public class ProcessorResponse {
 
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
 
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
@@ -85,20 +70,11 @@ public class ProcessorResponse {
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
 
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private ProcessorType type;
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
-  public static final String JSON_PROPERTY_FILTERS = "filters";
-  private Set<BaseFilter> filters = null;
-
-  public static final String JSON_PROPERTY_TRANSFORMATION_TEMPLATE = "transformationTemplate";
-  private String transformationTemplate;
-
-  public static final String JSON_PROPERTY_ACTION = "action";
-  private Action action;
-
-  public static final String JSON_PROPERTY_SOURCE = "source";
-  private Source source;
+  public static final String JSON_PROPERTY_FLOWS = "flows";
+  private Object flows;
 
   public static final String JSON_PROPERTY_STATUS_MESSAGE = "status_message";
   private String statusMessage;
@@ -157,33 +133,6 @@ public class ProcessorResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
-  }
-
-
-  public ProcessorResponse name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
   }
 
 
@@ -349,147 +298,57 @@ public class ProcessorResponse {
   }
 
 
-  public ProcessorResponse type(ProcessorType type) {
+  public ProcessorResponse name(String name) {
     
-    this.type = type;
+    this.name = name;
     return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * Get name
+   * @return name
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public ProcessorType getType() {
-    return type;
+  public String getName() {
+    return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setType(ProcessorType type) {
-    this.type = type;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
-  public ProcessorResponse filters(Set<BaseFilter> filters) {
+  public ProcessorResponse flows(Object flows) {
     
-    this.filters = filters;
-    return this;
-  }
-
-  public ProcessorResponse addFiltersItem(BaseFilter filtersItem) {
-    if (this.filters == null) {
-      this.filters = new LinkedHashSet<>();
-    }
-    this.filters.add(filtersItem);
+    this.flows = flows;
     return this;
   }
 
    /**
-   * Get filters
-   * @return filters
+   * Get flows
+   * @return flows
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FILTERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_FLOWS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Set<BaseFilter> getFilters() {
-    return filters;
+  public Object getFlows() {
+    return flows;
   }
 
 
-  @JsonDeserialize(as = LinkedHashSet.class)
-  @JsonProperty(JSON_PROPERTY_FILTERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFilters(Set<BaseFilter> filters) {
-    this.filters = filters;
-  }
-
-
-  public ProcessorResponse transformationTemplate(String transformationTemplate) {
-    
-    this.transformationTemplate = transformationTemplate;
-    return this;
-  }
-
-   /**
-   * Get transformationTemplate
-   * @return transformationTemplate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TRANSFORMATION_TEMPLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getTransformationTemplate() {
-    return transformationTemplate;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TRANSFORMATION_TEMPLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransformationTemplate(String transformationTemplate) {
-    this.transformationTemplate = transformationTemplate;
-  }
-
-
-  public ProcessorResponse action(Action action) {
-    
-    this.action = action;
-    return this;
-  }
-
-   /**
-   * Get action
-   * @return action
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ACTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Action getAction() {
-    return action;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ACTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAction(Action action) {
-    this.action = action;
-  }
-
-
-  public ProcessorResponse source(Source source) {
-    
-    this.source = source;
-    return this;
-  }
-
-   /**
-   * Get source
-   * @return source
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Source getSource() {
-    return source;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSource(Source source) {
-    this.source = source;
+  @JsonProperty(JSON_PROPERTY_FLOWS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setFlows(Object flows) {
+    this.flows = flows;
   }
 
 
@@ -531,24 +390,20 @@ public class ProcessorResponse {
     ProcessorResponse processorResponse = (ProcessorResponse) o;
     return Objects.equals(this.kind, processorResponse.kind) &&
         Objects.equals(this.id, processorResponse.id) &&
-        Objects.equals(this.name, processorResponse.name) &&
         Objects.equals(this.href, processorResponse.href) &&
         Objects.equals(this.submittedAt, processorResponse.submittedAt) &&
         Objects.equals(this.publishedAt, processorResponse.publishedAt) &&
         Objects.equals(this.modifiedAt, processorResponse.modifiedAt) &&
         Objects.equals(this.status, processorResponse.status) &&
         Objects.equals(this.owner, processorResponse.owner) &&
-        Objects.equals(this.type, processorResponse.type) &&
-        Objects.equals(this.filters, processorResponse.filters) &&
-        Objects.equals(this.transformationTemplate, processorResponse.transformationTemplate) &&
-        Objects.equals(this.action, processorResponse.action) &&
-        Objects.equals(this.source, processorResponse.source) &&
+        Objects.equals(this.name, processorResponse.name) &&
+        Objects.equals(this.flows, processorResponse.flows) &&
         Objects.equals(this.statusMessage, processorResponse.statusMessage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, type, filters, transformationTemplate, action, source, statusMessage);
+    return Objects.hash(kind, id, href, submittedAt, publishedAt, modifiedAt, status, owner, name, flows, statusMessage);
   }
 
   @Override
@@ -557,18 +412,14 @@ public class ProcessorResponse {
     sb.append("class ProcessorResponse {\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
     sb.append("    modifiedAt: ").append(toIndentedString(modifiedAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    filters: ").append(toIndentedString(filters)).append("\n");
-    sb.append("    transformationTemplate: ").append(toIndentedString(transformationTemplate)).append("\n");
-    sb.append("    action: ").append(toIndentedString(action)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    flows: ").append(toIndentedString(flows)).append("\n");
     sb.append("    statusMessage: ").append(toIndentedString(statusMessage)).append("\n");
     sb.append("}");
     return sb.toString();

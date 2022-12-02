@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  title: Red Hat Openshift SmartEvents Fleet Manager
+  title: Red Hat Openshift SmartEvents Fleet Manager V2
   version: 0.0.1
 servers:
 - url: https://api.stage.openshift.com
@@ -24,11 +24,8 @@ tags:
 - description: The API that allow the user to retrieve, create or delete Processors
     of a Bridge instance.
   name: Processors
-- description: The API that provide the catalog of the available action/source processors
-    definition and their JSON schema.
-  name: Schema Catalog
 paths:
-  /api/smartevents_mgmt/v1/bridges:
+  /api/smartevents_mgmt/v2/bridges:
     get:
       description: Get the list of Bridge instances for the authenticated user.
       operationId: BridgesAPI_getBridges
@@ -158,7 +155,7 @@ paths:
       - Bridges
       x-contentType: application/json
       x-accepts: application/json
-  /api/smartevents_mgmt/v1/bridges/{bridgeId}:
+  /api/smartevents_mgmt/v2/bridges/{bridgeId}:
     delete:
       description: Delete a Bridge instance of the authenticated user by ID.
       operationId: BridgesAPI_deleteBridge
@@ -311,11 +308,11 @@ paths:
       - Bridges
       x-contentType: application/json
       x-accepts: application/json
-  /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors:
+  /api/smartevents_mgmt/v2/bridges/{bridgeId}/processors:
     get:
       description: Get the list of Processors of a Bridge instance for the authenticated
         user.
-      operationId: ProcessorsAPI_listProcessors
+      operationId: ProcessorsAPI_getProcessors
       parameters:
       - explode: false
         in: path
@@ -364,13 +361,6 @@ paths:
           type: array
           uniqueItems: true
         style: form
-      - explode: true
-        in: query
-        name: type
-        required: false
-        schema:
-          $ref: '#/components/schemas/ProcessorType'
-        style: form
       responses:
         "200":
           content:
@@ -408,7 +398,7 @@ paths:
       x-accepts: application/json
     post:
       description: Create a Processor of a Bridge instance for the authenticated user.
-      operationId: ProcessorsAPI_addProcessorToBridge
+      operationId: ProcessorsAPI_createProcessor
       parameters:
       - explode: false
         in: path
@@ -466,7 +456,7 @@ paths:
       - Processors
       x-contentType: application/json
       x-accepts: application/json
-  /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId}:
+  /api/smartevents_mgmt/v2/bridges/{bridgeId}/processors/{processorId}:
     delete:
       description: Delete a Processor of a Bridge instance for the authenticated user.
       operationId: ProcessorsAPI_deleteProcessor
@@ -574,8 +564,7 @@ paths:
       - Processors
       x-accepts: application/json
     put:
-      description: Update a Processor instance Filter definition or Transformation
-        template for the authenticated user.
+      description: Update a Processor instance for the authenticated user.
       operationId: ProcessorsAPI_updateProcessor
       parameters:
       - explode: false
@@ -632,12 +621,12 @@ paths:
           description: Internal error.
       security:
       - bearer: []
-      summary: Update a Processor instance Filter definition or Transformation template.
+      summary: Update a Processor instance.
       tags:
       - Processors
       x-contentType: application/json
       x-accepts: application/json
-  /api/smartevents_mgmt/v1/cloud_providers:
+  /api/smartevents_mgmt/v2/cloud_providers:
     get:
       description: Returns the list of supported Cloud Providers.
       operationId: CloudProviderAPI_listCloudProviders
@@ -686,7 +675,7 @@ paths:
       tags:
       - Cloud Providers
       x-accepts: application/json
-  /api/smartevents_mgmt/v1/cloud_providers/{id}:
+  /api/smartevents_mgmt/v2/cloud_providers/{id}:
     get:
       description: Get details of the Cloud Provider specified by id.
       operationId: CloudProviderAPI_getCloudProvider
@@ -729,7 +718,7 @@ paths:
       tags:
       - Cloud Providers
       x-accepts: application/json
-  /api/smartevents_mgmt/v1/cloud_providers/{id}/regions:
+  /api/smartevents_mgmt/v2/cloud_providers/{id}/regions:
     get:
       description: Returns the list of supported Regions of the specified Cloud Provider.
       operationId: CloudProviderAPI_listCloudProviderRegions
@@ -787,7 +776,7 @@ paths:
       tags:
       - Cloud Providers
       x-accepts: application/json
-  /api/smartevents_mgmt/v1/errors:
+  /api/smartevents_mgmt/v2/errors:
     get:
       description: Get the list of errors from the error catalog.
       operationId: ErrorsAPI_getErrors
@@ -838,7 +827,7 @@ paths:
       tags:
       - Error Catalog
       x-accepts: application/json
-  /api/smartevents_mgmt/v1/errors/{id}:
+  /api/smartevents_mgmt/v2/errors/{id}:
     get:
       description: Get an error from the error catalog.
       operationId: ErrorsAPI_getError
@@ -876,151 +865,8 @@ paths:
       tags:
       - Error Catalog
       x-accepts: application/json
-  /api/smartevents_mgmt/v1/schemas:
-    get:
-      description: Get the processor catalog with all the available sources and actions.
-      operationId: SchemaAPI_getCatalog
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProcessorCatalogResponse'
-          description: Success.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorsList'
-          description: Bad request.
-        "401":
-          description: Unauthorized.
-        "403":
-          description: Forbidden.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorsList'
-          description: Internal error.
-      security:
-      - bearer: []
-      summary: Get processor catalog
-      tags:
-      - Schema Catalog
-      x-accepts: application/json
-  /api/smartevents_mgmt/v1/schemas/actions/{id}:
-    get:
-      description: Get the action processor JSON schema.
-      operationId: SchemaAPI_getActionProcessorSchema
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Success.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorsList'
-          description: Bad request.
-        "401":
-          description: Unauthorized.
-        "403":
-          description: Forbidden.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorsList'
-          description: Internal error.
-      security:
-      - bearer: []
-      summary: Get action processor schema
-      tags:
-      - Schema Catalog
-      x-accepts: application/json
-  /api/smartevents_mgmt/v1/schemas/sources/{id}:
-    get:
-      description: Get the source processor JSON schema.
-      operationId: SchemaAPI_getSourceProcessorSchema
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Success.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorsList'
-          description: Bad request.
-        "401":
-          description: Unauthorized.
-        "403":
-          description: Forbidden.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorsList'
-          description: Internal error.
-      security:
-      - bearer: []
-      summary: Get source processor schema
-      tags:
-      - Schema Catalog
-      x-accepts: application/json
 components:
   schemas:
-    Action:
-      example:
-        type: type
-        parameters: '{}'
-      properties:
-        type:
-          nullable: false
-          type: string
-        parameters:
-          type: object
-      required:
-      - parameters
-      - type
-      type: object
-    BaseFilter:
-      example:
-        type: type
-        key: key
-      properties:
-        type:
-          type: string
-        key:
-          minLength: 1
-          nullable: false
-          type: string
-      required:
-      - key
-      type: object
     BridgeError:
       example:
         reason: reason
@@ -1065,9 +911,6 @@ components:
         items:
         - owner: owner
           status_message: status_message
-          error_handler:
-            type: type
-            parameters: '{}'
           submitted_at: 2000-01-23T04:56:07.000+00:00
           kind: kind
           cloud_provider: cloud_provider
@@ -1081,9 +924,6 @@ components:
           status: ""
         - owner: owner
           status_message: status_message
-          error_handler:
-            type: type
-            parameters: '{}'
           submitted_at: 2000-01-23T04:56:07.000+00:00
           kind: kind
           cloud_provider: cloud_provider
@@ -1123,9 +963,6 @@ components:
       type: object
     BridgeRequest:
       example:
-        error_handler:
-          type: type
-          parameters: '{}'
         name: name
         cloud_provider: cloud_provider
         region: region
@@ -1134,8 +971,6 @@ components:
           minLength: 1
           nullable: false
           type: string
-        error_handler:
-          $ref: '#/components/schemas/Action'
         cloud_provider:
           minLength: 1
           nullable: false
@@ -1153,9 +988,6 @@ components:
       example:
         owner: owner
         status_message: status_message
-        error_handler:
-          type: type
-          parameters: '{}'
         submitted_at: 2000-01-23T04:56:07.000+00:00
         kind: kind
         cloud_provider: cloud_provider
@@ -1198,8 +1030,6 @@ components:
           type: string
         endpoint:
           type: string
-        error_handler:
-          $ref: '#/components/schemas/Action'
         cloud_provider:
           type: string
         region:
@@ -1530,33 +1360,6 @@ components:
         payload:
           type: object
       type: object
-    ProcessorCatalogResponse:
-      example:
-        kind: kind
-        items:
-        - kind: kind
-          name: name
-          description: description
-          id: id
-          href: href
-          type: type
-        - kind: kind
-          name: name
-          description: description
-          id: id
-          href: href
-          type: type
-      properties:
-        kind:
-          nullable: false
-          type: string
-        items:
-          items:
-            $ref: '#/components/schemas/ProcessorSchemaEntryResponse'
-          type: array
-      required:
-      - kind
-      type: object
     ProcessorListResponse:
       example:
         total: 1
@@ -1567,48 +1370,24 @@ components:
         - owner: owner
           status_message: status_message
           submitted_at: 2000-01-23T04:56:07.000+00:00
+          flows: '{}'
           kind: kind
-          filters:
-          - type: type
-            key: key
-          - type: type
-            key: key
-          source:
-            type: type
-            parameters: '{}'
-          type: ""
           name: name
-          action:
-            type: type
-            parameters: '{}'
           id: id
           href: href
           published_at: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
-          transformationTemplate: transformationTemplate
           status: ""
         - owner: owner
           status_message: status_message
           submitted_at: 2000-01-23T04:56:07.000+00:00
+          flows: '{}'
           kind: kind
-          filters:
-          - type: type
-            key: key
-          - type: type
-            key: key
-          source:
-            type: type
-            parameters: '{}'
-          type: ""
           name: name
-          action:
-            type: type
-            parameters: '{}'
           id: id
           href: href
           published_at: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
-          transformationTemplate: transformationTemplate
           status: ""
       properties:
         kind:
@@ -1638,36 +1417,18 @@ components:
       type: object
     ProcessorRequest:
       example:
+        flows: '{}'
         name: name
-        action:
-          type: type
-          parameters: '{}'
-        filters:
-        - type: type
-          key: key
-        - type: type
-          key: key
-        source:
-          type: type
-          parameters: '{}'
-        transformationTemplate: transformationTemplate
       properties:
         name:
           minLength: 1
           nullable: false
           type: string
-        filters:
-          items:
-            $ref: '#/components/schemas/BaseFilter'
-          type: array
-          uniqueItems: true
-        transformationTemplate:
-          type: string
-        action:
-          $ref: '#/components/schemas/Action'
-        source:
-          $ref: '#/components/schemas/Source'
+        flows:
+          nullable: false
+          type: object
       required:
+      - flows
       - name
       type: object
     ProcessorResponse:
@@ -1675,25 +1436,13 @@ components:
         owner: owner
         status_message: status_message
         submitted_at: 2000-01-23T04:56:07.000+00:00
+        flows: '{}'
         kind: kind
-        filters:
-        - type: type
-          key: key
-        - type: type
-          key: key
-        source:
-          type: type
-          parameters: '{}'
-        type: ""
         name: name
-        action:
-          type: type
-          parameters: '{}'
         id: id
         href: href
         published_at: 2000-01-23T04:56:07.000+00:00
         modified_at: 2000-01-23T04:56:07.000+00:00
-        transformationTemplate: transformationTemplate
         status: ""
       properties:
         kind:
@@ -1701,8 +1450,6 @@ components:
           type: string
         id:
           nullable: false
-          type: string
-        name:
           type: string
         href:
           nullable: false
@@ -1724,86 +1471,23 @@ components:
         owner:
           nullable: false
           type: string
-        type:
-          allOf:
-          - $ref: '#/components/schemas/ProcessorType'
-          - nullable: false
-        filters:
-          items:
-            $ref: '#/components/schemas/BaseFilter'
-          type: array
-          uniqueItems: true
-        transformationTemplate:
-          type: string
-        action:
-          $ref: '#/components/schemas/Action'
-        source:
-          $ref: '#/components/schemas/Source'
-        status_message:
-          type: string
-      required:
-      - href
-      - id
-      - kind
-      - owner
-      - status
-      - submitted_at
-      - type
-      type: object
-    ProcessorSchemaEntryResponse:
-      example:
-        kind: kind
-        name: name
-        description: description
-        id: id
-        href: href
-        type: type
-      properties:
-        kind:
-          nullable: false
-          type: string
-        id:
-          nullable: false
-          type: string
         name:
           nullable: false
           type: string
-        description:
+        flows:
           nullable: false
-          type: string
-        type:
-          nullable: false
-          type: string
-        href:
-          nullable: false
+          type: object
+        status_message:
           type: string
       required:
-      - description
+      - flows
       - href
       - id
       - kind
       - name
-      - type
-      type: object
-    ProcessorType:
-      enum:
-      - source
-      - sink
-      - error_handler
-      type: string
-    Source:
-      example:
-        type: type
-        parameters: '{}'
-      properties:
-        type:
-          nullable: false
-          type: string
-        parameters:
-          type: object
-      required:
-      - parameters
-      - type
+      - owner
+      - status
+      - submitted_at
       type: object
     List_allOf:
       properties:

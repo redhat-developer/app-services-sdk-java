@@ -4,9 +4,9 @@ All URIs are relative to *https://api.stage.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cloudProviderAPIGetCloudProvider**](CloudProvidersApi.md#cloudProviderAPIGetCloudProvider) | **GET** /api/smartevents_mgmt/v1/cloud_providers/{id} | Get Cloud Provider.
-[**cloudProviderAPIListCloudProviderRegions**](CloudProvidersApi.md#cloudProviderAPIListCloudProviderRegions) | **GET** /api/smartevents_mgmt/v1/cloud_providers/{id}/regions | List Supported Cloud Regions.
-[**cloudProviderAPIListCloudProviders**](CloudProvidersApi.md#cloudProviderAPIListCloudProviders) | **GET** /api/smartevents_mgmt/v1/cloud_providers | List Supported Cloud Providers.
+[**cloudProviderAPIGetCloudProvider**](CloudProvidersApi.md#cloudProviderAPIGetCloudProvider) | **GET** /api/smartevents_mgmt/v2/cloud_providers/{id} | Get Cloud Provider.
+[**cloudProviderAPIListCloudProviderRegions**](CloudProvidersApi.md#cloudProviderAPIListCloudProviderRegions) | **GET** /api/smartevents_mgmt/v2/cloud_providers/{id}/regions | List Supported Cloud Regions.
+[**cloudProviderAPIListCloudProviders**](CloudProvidersApi.md#cloudProviderAPIListCloudProviders) | **GET** /api/smartevents_mgmt/v2/cloud_providers | List Supported Cloud Providers.
 
 
 

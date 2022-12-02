@@ -52,7 +52,7 @@ public class ErrorCatalogApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/smartevents_mgmt/v1/errors/{id}".replaceAll("\\{format\\}","json")
+    String localVarPath = "/api/smartevents_mgmt/v2/errors/{id}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
     // query params
@@ -92,7 +92,7 @@ public class ErrorCatalogApi {
     Object localVarPostBody = null;
     
     // create path and map variables
-    String localVarPath = "/api/smartevents_mgmt/v1/errors".replaceAll("\\{format\\}","json");
+    String localVarPath = "/api/smartevents_mgmt/v2/errors".replaceAll("\\{format\\}","json");
 
     // query params
     List<Pair> localVarQueryParams = new ArrayList<Pair>();

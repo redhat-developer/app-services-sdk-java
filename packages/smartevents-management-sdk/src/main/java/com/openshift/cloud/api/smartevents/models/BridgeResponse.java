@@ -1,5 +1,5 @@
 /*
- * Red Hat Openshift SmartEvents Fleet Manager
+ * Red Hat Openshift SmartEvents Fleet Manager V2
  * The API exposed by the fleet manager of the SmartEvents service.
  *
  * The version of the OpenAPI document: 0.0.1
@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.smartevents.models.Action;
 import com.openshift.cloud.api.smartevents.models.ManagedResourceStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -42,7 +41,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   BridgeResponse.JSON_PROPERTY_STATUS,
   BridgeResponse.JSON_PROPERTY_OWNER,
   BridgeResponse.JSON_PROPERTY_ENDPOINT,
-  BridgeResponse.JSON_PROPERTY_ERROR_HANDLER,
   BridgeResponse.JSON_PROPERTY_CLOUD_PROVIDER,
   BridgeResponse.JSON_PROPERTY_REGION,
   BridgeResponse.JSON_PROPERTY_STATUS_MESSAGE
@@ -79,9 +77,6 @@ public class BridgeResponse {
 
   public static final String JSON_PROPERTY_ENDPOINT = "endpoint";
   private String endpoint;
-
-  public static final String JSON_PROPERTY_ERROR_HANDLER = "error_handler";
-  private Action errorHandler;
 
   public static final String JSON_PROPERTY_CLOUD_PROVIDER = "cloud_provider";
   private String cloudProvider;
@@ -365,33 +360,6 @@ public class BridgeResponse {
   }
 
 
-  public BridgeResponse errorHandler(Action errorHandler) {
-    
-    this.errorHandler = errorHandler;
-    return this;
-  }
-
-   /**
-   * Get errorHandler
-   * @return errorHandler
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ERROR_HANDLER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Action getErrorHandler() {
-    return errorHandler;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERROR_HANDLER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorHandler(Action errorHandler) {
-    this.errorHandler = errorHandler;
-  }
-
-
   public BridgeResponse cloudProvider(String cloudProvider) {
     
     this.cloudProvider = cloudProvider;
@@ -492,7 +460,6 @@ public class BridgeResponse {
         Objects.equals(this.status, bridgeResponse.status) &&
         Objects.equals(this.owner, bridgeResponse.owner) &&
         Objects.equals(this.endpoint, bridgeResponse.endpoint) &&
-        Objects.equals(this.errorHandler, bridgeResponse.errorHandler) &&
         Objects.equals(this.cloudProvider, bridgeResponse.cloudProvider) &&
         Objects.equals(this.region, bridgeResponse.region) &&
         Objects.equals(this.statusMessage, bridgeResponse.statusMessage);
@@ -500,7 +467,7 @@ public class BridgeResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, endpoint, errorHandler, cloudProvider, region, statusMessage);
+    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, endpoint, cloudProvider, region, statusMessage);
   }
 
   @Override
@@ -517,7 +484,6 @@ public class BridgeResponse {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    endpoint: ").append(toIndentedString(endpoint)).append("\n");
-    sb.append("    errorHandler: ").append(toIndentedString(errorHandler)).append("\n");
     sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
     sb.append("    statusMessage: ").append(toIndentedString(statusMessage)).append("\n");
