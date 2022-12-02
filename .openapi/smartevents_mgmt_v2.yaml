@@ -1250,6 +1250,8 @@ components:
         flows:
           type: object
           nullable: false
+        status_message:
+          type: string
   securitySchemes:
     bearer:
       type: http

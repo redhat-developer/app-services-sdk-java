@@ -1,5 +1,5 @@
 /*
- * Red Hat Openshift SmartEvents Fleet Manager
+ * Red Hat Openshift SmartEvents Fleet Manager V2
  * The API exposed by the fleet manager of the SmartEvents service.
  *
  * The version of the OpenAPI document: 0.0.1
@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.smartevents.models.Action;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -31,7 +30,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   BridgeRequest.JSON_PROPERTY_NAME,
-  BridgeRequest.JSON_PROPERTY_ERROR_HANDLER,
   BridgeRequest.JSON_PROPERTY_CLOUD_PROVIDER,
   BridgeRequest.JSON_PROPERTY_REGION
 })
@@ -40,9 +38,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class BridgeRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
-
-  public static final String JSON_PROPERTY_ERROR_HANDLER = "error_handler";
-  private Action errorHandler;
 
   public static final String JSON_PROPERTY_CLOUD_PROVIDER = "cloud_provider";
   private String cloudProvider;
@@ -77,33 +72,6 @@ public class BridgeRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
-  }
-
-
-  public BridgeRequest errorHandler(Action errorHandler) {
-    
-    this.errorHandler = errorHandler;
-    return this;
-  }
-
-   /**
-   * Get errorHandler
-   * @return errorHandler
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ERROR_HANDLER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Action getErrorHandler() {
-    return errorHandler;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERROR_HANDLER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorHandler(Action errorHandler) {
-    this.errorHandler = errorHandler;
   }
 
 
@@ -171,14 +139,13 @@ public class BridgeRequest {
     }
     BridgeRequest bridgeRequest = (BridgeRequest) o;
     return Objects.equals(this.name, bridgeRequest.name) &&
-        Objects.equals(this.errorHandler, bridgeRequest.errorHandler) &&
         Objects.equals(this.cloudProvider, bridgeRequest.cloudProvider) &&
         Objects.equals(this.region, bridgeRequest.region);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, errorHandler, cloudProvider, region);
+    return Objects.hash(name, cloudProvider, region);
   }
 
   @Override
@@ -186,7 +153,6 @@ public class BridgeRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class BridgeRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    errorHandler: ").append(toIndentedString(errorHandler)).append("\n");
     sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
     sb.append("}");

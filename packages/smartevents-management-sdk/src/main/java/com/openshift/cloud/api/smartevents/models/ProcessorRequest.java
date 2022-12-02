@@ -1,5 +1,5 @@
 /*
- * Red Hat Openshift SmartEvents Fleet Manager
+ * Red Hat Openshift SmartEvents Fleet Manager V2
  * The API exposed by the fleet manager of the SmartEvents service.
  *
  * The version of the OpenAPI document: 0.0.1
@@ -20,15 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.openshift.cloud.api.smartevents.models.Action;
-import com.openshift.cloud.api.smartevents.models.BaseFilter;
-import com.openshift.cloud.api.smartevents.models.Source;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -37,10 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   ProcessorRequest.JSON_PROPERTY_NAME,
-  ProcessorRequest.JSON_PROPERTY_FILTERS,
-  ProcessorRequest.JSON_PROPERTY_TRANSFORMATION_TEMPLATE,
-  ProcessorRequest.JSON_PROPERTY_ACTION,
-  ProcessorRequest.JSON_PROPERTY_SOURCE
+  ProcessorRequest.JSON_PROPERTY_FLOWS
 })
 @JsonTypeName("ProcessorRequest")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -48,17 +38,8 @@ public class ProcessorRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
-  public static final String JSON_PROPERTY_FILTERS = "filters";
-  private Set<BaseFilter> filters = null;
-
-  public static final String JSON_PROPERTY_TRANSFORMATION_TEMPLATE = "transformationTemplate";
-  private String transformationTemplate;
-
-  public static final String JSON_PROPERTY_ACTION = "action";
-  private Action action;
-
-  public static final String JSON_PROPERTY_SOURCE = "source";
-  private Source source;
+  public static final String JSON_PROPERTY_FLOWS = "flows";
+  private Object flows;
 
   public ProcessorRequest() { 
   }
@@ -90,120 +71,30 @@ public class ProcessorRequest {
   }
 
 
-  public ProcessorRequest filters(Set<BaseFilter> filters) {
+  public ProcessorRequest flows(Object flows) {
     
-    this.filters = filters;
-    return this;
-  }
-
-  public ProcessorRequest addFiltersItem(BaseFilter filtersItem) {
-    if (this.filters == null) {
-      this.filters = new LinkedHashSet<>();
-    }
-    this.filters.add(filtersItem);
+    this.flows = flows;
     return this;
   }
 
    /**
-   * Get filters
-   * @return filters
+   * Get flows
+   * @return flows
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_FILTERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_FLOWS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Set<BaseFilter> getFilters() {
-    return filters;
+  public Object getFlows() {
+    return flows;
   }
 
 
-  @JsonDeserialize(as = LinkedHashSet.class)
-  @JsonProperty(JSON_PROPERTY_FILTERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFilters(Set<BaseFilter> filters) {
-    this.filters = filters;
-  }
-
-
-  public ProcessorRequest transformationTemplate(String transformationTemplate) {
-    
-    this.transformationTemplate = transformationTemplate;
-    return this;
-  }
-
-   /**
-   * Get transformationTemplate
-   * @return transformationTemplate
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_TRANSFORMATION_TEMPLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getTransformationTemplate() {
-    return transformationTemplate;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TRANSFORMATION_TEMPLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransformationTemplate(String transformationTemplate) {
-    this.transformationTemplate = transformationTemplate;
-  }
-
-
-  public ProcessorRequest action(Action action) {
-    
-    this.action = action;
-    return this;
-  }
-
-   /**
-   * Get action
-   * @return action
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_ACTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Action getAction() {
-    return action;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ACTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAction(Action action) {
-    this.action = action;
-  }
-
-
-  public ProcessorRequest source(Source source) {
-    
-    this.source = source;
-    return this;
-  }
-
-   /**
-   * Get source
-   * @return source
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Source getSource() {
-    return source;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSource(Source source) {
-    this.source = source;
+  @JsonProperty(JSON_PROPERTY_FLOWS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setFlows(Object flows) {
+    this.flows = flows;
   }
 
 
@@ -217,15 +108,12 @@ public class ProcessorRequest {
     }
     ProcessorRequest processorRequest = (ProcessorRequest) o;
     return Objects.equals(this.name, processorRequest.name) &&
-        Objects.equals(this.filters, processorRequest.filters) &&
-        Objects.equals(this.transformationTemplate, processorRequest.transformationTemplate) &&
-        Objects.equals(this.action, processorRequest.action) &&
-        Objects.equals(this.source, processorRequest.source);
+        Objects.equals(this.flows, processorRequest.flows);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, filters, transformationTemplate, action, source);
+    return Objects.hash(name, flows);
   }
 
   @Override
@@ -233,10 +121,7 @@ public class ProcessorRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProcessorRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    filters: ").append(toIndentedString(filters)).append("\n");
-    sb.append("    transformationTemplate: ").append(toIndentedString(transformationTemplate)).append("\n");
-    sb.append("    action: ").append(toIndentedString(action)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    flows: ").append(toIndentedString(flows)).append("\n");
     sb.append("}");
     return sb.toString();
   }

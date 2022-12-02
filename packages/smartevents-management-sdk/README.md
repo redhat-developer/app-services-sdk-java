@@ -1,6 +1,6 @@
 # smartevents-management-sdk
 
-Red Hat Openshift SmartEvents Fleet Manager
+Red Hat Openshift SmartEvents Fleet Manager V2
 
 - API version: 0.0.1
 
@@ -117,30 +117,25 @@ All URIs are relative to *https://api.stage.openshift.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BridgesApi* | [**bridgesAPICreateBridge**](docs/BridgesApi.md#bridgesAPICreateBridge) | **POST** /api/smartevents_mgmt/v1/bridges | Create a Bridge instance
-*BridgesApi* | [**bridgesAPIDeleteBridge**](docs/BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Delete a Bridge instance
-*BridgesApi* | [**bridgesAPIGetBridge**](docs/BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Get a Bridge instance
-*BridgesApi* | [**bridgesAPIGetBridges**](docs/BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/smartevents_mgmt/v1/bridges | Get the list of Bridge instances
-*BridgesApi* | [**bridgesAPIUpdateBridge**](docs/BridgesApi.md#bridgesAPIUpdateBridge) | **PUT** /api/smartevents_mgmt/v1/bridges/{bridgeId} | Update a Bridge instance
-*CloudProvidersApi* | [**cloudProviderAPIGetCloudProvider**](docs/CloudProvidersApi.md#cloudProviderAPIGetCloudProvider) | **GET** /api/smartevents_mgmt/v1/cloud_providers/{id} | Get Cloud Provider.
-*CloudProvidersApi* | [**cloudProviderAPIListCloudProviderRegions**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviderRegions) | **GET** /api/smartevents_mgmt/v1/cloud_providers/{id}/regions | List Supported Cloud Regions.
-*CloudProvidersApi* | [**cloudProviderAPIListCloudProviders**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviders) | **GET** /api/smartevents_mgmt/v1/cloud_providers | List Supported Cloud Providers.
-*ErrorCatalogApi* | [**errorsAPIGetError**](docs/ErrorCatalogApi.md#errorsAPIGetError) | **GET** /api/smartevents_mgmt/v1/errors/{id} | Get an error from the error catalog.
-*ErrorCatalogApi* | [**errorsAPIGetErrors**](docs/ErrorCatalogApi.md#errorsAPIGetErrors) | **GET** /api/smartevents_mgmt/v1/errors | Get the list of errors.
-*ProcessorsApi* | [**processorsAPIAddProcessorToBridge**](docs/ProcessorsApi.md#processorsAPIAddProcessorToBridge) | **POST** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors | Create a Processor of a Bridge instance
-*ProcessorsApi* | [**processorsAPIDeleteProcessor**](docs/ProcessorsApi.md#processorsAPIDeleteProcessor) | **DELETE** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId} | Delete a Processor of a Bridge instance
-*ProcessorsApi* | [**processorsAPIGetProcessor**](docs/ProcessorsApi.md#processorsAPIGetProcessor) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId} | Get a Processor of a Bridge instance
-*ProcessorsApi* | [**processorsAPIListProcessors**](docs/ProcessorsApi.md#processorsAPIListProcessors) | **GET** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors | Get the list of Processors of a Bridge instance
-*ProcessorsApi* | [**processorsAPIUpdateProcessor**](docs/ProcessorsApi.md#processorsAPIUpdateProcessor) | **PUT** /api/smartevents_mgmt/v1/bridges/{bridgeId}/processors/{processorId} | Update a Processor instance Filter definition or Transformation template.
-*SchemaCatalogApi* | [**schemaAPIGetActionProcessorSchema**](docs/SchemaCatalogApi.md#schemaAPIGetActionProcessorSchema) | **GET** /api/smartevents_mgmt/v1/schemas/actions/{id} | Get action processor schema
-*SchemaCatalogApi* | [**schemaAPIGetCatalog**](docs/SchemaCatalogApi.md#schemaAPIGetCatalog) | **GET** /api/smartevents_mgmt/v1/schemas | Get processor catalog
-*SchemaCatalogApi* | [**schemaAPIGetSourceProcessorSchema**](docs/SchemaCatalogApi.md#schemaAPIGetSourceProcessorSchema) | **GET** /api/smartevents_mgmt/v1/schemas/sources/{id} | Get source processor schema
+*BridgesApi* | [**bridgesAPICreateBridge**](docs/BridgesApi.md#bridgesAPICreateBridge) | **POST** /api/smartevents_mgmt/v2/bridges | Create a Bridge instance
+*BridgesApi* | [**bridgesAPIDeleteBridge**](docs/BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Delete a Bridge instance
+*BridgesApi* | [**bridgesAPIGetBridge**](docs/BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Get a Bridge instance
+*BridgesApi* | [**bridgesAPIGetBridges**](docs/BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/smartevents_mgmt/v2/bridges | Get the list of Bridge instances
+*BridgesApi* | [**bridgesAPIUpdateBridge**](docs/BridgesApi.md#bridgesAPIUpdateBridge) | **PUT** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Update a Bridge instance
+*CloudProvidersApi* | [**cloudProviderAPIGetCloudProvider**](docs/CloudProvidersApi.md#cloudProviderAPIGetCloudProvider) | **GET** /api/smartevents_mgmt/v2/cloud_providers/{id} | Get Cloud Provider.
+*CloudProvidersApi* | [**cloudProviderAPIListCloudProviderRegions**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviderRegions) | **GET** /api/smartevents_mgmt/v2/cloud_providers/{id}/regions | List Supported Cloud Regions.
+*CloudProvidersApi* | [**cloudProviderAPIListCloudProviders**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviders) | **GET** /api/smartevents_mgmt/v2/cloud_providers | List Supported Cloud Providers.
+*ErrorCatalogApi* | [**errorsAPIGetError**](docs/ErrorCatalogApi.md#errorsAPIGetError) | **GET** /api/smartevents_mgmt/v2/errors/{id} | Get an error from the error catalog.
+*ErrorCatalogApi* | [**errorsAPIGetErrors**](docs/ErrorCatalogApi.md#errorsAPIGetErrors) | **GET** /api/smartevents_mgmt/v2/errors | Get the list of errors.
+*ProcessorsApi* | [**processorsAPICreateProcessor**](docs/ProcessorsApi.md#processorsAPICreateProcessor) | **POST** /api/smartevents_mgmt/v2/bridges/{bridgeId}/processors | Create a Processor of a Bridge instance
+*ProcessorsApi* | [**processorsAPIDeleteProcessor**](docs/ProcessorsApi.md#processorsAPIDeleteProcessor) | **DELETE** /api/smartevents_mgmt/v2/bridges/{bridgeId}/processors/{processorId} | Delete a Processor of a Bridge instance
+*ProcessorsApi* | [**processorsAPIGetProcessor**](docs/ProcessorsApi.md#processorsAPIGetProcessor) | **GET** /api/smartevents_mgmt/v2/bridges/{bridgeId}/processors/{processorId} | Get a Processor of a Bridge instance
+*ProcessorsApi* | [**processorsAPIGetProcessors**](docs/ProcessorsApi.md#processorsAPIGetProcessors) | **GET** /api/smartevents_mgmt/v2/bridges/{bridgeId}/processors | Get the list of Processors of a Bridge instance
+*ProcessorsApi* | [**processorsAPIUpdateProcessor**](docs/ProcessorsApi.md#processorsAPIUpdateProcessor) | **PUT** /api/smartevents_mgmt/v2/bridges/{bridgeId}/processors/{processorId} | Update a Processor instance.
 
 
 ## Documentation for Models
 
- - [Action](docs/Action.md)
- - [BaseFilter](docs/BaseFilter.md)
  - [BridgeError](docs/BridgeError.md)
  - [BridgeErrorInstance](docs/BridgeErrorInstance.md)
  - [BridgeErrorType](docs/BridgeErrorType.md)
@@ -161,13 +156,9 @@ Class | Method | HTTP request | Description
  - [ObjectReference](docs/ObjectReference.md)
  - [ProcessingErrorListResponse](docs/ProcessingErrorListResponse.md)
  - [ProcessingErrorResponse](docs/ProcessingErrorResponse.md)
- - [ProcessorCatalogResponse](docs/ProcessorCatalogResponse.md)
  - [ProcessorListResponse](docs/ProcessorListResponse.md)
  - [ProcessorRequest](docs/ProcessorRequest.md)
  - [ProcessorResponse](docs/ProcessorResponse.md)
- - [ProcessorSchemaEntryResponse](docs/ProcessorSchemaEntryResponse.md)
- - [ProcessorType](docs/ProcessorType.md)
- - [Source](docs/Source.md)
 
 
 ## Documentation for Authorization

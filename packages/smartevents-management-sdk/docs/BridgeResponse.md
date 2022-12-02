@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **status** | [**ManagedResourceStatus**](ManagedResourceStatus.md) |  | 
 **owner** | **String** |  | 
 **endpoint** | **String** |  |  [optional]
-**errorHandler** | [**Action**](Action.md) |  |  [optional]
 **cloudProvider** | **String** |  |  [optional]
 **region** | **String** |  |  [optional]
 **statusMessage** | **String** |  |  [optional]
