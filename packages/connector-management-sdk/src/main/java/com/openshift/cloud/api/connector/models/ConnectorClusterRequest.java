@@ -23,6 +23,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.openshift.cloud.api.connector.models.ConnectorClusterRequestMeta;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -31,13 +34,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @ApiModel(description = "Schema for the request to update a data plane cluster's name")
 @JsonPropertyOrder({
-  ConnectorClusterRequest.JSON_PROPERTY_NAME
+  ConnectorClusterRequest.JSON_PROPERTY_NAME,
+  ConnectorClusterRequest.JSON_PROPERTY_ANNOTATIONS
 })
 @JsonTypeName("ConnectorClusterRequest")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorClusterRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
+  private Map<String, String> annotations = null;
 
   public ConnectorClusterRequest() { 
   }
@@ -69,6 +76,41 @@ public class ConnectorClusterRequest {
   }
 
 
+  public ConnectorClusterRequest annotations(Map<String, String> annotations) {
+    
+    this.annotations = annotations;
+    return this;
+  }
+
+  public ConnectorClusterRequest putAnnotationsItem(String key, String annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new HashMap<>();
+    }
+    this.annotations.put(key, annotationsItem);
+    return this;
+  }
+
+   /**
+   * Name-value string annotations for resource
+   * @return annotations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name-value string annotations for resource")
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getAnnotations() {
+    return annotations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAnnotations(Map<String, String> annotations) {
+    this.annotations = annotations;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -78,12 +120,13 @@ public class ConnectorClusterRequest {
       return false;
     }
     ConnectorClusterRequest connectorClusterRequest = (ConnectorClusterRequest) o;
-    return Objects.equals(this.name, connectorClusterRequest.name);
+    return Objects.equals(this.name, connectorClusterRequest.name) &&
+        Objects.equals(this.annotations, connectorClusterRequest.annotations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, annotations);
   }
 
   @Override
@@ -91,6 +134,7 @@ public class ConnectorClusterRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectorClusterRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

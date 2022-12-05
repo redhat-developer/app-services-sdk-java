@@ -24,6 +24,9 @@ import com.openshift.cloud.api.connector.models.Channel;
 import com.openshift.cloud.api.connector.models.ConnectorDesiredState;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -35,7 +38,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorRequestMeta.JSON_PROPERTY_CONNECTOR_TYPE_ID,
   ConnectorRequestMeta.JSON_PROPERTY_NAMESPACE_ID,
   ConnectorRequestMeta.JSON_PROPERTY_CHANNEL,
-  ConnectorRequestMeta.JSON_PROPERTY_DESIRED_STATE
+  ConnectorRequestMeta.JSON_PROPERTY_DESIRED_STATE,
+  ConnectorRequestMeta.JSON_PROPERTY_ANNOTATIONS
 })
 @JsonTypeName("ConnectorRequestMeta")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -54,6 +58,9 @@ public class ConnectorRequestMeta {
 
   public static final String JSON_PROPERTY_DESIRED_STATE = "desired_state";
   private ConnectorDesiredState desiredState;
+
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
+  private Map<String, String> annotations = null;
 
   public ConnectorRequestMeta() { 
   }
@@ -193,6 +200,41 @@ public class ConnectorRequestMeta {
   }
 
 
+  public ConnectorRequestMeta annotations(Map<String, String> annotations) {
+    
+    this.annotations = annotations;
+    return this;
+  }
+
+  public ConnectorRequestMeta putAnnotationsItem(String key, String annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new HashMap<>();
+    }
+    this.annotations.put(key, annotationsItem);
+    return this;
+  }
+
+   /**
+   * Name-value string annotations for resource
+   * @return annotations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name-value string annotations for resource")
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getAnnotations() {
+    return annotations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAnnotations(Map<String, String> annotations) {
+    this.annotations = annotations;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -206,12 +248,13 @@ public class ConnectorRequestMeta {
         Objects.equals(this.connectorTypeId, connectorRequestMeta.connectorTypeId) &&
         Objects.equals(this.namespaceId, connectorRequestMeta.namespaceId) &&
         Objects.equals(this.channel, connectorRequestMeta.channel) &&
-        Objects.equals(this.desiredState, connectorRequestMeta.desiredState);
+        Objects.equals(this.desiredState, connectorRequestMeta.desiredState) &&
+        Objects.equals(this.annotations, connectorRequestMeta.annotations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, connectorTypeId, namespaceId, channel, desiredState);
+    return Objects.hash(name, connectorTypeId, namespaceId, channel, desiredState, annotations);
   }
 
   @Override
@@ -223,6 +266,7 @@ public class ConnectorRequestMeta {
     sb.append("    namespaceId: ").append(toIndentedString(namespaceId)).append("\n");
     sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
     sb.append("    desiredState: ").append(toIndentedString(desiredState)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

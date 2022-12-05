@@ -22,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -29,13 +32,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * ConnectorClusterRequestMeta
  */
 @JsonPropertyOrder({
-  ConnectorClusterRequestMeta.JSON_PROPERTY_NAME
+  ConnectorClusterRequestMeta.JSON_PROPERTY_NAME,
+  ConnectorClusterRequestMeta.JSON_PROPERTY_ANNOTATIONS
 })
 @JsonTypeName("ConnectorClusterRequestMeta")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ConnectorClusterRequestMeta {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
+  private Map<String, String> annotations = null;
 
   public ConnectorClusterRequestMeta() { 
   }
@@ -67,6 +74,41 @@ public class ConnectorClusterRequestMeta {
   }
 
 
+  public ConnectorClusterRequestMeta annotations(Map<String, String> annotations) {
+    
+    this.annotations = annotations;
+    return this;
+  }
+
+  public ConnectorClusterRequestMeta putAnnotationsItem(String key, String annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new HashMap<>();
+    }
+    this.annotations.put(key, annotationsItem);
+    return this;
+  }
+
+   /**
+   * Name-value string annotations for resource
+   * @return annotations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name-value string annotations for resource")
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getAnnotations() {
+    return annotations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAnnotations(Map<String, String> annotations) {
+    this.annotations = annotations;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -76,12 +118,13 @@ public class ConnectorClusterRequestMeta {
       return false;
     }
     ConnectorClusterRequestMeta connectorClusterRequestMeta = (ConnectorClusterRequestMeta) o;
-    return Objects.equals(this.name, connectorClusterRequestMeta.name);
+    return Objects.equals(this.name, connectorClusterRequestMeta.name) &&
+        Objects.equals(this.annotations, connectorClusterRequestMeta.annotations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, annotations);
   }
 
   @Override
@@ -89,6 +132,7 @@ public class ConnectorClusterRequestMeta {
     StringBuilder sb = new StringBuilder();
     sb.append("class ConnectorClusterRequestMeta {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

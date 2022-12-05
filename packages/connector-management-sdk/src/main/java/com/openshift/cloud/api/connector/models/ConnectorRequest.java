@@ -29,6 +29,9 @@ import com.openshift.cloud.api.connector.models.SchemaRegistryConnectionSettings
 import com.openshift.cloud.api.connector.models.ServiceAccount;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -41,6 +44,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorRequest.JSON_PROPERTY_NAMESPACE_ID,
   ConnectorRequest.JSON_PROPERTY_CHANNEL,
   ConnectorRequest.JSON_PROPERTY_DESIRED_STATE,
+  ConnectorRequest.JSON_PROPERTY_ANNOTATIONS,
   ConnectorRequest.JSON_PROPERTY_KAFKA,
   ConnectorRequest.JSON_PROPERTY_SERVICE_ACCOUNT,
   ConnectorRequest.JSON_PROPERTY_SCHEMA_REGISTRY,
@@ -63,6 +67,9 @@ public class ConnectorRequest {
 
   public static final String JSON_PROPERTY_DESIRED_STATE = "desired_state";
   private ConnectorDesiredState desiredState;
+
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
+  private Map<String, String> annotations = null;
 
   public static final String JSON_PROPERTY_KAFKA = "kafka";
   private KafkaConnectionSettings kafka;
@@ -214,6 +221,41 @@ public class ConnectorRequest {
   }
 
 
+  public ConnectorRequest annotations(Map<String, String> annotations) {
+    
+    this.annotations = annotations;
+    return this;
+  }
+
+  public ConnectorRequest putAnnotationsItem(String key, String annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new HashMap<>();
+    }
+    this.annotations.put(key, annotationsItem);
+    return this;
+  }
+
+   /**
+   * Name-value string annotations for resource
+   * @return annotations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name-value string annotations for resource")
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getAnnotations() {
+    return annotations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAnnotations(Map<String, String> annotations) {
+    this.annotations = annotations;
+  }
+
+
   public ConnectorRequest kafka(KafkaConnectionSettings kafka) {
     
     this.kafka = kafka;
@@ -336,6 +378,7 @@ public class ConnectorRequest {
         Objects.equals(this.namespaceId, connectorRequest.namespaceId) &&
         Objects.equals(this.channel, connectorRequest.channel) &&
         Objects.equals(this.desiredState, connectorRequest.desiredState) &&
+        Objects.equals(this.annotations, connectorRequest.annotations) &&
         Objects.equals(this.kafka, connectorRequest.kafka) &&
         Objects.equals(this.serviceAccount, connectorRequest.serviceAccount) &&
         Objects.equals(this.schemaRegistry, connectorRequest.schemaRegistry) &&
@@ -344,7 +387,7 @@ public class ConnectorRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, connectorTypeId, namespaceId, channel, desiredState, kafka, serviceAccount, schemaRegistry, connector);
+    return Objects.hash(name, connectorTypeId, namespaceId, channel, desiredState, annotations, kafka, serviceAccount, schemaRegistry, connector);
   }
 
   @Override
@@ -356,6 +399,7 @@ public class ConnectorRequest {
     sb.append("    namespaceId: ").append(toIndentedString(namespaceId)).append("\n");
     sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
     sb.append("    desiredState: ").append(toIndentedString(desiredState)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
     sb.append("    kafka: ").append(toIndentedString(kafka)).append("\n");
     sb.append("    serviceAccount: ").append(toIndentedString(serviceAccount)).append("\n");
     sb.append("    schemaRegistry: ").append(toIndentedString(schemaRegistry)).append("\n");

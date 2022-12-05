@@ -27,6 +27,9 @@ import com.openshift.cloud.api.connector.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -41,6 +44,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorCluster.JSON_PROPERTY_CREATED_AT,
   ConnectorCluster.JSON_PROPERTY_MODIFIED_AT,
   ConnectorCluster.JSON_PROPERTY_NAME,
+  ConnectorCluster.JSON_PROPERTY_ANNOTATIONS,
   ConnectorCluster.JSON_PROPERTY_STATUS
 })
 @JsonTypeName("ConnectorCluster")
@@ -66,6 +70,9 @@ public class ConnectorCluster {
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
+  private Map<String, String> annotations = null;
 
   public static final String JSON_PROPERTY_STATUS = "status";
   private ConnectorClusterStatusStatus status;
@@ -262,6 +269,41 @@ public class ConnectorCluster {
   }
 
 
+  public ConnectorCluster annotations(Map<String, String> annotations) {
+    
+    this.annotations = annotations;
+    return this;
+  }
+
+  public ConnectorCluster putAnnotationsItem(String key, String annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new HashMap<>();
+    }
+    this.annotations.put(key, annotationsItem);
+    return this;
+  }
+
+   /**
+   * Name-value string annotations for resource
+   * @return annotations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name-value string annotations for resource")
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getAnnotations() {
+    return annotations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAnnotations(Map<String, String> annotations) {
+    this.annotations = annotations;
+  }
+
+
   public ConnectorCluster status(ConnectorClusterStatusStatus status) {
     
     this.status = status;
@@ -305,12 +347,13 @@ public class ConnectorCluster {
         Objects.equals(this.createdAt, connectorCluster.createdAt) &&
         Objects.equals(this.modifiedAt, connectorCluster.modifiedAt) &&
         Objects.equals(this.name, connectorCluster.name) &&
+        Objects.equals(this.annotations, connectorCluster.annotations) &&
         Objects.equals(this.status, connectorCluster.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, owner, createdAt, modifiedAt, name, status);
+    return Objects.hash(id, kind, href, owner, createdAt, modifiedAt, name, annotations, status);
   }
 
   @Override
@@ -324,6 +367,7 @@ public class ConnectorCluster {
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    modifiedAt: ").append(toIndentedString(modifiedAt)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
