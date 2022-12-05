@@ -101,11 +101,11 @@ public class ConnectorNamespaceRequest {
   }
 
    /**
-   * Get annotations
+   * Name-value string annotations for resource
    * @return annotations
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Name-value string annotations for resource")
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

@@ -26,7 +26,9 @@ import com.openshift.cloud.api.connector.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -44,6 +46,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorType.JSON_PROPERTY_DESCRIPTION,
   ConnectorType.JSON_PROPERTY_ICON_HREF,
   ConnectorType.JSON_PROPERTY_LABELS,
+  ConnectorType.JSON_PROPERTY_ANNOTATIONS,
+  ConnectorType.JSON_PROPERTY_FEATURED_RANK,
   ConnectorType.JSON_PROPERTY_CAPABILITIES,
   ConnectorType.JSON_PROPERTY_SCHEMA
 })
@@ -76,6 +80,12 @@ public class ConnectorType {
 
   public static final String JSON_PROPERTY_LABELS = "labels";
   private List<String> labels = null;
+
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
+  private Map<String, String> annotations = null;
+
+  public static final String JSON_PROPERTY_FEATURED_RANK = "featured_rank";
+  private Integer featuredRank;
 
   public static final String JSON_PROPERTY_CAPABILITIES = "capabilities";
   private List<String> capabilities = null;
@@ -345,6 +355,68 @@ public class ConnectorType {
   }
 
 
+  public ConnectorType annotations(Map<String, String> annotations) {
+    
+    this.annotations = annotations;
+    return this;
+  }
+
+  public ConnectorType putAnnotationsItem(String key, String annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new HashMap<>();
+    }
+    this.annotations.put(key, annotationsItem);
+    return this;
+  }
+
+   /**
+   * Name-value string annotations for resource
+   * @return annotations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name-value string annotations for resource")
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getAnnotations() {
+    return annotations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAnnotations(Map<String, String> annotations) {
+    this.annotations = annotations;
+  }
+
+
+  public ConnectorType featuredRank(Integer featuredRank) {
+    
+    this.featuredRank = featuredRank;
+    return this;
+  }
+
+   /**
+   * Ranking for featured connectors
+   * @return featuredRank
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Ranking for featured connectors")
+  @JsonProperty(JSON_PROPERTY_FEATURED_RANK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getFeaturedRank() {
+    return featuredRank;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FEATURED_RANK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFeaturedRank(Integer featuredRank) {
+    this.featuredRank = featuredRank;
+  }
+
+
   public ConnectorType capabilities(List<String> capabilities) {
     
     this.capabilities = capabilities;
@@ -360,11 +432,11 @@ public class ConnectorType {
   }
 
    /**
-   * The capabilities supported by the conenctor
+   * The capabilities supported by the connector
    * @return capabilities
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The capabilities supported by the conenctor")
+  @ApiModelProperty(value = "The capabilities supported by the connector")
   @JsonProperty(JSON_PROPERTY_CAPABILITIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -425,13 +497,15 @@ public class ConnectorType {
         Objects.equals(this.description, connectorType.description) &&
         Objects.equals(this.iconHref, connectorType.iconHref) &&
         Objects.equals(this.labels, connectorType.labels) &&
+        Objects.equals(this.annotations, connectorType.annotations) &&
+        Objects.equals(this.featuredRank, connectorType.featuredRank) &&
         Objects.equals(this.capabilities, connectorType.capabilities) &&
         Objects.equals(this.schema, connectorType.schema);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, name, version, channels, description, iconHref, labels, capabilities, schema);
+    return Objects.hash(id, kind, href, name, version, channels, description, iconHref, labels, annotations, featuredRank, capabilities, schema);
   }
 
   @Override
@@ -447,6 +521,8 @@ public class ConnectorType {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    iconHref: ").append(toIndentedString(iconHref)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
+    sb.append("    featuredRank: ").append(toIndentedString(featuredRank)).append("\n");
     sb.append("    capabilities: ").append(toIndentedString(capabilities)).append("\n");
     sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
     sb.append("}");

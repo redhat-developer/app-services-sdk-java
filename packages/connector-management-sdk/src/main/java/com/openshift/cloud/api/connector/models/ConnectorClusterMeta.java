@@ -25,6 +25,9 @@ import com.openshift.cloud.api.connector.models.ObjectMeta;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -35,7 +38,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ConnectorClusterMeta.JSON_PROPERTY_OWNER,
   ConnectorClusterMeta.JSON_PROPERTY_CREATED_AT,
   ConnectorClusterMeta.JSON_PROPERTY_MODIFIED_AT,
-  ConnectorClusterMeta.JSON_PROPERTY_NAME
+  ConnectorClusterMeta.JSON_PROPERTY_NAME,
+  ConnectorClusterMeta.JSON_PROPERTY_ANNOTATIONS
 })
 @JsonTypeName("ConnectorClusterMeta")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -51,6 +55,9 @@ public class ConnectorClusterMeta {
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
+  private Map<String, String> annotations = null;
 
   public ConnectorClusterMeta() { 
   }
@@ -163,6 +170,41 @@ public class ConnectorClusterMeta {
   }
 
 
+  public ConnectorClusterMeta annotations(Map<String, String> annotations) {
+    
+    this.annotations = annotations;
+    return this;
+  }
+
+  public ConnectorClusterMeta putAnnotationsItem(String key, String annotationsItem) {
+    if (this.annotations == null) {
+      this.annotations = new HashMap<>();
+    }
+    this.annotations.put(key, annotationsItem);
+    return this;
+  }
+
+   /**
+   * Name-value string annotations for resource
+   * @return annotations
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Name-value string annotations for resource")
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Map<String, String> getAnnotations() {
+    return annotations;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAnnotations(Map<String, String> annotations) {
+    this.annotations = annotations;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -175,12 +217,13 @@ public class ConnectorClusterMeta {
     return Objects.equals(this.owner, connectorClusterMeta.owner) &&
         Objects.equals(this.createdAt, connectorClusterMeta.createdAt) &&
         Objects.equals(this.modifiedAt, connectorClusterMeta.modifiedAt) &&
-        Objects.equals(this.name, connectorClusterMeta.name);
+        Objects.equals(this.name, connectorClusterMeta.name) &&
+        Objects.equals(this.annotations, connectorClusterMeta.annotations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(owner, createdAt, modifiedAt, name);
+    return Objects.hash(owner, createdAt, modifiedAt, name, annotations);
   }
 
   @Override
@@ -191,6 +234,7 @@ public class ConnectorClusterMeta {
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    modifiedAt: ").append(toIndentedString(modifiedAt)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
     sb.append("}");
     return sb.toString();
   }

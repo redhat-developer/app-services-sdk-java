@@ -158,6 +158,44 @@ paths:
                   $ref: "#/components/examples/500Example"
           description: Unexpected error occurred
 
+  "/api/connector_mgmt/v1/kafka_connector_types/labels":
+    get:
+      tags:
+        - Connector Types
+      security:
+        - Bearer: [ ]
+      operationId: getConnectorTypeLabels
+      summary: Returns a list of connector type labels
+      description: Returns a list of connector type labels
+      parameters:
+        - $ref: "#/components/parameters/orderBy"
+        - $ref: "#/components/parameters/search"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectorTypeLabelCountList"
+          description: A list of connector type labels
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                401Example:
+                  $ref: "#/components/examples/401Example"
+          description: Auth token is invalid
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                500Example:
+                  $ref: "#/components/examples/500Example"
+          description: Unexpected error occurred
+
   #
   # Connector
   #
@@ -1122,6 +1160,12 @@ components:
     # Connector Cluster
     #
 
+    ConnectorResourceAnnotations:
+      description: Name-value string annotations for resource
+      type: object
+      additionalProperties:
+        type: "string"
+
     ConnectorClusterState:
       type: string
       enum:
@@ -1130,9 +1174,12 @@ components:
         - deleting
 
     ConnectorClusterRequestMeta:
+      type: object
       properties:
         name:
           type: string
+        annotations:
+          $ref: "#/components/schemas/ConnectorResourceAnnotations"
 
     ConnectorClusterRequest:
       description: "Schema for the request to update a data plane cluster's name"
@@ -1221,6 +1268,7 @@ components:
           type: object
 
     ConnectorRequestMeta:
+      type: object
       required:
         - name
         - connector_type_id
@@ -1237,6 +1285,9 @@ components:
           $ref: "#/components/schemas/Channel"
         desired_state:
           $ref: "#/components/schemas/ConnectorDesiredState"
+        annotations:
+          $ref: "#/components/schemas/ConnectorResourceAnnotations"
+
 
     ConnectorRequest:
       allOf:
@@ -1315,8 +1366,14 @@ components:
               type: array
               items:
                 type: string
+            annotations:
+              $ref: "#/components/schemas/ConnectorResourceAnnotations"
+            featured_rank:
+              description: Ranking for featured connectors
+              type: integer
+              format: int32
             capabilities:
-              description: The capabilities supported by the conenctor
+              description: The capabilities supported by the connector
               type: array
               items:
                 type: string
@@ -1336,6 +1393,29 @@ components:
               items:
                 $ref: "#/components/schemas/ConnectorType"
 
+    ConnectorTypeLabelCount:
+      description: Represents a connector type label and the number of types with that label
+      required:
+        - label
+        - count
+      type: object
+      properties:
+        label:
+          description: Name of the connector type label.
+          type: string
+        count:
+          description: Number of connector types with this label.
+          type: integer
+          format: int32
+
+    ConnectorTypeLabelCountList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConnectorTypeLabelCount"
+
     #
     # Connector Namespaces
     #
@@ -1347,9 +1427,7 @@ components:
           pattern: "^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$"
           description: Namespace name must match pattern `^(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?$`, or it may be empty to be auto-generated.
         annotations:
-          type: object
-          additionalProperties:
-            type: "string"
+          $ref: "#/components/schemas/ConnectorResourceAnnotations"
 
     ConnectorNamespaceQuota:
       type: object
@@ -1560,7 +1638,7 @@ components:
 
         * Cluster: id, created_at, updated_at, owner, organisation_id, name, state, client_id
         * Namespace: id, created_at, updated_at, name, cluster_id, owner, expiration, tenant_user_id, tenant_organisation_id, state
-        * Connector Types: id, created_at, updated_at, version, name, description, label, channel
+        * Connector Types: id, created_at, updated_at, version, name, description, label, channel, featured_rank, pricing_tier
         * Connectors: id, created_at, updated_at, name, owner, organisation_id, connector_type_id, desired_state, state, channel, namespace_id, kafka_id, kafka_bootstrap_server, service_account_client_id, schema_registry_id, schema_registry_url
 
         Allowed operators are `<>`, `=`, `LIKE`, or `ILIKE`.
@@ -1624,6 +1702,8 @@ components:
         icon_href: "/api/connector_mgmt/v1/kafka_connector_types/log_sink.png"
         labels:
           - sink
+        annotations:
+          - "cos.bf2.org/name": value
         capabilities:
           - data_shape
           - processors
@@ -1749,12 +1829,12 @@ components:
         name: "MyNamespace"
         cluster_id: "9bsv0s7tne7g02gh5g4g"
         annotations:
-          "connector_mgmt.bf2.org/profile": "default-profile"
+          "cos.bf2.org/profile": "default-profile"
     ConnectorNamespaceEvalCreateExample:
       value:
         name: "MyEvalNamespace"
         annotations:
-          "connector_mgmt.bf2.org/profile": "evaluation-profile"
+          "cos.bf2.org/profile": "evaluation-profile"
     400CreationExample:
       value:
         id: "103"
