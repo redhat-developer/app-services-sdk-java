@@ -896,6 +896,79 @@ paths:
                   $ref: '#/components/examples/500Example'
       parameters:
         - $ref: "#/components/parameters/id"
+  /api/kafkas_mgmt/v1/clusters:
+    post:
+      description: Register enterprise OSD cluster
+      operationId: registerEnterpriseOsdCluster
+      requestBody:
+        description: Enterprise OSD cluster details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnterpriseOsdClusterPayload'
+            examples:
+              USRegion:
+                $ref: '#/components/examples/USRegionExample'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KafkaRequest' # change me
+              examples:
+                KafkaRequestPostResponseExample:
+                  $ref: '#/components/examples/KafkaRequestExample' # change me
+          description: Enterprise cluster registered
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                400InvalidClusterIdExample:
+                  $ref: '#/components/examples/400InvalidClusterIdExample'
+                400MInvalidExternalClusterIdExample:
+                  $ref: '#/components/examples/400MInvalidExternalClusterIdExample'
+          description: Validation errors occurred
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                401Example:
+                  $ref: '#/components/examples/401Example'
+          description: Auth token is invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                403Example:
+                  $ref: '#/components/examples/403Example'
+          description: User is not authorized to access the service
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                409ClusterIdConflictExample:
+                  $ref: '#/components/examples/409ClusterIdConflictExample'
+          description: A conflict has been detected in the creation of this resource
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                500Example:
+                  $ref: '#/components/examples/500Example'
+          description: An unexpected error occurred while registering Enterprise cluster
+      security:
+        - Bearer: [ ]
 
 components:
   schemas:
@@ -1549,6 +1622,48 @@ components:
           description: Whether connection reauthentication is enabled or not. If set to true, connection reauthentication on the Kafka instance will be required every 5 minutes.
           type: boolean
           nullable: true
+    EnterpriseOsdClusterPayload:
+      description: Schema for the request body sent to /clusters POST
+      required:
+        - cluster_id
+        - cluster_external_id
+        - cluster_ingress_dns_name
+      type: object
+      properties:
+        cluster_id:
+          description: OSD cluster ID
+          type: string
+        cluster_external_id:
+          description: external cluster ID. Can be obtained from the response JSON of ocm get /api/clusters_mgmt/v1/clusters/<cluster_id>
+          type: string
+        cluster_ingress_dns_name:
+          description: dns name of the cluster. Can be obtained from the response JSON of the /api/clusters_mgmt/v1/clusters/<cluster_id>/ingresses (dns_name)
+          type: string
+    EnterpriseCluster:
+      description: Enterprise cluster registration endpoint response
+      allOf:
+        - type: object
+          properties:
+            cluster_id:
+              description: 'ocm cluster id of the registered Enterprise cluster'
+              type: string
+            status:
+              description: 'status of registered Enterprise cluster'
+              type: string
+            fleetshard_parameters:
+              type: array
+              items:
+                allOf:
+                  - $ref: "#/components/schemas/FleetshardParameter"
+
+    FleetshardParameter:
+      description: "Fleetshard parameter consumed by enterprise cluster"
+      type: object
+      properties:
+        id:
+          type: string
+        value:
+          type: string
 
   parameters:
     id:
@@ -1945,6 +2060,22 @@ components:
         code: "KAFKAS-MGMT-21"
         reason: "missing path parameter: kafka id"
         operation_id: "1lWDGuybIrEnxrAem724gqkkiDv"
+    400InvalidClusterIdExample:
+      value:
+        id: "45"
+        kind: "Error"
+        href: "/api/kafkas_mgmt/v1/errors/45"
+        code: "KAFKAS-MGMT-45"
+        reason: "Enterprise cluster ID is invalid"
+        operation_id: "1lWDGuybIrEnxrAem724gqkkiDv"
+    400MInvalidExternalClusterIdExample:
+      value:
+        id: "46"
+        kind: "Error"
+        href: "/api/kafkas_mgmt/v1/errors/46"
+        code: "KAFKAS-MGMT-46"
+        reason: "Enterprise external cluster ID is invalid"
+        operation_id: "1lWDGuybIrEnxrAem724gqkkiDv"
     404Example:
       value:
         id: "7"
@@ -1999,6 +2130,14 @@ components:
         href: "/api/kafkas_mgmt/v1/errors/36"
         code: "KAFKAS-MGMT-36"
         reason: "Kafka cluster name is already used"
+        operation_id: "6kY0UiEkzkXCzWPeI2oYehd3ED"
+    409ClusterIdConflictExample:
+      value:
+        id: "44"
+        kind: "Error"
+        href: "/api/kafkas_mgmt/v1/errors/44"
+        code: "KAFKAS-MGMT-44"
+        reason: "Enterprise cluster ID is already used"
         operation_id: "6kY0UiEkzkXCzWPeI2oYehd3ED"
     500Example:
       value:

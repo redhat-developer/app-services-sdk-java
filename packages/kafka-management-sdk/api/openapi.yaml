@@ -1199,6 +1199,81 @@ paths:
       security:
       - Bearer: []
       x-accepts: application/json
+  /api/kafkas_mgmt/v1/clusters:
+    post:
+      description: Register enterprise OSD cluster
+      operationId: registerEnterpriseOsdCluster
+      requestBody:
+        content:
+          application/json:
+            examples:
+              USRegion:
+                $ref: '#/components/examples/USRegionExample'
+            schema:
+              $ref: '#/components/schemas/EnterpriseOsdClusterPayload'
+        description: Enterprise OSD cluster details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                KafkaRequestPostResponseExample:
+                  $ref: '#/components/examples/KafkaRequestExample'
+              schema:
+                $ref: '#/components/schemas/KafkaRequest'
+          description: Enterprise cluster registered
+        "400":
+          content:
+            application/json:
+              examples:
+                "400InvalidClusterIdExample":
+                  $ref: '#/components/examples/400InvalidClusterIdExample'
+                "400MInvalidExternalClusterIdExample":
+                  $ref: '#/components/examples/400MInvalidExternalClusterIdExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Validation errors occurred
+        "401":
+          content:
+            application/json:
+              examples:
+                "401Example":
+                  $ref: '#/components/examples/401Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Auth token is invalid
+        "403":
+          content:
+            application/json:
+              examples:
+                "403Example":
+                  $ref: '#/components/examples/403Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User is not authorized to access the service
+        "409":
+          content:
+            application/json:
+              examples:
+                "409ClusterIdConflictExample":
+                  $ref: '#/components/examples/409ClusterIdConflictExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: A conflict has been detected in the creation of this resource
+        "500":
+          content:
+            application/json:
+              examples:
+                "500Example":
+                  $ref: '#/components/examples/500Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: An unexpected error occurred while registering Enterprise cluster
+      security:
+      - Bearer: []
+      x-contentType: application/json
+      x-accepts: application/json
 components:
   examples:
     USRegionExample:
@@ -1435,6 +1510,22 @@ components:
         code: KAFKAS-MGMT-21
         reason: 'missing path parameter: kafka id'
         operation_id: 1lWDGuybIrEnxrAem724gqkkiDv
+    "400InvalidClusterIdExample":
+      value:
+        id: "45"
+        kind: Error
+        href: /api/kafkas_mgmt/v1/errors/45
+        code: KAFKAS-MGMT-45
+        reason: Enterprise cluster ID is invalid
+        operation_id: 1lWDGuybIrEnxrAem724gqkkiDv
+    "400MInvalidExternalClusterIdExample":
+      value:
+        id: "46"
+        kind: Error
+        href: /api/kafkas_mgmt/v1/errors/46
+        code: KAFKAS-MGMT-46
+        reason: Enterprise external cluster ID is invalid
+        operation_id: 1lWDGuybIrEnxrAem724gqkkiDv
     "404Example":
       value:
         id: "7"
@@ -1490,6 +1581,14 @@ components:
         href: /api/kafkas_mgmt/v1/errors/36
         code: KAFKAS-MGMT-36
         reason: Kafka cluster name is already used
+        operation_id: 6kY0UiEkzkXCzWPeI2oYehd3ED
+    "409ClusterIdConflictExample":
+      value:
+        id: "44"
+        kind: Error
+        href: /api/kafkas_mgmt/v1/errors/44
+        code: KAFKAS-MGMT-44
+        reason: Enterprise cluster ID is already used
         operation_id: 6kY0UiEkzkXCzWPeI2oYehd3ED
     "500Example":
       value:
@@ -2100,6 +2199,41 @@ components:
           nullable: true
           type: boolean
       type: object
+    EnterpriseOsdClusterPayload:
+      description: Schema for the request body sent to /clusters POST
+      example:
+        cluster_id: cluster_id
+        cluster_external_id: cluster_external_id
+        cluster_ingress_dns_name: cluster_ingress_dns_name
+      properties:
+        cluster_id:
+          description: OSD cluster ID
+          type: string
+        cluster_external_id:
+          description: external cluster ID. Can be obtained from the response JSON
+            of ocm get /api/clusters_mgmt/v1/clusters/<cluster_id>
+          type: string
+        cluster_ingress_dns_name:
+          description: dns name of the cluster. Can be obtained from the response
+            JSON of the /api/clusters_mgmt/v1/clusters/<cluster_id>/ingresses (dns_name)
+          type: string
+      required:
+      - cluster_external_id
+      - cluster_id
+      - cluster_ingress_dns_name
+      type: object
+    EnterpriseCluster:
+      allOf:
+      - $ref: '#/components/schemas/EnterpriseCluster_allOf'
+      description: Enterprise cluster registration endpoint response
+    FleetshardParameter:
+      description: Fleetshard parameter consumed by enterprise cluster
+      properties:
+        id:
+          type: string
+        value:
+          type: string
+      type: object
     ErrorList_allOf:
       properties:
         items:
@@ -2353,6 +2487,20 @@ components:
           items:
             allOf:
             - $ref: '#/components/schemas/InstantQuery'
+          type: array
+      type: object
+    EnterpriseCluster_allOf:
+      properties:
+        cluster_id:
+          description: ocm cluster id of the registered Enterprise cluster
+          type: string
+        status:
+          description: status of registered Enterprise cluster
+          type: string
+        fleetshard_parameters:
+          items:
+            allOf:
+            - $ref: '#/components/schemas/FleetshardParameter'
           type: array
       type: object
   securitySchemes:
