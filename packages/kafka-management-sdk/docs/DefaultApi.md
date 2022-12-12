@@ -854,7 +854,7 @@ No authorization required
 
 ## registerEnterpriseOsdCluster
 
-> KafkaRequest registerEnterpriseOsdCluster(enterpriseOsdClusterPayload)
+> EnterpriseCluster registerEnterpriseOsdCluster(enterpriseOsdClusterPayload)
 
 
 
@@ -883,7 +883,7 @@ public class Example {
         DefaultApi apiInstance = new DefaultApi(defaultClient);
         EnterpriseOsdClusterPayload enterpriseOsdClusterPayload = new EnterpriseOsdClusterPayload(); // EnterpriseOsdClusterPayload | Enterprise OSD cluster details
         try {
-            KafkaRequest result = apiInstance.registerEnterpriseOsdCluster(enterpriseOsdClusterPayload);
+            EnterpriseCluster result = apiInstance.registerEnterpriseOsdCluster(enterpriseOsdClusterPayload);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#registerEnterpriseOsdCluster");
@@ -905,7 +905,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**KafkaRequest**](KafkaRequest.md)
+[**EnterpriseCluster**](EnterpriseCluster.md)
 
 ### Authorization
 

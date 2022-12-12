@@ -1217,11 +1217,8 @@ paths:
         "200":
           content:
             application/json:
-              examples:
-                KafkaRequestPostResponseExample:
-                  $ref: '#/components/examples/KafkaRequestExample'
               schema:
-                $ref: '#/components/schemas/KafkaRequest'
+                $ref: '#/components/schemas/EnterpriseCluster'
           description: Enterprise cluster registered
         "400":
           content:
