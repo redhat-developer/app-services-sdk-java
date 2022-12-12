@@ -9,6 +9,7 @@ import javax.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.kas.models.CloudProviderList;
 import com.openshift.cloud.api.kas.models.CloudRegionList;
+import com.openshift.cloud.api.kas.models.EnterpriseCluster;
 import com.openshift.cloud.api.kas.models.EnterpriseOsdClusterPayload;
 import com.openshift.cloud.api.kas.models.Error;
 import com.openshift.cloud.api.kas.models.KafkaRequest;
@@ -566,10 +567,10 @@ public class DefaultApi {
    * 
    * Register enterprise OSD cluster
    * @param enterpriseOsdClusterPayload Enterprise OSD cluster details (required)
-   * @return a {@code KafkaRequest}
+   * @return a {@code EnterpriseCluster}
    * @throws ApiException if fails to make API call
    */
-  public KafkaRequest registerEnterpriseOsdCluster(EnterpriseOsdClusterPayload enterpriseOsdClusterPayload) throws ApiException {
+  public EnterpriseCluster registerEnterpriseOsdCluster(EnterpriseOsdClusterPayload enterpriseOsdClusterPayload) throws ApiException {
     Object localVarPostBody = enterpriseOsdClusterPayload;
     
     // verify the required parameter 'enterpriseOsdClusterPayload' is set
@@ -602,7 +603,7 @@ public class DefaultApi {
 
     String[] localVarAuthNames = new String[] { "Bearer" };
 
-    GenericType<KafkaRequest> localVarReturnType = new GenericType<KafkaRequest>() {};
+    GenericType<EnterpriseCluster> localVarReturnType = new GenericType<EnterpriseCluster>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**

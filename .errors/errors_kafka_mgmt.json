@@ -1,8 +1,8 @@
 {
   "kind": "ErrorList",
   "page": 1,
-  "size": 43,
-  "total": 43,
+  "size": 47,
+  "total": 47,
   "items": [
     {
       "reason": "Forbidden to perform this action",
@@ -206,6 +206,34 @@
       "kind": "Error",
       "href": "/api/kafkas_mgmt/v1/errors/43",
       "code": "KAFKAS-MGMT-43"
+    },
+    {
+      "reason": "Enterprise cluster ID is already used",
+      "id": "44",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/44",
+      "code": "KAFKAS-MGMT-44"
+    },
+    {
+      "reason": "Enterprise cluster ID is invalid",
+      "id": "45",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/45",
+      "code": "KAFKAS-MGMT-45"
+    },
+    {
+      "reason": "Enterprise external cluster ID is invalid",
+      "id": "46",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/46",
+      "code": "KAFKAS-MGMT-46"
+    },
+    {
+      "reason": "Dns name is invalid",
+      "id": "47",
+      "kind": "Error",
+      "href": "/api/kafkas_mgmt/v1/errors/47",
+      "code": "KAFKAS-MGMT-47"
     },
     {
       "reason": "Synchronous action is not supported, use async=true parameter",
