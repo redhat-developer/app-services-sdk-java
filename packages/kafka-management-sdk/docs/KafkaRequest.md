@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **kind** | **String** |  | 
 **href** | **String** |  | 
-**status** | **String** | Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting]  |  [optional]
+**status** | **String** | Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting, suspending, suspended, resuming]  |  [optional]
 **cloudProvider** | **String** | Name of Cloud used to deploy. For example AWS |  [optional]
 **multiAz** | **Boolean** |  | 
 **region** | **String** | Values will be regions of specific cloud provider. For example: us-east-1 for AWS |  [optional]
