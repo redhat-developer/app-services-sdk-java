@@ -15,7 +15,6 @@ Method | HTTP request | Description
 [**getMetricsByInstantQuery**](DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | 
 [**getMetricsByRangeQuery**](DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | 
 [**getVersionMetadata**](DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | 
-[**registerEnterpriseOsdCluster**](DefaultApi.md#registerEnterpriseOsdCluster) | **POST** /api/kafkas_mgmt/v1/clusters | 
 [**updateKafkaById**](DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | 
 
 
@@ -850,82 +849,6 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Version metadata |  -  |
-
-
-## registerEnterpriseOsdCluster
-
-> EnterpriseCluster registerEnterpriseOsdCluster(enterpriseOsdClusterPayload)
-
-
-
-Register enterprise OSD cluster
-
-### Example
-
-```java
-// Import classes:
-import com.openshift.cloud.api.kas.invoker.ApiClient;
-import com.openshift.cloud.api.kas.invoker.ApiException;
-import com.openshift.cloud.api.kas.invoker.Configuration;
-import com.openshift.cloud.api.kas.invoker.auth.*;
-import com.openshift.cloud.api.kas.invoker.models.*;
-import com.openshift.cloud.api.kas.DefaultApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.openshift.com");
-        
-        // Configure HTTP bearer authorization: Bearer
-        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
-        Bearer.setBearerToken("BEARER TOKEN");
-
-        DefaultApi apiInstance = new DefaultApi(defaultClient);
-        EnterpriseOsdClusterPayload enterpriseOsdClusterPayload = new EnterpriseOsdClusterPayload(); // EnterpriseOsdClusterPayload | Enterprise OSD cluster details
-        try {
-            EnterpriseCluster result = apiInstance.registerEnterpriseOsdCluster(enterpriseOsdClusterPayload);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#registerEnterpriseOsdCluster");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **enterpriseOsdClusterPayload** | [**EnterpriseOsdClusterPayload**](EnterpriseOsdClusterPayload.md)| Enterprise OSD cluster details |
-
-### Return type
-
-[**EnterpriseCluster**](EnterpriseCluster.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Enterprise cluster registered |  -  |
-| **400** | Validation errors occurred |  -  |
-| **401** | Auth token is invalid |  -  |
-| **403** | User is not authorized to access the service |  -  |
-| **409** | A conflict has been detected in the creation of this resource |  -  |
-| **500** | An unexpected error occurred while registering Enterprise cluster |  -  |
 
 
 ## updateKafkaById

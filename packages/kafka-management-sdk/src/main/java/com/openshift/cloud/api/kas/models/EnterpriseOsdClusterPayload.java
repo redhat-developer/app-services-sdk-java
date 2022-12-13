@@ -60,11 +60,11 @@ public class EnterpriseOsdClusterPayload {
   }
 
    /**
-   * OSD cluster ID
+   * The data plane cluster ID. This is the ID of the cluster obtained from OpenShift Cluster Manager (OCM) API
    * @return clusterId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "OSD cluster ID")
+  @ApiModelProperty(required = true, value = "The data plane cluster ID. This is the ID of the cluster obtained from OpenShift Cluster Manager (OCM) API")
   @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -87,11 +87,11 @@ public class EnterpriseOsdClusterPayload {
   }
 
    /**
-   * external cluster ID. Can be obtained from the response JSON of ocm get /api/clusters_mgmt/v1/clusters/&lt;cluster_id&gt;
+   * external cluster ID. Can be obtained from the response JSON of OCM get /api/clusters_mgmt/v1/clusters/&lt;cluster_id&gt;
    * @return clusterExternalId
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "external cluster ID. Can be obtained from the response JSON of ocm get /api/clusters_mgmt/v1/clusters/<cluster_id>")
+  @ApiModelProperty(required = true, value = "external cluster ID. Can be obtained from the response JSON of OCM get /api/clusters_mgmt/v1/clusters/<cluster_id>")
   @JsonProperty(JSON_PROPERTY_CLUSTER_EXTERNAL_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

@@ -58,11 +58,11 @@ public class EnterpriseClusterAllOf {
   }
 
    /**
-   * ocm cluster id of the registered Enterprise cluster
+   * OCM cluster id of the registered Enterprise cluster
    * @return clusterId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "ocm cluster id of the registered Enterprise cluster")
+  @ApiModelProperty(value = "OCM cluster id of the registered Enterprise cluster")
   @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
