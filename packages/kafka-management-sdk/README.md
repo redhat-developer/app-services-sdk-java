@@ -129,8 +129,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getMetricsByInstantQuery**](docs/DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | 
 *DefaultApi* | [**getMetricsByRangeQuery**](docs/DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | 
 *DefaultApi* | [**getVersionMetadata**](docs/DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | 
-*DefaultApi* | [**registerEnterpriseOsdCluster**](docs/DefaultApi.md#registerEnterpriseOsdCluster) | **POST** /api/kafkas_mgmt/v1/clusters | 
 *DefaultApi* | [**updateKafkaById**](docs/DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | 
+*EnterpriseDataplaneClustersApi* | [**registerEnterpriseOsdCluster**](docs/EnterpriseDataplaneClustersApi.md#registerEnterpriseOsdCluster) | **POST** /api/kafkas_mgmt/v1/clusters | 
 *ErrorsApi* | [**getErrorById**](docs/ErrorsApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | 
 *ErrorsApi* | [**getErrors**](docs/ErrorsApi.md#getErrors) | **GET** /api/kafkas_mgmt/v1/errors | 
 *SecurityApi* | [**createServiceAccount**](docs/SecurityApi.md#createServiceAccount) | **POST** /api/kafkas_mgmt/v1/service_accounts | 

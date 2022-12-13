@@ -9,8 +9,6 @@ import javax.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.kas.models.CloudProviderList;
 import com.openshift.cloud.api.kas.models.CloudRegionList;
-import com.openshift.cloud.api.kas.models.EnterpriseCluster;
-import com.openshift.cloud.api.kas.models.EnterpriseOsdClusterPayload;
 import com.openshift.cloud.api.kas.models.Error;
 import com.openshift.cloud.api.kas.models.KafkaRequest;
 import com.openshift.cloud.api.kas.models.KafkaRequestList;
@@ -562,49 +560,6 @@ public class DefaultApi {
 
     GenericType<VersionMetadata> localVarReturnType = new GenericType<VersionMetadata>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * 
-   * Register enterprise OSD cluster
-   * @param enterpriseOsdClusterPayload Enterprise OSD cluster details (required)
-   * @return a {@code EnterpriseCluster}
-   * @throws ApiException if fails to make API call
-   */
-  public EnterpriseCluster registerEnterpriseOsdCluster(EnterpriseOsdClusterPayload enterpriseOsdClusterPayload) throws ApiException {
-    Object localVarPostBody = enterpriseOsdClusterPayload;
-    
-    // verify the required parameter 'enterpriseOsdClusterPayload' is set
-    if (enterpriseOsdClusterPayload == null) {
-      throw new ApiException(400, "Missing the required parameter 'enterpriseOsdClusterPayload' when calling registerEnterpriseOsdCluster");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/api/kafkas_mgmt/v1/clusters".replaceAll("\\{format\\}","json");
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      "application/json"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] { "Bearer" };
-
-    GenericType<EnterpriseCluster> localVarReturnType = new GenericType<EnterpriseCluster>() {};
-    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * 
