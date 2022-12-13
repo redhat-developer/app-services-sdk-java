@@ -228,11 +228,11 @@ public class KafkaRequest {
   }
 
    /**
-   * Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting] 
+   * Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting, suspending, suspended, resuming] 
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting] ")
+  @ApiModelProperty(value = "Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting, suspending, suspended, resuming] ")
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

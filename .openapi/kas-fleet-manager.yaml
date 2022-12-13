@@ -1044,7 +1044,7 @@ components:
             - multi_az
           properties:
             status:
-              description: "Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting] "
+              description: "Values: [accepted, preparing, provisioning, ready, failed, deprovision, deleting, suspending, suspended, resuming] "
               type: string
             cloud_provider:
               description: "Name of Cloud used to deploy. For example AWS"
