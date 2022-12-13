@@ -2199,6 +2199,7 @@ components:
     EnterpriseOsdClusterPayload:
       description: Schema for the request body sent to /clusters POST
       example:
+        kafka_machine_pool_node_count: 0
         cluster_id: cluster_id
         cluster_external_id: cluster_external_id
         cluster_ingress_dns_name: cluster_ingress_dns_name
@@ -2214,10 +2215,20 @@ components:
           description: dns name of the cluster. Can be obtained from the response
             JSON of the /api/clusters_mgmt/v1/clusters/<cluster_id>/ingresses (dns_name)
           type: string
+        kafka_machine_pool_node_count:
+          description: "The node count given to the created kafka machine pool. \n\
+            The machine pool must be created via /api/clusters_mgmt/v1/clusters/<cluster_id>/machine_pools\
+            \ prior to passing this value.\nThe created machine pool must have a `bf2.org/kafkaInstanceProfileType=standard`\
+            \ label and a `bf2.org/kafkaInstanceProfileType=standard:NoExecute` taint.\n\
+            The name of the machine pool must be `kafka-standard` \nThe node count\
+            \ value has to be a multiple of 3 with a minimum of 3 nodes."
+          format: int32
+          type: integer
       required:
       - cluster_external_id
       - cluster_id
       - cluster_ingress_dns_name
+      - kafka_machine_pool_node_count
       type: object
     EnterpriseCluster:
       allOf:
