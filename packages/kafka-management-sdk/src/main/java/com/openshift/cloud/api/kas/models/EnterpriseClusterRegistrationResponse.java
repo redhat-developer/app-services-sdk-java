@@ -20,26 +20,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.models.EnterpriseClusterAllOf;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterRegistrationResponseAllOf;
+import com.openshift.cloud.api.kas.models.FleetshardParameter;
 import com.openshift.cloud.api.kas.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * EnterpriseCluster
+ * Enterprise cluster registration endpoint response
  */
+@ApiModel(description = "Enterprise cluster registration endpoint response")
 @JsonPropertyOrder({
-  EnterpriseCluster.JSON_PROPERTY_ID,
-  EnterpriseCluster.JSON_PROPERTY_KIND,
-  EnterpriseCluster.JSON_PROPERTY_HREF,
-  EnterpriseCluster.JSON_PROPERTY_CLUSTER_ID,
-  EnterpriseCluster.JSON_PROPERTY_STATUS
+  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_ID,
+  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_KIND,
+  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_HREF,
+  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_CLUSTER_ID,
+  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_STATUS,
+  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_FLEETSHARD_PARAMETERS
 })
-@JsonTypeName("EnterpriseCluster")
+@JsonTypeName("EnterpriseClusterRegistrationResponse")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class EnterpriseCluster {
+public class EnterpriseClusterRegistrationResponse {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
@@ -55,10 +60,13 @@ public class EnterpriseCluster {
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;
 
-  public EnterpriseCluster() { 
+  public static final String JSON_PROPERTY_FLEETSHARD_PARAMETERS = "fleetshard_parameters";
+  private List<FleetshardParameter> fleetshardParameters = null;
+
+  public EnterpriseClusterRegistrationResponse() { 
   }
 
-  public EnterpriseCluster id(String id) {
+  public EnterpriseClusterRegistrationResponse id(String id) {
     
     this.id = id;
     return this;
@@ -85,7 +93,7 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster kind(String kind) {
+  public EnterpriseClusterRegistrationResponse kind(String kind) {
     
     this.kind = kind;
     return this;
@@ -112,7 +120,7 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster href(String href) {
+  public EnterpriseClusterRegistrationResponse href(String href) {
     
     this.href = href;
     return this;
@@ -139,18 +147,18 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster clusterId(String clusterId) {
+  public EnterpriseClusterRegistrationResponse clusterId(String clusterId) {
     
     this.clusterId = clusterId;
     return this;
   }
 
    /**
-   * ocm cluster id of the registered Enterprise cluster
+   * OCM cluster id of the registered Enterprise cluster
    * @return clusterId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "ocm cluster id of the registered Enterprise cluster")
+  @ApiModelProperty(value = "OCM cluster id of the registered Enterprise cluster")
   @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -166,7 +174,7 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster status(String status) {
+  public EnterpriseClusterRegistrationResponse status(String status) {
     
     this.status = status;
     return this;
@@ -193,6 +201,41 @@ public class EnterpriseCluster {
   }
 
 
+  public EnterpriseClusterRegistrationResponse fleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
+    
+    this.fleetshardParameters = fleetshardParameters;
+    return this;
+  }
+
+  public EnterpriseClusterRegistrationResponse addFleetshardParametersItem(FleetshardParameter fleetshardParametersItem) {
+    if (this.fleetshardParameters == null) {
+      this.fleetshardParameters = new ArrayList<>();
+    }
+    this.fleetshardParameters.add(fleetshardParametersItem);
+    return this;
+  }
+
+   /**
+   * Get fleetshardParameters
+   * @return fleetshardParameters
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_FLEETSHARD_PARAMETERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<FleetshardParameter> getFleetshardParameters() {
+    return fleetshardParameters;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FLEETSHARD_PARAMETERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
+    this.fleetshardParameters = fleetshardParameters;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -201,28 +244,30 @@ public class EnterpriseCluster {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EnterpriseCluster enterpriseCluster = (EnterpriseCluster) o;
-    return Objects.equals(this.id, enterpriseCluster.id) &&
-        Objects.equals(this.kind, enterpriseCluster.kind) &&
-        Objects.equals(this.href, enterpriseCluster.href) &&
-        Objects.equals(this.clusterId, enterpriseCluster.clusterId) &&
-        Objects.equals(this.status, enterpriseCluster.status);
+    EnterpriseClusterRegistrationResponse enterpriseClusterRegistrationResponse = (EnterpriseClusterRegistrationResponse) o;
+    return Objects.equals(this.id, enterpriseClusterRegistrationResponse.id) &&
+        Objects.equals(this.kind, enterpriseClusterRegistrationResponse.kind) &&
+        Objects.equals(this.href, enterpriseClusterRegistrationResponse.href) &&
+        Objects.equals(this.clusterId, enterpriseClusterRegistrationResponse.clusterId) &&
+        Objects.equals(this.status, enterpriseClusterRegistrationResponse.status) &&
+        Objects.equals(this.fleetshardParameters, enterpriseClusterRegistrationResponse.fleetshardParameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, clusterId, status);
+    return Objects.hash(id, kind, href, clusterId, status, fleetshardParameters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EnterpriseCluster {\n");
+    sb.append("class EnterpriseClusterRegistrationResponse {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    fleetshardParameters: ").append(toIndentedString(fleetshardParameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }
