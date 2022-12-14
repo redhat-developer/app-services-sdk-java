@@ -1202,6 +1202,57 @@ paths:
       - Bearer: []
       x-accepts: application/json
   /api/kafkas_mgmt/v1/clusters:
+    get:
+      description: List all Enterprise OSD clusters
+      operationId: getEnterpriseOsdClusters
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterpriseClusterList'
+          description: List Enterprise OSD clusters
+        "400":
+          content:
+            application/json:
+              examples:
+                InvalidQueryExample:
+                  $ref: '#/components/examples/400InvalidQueryExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              examples:
+                "401Example":
+                  $ref: '#/components/examples/401Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Auth token is invalid
+        "403":
+          content:
+            application/json:
+              examples:
+                "403Example":
+                  $ref: '#/components/examples/403Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User not authorized to access the service
+        "500":
+          content:
+            application/json:
+              examples:
+                "500Example":
+                  $ref: '#/components/examples/500Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error occurred
+      security:
+      - Bearer: []
+      tags:
+      - enterprise-dataplane-clusters
+      x-accepts: application/json
     post:
       description: Register enterprise data plane cluster
       operationId: registerEnterpriseOsdCluster
@@ -1220,7 +1271,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EnterpriseCluster'
+                $ref: '#/components/schemas/EnterpriseClusterRegistrationResponse'
           description: Enterprise cluster registered
         "400":
           content:
@@ -1293,6 +1344,13 @@ components:
         cloud_provider: aws
         name: test_kafka
         plan: standard.x1
+    EnterpriseClusterExample:
+      value:
+        id: abcd1234ascd3456fdks9485lskd030h
+        kind: cluster
+        href: /api/kafkas_mgmr/v1/clusters/abcd1234ascd3456fdks9485lskd030h
+        status: ready
+        cluster_id: abcd1234ascd3456fdks9485lskd030h
     KafkaRequestExample:
       value:
         id: 1iSY6RQ3JKI8Q0OTmjQFd3ocFRg
@@ -1868,6 +1926,14 @@ components:
       allOf:
       - $ref: '#/components/schemas/List'
       - $ref: '#/components/schemas/KafkaRequestList_allOf'
+    EnterpriseClusterList:
+      allOf:
+      - $ref: '#/components/schemas/List'
+      - $ref: '#/components/schemas/EnterpriseClusterList_allOf'
+    EnterpriseCluster:
+      allOf:
+      - $ref: '#/components/schemas/ObjectReference'
+      - $ref: '#/components/schemas/EnterpriseCluster_allOf'
     VersionMetadata:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
@@ -2241,9 +2307,10 @@ components:
       - cluster_ingress_dns_name
       - kafka_machine_pool_node_count
       type: object
-    EnterpriseCluster:
+    EnterpriseClusterRegistrationResponse:
       allOf:
-      - $ref: '#/components/schemas/EnterpriseCluster_allOf'
+      - $ref: '#/components/schemas/ObjectReference'
+      - $ref: '#/components/schemas/EnterpriseClusterRegistrationResponse_allOf'
       description: Enterprise cluster registration endpoint response
     FleetshardParameter:
       description: Fleetshard parameter consumed by enterprise cluster
@@ -2336,6 +2403,30 @@ components:
             allOf:
             - $ref: '#/components/schemas/KafkaRequest'
           type: array
+      type: object
+    EnterpriseClusterList_allOf:
+      example:
+        kind: ClusterList
+        page: "1"
+        size: "1"
+        total: "1"
+        item:
+          $ref: '#/components/examples/EnterpriseClusterExample'
+      properties:
+        items:
+          items:
+            allOf:
+            - $ref: '#/components/schemas/EnterpriseCluster'
+          type: array
+      type: object
+    EnterpriseCluster_allOf:
+      properties:
+        cluster_id:
+          description: ocm cluster id of the registered Enterprise cluster
+          type: string
+        status:
+          description: status of registered Enterprise cluster
+          type: string
       type: object
     VersionMetadata_allOf:
       example:
@@ -2508,7 +2599,7 @@ components:
             - $ref: '#/components/schemas/InstantQuery'
           type: array
       type: object
-    EnterpriseCluster_allOf:
+    EnterpriseClusterRegistrationResponse_allOf:
       properties:
         cluster_id:
           description: OCM cluster id of the registered Enterprise cluster

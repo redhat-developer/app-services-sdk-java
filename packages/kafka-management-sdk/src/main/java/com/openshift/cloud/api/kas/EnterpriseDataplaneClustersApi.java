@@ -7,7 +7,8 @@ import com.openshift.cloud.api.kas.invoker.Pair;
 
 import javax.ws.rs.core.GenericType;
 
-import com.openshift.cloud.api.kas.models.EnterpriseCluster;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterList;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterRegistrationResponse;
 import com.openshift.cloud.api.kas.models.EnterpriseOsdClusterPayload;
 import com.openshift.cloud.api.kas.models.Error;
 
@@ -38,12 +39,49 @@ public class EnterpriseDataplaneClustersApi {
 
   /**
    * 
-   * Register enterprise data plane cluster
-   * @param enterpriseOsdClusterPayload Enterprise data plane cluster details (required)
-   * @return a {@code EnterpriseCluster}
+   * List all Enterprise OSD clusters
+   * @return a {@code EnterpriseClusterList}
    * @throws ApiException if fails to make API call
    */
-  public EnterpriseCluster registerEnterpriseOsdCluster(EnterpriseOsdClusterPayload enterpriseOsdClusterPayload) throws ApiException {
+  public EnterpriseClusterList getEnterpriseOsdClusters() throws ApiException {
+    Object localVarPostBody = null;
+    
+    // create path and map variables
+    String localVarPath = "/api/kafkas_mgmt/v1/clusters".replaceAll("\\{format\\}","json");
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "Bearer" };
+
+    GenericType<EnterpriseClusterList> localVarReturnType = new GenericType<EnterpriseClusterList>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * 
+   * Register enterprise data plane cluster
+   * @param enterpriseOsdClusterPayload Enterprise data plane cluster details (required)
+   * @return a {@code EnterpriseClusterRegistrationResponse}
+   * @throws ApiException if fails to make API call
+   */
+  public EnterpriseClusterRegistrationResponse registerEnterpriseOsdCluster(EnterpriseOsdClusterPayload enterpriseOsdClusterPayload) throws ApiException {
     Object localVarPostBody = enterpriseOsdClusterPayload;
     
     // verify the required parameter 'enterpriseOsdClusterPayload' is set
@@ -76,7 +114,7 @@ public class EnterpriseDataplaneClustersApi {
 
     String[] localVarAuthNames = new String[] { "Bearer" };
 
-    GenericType<EnterpriseCluster> localVarReturnType = new GenericType<EnterpriseCluster>() {};
+    GenericType<EnterpriseClusterRegistrationResponse> localVarReturnType = new GenericType<EnterpriseClusterRegistrationResponse>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }

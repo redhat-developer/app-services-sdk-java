@@ -20,42 +20,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.kas.models.FleetshardParameter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * EnterpriseClusterAllOf
+ * EnterpriseClusterRegistrationResponseAllOf
  */
 @JsonPropertyOrder({
-  EnterpriseClusterAllOf.JSON_PROPERTY_CLUSTER_ID,
-  EnterpriseClusterAllOf.JSON_PROPERTY_STATUS
+  EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_CLUSTER_ID,
+  EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_STATUS,
+  EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_FLEETSHARD_PARAMETERS
 })
-@JsonTypeName("EnterpriseCluster_allOf")
+@JsonTypeName("EnterpriseClusterRegistrationResponse_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class EnterpriseClusterAllOf {
+public class EnterpriseClusterRegistrationResponseAllOf {
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
 
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;
 
-  public EnterpriseClusterAllOf() { 
+  public static final String JSON_PROPERTY_FLEETSHARD_PARAMETERS = "fleetshard_parameters";
+  private List<FleetshardParameter> fleetshardParameters = null;
+
+  public EnterpriseClusterRegistrationResponseAllOf() { 
   }
 
-  public EnterpriseClusterAllOf clusterId(String clusterId) {
+  public EnterpriseClusterRegistrationResponseAllOf clusterId(String clusterId) {
     
     this.clusterId = clusterId;
     return this;
   }
 
    /**
-   * ocm cluster id of the registered Enterprise cluster
+   * OCM cluster id of the registered Enterprise cluster
    * @return clusterId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "ocm cluster id of the registered Enterprise cluster")
+  @ApiModelProperty(value = "OCM cluster id of the registered Enterprise cluster")
   @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -71,7 +78,7 @@ public class EnterpriseClusterAllOf {
   }
 
 
-  public EnterpriseClusterAllOf status(String status) {
+  public EnterpriseClusterRegistrationResponseAllOf status(String status) {
     
     this.status = status;
     return this;
@@ -98,6 +105,41 @@ public class EnterpriseClusterAllOf {
   }
 
 
+  public EnterpriseClusterRegistrationResponseAllOf fleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
+    
+    this.fleetshardParameters = fleetshardParameters;
+    return this;
+  }
+
+  public EnterpriseClusterRegistrationResponseAllOf addFleetshardParametersItem(FleetshardParameter fleetshardParametersItem) {
+    if (this.fleetshardParameters == null) {
+      this.fleetshardParameters = new ArrayList<>();
+    }
+    this.fleetshardParameters.add(fleetshardParametersItem);
+    return this;
+  }
+
+   /**
+   * Get fleetshardParameters
+   * @return fleetshardParameters
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_FLEETSHARD_PARAMETERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<FleetshardParameter> getFleetshardParameters() {
+    return fleetshardParameters;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FLEETSHARD_PARAMETERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
+    this.fleetshardParameters = fleetshardParameters;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -106,22 +148,24 @@ public class EnterpriseClusterAllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EnterpriseClusterAllOf enterpriseClusterAllOf = (EnterpriseClusterAllOf) o;
-    return Objects.equals(this.clusterId, enterpriseClusterAllOf.clusterId) &&
-        Objects.equals(this.status, enterpriseClusterAllOf.status);
+    EnterpriseClusterRegistrationResponseAllOf enterpriseClusterRegistrationResponseAllOf = (EnterpriseClusterRegistrationResponseAllOf) o;
+    return Objects.equals(this.clusterId, enterpriseClusterRegistrationResponseAllOf.clusterId) &&
+        Objects.equals(this.status, enterpriseClusterRegistrationResponseAllOf.status) &&
+        Objects.equals(this.fleetshardParameters, enterpriseClusterRegistrationResponseAllOf.fleetshardParameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clusterId, status);
+    return Objects.hash(clusterId, status, fleetshardParameters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EnterpriseClusterAllOf {\n");
+    sb.append("class EnterpriseClusterRegistrationResponseAllOf {\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    fleetshardParameters: ").append(toIndentedString(fleetshardParameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }

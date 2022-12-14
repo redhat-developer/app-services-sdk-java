@@ -899,6 +899,56 @@ paths:
       parameters:
         - $ref: "#/components/parameters/id"
   /api/kafkas_mgmt/v1/clusters:
+    get:
+      tags:
+        - enterprise-dataplane-clusters  
+      description: List all Enterprise OSD clusters
+      operationId: getEnterpriseOsdClusters
+      security:
+        - Bearer: [ ]
+      responses:
+        "200":
+          description: List Enterprise OSD clusters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnterpriseClusterList'
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                InvalidQueryExample:
+                  $ref: '#/components/examples/400InvalidQueryExample'
+        "401":
+          description: Auth token is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                401Example:
+                  $ref: '#/components/examples/401Example'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                403Example:
+                  $ref: '#/components/examples/403Example'
+          description: User not authorized to access the service
+        "500":
+          description: Unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                500Example:
+                  $ref: '#/components/examples/500Example'
     post:
       description: Register enterprise data plane cluster
       operationId: registerEnterpriseOsdCluster
@@ -917,7 +967,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EnterpriseCluster'
+                $ref: '#/components/schemas/EnterpriseClusterRegistrationResponse'
           description: Enterprise cluster registered
         "400":
           content:
@@ -1144,6 +1194,35 @@ components:
               items:
                 allOf:
                   - $ref: "#/components/schemas/KafkaRequest"
+    EnterpriseClusterList:
+      allOf:
+        - $ref: "#/components/schemas/List"
+        - type: object
+          example:
+            kind: "ClusterList"
+            page: "1"
+            size: "1"
+            total: "1"
+            item:
+              $ref: '#/components/examples/EnterpriseClusterExample'
+          properties:
+            items:
+              type: array
+              items:
+                allOf:
+                  - $ref: "#/components/schemas/EnterpriseCluster"
+    EnterpriseCluster:
+      allOf:
+        - $ref: "#/components/schemas/ObjectReference"
+        - type: object
+          properties:
+            cluster_id:
+              type: string
+              description: 'ocm cluster id of the registered Enterprise cluster'
+            status:
+              description: 'status of registered Enterprise cluster'
+              type: string
+                
     VersionMetadata:
       allOf:
       - $ref: "#/components/schemas/ObjectReference"
@@ -1650,9 +1729,10 @@ components:
             The node count value has to be a multiple of 3 with a minimum of 3 nodes.
           type: integer
           format: int32  
-    EnterpriseCluster:
+    EnterpriseClusterRegistrationResponse:
       description: Enterprise cluster registration endpoint response
       allOf:
+        - $ref: "#/components/schemas/ObjectReference"
         - type: object
           properties:
             cluster_id:
@@ -1853,6 +1933,13 @@ components:
         cloud_provider: "aws"
         name: "test_kafka"
         plan: "standard.x1"
+    EnterpriseClusterExample:
+      value:
+        id: "abcd1234ascd3456fdks9485lskd030h"
+        kind: "cluster"
+        href: "/api/kafkas_mgmr/v1/clusters/abcd1234ascd3456fdks9485lskd030h"
+        status: "ready"
+        cluster_id: "abcd1234ascd3456fdks9485lskd030h"
     KafkaRequestExample:
       value:
         id: "1iSY6RQ3JKI8Q0OTmjQFd3ocFRg"

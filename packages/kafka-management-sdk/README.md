@@ -130,6 +130,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getMetricsByRangeQuery**](docs/DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | 
 *DefaultApi* | [**getVersionMetadata**](docs/DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | 
 *DefaultApi* | [**updateKafkaById**](docs/DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | 
+*EnterpriseDataplaneClustersApi* | [**getEnterpriseOsdClusters**](docs/EnterpriseDataplaneClustersApi.md#getEnterpriseOsdClusters) | **GET** /api/kafkas_mgmt/v1/clusters | 
 *EnterpriseDataplaneClustersApi* | [**registerEnterpriseOsdCluster**](docs/EnterpriseDataplaneClustersApi.md#registerEnterpriseOsdCluster) | **POST** /api/kafkas_mgmt/v1/clusters | 
 *ErrorsApi* | [**getErrorById**](docs/ErrorsApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | 
 *ErrorsApi* | [**getErrors**](docs/ErrorsApi.md#getErrors) | **GET** /api/kafkas_mgmt/v1/errors | 
@@ -151,6 +152,10 @@ Class | Method | HTTP request | Description
  - [CloudRegionListAllOf](docs/CloudRegionListAllOf.md)
  - [EnterpriseCluster](docs/EnterpriseCluster.md)
  - [EnterpriseClusterAllOf](docs/EnterpriseClusterAllOf.md)
+ - [EnterpriseClusterList](docs/EnterpriseClusterList.md)
+ - [EnterpriseClusterListAllOf](docs/EnterpriseClusterListAllOf.md)
+ - [EnterpriseClusterRegistrationResponse](docs/EnterpriseClusterRegistrationResponse.md)
+ - [EnterpriseClusterRegistrationResponseAllOf](docs/EnterpriseClusterRegistrationResponseAllOf.md)
  - [EnterpriseOsdClusterPayload](docs/EnterpriseOsdClusterPayload.md)
  - [Error](docs/Error.md)
  - [ErrorList](docs/ErrorList.md)
