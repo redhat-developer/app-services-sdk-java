@@ -89,11 +89,11 @@ public class ProcessorResponse {
   }
 
    /**
-   * Get kind
+   * The kind (type) of this resource
    * @return kind
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The kind (type) of this resource")
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -116,11 +116,11 @@ public class ProcessorResponse {
   }
 
    /**
-   * Get id
+   * The unique identifier of this resource
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier of this resource")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -143,11 +143,11 @@ public class ProcessorResponse {
   }
 
    /**
-   * Get href
+   * The URL of this resource, without the protocol
    * @return href
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "example.com/resource", required = true, value = "The URL of this resource, without the protocol")
   @JsonProperty(JSON_PROPERTY_HREF)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -278,11 +278,11 @@ public class ProcessorResponse {
   }
 
    /**
-   * Get owner
+   * The user that owns this resource
    * @return owner
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "userName", required = true, value = "The user that owns this resource")
   @JsonProperty(JSON_PROPERTY_OWNER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -305,11 +305,11 @@ public class ProcessorResponse {
   }
 
    /**
-   * Get name
+   * The name of the processor
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "processor1", required = true, value = "The name of the processor")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -332,11 +332,11 @@ public class ProcessorResponse {
   }
 
    /**
-   * Get flows
+   * The Camel YAML DSL code, formatted as JSON, that defines the flows in the processor
    * @return flows
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The Camel YAML DSL code, formatted as JSON, that defines the flows in the processor")
   @JsonProperty(JSON_PROPERTY_FLOWS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

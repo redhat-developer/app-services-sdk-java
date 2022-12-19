@@ -55,11 +55,11 @@ public class BridgeRequest {
   }
 
    /**
-   * Get name
+   * The name of the bridge
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "bridge1", required = true, value = "The name of the bridge")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -82,11 +82,11 @@ public class BridgeRequest {
   }
 
    /**
-   * Get cloudProvider
+   * The cloud provider where the bridge resides
    * @return cloudProvider
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "aws", required = true, value = "The cloud provider where the bridge resides")
   @JsonProperty(JSON_PROPERTY_CLOUD_PROVIDER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -109,11 +109,11 @@ public class BridgeRequest {
   }
 
    /**
-   * Get region
+   * The cloud provider region where the bridge resides
    * @return region
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "us-east-1", required = true, value = "The cloud provider region where the bridge resides")
   @JsonProperty(JSON_PROPERTY_REGION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
