@@ -909,31 +909,31 @@ components:
         kind: kind
         page: 0
         items:
-        - owner: owner
+        - owner: userName
           status_message: status_message
           submitted_at: 2000-01-23T04:56:07.000+00:00
           kind: kind
-          cloud_provider: cloud_provider
-          endpoint: endpoint
-          name: name
+          cloud_provider: aws
+          endpoint: https://example.com/bridge
+          name: bridge1
           id: id
-          href: href
+          href: example.com/resource
           published_at: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
-          region: region
+          region: us-east
           status: ""
-        - owner: owner
+        - owner: userName
           status_message: status_message
           submitted_at: 2000-01-23T04:56:07.000+00:00
           kind: kind
-          cloud_provider: cloud_provider
-          endpoint: endpoint
-          name: name
+          cloud_provider: aws
+          endpoint: https://example.com/bridge
+          name: bridge1
           id: id
-          href: href
+          href: example.com/resource
           published_at: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
-          region: region
+          region: us-east
           status: ""
       properties:
         kind:
@@ -963,19 +963,25 @@ components:
       type: object
     BridgeRequest:
       example:
-        name: name
-        cloud_provider: cloud_provider
-        region: region
+        name: bridge1
+        cloud_provider: aws
+        region: us-east-1
       properties:
         name:
+          description: The name of the bridge
+          example: bridge1
           minLength: 1
           nullable: false
           type: string
         cloud_provider:
+          description: The cloud provider where the bridge resides
+          example: aws
           minLength: 1
           nullable: false
           type: string
         region:
+          description: The cloud provider region where the bridge resides
+          example: us-east-1
           minLength: 1
           nullable: false
           type: string
@@ -986,29 +992,31 @@ components:
       type: object
     BridgeResponse:
       example:
-        owner: owner
+        owner: userName
         status_message: status_message
         submitted_at: 2000-01-23T04:56:07.000+00:00
         kind: kind
-        cloud_provider: cloud_provider
-        endpoint: endpoint
-        name: name
+        cloud_provider: aws
+        endpoint: https://example.com/bridge
+        name: bridge1
         id: id
-        href: href
+        href: example.com/resource
         published_at: 2000-01-23T04:56:07.000+00:00
         modified_at: 2000-01-23T04:56:07.000+00:00
-        region: region
+        region: us-east
         status: ""
       properties:
         kind:
+          description: The kind (type) of this resource
           nullable: false
           type: string
         id:
+          description: The unique identifier of this resource
           nullable: false
           type: string
-        name:
-          type: string
         href:
+          description: The URL of this resource, without the protocol
+          example: example.com/resource
           nullable: false
           type: string
         submitted_at:
@@ -1024,22 +1032,40 @@ components:
         status:
           allOf:
           - $ref: '#/components/schemas/ManagedResourceStatus'
-          - nullable: false
+          - description: The status of this resource
+            example: ready
+            nullable: false
         owner:
+          description: The user that owns this resource
+          example: userName
+          nullable: false
+          type: string
+        name:
+          description: The name of the bridge
+          example: bridge1
           nullable: false
           type: string
         endpoint:
+          description: The HTTPS endpoint on which the bridge accepts events
+          example: https://example.com/bridge
           type: string
         cloud_provider:
+          description: The cloud provider where the bridge resides
+          example: aws
           type: string
         region:
+          description: The cloud provider region where the bridge resides
+          example: us-east
           type: string
         status_message:
+          description: A detailed status message in case there is a problem with the
+            bridge
           type: string
       required:
       - href
       - id
       - kind
+      - name
       - owner
       - status
       - submitted_at
@@ -1052,15 +1078,15 @@ components:
         page: 0
         items:
         - kind: kind
-          name: name
+          name: resourceName1
           id: id
-          href: href
+          href: example.com/resource
           display_name: display_name
           enabled: true
         - kind: kind
-          name: name
+          name: resourceName1
           id: id
-          href: href
+          href: example.com/resource
           display_name: display_name
           enabled: true
       properties:
@@ -1092,21 +1118,27 @@ components:
     CloudProviderResponse:
       example:
         kind: kind
-        name: name
+        name: resourceName1
         id: id
-        href: href
+        href: example.com/resource
         display_name: display_name
         enabled: true
       properties:
         kind:
+          description: The kind (type) of this resource
           nullable: false
           type: string
         id:
+          description: The unique identifier of this resource
           nullable: false
           type: string
         name:
+          description: The name of this resource
+          example: resourceName1
           type: string
         href:
+          description: The URL of this resource, without the protocol
+          example: example.com/resource
           nullable: false
           type: string
         display_name:
@@ -1193,14 +1225,17 @@ components:
         reason: reason
         code: code
         kind: kind
-        name: name
+        name: resourceName1
         id: id
         href: href
       properties:
         kind:
+          description: The kind (type) of this resource
           nullable: false
           type: string
         name:
+          description: The name of this resource
+          example: resourceName1
           type: string
         code:
           type: string
@@ -1229,13 +1264,13 @@ components:
         - reason: reason
           code: code
           kind: kind
-          name: name
+          name: resourceName1
           id: id
           href: href
         - reason: reason
           code: code
           kind: kind
-          name: name
+          name: resourceName1
           id: id
           href: href
       properties:
@@ -1306,14 +1341,20 @@ components:
     ObjectReference:
       properties:
         kind:
+          description: The kind (type) of this resource
           nullable: false
           type: string
         id:
+          description: The unique identifier of this resource
           nullable: false
           type: string
         name:
+          description: The name of this resource
+          example: resourceName1
           type: string
         href:
+          description: The URL of this resource, without the protocol
+          example: example.com/resource
           nullable: false
           type: string
       required:
@@ -1367,25 +1408,25 @@ components:
         kind: kind
         page: 0
         items:
-        - owner: owner
+        - owner: userName
           status_message: status_message
           submitted_at: 2000-01-23T04:56:07.000+00:00
           flows: '{}'
           kind: kind
-          name: name
+          name: processor1
           id: id
-          href: href
+          href: example.com/resource
           published_at: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
           status: ""
-        - owner: owner
+        - owner: userName
           status_message: status_message
           submitted_at: 2000-01-23T04:56:07.000+00:00
           flows: '{}'
           kind: kind
-          name: name
+          name: processor1
           id: id
-          href: href
+          href: example.com/resource
           published_at: 2000-01-23T04:56:07.000+00:00
           modified_at: 2000-01-23T04:56:07.000+00:00
           status: ""
@@ -1418,13 +1459,17 @@ components:
     ProcessorRequest:
       example:
         flows: '{}'
-        name: name
+        name: processor1
       properties:
         name:
+          description: The name of the processor
+          example: processor1
           minLength: 1
           nullable: false
           type: string
         flows:
+          description: The Camel YAML DSL code, formatted as JSON, that defines the
+            flows in the processor
           nullable: false
           type: object
       required:
@@ -1433,25 +1478,29 @@ components:
       type: object
     ProcessorResponse:
       example:
-        owner: owner
+        owner: userName
         status_message: status_message
         submitted_at: 2000-01-23T04:56:07.000+00:00
         flows: '{}'
         kind: kind
-        name: name
+        name: processor1
         id: id
-        href: href
+        href: example.com/resource
         published_at: 2000-01-23T04:56:07.000+00:00
         modified_at: 2000-01-23T04:56:07.000+00:00
         status: ""
       properties:
         kind:
+          description: The kind (type) of this resource
           nullable: false
           type: string
         id:
+          description: The unique identifier of this resource
           nullable: false
           type: string
         href:
+          description: The URL of this resource, without the protocol
+          example: example.com/resource
           nullable: false
           type: string
         submitted_at:
@@ -1467,14 +1516,22 @@ components:
         status:
           allOf:
           - $ref: '#/components/schemas/ManagedResourceStatus'
-          - nullable: false
+          - description: The status of this resource
+            example: ready
+            nullable: false
         owner:
+          description: The user that owns this resource
+          example: userName
           nullable: false
           type: string
         name:
+          description: The name of the processor
+          example: processor1
           nullable: false
           type: string
         flows:
+          description: The Camel YAML DSL code, formatted as JSON, that defines the
+            flows in the processor
           nullable: false
           type: object
         status_message:

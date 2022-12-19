@@ -51,11 +51,11 @@ public class ProcessorRequest {
   }
 
    /**
-   * Get name
+   * The name of the processor
    * @return name
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "processor1", required = true, value = "The name of the processor")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -78,11 +78,11 @@ public class ProcessorRequest {
   }
 
    /**
-   * Get flows
+   * The Camel YAML DSL code, formatted as JSON, that defines the flows in the processor
    * @return flows
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The Camel YAML DSL code, formatted as JSON, that defines the flows in the processor")
   @JsonProperty(JSON_PROPERTY_FLOWS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

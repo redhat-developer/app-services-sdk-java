@@ -33,13 +33,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   BridgeResponse.JSON_PROPERTY_KIND,
   BridgeResponse.JSON_PROPERTY_ID,
-  BridgeResponse.JSON_PROPERTY_NAME,
   BridgeResponse.JSON_PROPERTY_HREF,
   BridgeResponse.JSON_PROPERTY_SUBMITTED_AT,
   BridgeResponse.JSON_PROPERTY_PUBLISHED_AT,
   BridgeResponse.JSON_PROPERTY_MODIFIED_AT,
   BridgeResponse.JSON_PROPERTY_STATUS,
   BridgeResponse.JSON_PROPERTY_OWNER,
+  BridgeResponse.JSON_PROPERTY_NAME,
   BridgeResponse.JSON_PROPERTY_ENDPOINT,
   BridgeResponse.JSON_PROPERTY_CLOUD_PROVIDER,
   BridgeResponse.JSON_PROPERTY_REGION,
@@ -53,9 +53,6 @@ public class BridgeResponse {
 
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
 
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
@@ -74,6 +71,9 @@ public class BridgeResponse {
 
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
+
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
   public static final String JSON_PROPERTY_ENDPOINT = "endpoint";
   private String endpoint;
@@ -97,11 +97,11 @@ public class BridgeResponse {
   }
 
    /**
-   * Get kind
+   * The kind (type) of this resource
    * @return kind
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The kind (type) of this resource")
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -124,11 +124,11 @@ public class BridgeResponse {
   }
 
    /**
-   * Get id
+   * The unique identifier of this resource
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier of this resource")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -144,33 +144,6 @@ public class BridgeResponse {
   }
 
 
-  public BridgeResponse name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Get name
-   * @return name
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
   public BridgeResponse href(String href) {
     
     this.href = href;
@@ -178,11 +151,11 @@ public class BridgeResponse {
   }
 
    /**
-   * Get href
+   * The URL of this resource, without the protocol
    * @return href
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "example.com/resource", required = true, value = "The URL of this resource, without the protocol")
   @JsonProperty(JSON_PROPERTY_HREF)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -313,11 +286,11 @@ public class BridgeResponse {
   }
 
    /**
-   * Get owner
+   * The user that owns this resource
    * @return owner
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "userName", required = true, value = "The user that owns this resource")
   @JsonProperty(JSON_PROPERTY_OWNER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -333,6 +306,33 @@ public class BridgeResponse {
   }
 
 
+  public BridgeResponse name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of the bridge
+   * @return name
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "bridge1", required = true, value = "The name of the bridge")
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
   public BridgeResponse endpoint(String endpoint) {
     
     this.endpoint = endpoint;
@@ -340,11 +340,11 @@ public class BridgeResponse {
   }
 
    /**
-   * Get endpoint
+   * The HTTPS endpoint on which the bridge accepts events
    * @return endpoint
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "https://example.com/bridge", value = "The HTTPS endpoint on which the bridge accepts events")
   @JsonProperty(JSON_PROPERTY_ENDPOINT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -367,11 +367,11 @@ public class BridgeResponse {
   }
 
    /**
-   * Get cloudProvider
+   * The cloud provider where the bridge resides
    * @return cloudProvider
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "aws", value = "The cloud provider where the bridge resides")
   @JsonProperty(JSON_PROPERTY_CLOUD_PROVIDER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -394,11 +394,11 @@ public class BridgeResponse {
   }
 
    /**
-   * Get region
+   * The cloud provider region where the bridge resides
    * @return region
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "us-east", value = "The cloud provider region where the bridge resides")
   @JsonProperty(JSON_PROPERTY_REGION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -421,11 +421,11 @@ public class BridgeResponse {
   }
 
    /**
-   * Get statusMessage
+   * A detailed status message in case there is a problem with the bridge
    * @return statusMessage
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "A detailed status message in case there is a problem with the bridge")
   @JsonProperty(JSON_PROPERTY_STATUS_MESSAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -452,13 +452,13 @@ public class BridgeResponse {
     BridgeResponse bridgeResponse = (BridgeResponse) o;
     return Objects.equals(this.kind, bridgeResponse.kind) &&
         Objects.equals(this.id, bridgeResponse.id) &&
-        Objects.equals(this.name, bridgeResponse.name) &&
         Objects.equals(this.href, bridgeResponse.href) &&
         Objects.equals(this.submittedAt, bridgeResponse.submittedAt) &&
         Objects.equals(this.publishedAt, bridgeResponse.publishedAt) &&
         Objects.equals(this.modifiedAt, bridgeResponse.modifiedAt) &&
         Objects.equals(this.status, bridgeResponse.status) &&
         Objects.equals(this.owner, bridgeResponse.owner) &&
+        Objects.equals(this.name, bridgeResponse.name) &&
         Objects.equals(this.endpoint, bridgeResponse.endpoint) &&
         Objects.equals(this.cloudProvider, bridgeResponse.cloudProvider) &&
         Objects.equals(this.region, bridgeResponse.region) &&
@@ -467,7 +467,7 @@ public class BridgeResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, endpoint, cloudProvider, region, statusMessage);
+    return Objects.hash(kind, id, href, submittedAt, publishedAt, modifiedAt, status, owner, name, endpoint, cloudProvider, region, statusMessage);
   }
 
   @Override
@@ -476,13 +476,13 @@ public class BridgeResponse {
     sb.append("class BridgeResponse {\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
     sb.append("    modifiedAt: ").append(toIndentedString(modifiedAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    endpoint: ").append(toIndentedString(endpoint)).append("\n");
     sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");

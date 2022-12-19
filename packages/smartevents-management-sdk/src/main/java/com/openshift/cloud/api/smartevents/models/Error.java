@@ -67,11 +67,11 @@ public class Error {
   }
 
    /**
-   * Get kind
+   * The kind (type) of this resource
    * @return kind
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The kind (type) of this resource")
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -94,11 +94,11 @@ public class Error {
   }
 
    /**
-   * Get name
+   * The name of this resource
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "resourceName1", value = "The name of this resource")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

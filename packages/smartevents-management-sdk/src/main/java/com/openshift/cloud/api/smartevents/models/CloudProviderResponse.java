@@ -67,11 +67,11 @@ public class CloudProviderResponse {
   }
 
    /**
-   * Get kind
+   * The kind (type) of this resource
    * @return kind
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The kind (type) of this resource")
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -94,11 +94,11 @@ public class CloudProviderResponse {
   }
 
    /**
-   * Get id
+   * The unique identifier of this resource
    * @return id
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "The unique identifier of this resource")
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -121,11 +121,11 @@ public class CloudProviderResponse {
   }
 
    /**
-   * Get name
+   * The name of this resource
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "resourceName1", value = "The name of this resource")
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -148,11 +148,11 @@ public class CloudProviderResponse {
   }
 
    /**
-   * Get href
+   * The URL of this resource, without the protocol
    * @return href
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "example.com/resource", required = true, value = "The URL of this resource, without the protocol")
   @JsonProperty(JSON_PROPERTY_HREF)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
