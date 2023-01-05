@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**bridgesAPIDeleteBridge**](BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Delete a Bridge instance
 [**bridgesAPIGetBridge**](BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Get a Bridge instance
 [**bridgesAPIGetBridges**](BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/smartevents_mgmt/v2/bridges | Get the list of Bridge instances
-[**bridgesAPIUpdateBridge**](BridgesApi.md#bridgesAPIUpdateBridge) | **PUT** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Update a Bridge instance
 
 
 
@@ -314,84 +313,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Success. |  -  |
-| **400** | Bad request. |  -  |
-| **401** | Unauthorized. |  -  |
-| **403** | Forbidden. |  -  |
-| **404** | Not found. |  -  |
-| **500** | Internal error. |  -  |
-
-
-## bridgesAPIUpdateBridge
-
-> BridgeResponse bridgesAPIUpdateBridge(bridgeId, bridgeRequest)
-
-Update a Bridge instance
-
-Update a Bridge instance for the authenticated user.
-
-### Example
-
-```java
-// Import classes:
-import com.openshift.cloud.api.smartevents.invoker.ApiClient;
-import com.openshift.cloud.api.smartevents.invoker.ApiException;
-import com.openshift.cloud.api.smartevents.invoker.Configuration;
-import com.openshift.cloud.api.smartevents.invoker.auth.*;
-import com.openshift.cloud.api.smartevents.invoker.models.*;
-import com.openshift.cloud.api.smartevents.BridgesApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://api.stage.openshift.com");
-        
-        // Configure HTTP bearer authorization: bearer
-        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
-        bearer.setBearerToken("BEARER TOKEN");
-
-        BridgesApi apiInstance = new BridgesApi(defaultClient);
-        String bridgeId = "bridgeId_example"; // String | 
-        BridgeRequest bridgeRequest = new BridgeRequest(); // BridgeRequest | 
-        try {
-            BridgeResponse result = apiInstance.bridgesAPIUpdateBridge(bridgeId, bridgeRequest);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling BridgesApi#bridgesAPIUpdateBridge");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **bridgeId** | **String**|  |
- **bridgeRequest** | [**BridgeRequest**](BridgeRequest.md)|  | [optional]
-
-### Return type
-
-[**BridgeResponse**](BridgeResponse.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **202** | Accepted. |  -  |
 | **400** | Bad request. |  -  |
 | **401** | Unauthorized. |  -  |
 | **403** | Forbidden. |  -  |

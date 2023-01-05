@@ -121,7 +121,6 @@ Class | Method | HTTP request | Description
 *BridgesApi* | [**bridgesAPIDeleteBridge**](docs/BridgesApi.md#bridgesAPIDeleteBridge) | **DELETE** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Delete a Bridge instance
 *BridgesApi* | [**bridgesAPIGetBridge**](docs/BridgesApi.md#bridgesAPIGetBridge) | **GET** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Get a Bridge instance
 *BridgesApi* | [**bridgesAPIGetBridges**](docs/BridgesApi.md#bridgesAPIGetBridges) | **GET** /api/smartevents_mgmt/v2/bridges | Get the list of Bridge instances
-*BridgesApi* | [**bridgesAPIUpdateBridge**](docs/BridgesApi.md#bridgesAPIUpdateBridge) | **PUT** /api/smartevents_mgmt/v2/bridges/{bridgeId} | Update a Bridge instance
 *CloudProvidersApi* | [**cloudProviderAPIGetCloudProvider**](docs/CloudProvidersApi.md#cloudProviderAPIGetCloudProvider) | **GET** /api/smartevents_mgmt/v2/cloud_providers/{id} | Get Cloud Provider.
 *CloudProvidersApi* | [**cloudProviderAPIListCloudProviderRegions**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviderRegions) | **GET** /api/smartevents_mgmt/v2/cloud_providers/{id}/regions | List Supported Cloud Regions.
 *CloudProvidersApi* | [**cloudProviderAPIListCloudProviders**](docs/CloudProvidersApi.md#cloudProviderAPIListCloudProviders) | **GET** /api/smartevents_mgmt/v2/cloud_providers | List Supported Cloud Providers.
