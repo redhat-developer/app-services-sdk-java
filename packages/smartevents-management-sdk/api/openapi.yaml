@@ -1271,6 +1271,9 @@ components:
       - preparing
       - provisioning
       - ready
+      - update_accepted
+      - update_preparing
+      - update_provisioning
       - deprovision
       - deleting
       - deleted
