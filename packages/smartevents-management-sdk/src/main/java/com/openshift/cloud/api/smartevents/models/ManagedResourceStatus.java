@@ -34,6 +34,12 @@ public enum ManagedResourceStatus {
   
   READY("ready"),
   
+  UPDATE_ACCEPTED("update_accepted"),
+  
+  UPDATE_PREPARING("update_preparing"),
+  
+  UPDATE_PROVISIONING("update_provisioning"),
+  
   DEPROVISION("deprovision"),
   
   DELETING("deleting"),
