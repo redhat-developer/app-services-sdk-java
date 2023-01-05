@@ -209,49 +209,4 @@ public class BridgesApi {
     GenericType<BridgeListResponse> localVarReturnType = new GenericType<BridgeListResponse>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
-  /**
-   * Update a Bridge instance
-   * Update a Bridge instance for the authenticated user.
-   * @param bridgeId  (required)
-   * @param bridgeRequest  (optional)
-   * @return a {@code BridgeResponse}
-   * @throws ApiException if fails to make API call
-   */
-  public BridgeResponse bridgesAPIUpdateBridge(String bridgeId, BridgeRequest bridgeRequest) throws ApiException {
-    Object localVarPostBody = bridgeRequest;
-    
-    // verify the required parameter 'bridgeId' is set
-    if (bridgeId == null) {
-      throw new ApiException(400, "Missing the required parameter 'bridgeId' when calling bridgesAPIUpdateBridge");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/api/smartevents_mgmt/v2/bridges/{bridgeId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "bridgeId" + "\\}", apiClient.escapeString(bridgeId.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      "application/json"
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] { "bearer" };
-
-    GenericType<BridgeResponse> localVarReturnType = new GenericType<BridgeResponse>() {};
-    return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
 }
