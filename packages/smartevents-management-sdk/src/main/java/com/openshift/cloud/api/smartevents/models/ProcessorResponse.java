@@ -174,7 +174,7 @@ public class ProcessorResponse {
    * @return submittedAt
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(example = "2022-03-10T12:15:50-04:00", required = true, value = "")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SUBMITTED_AT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -201,7 +201,7 @@ public class ProcessorResponse {
    * @return publishedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2022-03-10T12:15:50-04:00", value = "")
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_PUBLISHED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -228,7 +228,7 @@ public class ProcessorResponse {
    * @return modifiedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "2022-03-10T12:15:50-04:00", value = "")
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_MODIFIED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
