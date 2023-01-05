@@ -182,7 +182,7 @@ public class BridgeResponse {
    * @return submittedAt
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2022-03-10T12:15:50-04:00", required = true, value = "")
   @JsonProperty(JSON_PROPERTY_SUBMITTED_AT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
@@ -209,7 +209,7 @@ public class BridgeResponse {
    * @return publishedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2022-03-10T12:15:50-04:00", value = "")
   @JsonProperty(JSON_PROPERTY_PUBLISHED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -236,7 +236,7 @@ public class BridgeResponse {
    * @return modifiedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2022-03-10T12:15:50-04:00", value = "")
   @JsonProperty(JSON_PROPERTY_MODIFIED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 

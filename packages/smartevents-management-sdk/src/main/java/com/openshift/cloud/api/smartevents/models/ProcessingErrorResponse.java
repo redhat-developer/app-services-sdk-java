@@ -63,7 +63,7 @@ public class ProcessingErrorResponse {
    * @return recordedAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2022-03-10T12:15:50-04:00", value = "")
   @JsonProperty(JSON_PROPERTY_RECORDED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
