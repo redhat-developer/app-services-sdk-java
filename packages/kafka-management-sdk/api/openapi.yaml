@@ -1279,8 +1279,8 @@ paths:
               examples:
                 "400InvalidClusterIdExample":
                   $ref: '#/components/examples/400InvalidClusterIdExample'
-                "400MInvalidExternalClusterIdExample":
-                  $ref: '#/components/examples/400MInvalidExternalClusterIdExample'
+                "400InvalidExternalClusterIdExample":
+                  $ref: '#/components/examples/400InvalidExternalClusterIdExample'
               schema:
                 $ref: '#/components/schemas/Error'
           description: Validation errors occurred
@@ -1325,6 +1325,93 @@ paths:
       tags:
       - enterprise-dataplane-clusters
       x-contentType: application/json
+      x-accepts: application/json
+  /api/kafkas_mgmt/v1/clusters/{id}:
+    delete:
+      operationId: deleteEnterpriseClusterById
+      parameters:
+      - description: Perform the action in an asynchronous manner
+        explode: true
+        in: query
+        name: async
+        required: true
+        schema:
+          type: boolean
+        style: form
+      - description: |-
+          When provided with value: true - enterprise cluster will be deleted alongside all kafkas present on the cluster.
+          When skipped and enterprise cluster has any kafkas associated with it, the request will fail.
+        explode: true
+        in: query
+        name: force
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: ID of the enterprise data plane cluster
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Enterprise cluster deletion accepted
+        "400":
+          content:
+            application/json:
+              examples:
+                "400DeletionExample":
+                  $ref: '#/components/examples/400DeletionExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Validation errors occurred
+        "401":
+          content:
+            application/json:
+              examples:
+                "401Example":
+                  $ref: '#/components/examples/401Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Auth token is invalid
+        "403":
+          content:
+            application/json:
+              examples:
+                "403Example":
+                  $ref: '#/components/examples/403Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User not authorized to access the service
+        "404":
+          content:
+            application/json:
+              examples:
+                "404DeleteExample":
+                  $ref: '#/components/examples/404DeleteExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: No Enterprise cluster with specified ID exists
+        "500":
+          content:
+            application/json:
+              examples:
+                "500DeleteExample":
+                  $ref: '#/components/examples/500DeleteExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error occurred
+      security:
+      - Bearer: []
+      tags:
+      - enterprise-dataplane-clusters
       x-accepts: application/json
 components:
   examples:
@@ -1577,7 +1664,7 @@ components:
         code: KAFKAS-MGMT-45
         reason: Enterprise cluster ID is invalid
         operation_id: 1lWDGuybIrEnxrAem724gqkkiDv
-    "400MInvalidExternalClusterIdExample":
+    "400InvalidExternalClusterIdExample":
       value:
         id: "46"
         kind: Error
