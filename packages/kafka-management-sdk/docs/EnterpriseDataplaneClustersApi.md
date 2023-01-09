@@ -4,9 +4,88 @@ All URIs are relative to *https://api.openshift.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**deleteEnterpriseClusterById**](EnterpriseDataplaneClustersApi.md#deleteEnterpriseClusterById) | **DELETE** /api/kafkas_mgmt/v1/clusters/{id} | 
 [**getEnterpriseOsdClusters**](EnterpriseDataplaneClustersApi.md#getEnterpriseOsdClusters) | **GET** /api/kafkas_mgmt/v1/clusters | 
 [**registerEnterpriseOsdCluster**](EnterpriseDataplaneClustersApi.md#registerEnterpriseOsdCluster) | **POST** /api/kafkas_mgmt/v1/clusters | 
 
+
+
+## deleteEnterpriseClusterById
+
+> Error deleteEnterpriseClusterById(async, id, force)
+
+
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.kas.invoker.ApiClient;
+import com.openshift.cloud.api.kas.invoker.ApiException;
+import com.openshift.cloud.api.kas.invoker.Configuration;
+import com.openshift.cloud.api.kas.invoker.auth.*;
+import com.openshift.cloud.api.kas.invoker.models.*;
+import com.openshift.cloud.api.kas.EnterpriseDataplaneClustersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+        
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        EnterpriseDataplaneClustersApi apiInstance = new EnterpriseDataplaneClustersApi(defaultClient);
+        Boolean async = true; // Boolean | Perform the action in an asynchronous manner
+        String id = "id_example"; // String | ID of the enterprise data plane cluster
+        Boolean force = true; // Boolean | When provided with value: true - enterprise cluster will be deleted alongside all kafkas present on the cluster. When skipped and enterprise cluster has any kafkas associated with it, the request will fail.
+        try {
+            Error result = apiInstance.deleteEnterpriseClusterById(async, id, force);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EnterpriseDataplaneClustersApi#deleteEnterpriseClusterById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **async** | **Boolean**| Perform the action in an asynchronous manner |
+ **id** | **String**| ID of the enterprise data plane cluster |
+ **force** | **Boolean**| When provided with value: true - enterprise cluster will be deleted alongside all kafkas present on the cluster. When skipped and enterprise cluster has any kafkas associated with it, the request will fail. | [optional]
+
+### Return type
+
+[**Error**](Error.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **202** | Enterprise cluster deletion accepted |  -  |
+| **400** | Validation errors occurred |  -  |
+| **401** | Auth token is invalid |  -  |
+| **403** | User not authorized to access the service |  -  |
+| **404** | No Enterprise cluster with specified ID exists |  -  |
+| **500** | Unexpected error occurred |  -  |
 
 
 ## getEnterpriseOsdClusters

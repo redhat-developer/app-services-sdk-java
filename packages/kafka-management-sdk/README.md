@@ -130,6 +130,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**getMetricsByRangeQuery**](docs/DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | 
 *DefaultApi* | [**getVersionMetadata**](docs/DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | 
 *DefaultApi* | [**updateKafkaById**](docs/DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | 
+*EnterpriseDataplaneClustersApi* | [**deleteEnterpriseClusterById**](docs/EnterpriseDataplaneClustersApi.md#deleteEnterpriseClusterById) | **DELETE** /api/kafkas_mgmt/v1/clusters/{id} | 
 *EnterpriseDataplaneClustersApi* | [**getEnterpriseOsdClusters**](docs/EnterpriseDataplaneClustersApi.md#getEnterpriseOsdClusters) | **GET** /api/kafkas_mgmt/v1/clusters | 
 *EnterpriseDataplaneClustersApi* | [**registerEnterpriseOsdCluster**](docs/EnterpriseDataplaneClustersApi.md#registerEnterpriseOsdCluster) | **POST** /api/kafkas_mgmt/v1/clusters | 
 *ErrorsApi* | [**getErrorById**](docs/ErrorsApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | 
