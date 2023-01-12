@@ -30,11 +30,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
   Error.JSON_PROPERTY_KIND,
-  Error.JSON_PROPERTY_NAME,
-  Error.JSON_PROPERTY_CODE,
-  Error.JSON_PROPERTY_REASON,
   Error.JSON_PROPERTY_ID,
-  Error.JSON_PROPERTY_HREF
+  Error.JSON_PROPERTY_NAME,
+  Error.JSON_PROPERTY_HREF,
+  Error.JSON_PROPERTY_CODE,
+  Error.JSON_PROPERTY_REASON
 })
 @JsonTypeName("Error")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -42,20 +42,20 @@ public class Error {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
 
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
+
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_HREF = "href";
+  private String href;
 
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
   public static final String JSON_PROPERTY_REASON = "reason";
   private String reason;
-
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
-
-  public static final String JSON_PROPERTY_HREF = "href";
-  private String href;
 
   public Error() { 
   }
@@ -87,6 +87,33 @@ public class Error {
   }
 
 
+  public Error id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The unique identifier of this resource
+   * @return id
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "The unique identifier of this resource")
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
   public Error name(String name) {
     
     this.name = name;
@@ -97,10 +124,10 @@ public class Error {
    * The name of this resource
    * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "resourceName1", value = "The name of this resource")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "resourceName1", required = true, value = "The name of this resource")
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getName() {
     return name;
@@ -108,9 +135,36 @@ public class Error {
 
 
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  public Error href(String href) {
+    
+    this.href = href;
+    return this;
+  }
+
+   /**
+   * The URL of this resource, without the protocol
+   * @return href
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "example.com/resource", required = true, value = "The URL of this resource, without the protocol")
+  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getHref() {
+    return href;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setHref(String href) {
+    this.href = href;
   }
 
 
@@ -168,60 +222,6 @@ public class Error {
   }
 
 
-  public Error id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public Error href(String href) {
-    
-    this.href = href;
-    return this;
-  }
-
-   /**
-   * Get href
-   * @return href
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getHref() {
-    return href;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setHref(String href) {
-    this.href = href;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -232,16 +232,16 @@ public class Error {
     }
     Error error = (Error) o;
     return Objects.equals(this.kind, error.kind) &&
-        Objects.equals(this.name, error.name) &&
-        Objects.equals(this.code, error.code) &&
-        Objects.equals(this.reason, error.reason) &&
         Objects.equals(this.id, error.id) &&
-        Objects.equals(this.href, error.href);
+        Objects.equals(this.name, error.name) &&
+        Objects.equals(this.href, error.href) &&
+        Objects.equals(this.code, error.code) &&
+        Objects.equals(this.reason, error.reason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, name, code, reason, id, href);
+    return Objects.hash(kind, id, name, href, code, reason);
   }
 
   @Override
@@ -249,11 +249,11 @@ public class Error {
     StringBuilder sb = new StringBuilder();
     sb.append("class Error {\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("}");
     return sb.toString();
   }

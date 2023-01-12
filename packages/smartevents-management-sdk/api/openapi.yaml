@@ -1496,7 +1496,7 @@ components:
           kind: kind
           cloud_provider: aws
           endpoint: https://example.com/bridge
-          name: bridge1
+          name: resourceName1
           id: id
           href: example.com/resource
           published_at: 2022-03-10T12:15:50-04:00
@@ -1509,7 +1509,7 @@ components:
           kind: kind
           cloud_provider: aws
           endpoint: https://example.com/bridge
-          name: bridge1
+          name: resourceName1
           id: id
           href: example.com/resource
           published_at: 2022-03-10T12:15:50-04:00
@@ -1572,7 +1572,7 @@ components:
         kind: kind
         cloud_provider: aws
         endpoint: https://example.com/bridge
-        name: bridge1
+        name: resourceName1
         id: id
         href: example.com/resource
         published_at: 2022-03-10T12:15:50-04:00
@@ -1585,6 +1585,10 @@ components:
           type: string
         id:
           description: The unique identifier of this resource
+          type: string
+        name:
+          description: The name of this resource
+          example: resourceName1
           type: string
         href:
           description: The URL of this resource, without the protocol
@@ -1610,10 +1614,6 @@ components:
         owner:
           description: The user that owns this resource
           example: userName
-          type: string
-        name:
-          description: The name of the bridge
-          example: bridge1
           type: string
         endpoint:
           description: The HTTPS endpoint on which the bridge accepts events
@@ -1714,6 +1714,7 @@ components:
       - href
       - id
       - kind
+      - name
       type: object
     CloudRegionListResponse:
       example:
@@ -1804,27 +1805,31 @@ components:
         kind: kind
         name: resourceName1
         id: id
-        href: href
+        href: example.com/resource
       properties:
         kind:
           description: The kind (type) of this resource
+          type: string
+        id:
+          description: The unique identifier of this resource
           type: string
         name:
           description: The name of this resource
           example: resourceName1
           type: string
+        href:
+          description: The URL of this resource, without the protocol
+          example: example.com/resource
+          type: string
         code:
           type: string
         reason:
-          type: string
-        id:
-          type: string
-        href:
           type: string
       required:
       - href
       - id
       - kind
+      - name
       - reason
       type: object
     ErrorListResponse:
@@ -1839,13 +1844,13 @@ components:
           kind: kind
           name: resourceName1
           id: id
-          href: href
+          href: example.com/resource
         - reason: reason
           code: code
           kind: kind
           name: resourceName1
           id: id
-          href: href
+          href: example.com/resource
       properties:
         kind:
           type: string
@@ -1928,6 +1933,7 @@ components:
       - href
       - id
       - kind
+      - name
       type: object
     ProcessingErrorListResponse:
       properties:
@@ -1977,7 +1983,7 @@ components:
           submitted_at: 2022-03-10T12:15:50-04:00
           flows: '{}'
           kind: kind
-          name: processor1
+          name: resourceName1
           id: id
           href: example.com/resource
           published_at: 2022-03-10T12:15:50-04:00
@@ -1988,7 +1994,7 @@ components:
           submitted_at: 2022-03-10T12:15:50-04:00
           flows: '{}'
           kind: kind
-          name: processor1
+          name: resourceName1
           id: id
           href: example.com/resource
           published_at: 2022-03-10T12:15:50-04:00
@@ -2041,7 +2047,7 @@ components:
         submitted_at: 2022-03-10T12:15:50-04:00
         flows: '{}'
         kind: kind
-        name: processor1
+        name: resourceName1
         id: id
         href: example.com/resource
         published_at: 2022-03-10T12:15:50-04:00
@@ -2053,6 +2059,10 @@ components:
           type: string
         id:
           description: The unique identifier of this resource
+          type: string
+        name:
+          description: The name of this resource
+          example: resourceName1
           type: string
         href:
           description: The URL of this resource, without the protocol
@@ -2078,10 +2088,6 @@ components:
         owner:
           description: The user that owns this resource
           example: userName
-          type: string
-        name:
-          description: The name of the processor
-          example: processor1
           type: string
         flows:
           description: The Camel YAML DSL code, formatted as JSON, that defines the
@@ -2226,6 +2232,7 @@ components:
       - href
       - id
       - kind
+      - name
       - owner
       - status
       - submitted_at
@@ -2351,6 +2358,7 @@ components:
       - href
       - id
       - kind
+      - name
       - owner
       - status
       - submitted_at
