@@ -124,10 +124,10 @@ public class CloudProviderResponse {
    * The name of this resource
    * @return name
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(example = "resourceName1", value = "The name of this resource")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "resourceName1", required = true, value = "The name of this resource")
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getName() {
     return name;
@@ -135,7 +135,7 @@ public class CloudProviderResponse {
 
 
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }

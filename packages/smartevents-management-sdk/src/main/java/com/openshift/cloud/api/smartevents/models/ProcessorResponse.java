@@ -33,13 +33,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   ProcessorResponse.JSON_PROPERTY_KIND,
   ProcessorResponse.JSON_PROPERTY_ID,
+  ProcessorResponse.JSON_PROPERTY_NAME,
   ProcessorResponse.JSON_PROPERTY_HREF,
   ProcessorResponse.JSON_PROPERTY_SUBMITTED_AT,
   ProcessorResponse.JSON_PROPERTY_PUBLISHED_AT,
   ProcessorResponse.JSON_PROPERTY_MODIFIED_AT,
   ProcessorResponse.JSON_PROPERTY_STATUS,
   ProcessorResponse.JSON_PROPERTY_OWNER,
-  ProcessorResponse.JSON_PROPERTY_NAME,
   ProcessorResponse.JSON_PROPERTY_FLOWS,
   ProcessorResponse.JSON_PROPERTY_STATUS_MESSAGE
 })
@@ -51,6 +51,9 @@ public class ProcessorResponse {
 
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
+
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
@@ -69,9 +72,6 @@ public class ProcessorResponse {
 
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
 
   public static final String JSON_PROPERTY_FLOWS = "flows";
   private Object flows;
@@ -133,6 +133,33 @@ public class ProcessorResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
+  }
+
+
+  public ProcessorResponse name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of this resource
+   * @return name
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "resourceName1", required = true, value = "The name of this resource")
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -298,33 +325,6 @@ public class ProcessorResponse {
   }
 
 
-  public ProcessorResponse name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the processor
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "processor1", required = true, value = "The name of the processor")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
   public ProcessorResponse flows(Object flows) {
     
     this.flows = flows;
@@ -390,20 +390,20 @@ public class ProcessorResponse {
     ProcessorResponse processorResponse = (ProcessorResponse) o;
     return Objects.equals(this.kind, processorResponse.kind) &&
         Objects.equals(this.id, processorResponse.id) &&
+        Objects.equals(this.name, processorResponse.name) &&
         Objects.equals(this.href, processorResponse.href) &&
         Objects.equals(this.submittedAt, processorResponse.submittedAt) &&
         Objects.equals(this.publishedAt, processorResponse.publishedAt) &&
         Objects.equals(this.modifiedAt, processorResponse.modifiedAt) &&
         Objects.equals(this.status, processorResponse.status) &&
         Objects.equals(this.owner, processorResponse.owner) &&
-        Objects.equals(this.name, processorResponse.name) &&
         Objects.equals(this.flows, processorResponse.flows) &&
         Objects.equals(this.statusMessage, processorResponse.statusMessage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, href, submittedAt, publishedAt, modifiedAt, status, owner, name, flows, statusMessage);
+    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, flows, statusMessage);
   }
 
   @Override
@@ -412,13 +412,13 @@ public class ProcessorResponse {
     sb.append("class ProcessorResponse {\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
     sb.append("    modifiedAt: ").append(toIndentedString(modifiedAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    flows: ").append(toIndentedString(flows)).append("\n");
     sb.append("    statusMessage: ").append(toIndentedString(statusMessage)).append("\n");
     sb.append("}");

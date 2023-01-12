@@ -33,13 +33,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   BridgeResponse.JSON_PROPERTY_KIND,
   BridgeResponse.JSON_PROPERTY_ID,
+  BridgeResponse.JSON_PROPERTY_NAME,
   BridgeResponse.JSON_PROPERTY_HREF,
   BridgeResponse.JSON_PROPERTY_SUBMITTED_AT,
   BridgeResponse.JSON_PROPERTY_PUBLISHED_AT,
   BridgeResponse.JSON_PROPERTY_MODIFIED_AT,
   BridgeResponse.JSON_PROPERTY_STATUS,
   BridgeResponse.JSON_PROPERTY_OWNER,
-  BridgeResponse.JSON_PROPERTY_NAME,
   BridgeResponse.JSON_PROPERTY_ENDPOINT,
   BridgeResponse.JSON_PROPERTY_CLOUD_PROVIDER,
   BridgeResponse.JSON_PROPERTY_REGION,
@@ -53,6 +53,9 @@ public class BridgeResponse {
 
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
+
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
@@ -71,9 +74,6 @@ public class BridgeResponse {
 
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
 
   public static final String JSON_PROPERTY_ENDPOINT = "endpoint";
   private String endpoint;
@@ -141,6 +141,33 @@ public class BridgeResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
+  }
+
+
+  public BridgeResponse name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * The name of this resource
+   * @return name
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(example = "resourceName1", required = true, value = "The name of this resource")
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -306,33 +333,6 @@ public class BridgeResponse {
   }
 
 
-  public BridgeResponse name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * The name of the bridge
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(example = "bridge1", required = true, value = "The name of the bridge")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
   public BridgeResponse endpoint(String endpoint) {
     
     this.endpoint = endpoint;
@@ -452,13 +452,13 @@ public class BridgeResponse {
     BridgeResponse bridgeResponse = (BridgeResponse) o;
     return Objects.equals(this.kind, bridgeResponse.kind) &&
         Objects.equals(this.id, bridgeResponse.id) &&
+        Objects.equals(this.name, bridgeResponse.name) &&
         Objects.equals(this.href, bridgeResponse.href) &&
         Objects.equals(this.submittedAt, bridgeResponse.submittedAt) &&
         Objects.equals(this.publishedAt, bridgeResponse.publishedAt) &&
         Objects.equals(this.modifiedAt, bridgeResponse.modifiedAt) &&
         Objects.equals(this.status, bridgeResponse.status) &&
         Objects.equals(this.owner, bridgeResponse.owner) &&
-        Objects.equals(this.name, bridgeResponse.name) &&
         Objects.equals(this.endpoint, bridgeResponse.endpoint) &&
         Objects.equals(this.cloudProvider, bridgeResponse.cloudProvider) &&
         Objects.equals(this.region, bridgeResponse.region) &&
@@ -467,7 +467,7 @@ public class BridgeResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, id, href, submittedAt, publishedAt, modifiedAt, status, owner, name, endpoint, cloudProvider, region, statusMessage);
+    return Objects.hash(kind, id, name, href, submittedAt, publishedAt, modifiedAt, status, owner, endpoint, cloudProvider, region, statusMessage);
   }
 
   @Override
@@ -476,13 +476,13 @@ public class BridgeResponse {
     sb.append("class BridgeResponse {\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    submittedAt: ").append(toIndentedString(submittedAt)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
     sb.append("    modifiedAt: ").append(toIndentedString(modifiedAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    endpoint: ").append(toIndentedString(endpoint)).append("\n");
     sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
