@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   EnterpriseCluster.JSON_PROPERTY_ID,
   EnterpriseCluster.JSON_PROPERTY_KIND,
   EnterpriseCluster.JSON_PROPERTY_HREF,
+  EnterpriseCluster.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
   EnterpriseCluster.JSON_PROPERTY_CLUSTER_ID,
   EnterpriseCluster.JSON_PROPERTY_STATUS
 })
@@ -48,6 +49,9 @@ public class EnterpriseCluster {
 
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
+
+  public static final String JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK = "access_kafkas_via_private_network";
+  private Boolean accessKafkasViaPrivateNetwork;
 
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
@@ -139,6 +143,33 @@ public class EnterpriseCluster {
   }
 
 
+  public EnterpriseCluster accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+    
+    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
+    return this;
+  }
+
+   /**
+   * Indicates whether Kafkas created on this data plane cluster have to be accessed via private network
+   * @return accessKafkasViaPrivateNetwork
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Indicates whether Kafkas created on this data plane cluster have to be accessed via private network")
+  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Boolean getAccessKafkasViaPrivateNetwork() {
+    return accessKafkasViaPrivateNetwork;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
+  }
+
+
   public EnterpriseCluster clusterId(String clusterId) {
     
     this.clusterId = clusterId;
@@ -205,13 +236,14 @@ public class EnterpriseCluster {
     return Objects.equals(this.id, enterpriseCluster.id) &&
         Objects.equals(this.kind, enterpriseCluster.kind) &&
         Objects.equals(this.href, enterpriseCluster.href) &&
+        Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseCluster.accessKafkasViaPrivateNetwork) &&
         Objects.equals(this.clusterId, enterpriseCluster.clusterId) &&
         Objects.equals(this.status, enterpriseCluster.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, clusterId, status);
+    return Objects.hash(id, kind, href, accessKafkasViaPrivateNetwork, clusterId, status);
   }
 
   @Override
@@ -221,6 +253,7 @@ public class EnterpriseCluster {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
+    sb.append("    accessKafkasViaPrivateNetwork: ").append(toIndentedString(accessKafkasViaPrivateNetwork)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");

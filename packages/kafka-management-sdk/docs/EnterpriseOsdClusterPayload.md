@@ -8,6 +8,7 @@ Schema for the request body sent to /clusters POST
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**accessKafkasViaPrivateNetwork** | **Boolean** | Sets whether Kafkas created on this data plane cluster have to be accessed via private network | 
 **clusterId** | **String** | The data plane cluster ID. This is the ID of the cluster obtained from OpenShift Cluster Manager (OCM) API | 
 **clusterExternalId** | **String** | external cluster ID. Can be obtained from the response JSON of OCM get /api/clusters_mgmt/v1/clusters/&lt;cluster_id&gt; | 
 **clusterIngressDnsName** | **String** | dns name of the cluster. Can be obtained from the response JSON of the /api/clusters_mgmt/v1/clusters/&lt;cluster_id&gt;/ingresses (dns_name) | 

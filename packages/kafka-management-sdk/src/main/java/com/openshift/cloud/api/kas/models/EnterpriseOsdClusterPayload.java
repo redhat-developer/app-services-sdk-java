@@ -30,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @ApiModel(description = "Schema for the request body sent to /clusters POST")
 @JsonPropertyOrder({
+  EnterpriseOsdClusterPayload.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
   EnterpriseOsdClusterPayload.JSON_PROPERTY_CLUSTER_ID,
   EnterpriseOsdClusterPayload.JSON_PROPERTY_CLUSTER_EXTERNAL_ID,
   EnterpriseOsdClusterPayload.JSON_PROPERTY_CLUSTER_INGRESS_DNS_NAME,
@@ -38,6 +39,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("EnterpriseOsdClusterPayload")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EnterpriseOsdClusterPayload {
+  public static final String JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK = "access_kafkas_via_private_network";
+  private Boolean accessKafkasViaPrivateNetwork;
+
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
 
@@ -52,6 +56,33 @@ public class EnterpriseOsdClusterPayload {
 
   public EnterpriseOsdClusterPayload() { 
   }
+
+  public EnterpriseOsdClusterPayload accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+    
+    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
+    return this;
+  }
+
+   /**
+   * Sets whether Kafkas created on this data plane cluster have to be accessed via private network
+   * @return accessKafkasViaPrivateNetwork
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Sets whether Kafkas created on this data plane cluster have to be accessed via private network")
+  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Boolean getAccessKafkasViaPrivateNetwork() {
+    return accessKafkasViaPrivateNetwork;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
+  }
+
 
   public EnterpriseOsdClusterPayload clusterId(String clusterId) {
     
@@ -170,7 +201,8 @@ public class EnterpriseOsdClusterPayload {
       return false;
     }
     EnterpriseOsdClusterPayload enterpriseOsdClusterPayload = (EnterpriseOsdClusterPayload) o;
-    return Objects.equals(this.clusterId, enterpriseOsdClusterPayload.clusterId) &&
+    return Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseOsdClusterPayload.accessKafkasViaPrivateNetwork) &&
+        Objects.equals(this.clusterId, enterpriseOsdClusterPayload.clusterId) &&
         Objects.equals(this.clusterExternalId, enterpriseOsdClusterPayload.clusterExternalId) &&
         Objects.equals(this.clusterIngressDnsName, enterpriseOsdClusterPayload.clusterIngressDnsName) &&
         Objects.equals(this.kafkaMachinePoolNodeCount, enterpriseOsdClusterPayload.kafkaMachinePoolNodeCount);
@@ -178,13 +210,14 @@ public class EnterpriseOsdClusterPayload {
 
   @Override
   public int hashCode() {
-    return Objects.hash(clusterId, clusterExternalId, clusterIngressDnsName, kafkaMachinePoolNodeCount);
+    return Objects.hash(accessKafkasViaPrivateNetwork, clusterId, clusterExternalId, clusterIngressDnsName, kafkaMachinePoolNodeCount);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EnterpriseOsdClusterPayload {\n");
+    sb.append("    accessKafkasViaPrivateNetwork: ").append(toIndentedString(accessKafkasViaPrivateNetwork)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    clusterExternalId: ").append(toIndentedString(clusterExternalId)).append("\n");
     sb.append("    clusterIngressDnsName: ").append(toIndentedString(clusterIngressDnsName)).append("\n");

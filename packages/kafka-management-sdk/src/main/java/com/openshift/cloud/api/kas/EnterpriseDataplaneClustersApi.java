@@ -92,7 +92,7 @@ public class EnterpriseDataplaneClustersApi {
       }
   /**
    * 
-   * List all Enterprise OSD clusters
+   * List all Enterprise data plane clusters
    * @return a {@code EnterpriseClusterList}
    * @throws ApiException if fails to make API call
    */
