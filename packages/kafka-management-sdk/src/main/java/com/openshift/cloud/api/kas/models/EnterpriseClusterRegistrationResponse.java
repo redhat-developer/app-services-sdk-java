@@ -38,6 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   EnterpriseClusterRegistrationResponse.JSON_PROPERTY_ID,
   EnterpriseClusterRegistrationResponse.JSON_PROPERTY_KIND,
   EnterpriseClusterRegistrationResponse.JSON_PROPERTY_HREF,
+  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
   EnterpriseClusterRegistrationResponse.JSON_PROPERTY_CLUSTER_ID,
   EnterpriseClusterRegistrationResponse.JSON_PROPERTY_STATUS,
   EnterpriseClusterRegistrationResponse.JSON_PROPERTY_FLEETSHARD_PARAMETERS
@@ -53,6 +54,9 @@ public class EnterpriseClusterRegistrationResponse {
 
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
+
+  public static final String JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK = "access_kafkas_via_private_network";
+  private Boolean accessKafkasViaPrivateNetwork;
 
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
@@ -144,6 +148,33 @@ public class EnterpriseClusterRegistrationResponse {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHref(String href) {
     this.href = href;
+  }
+
+
+  public EnterpriseClusterRegistrationResponse accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+    
+    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
+    return this;
+  }
+
+   /**
+   * Indicates whether Kafkas created on this data plane cluster have to be accessed via private network
+   * @return accessKafkasViaPrivateNetwork
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Indicates whether Kafkas created on this data plane cluster have to be accessed via private network")
+  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Boolean getAccessKafkasViaPrivateNetwork() {
+    return accessKafkasViaPrivateNetwork;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
   }
 
 
@@ -248,6 +279,7 @@ public class EnterpriseClusterRegistrationResponse {
     return Objects.equals(this.id, enterpriseClusterRegistrationResponse.id) &&
         Objects.equals(this.kind, enterpriseClusterRegistrationResponse.kind) &&
         Objects.equals(this.href, enterpriseClusterRegistrationResponse.href) &&
+        Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseClusterRegistrationResponse.accessKafkasViaPrivateNetwork) &&
         Objects.equals(this.clusterId, enterpriseClusterRegistrationResponse.clusterId) &&
         Objects.equals(this.status, enterpriseClusterRegistrationResponse.status) &&
         Objects.equals(this.fleetshardParameters, enterpriseClusterRegistrationResponse.fleetshardParameters);
@@ -255,7 +287,7 @@ public class EnterpriseClusterRegistrationResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, clusterId, status, fleetshardParameters);
+    return Objects.hash(id, kind, href, accessKafkasViaPrivateNetwork, clusterId, status, fleetshardParameters);
   }
 
   @Override
@@ -265,6 +297,7 @@ public class EnterpriseClusterRegistrationResponse {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
+    sb.append("    accessKafkasViaPrivateNetwork: ").append(toIndentedString(accessKafkasViaPrivateNetwork)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    fleetshardParameters: ").append(toIndentedString(fleetshardParameters)).append("\n");

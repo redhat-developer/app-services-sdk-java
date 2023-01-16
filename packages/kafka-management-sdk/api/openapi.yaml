@@ -1203,7 +1203,7 @@ paths:
       x-accepts: application/json
   /api/kafkas_mgmt/v1/clusters:
     get:
-      description: List all Enterprise OSD clusters
+      description: List all Enterprise data plane clusters
       operationId: getEnterpriseOsdClusters
       responses:
         "200":
@@ -1211,7 +1211,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EnterpriseClusterList'
-          description: List Enterprise OSD clusters
+          description: List Enterprise data plane clusters
         "400":
           content:
             application/json:
@@ -1438,6 +1438,7 @@ components:
         href: /api/kafkas_mgmr/v1/clusters/abcd1234ascd3456fdks9485lskd030h
         status: ready
         cluster_id: abcd1234ascd3456fdks9485lskd030h
+        access_kafkas_via_private_network: true
     KafkaRequestExample:
       value:
         id: 1iSY6RQ3JKI8Q0OTmjQFd3ocFRg
@@ -1761,6 +1762,7 @@ components:
         cluster_external_id: 69d631de-9b7f-4bc2-bf4f-4d3295a7b25e
         cluster_ingress_dns_name: apps.enterprise-aws.awdk.s1.devshift.org
         kafka_machine_pool_node_count: 9
+        access_kafkas_via_private_network: false
   parameters:
     id:
       description: The ID of record
@@ -2365,8 +2367,13 @@ components:
         kafka_machine_pool_node_count: 0
         cluster_id: cluster_id
         cluster_external_id: cluster_external_id
+        access_kafkas_via_private_network: true
         cluster_ingress_dns_name: cluster_ingress_dns_name
       properties:
+        access_kafkas_via_private_network:
+          description: Sets whether Kafkas created on this data plane cluster have
+            to be accessed via private network
+          type: boolean
         cluster_id:
           description: The data plane cluster ID. This is the ID of the cluster obtained
             from OpenShift Cluster Manager (OCM) API
@@ -2389,6 +2396,7 @@ components:
           format: int32
           type: integer
       required:
+      - access_kafkas_via_private_network
       - cluster_external_id
       - cluster_id
       - cluster_ingress_dns_name
@@ -2508,12 +2516,18 @@ components:
       type: object
     EnterpriseCluster_allOf:
       properties:
+        access_kafkas_via_private_network:
+          description: Indicates whether Kafkas created on this data plane cluster
+            have to be accessed via private network
+          type: boolean
         cluster_id:
           description: ocm cluster id of the registered Enterprise cluster
           type: string
         status:
           description: status of registered Enterprise cluster
           type: string
+      required:
+      - access_kafkas_via_private_network
       type: object
     VersionMetadata_allOf:
       example:
@@ -2688,6 +2702,10 @@ components:
       type: object
     EnterpriseClusterRegistrationResponse_allOf:
       properties:
+        access_kafkas_via_private_network:
+          description: Indicates whether Kafkas created on this data plane cluster
+            have to be accessed via private network
+          type: boolean
         cluster_id:
           description: OCM cluster id of the registered Enterprise cluster
           type: string
@@ -2699,6 +2717,8 @@ components:
             allOf:
             - $ref: '#/components/schemas/FleetshardParameter'
           type: array
+      required:
+      - access_kafkas_via_private_network
       type: object
   securitySchemes:
     Bearer:

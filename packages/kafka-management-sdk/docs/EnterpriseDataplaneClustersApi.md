@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 
 
-List all Enterprise OSD clusters
+List all Enterprise data plane clusters
 
 ### Example
 
@@ -152,7 +152,7 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | List Enterprise OSD clusters |  -  |
+| **200** | List Enterprise data plane clusters |  -  |
 | **400** | Bad request |  -  |
 | **401** | Auth token is invalid |  -  |
 | **403** | User not authorized to access the service |  -  |

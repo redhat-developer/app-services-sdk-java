@@ -32,6 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * EnterpriseClusterRegistrationResponseAllOf
  */
 @JsonPropertyOrder({
+  EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
   EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_CLUSTER_ID,
   EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_STATUS,
   EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_FLEETSHARD_PARAMETERS
@@ -39,6 +40,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("EnterpriseClusterRegistrationResponse_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EnterpriseClusterRegistrationResponseAllOf {
+  public static final String JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK = "access_kafkas_via_private_network";
+  private Boolean accessKafkasViaPrivateNetwork;
+
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
 
@@ -50,6 +54,33 @@ public class EnterpriseClusterRegistrationResponseAllOf {
 
   public EnterpriseClusterRegistrationResponseAllOf() { 
   }
+
+  public EnterpriseClusterRegistrationResponseAllOf accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+    
+    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
+    return this;
+  }
+
+   /**
+   * Indicates whether Kafkas created on this data plane cluster have to be accessed via private network
+   * @return accessKafkasViaPrivateNetwork
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "Indicates whether Kafkas created on this data plane cluster have to be accessed via private network")
+  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Boolean getAccessKafkasViaPrivateNetwork() {
+    return accessKafkasViaPrivateNetwork;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
+  }
+
 
   public EnterpriseClusterRegistrationResponseAllOf clusterId(String clusterId) {
     
@@ -149,20 +180,22 @@ public class EnterpriseClusterRegistrationResponseAllOf {
       return false;
     }
     EnterpriseClusterRegistrationResponseAllOf enterpriseClusterRegistrationResponseAllOf = (EnterpriseClusterRegistrationResponseAllOf) o;
-    return Objects.equals(this.clusterId, enterpriseClusterRegistrationResponseAllOf.clusterId) &&
+    return Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseClusterRegistrationResponseAllOf.accessKafkasViaPrivateNetwork) &&
+        Objects.equals(this.clusterId, enterpriseClusterRegistrationResponseAllOf.clusterId) &&
         Objects.equals(this.status, enterpriseClusterRegistrationResponseAllOf.status) &&
         Objects.equals(this.fleetshardParameters, enterpriseClusterRegistrationResponseAllOf.fleetshardParameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(clusterId, status, fleetshardParameters);
+    return Objects.hash(accessKafkasViaPrivateNetwork, clusterId, status, fleetshardParameters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EnterpriseClusterRegistrationResponseAllOf {\n");
+    sb.append("    accessKafkasViaPrivateNetwork: ").append(toIndentedString(accessKafkasViaPrivateNetwork)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    fleetshardParameters: ").append(toIndentedString(fleetshardParameters)).append("\n");
