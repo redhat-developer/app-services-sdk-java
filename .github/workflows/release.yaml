@@ -1,8 +1,6 @@
 name: mvn-deploy
 on:
-  push:
-    tags:
-      - "*"
+  workflow_dispatch:
 jobs:
   npm-publish:
     name: mvn-publishdeploy
@@ -35,66 +33,66 @@ jobs:
       - name: Version and build kafka-management-sdk
         working-directory: ./packages/kafka-management-sdk
         run : | 
-          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn versions:set -DnewVersion="$GITHUB_REF_SLUG-SNAPSHOT"   
           mvn package -Prelease
       - name: Version and build kafka-instance-sdk
         working-directory: ./packages/kafka-instance-sdk
         run : | 
-          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn versions:set -DnewVersion="$GITHUB_REF_SLUG-SNAPSHOT"   
           mvn package -Prelease
       - name: Version and build registry-management-sdk
         working-directory: ./packages/registry-management-sdk
         run : | 
-          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn versions:set -DnewVersion="$GITHUB_REF_SLUG-SNAPSHOT"    
           mvn package -Prelease              
       - name: Version and build connector-management-sdk
         working-directory: ./packages/connector-management-sdk
         run : | 
-          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn versions:set -DnewVersion="$GITHUB_REF_SLUG-SNAPSHOT"      
           mvn package -Prelease   
       - name: Version and build service-accounts-sdk
         working-directory: ./packages/service-accounts-sdk
         run : | 
-          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn versions:set -DnewVersion="$GITHUB_REF_SLUG-SNAPSHOT"   
           mvn package -Prelease 
       - name: Version and build smartevents
         working-directory: ./packages/smartevents-management-sdk
         run : | 
-          mvn versions:set -DnewVersion=$GITHUB_REF_SLUG   
+          mvn versions:set -DnewVersion="$GITHUB_REF_SLUG-SNAPSHOT"    
           mvn package -Prelease
       - name: Publish kafka-management-sdk
         working-directory: ./packages/kafka-management-sdk
-        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
+        run: mvn --batch-mode -Prelease  -DaltSnapshotDeploymentRepository=local::file:./target/snapshot-deploy -DaltDeploymentRepository=local::file:./target/staging-deploy -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
       - name: Publish kafka-instance-sdk
         working-directory: ./packages/kafka-instance-sdk
-        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
+        run: mvn --batch-mode -Prelease -DaltSnapshotDeploymentRepository=local::file:./target/snapshot-deploy -DaltDeploymentRepository=local::file:./target/staging-deploy     -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
       - name: Publish registry-management-sdk
         working-directory: ./packages/registry-management-sdk
-        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
+        run: mvn --batch-mode -Prelease -DaltSnapshotDeploymentRepository=local::file:./target/snapshot- -DaltDeploymentRepository=local::file:./target/staging-deploy     -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
       - name: Publish connector-management-sdk
         working-directory: ./packages/connector-management-sdk
-        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
+        run: mvn --batch-mode -Prelease -DaltSnapshotDeploymentRepository=local::file:./target/snapshot-deploy -DaltDeploymentRepository=local::file:./target/staging-deploy     -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}        
       - name: Publish smartevents-management-sdk
         working-directory: ./packages/smartevents-management-sdk
-        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
+        run: mvn --batch-mode -Prelease   -DaltSnapshotDeploymentRepository=local::file:./target/snapshot-deploy   -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}  
       - name: Publish service accounts
         working-directory: ./packages/service-accounts-sdk
-        run: mvn --batch-mode -Prelease      -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
+        run: mvn --batch-mode -Prelease -DaltSnapshotDeploymentRepository=local::file:./target/snapshot-deploy -DaltDeploymentRepository=local::file:./target/staging-deploy     -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}  deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}  
