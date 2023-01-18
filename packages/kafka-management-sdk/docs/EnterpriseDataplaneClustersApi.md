@@ -5,6 +5,8 @@ All URIs are relative to *https://api.openshift.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteEnterpriseClusterById**](EnterpriseDataplaneClustersApi.md#deleteEnterpriseClusterById) | **DELETE** /api/kafkas_mgmt/v1/clusters/{id} | 
+[**getEnterpriseClusterById**](EnterpriseDataplaneClustersApi.md#getEnterpriseClusterById) | **GET** /api/kafkas_mgmt/v1/clusters/{id} | 
+[**getEnterpriseClusterWithAddonParameters**](EnterpriseDataplaneClustersApi.md#getEnterpriseClusterWithAddonParameters) | **GET** /api/kafkas_mgmt/v1/clusters/{id}/addon_parameters | 
 [**getEnterpriseOsdClusters**](EnterpriseDataplaneClustersApi.md#getEnterpriseOsdClusters) | **GET** /api/kafkas_mgmt/v1/clusters | 
 [**registerEnterpriseOsdCluster**](EnterpriseDataplaneClustersApi.md#registerEnterpriseOsdCluster) | **POST** /api/kafkas_mgmt/v1/clusters | 
 
@@ -88,6 +90,156 @@ Name | Type | Description  | Notes
 | **500** | Unexpected error occurred |  -  |
 
 
+## getEnterpriseClusterById
+
+> EnterpriseCluster getEnterpriseClusterById(id)
+
+
+
+Returns enterprise data plane cluster by ID
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.kas.invoker.ApiClient;
+import com.openshift.cloud.api.kas.invoker.ApiException;
+import com.openshift.cloud.api.kas.invoker.Configuration;
+import com.openshift.cloud.api.kas.invoker.auth.*;
+import com.openshift.cloud.api.kas.invoker.models.*;
+import com.openshift.cloud.api.kas.EnterpriseDataplaneClustersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+        
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        EnterpriseDataplaneClustersApi apiInstance = new EnterpriseDataplaneClustersApi(defaultClient);
+        String id = "id_example"; // String | ID of the enterprise data plane cluster
+        try {
+            EnterpriseCluster result = apiInstance.getEnterpriseClusterById(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EnterpriseDataplaneClustersApi#getEnterpriseClusterById");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID of the enterprise data plane cluster |
+
+### Return type
+
+[**EnterpriseCluster**](EnterpriseCluster.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Found enterprise data plane cluster with provided ID |  -  |
+| **401** | Auth token is invalid |  -  |
+| **403** | User not authorized to access the service |  -  |
+| **404** | No Enterprise data plane cluster with specified ID exists |  -  |
+| **500** | Unexpected error occurred |  -  |
+
+
+## getEnterpriseClusterWithAddonParameters
+
+> EnterpriseClusterWithAddonParameters getEnterpriseClusterWithAddonParameters(id)
+
+
+
+Returns enterprise data plane cluster by ID along with its addon parameters
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.kas.invoker.ApiClient;
+import com.openshift.cloud.api.kas.invoker.ApiException;
+import com.openshift.cloud.api.kas.invoker.Configuration;
+import com.openshift.cloud.api.kas.invoker.auth.*;
+import com.openshift.cloud.api.kas.invoker.models.*;
+import com.openshift.cloud.api.kas.EnterpriseDataplaneClustersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+        
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        EnterpriseDataplaneClustersApi apiInstance = new EnterpriseDataplaneClustersApi(defaultClient);
+        String id = "id_example"; // String | ID of the enterprise data plane cluster
+        try {
+            EnterpriseClusterWithAddonParameters result = apiInstance.getEnterpriseClusterWithAddonParameters(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling EnterpriseDataplaneClustersApi#getEnterpriseClusterWithAddonParameters");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID of the enterprise data plane cluster |
+
+### Return type
+
+[**EnterpriseClusterWithAddonParameters**](EnterpriseClusterWithAddonParameters.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Returns the enterprise data plane cluster with addon parameters for an existing enterprise data plane cluster with provided ID |  -  |
+| **401** | Auth token is invalid |  -  |
+| **403** | User not authorized to access the service |  -  |
+| **404** | No Enterprise data plane cluster with specified ID exists |  -  |
+| **500** | Unexpected error occurred |  -  |
+
+
 ## getEnterpriseOsdClusters
 
 > EnterpriseClusterList getEnterpriseOsdClusters()
@@ -161,7 +313,7 @@ This endpoint does not need any parameter.
 
 ## registerEnterpriseOsdCluster
 
-> EnterpriseClusterRegistrationResponse registerEnterpriseOsdCluster(enterpriseOsdClusterPayload)
+> EnterpriseClusterWithAddonParameters registerEnterpriseOsdCluster(enterpriseOsdClusterPayload)
 
 
 
@@ -190,7 +342,7 @@ public class Example {
         EnterpriseDataplaneClustersApi apiInstance = new EnterpriseDataplaneClustersApi(defaultClient);
         EnterpriseOsdClusterPayload enterpriseOsdClusterPayload = new EnterpriseOsdClusterPayload(); // EnterpriseOsdClusterPayload | Enterprise data plane cluster details
         try {
-            EnterpriseClusterRegistrationResponse result = apiInstance.registerEnterpriseOsdCluster(enterpriseOsdClusterPayload);
+            EnterpriseClusterWithAddonParameters result = apiInstance.registerEnterpriseOsdCluster(enterpriseOsdClusterPayload);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EnterpriseDataplaneClustersApi#registerEnterpriseOsdCluster");
@@ -212,7 +364,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EnterpriseClusterRegistrationResponse**](EnterpriseClusterRegistrationResponse.md)
+[**EnterpriseClusterWithAddonParameters**](EnterpriseClusterWithAddonParameters.md)
 
 ### Authorization
 

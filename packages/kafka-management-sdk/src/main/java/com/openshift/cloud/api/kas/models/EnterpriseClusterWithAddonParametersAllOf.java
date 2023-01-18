@@ -29,17 +29,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * EnterpriseClusterRegistrationResponseAllOf
+ * EnterpriseClusterWithAddonParametersAllOf
  */
 @JsonPropertyOrder({
-  EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
-  EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_CLUSTER_ID,
-  EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_STATUS,
-  EnterpriseClusterRegistrationResponseAllOf.JSON_PROPERTY_FLEETSHARD_PARAMETERS
+  EnterpriseClusterWithAddonParametersAllOf.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
+  EnterpriseClusterWithAddonParametersAllOf.JSON_PROPERTY_CLUSTER_ID,
+  EnterpriseClusterWithAddonParametersAllOf.JSON_PROPERTY_STATUS,
+  EnterpriseClusterWithAddonParametersAllOf.JSON_PROPERTY_FLEETSHARD_PARAMETERS
 })
-@JsonTypeName("EnterpriseClusterRegistrationResponse_allOf")
+@JsonTypeName("EnterpriseClusterWithAddonParameters_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class EnterpriseClusterRegistrationResponseAllOf {
+public class EnterpriseClusterWithAddonParametersAllOf {
   public static final String JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK = "access_kafkas_via_private_network";
   private Boolean accessKafkasViaPrivateNetwork;
 
@@ -52,10 +52,10 @@ public class EnterpriseClusterRegistrationResponseAllOf {
   public static final String JSON_PROPERTY_FLEETSHARD_PARAMETERS = "fleetshard_parameters";
   private List<FleetshardParameter> fleetshardParameters = null;
 
-  public EnterpriseClusterRegistrationResponseAllOf() { 
+  public EnterpriseClusterWithAddonParametersAllOf() { 
   }
 
-  public EnterpriseClusterRegistrationResponseAllOf accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+  public EnterpriseClusterWithAddonParametersAllOf accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
     
     this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
     return this;
@@ -82,7 +82,7 @@ public class EnterpriseClusterRegistrationResponseAllOf {
   }
 
 
-  public EnterpriseClusterRegistrationResponseAllOf clusterId(String clusterId) {
+  public EnterpriseClusterWithAddonParametersAllOf clusterId(String clusterId) {
     
     this.clusterId = clusterId;
     return this;
@@ -109,7 +109,7 @@ public class EnterpriseClusterRegistrationResponseAllOf {
   }
 
 
-  public EnterpriseClusterRegistrationResponseAllOf status(String status) {
+  public EnterpriseClusterWithAddonParametersAllOf status(String status) {
     
     this.status = status;
     return this;
@@ -136,13 +136,13 @@ public class EnterpriseClusterRegistrationResponseAllOf {
   }
 
 
-  public EnterpriseClusterRegistrationResponseAllOf fleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
+  public EnterpriseClusterWithAddonParametersAllOf fleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
     
     this.fleetshardParameters = fleetshardParameters;
     return this;
   }
 
-  public EnterpriseClusterRegistrationResponseAllOf addFleetshardParametersItem(FleetshardParameter fleetshardParametersItem) {
+  public EnterpriseClusterWithAddonParametersAllOf addFleetshardParametersItem(FleetshardParameter fleetshardParametersItem) {
     if (this.fleetshardParameters == null) {
       this.fleetshardParameters = new ArrayList<>();
     }
@@ -179,11 +179,11 @@ public class EnterpriseClusterRegistrationResponseAllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EnterpriseClusterRegistrationResponseAllOf enterpriseClusterRegistrationResponseAllOf = (EnterpriseClusterRegistrationResponseAllOf) o;
-    return Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseClusterRegistrationResponseAllOf.accessKafkasViaPrivateNetwork) &&
-        Objects.equals(this.clusterId, enterpriseClusterRegistrationResponseAllOf.clusterId) &&
-        Objects.equals(this.status, enterpriseClusterRegistrationResponseAllOf.status) &&
-        Objects.equals(this.fleetshardParameters, enterpriseClusterRegistrationResponseAllOf.fleetshardParameters);
+    EnterpriseClusterWithAddonParametersAllOf enterpriseClusterWithAddonParametersAllOf = (EnterpriseClusterWithAddonParametersAllOf) o;
+    return Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseClusterWithAddonParametersAllOf.accessKafkasViaPrivateNetwork) &&
+        Objects.equals(this.clusterId, enterpriseClusterWithAddonParametersAllOf.clusterId) &&
+        Objects.equals(this.status, enterpriseClusterWithAddonParametersAllOf.status) &&
+        Objects.equals(this.fleetshardParameters, enterpriseClusterWithAddonParametersAllOf.fleetshardParameters);
   }
 
   @Override
@@ -194,7 +194,7 @@ public class EnterpriseClusterRegistrationResponseAllOf {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EnterpriseClusterRegistrationResponseAllOf {\n");
+    sb.append("class EnterpriseClusterWithAddonParametersAllOf {\n");
     sb.append("    accessKafkasViaPrivateNetwork: ").append(toIndentedString(accessKafkasViaPrivateNetwork)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.models.EnterpriseClusterRegistrationResponseAllOf;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterWithAddonParametersAllOf;
 import com.openshift.cloud.api.kas.models.FleetshardParameter;
 import com.openshift.cloud.api.kas.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
@@ -31,21 +31,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Enterprise cluster registration endpoint response
+ * Enterprise cluster with addon parameters
  */
-@ApiModel(description = "Enterprise cluster registration endpoint response")
+@ApiModel(description = "Enterprise cluster with addon parameters")
 @JsonPropertyOrder({
-  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_ID,
-  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_KIND,
-  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_HREF,
-  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
-  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_CLUSTER_ID,
-  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_STATUS,
-  EnterpriseClusterRegistrationResponse.JSON_PROPERTY_FLEETSHARD_PARAMETERS
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_ID,
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_KIND,
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_HREF,
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_CLUSTER_ID,
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_STATUS,
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_FLEETSHARD_PARAMETERS
 })
-@JsonTypeName("EnterpriseClusterRegistrationResponse")
+@JsonTypeName("EnterpriseClusterWithAddonParameters")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class EnterpriseClusterRegistrationResponse {
+public class EnterpriseClusterWithAddonParameters {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
@@ -67,10 +67,10 @@ public class EnterpriseClusterRegistrationResponse {
   public static final String JSON_PROPERTY_FLEETSHARD_PARAMETERS = "fleetshard_parameters";
   private List<FleetshardParameter> fleetshardParameters = null;
 
-  public EnterpriseClusterRegistrationResponse() { 
+  public EnterpriseClusterWithAddonParameters() { 
   }
 
-  public EnterpriseClusterRegistrationResponse id(String id) {
+  public EnterpriseClusterWithAddonParameters id(String id) {
     
     this.id = id;
     return this;
@@ -97,7 +97,7 @@ public class EnterpriseClusterRegistrationResponse {
   }
 
 
-  public EnterpriseClusterRegistrationResponse kind(String kind) {
+  public EnterpriseClusterWithAddonParameters kind(String kind) {
     
     this.kind = kind;
     return this;
@@ -124,7 +124,7 @@ public class EnterpriseClusterRegistrationResponse {
   }
 
 
-  public EnterpriseClusterRegistrationResponse href(String href) {
+  public EnterpriseClusterWithAddonParameters href(String href) {
     
     this.href = href;
     return this;
@@ -151,7 +151,7 @@ public class EnterpriseClusterRegistrationResponse {
   }
 
 
-  public EnterpriseClusterRegistrationResponse accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+  public EnterpriseClusterWithAddonParameters accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
     
     this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
     return this;
@@ -178,7 +178,7 @@ public class EnterpriseClusterRegistrationResponse {
   }
 
 
-  public EnterpriseClusterRegistrationResponse clusterId(String clusterId) {
+  public EnterpriseClusterWithAddonParameters clusterId(String clusterId) {
     
     this.clusterId = clusterId;
     return this;
@@ -205,7 +205,7 @@ public class EnterpriseClusterRegistrationResponse {
   }
 
 
-  public EnterpriseClusterRegistrationResponse status(String status) {
+  public EnterpriseClusterWithAddonParameters status(String status) {
     
     this.status = status;
     return this;
@@ -232,13 +232,13 @@ public class EnterpriseClusterRegistrationResponse {
   }
 
 
-  public EnterpriseClusterRegistrationResponse fleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
+  public EnterpriseClusterWithAddonParameters fleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
     
     this.fleetshardParameters = fleetshardParameters;
     return this;
   }
 
-  public EnterpriseClusterRegistrationResponse addFleetshardParametersItem(FleetshardParameter fleetshardParametersItem) {
+  public EnterpriseClusterWithAddonParameters addFleetshardParametersItem(FleetshardParameter fleetshardParametersItem) {
     if (this.fleetshardParameters == null) {
       this.fleetshardParameters = new ArrayList<>();
     }
@@ -275,14 +275,14 @@ public class EnterpriseClusterRegistrationResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EnterpriseClusterRegistrationResponse enterpriseClusterRegistrationResponse = (EnterpriseClusterRegistrationResponse) o;
-    return Objects.equals(this.id, enterpriseClusterRegistrationResponse.id) &&
-        Objects.equals(this.kind, enterpriseClusterRegistrationResponse.kind) &&
-        Objects.equals(this.href, enterpriseClusterRegistrationResponse.href) &&
-        Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseClusterRegistrationResponse.accessKafkasViaPrivateNetwork) &&
-        Objects.equals(this.clusterId, enterpriseClusterRegistrationResponse.clusterId) &&
-        Objects.equals(this.status, enterpriseClusterRegistrationResponse.status) &&
-        Objects.equals(this.fleetshardParameters, enterpriseClusterRegistrationResponse.fleetshardParameters);
+    EnterpriseClusterWithAddonParameters enterpriseClusterWithAddonParameters = (EnterpriseClusterWithAddonParameters) o;
+    return Objects.equals(this.id, enterpriseClusterWithAddonParameters.id) &&
+        Objects.equals(this.kind, enterpriseClusterWithAddonParameters.kind) &&
+        Objects.equals(this.href, enterpriseClusterWithAddonParameters.href) &&
+        Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseClusterWithAddonParameters.accessKafkasViaPrivateNetwork) &&
+        Objects.equals(this.clusterId, enterpriseClusterWithAddonParameters.clusterId) &&
+        Objects.equals(this.status, enterpriseClusterWithAddonParameters.status) &&
+        Objects.equals(this.fleetshardParameters, enterpriseClusterWithAddonParameters.fleetshardParameters);
   }
 
   @Override
@@ -293,7 +293,7 @@ public class EnterpriseClusterRegistrationResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EnterpriseClusterRegistrationResponse {\n");
+    sb.append("class EnterpriseClusterWithAddonParameters {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
