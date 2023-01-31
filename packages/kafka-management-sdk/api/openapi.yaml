@@ -1338,16 +1338,6 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: |-
-          When provided with value: true - enterprise cluster will be deleted alongside all kafkas present on the cluster.
-          When skipped and enterprise cluster has any kafkas associated with it, the request will fail.
-        explode: true
-        in: query
-        name: force
-        required: false
-        schema:
-          type: boolean
-        style: form
       - description: ID of the enterprise data plane cluster
         explode: false
         in: path

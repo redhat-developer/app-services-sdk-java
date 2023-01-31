@@ -43,11 +43,10 @@ public class EnterpriseDataplaneClustersApi {
    * 
    * @param async Perform the action in an asynchronous manner (required)
    * @param id ID of the enterprise data plane cluster (required)
-   * @param force When provided with value: true - enterprise cluster will be deleted alongside all kafkas present on the cluster. When skipped and enterprise cluster has any kafkas associated with it, the request will fail. (optional)
    * @return a {@code Error}
    * @throws ApiException if fails to make API call
    */
-  public Error deleteEnterpriseClusterById(Boolean async, String id, Boolean force) throws ApiException {
+  public Error deleteEnterpriseClusterById(Boolean async, String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'async' is set
@@ -71,7 +70,6 @@ public class EnterpriseDataplaneClustersApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "async", async));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "force", force));
 
     
     

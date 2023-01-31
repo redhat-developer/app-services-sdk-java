@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## deleteEnterpriseClusterById
 
-> Error deleteEnterpriseClusterById(async, id, force)
+> Error deleteEnterpriseClusterById(async, id)
 
 
 
@@ -41,9 +41,8 @@ public class Example {
         EnterpriseDataplaneClustersApi apiInstance = new EnterpriseDataplaneClustersApi(defaultClient);
         Boolean async = true; // Boolean | Perform the action in an asynchronous manner
         String id = "id_example"; // String | ID of the enterprise data plane cluster
-        Boolean force = true; // Boolean | When provided with value: true - enterprise cluster will be deleted alongside all kafkas present on the cluster. When skipped and enterprise cluster has any kafkas associated with it, the request will fail.
         try {
-            Error result = apiInstance.deleteEnterpriseClusterById(async, id, force);
+            Error result = apiInstance.deleteEnterpriseClusterById(async, id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling EnterpriseDataplaneClustersApi#deleteEnterpriseClusterById");
@@ -63,7 +62,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **async** | **Boolean**| Perform the action in an asynchronous manner |
  **id** | **String**| ID of the enterprise data plane cluster |
- **force** | **Boolean**| When provided with value: true - enterprise cluster will be deleted alongside all kafkas present on the cluster. When skipped and enterprise cluster has any kafkas associated with it, the request will fail. | [optional]
 
 ### Return type
 
