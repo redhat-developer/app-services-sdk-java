@@ -2095,12 +2095,7 @@ components:
           type: integer
         total:
           type: integer
-        items:
-          items:
-            $ref: '#/components/schemas/ObjectReference'
-          type: array
       required:
-      - items
       - kind
       - page
       - size
@@ -2560,6 +2555,8 @@ components:
           items:
             $ref: '#/components/schemas/Error'
           type: array
+      required:
+      - items
       type: object
     KafkaRequest_allOf:
       example:
@@ -2637,6 +2634,8 @@ components:
             allOf:
             - $ref: '#/components/schemas/KafkaRequest'
           type: array
+      required:
+      - items
       type: object
     EnterpriseClusterList_allOf:
       example:
@@ -2652,6 +2651,8 @@ components:
             allOf:
             - $ref: '#/components/schemas/EnterpriseCluster'
           type: array
+      required:
+      - items
       type: object
     EnterpriseCluster_allOf:
       properties:
@@ -2697,6 +2698,8 @@ components:
             allOf:
             - $ref: '#/components/schemas/SupportedKafkaInstanceType'
           type: array
+      required:
+      - items
       type: object
     CloudProviderList_allOf:
       example:
@@ -2712,6 +2715,8 @@ components:
             allOf:
             - $ref: '#/components/schemas/CloudProvider'
           type: array
+      required:
+      - items
       type: object
     CloudRegionList_allOf:
       example:
@@ -2727,6 +2732,8 @@ components:
             allOf:
             - $ref: '#/components/schemas/CloudRegion'
           type: array
+      required:
+      - items
       type: object
     ServiceAccount_allOf:
       example:

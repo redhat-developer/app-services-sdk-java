@@ -20,11 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -35,8 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ModelList.JSON_PROPERTY_KIND,
   ModelList.JSON_PROPERTY_PAGE,
   ModelList.JSON_PROPERTY_SIZE,
-  ModelList.JSON_PROPERTY_TOTAL,
-  ModelList.JSON_PROPERTY_ITEMS
+  ModelList.JSON_PROPERTY_TOTAL
 })
 @JsonTypeName("List")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -52,9 +48,6 @@ public class ModelList {
 
   public static final String JSON_PROPERTY_TOTAL = "total";
   private Integer total;
-
-  public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<ObjectReference> items = new ArrayList<>();
 
   public ModelList() { 
   }
@@ -167,38 +160,6 @@ public class ModelList {
   }
 
 
-  public ModelList items(List<ObjectReference> items) {
-    
-    this.items = items;
-    return this;
-  }
-
-  public ModelList addItemsItem(ObjectReference itemsItem) {
-    this.items.add(itemsItem);
-    return this;
-  }
-
-   /**
-   * Get items
-   * @return items
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<ObjectReference> getItems() {
-    return items;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setItems(List<ObjectReference> items) {
-    this.items = items;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -211,13 +172,12 @@ public class ModelList {
     return Objects.equals(this.kind, _list.kind) &&
         Objects.equals(this.page, _list.page) &&
         Objects.equals(this.size, _list.size) &&
-        Objects.equals(this.total, _list.total) &&
-        Objects.equals(this.items, _list.items);
+        Objects.equals(this.total, _list.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, page, size, total, items);
+    return Objects.hash(kind, page, size, total);
   }
 
   @Override
@@ -228,7 +188,6 @@ public class ModelList {
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }

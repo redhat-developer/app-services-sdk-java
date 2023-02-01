@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **page** | **Integer** |  | 
 **size** | **Integer** |  | 
 **total** | **Integer** |  | 
-**items** | [**List&lt;ObjectReference&gt;**](ObjectReference.md) |  | 
 
 
 

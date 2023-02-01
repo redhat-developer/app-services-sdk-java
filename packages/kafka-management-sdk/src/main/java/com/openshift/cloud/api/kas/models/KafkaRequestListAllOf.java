@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class KafkaRequestListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<KafkaRequest> items = null;
+  private List<KafkaRequest> items = new ArrayList<>();
 
   public KafkaRequestListAllOf() { 
   }
@@ -50,9 +50,6 @@ public class KafkaRequestListAllOf {
   }
 
   public KafkaRequestListAllOf addItemsItem(KafkaRequest itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
     this.items.add(itemsItem);
     return this;
   }
@@ -61,10 +58,10 @@ public class KafkaRequestListAllOf {
    * Get items
    * @return items
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<KafkaRequest> getItems() {
     return items;
@@ -72,7 +69,7 @@ public class KafkaRequestListAllOf {
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setItems(List<KafkaRequest> items) {
     this.items = items;
   }

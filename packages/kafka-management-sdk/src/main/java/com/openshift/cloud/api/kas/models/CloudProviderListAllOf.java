@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CloudProviderListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<CloudProvider> items = null;
+  private List<CloudProvider> items = new ArrayList<>();
 
   public CloudProviderListAllOf() { 
   }
@@ -50,9 +50,6 @@ public class CloudProviderListAllOf {
   }
 
   public CloudProviderListAllOf addItemsItem(CloudProvider itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
     this.items.add(itemsItem);
     return this;
   }
@@ -61,10 +58,10 @@ public class CloudProviderListAllOf {
    * Get items
    * @return items
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<CloudProvider> getItems() {
     return items;
@@ -72,7 +69,7 @@ public class CloudProviderListAllOf {
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setItems(List<CloudProvider> items) {
     this.items = items;
   }
