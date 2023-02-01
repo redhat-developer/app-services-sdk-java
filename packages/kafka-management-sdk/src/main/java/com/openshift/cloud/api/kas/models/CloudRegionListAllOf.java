@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CloudRegionListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<CloudRegion> items = null;
+  private List<CloudRegion> items = new ArrayList<>();
 
   public CloudRegionListAllOf() { 
   }
@@ -50,9 +50,6 @@ public class CloudRegionListAllOf {
   }
 
   public CloudRegionListAllOf addItemsItem(CloudRegion itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
     this.items.add(itemsItem);
     return this;
   }
@@ -61,10 +58,10 @@ public class CloudRegionListAllOf {
    * Get items
    * @return items
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<CloudRegion> getItems() {
     return items;
@@ -72,7 +69,7 @@ public class CloudRegionListAllOf {
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setItems(List<CloudRegion> items) {
     this.items = items;
   }

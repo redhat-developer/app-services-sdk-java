@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;KafkaRequest&gt;**](KafkaRequest.md) |  |  [optional]
+**items** | [**List&lt;KafkaRequest&gt;**](KafkaRequest.md) |  | 
 
 
 

@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;CloudProvider&gt;**](CloudProvider.md) |  |  [optional]
+**items** | [**List&lt;CloudProvider&gt;**](CloudProvider.md) |  | 
 
 
 
