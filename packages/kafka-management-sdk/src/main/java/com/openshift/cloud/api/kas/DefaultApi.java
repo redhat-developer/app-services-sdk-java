@@ -10,6 +10,7 @@ import javax.ws.rs.core.GenericType;
 import com.openshift.cloud.api.kas.models.CloudProviderList;
 import com.openshift.cloud.api.kas.models.CloudRegionList;
 import com.openshift.cloud.api.kas.models.Error;
+import com.openshift.cloud.api.kas.models.KafkaPromoteRequest;
 import com.openshift.cloud.api.kas.models.KafkaRequest;
 import com.openshift.cloud.api.kas.models.KafkaRequestList;
 import com.openshift.cloud.api.kas.models.KafkaRequestPayload;
@@ -561,6 +562,62 @@ public class DefaultApi {
     GenericType<VersionMetadata> localVarReturnType = new GenericType<VersionMetadata>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
+  /**
+   * 
+   * Promote a Kafka instance. Promotion is performed asynchronously. The &#x60;async&#x60; query parameter has to be set to &#x60;true&#x60;. Only kafka instances with an &#x60;eval&#x60; billing_model are supported
+   * @param id The ID of record (required)
+   * @param async Perform the action in an asynchronous manner. False by default. (required)
+   * @param kafkaPromoteRequest Kafka promotion request (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void promoteKafka(String id, Boolean async, KafkaPromoteRequest kafkaPromoteRequest) throws ApiException {
+    Object localVarPostBody = kafkaPromoteRequest;
+    
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling promoteKafka");
+    }
+    
+    // verify the required parameter 'async' is set
+    if (async == null) {
+      throw new ApiException(400, "Missing the required parameter 'async' when calling promoteKafka");
+    }
+    
+    // verify the required parameter 'kafkaPromoteRequest' is set
+    if (kafkaPromoteRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'kafkaPromoteRequest' when calling promoteKafka");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/kafkas_mgmt/v1/kafkas/{id}/promote".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "async", async));
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "Bearer" };
+
+
+    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+  }
   /**
    * 
    * Update a Kafka instance by id

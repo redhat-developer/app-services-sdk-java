@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
   title: Kafka Management API
-  version: 1.14.0
+  version: 1.15.0
   description: Kafka Management API is a REST API to manage Kafka instances
   license:
     name: 'Apache 2.0'
@@ -258,6 +258,88 @@ paths:
                   $ref: '#/components/examples/500Example'
     parameters:
       - $ref: "#/components/parameters/id"
+  /api/kafkas_mgmt/v1/kafkas/{id}/promote:
+    parameters:
+      - $ref: "#/components/parameters/id"
+      - in: query
+        name: async
+        description: Perform the action in an asynchronous manner. False by default.
+        schema:
+          type: boolean
+        required: true
+    post:
+      description: "Promote a Kafka instance. Promotion is performed asynchronously. The `async` query parameter has to be set to `true`. Only kafka instances with an `eval` billing_model are supported"
+      operationId: promoteKafka
+      requestBody:
+        description: "Kafka promotion request"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KafkaPromoteRequest'
+            examples:
+              KafkaPromoteRequestExample:
+                $ref: '#/components/examples/KafkaPromoteRequestExample'
+      responses:
+        "202":
+          # No 'content' attribute specified. This means no body is returned
+          description: Kafka promotion request accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                400CreationExample:
+                  $ref: '#/components/examples/400CreationExample'
+          description: Validation errors occurred
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                401Example:
+                  $ref: '#/components/examples/401Example'
+          description: Auth token is invalid
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                403Example:
+                  $ref: '#/components/examples/403Example'
+          description: User forbidden either because the user is not authorized to access the service.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                404Example:
+                  $ref: '#/components/examples/404Example'
+          description: The requested resource doesn't exist
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                409NameConflictExample:
+                  $ref: '#/components/examples/409NameConflictExample'
+          description: A conflict has been detected with the usage of this resource
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                500Example:
+                  $ref: '#/components/examples/500Example'
+          description: A server error occurred while promoting the Kafka request
+      security:
+        - Bearer: [ ]
   /api/kafkas_mgmt/v1/kafkas:
     post:
       operationId: createKafka
@@ -1365,6 +1447,12 @@ components:
               type: string
             billing_model:
               type: string
+            promotion_status:
+              type: string
+              description: "Status of the Kafka request promotion. Possible values: ['promoting', 'failed']. If unset it means no promotion is in progress."
+            promotion_details:
+              type: string
+              description: "Details of the Kafka request promotion. It can be set when a Kafka request promotion is in progress or has failed"
           example:
             $ref: "#/components/examples/KafkaRequestExample"
     KafkaRequestList:
@@ -1475,6 +1563,23 @@ components:
           description: billing model to use
           type: string
           nullable: true
+    KafkaPromoteRequest:
+      type: object
+      properties:
+        desired_kafka_billing_model:
+          description: "The desired Kafka billing model to promote the kafka instance to. Promotion is performed asynchronously. Accepted values: ['marketplace', 'standard']"
+          type: string
+          minLength: 1
+        desired_marketplace:
+          description: "The desired billing marketplace to promote the kafka instance to. Accepted values: ['aws', 'rhm']. Only considered when desired_kafka_billing_model is 'marketplace'"
+          type: string
+          minLength: 1
+        desired_billing_cloud_account_id:
+          description: "The desired Kafka billing cloud account ID to promote the kafka instance to. Only considered when desired_kafka_billing_model is 'marketplace'"
+          type: string
+          minLength: 1
+      required:
+        - desired_kafka_billing_model
     SupportedKafkaInstanceTypesList:
       allOf:
         - type: object
@@ -2233,6 +2338,11 @@ components:
         failed_reason: "a reason the Kafka request creation failed"
         instance_type: standard
         reauthentication_enabled: true
+    KafkaPromoteRequestExample:
+      value:
+        desired_kafka_billing_model: "marketplace"
+        desired_marketplace: "aws"
+        desired_billing_cloud_account_id: "123456"
     SupportedKafkaInstanceTypeListExample:
       value:
         id: developer

@@ -8,7 +8,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Management API
-  version: 1.14.0
+  version: 1.15.0
 servers:
 - description: Main (production) server
   url: https://api.openshift.com
@@ -288,6 +288,101 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Unexpected error occurred
+      security:
+      - Bearer: []
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/kafkas_mgmt/v1/kafkas/{id}/promote:
+    post:
+      description: Promote a Kafka instance. Promotion is performed asynchronously.
+        The `async` query parameter has to be set to `true`. Only kafka instances
+        with an `eval` billing_model are supported
+      operationId: promoteKafka
+      parameters:
+      - description: The ID of record
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Perform the action in an asynchronous manner. False by default.
+        explode: true
+        in: query
+        name: async
+        required: true
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            examples:
+              KafkaPromoteRequestExample:
+                $ref: '#/components/examples/KafkaPromoteRequestExample'
+            schema:
+              $ref: '#/components/schemas/KafkaPromoteRequest'
+        description: Kafka promotion request
+        required: true
+      responses:
+        "202":
+          description: Kafka promotion request accepted
+        "400":
+          content:
+            application/json:
+              examples:
+                "400CreationExample":
+                  $ref: '#/components/examples/400CreationExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Validation errors occurred
+        "401":
+          content:
+            application/json:
+              examples:
+                "401Example":
+                  $ref: '#/components/examples/401Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Auth token is invalid
+        "403":
+          content:
+            application/json:
+              examples:
+                "403Example":
+                  $ref: '#/components/examples/403Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: User forbidden either because the user is not authorized to
+            access the service.
+        "404":
+          content:
+            application/json:
+              examples:
+                "404Example":
+                  $ref: '#/components/examples/404Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The requested resource doesn't exist
+        "409":
+          content:
+            application/json:
+              examples:
+                "409NameConflictExample":
+                  $ref: '#/components/examples/409NameConflictExample'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: A conflict has been detected with the usage of this resource
+        "500":
+          content:
+            application/json:
+              examples:
+                "500Example":
+                  $ref: '#/components/examples/500Example'
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: A server error occurred while promoting the Kafka request
       security:
       - Bearer: []
       x-contentType: application/json
@@ -1627,6 +1722,11 @@ components:
         failed_reason: a reason the Kafka request creation failed
         instance_type: standard
         reauthentication_enabled: true
+    KafkaPromoteRequestExample:
+      value:
+        desired_kafka_billing_model: marketplace
+        desired_marketplace: aws
+        desired_billing_cloud_account_id: "123456"
     SupportedKafkaInstanceTypeListExample:
       value:
         id: developer
@@ -2209,6 +2309,32 @@ components:
       required:
       - name
       type: object
+    KafkaPromoteRequest:
+      example:
+        desired_billing_cloud_account_id: desired_billing_cloud_account_id
+        desired_marketplace: desired_marketplace
+        desired_kafka_billing_model: desired_kafka_billing_model
+      properties:
+        desired_kafka_billing_model:
+          description: 'The desired Kafka billing model to promote the kafka instance
+            to. Promotion is performed asynchronously. Accepted values: [''marketplace'',
+            ''standard'']'
+          minLength: 1
+          type: string
+        desired_marketplace:
+          description: 'The desired billing marketplace to promote the kafka instance
+            to. Accepted values: [''aws'', ''rhm'']. Only considered when desired_kafka_billing_model
+            is ''marketplace'''
+          minLength: 1
+          type: string
+        desired_billing_cloud_account_id:
+          description: The desired Kafka billing cloud account ID to promote the kafka
+            instance to. Only considered when desired_kafka_billing_model is 'marketplace'
+          minLength: 1
+          type: string
+      required:
+      - desired_kafka_billing_model
+      type: object
     SupportedKafkaInstanceTypesList:
       allOf:
       - $ref: '#/components/schemas/SupportedKafkaInstanceTypesList_allOf'
@@ -2615,6 +2741,14 @@ components:
         marketplace:
           type: string
         billing_model:
+          type: string
+        promotion_status:
+          description: 'Status of the Kafka request promotion. Possible values: [''promoting'',
+            ''failed'']. If unset it means no promotion is in progress.'
+          type: string
+        promotion_details:
+          description: Details of the Kafka request promotion. It can be set when
+            a Kafka request promotion is in progress or has failed
           type: string
       required:
       - multi_az

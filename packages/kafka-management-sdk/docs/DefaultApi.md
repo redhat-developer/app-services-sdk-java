@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**getMetricsByInstantQuery**](DefaultApi.md#getMetricsByInstantQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query | 
 [**getMetricsByRangeQuery**](DefaultApi.md#getMetricsByRangeQuery) | **GET** /api/kafkas_mgmt/v1/kafkas/{id}/metrics/query_range | 
 [**getVersionMetadata**](DefaultApi.md#getVersionMetadata) | **GET** /api/kafkas_mgmt/v1 | 
+[**promoteKafka**](DefaultApi.md#promoteKafka) | **POST** /api/kafkas_mgmt/v1/kafkas/{id}/promote | 
 [**updateKafkaById**](DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | 
 
 
@@ -849,6 +850,86 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Version metadata |  -  |
+
+
+## promoteKafka
+
+> promoteKafka(id, async, kafkaPromoteRequest)
+
+
+
+Promote a Kafka instance. Promotion is performed asynchronously. The &#x60;async&#x60; query parameter has to be set to &#x60;true&#x60;. Only kafka instances with an &#x60;eval&#x60; billing_model are supported
+
+### Example
+
+```java
+// Import classes:
+import com.openshift.cloud.api.kas.invoker.ApiClient;
+import com.openshift.cloud.api.kas.invoker.ApiException;
+import com.openshift.cloud.api.kas.invoker.Configuration;
+import com.openshift.cloud.api.kas.invoker.auth.*;
+import com.openshift.cloud.api.kas.invoker.models.*;
+import com.openshift.cloud.api.kas.DefaultApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://api.openshift.com");
+        
+        // Configure HTTP bearer authorization: Bearer
+        HttpBearerAuth Bearer = (HttpBearerAuth) defaultClient.getAuthentication("Bearer");
+        Bearer.setBearerToken("BEARER TOKEN");
+
+        DefaultApi apiInstance = new DefaultApi(defaultClient);
+        String id = "id_example"; // String | The ID of record
+        Boolean async = true; // Boolean | Perform the action in an asynchronous manner. False by default.
+        KafkaPromoteRequest kafkaPromoteRequest = new KafkaPromoteRequest(); // KafkaPromoteRequest | Kafka promotion request
+        try {
+            apiInstance.promoteKafka(id, async, kafkaPromoteRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#promoteKafka");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The ID of record |
+ **async** | **Boolean**| Perform the action in an asynchronous manner. False by default. |
+ **kafkaPromoteRequest** | [**KafkaPromoteRequest**](KafkaPromoteRequest.md)| Kafka promotion request |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **202** | Kafka promotion request accepted |  -  |
+| **400** | Validation errors occurred |  -  |
+| **401** | Auth token is invalid |  -  |
+| **403** | User forbidden either because the user is not authorized to access the service. |  -  |
+| **404** | The requested resource doesn&#39;t exist |  -  |
+| **409** | A conflict has been detected with the usage of this resource |  -  |
+| **500** | A server error occurred while promoting the Kafka request |  -  |
 
 
 ## updateKafkaById
