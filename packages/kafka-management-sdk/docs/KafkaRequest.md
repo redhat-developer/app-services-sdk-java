@@ -31,6 +31,8 @@ Name | Type | Description | Notes
 **billingCloudAccountId** | **String** |  |  [optional]
 **marketplace** | **String** |  |  [optional]
 **billingModel** | **String** |  |  [optional]
+**promotionStatus** | **String** | Status of the Kafka request promotion. Possible values: [&#39;promoting&#39;, &#39;failed&#39;]. If unset it means no promotion is in progress. |  [optional]
+**promotionDetails** | **String** | Details of the Kafka request promotion. It can be set when a Kafka request promotion is in progress or has failed |  [optional]
 
 
 
