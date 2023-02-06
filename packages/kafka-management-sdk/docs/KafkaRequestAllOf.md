@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **marketplace** | **String** |  |  [optional]
 **billingModel** | **String** |  |  [optional]
 **promotionStatus** | **String** | Status of the Kafka request promotion. Possible values: [&#39;promoting&#39;, &#39;failed&#39;]. If unset it means no promotion is in progress. |  [optional]
+**clusterId** | **String** | The ID of the data plane where Kafka is deployed on. This information is only returned for kafka whose billing model is enterprise |  [optional]
 **promotionDetails** | **String** | Details of the Kafka request promotion. It can be set when a Kafka request promotion is in progress or has failed |  [optional]
 
 

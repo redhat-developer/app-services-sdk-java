@@ -116,11 +116,11 @@ public class SupportedKafkaBillingModel {
   }
 
    /**
-   * AMS product to be used. Accepted values: [&#39;RHOSAK&#39;, &#39;RHOSAKTrial&#39;, &#39;RHOSAKEval&#39;]
+   * AMS product to be used. Accepted values: [&#39;RHOSAK&#39;, &#39;RHOSAKTrial&#39;, &#39;RHOSAKEval&#39;, &#39;RHOSAKCC&#39;]
    * @return amsProduct
   **/
   @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "AMS product to be used. Accepted values: ['RHOSAK', 'RHOSAKTrial', 'RHOSAKEval']")
+  @ApiModelProperty(required = true, value = "AMS product to be used. Accepted values: ['RHOSAK', 'RHOSAKTrial', 'RHOSAKEval', 'RHOSAKCC']")
   @JsonProperty(JSON_PROPERTY_AMS_PRODUCT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 

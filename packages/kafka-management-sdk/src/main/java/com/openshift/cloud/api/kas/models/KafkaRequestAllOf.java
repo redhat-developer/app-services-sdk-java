@@ -57,6 +57,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   KafkaRequestAllOf.JSON_PROPERTY_MARKETPLACE,
   KafkaRequestAllOf.JSON_PROPERTY_BILLING_MODEL,
   KafkaRequestAllOf.JSON_PROPERTY_PROMOTION_STATUS,
+  KafkaRequestAllOf.JSON_PROPERTY_CLUSTER_ID,
   KafkaRequestAllOf.JSON_PROPERTY_PROMOTION_DETAILS
 })
 @JsonTypeName("KafkaRequest_allOf")
@@ -127,6 +128,9 @@ public class KafkaRequestAllOf {
 
   public static final String JSON_PROPERTY_PROMOTION_STATUS = "promotion_status";
   private String promotionStatus;
+
+  public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
+  private JsonNullable<String> clusterId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PROMOTION_DETAILS = "promotion_details";
   private String promotionDetails;
@@ -736,6 +740,41 @@ public class KafkaRequestAllOf {
   }
 
 
+  public KafkaRequestAllOf clusterId(String clusterId) {
+    this.clusterId = JsonNullable.<String>of(clusterId);
+    
+    return this;
+  }
+
+   /**
+   * The ID of the data plane where Kafka is deployed on. This information is only returned for kafka whose billing model is enterprise
+   * @return clusterId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The ID of the data plane where Kafka is deployed on. This information is only returned for kafka whose billing model is enterprise")
+  @JsonIgnore
+
+  public String getClusterId() {
+        return clusterId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getClusterId_JsonNullable() {
+    return clusterId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
+  public void setClusterId_JsonNullable(JsonNullable<String> clusterId) {
+    this.clusterId = clusterId;
+  }
+
+  public void setClusterId(String clusterId) {
+    this.clusterId = JsonNullable.<String>of(clusterId);
+  }
+
+
   public KafkaRequestAllOf promotionDetails(String promotionDetails) {
     
     this.promotionDetails = promotionDetails;
@@ -794,6 +833,7 @@ public class KafkaRequestAllOf {
         Objects.equals(this.marketplace, kafkaRequestAllOf.marketplace) &&
         Objects.equals(this.billingModel, kafkaRequestAllOf.billingModel) &&
         Objects.equals(this.promotionStatus, kafkaRequestAllOf.promotionStatus) &&
+        equalsNullable(this.clusterId, kafkaRequestAllOf.clusterId) &&
         Objects.equals(this.promotionDetails, kafkaRequestAllOf.promotionDetails);
   }
 
@@ -803,7 +843,7 @@ public class KafkaRequestAllOf {
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, cloudProvider, multiAz, region, owner, name, bootstrapServerHost, adminApiServerUrl, createdAt, hashCodeNullable(expiresAt), updatedAt, failedReason, version, instanceType, reauthenticationEnabled, maxDataRetentionSize, browserUrl, sizeId, billingCloudAccountId, marketplace, billingModel, promotionStatus, promotionDetails);
+    return Objects.hash(status, cloudProvider, multiAz, region, owner, name, bootstrapServerHost, adminApiServerUrl, createdAt, hashCodeNullable(expiresAt), updatedAt, failedReason, version, instanceType, reauthenticationEnabled, maxDataRetentionSize, browserUrl, sizeId, billingCloudAccountId, marketplace, billingModel, promotionStatus, hashCodeNullable(clusterId), promotionDetails);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -839,6 +879,7 @@ public class KafkaRequestAllOf {
     sb.append("    marketplace: ").append(toIndentedString(marketplace)).append("\n");
     sb.append("    billingModel: ").append(toIndentedString(billingModel)).append("\n");
     sb.append("    promotionStatus: ").append(toIndentedString(promotionStatus)).append("\n");
+    sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    promotionDetails: ").append(toIndentedString(promotionDetails)).append("\n");
     sb.append("}");
     return sb.toString();

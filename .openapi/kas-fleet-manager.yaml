@@ -1450,6 +1450,10 @@ components:
             promotion_status:
               type: string
               description: "Status of the Kafka request promotion. Possible values: ['promoting', 'failed']. If unset it means no promotion is in progress."
+            cluster_id:
+              description: The ID of the data plane where Kafka is deployed on. This information is only returned for kafka whose billing model is enterprise
+              type: string
+              nullable: true
             promotion_details:
               type: string
               description: "Details of the Kafka request promotion. It can be set when a Kafka request promotion is in progress or has failed"
@@ -1563,6 +1567,10 @@ components:
           description: billing model to use
           type: string
           nullable: true
+        cluster_id:
+          description: enterprise OSD cluster ID to be used for kafka creation
+          type: string
+          nullable: true
     KafkaPromoteRequest:
       type: object
       properties:
@@ -1630,7 +1638,7 @@ components:
           type: string
           minLength: 1
         ams_product:
-          description: "AMS product to be used. Accepted values: ['RHOSAK', 'RHOSAKTrial', 'RHOSAKEval']"
+          description: "AMS product to be used. Accepted values: ['RHOSAK', 'RHOSAKTrial', 'RHOSAKEval', 'RHOSAKCC']"
           type: string
           minLength: 1
         ams_billing_models:
@@ -2320,6 +2328,7 @@ components:
         billing_cloud_account_id: "123456789012"
         marketplace: "aws"
         billing_model: "marketplace"
+        cluster_id: "21grk30a21grk30a21grk30a21grk30a"
     KafkaRequestFailedCreationStatusExample:
       value:
         id: "1iSY6RQ3JKI8Q0OTmjQFd3ocFRg"

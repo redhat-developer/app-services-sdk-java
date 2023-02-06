@@ -41,7 +41,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   KafkaRequestPayload.JSON_PROPERTY_PLAN,
   KafkaRequestPayload.JSON_PROPERTY_BILLING_CLOUD_ACCOUNT_ID,
   KafkaRequestPayload.JSON_PROPERTY_MARKETPLACE,
-  KafkaRequestPayload.JSON_PROPERTY_BILLING_MODEL
+  KafkaRequestPayload.JSON_PROPERTY_BILLING_MODEL,
+  KafkaRequestPayload.JSON_PROPERTY_CLUSTER_ID
 })
 @JsonTypeName("KafkaRequestPayload")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -69,6 +70,9 @@ public class KafkaRequestPayload {
 
   public static final String JSON_PROPERTY_BILLING_MODEL = "billing_model";
   private JsonNullable<String> billingModel = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
+  private JsonNullable<String> clusterId = JsonNullable.<String>undefined();
 
   public KafkaRequestPayload() { 
   }
@@ -321,6 +325,41 @@ public class KafkaRequestPayload {
   }
 
 
+  public KafkaRequestPayload clusterId(String clusterId) {
+    this.clusterId = JsonNullable.<String>of(clusterId);
+    
+    return this;
+  }
+
+   /**
+   * enterprise OSD cluster ID to be used for kafka creation
+   * @return clusterId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "enterprise OSD cluster ID to be used for kafka creation")
+  @JsonIgnore
+
+  public String getClusterId() {
+        return clusterId.orElse(null);
+  }
+
+  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getClusterId_JsonNullable() {
+    return clusterId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
+  public void setClusterId_JsonNullable(JsonNullable<String> clusterId) {
+    this.clusterId = clusterId;
+  }
+
+  public void setClusterId(String clusterId) {
+    this.clusterId = JsonNullable.<String>of(clusterId);
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -337,7 +376,8 @@ public class KafkaRequestPayload {
         Objects.equals(this.plan, kafkaRequestPayload.plan) &&
         equalsNullable(this.billingCloudAccountId, kafkaRequestPayload.billingCloudAccountId) &&
         equalsNullable(this.marketplace, kafkaRequestPayload.marketplace) &&
-        equalsNullable(this.billingModel, kafkaRequestPayload.billingModel);
+        equalsNullable(this.billingModel, kafkaRequestPayload.billingModel) &&
+        equalsNullable(this.clusterId, kafkaRequestPayload.clusterId);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -346,7 +386,7 @@ public class KafkaRequestPayload {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cloudProvider, name, region, hashCodeNullable(reauthenticationEnabled), plan, hashCodeNullable(billingCloudAccountId), hashCodeNullable(marketplace), hashCodeNullable(billingModel));
+    return Objects.hash(cloudProvider, name, region, hashCodeNullable(reauthenticationEnabled), plan, hashCodeNullable(billingCloudAccountId), hashCodeNullable(marketplace), hashCodeNullable(billingModel), hashCodeNullable(clusterId));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -368,6 +408,7 @@ public class KafkaRequestPayload {
     sb.append("    billingCloudAccountId: ").append(toIndentedString(billingCloudAccountId)).append("\n");
     sb.append("    marketplace: ").append(toIndentedString(marketplace)).append("\n");
     sb.append("    billingModel: ").append(toIndentedString(billingModel)).append("\n");
+    sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
