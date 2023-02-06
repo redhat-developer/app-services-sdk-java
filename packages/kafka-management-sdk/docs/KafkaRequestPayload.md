@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **billingCloudAccountId** | **String** | cloud account id used to purchase the instance |  [optional]
 **marketplace** | **String** | marketplace where the instance is purchased on |  [optional]
 **billingModel** | **String** | billing model to use |  [optional]
+**clusterId** | **String** | enterprise OSD cluster ID to be used for kafka creation |  [optional]
 
 
 
