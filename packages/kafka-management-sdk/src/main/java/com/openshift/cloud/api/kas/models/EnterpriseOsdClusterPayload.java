@@ -32,7 +32,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   EnterpriseOsdClusterPayload.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
   EnterpriseOsdClusterPayload.JSON_PROPERTY_CLUSTER_ID,
-  EnterpriseOsdClusterPayload.JSON_PROPERTY_CLUSTER_EXTERNAL_ID,
   EnterpriseOsdClusterPayload.JSON_PROPERTY_CLUSTER_INGRESS_DNS_NAME,
   EnterpriseOsdClusterPayload.JSON_PROPERTY_KAFKA_MACHINE_POOL_NODE_COUNT
 })
@@ -44,9 +43,6 @@ public class EnterpriseOsdClusterPayload {
 
   public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
   private String clusterId;
-
-  public static final String JSON_PROPERTY_CLUSTER_EXTERNAL_ID = "cluster_external_id";
-  private String clusterExternalId;
 
   public static final String JSON_PROPERTY_CLUSTER_INGRESS_DNS_NAME = "cluster_ingress_dns_name";
   private String clusterIngressDnsName;
@@ -108,33 +104,6 @@ public class EnterpriseOsdClusterPayload {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setClusterId(String clusterId) {
     this.clusterId = clusterId;
-  }
-
-
-  public EnterpriseOsdClusterPayload clusterExternalId(String clusterExternalId) {
-    
-    this.clusterExternalId = clusterExternalId;
-    return this;
-  }
-
-   /**
-   * external cluster ID. Can be obtained from the response JSON of OCM get /api/clusters_mgmt/v1/clusters/&lt;cluster_id&gt;
-   * @return clusterExternalId
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "external cluster ID. Can be obtained from the response JSON of OCM get /api/clusters_mgmt/v1/clusters/<cluster_id>")
-  @JsonProperty(JSON_PROPERTY_CLUSTER_EXTERNAL_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getClusterExternalId() {
-    return clusterExternalId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CLUSTER_EXTERNAL_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setClusterExternalId(String clusterExternalId) {
-    this.clusterExternalId = clusterExternalId;
   }
 
 
@@ -203,14 +172,13 @@ public class EnterpriseOsdClusterPayload {
     EnterpriseOsdClusterPayload enterpriseOsdClusterPayload = (EnterpriseOsdClusterPayload) o;
     return Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseOsdClusterPayload.accessKafkasViaPrivateNetwork) &&
         Objects.equals(this.clusterId, enterpriseOsdClusterPayload.clusterId) &&
-        Objects.equals(this.clusterExternalId, enterpriseOsdClusterPayload.clusterExternalId) &&
         Objects.equals(this.clusterIngressDnsName, enterpriseOsdClusterPayload.clusterIngressDnsName) &&
         Objects.equals(this.kafkaMachinePoolNodeCount, enterpriseOsdClusterPayload.kafkaMachinePoolNodeCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accessKafkasViaPrivateNetwork, clusterId, clusterExternalId, clusterIngressDnsName, kafkaMachinePoolNodeCount);
+    return Objects.hash(accessKafkasViaPrivateNetwork, clusterId, clusterIngressDnsName, kafkaMachinePoolNodeCount);
   }
 
   @Override
@@ -219,7 +187,6 @@ public class EnterpriseOsdClusterPayload {
     sb.append("class EnterpriseOsdClusterPayload {\n");
     sb.append("    accessKafkasViaPrivateNetwork: ").append(toIndentedString(accessKafkasViaPrivateNetwork)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
-    sb.append("    clusterExternalId: ").append(toIndentedString(clusterExternalId)).append("\n");
     sb.append("    clusterIngressDnsName: ").append(toIndentedString(clusterIngressDnsName)).append("\n");
     sb.append("    kafkaMachinePoolNodeCount: ").append(toIndentedString(kafkaMachinePoolNodeCount)).append("\n");
     sb.append("}");

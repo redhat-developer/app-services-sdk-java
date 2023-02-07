@@ -474,7 +474,7 @@ paths:
 
           ```
           name = my-kafka and cloud_provider = aws
-          ```[p-]
+          ```
 
           To return a Kafka instance with a name that starts with `my`, use the following syntax:
 
@@ -2001,7 +2001,6 @@ components:
     EnterpriseOsdClusterPayloadExample:
       value:
         cluster_id: 1234abcd1234abcd1234abcd1234abcd
-        cluster_external_id: 69d631de-9b7f-4bc2-bf4f-4d3295a7b25e
         cluster_ingress_dns_name: apps.enterprise-aws.awdk.s1.devshift.org
         kafka_machine_pool_node_count: 9
         access_kafkas_via_private_network: false
@@ -2146,7 +2145,7 @@ components:
 
         ```
         name = my-kafka and cloud_provider = aws
-        ```[p-]
+        ```
 
         To return a Kafka instance with a name that starts with `my`, use the following syntax:
 
@@ -2634,7 +2633,6 @@ components:
       example:
         kafka_machine_pool_node_count: 0
         cluster_id: cluster_id
-        cluster_external_id: cluster_external_id
         access_kafkas_via_private_network: true
         cluster_ingress_dns_name: cluster_ingress_dns_name
       properties:
@@ -2645,10 +2643,6 @@ components:
         cluster_id:
           description: The data plane cluster ID. This is the ID of the cluster obtained
             from OpenShift Cluster Manager (OCM) API
-          type: string
-        cluster_external_id:
-          description: external cluster ID. Can be obtained from the response JSON
-            of OCM get /api/clusters_mgmt/v1/clusters/<cluster_id>
           type: string
         cluster_ingress_dns_name:
           description: dns name of the cluster. Can be obtained from the response
@@ -2665,7 +2659,6 @@ components:
           type: integer
       required:
       - access_kafkas_via_private_network
-      - cluster_external_id
       - cluster_id
       - cluster_ingress_dns_name
       - kafka_machine_pool_node_count
