@@ -980,7 +980,8 @@ paths:
               examples:
                 "500Example":
                   $ref: '#/components/examples/500Example'
-              schema: {}
+              schema:
+                $ref: '#/components/schemas/Error'
           description: Unexpected error occurred
       security:
       - Bearer: []
@@ -1062,7 +1063,8 @@ paths:
               examples:
                 "500Example":
                   $ref: '#/components/examples/500Example'
-              schema: {}
+              schema:
+                $ref: '#/components/schemas/Error'
           description: Unexpected error occurred
       security:
       - Bearer: []
