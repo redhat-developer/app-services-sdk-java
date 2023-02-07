@@ -2207,7 +2207,7 @@ components:
 
         ```
         name = my-kafka and cloud_provider = aws
-        ```[p-]
+        ```
 
         To return a Kafka instance with a name that starts with `my`, use the following syntax:
 
