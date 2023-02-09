@@ -20,15 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.connector.models.Channel;
-import com.openshift.cloud.api.connector.models.ConnectorTypeAllOf;
 import com.openshift.cloud.api.connector.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -39,17 +33,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
   ConnectorType.JSON_PROPERTY_ID,
   ConnectorType.JSON_PROPERTY_KIND,
-  ConnectorType.JSON_PROPERTY_HREF,
-  ConnectorType.JSON_PROPERTY_NAME,
-  ConnectorType.JSON_PROPERTY_VERSION,
-  ConnectorType.JSON_PROPERTY_CHANNELS,
-  ConnectorType.JSON_PROPERTY_DESCRIPTION,
-  ConnectorType.JSON_PROPERTY_ICON_HREF,
-  ConnectorType.JSON_PROPERTY_LABELS,
-  ConnectorType.JSON_PROPERTY_ANNOTATIONS,
-  ConnectorType.JSON_PROPERTY_FEATURED_RANK,
-  ConnectorType.JSON_PROPERTY_CAPABILITIES,
-  ConnectorType.JSON_PROPERTY_SCHEMA
+  ConnectorType.JSON_PROPERTY_HREF
 })
 @JsonTypeName("ConnectorType")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
@@ -62,36 +46,6 @@ public class ConnectorType {
 
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
-
-  public static final String JSON_PROPERTY_VERSION = "version";
-  private String version;
-
-  public static final String JSON_PROPERTY_CHANNELS = "channels";
-  private List<Channel> channels = null;
-
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
-
-  public static final String JSON_PROPERTY_ICON_HREF = "icon_href";
-  private String iconHref;
-
-  public static final String JSON_PROPERTY_LABELS = "labels";
-  private List<String> labels = null;
-
-  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
-  private Map<String, String> annotations = null;
-
-  public static final String JSON_PROPERTY_FEATURED_RANK = "featured_rank";
-  private Integer featuredRank;
-
-  public static final String JSON_PROPERTY_CAPABILITIES = "capabilities";
-  private List<String> capabilities = null;
-
-  public static final String JSON_PROPERTY_SCHEMA = "schema";
-  private Object schema;
 
   public ConnectorType() { 
   }
@@ -177,308 +131,6 @@ public class ConnectorType {
   }
 
 
-  public ConnectorType name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Name of the connector type.
-   * @return name
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Name of the connector type.")
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ConnectorType version(String version) {
-    
-    this.version = version;
-    return this;
-  }
-
-   /**
-   * Version of the connector type.
-   * @return version
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Version of the connector type.")
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
-
-  public ConnectorType channels(List<Channel> channels) {
-    
-    this.channels = channels;
-    return this;
-  }
-
-  public ConnectorType addChannelsItem(Channel channelsItem) {
-    if (this.channels == null) {
-      this.channels = new ArrayList<>();
-    }
-    this.channels.add(channelsItem);
-    return this;
-  }
-
-   /**
-   * Channels of the connector type.
-   * @return channels
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Channels of the connector type.")
-  @JsonProperty(JSON_PROPERTY_CHANNELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Channel> getChannels() {
-    return channels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHANNELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChannels(List<Channel> channels) {
-    this.channels = channels;
-  }
-
-
-  public ConnectorType description(String description) {
-    
-    this.description = description;
-    return this;
-  }
-
-   /**
-   * A description of the connector.
-   * @return description
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "A description of the connector.")
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public ConnectorType iconHref(String iconHref) {
-    
-    this.iconHref = iconHref;
-    return this;
-  }
-
-   /**
-   * URL to an icon of the connector.
-   * @return iconHref
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "URL to an icon of the connector.")
-  @JsonProperty(JSON_PROPERTY_ICON_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getIconHref() {
-    return iconHref;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ICON_HREF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIconHref(String iconHref) {
-    this.iconHref = iconHref;
-  }
-
-
-  public ConnectorType labels(List<String> labels) {
-    
-    this.labels = labels;
-    return this;
-  }
-
-  public ConnectorType addLabelsItem(String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new ArrayList<>();
-    }
-    this.labels.add(labelsItem);
-    return this;
-  }
-
-   /**
-   * Labels used to categorize the connector
-   * @return labels
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Labels used to categorize the connector")
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(List<String> labels) {
-    this.labels = labels;
-  }
-
-
-  public ConnectorType annotations(Map<String, String> annotations) {
-    
-    this.annotations = annotations;
-    return this;
-  }
-
-  public ConnectorType putAnnotationsItem(String key, String annotationsItem) {
-    if (this.annotations == null) {
-      this.annotations = new HashMap<>();
-    }
-    this.annotations.put(key, annotationsItem);
-    return this;
-  }
-
-   /**
-   * Name-value string annotations for resource
-   * @return annotations
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Name-value string annotations for resource")
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Map<String, String> getAnnotations() {
-    return annotations;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAnnotations(Map<String, String> annotations) {
-    this.annotations = annotations;
-  }
-
-
-  public ConnectorType featuredRank(Integer featuredRank) {
-    
-    this.featuredRank = featuredRank;
-    return this;
-  }
-
-   /**
-   * Ranking for featured connectors
-   * @return featuredRank
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Ranking for featured connectors")
-  @JsonProperty(JSON_PROPERTY_FEATURED_RANK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getFeaturedRank() {
-    return featuredRank;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FEATURED_RANK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFeaturedRank(Integer featuredRank) {
-    this.featuredRank = featuredRank;
-  }
-
-
-  public ConnectorType capabilities(List<String> capabilities) {
-    
-    this.capabilities = capabilities;
-    return this;
-  }
-
-  public ConnectorType addCapabilitiesItem(String capabilitiesItem) {
-    if (this.capabilities == null) {
-      this.capabilities = new ArrayList<>();
-    }
-    this.capabilities.add(capabilitiesItem);
-    return this;
-  }
-
-   /**
-   * The capabilities supported by the connector
-   * @return capabilities
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The capabilities supported by the connector")
-  @JsonProperty(JSON_PROPERTY_CAPABILITIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getCapabilities() {
-    return capabilities;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAPABILITIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapabilities(List<String> capabilities) {
-    this.capabilities = capabilities;
-  }
-
-
-  public ConnectorType schema(Object schema) {
-    
-    this.schema = schema;
-    return this;
-  }
-
-   /**
-   * A json schema that can be used to validate a ConnectorRequest connector field.
-   * @return schema
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "A json schema that can be used to validate a ConnectorRequest connector field.")
-  @JsonProperty(JSON_PROPERTY_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Object getSchema() {
-    return schema;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSchema(Object schema) {
-    this.schema = schema;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -490,22 +142,12 @@ public class ConnectorType {
     ConnectorType connectorType = (ConnectorType) o;
     return Objects.equals(this.id, connectorType.id) &&
         Objects.equals(this.kind, connectorType.kind) &&
-        Objects.equals(this.href, connectorType.href) &&
-        Objects.equals(this.name, connectorType.name) &&
-        Objects.equals(this.version, connectorType.version) &&
-        Objects.equals(this.channels, connectorType.channels) &&
-        Objects.equals(this.description, connectorType.description) &&
-        Objects.equals(this.iconHref, connectorType.iconHref) &&
-        Objects.equals(this.labels, connectorType.labels) &&
-        Objects.equals(this.annotations, connectorType.annotations) &&
-        Objects.equals(this.featuredRank, connectorType.featuredRank) &&
-        Objects.equals(this.capabilities, connectorType.capabilities) &&
-        Objects.equals(this.schema, connectorType.schema);
+        Objects.equals(this.href, connectorType.href);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, name, version, channels, description, iconHref, labels, annotations, featuredRank, capabilities, schema);
+    return Objects.hash(id, kind, href);
   }
 
   @Override
@@ -515,16 +157,6 @@ public class ConnectorType {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("    channels: ").append(toIndentedString(channels)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    iconHref: ").append(toIndentedString(iconHref)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
-    sb.append("    featuredRank: ").append(toIndentedString(featuredRank)).append("\n");
-    sb.append("    capabilities: ").append(toIndentedString(capabilities)).append("\n");
-    sb.append("    schema: ").append(toIndentedString(schema)).append("\n");
     sb.append("}");
     return sb.toString();
   }

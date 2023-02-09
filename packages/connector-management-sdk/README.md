@@ -181,7 +181,6 @@ Class | Method | HTTP request | Description
  - [ConnectorStatus](docs/ConnectorStatus.md)
  - [ConnectorStatusStatus](docs/ConnectorStatusStatus.md)
  - [ConnectorType](docs/ConnectorType.md)
- - [ConnectorTypeAllOf](docs/ConnectorTypeAllOf.md)
  - [ConnectorTypeLabelCount](docs/ConnectorTypeLabelCount.md)
  - [ConnectorTypeLabelCountList](docs/ConnectorTypeLabelCountList.md)
  - [ConnectorTypeList](docs/ConnectorTypeList.md)

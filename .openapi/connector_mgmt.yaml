@@ -1358,6 +1358,9 @@ components:
             description:
               description: A description of the connector.
               type: string
+            deprecated:
+              description: Connector type is deprecated and removed from the catalog.
+              type: boolean
             icon_href:
               description: URL to an icon of the connector.
               type: string
@@ -1615,6 +1618,15 @@ components:
         name asc, version asc
         ```
 
+        To return connector types with labels `category-featured` AND `source`, use the following syntax:
+
+        ```
+        label like %25category-featured%25source%
+        ```
+
+        NOTE: The AND operator does not work for multiple labels. Instead use an alphabetically ascending order pattern with the LIKE operator to match
+        an aggregated list of ',' separated label names.
+
         If the parameter isn't provided, or if the value is empty, then
         the results are ordered by name.
       explode: true
@@ -1663,6 +1675,15 @@ components:
         ```
         name ilike %25aws%25
         ```
+
+        To return connector types with labels `category-featured` AND `source`, use the following syntax:
+
+        ```
+        label like %25category-featured%25source%
+        ```
+
+        NOTE: The AND operator does not work for multiple labels. Instead use an alphabetically ascending order pattern with the LIKE operator to match
+        an aggregated list of ',' separated label names.
 
         If the parameter isn't provided, or if the value is empty, then all the resources
         that the user has permission to see are returned.
