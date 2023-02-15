@@ -20,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterListItem;
 import com.openshift.cloud.api.kas.models.EnterpriseClusterWithAddonParametersAllOf;
 import com.openshift.cloud.api.kas.models.FleetshardParameter;
-import com.openshift.cloud.api.kas.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -41,6 +41,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   EnterpriseClusterWithAddonParameters.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
   EnterpriseClusterWithAddonParameters.JSON_PROPERTY_CLUSTER_ID,
   EnterpriseClusterWithAddonParameters.JSON_PROPERTY_STATUS,
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_CLOUD_PROVIDER,
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_REGION,
+  EnterpriseClusterWithAddonParameters.JSON_PROPERTY_MULTI_AZ,
   EnterpriseClusterWithAddonParameters.JSON_PROPERTY_FLEETSHARD_PARAMETERS
 })
 @JsonTypeName("EnterpriseClusterWithAddonParameters")
@@ -63,6 +66,15 @@ public class EnterpriseClusterWithAddonParameters {
 
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;
+
+  public static final String JSON_PROPERTY_CLOUD_PROVIDER = "cloud_provider";
+  private String cloudProvider;
+
+  public static final String JSON_PROPERTY_REGION = "region";
+  private String region;
+
+  public static final String JSON_PROPERTY_MULTI_AZ = "multi_az";
+  private Boolean multiAz;
 
   public static final String JSON_PROPERTY_FLEETSHARD_PARAMETERS = "fleetshard_parameters";
   private List<FleetshardParameter> fleetshardParameters = null;
@@ -185,11 +197,11 @@ public class EnterpriseClusterWithAddonParameters {
   }
 
    /**
-   * OCM cluster id of the registered Enterprise cluster
+   * The OCM&#39;s cluster id of the registered Enterprise cluster.
    * @return clusterId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "OCM cluster id of the registered Enterprise cluster")
+  @ApiModelProperty(value = "The OCM's cluster id of the registered Enterprise cluster.")
   @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -212,11 +224,11 @@ public class EnterpriseClusterWithAddonParameters {
   }
 
    /**
-   * status of registered Enterprise cluster
+   * The status of Enterprise cluster registration
    * @return status
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "status of registered Enterprise cluster")
+  @ApiModelProperty(value = "The status of Enterprise cluster registration")
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
@@ -229,6 +241,87 @@ public class EnterpriseClusterWithAddonParameters {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(String status) {
     this.status = status;
+  }
+
+
+  public EnterpriseClusterWithAddonParameters cloudProvider(String cloudProvider) {
+    
+    this.cloudProvider = cloudProvider;
+    return this;
+  }
+
+   /**
+   * The cloud provider for this cluster. This valus will be used as the Kafka&#39;s cloud provider value when a Kafka is created on this cluster
+   * @return cloudProvider
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The cloud provider for this cluster. This valus will be used as the Kafka's cloud provider value when a Kafka is created on this cluster")
+  @JsonProperty(JSON_PROPERTY_CLOUD_PROVIDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCloudProvider() {
+    return cloudProvider;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CLOUD_PROVIDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCloudProvider(String cloudProvider) {
+    this.cloudProvider = cloudProvider;
+  }
+
+
+  public EnterpriseClusterWithAddonParameters region(String region) {
+    
+    this.region = region;
+    return this;
+  }
+
+   /**
+   * The region of this cluster. This valus will be used as the Kafka&#39;s region value when a Kafka is created on this cluster
+   * @return region
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The region of this cluster. This valus will be used as the Kafka's region value when a Kafka is created on this cluster")
+  @JsonProperty(JSON_PROPERTY_REGION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRegion() {
+    return region;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REGION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegion(String region) {
+    this.region = region;
+  }
+
+
+  public EnterpriseClusterWithAddonParameters multiAz(Boolean multiAz) {
+    
+    this.multiAz = multiAz;
+    return this;
+  }
+
+   /**
+   * A flag indicating whether this cluster is available on multiple availability zones or not
+   * @return multiAz
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "A flag indicating whether this cluster is available on multiple availability zones or not")
+  @JsonProperty(JSON_PROPERTY_MULTI_AZ)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Boolean getMultiAz() {
+    return multiAz;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_MULTI_AZ)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setMultiAz(Boolean multiAz) {
+    this.multiAz = multiAz;
   }
 
 
@@ -282,12 +375,15 @@ public class EnterpriseClusterWithAddonParameters {
         Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseClusterWithAddonParameters.accessKafkasViaPrivateNetwork) &&
         Objects.equals(this.clusterId, enterpriseClusterWithAddonParameters.clusterId) &&
         Objects.equals(this.status, enterpriseClusterWithAddonParameters.status) &&
+        Objects.equals(this.cloudProvider, enterpriseClusterWithAddonParameters.cloudProvider) &&
+        Objects.equals(this.region, enterpriseClusterWithAddonParameters.region) &&
+        Objects.equals(this.multiAz, enterpriseClusterWithAddonParameters.multiAz) &&
         Objects.equals(this.fleetshardParameters, enterpriseClusterWithAddonParameters.fleetshardParameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, accessKafkasViaPrivateNetwork, clusterId, status, fleetshardParameters);
+    return Objects.hash(id, kind, href, accessKafkasViaPrivateNetwork, clusterId, status, cloudProvider, region, multiAz, fleetshardParameters);
   }
 
   @Override
@@ -300,6 +396,9 @@ public class EnterpriseClusterWithAddonParameters {
     sb.append("    accessKafkasViaPrivateNetwork: ").append(toIndentedString(accessKafkasViaPrivateNetwork)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
+    sb.append("    region: ").append(toIndentedString(region)).append("\n");
+    sb.append("    multiAz: ").append(toIndentedString(multiAz)).append("\n");
     sb.append("    fleetshardParameters: ").append(toIndentedString(fleetshardParameters)).append("\n");
     sb.append("}");
     return sb.toString();

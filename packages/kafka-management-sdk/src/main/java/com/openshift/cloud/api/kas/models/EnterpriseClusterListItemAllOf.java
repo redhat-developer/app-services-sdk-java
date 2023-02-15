@@ -20,43 +20,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.models.EnterpriseClusterAllOf;
-import com.openshift.cloud.api.kas.models.EnterpriseClusterAllOfCapacityInformation;
-import com.openshift.cloud.api.kas.models.EnterpriseClusterListItem;
-import com.openshift.cloud.api.kas.models.SupportedKafkaInstanceTypesList;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * EnterpriseCluster
+ * EnterpriseClusterListItemAllOf
  */
 @JsonPropertyOrder({
-  EnterpriseCluster.JSON_PROPERTY_ID,
-  EnterpriseCluster.JSON_PROPERTY_KIND,
-  EnterpriseCluster.JSON_PROPERTY_HREF,
-  EnterpriseCluster.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
-  EnterpriseCluster.JSON_PROPERTY_CLUSTER_ID,
-  EnterpriseCluster.JSON_PROPERTY_STATUS,
-  EnterpriseCluster.JSON_PROPERTY_CLOUD_PROVIDER,
-  EnterpriseCluster.JSON_PROPERTY_REGION,
-  EnterpriseCluster.JSON_PROPERTY_MULTI_AZ,
-  EnterpriseCluster.JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES,
-  EnterpriseCluster.JSON_PROPERTY_CAPACITY_INFORMATION
+  EnterpriseClusterListItemAllOf.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
+  EnterpriseClusterListItemAllOf.JSON_PROPERTY_CLUSTER_ID,
+  EnterpriseClusterListItemAllOf.JSON_PROPERTY_STATUS,
+  EnterpriseClusterListItemAllOf.JSON_PROPERTY_CLOUD_PROVIDER,
+  EnterpriseClusterListItemAllOf.JSON_PROPERTY_REGION,
+  EnterpriseClusterListItemAllOf.JSON_PROPERTY_MULTI_AZ
 })
-@JsonTypeName("EnterpriseCluster")
+@JsonTypeName("EnterpriseClusterListItem_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class EnterpriseCluster {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
-
-  public static final String JSON_PROPERTY_KIND = "kind";
-  private String kind;
-
-  public static final String JSON_PROPERTY_HREF = "href";
-  private String href;
-
+public class EnterpriseClusterListItemAllOf {
   public static final String JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK = "access_kafkas_via_private_network";
   private Boolean accessKafkasViaPrivateNetwork;
 
@@ -75,97 +57,10 @@ public class EnterpriseCluster {
   public static final String JSON_PROPERTY_MULTI_AZ = "multi_az";
   private Boolean multiAz;
 
-  public static final String JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES = "supported_instance_types";
-  private SupportedKafkaInstanceTypesList supportedInstanceTypes;
-
-  public static final String JSON_PROPERTY_CAPACITY_INFORMATION = "capacity_information";
-  private EnterpriseClusterAllOfCapacityInformation capacityInformation;
-
-  public EnterpriseCluster() { 
+  public EnterpriseClusterListItemAllOf() { 
   }
 
-  public EnterpriseCluster id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public EnterpriseCluster kind(String kind) {
-    
-    this.kind = kind;
-    return this;
-  }
-
-   /**
-   * Get kind
-   * @return kind
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getKind() {
-    return kind;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setKind(String kind) {
-    this.kind = kind;
-  }
-
-
-  public EnterpriseCluster href(String href) {
-    
-    this.href = href;
-    return this;
-  }
-
-   /**
-   * Get href
-   * @return href
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getHref() {
-    return href;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setHref(String href) {
-    this.href = href;
-  }
-
-
-  public EnterpriseCluster accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+  public EnterpriseClusterListItemAllOf accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
     
     this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
     return this;
@@ -192,7 +87,7 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster clusterId(String clusterId) {
+  public EnterpriseClusterListItemAllOf clusterId(String clusterId) {
     
     this.clusterId = clusterId;
     return this;
@@ -219,7 +114,7 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster status(String status) {
+  public EnterpriseClusterListItemAllOf status(String status) {
     
     this.status = status;
     return this;
@@ -246,7 +141,7 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster cloudProvider(String cloudProvider) {
+  public EnterpriseClusterListItemAllOf cloudProvider(String cloudProvider) {
     
     this.cloudProvider = cloudProvider;
     return this;
@@ -273,7 +168,7 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster region(String region) {
+  public EnterpriseClusterListItemAllOf region(String region) {
     
     this.region = region;
     return this;
@@ -300,7 +195,7 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster multiAz(Boolean multiAz) {
+  public EnterpriseClusterListItemAllOf multiAz(Boolean multiAz) {
     
     this.multiAz = multiAz;
     return this;
@@ -327,60 +222,6 @@ public class EnterpriseCluster {
   }
 
 
-  public EnterpriseCluster supportedInstanceTypes(SupportedKafkaInstanceTypesList supportedInstanceTypes) {
-    
-    this.supportedInstanceTypes = supportedInstanceTypes;
-    return this;
-  }
-
-   /**
-   * Get supportedInstanceTypes
-   * @return supportedInstanceTypes
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public SupportedKafkaInstanceTypesList getSupportedInstanceTypes() {
-    return supportedInstanceTypes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSupportedInstanceTypes(SupportedKafkaInstanceTypesList supportedInstanceTypes) {
-    this.supportedInstanceTypes = supportedInstanceTypes;
-  }
-
-
-  public EnterpriseCluster capacityInformation(EnterpriseClusterAllOfCapacityInformation capacityInformation) {
-    
-    this.capacityInformation = capacityInformation;
-    return this;
-  }
-
-   /**
-   * Get capacityInformation
-   * @return capacityInformation
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_CAPACITY_INFORMATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public EnterpriseClusterAllOfCapacityInformation getCapacityInformation() {
-    return capacityInformation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAPACITY_INFORMATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapacityInformation(EnterpriseClusterAllOfCapacityInformation capacityInformation) {
-    this.capacityInformation = capacityInformation;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -389,40 +230,30 @@ public class EnterpriseCluster {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EnterpriseCluster enterpriseCluster = (EnterpriseCluster) o;
-    return Objects.equals(this.id, enterpriseCluster.id) &&
-        Objects.equals(this.kind, enterpriseCluster.kind) &&
-        Objects.equals(this.href, enterpriseCluster.href) &&
-        Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseCluster.accessKafkasViaPrivateNetwork) &&
-        Objects.equals(this.clusterId, enterpriseCluster.clusterId) &&
-        Objects.equals(this.status, enterpriseCluster.status) &&
-        Objects.equals(this.cloudProvider, enterpriseCluster.cloudProvider) &&
-        Objects.equals(this.region, enterpriseCluster.region) &&
-        Objects.equals(this.multiAz, enterpriseCluster.multiAz) &&
-        Objects.equals(this.supportedInstanceTypes, enterpriseCluster.supportedInstanceTypes) &&
-        Objects.equals(this.capacityInformation, enterpriseCluster.capacityInformation);
+    EnterpriseClusterListItemAllOf enterpriseClusterListItemAllOf = (EnterpriseClusterListItemAllOf) o;
+    return Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseClusterListItemAllOf.accessKafkasViaPrivateNetwork) &&
+        Objects.equals(this.clusterId, enterpriseClusterListItemAllOf.clusterId) &&
+        Objects.equals(this.status, enterpriseClusterListItemAllOf.status) &&
+        Objects.equals(this.cloudProvider, enterpriseClusterListItemAllOf.cloudProvider) &&
+        Objects.equals(this.region, enterpriseClusterListItemAllOf.region) &&
+        Objects.equals(this.multiAz, enterpriseClusterListItemAllOf.multiAz);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, accessKafkasViaPrivateNetwork, clusterId, status, cloudProvider, region, multiAz, supportedInstanceTypes, capacityInformation);
+    return Objects.hash(accessKafkasViaPrivateNetwork, clusterId, status, cloudProvider, region, multiAz);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EnterpriseCluster {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
-    sb.append("    href: ").append(toIndentedString(href)).append("\n");
+    sb.append("class EnterpriseClusterListItemAllOf {\n");
     sb.append("    accessKafkasViaPrivateNetwork: ").append(toIndentedString(accessKafkasViaPrivateNetwork)).append("\n");
     sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    cloudProvider: ").append(toIndentedString(cloudProvider)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
     sb.append("    multiAz: ").append(toIndentedString(multiAz)).append("\n");
-    sb.append("    supportedInstanceTypes: ").append(toIndentedString(supportedInstanceTypes)).append("\n");
-    sb.append("    capacityInformation: ").append(toIndentedString(capacityInformation)).append("\n");
     sb.append("}");
     return sb.toString();
   }

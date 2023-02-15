@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;EnterpriseCluster&gt;**](EnterpriseCluster.md) |  | 
+**items** | [**List&lt;EnterpriseClusterListItem&gt;**](EnterpriseClusterListItem.md) |  | 
 
 
 

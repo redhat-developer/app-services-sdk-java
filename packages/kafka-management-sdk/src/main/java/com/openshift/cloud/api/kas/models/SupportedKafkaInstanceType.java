@@ -52,7 +52,7 @@ public class SupportedKafkaInstanceType {
   private List<SupportedKafkaBillingModel> supportedBillingModels = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SIZES = "sizes";
-  private List<SupportedKafkaSize> sizes = null;
+  private List<SupportedKafkaSize> sizes = new ArrayList<>();
 
   public SupportedKafkaInstanceType() { 
   }
@@ -150,9 +150,6 @@ public class SupportedKafkaInstanceType {
   }
 
   public SupportedKafkaInstanceType addSizesItem(SupportedKafkaSize sizesItem) {
-    if (this.sizes == null) {
-      this.sizes = new ArrayList<>();
-    }
     this.sizes.add(sizesItem);
     return this;
   }
@@ -161,10 +158,10 @@ public class SupportedKafkaInstanceType {
    * A list of Kafka instance sizes available for this instance type
    * @return sizes
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "A list of Kafka instance sizes available for this instance type")
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "A list of Kafka instance sizes available for this instance type")
   @JsonProperty(JSON_PROPERTY_SIZES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<SupportedKafkaSize> getSizes() {
     return sizes;
@@ -172,7 +169,7 @@ public class SupportedKafkaInstanceType {
 
 
   @JsonProperty(JSON_PROPERTY_SIZES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSizes(List<SupportedKafkaSize> sizes) {
     this.sizes = sizes;
   }
