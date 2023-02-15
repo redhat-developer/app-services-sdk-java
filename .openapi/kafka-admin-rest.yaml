@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  version: 0.13.0-SNAPSHOT
+  version: 0.13.1-SNAPSHOT
 servers:
 - url: /
   description: Kafka Admin REST API
@@ -661,6 +661,7 @@ paths:
           - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
         schema:
           default: ""
+          pattern: "^User:(\\*|[a-zA-Z0-9_@.-]+)$"
           type: string
         examples:
           wildcard:
@@ -829,6 +830,7 @@ paths:
           - When deleting, ACL bindings to be delete must match the provided `principal` exactly.
         schema:
           default: ""
+          pattern: "^User:(\\*|[a-zA-Z0-9_@.-]+)$"
           type: string
         examples:
           wildcard:
@@ -986,17 +988,15 @@ components:
           resourceName:
             pattern: \S
             type: string
-            nullable: false
           patternType:
             $ref: '#/components/schemas/AclPatternType'
           principal:
             description: Identifies the user or service account to which an ACL entry
               is bound. The literal prefix value of `User:` is required. May be used
               to specify all users with value `User:*`.
-            pattern: \S
+            pattern: "^User:(\\*|[a-zA-Z0-9_@.-]+)$"
             type: string
             example: User:user-123-abc
-            nullable: false
           operation:
             $ref: '#/components/schemas/AclOperation'
           permission:
@@ -1013,6 +1013,8 @@ components:
       allOf:
       - $ref: '#/components/schemas/List'
       - description: A page of ACL binding entries
+        required:
+        - items
         type: object
         properties:
           items:
@@ -1105,12 +1107,10 @@ components:
             to set for the topic.
           pattern: \S
           type: string
-          nullable: false
         value:
           description: Value to indicate the setting on the topic configuration entry.
           pattern: \S
           type: string
-          nullable: false
       example:
         key: min.insync.replicas
         value: "1"
@@ -1129,17 +1129,14 @@ components:
           description: Unique identifier for the consumer group to which this consumer
             belongs.
           type: string
-          nullable: false
         topic:
           description: The unique topic name to which this consumer belongs
           type: string
-          nullable: false
         partition:
           format: int32
           description: The partition number to which this consumer group is assigned
             to.
           type: integer
-          nullable: false
         offset:
           format: int64
           description: Offset denotes the position of the consumer in a partition.
@@ -1179,7 +1176,6 @@ components:
             description: Unique identifier for the consumer group
             pattern: \S
             type: string
-            nullable: false
           state:
             $ref: '#/components/schemas/ConsumerGroupState'
           consumers:
@@ -1187,7 +1183,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Consumer'
-            nullable: false
           metrics:
             $ref: '#/components/schemas/ConsumerGroupMetrics'
     ConsumerGroupDescriptionOrderKey:
@@ -1201,6 +1196,8 @@ components:
       allOf:
       - $ref: '#/components/schemas/ListDeprecated'
       - description: A list of consumer groups
+        required:
+        - items
         type: object
         properties:
           items:
@@ -1276,7 +1273,9 @@ components:
     ConsumerGroupResetOffsetResult:
       allOf:
       - $ref: '#/components/schemas/List'
-      - type: object
+      - required:
+        - items
+        type: object
         properties:
           items:
             type: array
@@ -1344,6 +1343,8 @@ components:
       allOf:
       - $ref: '#/components/schemas/List'
       - description: List of errors
+        required:
+        - items
         type: object
         properties:
           items:
@@ -1356,22 +1357,15 @@ components:
             type: integer
     List:
       required:
-      - items
       - total
       type: object
       properties:
         kind:
           type: string
-        items:
-          type: array
-          items:
-            type: object
-          nullable: false
         total:
           format: int32
           description: Total number of entries in the full result set
           type: integer
-          nullable: false
         size:
           format: int32
           description: Number of entries per page (returned for fetch requests)
@@ -1411,7 +1405,6 @@ components:
           description: "The topic name, this value must be unique."
           pattern: \S
           type: string
-          nullable: false
         settings:
           $ref: '#/components/schemas/TopicSettings'
       example:
@@ -1461,7 +1454,6 @@ components:
           format: int32
           description: "The partition id, unique among partitions of the same topic"
           type: integer
-          nullable: false
         replicas:
           description: List of replicas for the partition
           type: array
@@ -1529,7 +1521,6 @@ components:
           value:
             description: Record value
             type: string
-            nullable: false
     RecordIncludedProperty:
       enum:
       - partition
@@ -1544,6 +1535,8 @@ components:
       allOf:
       - $ref: '#/components/schemas/List'
       - description: A page of records consumed from a topic
+        required:
+        - items
         type: object
         properties:
           items:
@@ -1654,6 +1647,8 @@ components:
       allOf:
       - $ref: '#/components/schemas/ListDeprecated'
       - description: A list of topics.
+        required:
+        - items
         type: object
         properties:
           items:
@@ -1701,7 +1696,6 @@ components:
       properties:
         topic:
           type: string
-          nullable: false
         partitions:
           type: array
           items:

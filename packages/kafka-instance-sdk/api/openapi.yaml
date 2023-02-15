@@ -6,7 +6,7 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   title: Kafka Instance API
-  version: 0.13.0-SNAPSHOT
+  version: 0.13.1-SNAPSHOT
 servers:
 - description: Kafka Admin REST API
   url: /
@@ -998,6 +998,7 @@ paths:
         required: false
         schema:
           default: ""
+          pattern: ^User:(\*|[a-zA-Z0-9_@.-]+)$
           type: string
         style: form
       - description: ACL Operation Filter. The ACL binding operation provided should
@@ -1162,6 +1163,7 @@ paths:
         required: false
         schema:
           default: ""
+          pattern: ^User:(\*|[a-zA-Z0-9_@.-]+)$
           type: string
         style: form
       - description: ACL Operation Filter. The ACL binding operation provided should
@@ -1664,12 +1666,10 @@ components:
         key:
           description: The key indicating what configuration entry you would like
             to set for the topic.
-          nullable: false
           pattern: \S
           type: string
         value:
           description: Value to indicate the setting on the topic configuration entry.
-          nullable: false
           pattern: \S
           type: string
       required:
@@ -1691,17 +1691,14 @@ components:
         groupId:
           description: Unique identifier for the consumer group to which this consumer
             belongs.
-          nullable: false
           type: string
         topic:
           description: The unique topic name to which this consumer belongs
-          nullable: false
           type: string
         partition:
           description: The partition number to which this consumer group is assigned
             to.
           format: int32
-          nullable: false
           type: integer
         offset:
           description: Offset denotes the position of the consumer in a partition.
@@ -1871,15 +1868,9 @@ components:
       properties:
         kind:
           type: string
-        items:
-          items:
-            type: object
-          nullable: false
-          type: array
         total:
           description: Total number of entries in the full result set
           format: int32
-          nullable: false
           type: integer
         size:
           description: Number of entries per page (returned for fetch requests)
@@ -1890,7 +1881,6 @@ components:
           format: int32
           type: integer
       required:
-      - items
       - total
       type: object
     ListDeprecated:
@@ -1912,7 +1902,6 @@ components:
       properties:
         name:
           description: The topic name, this value must be unique.
-          nullable: false
           pattern: \S
           type: string
         settings:
@@ -1965,7 +1954,6 @@ components:
         partition:
           description: The partition id, unique among partitions of the same topic
           format: int32
-          nullable: false
           type: integer
         replicas:
           description: List of replicas for the partition
@@ -2118,7 +2106,6 @@ components:
         topic: topic
       properties:
         topic:
-          nullable: false
           type: string
         partitions:
           items:
@@ -2135,7 +2122,6 @@ components:
         resourceType:
           $ref: '#/components/schemas/AclResourceType'
         resourceName:
-          nullable: false
           pattern: \S
           type: string
         patternType:
@@ -2145,8 +2131,7 @@ components:
             is bound. The literal prefix value of `User:` is required. May be used
             to specify all users with value `User:*`.
           example: User:user-123-abc
-          nullable: false
-          pattern: \S
+          pattern: ^User:(\*|[a-zA-Z0-9_@.-]+)$
           type: string
         operation:
           $ref: '#/components/schemas/AclOperation'
@@ -2167,13 +2152,14 @@ components:
           items:
             $ref: '#/components/schemas/AclBinding'
           type: array
+      required:
+      - items
       type: object
     ConsumerGroup_allOf:
       description: A group of Kafka consumers
       properties:
         groupId:
           description: Unique identifier for the consumer group
-          nullable: false
           pattern: \S
           type: string
         state:
@@ -2182,7 +2168,6 @@ components:
           description: The list of consumers associated with this consumer group
           items:
             $ref: '#/components/schemas/Consumer'
-          nullable: false
           type: array
         metrics:
           $ref: '#/components/schemas/ConsumerGroupMetrics'
@@ -2197,6 +2182,8 @@ components:
           items:
             $ref: '#/components/schemas/ConsumerGroup'
           type: array
+      required:
+      - items
       type: object
     ConsumerGroupResetOffsetResult_allOf:
       properties:
@@ -2204,6 +2191,8 @@ components:
           items:
             $ref: '#/components/schemas/ConsumerGroupResetOffsetResultItem'
           type: array
+      required:
+      - items
       type: object
     Error_allOf:
       description: General error response
@@ -2231,6 +2220,8 @@ components:
           description: Total number of errors returned in this request
           format: int32
           type: integer
+      required:
+      - items
       type: object
     Record_allOf:
       description: An individual record consumed from a topic or produced to a topic
@@ -2264,7 +2255,6 @@ components:
           type: string
         value:
           description: Record value
-          nullable: false
           type: string
       required:
       - value
@@ -2289,6 +2279,8 @@ components:
           description: Not used
           format: int32
           type: integer
+      required:
+      - items
       type: object
     Topic_allOf:
       description: Kafka Topic (A feed where records are stored and published)
@@ -2316,6 +2308,8 @@ components:
           items:
             $ref: '#/components/schemas/Topic'
           type: array
+      required:
+      - items
       type: object
   securitySchemes:
     Bearer:
