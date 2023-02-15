@@ -20,6 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterAllOfCapacityInformation;
+import com.openshift.cloud.api.kas.models.SupportedKafkaInstanceTypesList;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -29,103 +31,72 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * EnterpriseClusterAllOf
  */
 @JsonPropertyOrder({
-  EnterpriseClusterAllOf.JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK,
-  EnterpriseClusterAllOf.JSON_PROPERTY_CLUSTER_ID,
-  EnterpriseClusterAllOf.JSON_PROPERTY_STATUS
+  EnterpriseClusterAllOf.JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES,
+  EnterpriseClusterAllOf.JSON_PROPERTY_CAPACITY_INFORMATION
 })
 @JsonTypeName("EnterpriseCluster_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EnterpriseClusterAllOf {
-  public static final String JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK = "access_kafkas_via_private_network";
-  private Boolean accessKafkasViaPrivateNetwork;
+  public static final String JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES = "supported_instance_types";
+  private SupportedKafkaInstanceTypesList supportedInstanceTypes;
 
-  public static final String JSON_PROPERTY_CLUSTER_ID = "cluster_id";
-  private String clusterId;
-
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
+  public static final String JSON_PROPERTY_CAPACITY_INFORMATION = "capacity_information";
+  private EnterpriseClusterAllOfCapacityInformation capacityInformation;
 
   public EnterpriseClusterAllOf() { 
   }
 
-  public EnterpriseClusterAllOf accessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
+  public EnterpriseClusterAllOf supportedInstanceTypes(SupportedKafkaInstanceTypesList supportedInstanceTypes) {
     
-    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
+    this.supportedInstanceTypes = supportedInstanceTypes;
     return this;
   }
 
    /**
-   * Indicates whether Kafkas created on this data plane cluster have to be accessed via private network
-   * @return accessKafkasViaPrivateNetwork
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "Indicates whether Kafkas created on this data plane cluster have to be accessed via private network")
-  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Boolean getAccessKafkasViaPrivateNetwork() {
-    return accessKafkasViaPrivateNetwork;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ACCESS_KAFKAS_VIA_PRIVATE_NETWORK)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAccessKafkasViaPrivateNetwork(Boolean accessKafkasViaPrivateNetwork) {
-    this.accessKafkasViaPrivateNetwork = accessKafkasViaPrivateNetwork;
-  }
-
-
-  public EnterpriseClusterAllOf clusterId(String clusterId) {
-    
-    this.clusterId = clusterId;
-    return this;
-  }
-
-   /**
-   * ocm cluster id of the registered Enterprise cluster
-   * @return clusterId
+   * Get supportedInstanceTypes
+   * @return supportedInstanceTypes
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "ocm cluster id of the registered Enterprise cluster")
-  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getClusterId() {
-    return clusterId;
+  public SupportedKafkaInstanceTypesList getSupportedInstanceTypes() {
+    return supportedInstanceTypes;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLUSTER_ID)
+  @JsonProperty(JSON_PROPERTY_SUPPORTED_INSTANCE_TYPES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setClusterId(String clusterId) {
-    this.clusterId = clusterId;
+  public void setSupportedInstanceTypes(SupportedKafkaInstanceTypesList supportedInstanceTypes) {
+    this.supportedInstanceTypes = supportedInstanceTypes;
   }
 
 
-  public EnterpriseClusterAllOf status(String status) {
+  public EnterpriseClusterAllOf capacityInformation(EnterpriseClusterAllOfCapacityInformation capacityInformation) {
     
-    this.status = status;
+    this.capacityInformation = capacityInformation;
     return this;
   }
 
    /**
-   * status of registered Enterprise cluster
-   * @return status
+   * Get capacityInformation
+   * @return capacityInformation
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "status of registered Enterprise cluster")
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_CAPACITY_INFORMATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getStatus() {
-    return status;
+  public EnterpriseClusterAllOfCapacityInformation getCapacityInformation() {
+    return capacityInformation;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(JSON_PROPERTY_CAPACITY_INFORMATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
-    this.status = status;
+  public void setCapacityInformation(EnterpriseClusterAllOfCapacityInformation capacityInformation) {
+    this.capacityInformation = capacityInformation;
   }
 
 
@@ -138,23 +109,21 @@ public class EnterpriseClusterAllOf {
       return false;
     }
     EnterpriseClusterAllOf enterpriseClusterAllOf = (EnterpriseClusterAllOf) o;
-    return Objects.equals(this.accessKafkasViaPrivateNetwork, enterpriseClusterAllOf.accessKafkasViaPrivateNetwork) &&
-        Objects.equals(this.clusterId, enterpriseClusterAllOf.clusterId) &&
-        Objects.equals(this.status, enterpriseClusterAllOf.status);
+    return Objects.equals(this.supportedInstanceTypes, enterpriseClusterAllOf.supportedInstanceTypes) &&
+        Objects.equals(this.capacityInformation, enterpriseClusterAllOf.capacityInformation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accessKafkasViaPrivateNetwork, clusterId, status);
+    return Objects.hash(supportedInstanceTypes, capacityInformation);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EnterpriseClusterAllOf {\n");
-    sb.append("    accessKafkasViaPrivateNetwork: ").append(toIndentedString(accessKafkasViaPrivateNetwork)).append("\n");
-    sb.append("    clusterId: ").append(toIndentedString(clusterId)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    supportedInstanceTypes: ").append(toIndentedString(supportedInstanceTypes)).append("\n");
+    sb.append("    capacityInformation: ").append(toIndentedString(capacityInformation)).append("\n");
     sb.append("}");
     return sb.toString();
   }

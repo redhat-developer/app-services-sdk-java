@@ -1,6 +1,6 @@
 
 
-# EnterpriseCluster
+# EnterpriseClusterListItem
 
 
 ## Properties
@@ -16,8 +16,6 @@ Name | Type | Description | Notes
 **cloudProvider** | **String** | The cloud provider for this cluster. This valus will be used as the Kafka&#39;s cloud provider value when a Kafka is created on this cluster |  [optional]
 **region** | **String** | The region of this cluster. This valus will be used as the Kafka&#39;s region value when a Kafka is created on this cluster |  [optional]
 **multiAz** | **Boolean** | A flag indicating whether this cluster is available on multiple availability zones or not | 
-**supportedInstanceTypes** | **SupportedKafkaInstanceTypesList** |  |  [optional]
-**capacityInformation** | [**EnterpriseClusterAllOfCapacityInformation**](EnterpriseClusterAllOfCapacityInformation.md) |  |  [optional]
 
 
 

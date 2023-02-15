@@ -1517,8 +1517,8 @@ paths:
           content:
             application/json:
               examples:
-                EnterpriseClusterExample:
-                  $ref: '#/components/examples/EnterpriseClusterExample'
+                EnterpriseClusterListItemExample:
+                  $ref: '#/components/examples/EnterpriseClusterListItemExample'
               schema:
                 $ref: '#/components/schemas/EnterpriseCluster'
           description: Found enterprise data plane cluster with provided ID
@@ -1647,13 +1647,17 @@ components:
         cloud_provider: aws
         name: test_kafka
         plan: standard.x1
-    EnterpriseClusterExample:
+    EnterpriseClusterListItemExample:
       value:
         id: abcd1234ascd3456fdks9485lskd030h
         kind: cluster
         href: /api/kafkas_mgmr/v1/clusters/abcd1234ascd3456fdks9485lskd030h
         status: ready
         cluster_id: abcd1234ascd3456fdks9485lskd030h
+        access_kafkas_via_private_network: false
+        cloud_provider: aws
+        region: us-east-1
+        multi_az: true
     EnterpriseClusterWithAddonParametersExample:
       value:
         id: abcd1234ascd3456fdks9485lskd030h
@@ -1662,6 +1666,8 @@ components:
         status: ready
         cluster_id: abcd1234ascd3456fdks9485lskd030h
         access_kafkas_via_private_network: true
+        cloud_provider: aws
+        region: us-east-1
         fleetshard_parameters:
         - id: sso-auth-server-url
           value: http://someurl/auth/realms/rhoas
@@ -2255,9 +2261,13 @@ components:
       allOf:
       - $ref: '#/components/schemas/List'
       - $ref: '#/components/schemas/EnterpriseClusterList_allOf'
-    EnterpriseCluster:
+    EnterpriseClusterListItem:
       allOf:
       - $ref: '#/components/schemas/ObjectReference'
+      - $ref: '#/components/schemas/EnterpriseClusterListItem_allOf'
+    EnterpriseCluster:
+      allOf:
+      - $ref: '#/components/schemas/EnterpriseClusterListItem'
       - $ref: '#/components/schemas/EnterpriseCluster_allOf'
     VersionMetadata:
       allOf:
@@ -2369,6 +2379,7 @@ components:
             - $ref: '#/components/schemas/SupportedKafkaSize'
           type: array
       required:
+      - sizes
       - supported_billing_models
       type: object
     SupportedKafkaBillingModel:
@@ -2665,7 +2676,7 @@ components:
       type: object
     EnterpriseClusterWithAddonParameters:
       allOf:
-      - $ref: '#/components/schemas/ObjectReference'
+      - $ref: '#/components/schemas/EnterpriseClusterListItem'
       - $ref: '#/components/schemas/EnterpriseClusterWithAddonParameters_allOf'
       description: Enterprise cluster with addon parameters
     FleetshardParameter:
@@ -2784,30 +2795,79 @@ components:
         size: "1"
         total: "1"
         item:
-          $ref: '#/components/examples/EnterpriseClusterExample'
+          $ref: '#/components/examples/EnterpriseClusterListItemExample'
       properties:
         items:
           items:
             allOf:
-            - $ref: '#/components/schemas/EnterpriseCluster'
+            - $ref: '#/components/schemas/EnterpriseClusterListItem'
           type: array
       required:
       - items
       type: object
-    EnterpriseCluster_allOf:
+    EnterpriseClusterListItem_allOf:
       properties:
         access_kafkas_via_private_network:
           description: Indicates whether Kafkas created on this data plane cluster
             have to be accessed via private network
           type: boolean
         cluster_id:
-          description: ocm cluster id of the registered Enterprise cluster
+          description: The OCM's cluster id of the registered Enterprise cluster.
           type: string
         status:
-          description: status of registered Enterprise cluster
+          description: The status of Enterprise cluster registration
           type: string
+        cloud_provider:
+          description: The cloud provider for this cluster. This valus will be used
+            as the Kafka's cloud provider value when a Kafka is created on this cluster
+          type: string
+        region:
+          description: The region of this cluster. This valus will be used as the
+            Kafka's region value when a Kafka is created on this cluster
+          type: string
+        multi_az:
+          description: A flag indicating whether this cluster is available on multiple
+            availability zones or not
+          type: boolean
       required:
       - access_kafkas_via_private_network
+      - multi_az
+      type: object
+    EnterpriseCluster_allOf_capacity_information:
+      description: Returns the capacity related information
+      example:
+        kafka_machine_pool_node_count: 3
+        maximum_kafka_streaming_units: 1
+        remaining_kafka_streaming_units: 0
+        consumed_kafka_streaming_units: 1
+      properties:
+        kafka_machine_pool_node_count:
+          description: The kafka machine pool node count provided during cluster registration
+          type: integer
+        maximum_kafka_streaming_units:
+          description: The maximum number of Kafka streaming units that can be created
+            on this cluster
+          type: integer
+        remaining_kafka_streaming_units:
+          description: The remaining number of Kafka streaming units that can be still
+            be created on this cluster
+          type: integer
+        consumed_kafka_streaming_units:
+          description: The number of Kafka streaming units that have been consumed
+            on this cluster
+          type: integer
+      required:
+      - consumed_kafka_streaming_units
+      - kafka_machine_pool_node_count
+      - maximum_kafka_streaming_units
+      - remaining_kafka_streaming_units
+      type: object
+    EnterpriseCluster_allOf:
+      properties:
+        supported_instance_types:
+          $ref: '#/components/schemas/SupportedKafkaInstanceTypesList'
+        capacity_information:
+          $ref: '#/components/schemas/EnterpriseCluster_allOf_capacity_information'
       type: object
     VersionMetadata_allOf:
       example:
@@ -2988,23 +3048,11 @@ components:
       type: object
     EnterpriseClusterWithAddonParameters_allOf:
       properties:
-        access_kafkas_via_private_network:
-          description: Indicates whether Kafkas created on this data plane cluster
-            have to be accessed via private network
-          type: boolean
-        cluster_id:
-          description: OCM cluster id of the registered Enterprise cluster
-          type: string
-        status:
-          description: status of registered Enterprise cluster
-          type: string
         fleetshard_parameters:
           items:
             allOf:
             - $ref: '#/components/schemas/FleetshardParameter'
           type: array
-      required:
-      - access_kafkas_via_private_network
       type: object
   securitySchemes:
     Bearer:

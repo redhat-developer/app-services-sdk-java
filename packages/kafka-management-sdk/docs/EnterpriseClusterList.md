@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **page** | **Integer** |  | 
 **size** | **Integer** |  | 
 **total** | **Integer** |  | 
-**items** | [**List&lt;EnterpriseCluster&gt;**](EnterpriseCluster.md) |  | 
+**items** | [**List&lt;EnterpriseClusterListItem&gt;**](EnterpriseClusterListItem.md) |  | 
 
 
 

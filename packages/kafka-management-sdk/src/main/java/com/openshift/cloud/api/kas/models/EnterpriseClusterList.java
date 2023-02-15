@@ -20,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.kas.models.EnterpriseCluster;
 import com.openshift.cloud.api.kas.models.EnterpriseClusterListAllOf;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterListItem;
 import com.openshift.cloud.api.kas.models.ModelList;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -56,7 +56,7 @@ public class EnterpriseClusterList {
   private Integer total;
 
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<EnterpriseCluster> items = new ArrayList<>();
+  private List<EnterpriseClusterListItem> items = new ArrayList<>();
 
   public EnterpriseClusterList() { 
   }
@@ -169,13 +169,13 @@ public class EnterpriseClusterList {
   }
 
 
-  public EnterpriseClusterList items(List<EnterpriseCluster> items) {
+  public EnterpriseClusterList items(List<EnterpriseClusterListItem> items) {
     
     this.items = items;
     return this;
   }
 
-  public EnterpriseClusterList addItemsItem(EnterpriseCluster itemsItem) {
+  public EnterpriseClusterList addItemsItem(EnterpriseClusterListItem itemsItem) {
     this.items.add(itemsItem);
     return this;
   }
@@ -189,14 +189,14 @@ public class EnterpriseClusterList {
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<EnterpriseCluster> getItems() {
+  public List<EnterpriseClusterListItem> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setItems(List<EnterpriseCluster> items) {
+  public void setItems(List<EnterpriseClusterListItem> items) {
     this.items = items;
   }
 
