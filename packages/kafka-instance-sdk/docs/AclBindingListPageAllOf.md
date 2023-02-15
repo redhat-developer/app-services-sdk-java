@@ -8,7 +8,7 @@ A page of ACL binding entries
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;AclBinding&gt;**](AclBinding.md) |  |  [optional]
+**items** | [**List&lt;AclBinding&gt;**](AclBinding.md) |  | 
 
 
 

@@ -8,7 +8,7 @@ A list of topics.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;Topic&gt;**](Topic.md) |  |  [optional]
+**items** | [**List&lt;Topic&gt;**](Topic.md) |  | 
 
 
 
