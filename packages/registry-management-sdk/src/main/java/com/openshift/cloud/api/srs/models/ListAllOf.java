@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.srs.models.Error;
+import com.openshift.cloud.api.srs.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -29,27 +29,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * ErrorListAllOf
+ * ListAllOf
  */
 @JsonPropertyOrder({
-  ErrorListAllOf.JSON_PROPERTY_ITEMS
+  ListAllOf.JSON_PROPERTY_ITEMS
 })
-@JsonTypeName("ErrorList_allOf")
+@JsonTypeName("List_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ErrorListAllOf {
+public class ListAllOf {
   public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<Error> items = new ArrayList<>();
+  private List<ObjectReference> items = new ArrayList<>();
 
-  public ErrorListAllOf() { 
+  public ListAllOf() { 
   }
 
-  public ErrorListAllOf items(List<Error> items) {
+  public ListAllOf items(List<ObjectReference> items) {
     
     this.items = items;
     return this;
   }
 
-  public ErrorListAllOf addItemsItem(Error itemsItem) {
+  public ListAllOf addItemsItem(ObjectReference itemsItem) {
     this.items.add(itemsItem);
     return this;
   }
@@ -63,14 +63,14 @@ public class ErrorListAllOf {
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Error> getItems() {
+  public List<ObjectReference> getItems() {
     return items;
   }
 
 
   @JsonProperty(JSON_PROPERTY_ITEMS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setItems(List<Error> items) {
+  public void setItems(List<ObjectReference> items) {
     this.items = items;
   }
 
@@ -83,8 +83,8 @@ public class ErrorListAllOf {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorListAllOf errorListAllOf = (ErrorListAllOf) o;
-    return Objects.equals(this.items, errorListAllOf.items);
+    ListAllOf listAllOf = (ListAllOf) o;
+    return Objects.equals(this.items, listAllOf.items);
   }
 
   @Override
@@ -95,7 +95,7 @@ public class ErrorListAllOf {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorListAllOf {\n");
+    sb.append("class ListAllOf {\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
