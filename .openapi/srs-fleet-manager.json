@@ -497,31 +497,12 @@
   },
   "components": {
     "schemas": {
-      "ErrorList": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/List"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "items": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        ]
-      },
-      "List": {
+      "AbstractList": {
         "required": [
           "kind",
           "page",
           "size",
-          "total",
-          "items"
+          "total"
         ],
         "type": "object",
         "properties": {
@@ -536,14 +517,50 @@
           },
           "total": {
             "type": "integer"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ObjectReference"
-            }
           }
         }
+      },
+      "ErrorList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AbstractList"
+          },
+          {
+            "required": [
+              "items"
+            ],
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "List": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AbstractList"
+          },
+          {
+            "required": [
+              "items"
+            ],
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ObjectReference"
+                }
+              }
+            }
+          }
+        ]
       },
       "Error": {
         "required": [
@@ -578,7 +595,7 @@
       "RegistryList": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/List"
+            "$ref": "#/components/schemas/AbstractList"
           },
           {
             "required": [

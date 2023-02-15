@@ -1,13 +1,13 @@
 
 
-# ErrorListAllOf
+# ListAllOf
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;Error&gt;**](Error.md) |  | 
+**items** | [**List&lt;ObjectReference&gt;**](ObjectReference.md) |  | 
 
 
 

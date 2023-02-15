@@ -20,29 +20,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.srs.models.AbstractList;
-import com.openshift.cloud.api.srs.models.Error;
-import com.openshift.cloud.api.srs.models.ErrorListAllOf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * ErrorList
+ * AbstractList
  */
 @JsonPropertyOrder({
-  ErrorList.JSON_PROPERTY_KIND,
-  ErrorList.JSON_PROPERTY_PAGE,
-  ErrorList.JSON_PROPERTY_SIZE,
-  ErrorList.JSON_PROPERTY_TOTAL,
-  ErrorList.JSON_PROPERTY_ITEMS
+  AbstractList.JSON_PROPERTY_KIND,
+  AbstractList.JSON_PROPERTY_PAGE,
+  AbstractList.JSON_PROPERTY_SIZE,
+  AbstractList.JSON_PROPERTY_TOTAL
 })
-@JsonTypeName("ErrorList")
+@JsonTypeName("AbstractList")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class ErrorList {
+public class AbstractList {
   public static final String JSON_PROPERTY_KIND = "kind";
   private String kind;
 
@@ -55,13 +49,10 @@ public class ErrorList {
   public static final String JSON_PROPERTY_TOTAL = "total";
   private Integer total;
 
-  public static final String JSON_PROPERTY_ITEMS = "items";
-  private List<Error> items = new ArrayList<>();
-
-  public ErrorList() { 
+  public AbstractList() { 
   }
 
-  public ErrorList kind(String kind) {
+  public AbstractList kind(String kind) {
     
     this.kind = kind;
     return this;
@@ -88,7 +79,7 @@ public class ErrorList {
   }
 
 
-  public ErrorList page(Integer page) {
+  public AbstractList page(Integer page) {
     
     this.page = page;
     return this;
@@ -115,7 +106,7 @@ public class ErrorList {
   }
 
 
-  public ErrorList size(Integer size) {
+  public AbstractList size(Integer size) {
     
     this.size = size;
     return this;
@@ -142,7 +133,7 @@ public class ErrorList {
   }
 
 
-  public ErrorList total(Integer total) {
+  public AbstractList total(Integer total) {
     
     this.total = total;
     return this;
@@ -169,38 +160,6 @@ public class ErrorList {
   }
 
 
-  public ErrorList items(List<Error> items) {
-    
-    this.items = items;
-    return this;
-  }
-
-  public ErrorList addItemsItem(Error itemsItem) {
-    this.items.add(itemsItem);
-    return this;
-  }
-
-   /**
-   * Get items
-   * @return items
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public List<Error> getItems() {
-    return items;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ITEMS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setItems(List<Error> items) {
-    this.items = items;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -209,28 +168,26 @@ public class ErrorList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorList errorList = (ErrorList) o;
-    return Objects.equals(this.kind, errorList.kind) &&
-        Objects.equals(this.page, errorList.page) &&
-        Objects.equals(this.size, errorList.size) &&
-        Objects.equals(this.total, errorList.total) &&
-        Objects.equals(this.items, errorList.items);
+    AbstractList abstractList = (AbstractList) o;
+    return Objects.equals(this.kind, abstractList.kind) &&
+        Objects.equals(this.page, abstractList.page) &&
+        Objects.equals(this.size, abstractList.size) &&
+        Objects.equals(this.total, abstractList.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(kind, page, size, total, items);
+    return Objects.hash(kind, page, size, total);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorList {\n");
+    sb.append("class AbstractList {\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    page: ").append(toIndentedString(page)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }
