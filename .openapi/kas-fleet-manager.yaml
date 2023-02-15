@@ -1409,10 +1409,6 @@ components:
               description: "This field is now deprecated, please use the /api/kafkas_mgmt/v1/instance_types/{cloud_provider}/{cloud_region} endpoint to retrieve the field instead."
             reauthentication_enabled:
               type: boolean
-            kafka_storage_size:
-              deprecated: true
-              description: "Maximum data storage available to this Kafka. This is now deprecated, please use max_data_retention_size instead."
-              type: string
             max_data_retention_size:
               $ref: '#/components/schemas/SupportedKafkaSizeBytesValueItem'
             browser_url:
