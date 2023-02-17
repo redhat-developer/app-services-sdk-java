@@ -39,7 +39,7 @@ jobs:
         run: make generate
       - name: Fetch and Generate Errors SDK
         run: make generateErrors
-      - uses: peter-evans/create-pull-request@v4
+      - uses: peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04 #v4
         with:
             title: "fix(${{ github.event.client_payload.id }}): automated SDK update"
             token: "${{ secrets.CI_USER_TOKEN }}"
