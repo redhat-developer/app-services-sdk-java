@@ -23,7 +23,7 @@ jobs:
         run: ./scripts/errors/fetch-errors.sh
       - name: Generate Errors SDK
         run: ./scripts/errors/generate-errors.sh
-      - uses: peter-evans/create-pull-request@v3
+      - uses: peter-evans/create-pull-request@18f7dc018cc2cd597073088f7c7591b9d1c02672 #v3
         with:
           title: "fix(all): regenerated Error SDK(s)"
           token: "${{ secrets.CI_USER_TOKEN }}"
