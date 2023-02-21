@@ -8,7 +8,6 @@ Service Registry instance in a multi-tenant deployment.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | 
 **status** | **RegistryStatusValue** |  | 
 **registryUrl** | **String** |  |  [optional]
 **browserUrl** | **String** |  |  [optional]

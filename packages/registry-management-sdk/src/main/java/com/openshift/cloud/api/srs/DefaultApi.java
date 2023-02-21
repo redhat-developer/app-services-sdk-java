@@ -7,6 +7,7 @@ import com.openshift.cloud.api.srs.invoker.Pair;
 
 import javax.ws.rs.core.GenericType;
 
+import com.openshift.cloud.api.srs.models.Empty;
 import com.openshift.cloud.api.srs.models.Error;
 import com.openshift.cloud.api.srs.models.ServiceStatus;
 
@@ -58,7 +59,7 @@ public class DefaultApi {
     
     
     final String[] localVarAccepts = {
-      "application/json"
+      "application/json", "*/*"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 

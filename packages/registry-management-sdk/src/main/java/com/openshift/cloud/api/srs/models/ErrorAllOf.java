@@ -20,36 +20,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.openshift.cloud.api.srs.models.ErrorAllOf;
-import com.openshift.cloud.api.srs.models.ObjectReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Error
+ * ErrorAllOf
  */
 @JsonPropertyOrder({
-  Error.JSON_PROPERTY_ID,
-  Error.JSON_PROPERTY_KIND,
-  Error.JSON_PROPERTY_HREF,
-  Error.JSON_PROPERTY_REASON,
-  Error.JSON_PROPERTY_OPERATION_ID,
-  Error.JSON_PROPERTY_CODE
+  ErrorAllOf.JSON_PROPERTY_REASON,
+  ErrorAllOf.JSON_PROPERTY_OPERATION_ID,
+  ErrorAllOf.JSON_PROPERTY_CODE
 })
-@JsonTypeName("Error")
+@JsonTypeName("Error_allOf")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class Error {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
-
-  public static final String JSON_PROPERTY_KIND = "kind";
-  private String kind;
-
-  public static final String JSON_PROPERTY_HREF = "href";
-  private String href;
-
+public class ErrorAllOf {
   public static final String JSON_PROPERTY_REASON = "reason";
   private String reason;
 
@@ -59,91 +45,10 @@ public class Error {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
-  public Error() { 
+  public ErrorAllOf() { 
   }
 
-  public Error id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public Error kind(String kind) {
-    
-    this.kind = kind;
-    return this;
-  }
-
-   /**
-   * Get kind
-   * @return kind
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getKind() {
-    return kind;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setKind(String kind) {
-    this.kind = kind;
-  }
-
-
-  public Error href(String href) {
-    
-    this.href = href;
-    return this;
-  }
-
-   /**
-   * Get href
-   * @return href
-  **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getHref() {
-    return href;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HREF)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setHref(String href) {
-    this.href = href;
-  }
-
-
-  public Error reason(String reason) {
+  public ErrorAllOf reason(String reason) {
     
     this.reason = reason;
     return this;
@@ -170,7 +75,7 @@ public class Error {
   }
 
 
-  public Error operationId(String operationId) {
+  public ErrorAllOf operationId(String operationId) {
     
     this.operationId = operationId;
     return this;
@@ -197,7 +102,7 @@ public class Error {
   }
 
 
-  public Error code(String code) {
+  public ErrorAllOf code(String code) {
     
     this.code = code;
     return this;
@@ -232,27 +137,21 @@ public class Error {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Error error = (Error) o;
-    return Objects.equals(this.id, error.id) &&
-        Objects.equals(this.kind, error.kind) &&
-        Objects.equals(this.href, error.href) &&
-        Objects.equals(this.reason, error.reason) &&
-        Objects.equals(this.operationId, error.operationId) &&
-        Objects.equals(this.code, error.code);
+    ErrorAllOf errorAllOf = (ErrorAllOf) o;
+    return Objects.equals(this.reason, errorAllOf.reason) &&
+        Objects.equals(this.operationId, errorAllOf.operationId) &&
+        Objects.equals(this.code, errorAllOf.code);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, reason, operationId, code);
+    return Objects.hash(reason, operationId, code);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Error {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
-    sb.append("    href: ").append(toIndentedString(href)).append("\n");
+    sb.append("class ErrorAllOf {\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
     sb.append("    operationId: ").append(toIndentedString(operationId)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");

@@ -7,6 +7,7 @@ import com.openshift.cloud.api.srs.invoker.Pair;
 
 import javax.ws.rs.core.GenericType;
 
+import com.openshift.cloud.api.srs.models.Empty;
 import com.openshift.cloud.api.srs.models.Error;
 import com.openshift.cloud.api.srs.models.Registry;
 import com.openshift.cloud.api.srs.models.RegistryCreate;
@@ -66,7 +67,7 @@ public class RegistriesApi {
     
     
     final String[] localVarAccepts = {
-      "application/json"
+      "application/json", "*/*"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
@@ -83,7 +84,7 @@ public class RegistriesApi {
   /**
    * Delete a Registry instance
    * Deletes an existing &#x60;Registry&#x60; instance and all of the data that it stores. Important: Users should export the registry data before deleting the instance, e.g., using the Service Registry web console, core REST API, or &#x60;rhoas&#x60; CLI.
-   * @param id A unique identifier for a &#x60;Registry&#x60; instance. (required)
+   * @param id The id of the object you wish to interact with. (required)
    * @throws ApiException if fails to make API call
    */
   public void deleteRegistry(String id) throws ApiException {
@@ -109,7 +110,7 @@ public class RegistriesApi {
     
     
     final String[] localVarAccepts = {
-      "application/json"
+      "*/*", "application/json"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
@@ -154,7 +155,7 @@ public class RegistriesApi {
     
     
     final String[] localVarAccepts = {
-      "application/json"
+      "application/json", "*/*"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
@@ -171,7 +172,7 @@ public class RegistriesApi {
   /**
    * Get a Registry instance
    * Gets the details of a single instance of a &#x60;Registry&#x60;.
-   * @param id A unique identifier for a &#x60;Registry&#x60; instance. (required)
+   * @param id The id of the object you wish to interact with. (required)
    * @return a {@code Registry}
    * @throws ApiException if fails to make API call
    */
@@ -198,7 +199,7 @@ public class RegistriesApi {
     
     
     final String[] localVarAccepts = {
-      "application/json"
+      "application/json", "*/*"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 

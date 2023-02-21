@@ -7,6 +7,7 @@ import com.openshift.cloud.api.srs.invoker.Pair;
 
 import javax.ws.rs.core.GenericType;
 
+import com.openshift.cloud.api.srs.models.Empty;
 import com.openshift.cloud.api.srs.models.Error;
 import com.openshift.cloud.api.srs.models.ErrorList;
 
@@ -38,11 +39,11 @@ public class ErrorsApi {
   /**
    * 
    * Get information about a specific error type
-   * @param id A unique identifier for an error type. (required)
+   * @param id The id of the object you wish to interact with. (required)
    * @return a {@code Error}
    * @throws ApiException if fails to make API call
    */
-  public Error getError(Integer id) throws ApiException {
+  public Error getError(String id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -65,7 +66,7 @@ public class ErrorsApi {
     
     
     final String[] localVarAccepts = {
-      "application/json"
+      "application/json", "*/*"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
@@ -106,7 +107,7 @@ public class ErrorsApi {
     
     
     final String[] localVarAccepts = {
-      "application/json"
+      "application/json", "*/*"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 

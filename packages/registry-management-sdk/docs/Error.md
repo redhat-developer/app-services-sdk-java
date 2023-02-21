@@ -7,11 +7,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reason** | **String** |  | 
-**operationId** | **String** |  |  [optional]
 **id** | **String** |  | 
 **kind** | **String** |  | 
 **href** | **String** |  | 
+**reason** | **String** |  | 
+**operationId** | **String** |  |  [optional]
 **code** | **String** |  | 
 
 

@@ -2,7 +2,7 @@
 
 Service Registry Management API
 
-- API version: 0.0.6
+- API version: 1.0.0
 
 Service Registry Management API is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>registry-management-sdk</artifactId>
-  <version>0.0.6</version>
+  <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:registry-management-sdk:0.0.6"
+     implementation "com.redhat.cloud:registry-management-sdk:1.0.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/registry-management-sdk-0.0.6.jar`
+- `target/registry-management-sdk-1.0.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -129,7 +129,9 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AbstractList](docs/AbstractList.md)
+ - [Empty](docs/Empty.md)
  - [Error](docs/Error.md)
+ - [ErrorAllOf](docs/ErrorAllOf.md)
  - [ErrorList](docs/ErrorList.md)
  - [ErrorListAllOf](docs/ErrorListAllOf.md)
  - [ListAllOf](docs/ListAllOf.md)
