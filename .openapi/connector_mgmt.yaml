@@ -8,7 +8,7 @@ info:
   license:
     name: 'Apache 2.0'
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
-  contact: 
+  contact:
     name: 'Red Hat OpenShift Streams for Apache Kafka Support'
     email: 'rhosak-support@redhat.com'
 servers:
@@ -1653,7 +1653,7 @@ components:
         * Connector Types: id, created_at, updated_at, version, name, description, label, channel, featured_rank, pricing_tier
         * Connectors: id, created_at, updated_at, name, owner, organisation_id, connector_type_id, desired_state, state, channel, namespace_id, kafka_id, kafka_bootstrap_server, service_account_client_id, schema_registry_id, schema_registry_url
 
-        Allowed operators are `<>`, `=`, `LIKE`, or `ILIKE`.
+        Allowed operators are `<>`, `=`, `IN`, `NOT IN`, `LIKE`, or `ILIKE`.
         Allowed conjunctive operators are `AND` and `OR`. However, you can use a maximum of 10 conjunctions in a search query.
 
         Examples:
