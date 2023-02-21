@@ -33,7 +33,7 @@ public class Example {
         defaultClient.setBasePath("https://api.openshift.com");
 
         ErrorsApi apiInstance = new ErrorsApi(defaultClient);
-        Integer id = 56; // Integer | A unique identifier for an error type.
+        String id = "id_example"; // String | The id of the object you wish to interact with.
         try {
             Error result = apiInstance.getError(id);
             System.out.println(result);
@@ -53,7 +53,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| A unique identifier for an error type. |
+ **id** | **String**| The id of the object you wish to interact with. |
 
 ### Return type
 
@@ -66,13 +66,15 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, */*
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response - returns a single &#x60;Error&#x60;. |  -  |
+| **401** | Authentication was not successful. Make sure the token is valid. |  -  |
+| **403** | User is not authorized to perform the operation. |  -  |
 | **404** | No Service Registry with the specified id exists. |  -  |
 | **500** | Unexpected error occurred. |  -  |
 
@@ -136,12 +138,15 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, */*
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A successful response. |  -  |
-| **500** | Unexpected error occurred |  -  |
+| **400** | Invalid request content or parameters. |  -  |
+| **401** | Authentication was not successful. Make sure the token is valid. |  -  |
+| **403** | User is not authorized to perform the operation. |  -  |
+| **500** | Unexpected error occurred. |  -  |
 

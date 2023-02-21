@@ -66,12 +66,14 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, */*
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successfully returned service status. |  -  |
+| **401** | Authentication was not successful. Make sure the token is valid. |  -  |
+| **403** | User is not authorized to perform the operation. |  -  |
 | **500** | Internal error retrieving service status. |  -  |
 

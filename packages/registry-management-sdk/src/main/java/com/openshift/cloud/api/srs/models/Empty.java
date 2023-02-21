@@ -23,17 +23,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * Type of the Registry instance. This will determine functional and/or non-functional features provided by the instance.  \&quot;standard\&quot;: Standard, full-featured Registry instance  \&quot;eval\&quot;: Evaluation (Trial) instance, provided for a limited time 
+ * Represents an empty response
  */
-public enum RegistryInstanceTypeValue {
+public enum Empty {
   
-  STANDARD("standard"),
-  
-  EVAL("eval");
+  EMPTY("");
 
   private String value;
 
-  RegistryInstanceTypeValue(String value) {
+  Empty(String value) {
     this.value = value;
   }
 
@@ -48,8 +46,8 @@ public enum RegistryInstanceTypeValue {
   }
 
   @JsonCreator
-  public static RegistryInstanceTypeValue fromValue(String value) {
-    for (RegistryInstanceTypeValue b : RegistryInstanceTypeValue.values()) {
+  public static Empty fromValue(String value) {
+    for (Empty b : Empty.values()) {
       if (b.value.equals(value)) {
         return b;
       }

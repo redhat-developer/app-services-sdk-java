@@ -7,9 +7,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **String** |  |  [optional]
-**reason** | **String** |  |  [optional]
+**reason** | **String** |  | 
 **operationId** | **String** |  |  [optional]
+**code** | **String** |  | 
 
 
 

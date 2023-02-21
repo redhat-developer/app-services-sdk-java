@@ -73,16 +73,20 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: application/json, */*
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A successful response. The full request to create a new &#x60;Registry&#x60; instance is processed asynchronously. The user should verify the result of the operation by reading the &#x60;status&#x60; property of the created &#x60;Registry&#x60; instance. |  -  |
-| **401** | Auth token is invalid. |  -  |
-| **403** | User is not authorized to access the service. |  -  |
+| **400** | Invalid request content or parameters. |  -  |
+| **401** | Authentication was not successful. Make sure the token is valid. |  -  |
+| **403** | User is not authorized to perform the operation. |  -  |
+| **409** | Registry with the given name already exists, limit on the number of instances has been reached, or other precondition has not been met. |  -  |
+| **415** | Unsupported media type. The server expects a JSON request. |  -  |
 | **500** | Unexpected error occurred. |  -  |
+| **503** | Service has temporary issues while processing your request, please try again. |  -  |
 
 
 ## deleteRegistry
@@ -114,7 +118,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         RegistriesApi apiInstance = new RegistriesApi(defaultClient);
-        String id = "id_example"; // String | A unique identifier for a `Registry` instance.
+        String id = "id_example"; // String | The id of the object you wish to interact with.
         try {
             apiInstance.deleteRegistry(id);
         } catch (ApiException e) {
@@ -133,7 +137,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| A unique identifier for a &#x60;Registry&#x60; instance. |
+ **id** | **String**| The id of the object you wish to interact with. |
 
 ### Return type
 
@@ -146,16 +150,17 @@ null (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: */*, application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | Successful response. |  -  |
-| **401** | Auth token is invalid |  -  |
-| **403** | User is not authorized to access the service. |  -  |
+| **401** | Authentication was not successful. Make sure the token is valid. |  -  |
+| **403** | User is not authorized to perform the operation. |  -  |
 | **404** | No Service Registry instance with the specified id exists |  -  |
+| **500** | Unexpected error occurred. |  -  |
 
 
 ## getRegistries
@@ -190,7 +195,7 @@ public class Example {
         Integer page = 0; // Integer | Page index.
         Integer size = 100; // Integer | Number of items in each page.
         String orderBy = "name asc"; // String | Specifies the order by criteria. The syntax of this parameter is similar to the syntax of the _order by_ clause of an SQL statement. Each query can be ordered by any of the request fields. For example, to retrieve all Registry instances ordered by their name:  ```sql name asc ```  Or to retrieve all Registry instances ordered by their name _and_ created date:  ```sql name asc, created_at asc ```  If the parameter isn't provided, or if the value is empty,  the results are ordered by name.
-        String search = "name = my-registry and status = AVAILABLE"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the _where_ clause of an SQL statement. Allowed fields in the search are: `name`, `status`. Allowed comparators are `=` or `LIKE`. Allowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.  Examples:  To retrieve a request with name equal `my-registry`, the value should be:  ``` name = my-registry  ```  To retrieve a request with its name starting with `my`, the value should be:  ``` name like my%25 ```  If the parameter isn't provided, or if the value is empty, all the Registry instances that the user has permission to see are returned.  Note: If the query is invalid, an error is returned. 
+        String search = "name = example-registry and status = ready"; // String | Search criteria.  The syntax of this parameter is similar to the syntax of the _where_ clause of an SQL statement. Allowed fields in the search are: `name`, `status`. Allowed comparators are `=` or `LIKE`. Allowed joins are `AND` and `OR`, however there is a limit of max 10 joins in the search query.  Examples:  To retrieve a request with name equal `my-registry`, the value should be:  ``` name = my-registry  ```  To retrieve a request with its name starting with `my`, the value should be:  ``` name like my%25 ```  If the parameter isn't provided, or if the value is empty, all the Registry instances that the user has permission to see are returned.  Note: If the query is invalid, an error is returned. 
         try {
             RegistryList result = apiInstance.getRegistries(page, size, orderBy, search);
             System.out.println(result);
@@ -226,15 +231,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, */*
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A successful response. |  -  |
-| **401** | Auth token is invalid. |  -  |
-| **403** | User is not authorized to access the service. |  -  |
+| **400** | Invalid request content or parameters. |  -  |
+| **401** | Authentication was not successful. Make sure the token is valid. |  -  |
+| **403** | User is not authorized to perform the operation. |  -  |
 | **500** | Unexpected error occurred. |  -  |
 
 
@@ -267,7 +273,7 @@ public class Example {
         Bearer.setBearerToken("BEARER TOKEN");
 
         RegistriesApi apiInstance = new RegistriesApi(defaultClient);
-        String id = "id_example"; // String | A unique identifier for a `Registry` instance.
+        String id = "id_example"; // String | The id of the object you wish to interact with.
         try {
             Registry result = apiInstance.getRegistry(id);
             System.out.println(result);
@@ -287,7 +293,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **String**| A unique identifier for a &#x60;Registry&#x60; instance. |
+ **id** | **String**| The id of the object you wish to interact with. |
 
 ### Return type
 
@@ -300,14 +306,15 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: application/json, */*
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful response - returns a single &#x60;Registry&#x60; instance. |  -  |
-| **401** | Auth token is invalid. |  -  |
-| **403** | User is not authorized to access the service. |  -  |
+| **401** | Authentication was not successful. Make sure the token is valid. |  -  |
+| **403** | User is not authorized to perform the operation. |  -  |
 | **404** | No Service Registry instance with specified id exists. |  -  |
+| **500** | Unexpected error occurred. |  -  |
 

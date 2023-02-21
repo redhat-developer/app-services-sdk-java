@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Service Registry Management API",
-    "version": "0.0.6",
+    "version": "1.0.0",
     "description": "Service Registry Management API is a REST API for managing Service Registry instances. Service Registry is a datastore for event schemas and API designs, which is based on the open source Apicurio Registry project.",
     "contact": {
       "name": "Red Hat Hybrid Cloud Console",
@@ -24,7 +24,7 @@
       "description": "Staging server"
     },
     {
-      "url": "http://localhost:8000",
+      "url": "http://localhost:8081",
       "description": "localhost"
     },
     {
@@ -64,11 +64,26 @@
             },
             "description": "A successful response."
           },
-          "401": {
+          "400": {
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "400Example": {
+                    "$ref": "#/components/examples/400Example"
+                  }
+                }
+              }
+            },
+            "description": "Invalid request content or parameters."
+          },
+          "401": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
                 },
                 "examples": {
                   "401Example": {
@@ -77,7 +92,7 @@
                 }
               }
             },
-            "description": "Auth token is invalid."
+            "description": "Authentication was not successful. Make sure the token is valid."
           },
           "403": {
             "content": {
@@ -92,7 +107,7 @@
                 }
               }
             },
-            "description": "User is not authorized to access the service."
+            "description": "User is not authorized to perform the operation."
           },
           "500": {
             "content": {
@@ -112,8 +127,7 @@
         },
         "security": [
           {
-            "Bearer": [
-            ]
+            "Bearer": []
           }
         ],
         "operationId": "getRegistries",
@@ -145,11 +159,26 @@
             },
             "description": "A successful response. The full request to create a new `Registry` instance is processed asynchronously. The user should verify the result of the operation by reading the `status` property of the created `Registry` instance."
           },
-          "401": {
+          "400": {
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "400Example": {
+                    "$ref": "#/components/examples/400Example"
+                  }
+                }
+              }
+            },
+            "description": "Invalid request content or parameters."
+          },
+          "401": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
                 },
                 "examples": {
                   "401Example": {
@@ -158,7 +187,7 @@
                 }
               }
             },
-            "description": "Auth token is invalid."
+            "description": "Authentication was not successful. Make sure the token is valid."
           },
           "403": {
             "content": {
@@ -173,7 +202,37 @@
                 }
               }
             },
-            "description": "User is not authorized to access the service."
+            "description": "User is not authorized to perform the operation."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "409Example": {
+                    "$ref": "#/components/examples/409Example"
+                  }
+                }
+              }
+            },
+            "description": "Registry with the given name already exists, limit on the number of instances has been reached, or other precondition has not been met."
+          },
+          "415": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "415Example": {
+                    "$ref": "#/components/examples/415Example"
+                  }
+                }
+              }
+            },
+            "description": "Unsupported media type. The server expects a JSON request."
           },
           "500": {
             "content": {
@@ -189,12 +248,26 @@
               }
             },
             "description": "Unexpected error occurred."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "503Example": {
+                    "$ref": "#/components/examples/503Example"
+                  }
+                }
+              }
+            },
+            "description": "Service has temporary issues while processing your request, please try again."
           }
         },
         "security": [
           {
-            "Bearer": [
-            ]
+            "Bearer": []
           }
         ],
         "operationId": "createRegistry",
@@ -220,9 +293,9 @@
           },
           "401": {
             "content": {
-              "application/json": {
+              "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/Empty"
                 },
                 "examples": {
                   "401Example": {
@@ -231,7 +304,7 @@
                 }
               }
             },
-            "description": "Auth token is invalid."
+            "description": "Authentication was not successful. Make sure the token is valid."
           },
           "403": {
             "content": {
@@ -246,7 +319,7 @@
                 }
               }
             },
-            "description": "User is not authorized to access the service."
+            "description": "User is not authorized to perform the operation."
           },
           "404": {
             "content": {
@@ -262,12 +335,26 @@
               }
             },
             "description": "No Service Registry instance with specified id exists."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "500Example": {
+                    "$ref": "#/components/examples/500Example"
+                  }
+                }
+              }
+            },
+            "description": "Unexpected error occurred."
           }
         },
         "security": [
           {
-            "Bearer": [
-            ]
+            "Bearer": []
           }
         ],
         "operationId": "getRegistry",
@@ -284,9 +371,9 @@
           },
           "401": {
             "content": {
-              "application/json": {
+              "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/Empty"
                 },
                 "examples": {
                   "401Example": {
@@ -295,7 +382,7 @@
                 }
               }
             },
-            "description": "Auth token is invalid"
+            "description": "Authentication was not successful. Make sure the token is valid."
           },
           "403": {
             "content": {
@@ -310,7 +397,7 @@
                 }
               }
             },
-            "description": "User is not authorized to access the service."
+            "description": "User is not authorized to perform the operation."
           },
           "404": {
             "content": {
@@ -326,12 +413,26 @@
               }
             },
             "description": "No Service Registry instance with the specified id exists"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "500Example": {
+                    "$ref": "#/components/examples/500Example"
+                  }
+                }
+              }
+            },
+            "description": "Unexpected error occurred."
           }
         },
         "security": [
           {
-            "Bearer": [
-            ]
+            "Bearer": []
           }
         ],
         "operationId": "deleteRegistry",
@@ -340,18 +441,12 @@
       },
       "parameters": [
         {
-          "name": "id",
-          "description": "A unique identifier for a `Registry` instance.",
-          "schema": {
-            "type": "string"
-          },
-          "in": "path",
-          "required": true
+          "$ref": "#/components/parameters/id"
         }
       ]
     },
     "/api/serviceregistry_mgmt/v1/errors/{id}": {
-      "description": "Get information about a specific error type. This is not an instance of a specific error.",
+      "description": "Get information about a type of error. This is not an instance of a specific error.",
       "get": {
         "tags": [
           "Errors"
@@ -366,6 +461,36 @@
               }
             },
             "description": "Successful response - returns a single `Error`."
+          },
+          "401": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                },
+                "examples": {
+                  "401Example": {
+                    "$ref": "#/components/examples/401Example"
+                  }
+                }
+              }
+            },
+            "description": "Authentication was not successful. Make sure the token is valid."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "403Example": {
+                    "$ref": "#/components/examples/403Example"
+                  }
+                }
+              }
+            },
+            "description": "User is not authorized to perform the operation."
           },
           "404": {
             "content": {
@@ -403,14 +528,7 @@
       },
       "parameters": [
         {
-          "name": "id",
-          "description": "A unique identifier for an error type.",
-          "schema": {
-            "minimum": 1,
-            "type": "integer"
-          },
-          "in": "path",
-          "required": true
+          "$ref": "#/components/parameters/id"
         }
       ]
     },
@@ -439,6 +557,51 @@
             },
             "description": "A successful response."
           },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "400Example": {
+                    "$ref": "#/components/examples/400Example"
+                  }
+                }
+              }
+            },
+            "description": "Invalid request content or parameters."
+          },
+          "401": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                },
+                "examples": {
+                  "401Example": {
+                    "$ref": "#/components/examples/401Example"
+                  }
+                }
+              }
+            },
+            "description": "Authentication was not successful. Make sure the token is valid."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "403Example": {
+                    "$ref": "#/components/examples/403Example"
+                  }
+                }
+              }
+            },
+            "description": "User is not authorized to perform the operation."
+          },
           "500": {
             "content": {
               "application/json": {
@@ -452,7 +615,7 @@
                 }
               }
             },
-            "description": "Unexpected error occurred"
+            "description": "Unexpected error occurred."
           }
         },
         "operationId": "getErrors",
@@ -473,6 +636,36 @@
             },
             "description": "Successfully returned service status."
           },
+          "401": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Empty"
+                },
+                "examples": {
+                  "401Example": {
+                    "$ref": "#/components/examples/401Example"
+                  }
+                }
+              }
+            },
+            "description": "Authentication was not successful. Make sure the token is valid."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "403Example": {
+                    "$ref": "#/components/examples/403Example"
+                  }
+                }
+              }
+            },
+            "description": "User is not authorized to perform the operation."
+          },
           "500": {
             "content": {
               "application/json": {
@@ -486,8 +679,7 @@
         },
         "security": [
           {
-            "Bearer": [
-            ]
+            "Bearer": []
           }
         ],
         "operationId": "getServiceStatus",
@@ -563,34 +755,29 @@
         ]
       },
       "Error": {
-        "required": [
-          "id",
-          "kind",
-          "href",
-          "code",
-          "reason"
-        ],
-        "type": "object",
-        "properties": {
-          "reason": {
-            "type": "string"
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ObjectReference"
           },
-          "operation_id": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "kind": {
-            "type": "string"
-          },
-          "href": {
-            "type": "string"
-          },
-          "code": {
-            "type": "string"
+          {
+            "required": [
+              "code",
+              "reason"
+            ],
+            "type": "object",
+            "properties": {
+              "reason": {
+                "type": "string"
+              },
+              "operation_id": {
+                "type": "string"
+              },
+              "code": {
+                "type": "string"
+              }
+            }
           }
-        }
+        ]
       },
       "RegistryList": {
         "allOf": [
@@ -609,30 +796,29 @@
                   "$ref": "#/components/schemas/Registry"
                 }
               }
-            },
-            "example": {
-              "kind": "RegistryList",
-              "page": "1",
-              "size": "1",
-              "total": "1",
-              "items": [
-                {
-                  "id": "llmNteR4P7waRp5nJIReG",
-                  "kind": "serviceregistry",
-                  "href": "/api/serviceregistry_mgmt/v1/registries/llmNteR4P7waRp5nJIReG",
-                  "name": "sample-registry",
-                  "status": "ready",
-                  "owner": "some_id",
-                  "registryUrl": "https://somehost:433/t/12345",
-                  "browserUrl": "https://someuihost:443/registries/12345",
-                  "created_at": "2020-01-01T00:00:00Z",
-                  "updated_at": "2022-01-01T00:00:00Z",
-                  "instance_type": "standard"
-                }
-              ]
             }
           }
-        ]
+        ],
+        "example": {
+          "kind": "RegistryList",
+          "page": "1",
+          "size": "1",
+          "total": "1",
+          "items": [
+            {
+              "id": "5d8e5e39-6399-4273-9db5-7c0766aeb422",
+              "kind": "ServiceRegistry",
+              "href": "/api/serviceregistry_mgmt/v1/registries/5d8e5e39-6399-4273-9db5-7c0766aeb422",
+              "name": "example-registry",
+              "status": "ready",
+              "owner": "example-user",
+              "browserUrl": "http://localhost:8081/t/5d8e5e39-6399-4273-9db5-7c0766aeb422",
+              "created_at": "2020-01-01T00:00:00Z",
+              "updated_at": "2022-01-01T00:00:00Z",
+              "instance_type": "standard"
+            }
+          ]
+        }
       },
       "RegistryStatusValue": {
         "description": "\"accepted\": Registry status when accepted for processing.\n\n\"provisioning\": Registry status when provisioning a new instance.\n\n\"ready\": Registry status when ready for use.\n\n\"failed\": Registry status when the provisioning failed. When removing a Registry instance in this state,\nthe status transitions directly to \"deleting\".\n\n\n\"deprovision\": Registry status when accepted for deprovisioning.\n\n\"deleting\": Registry status when deprovisioning.\n",
@@ -647,7 +833,7 @@
         "type": "string"
       },
       "RegistryInstanceTypeValue": {
-        "description": "\"standard\": Standard, full-featured Registry instance\n\n\"eval\": Evaluation (Trial) instance, provided for a limited time\n",
+        "description": "Type of the Registry instance. This will determine functional and/or non-functional features provided by the instance.\n\n\"standard\": Standard, full-featured Registry instance\n\n\"eval\": Evaluation (Trial) instance, provided for a limited time\n",
         "enum": [
           "standard",
           "eval"
@@ -690,7 +876,7 @@
           }
         },
         "example": {
-          "name": "my-registry",
+          "name": "example-registry",
           "description": "This Registry instance is for a development environment only."
         }
       },
@@ -722,7 +908,6 @@
             "title": "Root type for Registry",
             "description": "Service Registry instance in a multi-tenant deployment.",
             "required": [
-              "id",
               "status",
               "created_at",
               "updated_at",
@@ -732,9 +917,6 @@
             ],
             "type": "object",
             "properties": {
-              "id": {
-                "type": "string"
-              },
               "status": {
                 "$ref": "#/components/schemas/RegistryStatusValue"
               },
@@ -771,30 +953,37 @@
                 "type": "string"
               },
               "instance_type": {
-                "$ref": "#/components/schemas/RegistryInstanceTypeValue",
-                "description": "Type of the Registry instance. This will determine functional and/or non-functional features provided by the instance."
+                "$ref": "#/components/schemas/RegistryInstanceTypeValue"
               }
-            },
-            "example": {
-              "id": "42",
-              "name": "my-registry",
-              "registryUrl": "https://registry.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706",
-              "browserUrl": "https://registry-ui.apps.example.com/t/5213600b-afc9-487e-8cc3-339f4248d706",
-              "status": "provisioning",
-              "registryDeploymentId": 1,
-              "owner": "ownername",
-              "updated_at": "2022-01-01T00:00:00Z",
-              "created_at": "2020-01-01T00:00:00Z",
-              "instance_type": "standard"
             }
           }
+        ],
+        "example": {
+          "id": "5d8e5e39-6399-4273-9db5-7c0766aeb422",
+          "kind": "ServiceRegistry",
+          "href": "/api/serviceregistry_mgmt/v1/registries/5d8e5e39-6399-4273-9db5-7c0766aeb422",
+          "name": "example-registry",
+          "status": "ready",
+          "owner": "example-user",
+          "browserUrl": "http://localhost:8081/t/5d8e5e39-6399-4273-9db5-7c0766aeb422",
+          "created_at": "2020-01-01T00:00:00Z",
+          "updated_at": "2022-01-01T00:00:00Z",
+          "instance_type": "standard"
+        }
+      },
+      "Empty": {
+        "title": "Empty Response",
+        "description": "Represents an empty response",
+        "type": "string",
+        "enum": [
+          ""
         ]
       }
     },
     "parameters": {
       "id": {
         "name": "id",
-        "description": "The id of record.",
+        "description": "The id of the object you wish to interact with.",
         "schema": {
           "type": "string"
         },
@@ -853,7 +1042,7 @@
         "explode": true,
         "examples": {
           "search": {
-            "value": "name = my-registry and status = AVAILABLE"
+            "value": "name = example-registry and status = ready"
           }
         },
         "name": "search",
@@ -866,43 +1055,77 @@
       }
     },
     "examples": {
-      "404Example": {
-        "value": {
-          "id": "404",
-          "kind": "Error",
-          "href": "/api/managed-services-api/v1/errors/7",
-          "code": "MGD-SERV-API-7",
-          "reason": "The requested resource doesn't exist."
-        }
-      },
-      "401Example": {
-        "value": {
-          "id": "11",
-          "kind": "Error",
-          "href": "/api/serviceregistry_mgmt/v1/errors/11",
-          "code": "CLOUD-SERV-API-11",
-          "reason": "Unable to verify JWT token: Required authorization token not found.",
-          "operation_id": "1iY3UhEhwmXBpWPfI2lNekpd4ZD"
-        }
-      },
-      "403Example": {
+      "400Example": {
         "value": {
           "id": "4",
           "kind": "Error",
           "href": "/api/serviceregistry_mgmt/v1/errors/4",
-          "code": "MGD-SERV-API-4",
-          "reason": "User 'foo-bar' is not authorized to access the service.",
-          "operation_id": "1lY3UiEhznXBpWPfI2lNejpd4YC"
+          "code": "SRS-MGMT-4",
+          "reason": "Invalid request content or parameters. Make sure the request conforms to the given JSON schema",
+          "operation_id": "af2e70cb-a688-4e5c-8c4b-76662a663c29"
         }
       },
-      "500Example": {
+      "401Example": {
+        "value": ""
+      },
+      "403Example": {
+        "value": {
+          "id": "15",
+          "kind": "Error",
+          "href": "/api/serviceregistry_mgmt/v1/errors/15",
+          "code": "SRS-MGMT-15",
+          "reason": "User is not authorized to perform the operation",
+          "operation_id": "af2e70cb-a688-4e5c-8c4b-76662a663c29"
+        }
+      },
+      "404Example": {
+        "value": {
+          "id": "2",
+          "kind": "Error",
+          "href": "/api/serviceregistry_mgmt/v1/errors/2",
+          "code": "SRS-MGMT-2",
+          "reason": "Registry with id='foo' not found",
+          "operation_id": "af2e70cb-a688-4e5c-8c4b-76662a663c29"
+        }
+      },
+      "409Example": {
         "value": {
           "id": "9",
           "kind": "Error",
           "href": "/api/serviceregistry_mgmt/v1/errors/9",
-          "code": "MGD-SERV-API-9",
-          "reason": "Unspecified error.",
-          "operation_id": "1ieELvF9jMQY6YghfM9gGRsHvEW"
+          "code": "SRS-MGMT-9",
+          "reason": "Data conflict. Make sure a Registry with the given name does not already exist",
+          "operation_id": "af2e70cb-a688-4e5c-8c4b-76662a663c29"
+        }
+      },
+      "415Example": {
+        "value": {
+          "id": "10",
+          "kind": "Error",
+          "href": "/api/serviceregistry_mgmt/v1/errors/10",
+          "code": "SRS-MGMT-10",
+          "reason": "Bad request format - unsupported media type",
+          "operation_id": "af2e70cb-a688-4e5c-8c4b-76662a663c29"
+        }
+      },
+      "500Example": {
+        "value": {
+          "id": "1",
+          "kind": "Error",
+          "href": "/api/serviceregistry_mgmt/v1/errors/1",
+          "code": "SRS-MGMT-1",
+          "reason": "Unspecified error",
+          "operation_id": "af2e70cb-a688-4e5c-8c4b-76662a663c29"
+        }
+      },
+      "503Example": {
+        "value": {
+          "id": "1",
+          "kind": "Error",
+          "href": "/api/serviceregistry_mgmt/v1/errors/1",
+          "code": "SRS-MGMT-1",
+          "reason": "Unspecified error",
+          "operation_id": "af2e70cb-a688-4e5c-8c4b-76662a663c29"
         }
       }
     },
