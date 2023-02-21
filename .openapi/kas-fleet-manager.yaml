@@ -7,7 +7,7 @@ info:
   license:
     name: 'Apache 2.0'
     url: 'https://www.apache.org/licenses/LICENSE-2.0'
-  contact: 
+  contact:
     name: 'Red Hat OpenShift Streams for Apache Kafka Support'
     email: 'rhosak-support@redhat.com'
 tags:
@@ -16,7 +16,7 @@ tags:
   - name: security
     description: Security related endpoints.
   - name: enterprise-dataplane-clusters
-    description: Enterprise data plane clusters registration and management endpoints.   
+    description: Enterprise data plane clusters registration and management endpoints.
 servers:
   - url: https://api.openshift.com
     description: Main (production) server
@@ -857,7 +857,7 @@ paths:
               examples:
                 500Example:
                   $ref: '#/components/examples/500Example'
-  
+
   #
   # These are the user-facing related endpoints
   #
@@ -985,7 +985,7 @@ paths:
   /api/kafkas_mgmt/v1/clusters:
     get:
       tags:
-        - enterprise-dataplane-clusters  
+        - enterprise-dataplane-clusters
       description: List all Enterprise data plane clusters
       operationId: getEnterpriseOsdClusters
       security:
@@ -1385,8 +1385,8 @@ components:
             bootstrap_server_host:
               type: string
             admin_api_server_url:
-              type: string 
-              description: The kafka admin server url to perform kafka admin operations e.g acl management etc. The value will be available when the Kafka has been fully provisioned i.e it reaches a 'ready' state 
+              type: string
+              description: The kafka admin server url to perform kafka admin operations e.g acl management etc. The value will be available when the Kafka has been fully provisioned i.e it reaches a 'ready' state
             created_at:
               format: date-time
               type: string
@@ -1502,7 +1502,7 @@ components:
             - multi_az
           properties:
             access_kafkas_via_private_network:
-              description: Indicates whether Kafkas created on this data plane cluster have to be accessed via private network 
+              description: Indicates whether Kafkas created on this data plane cluster have to be accessed via private network
               type: boolean
             cluster_id:
               type: string
@@ -1512,10 +1512,10 @@ components:
               type: string
             cloud_provider:
               description: The cloud provider for this cluster. This valus will be used as the Kafka's cloud provider value when a Kafka is created on this cluster
-              type: string 
-            region: 
+              type: string
+            region:
               description: The region of this cluster. This valus will be used as the Kafka's region value when a Kafka is created on this cluster
-              type: string 
+              type: string
             multi_az:
               description: A flag indicating whether this cluster is available on multiple availability zones or not
               type: boolean
@@ -1524,11 +1524,11 @@ components:
         - $ref: "#/components/schemas/EnterpriseClusterListItem"
         - type: object
           properties:
-            supported_instance_types: 
+            supported_instance_types:
               type: object
-              $ref: "#/components/schemas/SupportedKafkaInstanceTypesList" 
+              $ref: "#/components/schemas/SupportedKafkaInstanceTypesList"
             capacity_information:
-              description: Returns the capacity related information 
+              description: Returns the capacity related information
               type: object
               example:
                 kafka_machine_pool_node_count: 3
@@ -1549,7 +1549,7 @@ components:
                   type: integer
                 remaining_kafka_streaming_units:
                   description: "The remaining number of Kafka streaming units that can be still be created on this cluster"
-                  type: integer  
+                  type: integer
                 consumed_kafka_streaming_units:
                   description: "The number of Kafka streaming units that have been consumed on this cluster"
                   type: integer
@@ -1972,7 +1972,7 @@ components:
             valid_issuer:
               type: string
           example:
-            $ref: "#/components/examples/SsoProviderExample"      
+            $ref: "#/components/examples/SsoProviderExample"
     MetricsRangeQueryList:
       allOf:
         - type: object
@@ -2067,7 +2067,7 @@ components:
       type: object
       properties:
         access_kafkas_via_private_network:
-          description: Sets whether Kafkas created on this data plane cluster have to be accessed via private network 
+          description: Sets whether Kafkas created on this data plane cluster have to be accessed via private network
           type: boolean
         cluster_id:
           description: The data plane cluster ID. This is the ID of the cluster obtained from OpenShift Cluster Manager (OCM) API
@@ -2083,7 +2083,7 @@ components:
             The name of the machine pool must be `kafka-standard` 
             The node count value has to be a multiple of 3 with a minimum of 3 nodes.
           type: integer
-          format: int32  
+          format: int32
     EnterpriseClusterWithAddonParameters:
       description: Enterprise cluster with addon parameters
       allOf:
@@ -2223,7 +2223,7 @@ components:
         Search criteria.
 
         The syntax of this parameter is similar to the syntax of the `where` clause of an
-        SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, `status` and `cluster_id`. Allowed comparators are `<>`, `=`, `LIKE`, or `ILIKE`.
+        SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, `status` and `cluster_id`. Allowed comparators are `<>`, `=`, `IN`, `NOT IN`, `LIKE`, or `ILIKE`.
         Allowed joins are `AND` and `OR`. However, you can use a maximum of 10 joins in a search query.
 
         Examples:
@@ -2341,7 +2341,7 @@ components:
         owner: "api_kafka_service"
         name: "serviceapi"
         bootstrap_server_host: "serviceapi-1isy6rq3jki8q0otmjqfd3ocfrg.apps.mk-bttg0jn170hp.x5u8.s1.devshift.org"
-        admin_api_server_url: "https://admin-server-mk-e-e-e-e-c---{}ld{-}-n-vp--bltg.rhcloud.com"  
+        admin_api_server_url: "https://admin-server-mk-e-e-e-e-c---{}ld{-}-n-vp--bltg.rhcloud.com"
         created_at: "2020-10-05T12:51:24.053142Z"
         updated_at: "2020-10-05T12:56:36.362208Z"
         version: "2.6.0"
@@ -2374,7 +2374,7 @@ components:
         owner: "api_kafka_service"
         name: "serviceapi"
         bootstrap_server_host: "serviceapi-1isy6rq3jki8q0otmjqfd3ocfrg.apps.mk-bttg0jn170hp.x5u8.s1.devshift.org"
-        admin_api_server_url: "https://admin-server-mk-e-e-e-e-c---{}ld{-}-n-vp--bltg.rhcloud.com" 
+        admin_api_server_url: "https://admin-server-mk-e-e-e-e-c---{}ld{-}-n-vp--bltg.rhcloud.com"
         created_at: "2020-10-05T12:51:24.053142Z"
         updated_at: "2020-10-05T12:56:36.362208Z"
         failed_reason: "a reason the Kafka request creation failed"
@@ -2461,7 +2461,7 @@ components:
         base_url: "https://identity.api.redhat.com"
         jwks: "https://identity.api.openshift.com/auth/realms/rhoas/protocol/openid-connect/certs"
         token_url: "https://identity.api.openshift.com/auth/realms/rhoas/protocol/openid-connect/token"
-        valid_issuer: "https://identity.api.openshift.com/auth/realms/rhoas"     
+        valid_issuer: "https://identity.api.openshift.com/auth/realms/rhoas"
     ServiceAccountByIdExample:
       value:
         id: "1"
