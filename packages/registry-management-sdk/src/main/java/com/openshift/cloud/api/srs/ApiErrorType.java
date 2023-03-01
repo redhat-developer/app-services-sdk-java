@@ -41,14 +41,17 @@ public enum ApiErrorType {
   /** Could not check quota for user?*/
   ERROR_11("SRS-MGMT-11"), 
 
-  /** Evaluation instances not allowed.*/
+  /** Evaluation instances not allowed*/
   ERROR_12("SRS-MGMT-12"), 
 
-  /** User already has the maximum number of allowed Evaluation instances.*/
+  /** User already has the maximum number of allowed Evaluation instances*/
   ERROR_13("SRS-MGMT-13"), 
 
-  /** Total (global) number of instances exhausted.*/
-  ERROR_14("SRS-MGMT-14"); 
+  /** Total (global) number of instances exhausted*/
+  ERROR_14("SRS-MGMT-14"), 
+
+  /** User is not authorized to perform the operation*/
+  ERROR_15("SRS-MGMT-15"); 
 
 
  

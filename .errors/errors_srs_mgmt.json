@@ -2,7 +2,7 @@
   "kind": "ErrorList",
   "page": 1,
   "size": 100,
-  "total": 14,
+  "total": 15,
   "items": [
     {
       "reason": "Unspecified error",
@@ -93,7 +93,7 @@
       "code": "SRS-MGMT-11"
     },
     {
-      "reason": "Evaluation instances not allowed.",
+      "reason": "Evaluation instances not allowed",
       "operation_id": "",
       "id": "12",
       "kind": "Error",
@@ -101,7 +101,7 @@
       "code": "SRS-MGMT-12"
     },
     {
-      "reason": "User already has the maximum number of allowed Evaluation instances.",
+      "reason": "User already has the maximum number of allowed Evaluation instances",
       "operation_id": "",
       "id": "13",
       "kind": "Error",
@@ -109,12 +109,20 @@
       "code": "SRS-MGMT-13"
     },
     {
-      "reason": "Total (global) number of instances exhausted.",
+      "reason": "Total (global) number of instances exhausted",
       "operation_id": "",
       "id": "14",
       "kind": "Error",
       "href": "/api/serviceregistry_mgmt/v1/errors/14",
       "code": "SRS-MGMT-14"
+    },
+    {
+      "reason": "User is not authorized to perform the operation",
+      "operation_id": "",
+      "id": "15",
+      "kind": "Error",
+      "href": "/api/serviceregistry_mgmt/v1/errors/15",
+      "code": "SRS-MGMT-15"
     }
   ]
 }
