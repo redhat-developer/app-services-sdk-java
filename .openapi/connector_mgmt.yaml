@@ -452,6 +452,15 @@ paths:
                 404Example:
                   $ref: "#/components/examples/404Example"
           description: No matching resource exists
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                404Example:
+                  $ref: "#/components/examples/409Example"
+          description: An attempt was made to modify an immutable field
         "410":
           content:
             application/json:
@@ -1882,6 +1891,13 @@ components:
         href: "/api/connector_mgmt/v1/errors/7"
         code: "CONNECTOR-MGMT-7"
         reason: "The requested resource doesn't exist"
+    409Example:
+      value:
+        id: "409"
+        kind: "Error"
+        href: "/api/connector_mgmt/v1/errors/21"
+        code: "CONNECTOR-MGMT-21"
+        reason: "An attempt was made to modify an immutable field"
     410Example:
       value:
         id: "410"
