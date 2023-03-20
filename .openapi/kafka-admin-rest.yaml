@@ -7,7 +7,7 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
-  version: 0.13.1-SNAPSHOT
+  version: 0.14.1-SNAPSHOT
 servers:
 - url: /
   description: Kafka Admin REST API
@@ -92,6 +92,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "401":
           $ref: '#/components/responses/NotAuthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
         "500":
           $ref: '#/components/responses/ServerError'
         "503":
@@ -124,6 +126,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "401":
           $ref: '#/components/responses/NotAuthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
         "409":
           $ref: '#/components/responses/Conflict'
         "500":
@@ -462,6 +466,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         "401":
           $ref: '#/components/responses/NotAuthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
         "500":
           $ref: '#/components/responses/ServerError'
         "503":
@@ -920,6 +926,8 @@ paths:
                   value: "{}"
         "401":
           $ref: '#/components/responses/NotAuthorized'
+        "403":
+          $ref: '#/components/responses/Forbidden'
         "500":
           $ref: '#/components/responses/ServerError'
       security:

@@ -250,6 +250,7 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | Map of allowed resources and operations for ACL creation |  -  |
 | **401** | Request authentication missing or invalid |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
 | **500** | Internal server error |  -  |
 
 
