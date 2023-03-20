@@ -1,3 +1,10 @@
+# [DEPRICATED] 
+
+SDK moved to https://github.com/redhat-developer/app-services-sdk-core/app-services-sdk-java
+
+This repoisitory has been replaced with [app-services-sdk-core](https://github.com/redhat-developer/app-services-sdk-core) and should not be used. If you are using this SDK take a look at how to transition your project to the new SDK [here](https://github.com/redhat-developer/app-services-sdk-core/blob/main/MOVING.md).
+
+
 # RHOAS SDK for Java
 
 Java packages and API clients for RHOAS services
