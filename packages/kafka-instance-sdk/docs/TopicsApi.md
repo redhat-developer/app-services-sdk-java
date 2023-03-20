@@ -86,6 +86,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
 | **409** | The resource already exists. |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
@@ -333,6 +334,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 | **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
 | **200** | List of topics matching the request query parameters. The topics returned are limited to those records the requestor is authorized to view. |  -  |

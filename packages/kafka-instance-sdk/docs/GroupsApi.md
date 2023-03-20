@@ -262,6 +262,7 @@ Name | Type | Description  | Notes
 | **200** | List of consumer groups matching the request parameters. The consumer groups returned are limited to those records the requestor is authorized to view. |  -  |
 | **400** | The client request was invalid. One or more request parameters or the request body was rejected. Additional information may be found in the response. |  -  |
 | **401** | Request authentication missing or invalid |  -  |
+| **403** | User is not authorized to access requested resource |  -  |
 | **500** | Internal server error |  -  |
 | **503** | Kafka service unavailable |  -  |
 
