@@ -1,4 +1,4 @@
-# [EEEEECATED] 
+# [DEPRECATED] 
 
 SDK moved to https://github.com/redhat-developer/app-services-sdk-core/app-services-sdk-java
 
