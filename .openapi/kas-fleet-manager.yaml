@@ -2223,7 +2223,7 @@ components:
         Search criteria.
 
         The syntax of this parameter is similar to the syntax of the `where` clause of an
-        SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, `status` and `cluster_id`. Allowed comparators are `<>`, `=`, `IN`, `NOT IN`, `LIKE`, or `ILIKE`.
+        SQL statement. Allowed fields in the search are `cloud_provider`, `name`, `owner`, `region`, `status`, `instance_type`, and `cluster_id`. Allowed comparators are `<>`, `=`, `IN`, `NOT IN`, `LIKE`, or `ILIKE`.
         Allowed joins are `AND` and `OR`. However, you can use a maximum of 10 joins in a search query.
 
         Examples:
