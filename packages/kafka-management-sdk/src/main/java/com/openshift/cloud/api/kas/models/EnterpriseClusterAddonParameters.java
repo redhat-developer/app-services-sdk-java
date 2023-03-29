@@ -20,8 +20,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterFleetshardParameters;
+import com.openshift.cloud.api.kas.models.FleetshardParameter;
 import com.openshift.cloud.api.kas.models.ObjectReference;
-import com.openshift.cloud.api.kas.models.VersionMetadataAllOf;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -30,18 +31,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * VersionMetadata
+ * Enterprise Cluster get addon parameters response
  */
+@ApiModel(description = "Enterprise Cluster get addon parameters response")
 @JsonPropertyOrder({
-  VersionMetadata.JSON_PROPERTY_ID,
-  VersionMetadata.JSON_PROPERTY_KIND,
-  VersionMetadata.JSON_PROPERTY_HREF,
-  VersionMetadata.JSON_PROPERTY_SERVER_VERSION,
-  VersionMetadata.JSON_PROPERTY_COLLECTIONS
+  EnterpriseClusterAddonParameters.JSON_PROPERTY_ID,
+  EnterpriseClusterAddonParameters.JSON_PROPERTY_KIND,
+  EnterpriseClusterAddonParameters.JSON_PROPERTY_HREF,
+  EnterpriseClusterAddonParameters.JSON_PROPERTY_FLEETSHARD_PARAMETERS
 })
-@JsonTypeName("VersionMetadata")
+@JsonTypeName("EnterpriseClusterAddonParameters")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
-public class VersionMetadata {
+public class EnterpriseClusterAddonParameters {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
@@ -51,16 +52,13 @@ public class VersionMetadata {
   public static final String JSON_PROPERTY_HREF = "href";
   private String href;
 
-  public static final String JSON_PROPERTY_SERVER_VERSION = "server_version";
-  private String serverVersion;
+  public static final String JSON_PROPERTY_FLEETSHARD_PARAMETERS = "fleetshard_parameters";
+  private List<FleetshardParameter> fleetshardParameters = null;
 
-  public static final String JSON_PROPERTY_COLLECTIONS = "collections";
-  private List<ObjectReference> collections = null;
-
-  public VersionMetadata() { 
+  public EnterpriseClusterAddonParameters() { 
   }
 
-  public VersionMetadata id(String id) {
+  public EnterpriseClusterAddonParameters id(String id) {
     
     this.id = id;
     return this;
@@ -87,7 +85,7 @@ public class VersionMetadata {
   }
 
 
-  public VersionMetadata kind(String kind) {
+  public EnterpriseClusterAddonParameters kind(String kind) {
     
     this.kind = kind;
     return this;
@@ -114,7 +112,7 @@ public class VersionMetadata {
   }
 
 
-  public VersionMetadata href(String href) {
+  public EnterpriseClusterAddonParameters href(String href) {
     
     this.href = href;
     return this;
@@ -141,65 +139,38 @@ public class VersionMetadata {
   }
 
 
-  public VersionMetadata serverVersion(String serverVersion) {
+  public EnterpriseClusterAddonParameters fleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
     
-    this.serverVersion = serverVersion;
+    this.fleetshardParameters = fleetshardParameters;
     return this;
   }
 
-   /**
-   * Get serverVersion
-   * @return serverVersion
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_SERVER_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getServerVersion() {
-    return serverVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SERVER_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setServerVersion(String serverVersion) {
-    this.serverVersion = serverVersion;
-  }
-
-
-  public VersionMetadata collections(List<ObjectReference> collections) {
-    
-    this.collections = collections;
-    return this;
-  }
-
-  public VersionMetadata addCollectionsItem(ObjectReference collectionsItem) {
-    if (this.collections == null) {
-      this.collections = new ArrayList<>();
+  public EnterpriseClusterAddonParameters addFleetshardParametersItem(FleetshardParameter fleetshardParametersItem) {
+    if (this.fleetshardParameters == null) {
+      this.fleetshardParameters = new ArrayList<>();
     }
-    this.collections.add(collectionsItem);
+    this.fleetshardParameters.add(fleetshardParametersItem);
     return this;
   }
 
    /**
-   * Get collections
-   * @return collections
+   * Enterprise Cluster fleetshard parameters array
+   * @return fleetshardParameters
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_COLLECTIONS)
+  @ApiModelProperty(value = "Enterprise Cluster fleetshard parameters array")
+  @JsonProperty(JSON_PROPERTY_FLEETSHARD_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ObjectReference> getCollections() {
-    return collections;
+  public List<FleetshardParameter> getFleetshardParameters() {
+    return fleetshardParameters;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COLLECTIONS)
+  @JsonProperty(JSON_PROPERTY_FLEETSHARD_PARAMETERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCollections(List<ObjectReference> collections) {
-    this.collections = collections;
+  public void setFleetshardParameters(List<FleetshardParameter> fleetshardParameters) {
+    this.fleetshardParameters = fleetshardParameters;
   }
 
 
@@ -211,28 +182,26 @@ public class VersionMetadata {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    VersionMetadata versionMetadata = (VersionMetadata) o;
-    return Objects.equals(this.id, versionMetadata.id) &&
-        Objects.equals(this.kind, versionMetadata.kind) &&
-        Objects.equals(this.href, versionMetadata.href) &&
-        Objects.equals(this.serverVersion, versionMetadata.serverVersion) &&
-        Objects.equals(this.collections, versionMetadata.collections);
+    EnterpriseClusterAddonParameters enterpriseClusterAddonParameters = (EnterpriseClusterAddonParameters) o;
+    return Objects.equals(this.id, enterpriseClusterAddonParameters.id) &&
+        Objects.equals(this.kind, enterpriseClusterAddonParameters.kind) &&
+        Objects.equals(this.href, enterpriseClusterAddonParameters.href) &&
+        Objects.equals(this.fleetshardParameters, enterpriseClusterAddonParameters.fleetshardParameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, kind, href, serverVersion, collections);
+    return Objects.hash(id, kind, href, fleetshardParameters);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class VersionMetadata {\n");
+    sb.append("class EnterpriseClusterAddonParameters {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
-    sb.append("    serverVersion: ").append(toIndentedString(serverVersion)).append("\n");
-    sb.append("    collections: ").append(toIndentedString(collections)).append("\n");
+    sb.append("    fleetshardParameters: ").append(toIndentedString(fleetshardParameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }

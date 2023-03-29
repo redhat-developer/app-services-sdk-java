@@ -2,7 +2,7 @@
 
 Kafka Management API
 
-- API version: 1.15.0
+- API version: 1.16.0
 
 Kafka Management API is a REST API to manage Kafka instances
 
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.redhat.cloud</groupId>
   <artifactId>kafka-management-sdk</artifactId>
-  <version>1.15.0</version>
+  <version>1.16.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.redhat.cloud:kafka-management-sdk:1.15.0"
+     implementation "com.redhat.cloud:kafka-management-sdk:1.16.0"
   }
 ```
 
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/kafka-management-sdk-1.15.0.jar`
+- `target/kafka-management-sdk-1.16.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -132,8 +132,8 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**promoteKafka**](docs/DefaultApi.md#promoteKafka) | **POST** /api/kafkas_mgmt/v1/kafkas/{id}/promote | 
 *DefaultApi* | [**updateKafkaById**](docs/DefaultApi.md#updateKafkaById) | **PATCH** /api/kafkas_mgmt/v1/kafkas/{id} | 
 *EnterpriseDataplaneClustersApi* | [**deleteEnterpriseClusterById**](docs/EnterpriseDataplaneClustersApi.md#deleteEnterpriseClusterById) | **DELETE** /api/kafkas_mgmt/v1/clusters/{id} | 
+*EnterpriseDataplaneClustersApi* | [**getEnterpriseClusterAddonParameters**](docs/EnterpriseDataplaneClustersApi.md#getEnterpriseClusterAddonParameters) | **GET** /api/kafkas_mgmt/v1/clusters/{id}/addon_parameters | 
 *EnterpriseDataplaneClustersApi* | [**getEnterpriseClusterById**](docs/EnterpriseDataplaneClustersApi.md#getEnterpriseClusterById) | **GET** /api/kafkas_mgmt/v1/clusters/{id} | 
-*EnterpriseDataplaneClustersApi* | [**getEnterpriseClusterWithAddonParameters**](docs/EnterpriseDataplaneClustersApi.md#getEnterpriseClusterWithAddonParameters) | **GET** /api/kafkas_mgmt/v1/clusters/{id}/addon_parameters | 
 *EnterpriseDataplaneClustersApi* | [**getEnterpriseOsdClusters**](docs/EnterpriseDataplaneClustersApi.md#getEnterpriseOsdClusters) | **GET** /api/kafkas_mgmt/v1/clusters | 
 *EnterpriseDataplaneClustersApi* | [**registerEnterpriseOsdCluster**](docs/EnterpriseDataplaneClustersApi.md#registerEnterpriseOsdCluster) | **POST** /api/kafkas_mgmt/v1/clusters | 
 *ErrorsApi* | [**getErrorById**](docs/ErrorsApi.md#getErrorById) | **GET** /api/kafkas_mgmt/v1/errors/{id} | 
@@ -155,14 +155,13 @@ Class | Method | HTTP request | Description
  - [CloudRegionList](docs/CloudRegionList.md)
  - [CloudRegionListAllOf](docs/CloudRegionListAllOf.md)
  - [EnterpriseCluster](docs/EnterpriseCluster.md)
+ - [EnterpriseClusterAddonParameters](docs/EnterpriseClusterAddonParameters.md)
  - [EnterpriseClusterAllOf](docs/EnterpriseClusterAllOf.md)
  - [EnterpriseClusterAllOfCapacityInformation](docs/EnterpriseClusterAllOfCapacityInformation.md)
+ - [EnterpriseClusterFleetshardParameters](docs/EnterpriseClusterFleetshardParameters.md)
  - [EnterpriseClusterList](docs/EnterpriseClusterList.md)
  - [EnterpriseClusterListAllOf](docs/EnterpriseClusterListAllOf.md)
- - [EnterpriseClusterListItem](docs/EnterpriseClusterListItem.md)
- - [EnterpriseClusterListItemAllOf](docs/EnterpriseClusterListItemAllOf.md)
- - [EnterpriseClusterWithAddonParameters](docs/EnterpriseClusterWithAddonParameters.md)
- - [EnterpriseClusterWithAddonParametersAllOf](docs/EnterpriseClusterWithAddonParametersAllOf.md)
+ - [EnterpriseClusterRegistrationResponse](docs/EnterpriseClusterRegistrationResponse.md)
  - [EnterpriseOsdClusterPayload](docs/EnterpriseOsdClusterPayload.md)
  - [Error](docs/Error.md)
  - [ErrorList](docs/ErrorList.md)
