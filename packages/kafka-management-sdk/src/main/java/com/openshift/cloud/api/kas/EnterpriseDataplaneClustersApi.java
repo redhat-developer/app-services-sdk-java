@@ -8,8 +8,9 @@ import com.openshift.cloud.api.kas.invoker.Pair;
 import javax.ws.rs.core.GenericType;
 
 import com.openshift.cloud.api.kas.models.EnterpriseCluster;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterAddonParameters;
 import com.openshift.cloud.api.kas.models.EnterpriseClusterList;
-import com.openshift.cloud.api.kas.models.EnterpriseClusterWithAddonParameters;
+import com.openshift.cloud.api.kas.models.EnterpriseClusterRegistrationResponse;
 import com.openshift.cloud.api.kas.models.EnterpriseOsdClusterPayload;
 import com.openshift.cloud.api.kas.models.Error;
 
@@ -91,6 +92,50 @@ public class EnterpriseDataplaneClustersApi {
       }
   /**
    * 
+   * Returns the addon parameters belonging to the enterprise dataplane cluster {id}
+   * @param id ID of the enterprise data plane cluster (required)
+   * @return a {@code EnterpriseClusterAddonParameters}
+   * @throws ApiException if fails to make API call
+   */
+  public EnterpriseClusterAddonParameters getEnterpriseClusterAddonParameters(String id) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getEnterpriseClusterAddonParameters");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/kafkas_mgmt/v1/clusters/{id}/addon_parameters".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, String> localVarCookieParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "Bearer" };
+
+    GenericType<EnterpriseClusterAddonParameters> localVarReturnType = new GenericType<EnterpriseClusterAddonParameters>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * 
    * Returns enterprise data plane cluster by ID
    * @param id ID of the enterprise data plane cluster (required)
    * @return a {@code EnterpriseCluster}
@@ -135,50 +180,6 @@ public class EnterpriseDataplaneClustersApi {
       }
   /**
    * 
-   * Returns enterprise data plane cluster by ID along with its addon parameters
-   * @param id ID of the enterprise data plane cluster (required)
-   * @return a {@code EnterpriseClusterWithAddonParameters}
-   * @throws ApiException if fails to make API call
-   */
-  public EnterpriseClusterWithAddonParameters getEnterpriseClusterWithAddonParameters(String id) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling getEnterpriseClusterWithAddonParameters");
-    }
-    
-    // create path and map variables
-    String localVarPath = "/api/kafkas_mgmt/v1/clusters/{id}/addon_parameters".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
-
-    // query params
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-    Map<String, String> localVarCookieParams = new HashMap<String, String>();
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-
-    
-    
-    
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-
-    String[] localVarAuthNames = new String[] { "Bearer" };
-
-    GenericType<EnterpriseClusterWithAddonParameters> localVarReturnType = new GenericType<EnterpriseClusterWithAddonParameters>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
-  /**
-   * 
    * List all Enterprise data plane clusters
    * @return a {@code EnterpriseClusterList}
    * @throws ApiException if fails to make API call
@@ -218,10 +219,10 @@ public class EnterpriseDataplaneClustersApi {
    * 
    * Register enterprise data plane cluster
    * @param enterpriseOsdClusterPayload Enterprise data plane cluster details (required)
-   * @return a {@code EnterpriseClusterWithAddonParameters}
+   * @return a {@code EnterpriseClusterRegistrationResponse}
    * @throws ApiException if fails to make API call
    */
-  public EnterpriseClusterWithAddonParameters registerEnterpriseOsdCluster(EnterpriseOsdClusterPayload enterpriseOsdClusterPayload) throws ApiException {
+  public EnterpriseClusterRegistrationResponse registerEnterpriseOsdCluster(EnterpriseOsdClusterPayload enterpriseOsdClusterPayload) throws ApiException {
     Object localVarPostBody = enterpriseOsdClusterPayload;
     
     // verify the required parameter 'enterpriseOsdClusterPayload' is set
@@ -254,7 +255,7 @@ public class EnterpriseDataplaneClustersApi {
 
     String[] localVarAuthNames = new String[] { "Bearer" };
 
-    GenericType<EnterpriseClusterWithAddonParameters> localVarReturnType = new GenericType<EnterpriseClusterWithAddonParameters>() {};
+    GenericType<EnterpriseClusterRegistrationResponse> localVarReturnType = new GenericType<EnterpriseClusterRegistrationResponse>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }

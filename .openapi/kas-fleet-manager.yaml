@@ -2,7 +2,7 @@ openapi: 3.0.0 # need this as first line to allow some IDEs to know this is an o
 # All endpoints defined here will be discoverable by all users. If there is a need to keep some endpoints "private", add them to the "managed-services-api-private.yaml" file
 info:
   title: Kafka Management API
-  version: 1.15.0
+  version: 1.16.0
   description: Kafka Management API is a REST API to manage Kafka instances
   license:
     name: 'Apache 2.0'
@@ -997,6 +997,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EnterpriseClusterList'
+              examples:
+                EnterpriseClusterListExample:
+                  $ref: '#/components/examples/EnterpriseClusterListExample'
         "400":
           description: Bad request
           content:
@@ -1051,7 +1054,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EnterpriseClusterWithAddonParameters'
+                $ref: '#/components/schemas/EnterpriseClusterRegistrationResponse'
+              examples:
+                EnterpriseClusterRegistrationResponseExample:
+                  $ref: '#/components/examples/EnterpriseClusterRegistrationResponseExample'
           description: Enterprise cluster registered
         "400":
           content:
@@ -1195,8 +1201,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/EnterpriseCluster'
               examples:
-                EnterpriseClusterListItemExample:
-                  $ref: '#/components/examples/EnterpriseClusterListItemExample'
+                EnterpriseClusterExample:
+                  $ref: '#/components/examples/EnterpriseClusterExample'
           description: Found enterprise data plane cluster with provided ID
         "401":
           content:
@@ -1241,8 +1247,10 @@ paths:
     get:
       tags:
         - enterprise-dataplane-clusters
-      operationId: getEnterpriseClusterWithAddonParameters
-      description: Returns enterprise data plane cluster by ID along with its addon parameters
+      operationId: getEnterpriseClusterAddonParameters
+      description: |-
+        Returns the addon parameters belonging to the enterprise dataplane
+        cluster {id}
       parameters:
         - in: path
           name: id
@@ -1255,11 +1263,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EnterpriseClusterWithAddonParameters'
+                $ref: '#/components/schemas/EnterpriseClusterAddonParameters'
               examples:
-                EnterpriseClusterWithAddonsExample:
-                  $ref: '#/components/examples/EnterpriseClusterWithAddonParametersExample'
-          description: Returns the enterprise data plane cluster with addon parameters for an existing enterprise data plane cluster with provided ID
+                EnterpriseClusterAddonParametersExample:
+                  $ref: '#/components/examples/EnterpriseClusterAddonParametersResponseExample'
+          description: |-
+            Returns the addon parameters belonging to the enterprise dataplane
+            cluster {id}
         "401":
           content:
             application/json:
@@ -1475,25 +1485,7 @@ components:
               items:
                 allOf:
                   - $ref: "#/components/schemas/KafkaRequest"
-    EnterpriseClusterList:
-      allOf:
-        - $ref: "#/components/schemas/List"
-        - type: object
-          required: [ items ]
-          example:
-            kind: "ClusterList"
-            page: "1"
-            size: "1"
-            total: "1"
-            item:
-              $ref: '#/components/examples/EnterpriseClusterListItemExample'
-          properties:
-            items:
-              type: array
-              items:
-                allOf:
-                  - $ref: "#/components/schemas/EnterpriseClusterListItem"
-    EnterpriseClusterListItem:
+    EnterpriseCluster:
       allOf:
         - $ref: "#/components/schemas/ObjectReference"
         - type: object
@@ -1519,22 +1511,12 @@ components:
             multi_az:
               description: A flag indicating whether this cluster is available on multiple availability zones or not
               type: boolean
-    EnterpriseCluster:
-      allOf:
-        - $ref: "#/components/schemas/EnterpriseClusterListItem"
-        - type: object
-          properties:
             supported_instance_types:
               type: object
               $ref: "#/components/schemas/SupportedKafkaInstanceTypesList"
             capacity_information:
               description: Returns the capacity related information
               type: object
-              example:
-                kafka_machine_pool_node_count: 3
-                maximum_kafka_streaming_units: 1
-                remaining_kafka_streaming_units: 0
-                consumed_kafka_streaming_units: 1
               required:
                 - kafka_machine_pool_node_count
                 - maximum_kafka_streaming_units
@@ -1553,6 +1535,17 @@ components:
                 consumed_kafka_streaming_units:
                   description: "The number of Kafka streaming units that have been consumed on this cluster"
                   type: integer
+    EnterpriseClusterList:
+      allOf:
+        - $ref: "#/components/schemas/List"
+        - type: object
+          required: [ items ]
+          properties:
+            items:
+              type: array
+              items:
+                allOf:
+                  - $ref: "#/components/schemas/EnterpriseCluster"
     VersionMetadata:
       allOf:
       - $ref: "#/components/schemas/ObjectReference"
@@ -2084,18 +2077,27 @@ components:
             The node count value has to be a multiple of 3 with a minimum of 3 nodes.
           type: integer
           format: int32
-    EnterpriseClusterWithAddonParameters:
-      description: Enterprise cluster with addon parameters
+    EnterpriseClusterAddonParameters:
+      description: Enterprise Cluster get addon parameters response
       allOf:
-        - $ref: "#/components/schemas/EnterpriseClusterListItem"
-        - type: object
-          properties:
-            fleetshard_parameters:
-              type: array
-              items:
-                allOf:
-                  - $ref: "#/components/schemas/FleetshardParameter"
-
+        # This object will have the following ObjectReference values:
+        #  kind: ClusterAddonParameters
+        #  id: <cluster_id>
+        #  href: a self reference
+        - $ref: "#/components/schemas/ObjectReference"
+        - $ref: "#/components/schemas/EnterpriseClusterFleetshardParameters"
+    EnterpriseClusterFleetshardParameters:
+      description:
+        Enterprise Cluster fleetshard parameters object
+      type: object
+      properties:
+        fleetshard_parameters:
+          $ref: "#/components/schemas/FleetshardParametersArray"
+    FleetshardParametersArray:
+      description: Enterprise Cluster fleetshard parameters array
+      type: array
+      items:
+        $ref: "#/components/schemas/FleetshardParameter"
     FleetshardParameter:
       description: "Fleetshard parameter consumed by enterprise cluster"
       type: object
@@ -2104,6 +2106,14 @@ components:
           type: string
         value:
           type: string
+    EnterpriseClusterRegistrationResponse:
+      description: |-
+        Enterprise Cluster registration response.
+        It returns additional privileged information compared to The
+        information returned by EnterpriseCluster
+      allOf:
+        - $ref: "#/components/schemas/EnterpriseCluster"
+        - $ref: "#/components/schemas/EnterpriseClusterFleetshardParameters"
 
   parameters:
     id:
@@ -2282,7 +2292,7 @@ components:
         cloud_provider: "aws"
         name: "test_kafka"
         plan: "standard.x1"
-    EnterpriseClusterListItemExample:
+    EnterpriseClusterExample:
       value:
         id: "abcd1234ascd3456fdks9485lskd030h"
         kind: "cluster"
@@ -2293,16 +2303,174 @@ components:
         cloud_provider: aws
         region: us-east-1
         multi_az: true
-    EnterpriseClusterWithAddonParametersExample:
+        supported_instance_types:
+          id: standard
+          display_name: Standard
+          supported_billing_models:
+            - id: enterprise
+              ams_resource: rhosak
+              ams_product: RHOSAKCC
+              ams_billing_models:
+              - standard
+          sizes:
+            [
+              {
+                id: x1,
+                display_name: "1",
+                ingress_throughput_per_sec: {"bytes": 31457280},
+                egress_throughput_per_sec: {"bytes": 31457280},
+                total_max_connections: 3000,
+                max_data_retention_size: {"bytes": 1073741800000},
+                max_partitions: 1000,
+                max_data_retention_period: "P14D",
+                max_connection_attempts_per_sec: 100,
+                quota_consumed: 1,
+                quota_type: "RHOSAK",
+                capacity_consumed: 1,
+                max_message_size: { "bytes": 1048576},
+                min_in_sync_replicas: 1,
+                replication_factor: 1,
+                supported_az_modes: [
+                  "multi",
+                ],
+                maturity_status: 'stable'
+              },
+            ]
+        capacity_information:
+          kafka_machine_pool_node_count: 3
+          maximum_kafka_streaming_units: 1
+          remaining_kafka_streaming_units: 0
+          consumed_kafka_streaming_units: 1
+    EnterpriseClusterListExample:
+      value:
+        items:
+        - id: "abcd1234ascd3456fdks9485lskd030h"
+          kind: "cluster"
+          href: "/api/kafkas_mgmr/v1/clusters/abcd1234ascd3456fdks9485lskd030h"
+          status: "ready"
+          cluster_id: "abcd1234ascd3456fdks9485lskd030h"
+          access_kafkas_via_private_network: false
+          cloud_provider: aws
+          region: us-east-1
+          multi_az: true
+          supported_instance_types:
+            id: standard
+            display_name: Standard
+            supported_billing_models:
+              - id: enterprise
+                ams_resource: rhosak
+                ams_product: RHOSAKCC
+                ams_billing_models:
+                - standard
+            sizes:
+              [
+                {
+                  id: x1,
+                  display_name: "1",
+                  ingress_throughput_per_sec: {"bytes": 31457280},
+                  egress_throughput_per_sec: {"bytes": 31457280},
+                  total_max_connections: 3000,
+                  max_data_retention_size: {"bytes": 1073741800000},
+                  max_partitions: 1000,
+                  max_data_retention_period: "P14D",
+                  max_connection_attempts_per_sec: 100,
+                  quota_consumed: 1,
+                  quota_type: "rhosak",
+                  capacity_consumed: 1,
+                  max_message_size: { "bytes": 1048576},
+                  min_in_sync_replicas: 1,
+                  replication_factor: 1,
+                  supported_az_modes: [
+                    "multi",
+                  ],
+                  maturity_status: 'stable'
+                },
+              ]
+          capacity_information:
+            kafka_machine_pool_node_count: 3
+            maximum_kafka_streaming_units: 1
+            remaining_kafka_streaming_units: 0
+            consumed_kafka_streaming_units: 1
+    EnterpriseClusterRegistrationResponseExample:
       value:
         id: "abcd1234ascd3456fdks9485lskd030h"
         kind: "cluster"
         href: "/api/kafkas_mgmr/v1/clusters/abcd1234ascd3456fdks9485lskd030h"
         status: "ready"
         cluster_id: "abcd1234ascd3456fdks9485lskd030h"
-        access_kafkas_via_private_network: true
+        access_kafkas_via_private_network: false
         cloud_provider: aws
         region: us-east-1
+        multi_az: true
+        supported_instance_types:
+          id: standard
+          display_name: Standard
+          supported_billing_models:
+            - id: enterprise
+              ams_resource: rhosak
+              ams_product: RHOSAKCC
+              ams_billing_models:
+              - standard
+          sizes:
+            [
+              {
+                id: x1,
+                display_name: "1",
+                ingress_throughput_per_sec: {"bytes": 31457280},
+                egress_throughput_per_sec: {"bytes": 31457280},
+                total_max_connections: 3000,
+                max_data_retention_size: {"bytes": 1073741800000},
+                max_partitions: 1000,
+                max_data_retention_period: "P14D",
+                max_connection_attempts_per_sec: 100,
+                quota_consumed: 1,
+                quota_type: "rhosak",
+                capacity_consumed: 1,
+                max_message_size: { "bytes": 1048576},
+                min_in_sync_replicas: 1,
+                replication_factor: 1,
+                supported_az_modes: [
+                  "multi",
+                ],
+                maturity_status: 'stable'
+              },
+            ]
+        capacity_information:
+          kafka_machine_pool_node_count: 3
+          maximum_kafka_streaming_units: 1
+          remaining_kafka_streaming_units: 0
+          consumed_kafka_streaming_units: 1
+        fleetshard_parameters: [
+            {
+                id: "sso-auth-server-url",
+                value: "http://someurl/auth/realms/rhoas"
+            },
+            {
+                id: "sso-client-id",
+                value: "kas-fleetshard-agent-1234abcd1234abcd1234abcd1234abcd"
+            },
+            {
+                id: "sso-secret",
+                value: "some-secret"
+            },
+            {
+                id: "cluster-id",
+                value: "1234abcd1234abcd1234abcd1234abcd"
+            },
+            {
+                id: "poll-interval",
+                value: "15s"
+            },
+            {
+                id: "resync-interval",
+                value: "60s"
+            }
+        ]
+    EnterpriseClusterAddonParametersResponseExample:
+      value:
+        id: "abcd1234ascd3456fdks9485lskd030h"
+        kind: "ClusterAddonParameters"
+        href: "/api/kafkas_mgmr/v1/clusters/abcd1234ascd3456fdks9485lskd030h/addon_parameters"
         fleetshard_parameters: [
             {
                 id: "sso-auth-server-url",
