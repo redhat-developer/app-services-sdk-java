@@ -1031,7 +1031,6 @@ components:
         - page
         - size
         - total
-        - items
       type: object
       properties:
         kind:
@@ -1042,10 +1041,6 @@ components:
           type: integer
         total:
           type: integer
-        items:
-          type: array
-          items:
-            $ref: "#/components/schemas/ObjectReference"
 
     Error:
         type: object
@@ -1122,9 +1117,8 @@ components:
           properties:
             collections:
               type: array
-              items:
-                allOf:
-                  - $ref: "#/components/schemas/ObjectReference"
+              items: # removed allOf to workaround this issue: https://github.com/microsoft/kiota/issues/2442
+                $ref: "#/components/schemas/ObjectReference"
 
     #
     # Services
@@ -1217,6 +1211,7 @@ components:
         - $ref: "#/components/schemas/ConnectorClusterStatus"
 
     ConnectorClusterList:
+      required: [ items ]
       allOf:
         - $ref: "#/components/schemas/List"
         - type: object
@@ -1331,6 +1326,7 @@ components:
         - $ref: "#/components/schemas/ConnectorStatus"
 
     ConnectorList:
+      required: [ items ]
       allOf:
         - $ref: "#/components/schemas/List"
         - type: object
@@ -1396,6 +1392,7 @@ components:
               type: object
 
     ConnectorTypeList:
+      required: [ items ]
       allOf:
         - $ref: "#/components/schemas/List"
         - type: object
@@ -1513,6 +1510,7 @@ components:
         - $ref: "#/components/schemas/ConnectorNamespaceRequestMeta"
 
     ConnectorNamespaceList:
+      required: [ items ]
       allOf:
         - $ref: "#/components/schemas/List"
         - type: object
