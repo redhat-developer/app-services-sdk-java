@@ -1564,9 +1564,8 @@ components:
             type: string
           collections:
             type: array
-            items:
-              allOf:
-              - $ref: "#/components/schemas/ObjectReference"
+            items: # removed allOf to workaround this issue: https://github.com/microsoft/kiota/issues/2442
+              $ref: "#/components/schemas/ObjectReference"
     KafkaRequestPayload:
       description: Schema for the request body sent to /kafkas POST
       required:
